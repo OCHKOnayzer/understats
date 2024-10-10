@@ -9,7 +9,6 @@ import * as m from '$lib/paraglide/messages.js'
   <BackgroundContainer>
     <div class="logo flex gap-5">
       <a href="/">{m.myAccounts()}</a>
-      <a href="awards">{m.awards()}</a>
     </div>
 
     <div class="nav">
