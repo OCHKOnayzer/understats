@@ -1,11 +1,24 @@
-<svelte:options runes={false} />
-
-<script lang="ts">
-import Header from './components/header.svelte'
-import Section from './components/section/section.svelte'
+<script>
+	import Header from './components/header.svelte';
+	import Menu from './components/section/menu.svelte';
+	import Section from './components/section/section.svelte';
+	import { t } from 'svelte-i18n';
+	const headerProps = $t('other.awards');
+	import Progress from './components/widgets/progress.svelte';
 </script>
 
-<main>
-  <Header />
-  <Section />
-</main>
+<svelte:head>
+	<title>{$t('other.awards')}</title>
+	<meta name="description" content="About this app" />
+</svelte:head>
+
+<div class="text-column">
+	<Menu />
+	<div class="mainContent">
+		<Header Widget={Progress} {headerProps} />
+		<Section />
+	</div>
+</div>
+
+<style>
+</style>
