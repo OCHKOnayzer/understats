@@ -1,6 +1,4 @@
 <script lang="ts">
-	import news from '../../../../static/assets/news.png';
-	import FAQ from '../../../../static/assets/FAQ.png';
 	import { onMount } from 'svelte';
 	import { t } from 'svelte-i18n';
 
@@ -16,13 +14,13 @@
 <div class="menu_items">
 	<a href="/" class="card_item" class:selected={isActive('/FAQ')}>
 		<div class="image_box">
-			<img src={FAQ} alt="" />
+			<img src="assets/FAQ.png" alt="" />
 		</div>
 		<span class="item_name">{$t('menu.Help')}</span>
 	</a>
 	<a href="/" class="card_item" class:selected={isActive('/news')}>
 		<div class="image_box">
-			<img src={news} alt="" />
+			<img src="assets/news.png" alt="" />
 		</div>
 		<span class="item_name">{$t('menu.News')}</span>
 	</a>

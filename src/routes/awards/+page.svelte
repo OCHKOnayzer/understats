@@ -1,3 +1,4 @@
+<svelte:options runes={false} />
 <script>
 	import Header from './components/header.svelte';
 	import Section from './components/section/section.svelte';

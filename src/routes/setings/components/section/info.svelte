@@ -1,6 +1,5 @@
 <script>
 	import { t } from 'svelte-i18n';
-	import edit from '../../../../../static/assets/edit.svg';
 	import { onMount } from 'svelte';
 	import { user, fetchUser } from '$stores/menu';
 
@@ -72,7 +71,7 @@
 		</div>
 		<button class="btn_edit">
 			<span>
-				<img src={edit} alt="" />
+				<img src="assets/edit.svg" alt="" />
 			</span>
 		</button>
 		<button class="leave_acc">

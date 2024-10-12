@@ -29,7 +29,7 @@
 		<div class="menu_flex_up">
 			<div class="logo">
 				<div class="imgLogo">
-					<img src={'/assets/logo.png'} alt=""/> 
+					<img src={'/assets/logo.png'} alt="Лого"/> 
 				</div>
 				UnderStat
 			</div>
@@ -39,15 +39,15 @@
 					<span>{$t('other.awards')}</span>
 					<div class="user_award">
 						<div>
-							<img src={img} alt="" />
+							<img src="/assets/img.png" alt="Трофей" />
 							<p>4</p>
 						</div>
 						<div>
-							<img src={img1gold} alt="" />
+							<img src="assets/img1gold.png" alt="Трофей" />
 							<p>0</p>
 						</div>
 						<div>
-							<img src={img3gold} alt="" />
+							<img src="assets/img3gold.png" alt="Трофей" />
 							<p>0</p>
 						</div>
 					</div>
@@ -69,7 +69,7 @@
 								<span>ID: {$user.id}</span>
 							</div>
 							<div class="quitBtn">
-								<img src={quit} alt="" />
+								<img src="assets/leave.svg" alt="">
 							</div>
 						</div>
 					</div>

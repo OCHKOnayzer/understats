@@ -1,17 +1,4 @@
 <script lang="ts">
-	import item1 from '../../../../static/assets/setings.png';
-	import setings from '../../../../static/assets/setings.png';
-	import home from '../../../../static/assets/home.png';
-	import users from '../../../../static/assets/users.png';
-	import mod from '../../../../static/assets/mod.png';
-	import FAQ from '../../../../static/assets/FAQ.png';
-
-	import activeItem1 from '../../../../static/assets/item1.png';
-	import activeSetings from '../../../../static/assets/active/setings.png';
-	import activeHome from '../../../../static/assets/active/home.png';
-	import activeUsers from '../../../../static/assets/users.png';
-	import activeMod from '../../../../static/assets/mod.png';
-	import activeFAQ from '../../../../static/assets/FAQ.png';
 
 	import { onMount } from 'svelte';
 	import { t } from 'svelte-i18n';
@@ -27,42 +14,42 @@
 <div class="menu_items">
 	<a href="/" class="card_item" class:selected={currentPath === '/h1'}>
 		<div class="image_box">
-			<img src={currentPath === '/hl' ? activeItem1 : item1} alt="" />
+			<img src={currentPath === '/hl' ? "assets/item1.png" : "assets/item1.png"} alt="" />
 		</div>
 		<span class="item_name">{$t('menu.Place_bet')}</span>
 	</a>
 
 	<a href="/" class="card_item" class:selected={currentPath === '/'}>
 		<div class="image_box">
-			<img src={currentPath === '/' ? activeHome : home} alt="Домашняя" />
+			<img src={currentPath === '/' ? "assets/active/home.png" : "assets/home.png"} alt="Домашняя" />
 		</div>
 		<span class="item_name">{$t('menu.Main')}</span>
 	</a>
 
 	<a href="/stats" class="card_item" class:selected={currentPath === '/stats'}>
 		<div class="image_box">
-			<img src={currentPath === '/stats' ? activeFAQ : FAQ} alt="Статистика" />
+			<img src={currentPath === '/stats' ? "assets/active/FAQ.png" : "assets/FAQ.png"} alt="Статистика" />
 		</div>
 		<span class="item_name">{$t('menu.Stats')}</span>
 	</a>
 
 	<a href="/profile" class="card_item" class:selected={currentPath === '/profile'}>
 		<div class="image_box">
-			<img src={currentPath === '/profile' ? activeUsers : users} alt="Профиль" />
+			<img src={currentPath === '/profile' ? "assets/active/users.png" : "assets/users.png"} alt="Профиль" />
 		</div>
 		<span class="item_name">{$t('menu.Profile')}</span>
 	</a>
 
 	<a href="/mods" class="card_item" class:selected={currentPath === '/mods'}>
 		<div class="image_box">
-			<img src={currentPath === '/mods' ? activeMod : mod} alt="Моды" />
+			<img src={currentPath === '/mods' ? "assets/active/mod.png" :  "assets/mod.png"} alt="Моды" />
 		</div>
 		<span class="item_name">{$t('menu.Mods')}</span>
 	</a>
 
 	<a href="/setings" class="card_item" class:selected={currentPath === '/setings'}>
 		<div class="image_box">
-			<img src={currentPath === '/setings' ? activeSetings : setings} alt="Настройки" />
+			<img src={currentPath === '/setings' ? "assets/active/setings.png" : "assets/setings.png"} alt="Настройки" />
 		</div>
 		<span class="item_name">{$t('menu.Setings')}</span>
 	</a>

@@ -1,3 +1,4 @@
+<svelte:options runes={false} />
 <script lang="ts">
 	import UTrophies from './uTrophies.svelte';
 	import LockTrophies from './lockTrophies.svelte';
