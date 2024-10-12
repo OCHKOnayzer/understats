@@ -1,17 +1,17 @@
 <script lang="ts">
-	import item1 from '../../assets/item1.png';
-	import setings from '../../assets/setings.png';
-	import home from '../../assets/home.png';
-	import users from '../../assets/users.png';
-	import mod from '../../assets/mod.png';
-	import FAQ from '../../assets/FAQ.png';
+	import item1 from '../../../../static/assets/setings.png';
+	import setings from '../../../../static/assets/setings.png';
+	import home from '../../../../static/assets/home.png';
+	import users from '../../../../static/assets/users.png';
+	import mod from '../../../../static/assets/mod.png';
+	import FAQ from '../../../../static/assets/FAQ.png';
 
-	import activeItem1 from '../../assets/item1.png';
-	import activeSetings from '../../assets/active/setings.png';
-	import activeHome from '../../assets/active/home.png';
-	import activeUsers from '../../assets/users.png';
-	import activeMod from '../../assets/mod.png';
-	import activeFAQ from '../../assets/FAQ.png';
+	import activeItem1 from '../../../../static/assets/item1.png';
+	import activeSetings from '../../../../static/assets/active/setings.png';
+	import activeHome from '../../../../static/assets/active/home.png';
+	import activeUsers from '../../../../static/assets/users.png';
+	import activeMod from '../../../../static/assets/mod.png';
+	import activeFAQ from '../../../../static/assets/FAQ.png';
 
 	import { onMount } from 'svelte';
 	import { t } from 'svelte-i18n';

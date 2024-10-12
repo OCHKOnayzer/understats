@@ -1,6 +1,5 @@
 <script>
 	import Header from './components/header.svelte';
-	import Menu from './components/section/menu.svelte';
 	import Section from './components/section/section.svelte';
 	import { t } from 'svelte-i18n';
 	const headerProps = $t('other.awards');
@@ -13,7 +12,6 @@
 </svelte:head>
 
 <div class="text-column">
-	<Menu />
 	<div class="mainContent">
 		<Header Widget={Progress} {headerProps} />
 		<Section />

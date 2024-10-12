@@ -1,7 +1,7 @@
 <script lang="ts">
 	import UTrophies from './uTrophies.svelte';
 	import LockTrophies from './lockTrophies.svelte';
-	import { awards, allAwards } from '../../other/card';
+	import { awards, allAwards } from '../other/card';
 	import { t } from 'svelte-i18n';
 	import { get } from 'svelte/store';
 

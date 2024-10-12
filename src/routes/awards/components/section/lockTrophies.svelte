@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { t } from 'svelte-i18n';
-	import ProgressBar from '../../UI/progressBar.svelte';
+	import ProgressBar from '../UI/progressBar.svelte';
 
 	interface Award {
 		name: string;

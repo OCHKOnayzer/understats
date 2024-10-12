@@ -1,6 +1,6 @@
 <script lang="ts">
-	import news from '../../assets/news.png';
-	import FAQ from '../../assets/FAQ.png';
+	import news from '../../../../static/assets/news.png';
+	import FAQ from '../../../../static/assets/FAQ.png';
 	import { onMount } from 'svelte';
 	import { t } from 'svelte-i18n';
 

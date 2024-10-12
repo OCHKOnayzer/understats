@@ -1,6 +1,5 @@
 <script>
 	import Header from './components/header.svelte';
-	import Menu from './components/section/menu.svelte';
 	import UserAvatar from './components/widgets/userAvatar.svelte';
 	import Info from './components/section/info.svelte';
 	import EditPass from './components/section/editPass.svelte';
@@ -16,13 +15,12 @@
 </svelte:head>
 
 <div class="text-column">
-	<Menu />
 	<div class="mainContent">
 		<Header Widget={Setings} {headerProps} />
 		<UserAvatar />
 		<Info />
 		<EditPass />
-	</div>
+	</div>	
 </div>
 
 <style>
