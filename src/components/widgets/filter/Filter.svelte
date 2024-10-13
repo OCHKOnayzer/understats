@@ -1,9 +1,9 @@
 <script lang="ts">
-import { slide } from 'svelte/transition'
 import FilterForm from '$components/entities/filter/FilterForm.svelte'
 import BackgroundContainer from '$components/providers/backgroundContainer/BackgroundContainer.svelte'
-import * as m from '$lib/paraglide/messages.js'
+import * as m from '$m'
 import { filter } from '$stores/store'
+import { slide } from 'svelte/transition'
 
 $: filterValue = $filter
 </script>

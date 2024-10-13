@@ -1,13 +1,13 @@
 <script lang="ts">
-import { get } from 'svelte/store'
 import SortButton from '$components/entities/sort/SortButton/SortButton.svelte'
-import * as m from '$lib/paraglide/messages.js'
+import * as m from '$m'
 import {
   AccountCreate,
   AccountCreateSelect,
   AccountStatus,
   AccountStatusSelect,
 } from '$stores/store'
+import { get } from 'svelte/store'
 </script>
 
 <div class="flex items-center gap-3">

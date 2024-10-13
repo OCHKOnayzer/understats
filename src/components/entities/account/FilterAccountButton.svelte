@@ -1,9 +1,9 @@
 <script lang="ts">
+import Button from '$components/ui/button/button.svelte'
+import * as m from '$m'
+import { filter } from '$stores/store'
 import Icon from '@iconify/svelte'
 import { get } from 'svelte/store'
-import Button from '$components/ui/button/button.svelte'
-import * as m from '$lib/paraglide/messages.js'
-import { filter } from '$stores/store'
 
 let filterAccount = () => {
   filter.set(!get(filter))

@@ -1,6 +1,6 @@
+import * as m from '$m'
+import type { FilterInputSelectStore, TableItems } from '$types/types'
 import { writable } from 'svelte/store'
-import type { FilterInputSelectStore, TableItems } from '../types/types'
-import * as m from '$lib/paraglide/messages.js'
 
 export const BOOKMAKERS = [
   { value: 'fonbet', label: m.fonbet(), icon: '/icons/bk/fonbet.png' },

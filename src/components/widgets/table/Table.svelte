@@ -1,10 +1,10 @@
 <script lang="ts">
-import Icon from '@iconify/svelte'
 import Button from '$components/ui/button/button.svelte'
 import * as Table from '$components/ui/table'
-import * as m from '$lib/paraglide/messages.js'
+import * as m from '$m'
 import { accounts } from '$stores/store'
 import { cn } from '$utils/utils'
+import Icon from '@iconify/svelte'
 
 $: filteredAccounts = $accounts
 </script>

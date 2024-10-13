@@ -1,14 +1,14 @@
 <script lang="ts">
-import type { Writable } from 'svelte/store'
-import type { FilterInputSelectStore, SelectedOption } from '../../../types/types'
 import Button from '$components/ui/button/button.svelte'
-import * as m from '$lib/paraglide/messages.js'
+import * as m from '$m'
+import type { Writable } from 'svelte/store'
+import type { FilterInputSelectStore, SelectedOption } from '$types/types'
 
 export let filter: Writable<FilterInputSelectStore>
 
 function clearFilters() {
   filter.update((items: FilterInputSelectStore) => {
-    (Object.keys(items) as (keyof FilterInputSelectStore)[]).forEach((key) => {
+    ;(Object.keys(items) as (keyof FilterInputSelectStore)[]).forEach((key) => {
       if (items[key]) {
         items[key].selected = { value: '', label: '' } as SelectedOption
       }
