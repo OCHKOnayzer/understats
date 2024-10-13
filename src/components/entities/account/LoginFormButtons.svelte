@@ -6,20 +6,30 @@ import { formatDate } from '$utils/utils'
 import { Dialog } from 'bits-ui'
 import { get } from 'svelte/store'
 
+export let isSuccess = false
+
 const handleConnect = () => {
-  const loginFormData = get(LoginForm)
-  accounts.update((store) => {
-    const newItem = {
+  const { login, bookmaker, password } = get(LoginForm)
+
+  if (!login?.selected?.value || !bookmaker?.selected?.label || !password?.selected?.value) {
+    isSuccess = false
+    return
+  }
+
+  accounts.update((store) => [
+    ...store,
+    {
       id: store.length + 1,
-      name: loginFormData.login.selected.value,
+      name: login.selected.value,
       connected: true,
       createdAt: formatDate(new Date()),
-      bookmaker: loginFormData.bookmaker.selected.label,
-      login: loginFormData.login.selected.value,
-      password: loginFormData.password.selected.value,
-    }
-    return [...store, newItem]
-  })
+      bookmaker: bookmaker.selected.label,
+      login: login.selected.value,
+      password: password.selected.value,
+    },
+  ])
+
+  isSuccess = true
 }
 </script>
 
