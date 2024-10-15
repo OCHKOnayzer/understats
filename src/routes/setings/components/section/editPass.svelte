@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import { user, fetchUser, updateUser } from '$stores/menu';
 
+	
 	let newPassword = '';
 	let oldPassword = '';
 	let password = '';
@@ -84,16 +85,16 @@
 
 <div class="progressWrapper">
 	<div class="progressTitle">
-		<div>
-			<p>
+		<div class="main_info_wrapper">
+			<p class="widget_title">
 				{$t('settings.pass_change')}
 			</p>
 		</div>
 	</div>
 	<div class="pass_sett">
-		<div class="setings_item item-w">
+		<div class="setings_item email item-w">
 			<div class="item_settings_info">
-				<p>{$t('settings.create_email')}</p>
+				<p class="settings_name">{$t('settings.create_email')}</p>
 			</div>
 			<div class="selected_element">
 				<div class="selected_menu_element">
@@ -107,7 +108,7 @@
 	<div class="setings">
 		<div class="setings_item item-w">
 			<div class="item_settings_info">
-				<p>{$t('settings.display_name')}</p>
+				<p class="settings_name">{$t('settings.display_name')}</p>
 				<button class="clear_curr max--w" on:click={() => clearField('username')}
 					>{$t('other.clear')}</button
 				>
@@ -121,7 +122,7 @@
 		</div>
 		<div class="setings_item item-w">
 			<div class="item_settings_info">
-				<p>{$t('settings.old_pass')}</p>
+				<p class="settings_name">{$t('settings.old_pass')}</p>
 				<button class="clear_curr max--w" on:click={() => clearField('oldPassword')}
 					>{$t('other.clear')}</button
 				>
@@ -136,7 +137,7 @@
 		</div>
 		<div class="setings_item item-w">
 			<div class="item_settings_info">
-				<p>{$t('settings.new_pass')}</p>
+				<p class="settings_name">{$t('settings.new_pass')}</p>
 				<button class="clear_curr max--w" on:click={() => clearField('newPassword')}
 					>{$t('other.clear')}</button
 				>
@@ -161,8 +162,17 @@
 </div>
 
 <style>
+	.settings_name{ 
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	.widget_title{ 
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
 	.progressWrapper {
-		margin: 0px 20px 15px 20px;
+		width: 98%;
+		margin: 0 auto;
 		height: fit-content;
 		box-sizing: border-box;
 		margin-top: 10px;
@@ -270,6 +280,7 @@
 		display: flex;
 		padding-top: 20px;
 		padding-bottom: 20px;
+		font-size: 20px;
 	}
 	.btn_upd:nth-child(1) {
 		margin-right: 10px;
@@ -282,12 +293,25 @@
 		background-color: #707f95;
 		color: white;
 	}
+	@media (max-width: 1200px){ 
+		.main_info_wrapper .widget_title{ 
+			margin: 10px 0px 0px 0px;
+		}
+	}
 	@media (max-width: 1300px) {
 		.btn_upd:nth-child(1) {
-			width: 140px;
+			width: 97px;
+		}
+		.btn_upd:nth-child(2){ 
+			width: 80px;
 		}
 	}
 	@media (max-width: 1100px) {
+		.user_email,
+		.input_element,
+		.item_settings_info p:nth-child(1){ 
+			font-size: 15px;
+		}
 		.min--w {
 			display: block;
 		}
@@ -297,8 +321,20 @@
 		.selected_element {
 			height: 50%;
 		}
-		.item_settings_info p:nth-child(1) {
-			font-size: 15px;
+		.btn_upd:nth-child(1),.btn_upd:nth-child(2) {
+			height: 30px;
+		}
+		
+	}
+	@media screen and (max-height: 600px) { 
+		.setings{ 
+			padding-bottom: 4%;
+		}
+		.selected_element { 
+			height: 70%;
+		}
+		.email{ 
+			padding-bottom: 14px;
 		}
 	}
 </style>

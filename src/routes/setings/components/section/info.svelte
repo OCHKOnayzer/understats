@@ -12,8 +12,8 @@
 
 <div class="progressWrapper">
 	<div class="progressTitle">
-		<div>
-			<p>
+		<div class="main_info_wrapper">
+			<p class="widget_title">
 				{$t('settings.basic_info')}
 			</p>
 		</div>
@@ -21,7 +21,7 @@
 	<div class="setings">
 		<div class="setings_item item-w">
 			<div class="item_settings_info">
-				<p>{$t('settings.create_data')}</p>
+				<p class="settings_name">{$t('settings.create_data')}</p>
 			</div>
 			<div class="selected_element">
 				<div class="selected_menu_element">
@@ -33,7 +33,7 @@
 		</div>
 		<div class="setings_item item-w">
 			<div class="item_settings_info">
-				<p>{$t('settings.profile_awards')}</p>
+				<p class="settings_name">{$t('settings.profile_awards')}</p>
 			</div>
 			<div class="selected_element item-w">
 				<div class="selected_menu_element user_lvl">
@@ -45,7 +45,7 @@
 		</div>
 		<div class="setings_item item-w">
 			<div class="item_settings_info">
-				<p>{$t('settings.acc_lvl')}</p>
+				<p class="settings_name">{$t('settings.acc_lvl')}</p>
 			</div>
 			<div class="selected_element">
 				<div class="selected_menu_element">
@@ -57,32 +57,49 @@
 		</div>
 	</div>
 	<div class="basic_setings">
-		<div class="setings_item min--w">
-			<div class="item_settings_info">
-				<p>{$t('settings.add_acc')}</p>
-			</div>
-			<div class="selected_element">
-				<div class="selected_menu_element">
-					{#if $user}
-						<span>{$user.add_account} {$t('other.acc')}</span>
-					{/if}
+		
+		<div class="other_user_settings">
+			<div class="accounts">
+				<div><p class="accounts--text">{$t('settings.add_acc')}</p></div>
+				<div class="other_account_wrapper">
+					<div class="accounts_element">
+						{#if $user}
+							<span>{$user.add_account} {$t('other.acc')}</span>
+						{/if}
+					</div>
 				</div>
 			</div>
+			<div class="btn_edit__wrapper">
+				<button class="btn_edit">
+					<span>
+						<img src="assets/edit.svg" alt="" />
+					</span>
+				</button>
+				<button class="leave_acc">
+					<p class="leave_acc_p">{$t('settings.leave')}</p>
+				</button>
+			</div>
 		</div>
-		<button class="btn_edit">
-			<span>
-				<img src="assets/edit.svg" alt="" />
-			</span>
-		</button>
-		<button class="leave_acc">
-			<p>{$t('settings.leave')}</p>
-		</button>
+		
 	</div>
 </div>
 
 <style>
+	.settings_name{ 
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	.widget_title{ 
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	.accounts--text{ 
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
 	.progressWrapper {
-		margin: 0px 20px 15px 20px;
+		width: 98%;
+		margin: 0 auto;
 		height: fit-content;
 		box-sizing: border-box;
 		margin-top: 10px;
@@ -111,8 +128,24 @@
 	}
 	.basic_setings {
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		align-items: center;
+		padding-bottom: 10px;
+		margin-top: 10px;
+	}
+	.other_user_settings{ 
+		display: flex;
+		justify-content: left;
+		width: 100%;
+	}
+	.btn_edit__wrapper{ 
+		display: flex;
+		align-items: end;
+	}
+	.accounts{ 
+		width: 22vw;
+		height: fit-content;
+		margin-right: 10px;
 	}
 	.setings_item {
 		height: 12vh;
@@ -120,10 +153,6 @@
 	}
 	.item-w {
 		width: 33%;
-	}
-	.min--w {
-		width: 22vw;
-		padding-bottom: 15px;
 	}
 	.setings_item:nth-child(1),
 	.setings_item:nth-child(2) {
@@ -141,6 +170,14 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+	}
+	.other_account_wrapper{ 
+		background-color: #20242f;
+		border-radius: 10px;
+		height: 7vh;
+		display: flex;
+		align-items: center;
+		padding-left: 10px;
 	}
 	.selected_menu_element {
 		padding-right: 10px;
@@ -192,7 +229,7 @@
 		border: 1px solid #737e91;
 		cursor: pointer;
 	}
-	.leave_acc p {
+	.leave_acc_p{
 		font-size: 20px;
 		color: #737e91;
 	}
@@ -203,24 +240,52 @@
 		font-size: 20px;
 		color: #f3c055;
 	}
-	@media (max-width: 1000px) {
-		.selected_element {
-			height: 50%;
+	@media (max-width: 1200px){ 
+		.main_info_wrapper .widget_title{ 
+			margin: 10px 0px 0px 0px;
 		}
-		.btn_edit,
-		.leave_acc {
-			margin-top: 20px;
-			height: 5vh;
+	}
+	@media (max-width: 1000px) {
+		.other_account_wrapper,
+		.selected_menu_element,
+		.user_level,
+		.leave_acc_p{
+			font-size: 15px;
 		}
 	}
 	@media (max-width: 768px) {
 		.progressWrapper {
-			padding: 0 10px;
+			padding: 0 15px;
 		}
-
+		.leave_acc_p{ 
+			font-size: 10px;
+		}
 		.progressTitle {
 			flex-direction: column;
 			align-items: flex-start;
 		}
 	}
+	@media (max-height: 800px) { 
+		.basic_setings,.setings{ 
+			padding-bottom: 2%;
+		}
+	}
+	@media (max-height: 700px){ 
+		.accounts--text{ 
+			margin-top: 20px;
+			font-size: 15px;
+		}
+		.other_user_settings{ 
+			margin-top: 10px;
+		}
+		.other_account_wrapper,
+		.btn_edit,
+		.leave_acc{ 
+			height: 9vh;
+		}
+		.selected_element{ 
+			height: 70%;
+		}
+	}
+
 </style>

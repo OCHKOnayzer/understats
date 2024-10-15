@@ -35,10 +35,10 @@
 
 <style>
 	.mainSection {
-		padding: 20px;
 		box-sizing: border-box;
 		height: 100%;
-		overflow-y: auto;
+		width: 98%;
+		margin: 0 auto;
 	}
 	.mainSection div {
 		width: 100%;
@@ -59,4 +59,13 @@
 	.more {
 		color: #71747d;
 	}
+	/* @media(max-width: 1650px){ 
+		.mainSection{ 
+			padding-left: 20px;
+			box-sizing: border-box;
+			height: 100%;
+			overflow-y: auto;
+			width: 99%;
+		}
+	} */
 </style>

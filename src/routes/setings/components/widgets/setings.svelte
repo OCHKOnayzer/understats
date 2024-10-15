@@ -3,10 +3,11 @@
 	import arrow from '../../../../../static/assets/arrowSell.svg';
 </script>
 
+
 <div class="progressWrapper">
 	<div class="progressTitle">
 		<div>
-			<p>
+			<p class="widget_title">
 				{$t('settings.over_settings')}
 			</p>
 		</div>
@@ -14,7 +15,7 @@
 	<div class="setings">
 		<div class="setings_item">
 			<div class="item_settings_info">
-				<p>{$t('settings.currency_bets')}</p>
+				<p class="settings_name">{$t('settings.currency_bets')}</p>
 				<p class="clear_curr max--w">{$t('other.clear')}</p>
 				<p class="clear_curr min--w">X</p>
 			</div>
@@ -31,7 +32,7 @@
 		</div>
 		<div class="setings_item">
 			<div class="item_settings_info">
-				<p>{$t('settings.Interface_language')}</p>
+				<p class="settings_name">{$t('settings.Interface_language')}</p>
 				<p class="clear_curr max--w">{$t('other.clear')}</p>
 				<p class="clear_curr min--w">X</p>
 			</div>
@@ -48,7 +49,7 @@
 		</div>
 		<div class="setings_item">
 			<div class="item_settings_info">
-				<p>{$t('settings.system_theme')}</p>
+				<p class="settings_name">{$t('settings.system_theme')}</p>
 				<p class="clear_curr max--w">{$t('other.clear')}</p>
 				<p class="clear_curr min--w">X</p>
 			</div>
@@ -67,6 +68,14 @@
 </div>
 
 <style>
+	.settings_name{ 
+		margin-top: auto;
+		margin-bottom: 10px;
+	}
+	.widget_title{ 
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
 	.progressWrapper {
 		height: fit-content;
 		box-sizing: border-box;
@@ -92,7 +101,7 @@
 		height: fit-content;
 		width: 100%;
 		position: relative;
-		padding-bottom: 10px;
+		padding-bottom: 25px;
 	}
 	.setings_item {
 		width: 40%;
@@ -129,12 +138,14 @@
 		justify-content: space-between;
 	}
 	.clear_curr {
+		font-size: 13px;
 		color: #6660ff;
 	}
 	.min--w {
 		display: none;
 	}
-	@media (max-width: 1000px) {
+	
+	@media (max-width: 1100px) {
 		.selected_element {
 			height: 50%;
 		}
@@ -153,4 +164,23 @@
 			padding: 0 10px;
 		}
 	}
+	@media (max-height: 800px) { 
+		.setings{ 
+			padding-bottom: 4%;
+		}
+	}
+	@media screen and (max-height: 700px) and (min-height: 601px) { 
+		.setings{ 
+			padding-bottom: 4%;
+		}
+	}
+	@media screen and (max-height: 600px) { 
+		.setings{ 
+			padding-bottom: 8%;
+		}
+		.selected_element { 
+			height: 70%;
+		}
+	}
+	
 </style>

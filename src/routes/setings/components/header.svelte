@@ -29,7 +29,10 @@
 	.header {
 		height: fit-content;
 		box-sizing: border-box;
-		padding: 20px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		width: 98%;
+		margin: 0 auto;
 	}
 
 	.headerItem {
@@ -96,5 +99,10 @@
 
 	div.progressWrapper {
 		margin: 0 !important;
+	}
+	@media screen and (max-height: 800px){ 
+		.title p{ 
+			font-size: 20px;
+		}
 	}
 </style>

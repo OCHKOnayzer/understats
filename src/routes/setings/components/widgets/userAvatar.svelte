@@ -31,7 +31,7 @@
 				.then(() => {
 					console.log('Аватар пользователя успешно обновлен.');
 				})
-				.catch((err) => {
+				.catch((err:any) => {
 					console.error('Ошибка при обновлении аватара:', err);
 				});
 
@@ -107,11 +107,11 @@
 					class:changedColor={showSelectAvatar}
 					on:click={changeUserAvatar}
 				>
-					{$t('other.select')}
+					<span>{$t('other.select')}</span>
 				</button>
 
 				<label class="btn_avatar" for="fileUpload">
-					{$t('other.upload')}
+					<span>{$t('other.upload')}</span>
 					<input
 						id="fileUpload"
 						type="file"
@@ -127,13 +127,15 @@
 
 <style>
 	.avatarWidgets {
-		margin: 0px 20px 15px 20px;
 		background: #171b26;
 		color: white;
 		border-radius: 8px;
 		box-sizing: border-box;
 		height: 20vh;
 		transition: background 0.3s ease;
+		width: 98%;
+		margin: 0 auto;
+		padding: 0 20px;
 	}
 
 	.avatarWidget_wrapper {
@@ -177,23 +179,27 @@
 		height: 5vh;
 		min-width: 9vw;
 		width: fit-content;
+		padding-bottom: 10px;
 	}
 
 	.avatar_elements_btn {
 		display: flex;
+		align-items: left;
+		width: 100%;
 	}
 
 	.btn_avatar {
 		border: 1px solid;
 		border-radius: 80px;
-		height: 4vh;
-		width: 9vh;
+		height: 40px;
+		width: 50%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		cursor: pointer;
 		transition: background 0.3s ease;
 		background: transparent;
+		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	}
 
 	.btn_avatar:nth-child(1) {
@@ -207,7 +213,6 @@
 		color: white;
 		background: transparent;
 	}
-
 	.btn_avatar:hover {
 		background: rgba(255, 255, 255, 0.1);
 	}
@@ -253,5 +258,14 @@
 	.image img {
 		height: 100%;
 		width: 100%;
+	}
+	@media (max-width: 1200px){ 
+		.avatar--text { 
+			font-size: 20px;
+		}
+		.btn_avatar { 
+			height: 30px;
+			font-size: 15px;
+		}
 	}
 </style>

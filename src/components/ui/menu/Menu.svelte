@@ -2,12 +2,6 @@
 	import { onMount } from 'svelte';
 	import { fetchUser, user } from '$stores/menu'
 	import { t } from 'svelte-i18n';
-	import logo from '../../../../static/assets/logo.png';
-	import quit from '../../../../static/assets/leave.svg';
-	import avatar from '../../../../static/assets/avatar.jpg';
-	import img from '../../../../static/assets/img.png';
-	import img1gold from '../../../../static/assets/img1gold.png';
-	import img3gold from '../../../../static/assets/img3gold.png';
 	import RouteMenu from './routeMenu.svelte';
 	import RouteHelp from './routeHelp.svelte';
 
@@ -61,7 +55,7 @@
 				<div class="userConteiner">
 					<div class="user_flex">
 						<div class="avatar">
-							<img class="image" src={$user.image || avatar} alt="user avatar" />
+							<img class="image" src={$user.image || "assets/avatar.jpg"} alt="user avatar" />
 						</div>
 						<div class="user_info">
 							<div class="user_wrapper">
@@ -91,7 +85,7 @@
 		justify-content: center;
 		align-items: center;
 		box-sizing: border-box;
-    z-index: 3;
+		z-index: 3;
 	}
 	.menuWrapper {
 		height: 95%;
@@ -151,6 +145,8 @@
 	}
 	.userAwardsConteiner span {
 		padding-left: 10px;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 	}
 	.userConteiner {
 		height: fit-content;
@@ -200,13 +196,39 @@
 			width: 85%;
 		}
 	}
-
-	@media screen and (max-width: 1100px) {
+	@media screen and (max-width: 1370px){ 
+		.userAwards{
+			margin: 0px 0px 0px 0px;
+		}
+	}
+	@media screen and (max-width: 1176px) {
 		.menu {
-			width: 30vw;
+			width: 25vw;
 		}
 		.menuWrapper {
 			width: 85%;
 		}
+	}
+	@media screen and (max-width: 900px){ 
+		.userAwardsConteiner span{ 
+			display: none;
+		}
+	}
+	@media screen and (max-height: 600px){ 
+		.menu{ 
+			overflow-y: auto;
+			overflow-x: hidden;
+		}
+		.menu::-webkit-scrollbar{
+			border-radius: 30px;
+			width: 3px;
+		}
+		.menu::-webkit-scrollbar-track {
+			background: rgba(45, 48, 68, 0.692);
+		}
+		.menu::-webkit-scrollbar-thumb{
+			background: rgba(135, 138, 160, 0.507);
+		}
+		
 	}
 </style>

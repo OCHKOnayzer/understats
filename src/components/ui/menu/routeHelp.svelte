@@ -64,4 +64,10 @@
 	.selected span {
 		color: white;
 	}
+	@media screen and (max-height: 800px){ 
+		.card_item{
+			height: 40px;
+			padding: 5px;
+		}
+	}
 </style>
