@@ -2,7 +2,7 @@
 import AccountAddButton from '$components/entities/account/AccountAdd.svelte'
 import FilterAccountButton from '$components/entities/account/FilterAccountButton.svelte'
 import BackgroundContainer from '$components/providers/backgroundContainer/BackgroundContainer.svelte'
-import * as m from '$lib/paraglide/messages.js'
+import * as m from '$m'
 import { accounts } from '$stores/store'
 </script>
 

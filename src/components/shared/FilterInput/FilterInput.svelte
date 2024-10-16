@@ -1,11 +1,11 @@
 <script lang="ts">
-import Icon from '@iconify/svelte'
-import type { SelectedType } from '../../../types/types'
 import Input from '$components/ui/input/input.svelte'
 import * as Select from '$components/ui/select'
-import * as m from '$lib/paraglide/messages.js'
+import * as m from '$m'
+import type { SelectedType } from '$types/types'
 import { clearInput } from '$utils/functions/clearInputs'
 import { onSelectedChange } from '$utils/functions/onSelectedChange'
+import Icon from '@iconify/svelte'
 
 export let placeholder: string
 export let name: string

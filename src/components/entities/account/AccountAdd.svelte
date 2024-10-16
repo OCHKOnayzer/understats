@@ -1,12 +1,12 @@
 <script lang="ts">
-import { derived } from 'svelte/store'
-import type { AccountOption } from '../../../types/types'
-import LoginFormButtons from './LoginFormButtons.svelte'
 import FilterInput from '$components/shared/FilterInput/FilterInput.svelte'
 import * as Dialog from '$components/ui/dialog'
-import * as m from '$lib/paraglide/messages.js'
+import * as m from '$m'
 import { LoginForm } from '$stores/store'
+import type { AccountOption } from '$types/types'
 import { hasOptions } from '$utils/utils'
+import { derived } from 'svelte/store'
+import LoginFormButtons from './LoginFormButtons.svelte'
 
 const Login = derived(LoginForm, ($store) => Object.values($store) as AccountOption[])
 </script>

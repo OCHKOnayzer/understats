@@ -1,7 +1,7 @@
 <script lang="ts">
-import Icon from '@iconify/svelte'
 import Button from '$components/ui/button/button.svelte'
 import { TileChecked } from '$stores/store'
+import Icon from '@iconify/svelte'
 
 export let title: string
 export let value: string

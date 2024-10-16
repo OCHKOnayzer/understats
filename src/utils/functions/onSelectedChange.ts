@@ -1,4 +1,4 @@
-import type { SelectedOption } from '../../types/types'
+import type { SelectedOption } from '$types/types'
 
 export const onSelectedChange = (
   value: any,

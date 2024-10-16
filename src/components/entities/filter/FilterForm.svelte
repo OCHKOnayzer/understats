@@ -1,10 +1,10 @@
 <script lang="ts">
-import { derived } from 'svelte/store'
-import type { FilterOption } from '../../../types/types'
-import FilterButtons from './FilterButtons.svelte'
 import FilterInput from '$components/shared/FilterInput/FilterInput.svelte'
 import { FilterInputSelect } from '$stores/store'
+import type { FilterOption } from '$types/types'
 import { hasOptions } from '$utils/utils'
+import { derived } from 'svelte/store'
+import FilterButtons from './FilterButtons.svelte'
 
 const filterInputs = derived(FilterInputSelect, ($store) => Object.values($store) as FilterOption[])
 </script>

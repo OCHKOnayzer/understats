@@ -1,8 +1,8 @@
+import type { FilterOption, OptionWithChoices } from '$types/types'
 import { type ClassValue, clsx } from 'clsx'
 import { cubicOut } from 'svelte/easing'
 import type { TransitionConfig } from 'svelte/transition'
 import { twMerge } from 'tailwind-merge'
-import type { FilterOption, OptionWithChoices } from '../types/types'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -27,11 +27,7 @@ export const flyAndScale = (
   const style = getComputedStyle(node)
   const transform = style.transform === 'none' ? '' : style.transform
 
-  const scaleConversion = (
-    valueA: number,
-    scaleA: [number, number],
-    scaleB: [number, number],
-  ) => {
+  const scaleConversion = (valueA: number, scaleA: [number, number], scaleB: [number, number]) => {
     const [minA, maxA] = scaleA
     const [minB, maxB] = scaleB
 
@@ -41,9 +37,7 @@ export const flyAndScale = (
     return valueB
   }
 
-  const styleToString = (
-    style: Record<string, number | string | undefined>,
-  ): string => {
+  const styleToString = (style: Record<string, number | string | undefined>): string => {
     return Object.keys(style).reduce((str, key) => {
       if (style[key] === undefined) return str
       return str + `${key}:${style[key]};`
@@ -56,11 +50,7 @@ export const flyAndScale = (
     css: (t) => {
       const y = scaleConversion(t, [0, 1], [params.y ?? 5, 0])
       const x = scaleConversion(t, [0, 1], [params.x ?? 0, 0])
-      const scale = scaleConversion(
-        t,
-        [0, 1],
-        [params.start ?? 0.95, 1],
-      )
+      const scale = scaleConversion(t, [0, 1], [params.start ?? 0.95, 1])
 
       return styleToString({
         transform: `${transform} translate3d(${x}px, ${y}px, 0) scale(${scale})`,
@@ -71,14 +61,8 @@ export const flyAndScale = (
   }
 }
 
-export function hasOptions(
-  filter: FilterOption,
-): filter is OptionWithChoices {
-  return (
-    'options' in filter &&
-    Array.isArray(filter.options) &&
-    filter.options.length > 0
-  )
+export function hasOptions(filter: FilterOption): filter is OptionWithChoices {
+  return 'options' in filter && Array.isArray(filter.options) && filter.options.length > 0
 }
 
 export const formatDate = (date: Date): string => {
