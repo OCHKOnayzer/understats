@@ -2,8 +2,10 @@
 import * as Dialog from '$components/ui/dialog'
 import * as m from '$m'
 import Default from '$src/components/ui/accountModal/Default.svelte'
+import Success from '$src/components/ui/accountModal/Result.svelte'
 import { accountModal } from '$src/utils/functions/accountModal'
 import { accountIsSuccess } from '$stores/store'
+import { fade } from 'svelte/transition'
 </script>
 
 <Dialog.Root>
@@ -20,10 +22,43 @@ import { accountIsSuccess } from '$stores/store'
       </Dialog.Title>
       <Dialog.Description>Поля ввода не должны быть пусты.</Dialog.Description>
     </Dialog.Header>
-    {#if $accountIsSuccess === null}
-      <Default />
-    {:else if $accountIsSuccess}
-      SUCCESSSSSSSSSS
-    {/if}
+    <div class="content-wrapper">
+      {#if $accountIsSuccess === null}
+        <div transition:fade={{ duration: 200 }}>
+          <Default />
+        </div>
+      {:else if $accountIsSuccess}
+        <div transition:fade={{ duration: 200 }}>
+          <Success
+            title="Аккаунт подключен!"
+            description="Дополнительный текст"
+            icon="icons/trophy.svg"
+          />
+        </div>
+      {:else}
+        <div transition:fade={{ duration: 200 }}>
+          <Success
+            title="Аккаунт не подключен!"
+            description="Проверьте введенные данные"
+            icon="icons/unluck.svg"
+          />
+        </div>
+      {/if}
+    </div>
   </Dialog.Content>
 </Dialog.Root>
+
+<style>
+.content-wrapper {
+  position: relative;
+  min-height: 330px;
+}
+
+.content-wrapper > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+</style>
