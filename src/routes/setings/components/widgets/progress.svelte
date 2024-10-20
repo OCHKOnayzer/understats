@@ -11,7 +11,7 @@
 <div class="progressWrapper">
 	<div class="progressTitle">
 		<div>
-			<p class="progress_paragraph">
+			<p>
 				{$t('other.award_progress')} ({progress}
 				{$t('other.out_of')} 20 {$t('other.out_of_awards')})
 			</p>
@@ -58,10 +58,6 @@
 </div>
 
 <style>
-	.progress_paragraph{ 
-		margin-top: 10px;
-		margin-bottom: 10px;
-	}
 	.progressWrapper {
 		height: fit-content;
 		box-sizing: border-box;

@@ -1,9 +1,16 @@
 import { writable } from 'svelte/store'
 interface User {
-  id: number
-  name: string
-  image: string
+	id: number;
+	name: string;
+	image: string;
+	email: string;
+	date: string;
+	awards: string;
+	level: string;
+	add_account: string;
+	password: string;
 }
+
 export const awards = writable([])
 export const allAwards = writable([])
 export const user = writable<User | null>(null)
@@ -31,4 +38,19 @@ export async function fetchUser() {
   // } catch (error) {
   //   console.error("Ошибка при получении данных:", error);
   // }
+}
+export async function updateUser(updatedUser: User) {
+	// try {
+	// 	const response = await axios.put(`http://localhost:3001/users/${updatedUser.id}`, updatedUser);
+
+	// 	console.log('Данные пользователя успешно обновлены:', response.data);
+
+	// 	user.set(response.data);
+	// } catch (error: any) {
+	// 	console.error(
+	// 		'Ошибка при обновлении данных пользователя:',
+	// 		error.message,
+	// 		error.response ? error.response.data : ''
+	// 	);
+	// }
 }

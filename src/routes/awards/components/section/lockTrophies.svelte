@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { t } from 'svelte-i18n';
+	import ProgressBar from '../UI/progressBar.svelte';
 
 	interface Award {
 		name: string;
@@ -8,6 +9,9 @@
 		image: string;
 		color: string;
 		get: boolean;
+		count?: number;
+		progress?: number;
+		progressVis?: boolean;
 	}
 
 	export let awards: Award[] = [];
@@ -18,14 +22,21 @@
 		{#each awards as award}
 			<div class="card">
 				<div class="article">
-					<div class="img">
-						<img src={award.image} alt="congratulation" />
+					<div class="article_content">
+						<div class="img">
+							<img src={award.image} alt="congratulation" />
+						</div>
+						<div class="text-article">
+							<p title={$t(award.name)} style="color: {award.get ? '#babdc6' : '#565f6e'}">
+								{$t(award.name)}
+							</p>
+							<p title={$t(award.rare)} style="color: {award.color}">{$t(award.rare)}</p>
+						</div>
 					</div>
-					<div class="text-article">
-						<p title={$t(award.name)} style="color: {award.get ? '#babdc6' : '#565f6e'}">
-							{$t(award.name)}
-						</p>
-						<p title={$t(award.rare)} style="color: {award.color}">{$t(award.rare)}</p>
+					<div>
+						{#if award.progressVis}
+							<ProgressBar proccent={award.progress} count={award.count} />
+						{/if}
 					</div>
 				</div>
 				<div class="wrap_text">
@@ -35,7 +46,7 @@
 			</div>
 		{/each}
 	{:else}
-		<p class="awardsNull">Наград не получено</p>
+		<p class="awardsNull">Все награды получены</p>
 	{/if}
 </div>
 
@@ -96,16 +107,31 @@
 	.article {
 		display: flex;
 		padding: 0.4%;
+		justify-content: space-between;
+	}
+
+	.article_content {
+		display: flex;
+		max-width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		align-items: center;
 	}
 
 	.text-article {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
+		margin-left: 10px;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
+
 	.wrap_text {
 		width: 98%;
 	}
+
 	.text-article p {
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -121,6 +147,9 @@
 	@media (max-width: 600px) {
 		.main {
 			grid-template-columns: 1fr;
+		}
+		.article_content {
+			max-width: 150px;
 		}
 	}
 </style>
