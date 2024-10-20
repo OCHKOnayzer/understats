@@ -44,7 +44,7 @@ export const FilterInputSelect = writable<FilterInputSelectStore>({
   },
   bed: {
     name: m.accountBedName(),
-    placeholder: '1500-2000',
+    placeholder: '1500 - 2000',
     selected: { value: '', label: '' },
     options: [
       { value: '1500 - 2000', label: '1500 - 2000' },
@@ -99,6 +99,8 @@ export const LoginForm = writable({
 })
 
 export const accounts = writable<TableItems>([])
+export let accountIsSuccess = writable<boolean | null>(null)
+export let isOpen = writable(false)
 
 export const filter = writable<boolean>(false)
 

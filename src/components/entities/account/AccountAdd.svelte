@@ -1,18 +1,16 @@
 <script lang="ts">
-import FilterInput from '$components/shared/FilterInput/FilterInput.svelte'
 import * as Dialog from '$components/ui/dialog'
 import * as m from '$m'
-import { LoginForm } from '$stores/store'
-import type { AccountOption } from '$types/types'
-import { hasOptions } from '$utils/utils'
-import { derived } from 'svelte/store'
-import LoginFormButtons from './LoginFormButtons.svelte'
-
-const Login = derived(LoginForm, ($store) => Object.values($store) as AccountOption[])
+import Default from '$src/components/ui/accountModal/Default.svelte'
+import Success from '$src/components/ui/accountModal/Result.svelte'
+import { accountModal } from '$src/utils/functions/accountModal'
+import { accountIsSuccess } from '$stores/store'
+import { fade } from 'svelte/transition'
 </script>
 
 <Dialog.Root>
   <Dialog.Trigger
+    on:click={accountModal}
     class="inline-flex h-10 items-center justify-center rounded-md border border-green-500 bg-transparent px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-green-500/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
   >
     {`+ ${m.addAccount()}`}
@@ -22,22 +20,45 @@ const Login = derived(LoginForm, ($store) => Object.values($store) as AccountOpt
       <Dialog.Title class="flex items-center">
         <h2 class="mb-2 text-[28px] text-white">{m.addAccount()}</h2>
       </Dialog.Title>
-      <Dialog.Description>Какая-то важная и нужная приписка к информации</Dialog.Description>
+      <Dialog.Description>Поля ввода не должны быть пусты.</Dialog.Description>
     </Dialog.Header>
-    <form action="" class="mt-3 flex flex-col gap-3">
-      {#each $Login as login}
-        <div class="item">
-          <FilterInput
-            placeholder={login.placeholder}
-            name={login.name}
-            selected={login.selected}
-            value={hasOptions(login) ? login.options : undefined}
-            variant={login.variant}
-            check={LoginForm}
+    <div class="content-wrapper">
+      {#if $accountIsSuccess === null}
+        <div transition:fade={{ duration: 200 }}>
+          <Default />
+        </div>
+      {:else if $accountIsSuccess}
+        <div transition:fade={{ duration: 200 }}>
+          <Success
+            title="Аккаунт подключен!"
+            description="Дополнительный текст"
+            icon="icons/trophy.svg"
           />
         </div>
-      {/each}
-      <LoginFormButtons />
-    </form>
+      {:else}
+        <div transition:fade={{ duration: 200 }}>
+          <Success
+            title="Аккаунт не подключен!"
+            description="Проверьте введенные данные"
+            icon="icons/unluck.svg"
+          />
+        </div>
+      {/if}
+    </div>
   </Dialog.Content>
 </Dialog.Root>
+
+<style>
+.content-wrapper {
+  position: relative;
+  min-height: 330px;
+}
+
+.content-wrapper > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+</style>

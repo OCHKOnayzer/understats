@@ -57,5 +57,6 @@
   "connected": "Connected",
   "disconnected": "Disconnected",
   "preset": "Пресет",
-  "display": "Display"
+  "display": "Display",
+  "accountsBack": "Return to accounts"
 }
