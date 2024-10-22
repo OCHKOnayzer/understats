@@ -1,8 +1,3 @@
-import img from '../../../../../static/assets/img.png';
-import img1 from '../../../../../static/assets/img1.png';
-import img2 from '../../../../../static/assets/img2.png';
-import img3 from '../../../../../static/assets/img3.png';
-
 export interface Award {
 	name: string;
 	des: string;

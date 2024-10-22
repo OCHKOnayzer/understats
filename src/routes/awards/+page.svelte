@@ -1,8 +1,8 @@
 <svelte:options runes={false} />
 <script>
-	import Header from './components/header.svelte';
-	import Section from './components/section/section.svelte';
 	import { t } from 'svelte-i18n';
+	import Header from '../../components/ui/header/header.svelte';
+	import Section from '../../components/ui/Trophies/section.svelte';
 	const headerProps = $t('other.awards');
 	import Progress from './components/widgets/progress.svelte';
 </script>

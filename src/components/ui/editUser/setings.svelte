@@ -1,6 +1,5 @@
 <script>
 	import { t } from 'svelte-i18n';
-	import arrow from '../../../../../static/assets/arrowSell.svg';
 </script>
 
 
@@ -25,7 +24,7 @@
 				</div>
 				<span class="selected_menu_element">
 					<span class="arrowSelcted">
-						<img src={arrow} alt="" />
+						<img src="assets/arrowSell.svg" alt="" />
 					</span>
 				</span>
 			</div>
@@ -42,7 +41,7 @@
 				</div>
 				<span class="selected_menu_element">
 					<span class="arrowSelcted">
-						<img src={arrow} alt="" />
+						<img src="assets/arrowSell.svg" alt="" />
 					</span>
 				</span>
 			</div>
@@ -59,7 +58,7 @@
 				</div>
 				<span class="selected_menu_element">
 					<span class="arrowSelcted">
-						<img src={arrow} alt="" />
+						<img src="assets/arrowSell.svg" alt="" />
 					</span>
 				</span>
 			</div>

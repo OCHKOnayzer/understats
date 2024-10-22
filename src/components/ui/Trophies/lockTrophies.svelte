@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { t } from 'svelte-i18n';
-	import ProgressBar from '../UI/progressBar.svelte';
+	import ProgressCircle from '../progressCircle/progressCircle.svelte'
+	
 
 	interface Award {
 		name: string;
@@ -35,7 +36,7 @@
 					</div>
 					<div>
 						{#if award.progressVis}
-							<ProgressBar proccent={award.progress} count={award.count} />
+							<ProgressCircle proccent={award.progress} count={award.count} />
 						{/if}
 					</div>
 				</div>

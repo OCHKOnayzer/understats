@@ -1,12 +1,11 @@
 <script>
-	import Header from './components/header.svelte';
-	import UserAvatar from './components/widgets/userAvatar.svelte';
-	import Info from './components/section/info.svelte';
-	import EditPass from './components/section/editPass.svelte';
-
 	import { t } from 'svelte-i18n';
+	import Header from '../../components/ui/header/header.svelte';
+	import UserAvatar from '../../components/ui/editUser/userAvatar.svelte';
+	import Info from '../../components/ui/editUser/info.svelte';
+	import EditPass from '../../components/ui/editUser/editPass.svelte';
+	import Setings from '../../components/ui/editUser/setings.svelte';
 	const headerProps = $t('settings.settings');
-	import Setings from './components/widgets/setings.svelte';
 </script>
 
 <svelte:head>

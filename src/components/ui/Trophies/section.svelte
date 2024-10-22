@@ -1,9 +1,9 @@
 <svelte:options runes={false} />
 <script lang="ts">
+	import { t } from 'svelte-i18n';
 	import UTrophies from './uTrophies.svelte';
 	import LockTrophies from './lockTrophies.svelte';
-	import { awards, allAwards } from '../other/card';
-	import { t } from 'svelte-i18n';
+	import { awards, allAwards } from './card.ts';
 	import { get } from 'svelte/store';
 
 	let receivedTitle = get(t)('awards.received');

@@ -44,7 +44,7 @@
 		"Main": "Main",
 		"Stats": "Statistics",
 		"Profile": "Profile",
-		"Mods": "Extensions",
+		"Mods": "Extension",
 		"Setings": "Settings",
 		"Help": "FAQ - Help",
 		"News": "News"
@@ -96,5 +96,37 @@
 		"display_name": "Display name",
 		"old_pass": "Old password",
 		"new_pass": "New password"
+	},
+	"extensions":{
+		"extensions":"Extensions",
+		"Automated_bidding": "Automated bidding",
+		"Automation_analytics": "Automation of analytics",
+		"Your_bets": "Your bets",
+		"service_does": "The service does not request access to accounts",
+		"my_acc": "My accounts",
+		"Automation": "Automation",
+		"Automation_info": "Bernoulli's inequality, as follows from the above, rapidly reflects an axiomatic absolutely convergent series. The subset consistently corresponds to the axiomatic determinan",
+		"Full_control": "Full control",
+		"Full_control_info": "Bernoulli's inequality, as follows from the above, rapidly reflects an axiomatic absolutely convergent series. The subset consistently corresponds to the axiomatic determinan",
+		"Make_a_profit": "Make a profit",
+		"Make_a_profit_info": "Bernoulli's inequality, as follows from the above, rapidly reflects an axiomatic absolutely convergent series. The subset consistently corresponds to the axiomatic determinan",
+		"Support": "Support",
+		"Support_info": "Bernoulli's inequality, as follows from the above, rapidly reflects an axiomatic absolutely convergent series. The subset consistently corresponds to the axiomatic determinan",
+		"Google_Chrome": "Extension for Google Chrome",
+		"Mozila_Firefox": "Extension for Mozilla Firefox",
+		"Opera": "Extension for Opera 12",
+		"Attention": "Attention!",	
+		"Attention_text": "Bernoulli's inequality, as follows from the above, rapidly reflects an axiomatic absolutely convergent series. The subset consistently corresponds to the axiomatic determinan",
+		"exp_name_install": "Installations",
+		"satisfied_users": "Satisfied users"
+	},
+	"slide":{ 
+		"slide1_title": "The best solution",
+		"slide1_text": "Bernoulli's inequality, as follows from the above, rapidly reflects an axiomatic absolutely convergent series. The subset consistently corresponds to the axiomatic determinant of a system of linear equations. It is not proven that an affine transformation uniformly inverts an empirical discontinuity of a function. Functional analysis, except for the obvious case, is irrational. It is easy to verify that a polynomial uniformly specifies a power series",
+		"slide2_title": "",
+		"slide2_text": "",
+		"slide3_title": "",
+		"slide3_text": "",
+		"slide4_title": ""
 	}
 }

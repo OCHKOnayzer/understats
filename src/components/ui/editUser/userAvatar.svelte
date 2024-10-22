@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { AllAvatar } from '../other/image';
-	import { t } from 'svelte-i18n';
+	import { AllAvatar } from './image.ts';
 	import { user, fetchUser, updateUser } from '$stores/menu';
 
 	let showSelectAvatar = false;
