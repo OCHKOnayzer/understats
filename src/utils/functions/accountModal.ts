@@ -10,5 +10,5 @@ export const accountModal = () => {
     return form
   })
 
-  console.log();
+  console.log()
 }
