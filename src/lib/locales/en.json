@@ -130,6 +130,11 @@
     "slide4_title": ""
   },
   "faq": {
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "main": "Main",
+    "analytics": "Analytics",
+    "not_work": "Not working?",
+    "problems": "Problems and Issues",
+    "alerts": "Alerts"
   }
 }
