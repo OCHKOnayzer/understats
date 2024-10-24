@@ -143,6 +143,9 @@
     "units": "Units of Measurement",
     "profile_block": "Profile Block",
     "useful_tips": "Useful Tips",
-    "FAQ_section": "Select FAQ Section"
+    "FAQ_section": "Select FAQ Section",
+    "repost": "Share",
+    "select_state": "Select section",
+    "select_razdel": "and article"
   }
 }

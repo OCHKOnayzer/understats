@@ -14,7 +14,7 @@ import { t } from 'svelte-i18n'
   border: 1px solid #6660ff;
   padding: 10px;
   border-radius: 100px;
-  width: 40%;
+  /* width: 40%; */
   text-align: center;
   background: transparent;
   transition: 400ms;

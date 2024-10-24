@@ -143,6 +143,9 @@
     "units": "Единицы измерения",
     "profile_block": "Блок профиля",
     "useful_tips": "Годные советы",
-    "FAQ_section": "Выберите раздел FAQ"
+    "FAQ_section": "Выберите раздел FAQ",
+    "repost": "Поделиться",
+    "select_state": "Выберите раздел",
+    "select_razdel": "и статью"
   }
 }

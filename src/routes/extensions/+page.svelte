@@ -63,7 +63,6 @@ const headerProps = $t('extensions.extensions')
   padding-top: 15%;
   display: flex;
   align-items: left;
-  justify-content: end;
 }
 .functional {
   width: 40%;

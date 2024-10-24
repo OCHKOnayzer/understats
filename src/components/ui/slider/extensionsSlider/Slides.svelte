@@ -92,8 +92,8 @@ function goToSlide(index: number) {
 .slide_info {
   position: absolute;
   top: 60px;
-  left: 20vw;
-  width: 30%;
+  left: 15vw;
+  width: 40%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -123,8 +123,8 @@ function goToSlide(index: number) {
 }
 
 .slide_text {
-  font-size: 0.875em;
-  margin-bottom: 10px; /* Устанавливаем отступ между текстом и точками */
+  font-size: 0.775em;
+  margin-bottom: 10px;
   color: #718096;
   line-height: 1.5em;
 }
@@ -135,7 +135,7 @@ function goToSlide(index: number) {
   gap: 10px;
   z-index: 2;
   position: absolute;
-  bottom: 20px; /* Фиксируем расположение точек снизу */
+  bottom: 20px;
   width: 100%;
 }
 

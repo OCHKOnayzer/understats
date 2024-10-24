@@ -13,7 +13,7 @@
 
 <style>
 .btnExtns {
-  height: 60%;
+  height: 50%;
   width: 90%;
   margin: 0 auto;
 }
@@ -37,7 +37,7 @@
 }
 
 .btn_circle {
-  width: 100%;
+  width: 90%;
   height: 90%;
   border-radius: 50%;
   display: flex;

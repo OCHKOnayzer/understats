@@ -45,7 +45,7 @@ import AccountsButton from '../../button/accountsButtons/AccountsButton.svelte'
 .extWidgt {
   position: relative;
   width: 26%;
-  height: 70vh;
+  height: 50vh;
   top: -38vh;
   left: 3vh;
   bottom: 100vh;
