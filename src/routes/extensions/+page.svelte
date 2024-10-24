@@ -1,13 +1,13 @@
 <script>
-import Header from '../../components/header.svelte'
-import Menu from '../../components/section/menu.svelte'
-import Slider from '../../components/Slider/Slider.svelte'
-import DownloadElement from '../../components/UI/downloadElement/DownloadElement.svelte'
-import DownloadInfo from '../../components/section/downloadInfo/DownloadInfo.svelte'
-import FunctionalSection from '../../components/section/functional/FunctionalSection.svelte'
-import Exp from '../../components/section/exp/Exp.svelte'
-import { t } from 'svelte-i18n'
-const headerProps = $t('extensions.extensions')
+import Header from '../../components/header.svelte';
+import Menu from '../../components/section/menu.svelte';
+import Slider from '../../components/Slider/Slider.svelte';
+import DownloadElement from '../../components/ui/downloadElement/DownloadElement.svelte';
+import DownloadInfo from '../../components/section/downloadInfo/DownloadInfo.svelte';
+import FunctionalSection from '../../components/section/functional/FunctionalSection.svelte';
+import Exp from '../../components/ui/exp/Exp/svelte';
+import { t } from 'svelte-i18n';
+const headerProps = $t('extensions.extensions');
 </script>
 
 <svelte:head>

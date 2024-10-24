@@ -37,11 +37,11 @@ $: isActive = (href: string): boolean => currentPath === href
               <p>4</p>
             </div>
             <div>
-              <img src="assets/img1gold.png" alt="Трофей" />
+              <img src="/assets/img1gold.png" alt="Трофей" />
               <p>0</p>
             </div>
             <div>
-              <img src="assets/img3gold.png" alt="Трофей" />
+              <img src="/assets/img3gold.png" alt="Трофей" />
               <p>0</p>
             </div>
           </div>
