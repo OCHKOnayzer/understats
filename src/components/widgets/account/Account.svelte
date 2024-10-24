@@ -3,13 +3,14 @@ import AccountAddButton from '$components/entities/account/AccountAdd.svelte'
 import FilterAccountButton from '$components/entities/account/FilterAccountButton.svelte'
 import BackgroundContainer from '$components/providers/backgroundContainer/BackgroundContainer.svelte'
 import * as m from '$m'
-import { accounts } from '$stores/store'
+import { filteredAccounts } from '$stores/store'
+console.log($filteredAccounts);
 </script>
 
 <BackgroundContainer>
   <h2 class="text-[28px] text-white">
-    {#if $accounts}
-      {$accounts.length} {m.countAccount()}
+    {#if $filteredAccounts.length}
+      {$filteredAccounts.length} {m.countAccount()}
     {/if}
   </h2>
   <div class="flex items-center gap-2">
