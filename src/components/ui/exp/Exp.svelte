@@ -1,16 +1,17 @@
 <script>
-    import ExpElements from "../../UI/expElements/ExpElements.svelte"
+import ExpElements from '../../UI/expElements/ExpElements.svelte'
 </script>
+
 <div class="funcSection">
-    <ExpElements/>
+  <ExpElements />
 </div>
+
 <style>
-    .funcSection{ 
-        display: flex;
-        flex-direction: column;
-        box-sizing: border-box;
-        width: 100%;
-        height: 100%;
-    }
-    
+.funcSection {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
 </style>

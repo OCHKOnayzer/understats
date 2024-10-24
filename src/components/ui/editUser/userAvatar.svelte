@@ -1,5 +1,5 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
+import { t } from 'svelte-i18n'
 import { onMount } from 'svelte'
 import { AllAvatar } from './image.ts'
 import { user, fetchUser, updateUser } from '$stores/menu'

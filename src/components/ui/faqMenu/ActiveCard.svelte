@@ -1,13 +1,16 @@
 <script lang="ts">
 export let FAQIndex: number
 import { ActiveElemnts } from './activeElemnts'
+import { createEventDispatcher } from 'svelte'
 
 let filteredElements = ActiveElemnts.filter((item) => item.index === FAQIndex)
-
 let activeIndex: number | null = null
 
-const setActiveIndex = (index: number) => {
+const dispatch = createEventDispatcher()
+
+const setActiveIndex = (index: number, name: string) => {
   activeIndex = index === activeIndex ? null : index
+  dispatch('selectItem', { name })
 }
 </script>
 
@@ -15,7 +18,7 @@ const setActiveIndex = (index: number) => {
   {#each filteredElements as item, index}
     <button
       class="faqItem {activeIndex === index ? 'active' : ''}"
-      on:click={() => setActiveIndex(index)}
+      on:click={() => setActiveIndex(index, item.name)}
     >
       {item.name}
     </button>

@@ -23,7 +23,7 @@ $: isActive = (href: string): boolean => currentPath === href
     <div class="menu_flex_up">
       <div class="logo">
         <div class="imgLogo">
-          <img src={'/assets/logo.png'} alt="Лого" />
+          <img src={'/assets/menu/logo.png'} alt="Лого" />
         </div>
         UnderStat
       </div>
@@ -33,15 +33,15 @@ $: isActive = (href: string): boolean => currentPath === href
           <span>{$t('other.awards')}</span>
           <div class="user_award">
             <div>
-              <img src="/assets/img.png" alt="Трофей" />
+              <img src="/assets/awards/gold/goldTrophLvl1.png" alt="Трофей" />
               <p>4</p>
             </div>
             <div>
-              <img src="/assets/img1gold.png" alt="Трофей" />
+              <img src="/assets/awards/gold/goldTrophLvl2.png" alt="Трофей" />
               <p>0</p>
             </div>
             <div>
-              <img src="/assets/img3gold.png" alt="Трофей" />
+              <img src="/assets/awards/gold/goldTrophLvl2.png" alt="Трофей" />
               <p>0</p>
             </div>
           </div>
@@ -76,7 +76,7 @@ $: isActive = (href: string): boolean => currentPath === href
 <style>
 .menu {
   position: static;
-  width: 13vw;
+  width: 20vw;
   height: 100vh;
   background-color: #171b26;
   color: white;

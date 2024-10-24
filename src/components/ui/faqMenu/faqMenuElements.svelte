@@ -2,12 +2,21 @@
 import { t } from 'svelte-i18n'
 import { MenuElement, SecretMenuElemnt } from './menuElments'
 import ActiveCard from './ActiveCard.svelte'
+import { createEventDispatcher } from 'svelte'
 
 let activeIndex: number | null = null
+let selectedItemName: string | null = null
 
 const setActiveIndex = (index: number) => {
   activeIndex = index === activeIndex ? null : index
 }
+
+const handleSelectItem = (event: any) => {
+  selectedItemName = event.detail.name
+  dispatch('selectItemFromMenu', { name: selectedItemName })
+}
+
+const dispatch = createEventDispatcher()
 </script>
 
 <div class="menuWrapper">
@@ -24,7 +33,7 @@ const setActiveIndex = (index: number) => {
       </button>
 
       {#if activeIndex === index}
-        <ActiveCard FAQIndex={index} />
+        <ActiveCard FAQIndex={index} on:selectItem={handleSelectItem} />
       {/if}
     {/each}
 

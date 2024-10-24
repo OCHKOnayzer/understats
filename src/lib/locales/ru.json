@@ -129,20 +129,20 @@
     "slide3_text": "",
     "slide4_title": ""
   },
-	"faq":{ 
-		"faq": "Помощь",
-		"main": "Основное",
-		"analytics": "Аналитика",
-		"not_work": "Не работает?",
-		"problems": "Беды и проблемы",
-		"alerts": "Алерты",
-		"main_content": "Основные моменты",
-		"awards": "Награды",
-		"profile": "Мой профиль",
-		"interactions": "Взаимодействия",
-		"units": "Единицы измерения",
-		"profile_block": "Блок профиля",
-		"useful_tips": "Годные советы",
-		"FAQ_section": "Выберите раздел FAQ"
-	}
+  "faq": {
+    "faq": "Помощь",
+    "main": "Основное",
+    "analytics": "Аналитика",
+    "not_work": "Не работает?",
+    "problems": "Беды и проблемы",
+    "alerts": "Алерты",
+    "main_content": "Основные моменты",
+    "awards": "Награды",
+    "profile": "Мой профиль",
+    "interactions": "Взаимодействия",
+    "units": "Единицы измерения",
+    "profile_block": "Блок профиля",
+    "useful_tips": "Годные советы",
+    "FAQ_section": "Выберите раздел FAQ"
+  }
 }

@@ -129,20 +129,20 @@
     "slide3_text": "",
     "slide4_title": ""
   },
-	"faq":{ 
-		"faq": "FAQ",
-		"main": "Main",
-		"analytics": "Analytics",
-		"not_work": "Not working?",
-		"problems": "Problems and Issues",
-		"alerts": "Alerts",
-		"main_content": "Main Highlights",
-		"awards": "Awards",
-		"profile": "My Profile",
-		"interactions": "Interactions",
-		"units": "Units of Measurement",
-		"profile_block": "Profile Block",
-		"useful_tips": "Useful Tips",
-		"FAQ_section": "Select FAQ Section"
-	}
+  "faq": {
+    "faq": "FAQ",
+    "main": "Main",
+    "analytics": "Analytics",
+    "not_work": "Not working?",
+    "problems": "Problems and Issues",
+    "alerts": "Alerts",
+    "main_content": "Main Highlights",
+    "awards": "Awards",
+    "profile": "My Profile",
+    "interactions": "Interactions",
+    "units": "Units of Measurement",
+    "profile_block": "Profile Block",
+    "useful_tips": "Useful Tips",
+    "FAQ_section": "Select FAQ Section"
+  }
 }

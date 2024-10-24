@@ -13,7 +13,12 @@ onMount(() => {
 <div class="menu_items">
   <a href="/" class="card_item" class:selected={currentPath === '/h1'}>
     <div class="image_box">
-      <img src={currentPath === '/hl' ? 'assets/item1.png' : 'assets/item1.png'} alt="" />
+      <img
+        src={currentPath === '/hl'
+          ? 'assets/menu/menuElements/bet.png'
+          : 'assets/menu/menuElements/bet.png'}
+        alt=""
+      />
     </div>
     <span class="item_name">{$t('menu.Place_bet')}</span>
   </a>
@@ -21,7 +26,9 @@ onMount(() => {
   <a href="/" class="card_item" class:selected={currentPath === '/'}>
     <div class="image_box">
       <img
-        src={currentPath === '/' ? 'assets/active/home.png' : 'assets/home.png'}
+        src={currentPath === '/'
+          ? 'assets/menu/menuElements/home.png'
+          : 'assets/menu/menuElements/home.png'}
         alt="Домашняя"
       />
     </div>
@@ -31,7 +38,9 @@ onMount(() => {
   <a href="/stats" class="card_item" class:selected={currentPath === '/stats'}>
     <div class="image_box">
       <img
-        src={currentPath === '/stats' ? 'assets/active/FAQ.png' : 'assets/FAQ.png'}
+        src={currentPath === '/stats'
+          ? 'assets/menu/menuElements/FAQ.png'
+          : 'assets/menu/menuElements/FAQ.png'}
         alt="Статистика"
       />
     </div>
@@ -41,7 +50,9 @@ onMount(() => {
   <a href="/profile" class="card_item" class:selected={currentPath === '/profile'}>
     <div class="image_box">
       <img
-        src={currentPath === '/profile' ? 'assets/active/users.png' : 'assets/users.png'}
+        src={currentPath === '/profile'
+          ? 'assets/menu/menuElements/users.png'
+          : 'assets/menu/menuElements/users.png'}
         alt="Профиль"
       />
     </div>
@@ -50,7 +61,12 @@ onMount(() => {
 
   <a href="/extensions" class="card_item" class:selected={currentPath === '/extensions'}>
     <div class="image_box">
-      <img src={currentPath === '/extensions' ? 'assets/active/mod.png' : 'assets/mod.png'} alt="Моды" />
+      <img
+        src={currentPath === '/extensions'
+          ? 'assets/menu/menuElements/mod.png'
+          : 'assets/menu/menuElements/mod.png'}
+        alt="Моды"
+      />
     </div>
     <span class="item_name">{$t('menu.Mods')}</span>
   </a>
@@ -58,7 +74,9 @@ onMount(() => {
   <a href="/setings" class="card_item" class:selected={currentPath === '/setings'}>
     <div class="image_box">
       <img
-        src={currentPath === '/setings' ? 'assets/active/setings.png' : 'assets/setings.png'}
+        src={currentPath === '/setings'
+          ? 'assets/active/setings.png'
+          : 'assets/menu/menuElements/setings.png'}
         alt="Настройки"
       />
     </div>

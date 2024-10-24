@@ -25,7 +25,6 @@ import { t } from 'svelte-i18n'
   background-color: rgba(240, 248, 255, 0.249);
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
   .accounts_btn {
     width: 60%;

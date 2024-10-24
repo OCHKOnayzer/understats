@@ -1,10 +1,16 @@
-<script>
-import { t } from 'svelte-i18n'
+<script lang="ts">
 import FaqMenuElements from './faqMenuElements.svelte'
+import { createEventDispatcher } from 'svelte'
+
+const dispatch = createEventDispatcher()
+
+const handleSelectItemFromMenu = (event: any) => {
+  dispatch('selectItemFromFaqMenu', { name: event.detail.name })
+}
 </script>
 
 <div class="faqMenu">
-  <FaqMenuElements />
+  <FaqMenuElements on:selectItemFromMenu={handleSelectItemFromMenu} />
 </div>
 
 <style>
