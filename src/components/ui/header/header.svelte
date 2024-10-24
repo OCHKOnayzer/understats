@@ -1,6 +1,5 @@
 <script>
 export let headerProps
-import image from './image.svg'
 </script>
 
 <div class="header">
@@ -12,7 +11,7 @@ import image from './image.svg'
       <div class="buttonConteiner">
         <div class="btnWrapper">
           <button>
-            <img src={image} alt="" />
+            <img src="assets/image.svg" alt="" />
           </button>
         </div>
       </div>

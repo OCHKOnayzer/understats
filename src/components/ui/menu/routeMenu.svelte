@@ -48,9 +48,9 @@ onMount(() => {
     <span class="item_name">{$t('menu.Profile')}</span>
   </a>
 
-  <a href="/mods" class="card_item" class:selected={currentPath === '/mods'}>
+  <a href="/extensions" class="card_item" class:selected={currentPath === '/extensions'}>
     <div class="image_box">
-      <img src={currentPath === '/mods' ? 'assets/active/mod.png' : 'assets/mod.png'} alt="Моды" />
+      <img src={currentPath === '/extensions' ? 'assets/active/mod.png' : 'assets/mod.png'} alt="Моды" />
     </div>
     <span class="item_name">{$t('menu.Mods')}</span>
   </a>

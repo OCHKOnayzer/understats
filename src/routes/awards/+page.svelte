@@ -5,7 +5,7 @@ import { t } from 'svelte-i18n'
 import Header from '../../components/ui/header/header.svelte'
 import Section from '../../components/ui/Trophies/section.svelte'
 const headerProps = $t('other.awards')
-import Progress from './components/widgets/progress.svelte'
+import ProgressBar from '../../components/ui/progressBar/progress.svelte'
 </script>
 
 <svelte:head>
@@ -17,7 +17,7 @@ import Progress from './components/widgets/progress.svelte'
   <div class="mainContent">
     <Header {headerProps} />
     <div class="progressWrapper">
-      <Progress />
+      <ProgressBar />
     </div>
     <Section />
   </div>

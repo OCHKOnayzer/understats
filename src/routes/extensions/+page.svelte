@@ -1,11 +1,10 @@
 <script>
-import Header from '../../components/header.svelte';
-import Menu from '../../components/section/menu.svelte';
-import Slider from '../../components/Slider/Slider.svelte';
+import Header from '../../components/ui/header/header.svelte';
+import Slider from '../../components/ui/slider/extensionsSlider/Slider.svelte';
 import DownloadElement from '../../components/ui/downloadElement/DownloadElement.svelte';
-import DownloadInfo from '../../components/section/downloadInfo/DownloadInfo.svelte';
-import FunctionalSection from '../../components/section/functional/FunctionalSection.svelte';
-import Exp from '../../components/ui/exp/Exp/svelte';
+import DownloadInfo from '../../components/ui/downloadInfo/DownloadInfo.svelte';
+import FunctionalSection from '../../components/ui/functional/FunctionalSection.svelte';
+import Exp from '../../components/ui/exp/Exp.svelte';
 import { t } from 'svelte-i18n';
 const headerProps = $t('extensions.extensions');
 </script>
@@ -16,7 +15,6 @@ const headerProps = $t('extensions.extensions');
 </svelte:head>
 
 <div class="text-column">
-  <Menu />
   <div class="mainContent">
     <Header {headerProps} />
     <Slider />

@@ -12,9 +12,9 @@ $: isActive = (href: string): boolean => currentPath === href
 </script>
 
 <div class="menu_items">
-  <a href="/" class="card_item" class:selected={isActive('/FAQ')}>
+  <a href="/faq" class="card_item" class:selected={isActive('/faq')}>
     <div class="image_box">
-      <img src="assets/FAQ.png" alt="" />
+      <img src={currentPath !== '/faq' ? 'assets/FAQ.png' : 'assets/active/activeFaq.png'} alt="" />
     </div>
     <span class="item_name">{$t('menu.Help')}</span>
   </a>

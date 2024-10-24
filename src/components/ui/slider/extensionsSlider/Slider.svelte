@@ -1,5 +1,5 @@
 <script>
-import ExtensionsWidgets from '../section/extensionsSection.svelte'
+import ExtensionsWidgets from './extensionsWidgets.svelte';
 import Slides from './Slides.svelte'
 </script>
 
