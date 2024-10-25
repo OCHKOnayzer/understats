@@ -1,6 +1,6 @@
 import * as m from '$m'
 import type { FilterInputSelectStore, TableItems } from '$types/types'
-import { writable } from 'svelte/store'
+import { derived, writable } from 'svelte/store'
 
 export const BOOKMAKERS = [
   { value: 'fonbet', label: m.fonbet(), icon: '/icons/bk/fonbet.png' },
@@ -10,6 +10,8 @@ export const BOOKMAKERS = [
 
 export const TileChecked = writable<string>('tile')
 
+export const accounts = writable<TableItems>([])
+
 export const AccountCreateSelect = writable<string>()
 export const AccountCreate = writable([
   { value: 'new', name: m.newAccount() },
@@ -17,10 +19,34 @@ export const AccountCreate = writable([
 ])
 
 export const AccountStatusSelect = writable<string>()
-export const AccountStatus = writable<object[]>([
+export const AccountStatus = writable<{ value: string; name: string }[]>([
   { value: 'active', name: m.activeAccount() },
   { value: 'inactive', name: m.inactiveAccount() },
 ])
+
+export const filteredAccounts = derived(
+  [accounts, AccountCreateSelect, AccountStatusSelect],
+  ([$accounts, $createSelect, $statusSelect]) => {
+    let filtered = [...$accounts]
+
+    if ($createSelect) {
+      filtered.sort((a, b) => {
+        const dateA = new Date(a.createdAt).getTime()
+        const dateB = new Date(b.createdAt).getTime()
+        return $createSelect === 'new' ? dateB - dateA : dateA - dateB
+      })
+    }
+
+    if ($statusSelect) {
+      filtered = filtered.filter((account) => {
+        if ($statusSelect === 'active') return account.connected
+        return !account.connected
+      })
+    }
+
+    return filtered
+  },
+)
 
 export const FilterInputSelect = writable<FilterInputSelectStore>({
   preset: {
@@ -98,7 +124,6 @@ export const LoginForm = writable({
   },
 })
 
-export const accounts = writable<TableItems>([])
 export let accountIsSuccess = writable<boolean | null>(null)
 export let isOpen = writable(false)
 

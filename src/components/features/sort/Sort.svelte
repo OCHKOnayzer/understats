@@ -7,13 +7,11 @@ import {
   AccountStatus,
   AccountStatusSelect,
 } from '$stores/store'
-import { get } from 'svelte/store'
 </script>
 
 <div class="flex items-center gap-3">
-  <SortButton title={m.preset()} items={get(AccountCreate)} value={get(AccountCreateSelect)} />
-
-  <SortButton title={m.display()} items={get(AccountStatus)} value={get(AccountStatusSelect)} />
+  <SortButton title={m.preset()} items={$AccountCreate} bind:value={$AccountCreateSelect} />
+  <SortButton title={m.display()} items={$AccountStatus} bind:value={$AccountStatusSelect} />
 </div>
 
 <style>
