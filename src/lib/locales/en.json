@@ -146,6 +146,8 @@
     "FAQ_section": "Select FAQ Section",
     "repost": "Share",
     "select_state": "Select section",
-    "select_razdel": "and article"
+    "select_razdel": "and article",
+    "article_use_service": "How to use the service",
+    "registration": "How to create an account"
   }
 }

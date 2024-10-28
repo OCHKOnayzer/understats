@@ -1,6 +1,4 @@
 <script>
 </script>
 
-<div>
-  hello
-</div>
+<div>hello</div>

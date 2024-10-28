@@ -11,7 +11,7 @@ onMount(() => {
 </script>
 
 <div class="menu_items">
-  <a href="/" class="card_item" class:selected={currentPath === '/h1'}>
+  <!-- <a href="/" class="card_item" class:selected={currentPath === '/h1'}>
     <div class="image_box">
       <img
         src={currentPath === '/hl'
@@ -21,7 +21,7 @@ onMount(() => {
       />
     </div>
     <span class="item_name">{$t('menu.Place_bet')}</span>
-  </a>
+  </a> -->
 
   <a href="/" class="card_item" class:selected={currentPath === '/'}>
     <div class="image_box">
@@ -58,7 +58,6 @@ onMount(() => {
     </div>
     <span class="item_name">{$t('menu.Stats')}</span>
   </a>
-
 
   <a href="/extensions" class="card_item" class:selected={currentPath === '/extensions'}>
     <div class="image_box">

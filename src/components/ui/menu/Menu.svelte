@@ -28,25 +28,25 @@ $: isActive = (href: string): boolean => currentPath === href
         UnderStat
       </div>
 
-      <div class="userAwards">
-        <div class="userAwardsConteiner" class:usAwardDs={isActive('/awards')}>
-          <span>{$t('other.awards')}</span>
-          <div class="user_award">
-            <div>
-              <img src="/assets/awards/gold/goldTrophLvl1.png" alt="Трофей" />
-              <p>4</p>
-            </div>
-            <div>
-              <img src="/assets/awards/gold/goldTrophLvl2.png" alt="Трофей" />
-              <p>0</p>
-            </div>
-            <div>
-              <img src="/assets/awards/gold/goldTrophLvl2.png" alt="Трофей" />
-              <p>0</p>
+      <!-- <div class="userAwards">
+          <div class="userAwardsConteiner" class:usAwardDs={isActive('/awards')}>
+            <span>{$t('other.awards')}</span>
+            <div class="user_award">
+              <div>
+                <img src="/assets/awards/gold/goldTrophLvl1.png" alt="Трофей" />
+                <p>4</p>
+              </div>
+              <div>
+                <img src="/assets/awards/gold/goldTrophLvl2.png" alt="Трофей" />
+                <p>0</p>
+              </div>
+              <div>
+                <img src="/assets/awards/gold/goldTrophLvl2.png" alt="Трофей" />
+                <p>0</p>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div> -->
       <RouteMenu />
     </div>
     <div class="menu_flex_dwn">

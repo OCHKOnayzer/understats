@@ -5,7 +5,7 @@ import { createEventDispatcher } from 'svelte'
 const dispatch = createEventDispatcher()
 
 const handleSelectItemFromMenu = (event: any) => {
-  dispatch('selectItemFromFaqMenu', { name: event.detail.name })
+  dispatch('selectItemFromFaqMenu', { name: event.detail.name, articleId: event.detail.articleId })
 }
 </script>
 
