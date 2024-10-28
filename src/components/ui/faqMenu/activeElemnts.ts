@@ -58,18 +58,18 @@ export const ActiveElemnts: ActiveInerface[] = [
     index: 3,
     name: 'faq.ext_firefox',
     image: '',
-    article: 'DownloadGoogle',
+    article: 'DownloadFirefox',
   },
   {
     index: 3,
     name: 'faq.ext_yandex',
     image: '',
-    article: 'DownloadGoogle',
+    article: 'DownloadYandex',
   },
   {
     index: 3,
     name: 'faq.ext_opera',
     image: '',
-    article: 'DownloadGoogle',
+    article: 'DownloadOpera',
   },
 ]
