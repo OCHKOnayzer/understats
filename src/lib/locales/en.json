@@ -152,6 +152,18 @@
     "create_acc_section_1": "In today's world, cats have become not only beloved pets but also true internet stars. Social networks are filled with photos and videos featuring cats that win the hearts of millions of users. Memes featuring cats quickly go viral, and dedicated accounts exist solely for these furry creatures.",
     "create_acc_section_2": "Thus, cats occupy an important place in human life. They not only bring joy and comfort to the home but also become a part of culture and art. Their presence helps us cope with the stresses of everyday life and fills our world with warmth and love.",
     "ext": "UnderState Extension",
-    "ext_tittle": "Extensions for Your Browser"
+    "ext_tittle": "Extensions for Your Browser",
+    "ext_download_section_1": "Welcome to a world of convenience and possibilities with our new browser extension! Now, you can place your bets even more easily and quickly by simply installing our extension. Visit the 'Extension' page to find out how our tool can enhance your betting experience.",
+    "ext_download_section_2": "To use it, first download the extension archive from our website, then extract it. Since our extension is compatible with various browsers, we have prepared separate articles with installation instructions for each. Select the article from the list below that corresponds to your browser!",
+    "ext_goole": "Extension for Google Chrome",
+    "ext_google_tittle": "How to Install the Extension in Google Chrome",
+    "ext_firefox": "Extension for Firefox",
+    "ext_firefox_tittle": "How to Install the Extension in Firefox",
+    "ext_yandex": "Extension for Yandex Browser",
+    "ext_yandex_tittle": "How to Install the Extension in Yandex Browser",
+    "ext_edge": "Extension for Edge",
+    "ext_edge_tittle": "How to Install the Extension in Edge",
+    "ext_opera": "Extension for Opera",
+    "ext_opera_tittle": "How to Install the Extension in Opera"
   }
 }

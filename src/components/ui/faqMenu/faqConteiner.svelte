@@ -32,7 +32,7 @@ async function loadArticleComponent(article: string) {
     {#if selectedItemName && ArticleComponent}
       <div class="selected_state_wrapper">
         <header class="state_header">
-          <span class="selected_title">{selectedItemName}</span>
+          <span class="selected_title">{$t(selectedItemName)}</span>
           <button class="repost">{$t('faq.repost')}</button>
         </header>
 
