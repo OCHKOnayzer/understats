@@ -6,25 +6,21 @@ let selectedItemName = ''
 let article: string | null = null
 let ArticleComponent: typeof import('svelte').SvelteComponent | null = null
 
-// Функция для обработки выбора из меню
 const handleSelectItemFromFaqMenu = async (event: any) => {
   selectedItemName = event.detail.name
   article = event.detail.articleId
   if (article !== null) {
-    // Подгрузка компонента статьи
     await loadArticleComponent(article)
   }
 }
 
-// Асинхронная функция для динамической подгрузки нужного компонента
 async function loadArticleComponent(article: string) {
   try {
-    // Импорт нужного компонента статьи
     const module = await import(`./article/state/${article}.svelte`)
     ArticleComponent = module.default
   } catch (error) {
     console.error(`Не удалось загрузить статью с ${article}`, error)
-    ArticleComponent = null // Обработка отсутствующего компонента
+    ArticleComponent = null
   }
 }
 </script>
@@ -39,7 +35,7 @@ async function loadArticleComponent(article: string) {
           <span class="selected_title">{selectedItemName}</span>
           <button class="repost">{$t('faq.repost')}</button>
         </header>
-        <!-- Рендер динамически подгруженного компонента статьи -->
+
         <svelte:component this={ArticleComponent} title={selectedItemName} content="Текст статьи" />
       </div>
     {:else}

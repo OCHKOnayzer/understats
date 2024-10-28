@@ -134,9 +134,9 @@
     "main": "Main",
     "analytics": "Analytics",
     "not_work": "Not working?",
-    "problems": "Problems and Issues",
+    "problems": "Issues and Problems",
     "alerts": "Alerts",
-    "main_content": "Main Highlights",
+    "main_content": "Key Points",
     "awards": "Awards",
     "profile": "My Profile",
     "interactions": "Interactions",
@@ -145,9 +145,13 @@
     "useful_tips": "Useful Tips",
     "FAQ_section": "Select FAQ Section",
     "repost": "Share",
-    "select_state": "Select section",
-    "select_razdel": "and article",
-    "article_use_service": "How to use the service",
-    "registration": "How to create an account"
+    "select_state": "Select Section",
+    "select_razdel": "and Article",
+    "article_use_service": "How to Use the Service",
+    "registration": "How to Create an Account",
+    "create_acc_section_1": "In today's world, cats have become not only beloved pets but also true internet stars. Social networks are filled with photos and videos featuring cats that win the hearts of millions of users. Memes featuring cats quickly go viral, and dedicated accounts exist solely for these furry creatures.",
+    "create_acc_section_2": "Thus, cats occupy an important place in human life. They not only bring joy and comfort to the home but also become a part of culture and art. Their presence helps us cope with the stresses of everyday life and fills our world with warmth and love.",
+    "ext": "UnderState Extension",
+    "ext_tittle": "Extensions for Your Browser"
   }
 }

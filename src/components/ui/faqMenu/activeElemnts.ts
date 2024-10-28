@@ -14,12 +14,6 @@ export const ActiveElemnts: ActiveInerface[] = [
   },
   {
     index: 0,
-    name: 'Скачать расширение',
-    image: '',
-    article: 'Download',
-  },
-  {
-    index: 0,
     name: 'Войти в контору',
     image: '',
     article: 'login',
@@ -49,9 +43,9 @@ export const ActiveElemnts: ActiveInerface[] = [
     article: '',
   },
   {
-    index: 1,
-    name: 'Котик2',
+    index: 3,
+    name: 'faq.ext',
     image: '',
-    article: '',
+    article: 'Download',
   },
 ]
