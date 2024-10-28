@@ -17,9 +17,9 @@ const headerProps = $t('settings.settings')
   <div class="mainContent">
     <Header {headerProps} />
     <div class="progressWrapper">
-      <Setings />
+      <!-- <Setings /> -->
     </div>
-    <UserAvatar />
+    <!-- <UserAvatar /> -->
     <Info />
     <EditPass />
   </div>

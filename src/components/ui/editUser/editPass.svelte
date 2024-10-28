@@ -105,7 +105,7 @@ const clearField = (field: FieldType) => {
     </div>
   </div>
   <div class="setings">
-    <div class="setings_item item-w">
+    <!-- <div class="setings_item item-w">
       <div class="item_settings_info">
         <p class="settings_name">{$t('settings.display_name')}</p>
         <button class="clear_curr max--w" on:click={() => clearField('username')}
@@ -118,7 +118,7 @@ const clearField = (field: FieldType) => {
         bind:value={username}
         placeholder={$user?.name}
       />
-    </div>
+    </div> -->
     <div class="setings_item item-w">
       <div class="item_settings_info">
         <p class="settings_name">{$t('settings.old_pass')}</p>
