@@ -75,9 +75,11 @@ $: isActive = (href: string): boolean => currentPath === href
 
 <style>
 .menu {
-  position: static;
-  width: 20vw;
-  height: 100vh;
+  position: fixed; /* Change from static to fixed */
+  top: 0; /* Set top position to 0 */
+  left: 0; /* Align to the left */
+  width: 10vw; /* Keep the width as is */
+  height: 100vh; /* Keep the height as is */
   background-color: #171b26;
   color: white;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -85,7 +87,7 @@ $: isActive = (href: string): boolean => currentPath === href
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  z-index: 3;
+  z-index: 3; /* Ensure it stays on top */
 }
 .menuWrapper {
   height: 95%;
