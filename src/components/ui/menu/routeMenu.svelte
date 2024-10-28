@@ -35,6 +35,18 @@ onMount(() => {
     <span class="item_name">{$t('menu.Main')}</span>
   </a>
 
+  <a href="/accounts" class="card_item" class:selected={currentPath === '/accounts'}>
+    <div class="image_box">
+      <img
+        src={currentPath === '/accounts'
+          ? 'assets/menu/menuElements/users.png'
+          : 'assets/menu/menuElements/users.png'}
+        alt="Профиль"
+      />
+    </div>
+    <span class="item_name">{$t('menu.Accounts')}</span>
+  </a>
+
   <a href="/stats" class="card_item" class:selected={currentPath === '/stats'}>
     <div class="image_box">
       <img
@@ -47,17 +59,6 @@ onMount(() => {
     <span class="item_name">{$t('menu.Stats')}</span>
   </a>
 
-  <a href="/profile" class="card_item" class:selected={currentPath === '/profile'}>
-    <div class="image_box">
-      <img
-        src={currentPath === '/profile'
-          ? 'assets/menu/menuElements/users.png'
-          : 'assets/menu/menuElements/users.png'}
-        alt="Профиль"
-      />
-    </div>
-    <span class="item_name">{$t('menu.Profile')}</span>
-  </a>
 
   <a href="/extensions" class="card_item" class:selected={currentPath === '/extensions'}>
     <div class="image_box">
