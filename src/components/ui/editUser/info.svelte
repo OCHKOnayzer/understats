@@ -68,6 +68,16 @@
             </div>
           </div>
         </div>
+        <div class="accounts">
+          <div><p class="accounts--text">{$t('settings.create_email')}</p></div>
+          <div class="other_account_wrapper">
+            <div class="accounts_element">
+              {#if $user}
+              <span>{$user.email}</span>
+              {/if}
+            </div>
+          </div>
+        </div>
         <!-- <div class="btn_edit__wrapper">
           <button class="btn_edit">
             <span>

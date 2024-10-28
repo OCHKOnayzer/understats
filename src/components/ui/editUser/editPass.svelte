@@ -91,7 +91,7 @@ const clearField = (field: FieldType) => {
     </div>
   </div>
   <div class="pass_sett">
-    <div class="setings_item email item-w">
+    <!-- <div class="setings_item email item-w">
       <div class="item_settings_info">
         <p class="settings_name">{$t('settings.create_email')}</p>
       </div>
@@ -102,7 +102,7 @@ const clearField = (field: FieldType) => {
           {/if}
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="setings">
     <!-- <div class="setings_item item-w">
@@ -196,7 +196,7 @@ const clearField = (field: FieldType) => {
 .setings {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   height: fit-content;
   width: 100%;

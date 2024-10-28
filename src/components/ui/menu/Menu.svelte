@@ -75,11 +75,11 @@ $: isActive = (href: string): boolean => currentPath === href
 
 <style>
 .menu {
-  position: fixed; /* Change from static to fixed */
-  top: 0; /* Set top position to 0 */
-  left: 0; /* Align to the left */
-  width: 10vw; /* Keep the width as is */
-  height: 100vh; /* Keep the height as is */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10%;
+  height: 100vh;
   background-color: #171b26;
   color: white;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -87,7 +87,7 @@ $: isActive = (href: string): boolean => currentPath === href
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  z-index: 3; /* Ensure it stays on top */
+  z-index: 3;
 }
 .menuWrapper {
   height: 95%;
@@ -190,7 +190,7 @@ $: isActive = (href: string): boolean => currentPath === href
   align-items: center;
 }
 
-@media screen and (max-width: 1600px) {
+/* @media screen and (max-width: 1600px) {
   .menu {
     width: 20vw;
   }
@@ -215,7 +215,7 @@ $: isActive = (href: string): boolean => currentPath === href
   .userAwardsConteiner span {
     display: none;
   }
-}
+} */
 @media screen and (max-height: 600px) {
   .menu {
     overflow-y: auto;
