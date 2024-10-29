@@ -33,9 +33,6 @@ const handleConnect = async () => {
   }, 0)
 
   await tick()
-
-  console.log(accountIsSuccess)
-  console.log(get(accountIsSuccess))
 }
 </script>
 

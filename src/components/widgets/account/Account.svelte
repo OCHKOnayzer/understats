@@ -1,6 +1,6 @@
 <script lang="ts">
 import AccountAddButton from '$components/entities/account/AccountAdd.svelte'
-import FilterAccountButton from '$components/entities/account/FilterAccountButton.svelte'
+// import FilterAccountButton from '$components/entities/account/FilterAccountButton.svelte'
 import BackgroundContainer from '$components/providers/backgroundContainer/BackgroundContainer.svelte'
 import * as m from '$m'
 import { filteredAccounts } from '$stores/store'
@@ -14,7 +14,7 @@ console.log($filteredAccounts)
     {/if}
   </h2>
   <div class="flex items-center gap-2">
-    <FilterAccountButton />
+    <!-- <FilterAccountButton /> -->
     <AccountAddButton />
   </div>
 </BackgroundContainer>

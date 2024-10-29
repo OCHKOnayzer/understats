@@ -1,6 +1,6 @@
+import { derived, writable } from 'svelte/store'
 import * as m from '$m'
 import type { FilterInputSelectStore, TableItems } from '$types/types'
-import { derived, writable } from 'svelte/store'
 
 export const BOOKMAKERS = [
   { value: 'fonbet', label: m.fonbet(), icon: '/icons/bk/fonbet.png' },
@@ -124,8 +124,8 @@ export const LoginForm = writable({
   },
 })
 
-export let accountIsSuccess = writable<boolean | null>(null)
-export let isOpen = writable(false)
+export const accountIsSuccess = writable<boolean | null>(null)
+export const isOpen = writable(false)
 
 export const filter = writable<boolean>(false)
 

@@ -8,6 +8,6 @@ import Table from '$components/widgets/table/Table.svelte'
 <div>
   <SortContainer />
   <Account />
-  <Filter />
+  <!-- <Filter /> -->
   <Table />
 </div>

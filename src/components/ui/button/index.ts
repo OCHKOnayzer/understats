@@ -22,8 +22,8 @@ const buttonVariants = tv({
       outlineRoundedGreen:
         'border-input bg-background hover:bg-accent hover:bg-green-500 border border-green-500 text-white py-2 px-3 rounded-full',
       cyberGreen:
-        'bg-green-400/50 text-green-300 text-[12px] rounded-[12px] pr-5 pl-5 cursor-default',
-      cyberRed: 'bg-red-400/50 text-red-300 text-[12px] rounded-[12px] pr-5 pl-5 cursor-default',
+        'bg-[#00FF4740]/[.25] text-[#5EC654] line-heigh-[10px] text-[12px] rounded-[5px] pr-5 pl-5 cursor-default',
+      cyberRed: 'bg-red-400/50 text-red-300 text-[12px] rounded-[5px] pr-5 pl-5 cursor-default',
       secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
       ghost: 'hover:bg-accent hover:text-accent-foreground',
       tileChecked: 'bg-violet-500 text-white rounded-[100px]',
@@ -35,6 +35,7 @@ const buttonVariants = tv({
       sm: 'h-9 rounded-md px-3',
       lg: 'h-11 rounded-md px-8',
       icon: 'h-10 w-10',
+      cyber: 'px-10 py-[4px]',
     },
   },
   defaultVariants: {

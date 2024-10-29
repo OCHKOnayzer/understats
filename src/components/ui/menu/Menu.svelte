@@ -75,10 +75,8 @@ $: isActive = (href: string): boolean => currentPath === href
 
 <style>
 .menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 10%;
+  position: static;
+  width: 20vw;
   height: 100vh;
   background-color: #171b26;
   color: white;

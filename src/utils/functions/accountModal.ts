@@ -9,6 +9,4 @@ export const accountModal = () => {
     form.password.selected = { value: '', label: '' }
     return form
   })
-
-  console.log()
 }
