@@ -86,7 +86,7 @@ $: isActive = (href: string): boolean => currentPath === href
   align-items: center;
   box-sizing: border-box;
   z-index: 3;
-  right:2%;
+  right: 2%;
 }
 .menuWrapper {
   height: 95%;
