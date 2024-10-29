@@ -28,25 +28,25 @@ $: isActive = (href: string): boolean => currentPath === href
         UnderStat
       </div>
 
-      <div class="userAwards">
-        <div class="userAwardsConteiner" class:usAwardDs={isActive('/awards')}>
-          <span>{$t('other.awards')}</span>
-          <div class="user_award">
-            <div>
-              <img src="/assets/awards/gold/goldTrophLvl1.png" alt="Трофей" />
-              <p>4</p>
-            </div>
-            <div>
-              <img src="/assets/awards/gold/goldTrophLvl2.png" alt="Трофей" />
-              <p>0</p>
-            </div>
-            <div>
-              <img src="/assets/awards/gold/goldTrophLvl2.png" alt="Трофей" />
-              <p>0</p>
+      <!-- <div class="userAwards">
+          <div class="userAwardsConteiner" class:usAwardDs={isActive('/awards')}>
+            <span>{$t('other.awards')}</span>
+            <div class="user_award">
+              <div>
+                <img src="/assets/awards/gold/goldTrophLvl1.png" alt="Трофей" />
+                <p>4</p>
+              </div>
+              <div>
+                <img src="/assets/awards/gold/goldTrophLvl2.png" alt="Трофей" />
+                <p>0</p>
+              </div>
+              <div>
+                <img src="/assets/awards/gold/goldTrophLvl2.png" alt="Трофей" />
+                <p>0</p>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div> -->
       <RouteMenu />
     </div>
     <div class="menu_flex_dwn">
@@ -76,7 +76,7 @@ $: isActive = (href: string): boolean => currentPath === href
 <style>
 .menu {
   position: static;
-  width: 14vw;
+  width: 20vw;
   height: 100vh;
   background-color: #171b26;
   color: white;
@@ -86,6 +86,7 @@ $: isActive = (href: string): boolean => currentPath === href
   align-items: center;
   box-sizing: border-box;
   z-index: 3;
+  right: 2%;
 }
 .menuWrapper {
   height: 95%;
@@ -188,7 +189,7 @@ $: isActive = (href: string): boolean => currentPath === href
   align-items: center;
 }
 
-@media screen and (max-width: 1600px) {
+/* @media screen and (max-width: 1600px) {
   .menu {
     width: 20vw;
   }
@@ -213,7 +214,7 @@ $: isActive = (href: string): boolean => currentPath === href
   .userAwardsConteiner span {
     display: none;
   }
-}
+} */
 @media screen and (max-height: 600px) {
   .menu {
     overflow-y: auto;

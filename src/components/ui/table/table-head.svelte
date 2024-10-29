@@ -10,7 +10,7 @@ export { className as class }
 
 <th
   class={cn(
-    'text-muted-white h-12 px-4 text-left align-middle text-[10px] font-thin [&:has([role=checkbox])]:pr-0 border-[#363A45] border-2',
+    'text-muted-white h-12 border-2 border-[#363A45] px-4 text-left align-middle text-[10px] font-thin [&:has([role=checkbox])]:pr-0',
     className,
   )}
   {...$$restProps}

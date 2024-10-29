@@ -1,5 +1,6 @@
 <script lang="ts">
 export let FAQIndex: number
+import { t } from 'svelte-i18n'
 import { ActiveElemnts } from './activeElemnts'
 import { createEventDispatcher } from 'svelte'
 
@@ -8,9 +9,9 @@ let activeIndex: number | null = null
 
 const dispatch = createEventDispatcher()
 
-const setActiveIndex = (index: number, name: string) => {
+const setActiveIndex = (index: number, name: string, articleId: string) => {
   activeIndex = index === activeIndex ? null : index
-  dispatch('selectItem', { name })
+  dispatch('selectItem', { name, articleId })
 }
 </script>
 
@@ -18,9 +19,9 @@ const setActiveIndex = (index: number, name: string) => {
   {#each filteredElements as item, index}
     <button
       class="faqItem {activeIndex === index ? 'active' : ''}"
-      on:click={() => setActiveIndex(index, item.name)}
+      on:click={() => setActiveIndex(index, item.name, item.article)}
     >
-      {item.name}
+      {$t(item.name)}
     </button>
   {/each}
 </div>

@@ -1,22 +1,42 @@
 <script lang="ts">
 import { t } from 'svelte-i18n'
 import FaqMenu from './FaqMenu.svelte'
-let selectedItemName = ''
 
-const handleSelectItemFromFaqMenu = (event: any) => {
+let selectedItemName = ''
+let article: string | null = null
+let ArticleComponent: typeof import('svelte').SvelteComponent | null = null
+
+const handleSelectItemFromFaqMenu = async (event: any) => {
   selectedItemName = event.detail.name
+  article = event.detail.articleId
+  if (article !== null) {
+    await loadArticleComponent(article)
+  }
+}
+
+async function loadArticleComponent(article: string) {
+  try {
+    const module = await import(`./article/state/${article}.svelte`)
+    ArticleComponent = module.default
+  } catch (error) {
+    console.error(`Не удалось загрузить статью с ${article}`, error)
+    ArticleComponent = null
+  }
 }
 </script>
 
 <div class="faqSection">
   <FaqMenu on:selectItemFromFaqMenu={handleSelectItemFromFaqMenu} />
+
   <div class="faqChapter">
-    {#if selectedItemName}
+    {#if selectedItemName && ArticleComponent}
       <div class="selected_state_wrapper">
         <header class="state_header">
-          <span class="selected_title">{selectedItemName}</span>
+          <span class="selected_title">{$t(selectedItemName)}</span>
           <button class="repost">{$t('faq.repost')}</button>
         </header>
+
+        <svelte:component this={ArticleComponent} title={selectedItemName} content="Текст статьи" />
       </div>
     {:else}
       <div class="faq_null">
@@ -91,5 +111,15 @@ const handleSelectItemFromFaqMenu = (event: any) => {
 }
 .repost:hover {
   background-color: #1f232f;
+}
+.selected_state_wrapper::-webkit-scrollbar {
+  border-radius: 30px;
+  width: 3px;
+}
+.selected_state_wrapper::-webkit-scrollbar-track {
+  background: rgba(45, 48, 68, 0.692);
+}
+.selected_state_wrapper::-webkit-scrollbar-thumb {
+  background: rgba(135, 138, 160, 0.507);
 }
 </style>

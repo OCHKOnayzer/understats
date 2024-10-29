@@ -10,8 +10,8 @@ register('ru', () => import('./locales/ru.json'))
 register('en', () => import('./locales/en.json'))
 
 init({
-  fallbackLocale: 'en',
-  initialLocale: 'en',
+  fallbackLocale: 'ru',
+  initialLocale: 'ru',
 })
 
 export const localeReady = waitLocale()

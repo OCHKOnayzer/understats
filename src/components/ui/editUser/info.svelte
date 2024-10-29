@@ -68,16 +68,26 @@ const maxLevel = 50
           </div>
         </div>
       </div>
-      <div class="btn_edit__wrapper">
-        <button class="btn_edit">
-          <span>
-            <img src="assets/edit.svg" alt="" />
-          </span>
-        </button>
-        <button class="leave_acc">
-          <p class="leave_acc_p">{$t('settings.leave')}</p>
-        </button>
+      <div class="accounts">
+        <div><p class="accounts--text">{$t('settings.create_email')}</p></div>
+        <div class="other_account_wrapper">
+          <div class="accounts_element">
+            {#if $user}
+              <span>{$user.email}</span>
+            {/if}
+          </div>
+        </div>
       </div>
+      <!-- <div class="btn_edit__wrapper">
+          <button class="btn_edit">
+            <span>
+              <img src="assets/edit.svg" alt="" />
+            </span>
+          </button>
+          <button class="leave_acc">
+            <p class="leave_acc_p">{$t('settings.leave')}</p>
+          </button>
+        </div> -->
     </div>
   </div>
 </div>

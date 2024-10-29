@@ -6,6 +6,7 @@ import { createEventDispatcher } from 'svelte'
 
 let activeIndex: number | null = null
 let selectedItemName: string | null = null
+let selectedArticleId: string | null = null
 
 const setActiveIndex = (index: number) => {
   activeIndex = index === activeIndex ? null : index
@@ -13,7 +14,9 @@ const setActiveIndex = (index: number) => {
 
 const handleSelectItem = (event: any) => {
   selectedItemName = event.detail.name
-  dispatch('selectItemFromMenu', { name: selectedItemName })
+  selectedArticleId = event.detail.articleId
+
+  dispatch('selectItemFromMenu', { name: selectedItemName, articleId: selectedArticleId })
 }
 
 const dispatch = createEventDispatcher()

@@ -4,7 +4,7 @@ import AccountAddButton from '$components/entities/account/AccountAdd.svelte'
 import BackgroundContainer from '$components/providers/backgroundContainer/BackgroundContainer.svelte'
 import * as m from '$m'
 import { filteredAccounts } from '$stores/store'
-console.log($filteredAccounts);
+console.log($filteredAccounts)
 </script>
 
 <BackgroundContainer>

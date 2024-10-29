@@ -91,7 +91,7 @@ const clearField = (field: FieldType) => {
     </div>
   </div>
   <div class="pass_sett">
-    <div class="setings_item email item-w">
+    <!-- <div class="setings_item email item-w">
       <div class="item_settings_info">
         <p class="settings_name">{$t('settings.create_email')}</p>
       </div>
@@ -102,10 +102,10 @@ const clearField = (field: FieldType) => {
           {/if}
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="setings">
-    <div class="setings_item item-w">
+    <!-- <div class="setings_item item-w">
       <div class="item_settings_info">
         <p class="settings_name">{$t('settings.display_name')}</p>
         <button class="clear_curr max--w" on:click={() => clearField('username')}
@@ -118,7 +118,7 @@ const clearField = (field: FieldType) => {
         bind:value={username}
         placeholder={$user?.name}
       />
-    </div>
+    </div> -->
     <div class="setings_item item-w">
       <div class="item_settings_info">
         <p class="settings_name">{$t('settings.old_pass')}</p>
@@ -196,7 +196,7 @@ const clearField = (field: FieldType) => {
 .setings {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   height: fit-content;
   width: 100%;

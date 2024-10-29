@@ -10,7 +10,7 @@ export { className as class }
 
 <td
   class={cn(
-    'border-spacing-10 border border-[#363A45] align-middle px-4 py-2 text-left [&:has([role=checkbox])]:pr-0 ',
+    'border-spacing-10 border border-[#363A45] px-4 py-2 text-left align-middle [&:has([role=checkbox])]:pr-0 ',
     className,
   )}
   {...$$restProps}
