@@ -21,6 +21,10 @@ import Icon from '@iconify/svelte'
 </header>
 
 <style>
+.header {
+  font-family: Roboto;
+}
+
 .logo {
   font-size: 24px;
 
