@@ -10,22 +10,10 @@ export interface SelectedOption {
   icon?: string
 }
 
-export interface BaseOption {
-  name: string
-  placeholder: string
-  variant: 'select' | 'input'
-  selected: SelectedOption
-  options?: SelectedOption[]
-}
-
 export interface LoginFormStore {
   bookmaker: OptionWithChoices
   login: BaseOption
   password: BaseOption
-}
-
-export interface OptionWithChoices extends BaseOption {
-  options?: SelectedOption[]
 }
 
 export type FilterOption = BaseOption | OptionWithChoices
