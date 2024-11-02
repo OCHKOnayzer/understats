@@ -1,13 +1,30 @@
 {
+	"overrides": [
+		{
+			"files": ".ts",
+			"options": {
+				"parser": "typescript"
+			}
+		}
+	],
   "plugins": [
     "prettier-plugin-svelte",
-    "prettier-plugin-tailwindcss"
+		"prettier-plugin-tailwindcss"
   ],
   "svelteStrictMode": false,
   "svelteAllowShorthand": true,
   "svelteIndentScriptAndStyle": false,
-  "semi": false,
-  "singleQuote": true,
-  "printWidth": 100,
-  "trailingComma": "all"
+  "htmlWhitespaceSensitivity": "strict",
+	"bracketSameLine": true,
+	"singleAttributePerLine": true,
+	"singleQuote": true,
+	"trailingComma": "none",
+	"bracketSpacing": true,
+	"printWidth": 180,
+	"tabWidth": 2,
+	"useTabs": true,
+	"semi": true,
+	"quoteProps": "as-needed",
+	"endOfLine": "auto",
+	"arrowParens": "always"
 }

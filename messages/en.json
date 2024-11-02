@@ -58,5 +58,7 @@
   "disconnected": "Disconnected",
   "preset": "Preset",
   "display": "Display",
-  "accountsBack": "Return to accounts"
+  "accountsBack": "Return to accounts",
+  "home": "Home",
+  "stats": "Statistics"
 }
