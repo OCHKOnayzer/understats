@@ -1,120 +1,138 @@
 /** @type { import("eslint").Linter.Config } */
 module.exports = {
-  root: true,
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:svelte/recommended',
-    'plugin:import/recommended',
-    'plugin:import/typescript', // the following lines do the trick
-  ],
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
-  parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 2020,
-    extraFileExtensions: ['.svelte'],
-  },
-  env: {
-    browser: true,
-    es2017: true,
-    node: true,
-  },
-  overrides: [
-    {
-      files: ['*.svelte'],
-      parser: 'svelte-eslint-parser',
-      parserOptions: {
-        parser: '@typescript-eslint/parser',
-      },
-    },
-  ],
-  /* Some airbnb rules are too restrictive, we override them */
-  rules: {
-    /* Overrides for eslint-plugin-import */
+	root: true,
+	env: {
+		browser: true,
+		es6: true
+	},
+	ignorePatterns: [
+		'dist/**/*',
+		'coverage/**/*',
+		'node_modules',
+		'tmp',
+		'*.svg',
+		'*.json',
+		'*.txt',
+		'*.html',
+		'*.png'
+		// ''
+	],
+	parser: '@typescript-eslint/parser',
+	parserOptions: {
+		ecmaVersion: 2021,
+		project: './tsconfig.json',
+		extraFileExtensions: ['.svelte'],
+		ecmaFeatures: {
+			impliedStrict: true
+		},
+		// sourceType: "module"
+	},
+	settings: {
+		'import/extensions': ['.js', '.ts'],
+		'import/parsers': {
+			'@typescript-eslint/parser': ['.ts']
+		},
+		'import/resolver': {
+			typescript: {
+				alwaysTryTypes: true,
+				project: 'tsconfig.json'
+			},
+			node: {
+				extensions: ['.js', '.ts']
+			}
+		}
+	},
+	overrides: [
+		{
+			files: ['*.svelte'],
+			parser: 'svelte-eslint-parser',
+			parserOptions: {
+				parser: '@typescript-eslint/parser',
+			},
+		},
+	],
+	plugins: [
+		'import',
+		'prettier',
+		'@typescript-eslint',
+		'@html-eslint'
+	],
+	extends: [
+		'eslint:recommended',
+		'plugin:svelte/recommended',
+		'plugin:svelte/prettier',
+		'airbnb-typescript/base',
+		'plugin:@typescript-eslint/recommended',
+		'plugin:@typescript-eslint/recommended-requiring-type-checking',
+		'plugin:prettier/recommended',
+		'prettier',
+		// 'plugin:svelte/recommended',
+		// 'plugin:svelte/prettier',
+		'plugin:import/errors',
+		'plugin:import/warnings',
+		'plugin:import/typescript',
+	],
+	rules: {
+		// 'prettier/prettier': 2,
 
-    /* ---- Prefer named exports */
-    'import/no-default-export': 1,
-    'import/prefer-default-export': 0,
-    'import/no-unresolved': 0,
-    /* ---- Order imports */
-    'import/order': [
-      2,
-      {
-        'newlines-between':
-          'ignore' /* Newline between groups of imports */,
-        pathGroups: [
-          {
-            pattern: '/**',
-            group: 'parent',
-            position: 'before',
-          },
-        ] /* Place "/src/..." imports before "parent" imports */,
-        alphabetize: {
-          order:
-            'asc' /* Sort in ascending order. Options: ['ignore', 'asc', 'desc'] */,
-          caseInsensitive: true /* Ignore case. Options: [true, false] */,
-        },
-      },
-    ],
+		indent: ['error', 'tab'],
 
-    'sort-imports': [
-      2,
-      { ignoreCase: true, ignoreDeclarationSort: true },
-    ] /* Sort import members: { b, A, c } => { A, b, c } */,
+		"@html-eslint/indent": ['error', 'tab'],
 
-    /* Rest */
+		'@typescript-eslint/indent': ['error', 'tab'],
+		'@typescript-eslint/comma-dangle': 0,
+		'@typescript-eslint/lines-between-class-members': 0,
+		'@typescript-eslint/no-misused-promises': 0,
+		'@typescript-eslint/unbound-method': 0,
+		'@typescript-eslint/restrict-template-expressions': 0,
+		'@typescript-eslint/no-use-before-define': 0,
+		'@typescript-eslint/no-floating-promises': 0,
+		'@typescript-eslint/no-empty-function': 0,
+		'@typescript-eslint/no-unsafe-call': 0,
+		'@typescript-eslint/no-unsafe-return': 0,
+		'@typescript-eslint/no-unsafe-argument': 0,
+		'@typescript-eslint/keyword-spacing': 0,
+		'@typescript-eslint/no-unsafe-member-access': 0,
+		'@typescript-eslint/no-unused-vars': 0,
+		'@typescript-eslint/require-await': 0,
+		'@typescript-eslint/no-unsafe-assignment': 0,
 
-    semi: [2, 'never'] /* Don't use semicolons */,
-    'no-plusplus': [
-      2,
-      {
-        allowForLoopAfterthoughts: true,
-      } /* Allow `for (...; i++)` - Airbnb doesn't */,
-    ],
-    'prefer-destructuring': [
-      2,
-      {
-        object: true,
-        array: false /* Don't force array destructuring (Airbnb does) */,
-      },
-    ],
-    'no-unused-expressions': [
-      2,
-      {
-        allowShortCircuit: true,
-        allowTernary: true,
-      },
-    ],
-    'consistent-return': 1,
-    'object-shorthand': 1,
-    'no-unused-vars': 1,
-    'brace-style': [
-      1,
-      'stroustrup',
-      {
-        allowSingleLine: true,
-      },
-    ],
-    'no-use-before-define': 0 /* Allow hoisting */,
-    'no-underscore-dangle': 0 /* Allow using _ at either the beginning or the end of identifiers */,
-    'no-multiple-empty-lines': 0,
-    'func-style': 0,
-    eqeqeq: 0 /* Don't force === instead of == */,
-    'global-require': 0 /* Allow require() everywhere, sometimes usefull for Meteor.isServer() blocks. */,
-    'no-debugger': 0,
-    'no-console': 0,
-    'no-alert': 0,
-    'one-var': 0,
-    'one-var-declaration-per-line': 0,
-    'no-multi-assign': 0,
-    'lines-between-class-members': 0,
-    'new-parens': 0,
-    'implicit-arrow-linebreak': 0,
-    'arrow-parens': 0,
-    'max-classes-per-file': 0 /* To avoid errors when using Enum(class {...}) */,
-    'space-before-function-paren': 0,
-    'no-param-reassign': 0,
-    camelcase: 0,
-  },
-}
+		'no-useless-catch': 0,
+
+		quotes: [
+			'error',
+			'single',
+			{
+				avoidEscape: true,
+				allowTemplateLiterals: true
+			}
+		],
+		'no-duplicate-imports': ['error'],
+		'no-implicit-globals': ['error'],
+		'no-whitespace-before-property': 'error',
+		'no-multi-spaces': 'error',
+		'no-trailing-spaces': ['error', { ignoreComments: true }],
+		'arrow-spacing': 'error',
+		'space-infix-ops': ['error'],
+
+		'import/no-extraneous-dependencies': 0,
+		'import/no-default-export': 1,
+		'import/no-unresolved': 1,
+		'import/prefer-default-export': 0,
+		'import/no-cycle': 0,
+		'import/extensions': 0,
+		'import/namespace': [
+			1,
+			{
+				allowComputed: true
+			}
+		],
+		'import/order': [
+			2,
+			{
+				'newlines-between': 'always',
+				groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type']
+			}
+		]
+	},
+};
