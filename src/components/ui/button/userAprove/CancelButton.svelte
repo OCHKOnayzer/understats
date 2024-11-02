@@ -1,0 +1,30 @@
+<script lang="ts">
+import { t } from 'svelte-i18n'
+export let onUserText: string
+export let closeModal: () => void
+</script>
+
+<div class="button_wrapper">
+  <button on:click={closeModal}>{$t(onUserText)}</button>
+</div>
+
+<style>
+.button_wrapper {
+  width: 25%;
+  margin-top: 20px;
+  height: 4vh;
+  text-align: center;
+  border-radius: 100px;
+  overflow: hidden;
+  margin-right: 20px;
+}
+.button_wrapper button {
+  height: 100%;
+  width: 100%;
+  background-color: #718096;
+  transition: 400ms;
+}
+.button_wrapper button:hover {
+  background-color: #6b717a;
+}
+</style>

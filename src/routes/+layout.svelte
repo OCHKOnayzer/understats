@@ -4,10 +4,12 @@ import { waitLocale } from 'svelte-i18n'
 import Container from '$components/providers/container/Container.svelte'
 import Menu from '$components/ui/menu/Menu.svelte'
 import Header from '$components/widgets/header/Header.svelte'
+import AuthModal from '$src/components/ui/authModal/AuthModal.svelte'
 import { i18n } from '$lib/i18n'
 import '../app.css'
 
 let isLocaleReady = false
+let isAuthModalOpen = false
 
 waitLocale().then(() => {
   isLocaleReady = true
@@ -21,6 +23,7 @@ waitLocale().then(() => {
         <Menu />
 
         <div class="mainContent">
+          <AuthModal isOpen={isAuthModalOpen} />
           <Header />
 
           <slot></slot>
@@ -41,6 +44,7 @@ main {
   gap: 1rem;
 }
 .mainContent {
+  position: relative;
   width: 87vw;
   display: flex;
   flex-direction: column;
