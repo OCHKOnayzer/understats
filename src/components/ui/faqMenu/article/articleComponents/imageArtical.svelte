@@ -1,8 +1,8 @@
 <script>
-import { t } from 'svelte-i18n'
+import { t } from 'svelte-i18n';
 </script>
 
-<div class="image_article"></div>
+<div class="image_article" />
 
 <style>
 </style>

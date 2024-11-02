@@ -1,14 +1,19 @@
 <script lang="ts">
-import type { HTMLAttributes } from 'svelte/elements'
-import { cn } from '$utils/utils'
+import { cn } from '$utils/utils';
 
-type $$Props = HTMLAttributes<HTMLTableSectionElement>
+import type { HTMLAttributes } from 'svelte/elements';
 
-let className: $$Props['class'] = undefined
-export { className as class }
+type $$Props = HTMLAttributes<HTMLTableSectionElement>;
+
+let className: $$Props['class'] = undefined;
+export { className as class };
 </script>
 
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-<thead class={cn('bg-gray-500 [&_tr]:border-b', className)} {...$$restProps} on:click on:keydown>
-  <slot />
+<thead
+	class={cn('bg-gray-500 [&_tr]:border-b', className)}
+	{...$$restProps}
+	on:click
+	on:keydown>
+	<slot />
 </thead>

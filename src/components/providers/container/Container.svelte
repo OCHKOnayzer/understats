@@ -2,13 +2,13 @@
 </script>
 
 <div class="container">
-  <slot />
+	<slot />
 </div>
 
 <style>
 .container {
-  max-width: 1700px;
-  margin: 0 auto;
-  padding: 0 20px;
+	max-width: 1700px;
+	margin: 0 auto;
+	padding: 0 20px;
 }
 </style>

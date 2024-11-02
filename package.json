@@ -11,7 +11,8 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "prettier:check": "prettier --check",
     "prettier:format": "prettier --write .",
-    "eslint:check": "npx eslint --ext .js,.ts,.svelte src/"
+    "eslint:check": "npx eslint --ext .js,.ts,.svelte src/",
+    "eslint:fix": "npx eslint --ext .js,.ts,.svelte src/ --fix"
   },
   "dependencies": {
     "@inlang/paraglide-sveltekit": "0.11.1",
@@ -41,8 +42,9 @@
     "@tsconfig/svelte": "^5.0.4",
     "@types/eslint": "^8.56.10",
     "@typescript-eslint/eslint-plugin": "~5.62.0",
-    "@typescript-eslint/parser": "~5.62.0",
+    "@typescript-eslint/parser": "^8.12.2",
     "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
     "eslint": "~8.57.0",
     "eslint-config-airbnb-typescript": "~17.1.0",
     "eslint-config-prettier": "~7.0.0",
@@ -56,7 +58,7 @@
     "path": "^0.12.7",
     "prettier": "~2.8.8",
     "prettier-plugin-svelte": "~2.10.1",
-		"prettier-plugin-tailwindcss": "~0.4.1",
+    "prettier-plugin-tailwindcss": "~0.4.1",
     "sass": "^1.79.4",
     "sass-embedded": "^1.79.4",
     "scss": "^0.2.4",

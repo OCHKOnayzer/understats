@@ -1,42 +1,48 @@
 <script lang="ts">
-import BackgroundContainer from '$components/providers/backgroundContainer/BackgroundContainer.svelte'
-import Button from '$components/ui/button/button.svelte'
-import * as m from '$m'
-import Icon from '@iconify/svelte'
+import Icon from '@iconify/svelte';
+
+import BackgroundContainer from '$components/providers/backgroundContainer/BackgroundContainer.svelte';
+import Button from '$components/ui/button/button.svelte';
+import * as m from '$m';
 </script>
 
 <header class="header">
-  <BackgroundContainer>
-    <div class="logo flex gap-5">
-      <a href="/">{m.myAccounts()}</a>
-    </div>
+	<BackgroundContainer>
+		<div class="logo flex gap-5">
+			<a href="/">{m.myAccounts()}</a>
+		</div>
 
-    <div class="nav">
-      <Button variant="outline">{m.report()}</Button>
-      <Button variant="outlineGray" class="message">
-        <Icon icon="mdi:message-arrow-right-outline" font-size="30" color="gray" />
-      </Button>
-    </div>
-  </BackgroundContainer>
+		<div class="nav">
+			<Button variant="outline">{m.report()}</Button>
+			<Button
+				variant="outlineGray"
+				class="message">
+				<Icon
+					icon="mdi:message-arrow-right-outline"
+					font-size="30"
+					color="gray" />
+			</Button>
+		</div>
+	</BackgroundContainer>
 </header>
 
 <style>
 .header {
-  font-family: Roboto;
+	font-family: Roboto;
 }
 
 .logo {
-  font-size: 24px;
+	font-size: 24px;
 
-  a {
-    text-decoration: none;
-    color: #fff;
-  }
+	a {
+		text-decoration: none;
+		color: #fff;
+	}
 }
 
 .nav {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+	display: flex;
+	align-items: center;
+	gap: 20px;
 }
 </style>
