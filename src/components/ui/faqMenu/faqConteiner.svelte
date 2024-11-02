@@ -1,125 +1,118 @@
 <script lang="ts">
-import { t } from 'svelte-i18n'
-import FaqMenu from './FaqMenu.svelte'
+import { t } from 'svelte-i18n';
 
-let selectedItemName = ''
-let article: string | null = null
-let ArticleComponent: typeof import('svelte').SvelteComponent | null = null
+import FaqMenu from './FaqMenu.svelte';
+
+let selectedItemName = '';
+let article: string | null = null;
+let ArticleComponent: typeof import('svelte').SvelteComponent | null = null;
 
 const handleSelectItemFromFaqMenu = async (event: any) => {
-  selectedItemName = event.detail.name
-  article = event.detail.articleId
-  if (article !== null) {
-    await loadArticleComponent(article)
-  }
-}
+	selectedItemName = event.detail.name;
+	article = event.detail.articleId;
+	if (article !== null) {
+		await loadArticleComponent(article);
+	}
+};
 
-async function loadArticleComponent(article: string) {
-  try {
-    const module = await import(`./article/state/${article}.svelte`)
-    ArticleComponent = module.default
-  } catch (error) {
-    console.error(`Не удалось загрузить статью с ${article}`, error)
-    ArticleComponent = null
-  }
+async function loadArticleComponent(article2: string) {
+	try {
+		const module = await import(`./article/state/${article2}.svelte`);
+		ArticleComponent = module.default;
+	} catch (error) {
+		console.error(`Не удалось загрузить статью с ${article2}`, error);
+		ArticleComponent = null;
+	}
 }
 </script>
 
 <div class="faqSection">
-  <FaqMenu on:selectItemFromFaqMenu={handleSelectItemFromFaqMenu} />
+	<FaqMenu on:selectItemFromFaqMenu={handleSelectItemFromFaqMenu} />
 
-  <div class="faqChapter">
-    {#if selectedItemName && ArticleComponent}
-      <div class="selected_state_wrapper">
-        <header class="state_header">
-          <span class="selected_title">{$t(selectedItemName)}</span>
-          <button class="repost">{$t('faq.repost')}</button>
-        </header>
+	<div class="faqChapter">
+		{#if selectedItemName && ArticleComponent}
+			<div class="selected_state_wrapper">
+				<header class="state_header">
+					<span class="selected_title">{$t(selectedItemName)}</span>
+					<button class="repost">{$t('faq.repost')}</button>
+				</header>
 
-        <svelte:component this={ArticleComponent} title={selectedItemName} content="Текст статьи" />
-      </div>
-    {:else}
-      <div class="faq_null">
-        <span>{$t('faq.select_state')}</span>
-        <span>{$t('faq.select_razdel')}...</span>
-      </div>
-    {/if}
-  </div>
+				<svelte:component
+					this={ArticleComponent}
+					title={selectedItemName}
+					content="Текст статьи" />
+			</div>
+		{:else}
+			<div class="faq_null">
+				<span>{$t('faq.select_state')}</span>
+				<span>{$t('faq.select_razdel')}...</span>
+			</div>
+		{/if}
+	</div>
 </div>
 
 <style>
 .faqSection {
-  width: 98%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  height: 82vh;
+	width: 98%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	height: 82vh;
 }
 
 .faqChapter {
-  width: 74%;
-  border-radius: 5px;
-  background-color: #252935;
-  padding: 20px;
-  color: white;
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Open Sans',
-    'Helvetica Neue',
-    sans-serif;
+	width: 74%;
+	border-radius: 5px;
+	background-color: #252935;
+	padding: 20px;
+	color: white;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .faq_null {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #718096;
-  font-size: 14px;
-  flex-direction: column;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #718096;
+	font-size: 14px;
+	flex-direction: column;
 }
 .selected_title {
-  font-size: 36px;
+	font-size: 36px;
 }
 .selected_state_wrapper {
-  height: 100%;
-  width: 100%;
-  overflow-y: auto;
+	height: 100%;
+	width: 100%;
+	overflow-y: auto;
 }
 .state_header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 .repost {
-  width: 120px;
-  height: 44px;
-  background-color: #171b26;
-  border: 1px solid #363a45;
-  box-sizing: border-box;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-  transition: 400ms;
+	width: 120px;
+	height: 44px;
+	background-color: #171b26;
+	border: 1px solid #363a45;
+	box-sizing: border-box;
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+	transition: 400ms;
 }
 .repost:hover {
-  background-color: #1f232f;
+	background-color: #1f232f;
 }
 .selected_state_wrapper::-webkit-scrollbar {
-  border-radius: 30px;
-  width: 3px;
+	border-radius: 30px;
+	width: 3px;
 }
 .selected_state_wrapper::-webkit-scrollbar-track {
-  background: rgba(45, 48, 68, 0.692);
+	background: rgba(45, 48, 68, 0.692);
 }
 .selected_state_wrapper::-webkit-scrollbar-thumb {
-  background: rgba(135, 138, 160, 0.507);
+	background: rgba(135, 138, 160, 0.507);
 }
 </style>

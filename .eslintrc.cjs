@@ -73,13 +73,20 @@ module.exports = {
 		'plugin:import/typescript',
 	],
 	rules: {
-		// 'prettier/prettier': 2,
+		"svelte/valid-compile": [
+			"error",
+			{
+				"ignoreWarnings": true
+			}
+		],
 
-		indent: ['error', 'tab'],
+		'prettier/prettier': 2,
+
+		indent: ['error', 'tab', { "SwitchCase": 1 }],
 
 		"@html-eslint/indent": ['error', 'tab'],
 
-		'@typescript-eslint/indent': ['error', 'tab'],
+		'@typescript-eslint/indent': ['error', 'tab', { "SwitchCase": 1 }],
 		'@typescript-eslint/comma-dangle': 0,
 		'@typescript-eslint/lines-between-class-members': 0,
 		'@typescript-eslint/no-misused-promises': 0,
@@ -96,6 +103,8 @@ module.exports = {
 		'@typescript-eslint/no-unused-vars': 0,
 		'@typescript-eslint/require-await': 0,
 		'@typescript-eslint/no-unsafe-assignment': 0,
+		'@typescript-eslint/no-explicit-any': 0,
+		'@typescript-eslint/naming-convention': 0,
 
 		'no-useless-catch': 0,
 
@@ -115,9 +124,10 @@ module.exports = {
 		'arrow-spacing': 'error',
 		'space-infix-ops': ['error'],
 
+		'import/no-named-as-default': 0,
 		'import/no-extraneous-dependencies': 0,
 		'import/no-default-export': 1,
-		'import/no-unresolved': 1,
+		'import/no-unresolved': 0,
 		'import/prefer-default-export': 0,
 		'import/no-cycle': 0,
 		'import/extensions': 0,
