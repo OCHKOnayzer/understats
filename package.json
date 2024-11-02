@@ -13,8 +13,7 @@
     "prettier:format": "prettier --write .",
     "eslint:check": "npx eslint --ext .js,.ts,.svelte src/",
     "eslint:fix": "npx eslint --ext .js,.ts,.svelte src/ --fix",
-    "prepare": "husky",
-		"test": "echo \"Error: no test specified\" && exit 0"
+    "prepare": "husky"
   },
 	"lint-staged": {
 		"*.{js,ts,svelte}": [
