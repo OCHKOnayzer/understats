@@ -12,8 +12,15 @@
     "prettier:check": "prettier --check",
     "prettier:format": "prettier --write .",
     "eslint:check": "npx eslint --ext .js,.ts,.svelte src/",
-    "eslint:fix": "npx eslint --ext .js,.ts,.svelte src/ --fix"
+    "eslint:fix": "npx eslint --ext .js,.ts,.svelte src/ --fix",
+    "prepare": "husky",
+		"test": "echo \"Error: no test specified\" && exit 0"
   },
+	"lint-staged": {
+		"*.{js,ts,svelte}": [
+			"npx eslint"
+		]
+	},
   "dependencies": {
     "@inlang/paraglide-sveltekit": "0.11.1",
     "bits-ui": "^0.21.16",
@@ -55,6 +62,8 @@
     "flowbite": "^2.5.2",
     "flowbite-svelte": "^0.46.23",
     "globals": "^15.11.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
     "path": "^0.12.7",
     "prettier": "~2.8.8",
     "prettier-plugin-svelte": "~2.10.1",
