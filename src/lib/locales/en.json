@@ -73,7 +73,8 @@
     "ru": "Russian (RU)",
     "en": "English (EN)",
     "bTheme": "Dark",
-    "wTheme": "Bright"
+    "wTheme": "Bright",
+    "download_app": "Download Extension"
   },
   "main": {
     "main": "Main"
@@ -165,5 +166,30 @@
     "ext_edge_tittle": "How to Install the Extension in Edge",
     "ext_opera": "Extension for Opera",
     "ext_opera_tittle": "How to Install the Extension in Opera"
+  },
+  "social": {
+    "questions": "Have questions?",
+    "send_email": "Enter email",
+    "send_password": "Enter your password",
+    "retry_password": "Repeat your password",
+    "regis_email": "Registration email",
+    "create_account": "Create an account",
+    "sign_in": "Sign in to your account",
+    "accept": "I accept the terms",
+    "user_submit": "of the user agreement",
+    "have_acc": "I have an account",
+    "cHave_acc": "I don't have an account",
+    "unBlock_acc": "Restore access",
+    "show_pass": "Show password",
+    "hide_passw": "Hide password",
+    "reg_title": "Registration",
+    "sign_in_title": "Sign in to your profile",
+    "recover_title": "Recover profile",
+    "post_email": "Send email"
+  },
+  "landing": {
+    "landing_title": "Analyze. Win!",
+    "landing_content": "Want to become a betting master and outsmart the competition? Our site offers unique tools and in-depth analytics to help you make informed decisions and increase your winnings!",
+    "login_create_account": "Sign In / Create Account"
   }
 }
