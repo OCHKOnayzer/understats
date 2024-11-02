@@ -1,13 +1,13 @@
 <script>
-    import LandingInfo from '$src/components/ui/landingInfo/LandingInfo.svelte'
+import LandingInfo from '$src/components/ui/landingInfo/LandingInfo.svelte'
 </script>
 
 <div class="landing-content">
-    <div class="landing_slider"></div>
-    <div class="landing_info_content">
-        <LandingInfo />
-    </div>
-    <span class="root">© 2024 stathub.bet, Inc.</span>
+  <div class="landing_slider"></div>
+  <div class="landing_info_content">
+    <LandingInfo />
+  </div>
+  <span class="root">© 2024 stathub.bet, Inc.</span>
 </div>
 
 <style>
@@ -26,9 +26,9 @@
 }
 
 .landing_slider {
-    height: fit-content;
-    width: 100%;
-    box-sizing: border-box;
+  height: fit-content;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .landing_info_content {
@@ -38,10 +38,10 @@
   border: 1px solid red;
 }
 
-.root { 
-    font-size: 10px;
-    color: #718096;
-    margin-top: auto;
-    padding: 1rem;
+.root {
+  font-size: 10px;
+  color: #718096;
+  margin-top: auto;
+  padding: 1rem;
 }
 </style>
