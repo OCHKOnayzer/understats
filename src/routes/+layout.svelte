@@ -6,6 +6,7 @@ import { i18n } from '$lib/i18n'
 import '$src/styles/fonts.css'
 import { ParaglideJS } from '@inlang/paraglide-sveltekit'
 import { waitLocale } from 'svelte-i18n'
+import AuthModal from '$src/components/ui/authModal/AuthModal.svelte'
 import '../app.css'
 
 let isLocaleReady = false
@@ -23,6 +24,7 @@ waitLocale().then(() => {
         <Menu />
 
         <div class="mainContent">
+          <AuthModal isOpen={isAuthModalOpen} />
           <Header />
 
           <slot></slot>
