@@ -35,8 +35,6 @@ export const flyAndScale = (
 		const percentage = (valueA - minA) / (maxA - minA);
 		const valueB = percentage * (maxB - minB) + minB;
 
-		const test = 1;
-
 		return valueB;
 	};
 
