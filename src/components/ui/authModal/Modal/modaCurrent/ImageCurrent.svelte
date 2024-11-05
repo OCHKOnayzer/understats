@@ -1,5 +1,8 @@
 <script lang="ts">
-export let current_modal: string;
+interface ImageInterface {
+	current_modal: string;
+}
+let { current_modal } = $$props as ImageInterface;
 </script>
 
 <div class="image_current_wrapper">

@@ -19,6 +19,12 @@ import { SocialItem } from './social';
 	<div class="more_ques">
 		<span>{$t('social.questions')}</span>
 	</div>
+	<div class="min_social">
+		<a
+			href="https://telegram.org"
+			target="_blank"
+			rel="noopener noreferrer">{$t('socialMin.social_min')}</a>
+	</div>
 </div>
 
 <style>
@@ -57,5 +63,20 @@ import { SocialItem } from './social';
 }
 .more_ques {
 	color: #718096;
+}
+.min_social {
+	display: none;
+	color: #6660ff;
+}
+@media screen and (max-width: 1200px) {
+	.min_social {
+		display: block;
+	}
+	.item_wrapper {
+		display: none;
+	}
+	.more_ques {
+		display: none;
+	}
 }
 </style>

@@ -10,7 +10,7 @@ interface Award {
 	get: boolean;
 }
 
-export let awards: Award[] = [];
+const { awards } = $$props as { awards: Award[] };
 </script>
 
 <div class="main">

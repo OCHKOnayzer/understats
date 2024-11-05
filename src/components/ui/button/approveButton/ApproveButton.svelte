@@ -1,6 +1,9 @@
-<script>
+<script lang="ts">
+interface ApproveInterface {
+	isChecked: boolean;
+}
 import { t } from 'svelte-i18n';
-let isChecked = false;
+let { isChecked = false } = $$props as ApproveInterface;
 function toggleCheck() {
 	isChecked = !isChecked;
 }

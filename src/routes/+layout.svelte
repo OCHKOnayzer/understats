@@ -12,7 +12,7 @@ import '../app.css';
 // import Header from '$components/widgets/header/Header.svelte';
 
 let isLocaleReady = false;
-let isAuthModalOpen = false;
+let isAuthModalOpen = true;
 
 waitLocale().then(() => {
 	isLocaleReady = true;

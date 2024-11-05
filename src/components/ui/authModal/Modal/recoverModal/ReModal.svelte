@@ -1,4 +1,11 @@
 <script lang="ts">
+interface ReModalProps {
+	switchNext: () => void;
+	switchBack: () => void;
+	closeModal: () => void;
+	switchReFinish: () => void;
+}
+
 import { t } from 'svelte-i18n';
 
 import ApproveButton from '$src/components/ui/button/approveButton/ApproveButton.svelte';
@@ -10,10 +17,7 @@ import FormTitle from '../FormTitle.svelte';
 import SocialContainer from '../social/SocialContainer.svelte';
 import InputWrapper from '../Input/InputWrapper.svelte';
 
-export let switchNext: () => void;
-export let switchBack: () => void;
-export let closeModal: () => void;
-export let switchReFinish: () => void;
+const { switchNext, switchBack, closeModal, switchReFinish } = $$props as ReModalProps;
 </script>
 
 <form class="form_wrapper">

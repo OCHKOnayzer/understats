@@ -1,8 +1,11 @@
 <script lang="ts">
+interface SwitchInterface {
+	switch_modal: () => void;
+	switch_text: string;
+}
 import { t } from 'svelte-i18n';
 
-export let switch_modal: () => void;
-export let switch_text: string;
+let { switch_modal, switch_text } = $$props;
 </script>
 
 <div class="switch_wrapper">
@@ -20,5 +23,6 @@ export let switch_text: string;
 	cursor: pointer;
 	transition: 400ms;
 	padding-right: 5px;
+	font-size: 14px;
 }
 </style>

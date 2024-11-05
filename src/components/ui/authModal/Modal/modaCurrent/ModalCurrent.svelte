@@ -1,14 +1,17 @@
 <script lang="ts">
+interface ModalCurrentInterface {
+	switchLogin: () => void;
+	switchReg: () => void;
+	switchRecover: () => void;
+	switchReFinish: () => void;
+	closeModal: () => void;
+	current_modal: string;
+}
 import LoginModal from '../loginModal/LoginModal.svelte';
 import RegistrationModal from '../registrationModal/RegistrationModal.svelte';
 import RecoverModal from '../recoverModal/ReModal.svelte';
 
-export let switchLogin: () => void;
-export let switchReg: () => void;
-export let switchRecover: () => void;
-export let switchReFinish: () => void;
-export let closeModal: () => void;
-export let current_modal: string;
+const { switchLogin, switchReg, switchRecover, switchReFinish, closeModal, current_modal } = $$props as ModalCurrentInterface;
 </script>
 
 <div class="current_wrapper">
@@ -29,7 +32,6 @@ export let current_modal: string;
 				switchBack={switchReg}
 				{switchReFinish}
 				{closeModal} />
-			<!-- Для восстановления, если доступен -->
 		{:else if current_modal === 'reFinish'}
 			<!-- <RecoverModal switchNext={switchLogin} switchBack={switchReg} /> -->
 		{/if}

@@ -1,5 +1,8 @@
 <script lang="ts">
-export let input_type = '';
+interface InputInterface {
+	input_type: string;
+}
+let { input_type = '' } = $$props as InputInterface;
 </script>
 
 <input
@@ -16,10 +19,9 @@ input {
 	transition: border-color 0.3s ease;
 	box-sizing: border-box;
 	padding-left: 10px;
-	height: 5vh;
+	height: 6vh;
 	width: 100%;
 }
-
 input:focus {
 	outline: none;
 }

@@ -1,7 +1,11 @@
 <script lang="ts">
+interface ModalProps {
+	closeModal: string;
+}
 import ImageCurrent from './modaCurrent/ImageCurrent.svelte';
 import ModalCurrent from './modaCurrent/ModalCurrent.svelte';
-export let closeModal: () => void;
+
+const { closeModal } = $$props as ModalProps;
 
 let current_modal = 'reg';
 
@@ -21,7 +25,6 @@ const switchReFinish = () => {
 
 <div class="modal_window_wrapper">
 	<div class="modal_window">
-		<!-- <div class="open_wrapper"></div> -->
 		<div class="image_wrapper">
 			<ImageCurrent {current_modal} />
 		</div>
@@ -36,6 +39,7 @@ const switchReFinish = () => {
 		</div>
 	</div>
 </div>
+1
 
 <style>
 .modal_window_wrapper {
@@ -63,7 +67,54 @@ const switchReFinish = () => {
 	background-color: #0d111d;
 	border-radius: 0px 5px 5px 0px;
 }
-
+@media screen and (max-width: 1650px) {
+	.login_wrapper {
+		width: 25vw;
+	}
+	.image_wrapper {
+		width: 25vw;
+	}
+	.modal_window {
+		height: 70%;
+	}
+}
+@media screen and (max-width: 1350px) {
+	.login_wrapper {
+		width: 35vw;
+	}
+	.image_wrapper {
+		width: 35vw;
+	}
+	.modal_window {
+		height: 80%;
+	}
+}
+@media screen and (max-width: 1100px) {
+	.login_wrapper {
+		width: 40vw;
+	}
+	.image_wrapper {
+		width: 40vw;
+	}
+}
+@media screen and (max-width: 1050px) {
+	.login_wrapper {
+		width: 50vw;
+	}
+	.image_wrapper {
+		display: none;
+	}
+}
+@media screen and (max-height: 750px) {
+	.modal_window {
+		height: 90%;
+	}
+}
+@media screen and (max-height: 700px) {
+	.image_wrapper {
+		display: none;
+	}
+}
 /* .open_wrapper{
     position: absolute;
     display: block;

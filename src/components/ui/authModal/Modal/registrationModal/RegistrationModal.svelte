@@ -1,4 +1,9 @@
 <script lang="ts">
+interface RegModalInterface {
+	switchNext: () => void;
+	switchBack: () => void;
+	closeModal: () => void;
+}
 import { t } from 'svelte-i18n';
 
 import ApproveButton from '$src/components/ui/button/approveButton/ApproveButton.svelte';
@@ -10,9 +15,7 @@ import FormTitle from '../FormTitle.svelte';
 import SocialContainer from '../social/SocialContainer.svelte';
 import InputWrapper from '../Input/InputWrapper.svelte';
 
-export let switchNext: () => void;
-export let switchBack: () => void;
-export let closeModal: () => void;
+const { switchNext, switchBack, closeModal } = $$props as RegModalInterface;
 
 const createUser = () => {};
 </script>

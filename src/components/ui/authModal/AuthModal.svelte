@@ -1,9 +1,12 @@
 <script lang="ts">
+interface AuthInterface {
+	isOpen: boolean;
+}
 import { onMount, onDestroy } from 'svelte';
 
 import Modal from './Modal/Modal.svelte';
 
-export let isOpen = false;
+let { isOpen = false } = $$props as AuthInterface;
 
 onMount(() => {
 	if (isOpen) document.body.style.overflow = 'hidden';

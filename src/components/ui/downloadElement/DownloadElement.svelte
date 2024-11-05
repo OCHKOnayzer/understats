@@ -1,5 +1,8 @@
 <script lang="ts">
-export let Title: string;
+interface DownloadInterface {
+	Title: string;
+}
+let { Title } = $$props as DownloadInterface;
 </script>
 
 <button class="install_wrapper">

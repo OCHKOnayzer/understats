@@ -1,6 +1,9 @@
-<script>
+<script lang="ts">
+interface ArticalSectionInterface {
+	text: string;
+}
 import { t } from 'svelte-i18n';
-export let text = '';
+let { text = '' } = $$props as ArticalSectionInterface;
 </script>
 
 <div class="article_container">

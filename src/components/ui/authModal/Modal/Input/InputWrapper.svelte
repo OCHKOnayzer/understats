@@ -1,21 +1,26 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
-import { get } from 'svelte/store';
-
+interface InputProps {
+	title_wrapper: string;
+	show_clear: boolean;
+	input_type: string;
+}
+// import { t } from 'svelte-i18n';
+// import { get } from 'svelte/store';
 import ErrorMessage from '$src/components/ui/errorMessage/ErrorMessage.svelte';
 
+import ShowSpan from './showSpan.svelte';
 import WrapperTitle from './WrapperTitle.svelte';
 import Input from './Input.svelte';
-
 let Open = false;
 let showPassword = false;
-export let title_wrapper = '';
-export let show_clear = false;
-export let input_type = 'password';
+
+let { title_wrapper = '', show_clear = false, input_type = 'password' } = $$props as InputProps;
+let show_text = 'social.hide_passw';
 
 function togglePasswordVisibility() {
 	showPassword = !showPassword;
 	input_type = showPassword ? 'text' : 'password';
+	show_text = showPassword ? 'social.hide_passw' : 'social.show_pass';
 }
 </script>
 
@@ -26,11 +31,13 @@ function togglePasswordVisibility() {
 			<button
 				class="clear"
 				on:click={togglePasswordVisibility}>
-				{showPassword ? get(t)('social.hide_passw') : get(t)('social.show_pass')}
+				<ShowSpan {show_text} />
 			</button>
 		{/if}
 	</div>
-	<Input {input_type} />
+	<Input
+		{input_type}
+		{show_text} />
 	{#if Open}
 		<ErrorMessage />
 	{/if}
