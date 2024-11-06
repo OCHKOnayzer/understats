@@ -1,16 +1,16 @@
-import { paraglide } from '@inlang/paraglide-sveltekit/vite'
-import { sveltekit } from '@sveltejs/kit/vite'
-import { defineConfig } from 'vite'
+import { paraglide } from '@inlang/paraglide-sveltekit/vite';
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
 
 export default defineConfig({
-  plugins: [
-    paraglide({
-      project: './project.inlang',
-      outdir: './src/lib/paraglide',
-    }),
-    sveltekit(),
-  ],
-  css: {
-    postcss: './postcss.config.js', // Ensure this points to your PostCSS config file
-  },
-})
+	plugins: [
+		paraglide({
+			project: './project.inlang',
+			outdir: './src/lib/paraglide'
+		}),
+		sveltekit()
+	],
+	css: {
+		postcss: './postcss.config.js' // Ensure this points to your PostCSS config file
+	}
+});

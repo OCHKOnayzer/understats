@@ -1,6 +1,7 @@
 <script lang="ts">
 import { Dialog } from 'bits-ui';
-import { tick, get } from 'svelte';
+import { tick } from 'svelte';
+import { get } from 'svelte/store';
 
 import Button from '$components/ui/button/button.svelte';
 import * as m from '$m';
