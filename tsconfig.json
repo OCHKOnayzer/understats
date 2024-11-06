@@ -17,7 +17,9 @@
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
 		"sourceMap": true,
+		"declaration": true,
 		"declarationMap": true,
+		
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
