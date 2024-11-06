@@ -1,45 +1,18 @@
 <script lang="ts">
-interface ModalProps {
-	closeModal: string;
-}
 import ImageCurrent from './modaCurrent/ImageCurrent.svelte';
 import ModalCurrent from './modaCurrent/ModalCurrent.svelte';
-
-const { closeModal } = $$props as ModalProps;
-
-let current_modal = 'reg';
-
-const switchLogin = () => {
-	current_modal = 'login';
-};
-const switchReg = () => {
-	current_modal = 'reg';
-};
-const switchRecover = () => {
-	current_modal = 'recover';
-};
-const switchReFinish = () => {
-	current_modal = 'ReFinish';
-};
 </script>
 
 <div class="modal_window_wrapper">
 	<div class="modal_window">
 		<div class="image_wrapper">
-			<ImageCurrent {current_modal} />
+			<ImageCurrent />
 		</div>
 		<div class="login_wrapper">
-			<ModalCurrent
-				{switchLogin}
-				{switchReg}
-				{switchRecover}
-				{switchReFinish}
-				{current_modal}
-				{closeModal} />
+			<svelte:component this={ModalCurrent} />
 		</div>
 	</div>
 </div>
-1
 
 <style>
 .modal_window_wrapper {

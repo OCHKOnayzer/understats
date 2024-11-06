@@ -1,31 +1,23 @@
 <script lang="ts">
-interface AuthInterface {
-	isOpen: boolean;
-}
 import { onMount, onDestroy } from 'svelte';
+
+import { isAuthModalOpen } from '$src/stores/modalStore';
 
 import Modal from './Modal/Modal.svelte';
 
-let { isOpen = false } = $$props as AuthInterface;
-
 onMount(() => {
-	if (isOpen) document.body.style.overflow = 'hidden';
+	if (isAuthModalOpen) document.body.style.overflow = 'hidden';
 });
 
 onDestroy(() => {
 	document.body.style.overflow = '';
 });
-
-const closeModal = () => {
-	document.body.style.overflow = '';
-	isOpen = false;
-};
 </script>
 
 <!-- on:click={closeModal} -->
-{#if isOpen}
+{#if $isAuthModalOpen}
 	<div class="modal_window">
-		<Modal {closeModal} />
+		<Modal />
 	</div>
 {/if}
 

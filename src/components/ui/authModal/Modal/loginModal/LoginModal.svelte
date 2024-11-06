@@ -1,21 +1,15 @@
 <script lang="ts">
-interface ReModalProps {
-	switchNext: () => void;
-	switchBack: () => void;
-	closeModal: () => void;
-}
 import { t } from 'svelte-i18n';
 
-import ApproveButton from '$src/components/ui/button/approveButton/ApproveButton.svelte';
 import SwitchButton from '$src/components/ui/button/switchButton/SwitchButton.svelte';
 import UserAprove from '$src/components/ui/button/userAprove/UserAprove.svelte';
 import CancelButton from '$src/components/ui/button/userAprove/CancelButton.svelte';
+import { switchReg, switchRecover } from '$src/stores/modalStore';
 
 import FormTitle from '../FormTitle.svelte';
 import SocialContainer from '../social/SocialContainer.svelte';
 import InputWrapper from '../Input/InputWrapper.svelte';
 
-let { switchNext, switchBack, closeModal } = $$props as ReModalProps;
 const loginUser = () => {
 	console.log('hello world');
 };
@@ -35,18 +29,16 @@ const loginUser = () => {
 	<div class="switch_container">
 		<SwitchButton
 			switch_text={'social.cHave_acc'}
-			switch_modal={switchNext} />
+			switch_modal={switchReg} />
 		<SwitchButton
 			switch_text={'social.unBlock_acc'}
-			switch_modal={switchBack} />
+			switch_modal={switchRecover} />
 	</div>
 	<div class="aprove_wrapper">
 		<UserAprove
 			onUserAction={loginUser}
 			onUserText={'social.sign_in'} />
-		<CancelButton
-			onUserText={'other.cancel'}
-			{closeModal} />
+		<CancelButton onUserText={'other.cancel'} />
 	</div>
 </form>
 

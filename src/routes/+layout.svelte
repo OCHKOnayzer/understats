@@ -12,7 +12,6 @@ import '../app.css';
 // import Header from '$components/widgets/header/Header.svelte';
 
 let isLocaleReady = false;
-let isAuthModalOpen = true;
 
 waitLocale().then(() => {
 	isLocaleReady = true;
@@ -26,8 +25,8 @@ waitLocale().then(() => {
 				<Menu />
 
 				<div class="mainContent">
-					<AuthModal isOpen={isAuthModalOpen} />
-					<!--					<Header />-->
+					<AuthModal />
+					<!--<Header />-->
 
 					<slot />
 				</div>

@@ -1,11 +1,11 @@
 <script lang="ts">
 interface SwitchInterface {
 	onUserText: string;
-	closeModal: () => void;
 }
 import { t } from 'svelte-i18n';
 
-let { onUserText, closeModal } = $$props as SwitchInterface;
+import { closeModal } from '$src/stores/modalStore';
+let { onUserText } = $$props as SwitchInterface;
 </script>
 
 <div class="button_wrapper">

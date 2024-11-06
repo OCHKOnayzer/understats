@@ -5,11 +5,19 @@ interface SwitchInterface {
 }
 import { t } from 'svelte-i18n';
 
-let { switch_modal, switch_text } = $$props;
+export let switch_modal: () => void;
+export let switch_text: string;
 </script>
 
 <div class="switch_wrapper">
-	<button on:click={switch_modal}>
+	<button
+		on:click={() => {
+			if (typeof switch_modal === 'function') {
+				switch_modal();
+			} else {
+				console.error('switch_modal is not a function', switch_modal);
+			}
+		}}>
 		{$t(switch_text)}
 	</button>
 </div>
