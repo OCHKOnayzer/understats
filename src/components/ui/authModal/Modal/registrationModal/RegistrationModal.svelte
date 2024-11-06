@@ -17,15 +17,15 @@ const createUser = () => {};
 <form class="form_wrapper">
 	<FormTitle modalActie={'social.reg_title'} />
 	<InputWrapper
-		input_type={'text'}
+		default_type={'text'}
 		title_wrapper={$t('social.send_email')}
 		show_clear={false} />
 	<InputWrapper
-		input_type={'password'}
+		default_type={'password'}
 		title_wrapper={$t('social.send_password')}
 		show_clear={true} />
 	<InputWrapper
-		input_type={'password'}
+		default_type={'password'}
 		title_wrapper={$t('social.retry_password')}
 		show_clear={true} />
 	<ApproveButton />

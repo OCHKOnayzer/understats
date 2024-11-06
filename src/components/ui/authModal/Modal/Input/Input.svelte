@@ -2,13 +2,10 @@
 interface InputInterface {
 	input_type: string;
 }
-let { input_type = '' } = $$props as InputInterface;
+export let input_type: string;
 </script>
 
-<input
-	type={input_type}
-	name=""
-	id="" />
+<input type={input_type} />
 
 <style>
 input {

@@ -18,11 +18,11 @@ const loginUser = () => {
 <form class="form_wrapper">
 	<FormTitle modalActie={'social.sign_in_title'} />
 	<InputWrapper
-		input_type={'text'}
+		default_type={'text'}
 		title_wrapper={$t('social.send_email')}
 		show_clear={false} />
 	<InputWrapper
-		input_type={'password'}
+		default_type={'password'}
 		title_wrapper={$t('social.send_password')}
 		show_clear={true} />
 	<SocialContainer />

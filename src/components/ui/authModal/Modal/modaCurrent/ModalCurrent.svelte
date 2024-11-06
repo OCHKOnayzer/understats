@@ -14,7 +14,6 @@ import RecoverModal from '../recoverModal/ReModal.svelte';
 			<LoginModal />
 		{:else if $currentModal === 'recover'}
 			<RecoverModal />
-			<!-- Для восстановления, если доступен -->
 		{:else if $currentModal === 'reFinish'}
 			<!-- <RecoverModal switchNext={switchLogin} switchBack={switchReg} /> -->
 		{/if}

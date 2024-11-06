@@ -23,7 +23,6 @@ import LandingOpen from '../button/landingOpen/LandingOpen.svelte';
 	margin: 0 auto;
 	color: #fefefc;
 	text-align: center;
-	border: 1px solid red;
 }
 
 .info_paragraph {
@@ -43,7 +42,6 @@ import LandingOpen from '../button/landingOpen/LandingOpen.svelte';
 	align-items: center;
 }
 
-/* Адаптивный дизайн */
 @media (max-width: 1024px) {
 	.info_wrapper {
 		width: 70%;
