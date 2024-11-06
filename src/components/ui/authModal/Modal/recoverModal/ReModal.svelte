@@ -1,19 +1,14 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 
-import ApproveButton from '$src/components/ui/button/approveButton/ApproveButton.svelte';
 import SwitchButton from '$src/components/ui/button/switchButton/SwitchButton.svelte';
 import UserAprove from '$src/components/ui/button/userAprove/UserAprove.svelte';
 import CancelButton from '$src/components/ui/button/userAprove/CancelButton.svelte';
+import { switchLogin, switchReg, switchReFinish } from '$src/stores/modalStore';
 
 import FormTitle from '../FormTitle.svelte';
 import SocialContainer from '../social/SocialContainer.svelte';
 import InputWrapper from '../Input/InputWrapper.svelte';
-
-export let switchNext: () => void;
-export let switchBack: () => void;
-export let closeModal: () => void;
-export let switchReFinish: () => void;
 </script>
 
 <form class="form_wrapper">
@@ -26,18 +21,16 @@ export let switchReFinish: () => void;
 	<div class="switch_container">
 		<SwitchButton
 			switch_text={'social.have_acc'}
-			switch_modal={switchNext} />
+			switch_modal={switchLogin} />
 		<SwitchButton
 			switch_text={'social.cHave_acc'}
-			switch_modal={switchBack} />
+			switch_modal={switchReg} />
 	</div>
 	<div class="aprove_wrapper">
 		<UserAprove
 			onUserAction={switchReFinish}
 			onUserText={'social.post_email'} />
-		<CancelButton
-			onUserText={'other.cancel'}
-			{closeModal} />
+		<CancelButton onUserText={'other.cancel'} />
 	</div>
 </form>
 

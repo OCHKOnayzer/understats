@@ -1,6 +1,11 @@
 <script lang="ts">
-export let modalActie: string;
+interface FormTitleProps {
+	modalActie: string;
+}
+
 import { t } from 'svelte-i18n';
+
+const { modalActie } = $$props as FormTitleProps;
 </script>
 
 <div class="form_title">{$t(modalActie)}</div>

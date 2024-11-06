@@ -1,8 +1,11 @@
 <script lang="ts">
+interface UserAproveInterface {
+	onUserText: string;
+	onUserAction: () => void;
+	active: boolean;
+}
 import { t } from 'svelte-i18n';
-export let onUserText: string;
-export let onUserAction: () => void;
-export let active = false;
+let { onUserText, onUserAction, active } = $$props as UserAproveInterface;
 </script>
 
 <div class="button_wrapper">

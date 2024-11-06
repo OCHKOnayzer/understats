@@ -1,8 +1,11 @@
 <script lang="ts">
+interface ProgressCircle {
+	proccent: number;
+	count: number;
+}
 import { onMount } from 'svelte';
 
-export let proccent = 0;
-export let count = 1;
+let { proccent = 0, count = 1 } = $$props as ProgressCircle;
 
 let progressElement: SVGCircleElement;
 

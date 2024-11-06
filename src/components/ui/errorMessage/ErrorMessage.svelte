@@ -1,5 +1,8 @@
 <script lang="ts">
-export let error: string | null = '';
+interface ErrorInteface {
+	error: string | null;
+}
+let { error } = $$props as ErrorInteface;
 </script>
 
 <div class="error_wrapper">

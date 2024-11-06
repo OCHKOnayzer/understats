@@ -5,14 +5,11 @@ import ApproveButton from '$src/components/ui/button/approveButton/ApproveButton
 import SwitchButton from '$src/components/ui/button/switchButton/SwitchButton.svelte';
 import UserAprove from '$src/components/ui/button/userAprove/UserAprove.svelte';
 import CancelButton from '$src/components/ui/button/userAprove/CancelButton.svelte';
+import { switchLogin, switchRecover } from '$src/stores/modalStore';
 
 import FormTitle from '../FormTitle.svelte';
 import SocialContainer from '../social/SocialContainer.svelte';
 import InputWrapper from '../Input/InputWrapper.svelte';
-
-export let switchNext: () => void;
-export let switchBack: () => void;
-export let closeModal: () => void;
 
 const createUser = () => {};
 </script>
@@ -20,15 +17,15 @@ const createUser = () => {};
 <form class="form_wrapper">
 	<FormTitle modalActie={'social.reg_title'} />
 	<InputWrapper
-		input_type={'text'}
+		default_type={'text'}
 		title_wrapper={$t('social.send_email')}
 		show_clear={false} />
 	<InputWrapper
-		input_type={'password'}
+		default_type={'password'}
 		title_wrapper={$t('social.send_password')}
 		show_clear={true} />
 	<InputWrapper
-		input_type={'password'}
+		default_type={'password'}
 		title_wrapper={$t('social.retry_password')}
 		show_clear={true} />
 	<ApproveButton />
@@ -36,18 +33,16 @@ const createUser = () => {};
 	<div class="switch_container">
 		<SwitchButton
 			switch_text={'social.have_acc'}
-			switch_modal={switchNext} />
+			switch_modal={switchLogin} />
 		<SwitchButton
 			switch_text={'social.unBlock_acc'}
-			switch_modal={switchBack} />
+			switch_modal={switchRecover} />
 	</div>
 	<div class="aprove_wrapper">
 		<UserAprove
 			onUserAction={createUser}
 			onUserText={'social.create_account'} />
-		<CancelButton
-			onUserText={'other.cancel'}
-			{closeModal} />
+		<CancelButton onUserText={'other.cancel'} />
 	</div>
 </form>
 

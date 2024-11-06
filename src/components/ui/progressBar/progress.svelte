@@ -1,7 +1,10 @@
-<script>
+<script lang="ts">
+interface ProgressInterface {
+	progress: number;
+}
 import { t } from 'svelte-i18n';
 
-export let progress = 15;
+let { progress = 15 } = $$props as ProgressInterface;
 
 const currentProgress = (progress / 20) * 100;
 

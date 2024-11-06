@@ -1,6 +1,9 @@
 <script lang="ts">
-export let title_wrapper = '';
+interface TitleProps {
+	title_wrapper: string;
+}
 import { t } from 'svelte-i18n';
+let { title_wrapper = '' } = $$props as TitleProps;
 </script>
 
 <div class="wrapper_title">

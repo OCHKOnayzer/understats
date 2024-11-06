@@ -1,11 +1,11 @@
 <script lang="ts">
-export let input_type = '';
+interface InputInterface {
+	input_type: string;
+}
+export let input_type: string;
 </script>
 
-<input
-	type={input_type}
-	name=""
-	id="" />
+<input type={input_type} />
 
 <style>
 input {
@@ -16,10 +16,9 @@ input {
 	transition: border-color 0.3s ease;
 	box-sizing: border-box;
 	padding-left: 10px;
-	height: 5vh;
+	height: 6vh;
 	width: 100%;
 }
-
 input:focus {
 	outline: none;
 }

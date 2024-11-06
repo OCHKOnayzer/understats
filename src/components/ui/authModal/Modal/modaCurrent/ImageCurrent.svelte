@@ -1,18 +1,18 @@
 <script lang="ts">
-export let current_modal: string;
+import { currentModal } from '$src/stores/modalStore';
 </script>
 
 <div class="image_current_wrapper">
-	{#key current_modal}
-		{#if current_modal === 'reg'}
+	{#key currentModal}
+		{#if $currentModal === 'reg'}
 			<img
 				src="assets/modal/Registartion.png"
 				alt="" />
-		{:else if current_modal === 'login'}
+		{:else if $currentModal === 'login'}
 			<img
 				src="assets/modal/Auth.png"
 				alt="" />
-		{:else if current_modal === 'recover'}
+		{:else if $currentModal === 'recover'}
 			<img
 				src="assets/modal/Recover.png"
 				alt="" />

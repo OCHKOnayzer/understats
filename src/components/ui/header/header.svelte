@@ -1,5 +1,8 @@
-<script>
-export let headerProps;
+<script lang="ts">
+interface HeaderInterface {
+	headerProps: string;
+}
+let { headerProps } = $$props as HeaderInterface;
 </script>
 
 <div class="header">
