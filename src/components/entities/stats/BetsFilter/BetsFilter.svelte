@@ -190,7 +190,6 @@ input[type='checkbox']:checked + .checkbox-custom::after {
 	grid-template-columns: 1fr 1fr;
 	gap: 16px;
 	margin-top: 32px;
-
 	background: #20242f;
 }
 
