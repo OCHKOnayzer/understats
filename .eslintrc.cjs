@@ -24,7 +24,7 @@ module.exports = {
 		extraFileExtensions: ['.svelte'],
 		ecmaFeatures: {
 			impliedStrict: true
-		},
+		}
 		// sourceType: "module"
 	},
 	settings: {
@@ -47,16 +47,11 @@ module.exports = {
 			files: ['*.svelte'],
 			parser: 'svelte-eslint-parser',
 			parserOptions: {
-				parser: '@typescript-eslint/parser',
-			},
-		},
+				parser: '@typescript-eslint/parser'
+			}
+		}
 	],
-	plugins: [
-		'import',
-		'prettier',
-		'@typescript-eslint',
-		'@html-eslint'
-	],
+	plugins: ['import', 'prettier', '@typescript-eslint', '@html-eslint'],
 	extends: [
 		'eslint:recommended',
 		'plugin:svelte/recommended',
@@ -70,23 +65,23 @@ module.exports = {
 		// 'plugin:svelte/prettier',
 		'plugin:import/errors',
 		'plugin:import/warnings',
-		'plugin:import/typescript',
+		'plugin:import/typescript'
 	],
 	rules: {
-		"svelte/valid-compile": [
-			"error",
+		'svelte/valid-compile': [
+			'error',
 			{
-				"ignoreWarnings": true
+				ignoreWarnings: true
 			}
 		],
 
 		'prettier/prettier': 2,
 
-		indent: ['error', 'tab', { "SwitchCase": 1 }],
+		indent: ['error', 'tab', { SwitchCase: 1 }],
 
-		"@html-eslint/indent": ['error', 'tab'],
+		'@html-eslint/indent': ['error', 'tab'],
 
-		'@typescript-eslint/indent': ['error', 'tab', { "SwitchCase": 1 }],
+		'@typescript-eslint/indent': ['error', 'tab', { SwitchCase: 1 }],
 		'@typescript-eslint/comma-dangle': 0,
 		'@typescript-eslint/lines-between-class-members': 0,
 		'@typescript-eslint/no-misused-promises': 0,
@@ -144,5 +139,5 @@ module.exports = {
 				groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type']
 			}
 		]
-	},
+	}
 };

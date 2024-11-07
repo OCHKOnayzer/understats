@@ -20,6 +20,11 @@ export interface FilterState {
 		from: string;
 		to: string;
 	};
+	pagination: {
+		currentPage: number;
+		itemsPerPage: number;
+		timeRange: 'halfYear' | '3months' | 'month' | 'week' | '3days';
+	};
 }
 
 const initialState: FilterState = {
@@ -34,12 +39,6 @@ const initialState: FilterState = {
 	betStatus: 'calculated',
 	betGameStatus: 'live',
 	betResult: '',
-	// betStatus: {
-	// 	calculated: false,
-	// 	notCalculated: false,
-	// 	live: false,
-	// 	prematch: false
-	// },
 	betAmount: {
 		from: '',
 		to: ''
@@ -47,6 +46,11 @@ const initialState: FilterState = {
 	coefficient: {
 		from: '',
 		to: ''
+	},
+	pagination: {
+		currentPage: 1,
+		itemsPerPage: 10,
+		timeRange: 'month'
 	}
 };
 
@@ -69,14 +73,6 @@ function createFilterStore() {
 			})),
 		setBetType: (type: FilterState['betType']) => update((state) => ({ ...state, betType: type })),
 		setBetResult: (result: string) => update((state) => ({ ...state, betResult: result })),
-		// toggleBetStatus: (status: keyof FilterState['betStatus']) =>
-		// 	update((state) => ({
-		// 		...state,
-		// 		betStatus: {
-		// 			...state.betStatus,
-		// 			[status]: !state.betStatus[status]
-		// 		}
-		// 	})),
 		setBetStatus: (status: FilterState['betStatus']) => update((state) => ({ ...state, betStatus: status })),
 		setBetGameStatus: (status: FilterState['betGameStatus']) => update((state) => ({ ...state, betGameStatus: status })),
 		setBetAmount: (from: string, to: string) =>
@@ -88,6 +84,21 @@ function createFilterStore() {
 			update((state) => ({
 				...state,
 				coefficient: { from, to }
+			})),
+		setPage: (page: number) =>
+			update((state) => ({
+				...state,
+				pagination: { ...state.pagination, currentPage: page }
+			})),
+		setItemsPerPage: (items: number) =>
+			update((state) => ({
+				...state,
+				pagination: { ...state.pagination, itemsPerPage: items }
+			})),
+		setTimeRange: (range: FilterState['pagination']['timeRange']) =>
+			update((state) => ({
+				...state,
+				pagination: { ...state.pagination, timeRange: range }
 			})),
 		reset: () => set(initialState)
 	};
