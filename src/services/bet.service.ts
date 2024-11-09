@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import { axiosWithAuth } from '$src/api/api.interceptors';
 
 import type { IBet, IBetResponse } from '$src/types/bet';
@@ -13,7 +15,11 @@ class BetService {
 
 			return response.data;
 		} catch (error) {
-			throw error;
+			if (axios.isAxiosError(error) && error.response) {
+				throw new Error(`Error creating bet: ${error.response.data.message}`);
+			} else {
+				throw new Error(`Network error: ${(error as any).message}`);
+			}
 		}
 	}
 
@@ -26,7 +32,11 @@ class BetService {
 
 			return response.data;
 		} catch (error) {
-			throw error;
+			if (axios.isAxiosError(error) && error.response) {
+				throw new Error(`Error fetching bets: ${error.response.data.message}`);
+			} else {
+				throw new Error(`Network error: ${(error as any).message}`);
+			}
 		}
 	}
 
@@ -40,7 +50,11 @@ class BetService {
 
 			return response.data;
 		} catch (error) {
-			throw error;
+			if (axios.isAxiosError(error) && error.response) {
+				throw new Error(`Error updating bet: ${error.response.data.message}`);
+			} else {
+				throw new Error(`Network error: ${(error as any).message}`);
+			}
 		}
 	}
 }

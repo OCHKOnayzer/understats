@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import { axiosWithAuth } from '$src/api/api.interceptors';
 
 import type { ICoupon, ICouponResponse } from '$src/types/coupon';
@@ -13,7 +15,11 @@ class CouponService {
 
 			return response.data;
 		} catch (error) {
-			throw error;
+			if (axios.isAxiosError(error) && error.response) {
+				throw new Error(`Error creating coupon: ${error.response.data.message}`);
+			} else {
+				throw new Error(`Network error: ${(error as any).message}`);
+			}
 		}
 	}
 
@@ -26,7 +32,11 @@ class CouponService {
 
 			return response.data;
 		} catch (error) {
-			throw error;
+			if (axios.isAxiosError(error) && error.response) {
+				throw new Error(`Error fetching coupons: ${error.response.data.message}`);
+			} else {
+				throw new Error(`Network error: ${(error as any).message}`);
+			}
 		}
 	}
 }
