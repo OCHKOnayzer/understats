@@ -7,11 +7,12 @@ import DownloadElement from '../../components/ui/downloadElement/DownloadElement
 import DownloadInfo from '../../components/ui/downloadInfo/DownloadInfo.svelte';
 import FunctionalSection from '../../components/ui/functional/FunctionalSection.svelte';
 import Exp from '../../components/ui/exp/Exp.svelte';
-const headerProps = $t('extensions.extensions');
+import { selectHeaderTitle } from '$src/stores/HeaderStores';
+selectHeaderTitle('extensions.extensions')
 </script>
 
 <svelte:head>
-	<title>{headerProps}</title>
+	<title>{$t('extensions.extensions')}</title>
 	<meta
 		name="description"
 		content="About this app" />
@@ -19,7 +20,6 @@ const headerProps = $t('extensions.extensions');
 
 <div class="text-column">
 	<div class="mainContent">
-		<Header {headerProps} />
 		<Slider />
 		<div class="extensionsInfo">
 			<div class="extensionsInfo_wrapper">

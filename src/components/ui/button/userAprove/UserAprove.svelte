@@ -17,7 +17,6 @@ let { onUserText, onUserAction, active } = $$props as UserAproveInterface;
 	min-width: 40%;
 	margin-top: 20px;
 	height: 4vh;
-	margin-right: 20px;
 }
 .button_wrapper button {
 	height: 100%;

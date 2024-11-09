@@ -28,17 +28,18 @@ const loginUser = () => {
 	<SocialContainer />
 	<div class="switch_container">
 		<SwitchButton
-			switch_text={'social.cHave_acc'}
-			switch_modal={switchReg} />
-		<SwitchButton
 			switch_text={'social.unBlock_acc'}
 			switch_modal={switchRecover} />
+		<SwitchButton
+			switch_text={'social.cHave_acc'}
+			switch_modal={switchReg} />
+		
 	</div>
 	<div class="aprove_wrapper">
+		<CancelButton onUserText={'other.cancel'} />
 		<UserAprove
 			onUserAction={loginUser}
 			onUserText={'social.sign_in'} />
-		<CancelButton onUserText={'other.cancel'} />
 	</div>
 </form>
 
@@ -62,5 +63,6 @@ const loginUser = () => {
 .aprove_wrapper {
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 }
 </style>

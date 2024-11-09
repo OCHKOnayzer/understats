@@ -2,11 +2,10 @@
 
 <script>
 import { t } from 'svelte-i18n';
-
-import Header from '../../components/ui/header/header.svelte';
 import Section from '../../components/ui/Trophies/section.svelte';
-const headerProps = $t('other.awards');
 import ProgressBar from '../../components/ui/progressBar/progress.svelte';
+import { selectHeaderTitle } from '$src/stores/HeaderStores';
+selectHeaderTitle('other.awards')
 </script>
 
 <svelte:head>
@@ -18,7 +17,6 @@ import ProgressBar from '../../components/ui/progressBar/progress.svelte';
 
 <div class="text-column">
 	<div class="mainContent">
-		<Header {headerProps} />
 		<div class="progressWrapper">
 			<ProgressBar />
 		</div>

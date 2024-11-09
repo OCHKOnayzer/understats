@@ -39,10 +39,10 @@ const createUser = () => {};
 			switch_modal={switchRecover} />
 	</div>
 	<div class="aprove_wrapper">
+		<CancelButton onUserText={'other.cancel'} />
 		<UserAprove
 			onUserAction={createUser}
 			onUserText={'social.create_account'} />
-		<CancelButton onUserText={'other.cancel'} />
 	</div>
 </form>
 
@@ -66,5 +66,6 @@ const createUser = () => {};
 .aprove_wrapper {
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 }
 </style>

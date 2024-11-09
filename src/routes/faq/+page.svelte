@@ -3,14 +3,12 @@ import { t } from 'svelte-i18n';
 
 import SectionsFaq from '$src/components/ui/sectionsFaq/SectionsFaq.svelte';
 import FaqConteiner from '$src/components/ui/faqMenu/faqConteiner.svelte';
-
-import Header from '../../components/ui/header/header.svelte';
-
-const headerProps = $t('faq.faq');
+import { selectHeaderTitle } from '$src/stores/HeaderStores';
+selectHeaderTitle('faq.faq')
 </script>
 
 <svelte:head>
-	<title>{headerProps}</title>
+	<title>{'hello world'}</title>
 	<meta
 		name="description"
 		content="About this app" />
@@ -18,7 +16,6 @@ const headerProps = $t('faq.faq');
 
 <div class="text-column">
 	<div class="mainContent">
-		<Header {headerProps} />
 		<div class="progressWrapper">
 			<SectionsFaq />
 		</div>
