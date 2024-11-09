@@ -2,10 +2,12 @@
 
 <script>
 import { t } from 'svelte-i18n';
+
+import { selectHeaderTitle } from '$src/stores/HeaderStores';
+
 import Section from '../../components/ui/Trophies/section.svelte';
 import ProgressBar from '../../components/ui/progressBar/progress.svelte';
-import { selectHeaderTitle } from '$src/stores/HeaderStores';
-selectHeaderTitle('other.awards')
+selectHeaderTitle('other.awards');
 </script>
 
 <svelte:head>

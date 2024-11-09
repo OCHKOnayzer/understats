@@ -1,23 +1,25 @@
 <script>
-	import { ParaglideJS } from '@inlang/paraglide-sveltekit';
-	import { waitLocale } from 'svelte-i18n';
-	import { page } from '$app/stores';
+import { ParaglideJS } from '@inlang/paraglide-sveltekit';
+import { waitLocale } from 'svelte-i18n';
 
-	import Container from '$components/providers/container/Container.svelte';
-	import Menu from '$components/ui/menu/Menu.svelte';
-	import '$src/styles/fonts.css';
-	import { i18n } from '$lib/i18n';
-	import AuthModal from '$src/components/ui/authModal/AuthModal.svelte';
-	import Header from '$src/components/ui/header/header.svelte';
-	import '../app.css';
+import Container from '$components/providers/container/Container.svelte';
+import Menu from '$components/ui/menu/Menu.svelte';
+import '$src/styles/fonts.css';
+import { i18n } from '$lib/i18n';
+import AuthModal from '$src/components/ui/authModal/AuthModal.svelte';
+import Header from '$src/components/ui/header/header.svelte';
 
-	let isLocaleReady = false;
+import { page } from '$app/stores';
 
-	waitLocale().then(() => {
-		isLocaleReady = true;
-	});
+import '../app.css';
 
-	const routesWithoutHeader = ['/stats','/landing'];
+let isLocaleReady = false;
+
+waitLocale().then(() => {
+	isLocaleReady = true;
+});
+
+const routesWithoutHeader = ['/stats', '/landing'];
 </script>
 
 <ParaglideJS {i18n}>
@@ -28,7 +30,7 @@
 
 				<div class="mainContent">
 					<AuthModal />
-					
+
 					{#if !routesWithoutHeader.includes($page.url.pathname)}
 						<Header />
 					{/if}
@@ -43,23 +45,23 @@
 </ParaglideJS>
 
 <style>
-	main {
-		min-height: 100vh;
-		height: fit-content;
-		background-color: #0d111d;
-		display: flex;
-		gap: 1rem;
-	}
+main {
+	min-height: 100vh;
+	height: fit-content;
+	background-color: #0d111d;
+	display: flex;
+	gap: 1rem;
+}
+.mainContent {
+	position: relative;
+	width: 87vw;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+}
+@media screen and (max-width: 1024px) {
 	.mainContent {
-		position: relative;
-		width: 87vw;
-		display: flex;
-		flex-direction: column;
-		overflow-y: auto;
+		margin-left: 30vw;
 	}
-	@media screen and (max-width: 1024px) {
-		.mainContent {
-			margin-left: 30vw;
-		}
-	}
+}
 </style>

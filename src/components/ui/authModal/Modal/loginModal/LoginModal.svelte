@@ -33,7 +33,6 @@ const loginUser = () => {
 		<SwitchButton
 			switch_text={'social.cHave_acc'}
 			switch_modal={switchReg} />
-		
 	</div>
 	<div class="aprove_wrapper">
 		<CancelButton onUserText={'other.cancel'} />

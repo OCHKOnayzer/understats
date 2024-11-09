@@ -1,8 +1,8 @@
 <script lang="ts">
+import { t, locale } from 'svelte-i18n';
+
 import { headerTitle } from '$src/stores/HeaderStores';
-import { t } from 'svelte-i18n';
-import { locale } from 'svelte-i18n';
-console.log(locale)
+console.log(locale);
 </script>
 
 <div class="header">
@@ -19,12 +19,16 @@ console.log(locale)
 				</div>
 				<div class="btnWrapper">
 					<button>
-						<img src="assets/header/support.png" alt="">
+						<img
+							src="assets/header/support.png"
+							alt="" />
 					</button>
 				</div>
 				<div class="btnWrapper">
 					<button>
-						<img src="assets/header/nname.png" alt="">
+						<img
+							src="assets/header/nname.png"
+							alt="" />
 					</button>
 				</div>
 			</div>
@@ -74,7 +78,7 @@ console.log(locale)
 	width: 11%;
 	margin-right: 1%;
 }
-.lang{
+.lang {
 	font-size: 14px;
 }
 .btnWrapper {
@@ -87,11 +91,11 @@ console.log(locale)
 	border-radius: 4px;
 	transition: 400ms;
 }
-.btnWrapper:nth-child(2){ 
+.btnWrapper:nth-child(2) {
 	margin-right: 10px;
 	margin-left: 10px;
 }
-.btnWrapper:hover{ 
+.btnWrapper:hover {
 	background-color: #282d3b;
 }
 .btnWrapper button {

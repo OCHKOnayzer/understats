@@ -1,12 +1,13 @@
 <script>
 import { t } from 'svelte-i18n';
 
+import { selectHeaderTitle } from '$src/stores/HeaderStores';
+
 import UserAvatar from '../../components/ui/editUser/userAvatar.svelte';
 import Info from '../../components/ui/editUser/info.svelte';
 import EditPass from '../../components/ui/editUser/editPass.svelte';
 import Setings from '../../components/ui/editUser/setings.svelte';
-import { selectHeaderTitle } from '$src/stores/HeaderStores';
-selectHeaderTitle('settings.settings')
+selectHeaderTitle('settings.settings');
 </script>
 
 <svelte:head>
