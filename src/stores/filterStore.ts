@@ -95,6 +95,7 @@ function createFilterStore() {
 				...state,
 				pagination: { ...state.pagination, itemsPerPage: items }
 			})),
+		setSelectedSports: (sports: string[]) => update((state) => ({ ...state, selectedSports: sports })),
 		setTimeRange: (range: FilterState['pagination']['timeRange']) =>
 			update((state) => ({
 				...state,
