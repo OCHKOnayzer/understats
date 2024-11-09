@@ -12,7 +12,6 @@ import InputWrapper from '../Input/InputWrapper.svelte';
 
 const loginUser = () => {
 	console.log('hello world');
-	
 };
 </script>
 
