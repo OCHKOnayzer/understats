@@ -29,7 +29,6 @@ class AuthService {
 			removeAccessToken();
 		} catch (error) {
 			console.error('Logout error:', error);
-
 			removeAccessToken();
 		}
 	}
