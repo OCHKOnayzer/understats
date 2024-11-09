@@ -64,3 +64,30 @@ export interface OptionWithChoices extends BaseOption {
 }
 
 export type StoreKey = 'filterInputSelect' | 'loginForm';
+
+export interface IAuthForm {
+	login: string;
+	password: string;
+}
+
+export interface IAuthResponse {
+	login: string;
+	accessToken: string;
+}
+
+export interface IValidationError {
+	field: string;
+	code: string;
+	message: string;
+}
+
+export interface IApiError {
+	statusCode: number;
+	error: string;
+	message: string;
+	errors?: IValidationError[];
+}
+
+export interface IAuthError extends IApiError {
+	errors?: IValidationError[];
+}
