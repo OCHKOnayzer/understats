@@ -7,6 +7,7 @@
 		"condition": "Conditions of receipt"
 	},
 	"award": {
+		"accounts": "My Accounts",
 		"first_step": "First Step",
 		"first_step_desc": "For obtaining the first bookmaker's account",
 		"analyst": "Analyst",

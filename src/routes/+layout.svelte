@@ -7,15 +7,19 @@ import Menu from '$components/ui/menu/Menu.svelte';
 import '$src/styles/fonts.css';
 import { i18n } from '$lib/i18n';
 import AuthModal from '$src/components/ui/authModal/AuthModal.svelte';
-import '../app.css';
+import Header from '$src/components/ui/header/header.svelte';
 
-// import Header from '$components/widgets/header/Header.svelte';
+import { page } from '$app/stores';
+
+import '../app.css';
 
 let isLocaleReady = false;
 
 waitLocale().then(() => {
 	isLocaleReady = true;
 });
+
+const routesWithoutHeader = ['/stats', '/landing'];
 </script>
 
 <ParaglideJS {i18n}>
@@ -26,7 +30,10 @@ waitLocale().then(() => {
 
 				<div class="mainContent">
 					<AuthModal />
-					<!--<Header />-->
+
+					{#if !routesWithoutHeader.includes($page.url.pathname)}
+						<Header />
+					{/if}
 
 					<slot />
 				</div>

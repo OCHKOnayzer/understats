@@ -27,10 +27,10 @@ import InputWrapper from '../Input/InputWrapper.svelte';
 			switch_modal={switchReg} />
 	</div>
 	<div class="aprove_wrapper">
+		<CancelButton onUserText={'other.cancel'} />
 		<UserAprove
 			onUserAction={switchReFinish}
 			onUserText={'social.post_email'} />
-		<CancelButton onUserText={'other.cancel'} />
 	</div>
 </form>
 
@@ -54,5 +54,6 @@ import InputWrapper from '../Input/InputWrapper.svelte';
 .aprove_wrapper {
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 }
 </style>

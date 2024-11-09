@@ -1,15 +1,17 @@
 <script lang="ts">
 import Icon from '@iconify/svelte';
+import { t } from 'svelte-i18n';
 
 import BackgroundContainer from '$components/providers/backgroundContainer/BackgroundContainer.svelte';
 import Button from '$components/ui/button/button.svelte';
 import * as m from '$m';
+import { headerTitle } from '$src/stores/HeaderStores';
 </script>
 
 <header class="header">
 	<BackgroundContainer>
 		<div class="logo flex gap-5">
-			<a href="/">{m.myAccounts()}</a>
+			<a href="/">{$t($headerTitle)}</a>
 		</div>
 
 		<div class="nav">

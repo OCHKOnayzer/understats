@@ -1,21 +1,33 @@
 <script lang="ts">
-interface HeaderInterface {
-	headerProps: string;
-}
-let { headerProps } = $$props as HeaderInterface;
+import { t, locale } from 'svelte-i18n';
+
+import { headerTitle } from '$src/stores/HeaderStores';
+console.log(locale);
 </script>
 
 <div class="header">
 	<div class="headerItem">
 		<div class="flexConteiner">
 			<div class="title">
-				<p>{headerProps}</p>
+				<p>{$t($headerTitle)}</p>
 			</div>
 			<div class="buttonConteiner">
 				<div class="btnWrapper">
 					<button>
+						<span class="lang">ENG</span>
+					</button>
+				</div>
+				<div class="btnWrapper">
+					<button>
 						<img
-							src="assets/image.svg"
+							src="assets/header/support.png"
+							alt="" />
+					</button>
+				</div>
+				<div class="btnWrapper">
+					<button>
+						<img
+							src="assets/header/nname.png"
 							alt="" />
 					</button>
 				</div>
@@ -63,22 +75,32 @@ let { headerProps } = $$props as HeaderInterface;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	width: 11%;
+	margin-right: 1%;
 }
-
+.lang {
+	font-size: 14px;
+}
 .btnWrapper {
-	height: 30%;
-	width: 30%;
+	height: 50%;
+	width: 40px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 10px;
 	border: 1px solid rgba(128, 128, 128, 0.582);
 	border-radius: 4px;
+	transition: 400ms;
 }
-
+.btnWrapper:nth-child(2) {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+.btnWrapper:hover {
+	background-color: #282d3b;
+}
 .btnWrapper button {
-	height: 50%;
-	width: 50%;
+	height: 100%;
+	width: 100%;
 	padding: 10px;
 	background: transparent;
 	border: unset;
