@@ -8,9 +8,9 @@ export interface FilterState {
 	activeTab: 'accounts' | 'sports' | 'bookmaker' | 'months';
 	withoutAggregation: boolean;
 	selectedSports: string[];
-	betType: 'ordinary' | 'express';
-	betResult: string;
-	betStatus: 'calculated' | 'notCalculated';
+	betType: string[];
+	betStatus: string[];
+	betResult: string[];
 	betGameStatus: 'live' | 'prematch';
 	betAmount: {
 		from: string;
@@ -35,10 +35,10 @@ const initialState: FilterState = {
 	activeTab: 'accounts',
 	withoutAggregation: false,
 	selectedSports: [],
-	betType: 'ordinary',
-	betStatus: 'calculated',
+	betType: [],
+	betStatus: [],
 	betGameStatus: 'live',
-	betResult: '',
+	betResult: [],
 	betAmount: {
 		from: '',
 		to: ''
@@ -71,9 +71,21 @@ function createFilterStore() {
 				...state,
 				selectedSports: state.selectedSports.includes(sport) ? state.selectedSports.filter((s) => s !== sport) : [...state.selectedSports, sport]
 			})),
-		setBetType: (type: FilterState['betType']) => update((state) => ({ ...state, betType: type })),
-		setBetResult: (result: string) => update((state) => ({ ...state, betResult: result })),
-		setBetStatus: (status: FilterState['betStatus']) => update((state) => ({ ...state, betStatus: status })),
+		toggleBetType: (type: string) =>
+			update((state) => ({
+				...state,
+				betType: state.betType.includes(type) ? state.betType.filter((t) => t !== type) : [...state.betType, type]
+			})),
+		toggleBetResult: (result: string) =>
+			update((state) => ({
+				...state,
+				betResult: state.betResult.includes(result) ? state.betResult.filter((r) => r !== result) : [...state.betResult, result]
+			})),
+		toggleBetStatus: (status: string) =>
+			update((state) => ({
+				...state,
+				betStatus: state.betStatus.includes(status) ? state.betStatus.filter((s) => s !== status) : [...state.betStatus, status]
+			})),
 		setBetGameStatus: (status: FilterState['betGameStatus']) => update((state) => ({ ...state, betGameStatus: status })),
 		setBetAmount: (from: string, to: string) =>
 			update((state) => ({
@@ -95,6 +107,7 @@ function createFilterStore() {
 				...state,
 				pagination: { ...state.pagination, itemsPerPage: items }
 			})),
+		setSelectedSports: (sports: string[]) => update((state) => ({ ...state, selectedSports: sports })),
 		setTimeRange: (range: FilterState['pagination']['timeRange']) =>
 			update((state) => ({
 				...state,

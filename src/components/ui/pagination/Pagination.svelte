@@ -103,6 +103,26 @@ $: showPrev = $filterStore.pagination.currentPage > 1;
 		</div>
 
 		<div class="page-buttons">
+			<!-- Предыдущая страница -->
+			<button
+				class="page-btn prev"
+				on:click={() => goToPage($filterStore.pagination.currentPage - 1)}
+				aria-label="Previous page"
+				disabled={!showPrev}>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round">
+					<path d="M15 18l-6-6 6-6" />
+				</svg>
+			</button>
+
 			{#each pages as page}
 				{#if page === '...'}
 					<span class="page-dots">...</span>
@@ -116,30 +136,31 @@ $: showPrev = $filterStore.pagination.currentPage > 1;
 				{/if}
 			{/each}
 
-			{#if showNext}
-				<button
-					class="page-btn next"
-					on:click={() => goToPage($filterStore.pagination.currentPage + 1)}
-					aria-label="Next page">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round">
-						<path d="M9 18l6-6-6-6" />
-					</svg>
-				</button>
-			{/if}
+			<!-- Следующая страница -->
+			<button
+				class="page-btn next"
+				on:click={() => goToPage($filterStore.pagination.currentPage + 1)}
+				aria-label="Next page"
+				disabled={!showNext}>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round">
+					<path d="M9 18l6-6-6-6" />
+				</svg>
+			</button>
 		</div>
 	</div>
 </div>
 
 <style>
+/* Стили остаются без изменений */
 .pagination-wrapper {
 	display: flex;
 	justify-content: space-between;
@@ -247,7 +268,7 @@ select {
 	padding: 0 8px;
 }
 
-.page-btn:hover {
+.page-btn:hover:not(:disabled) {
 	background: #2f3241;
 }
 
@@ -255,13 +276,20 @@ select {
 	background: #6366f1;
 }
 
-.page-btn.next {
+.page-btn.next,
+.page-btn.prev {
 	padding: 4px;
 }
 
-.page-btn.next svg {
+.page-btn.next svg,
+.page-btn.prev svg {
 	width: 16px;
 	height: 16px;
+}
+
+.page-btn:disabled {
+	cursor: default;
+	opacity: 0.4;
 }
 
 .page-dots {

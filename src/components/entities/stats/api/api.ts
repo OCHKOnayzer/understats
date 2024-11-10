@@ -8,9 +8,9 @@ interface FilterQuery {
 	tab: string;
 	withoutAggregation: boolean;
 	sports: string[];
-	betType: string;
-	betResult?: string;
-	status?: string;
+	betType: string[];
+	betResult?: string[];
+	status?: string[];
 	gameStatus?: string;
 	amount: {
 		from?: string;
@@ -46,7 +46,7 @@ export async function fetchFilteredData(filters: FilterState) {
 	};
 
 	try {
-		const response = await fetch('https://api.example.com/bets/filter', {
+		const response = await fetch(process.env.SERVER_URL, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

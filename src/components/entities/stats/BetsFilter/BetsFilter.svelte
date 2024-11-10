@@ -1,4 +1,6 @@
 <script lang="ts">
+import Icon from '@iconify/svelte';
+
 import BetFilters from '$src/components/ui/betFilters/BetFilters.svelte';
 import Calendar from '$src/components/ui/calendar/Calendar.svelte';
 import FilterTabs from '$src/components/ui/filterTabs/filterTabs.svelte';
@@ -48,7 +50,18 @@ async function applyFilters() {
 	class="sidebar"
 	class:open={isOpen}>
 	<div class="sidebar-content">
-		<h1 class="filters-title">Фильтры</h1>
+		<div class="mb-[24px] flex items-center justify-between">
+			<h1 class="filters-title">Фильтры</h1>
+			<button
+				type="button"
+				on:click={toggleSidebar}
+				aria-label="Close sidebar"
+				class="cursor-pointer transition-colors hover:text-[#0D111D]">
+				<Icon
+					font-size="24"
+					icon="radix-icons:cross-1" />
+			</button>
+		</div>
 
 		<Calendar on:select={handleDateSelect} />
 		<FilterTabs />
@@ -141,7 +154,6 @@ async function applyFilters() {
 .filters-title {
 	font-size: 32px;
 	font-weight: 600;
-	margin-bottom: 24px;
 	color: white;
 }
 
@@ -181,6 +193,7 @@ input[type='checkbox']:checked + .checkbox-custom::after {
 .label-text {
 	color: white;
 	font-size: 16px;
+	user-select: none;
 }
 
 .action-buttons {
