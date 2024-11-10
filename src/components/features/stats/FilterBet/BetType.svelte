@@ -1,7 +1,5 @@
 <script>
 import { filterStore } from '$src/stores/filterStore';
-
-
 </script>
 
 <div class="bet-type-container">
@@ -20,7 +18,6 @@ import { filterStore } from '$src/stores/filterStore';
 </div>
 
 <style>
-
 .bet-type-container {
 	display: flex;
 	flex: 1;
@@ -47,7 +44,7 @@ import { filterStore } from '$src/stores/filterStore';
 	background: rgba(255, 255, 255, 0.15);
 }
 
-.bet-type.active { 
+.bet-type.active {
 	background: rgba(255, 255, 255, 0.2);
 }
 </style>

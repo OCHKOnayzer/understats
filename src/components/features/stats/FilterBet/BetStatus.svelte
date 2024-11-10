@@ -1,7 +1,5 @@
 <script>
 import { filterStore } from '$src/stores/filterStore';
-
-
 </script>
 
 <div class="bet-status-row">
@@ -20,7 +18,7 @@ import { filterStore } from '$src/stores/filterStore';
 </div>
 
 <style>
-	.bet-status-row {
+.bet-status-row {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	gap: 8px;

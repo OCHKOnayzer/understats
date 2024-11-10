@@ -3,29 +3,34 @@ import { filterStore } from '$src/stores/filterStore';
 
 const betResults = ['Выигрыш', 'Проигрыш', 'Возврат'];
 let showBetResults = false;
-	
 </script>
 
-<div class="dropdown bet-result" class:active={showBetResults}>
-	<button class="dropdown-button" on:click={() => (showBetResults = !showBetResults)}>
-			{#if $filterStore.betResult.length > 0}
-					{$filterStore.betResult.join(', ')}
-			{:else}
-					Результат ставки
-			{/if}
-			<span class="arrow" class:open={showBetResults}>▼</span>
+<div
+	class="dropdown bet-result"
+	class:active={showBetResults}>
+	<button
+		class="dropdown-button"
+		on:click={() => (showBetResults = !showBetResults)}>
+		{#if $filterStore.betResult.length > 0}
+			{$filterStore.betResult.join(', ')}
+		{:else}
+			Результат ставки
+		{/if}
+		<span
+			class="arrow"
+			class:open={showBetResults}>▼</span>
 	</button>
 	{#if showBetResults}
-			<div class="dropdown-content">
-					{#each betResults as result}
-							<button
-									class="dropdown-item"
-									class:active={$filterStore.betResult.includes(result)}
-									on:click={() => filterStore.toggleBetResult(result)}>
-									{result}
-							</button>
-					{/each}
-			</div>
+		<div class="dropdown-content">
+			{#each betResults as result}
+				<button
+					class="dropdown-item"
+					class:active={$filterStore.betResult.includes(result)}
+					on:click={() => filterStore.toggleBetResult(result)}>
+					{result}
+				</button>
+			{/each}
+		</div>
 	{/if}
 </div>
 

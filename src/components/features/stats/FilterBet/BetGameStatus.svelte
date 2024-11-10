@@ -1,7 +1,5 @@
 <script>
 import { filterStore } from '$src/stores/filterStore';
-
-
 </script>
 
 <div class="bet-status-row">

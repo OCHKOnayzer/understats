@@ -4,9 +4,6 @@ import BetGameStatus from '$src/components/features/stats/FilterBet/BetGameStatu
 import BetResults from '$src/components/features/stats/FilterBet/BetResults.svelte';
 import BetStatus from '$src/components/features/stats/FilterBet/BetStatus.svelte';
 import BetType from '$src/components/features/stats/FilterBet/BetType.svelte';
-
-
-
 </script>
 
 <section class="bets-section">
@@ -45,5 +42,4 @@ import BetType from '$src/components/features/stats/FilterBet/BetType.svelte';
 	gap: 8px;
 	margin-bottom: 16px;
 }
-
 </style>

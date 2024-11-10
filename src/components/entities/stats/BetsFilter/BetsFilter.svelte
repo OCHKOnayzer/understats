@@ -1,10 +1,11 @@
 <script lang="ts">
+import Icon from '@iconify/svelte';
+
 import BetFilters from '$src/components/ui/betFilters/BetFilters.svelte';
 import Calendar from '$src/components/ui/calendar/Calendar.svelte';
 import FilterTabs from '$src/components/ui/filterTabs/filterTabs.svelte';
 import SportsList from '$src/components/ui/sportsList/SportsList.svelte';
 import { filterStore } from '$src/stores/filterStore';
-import Icon from '@iconify/svelte';
 
 import { fetchFilteredData } from '../api/api';
 
@@ -49,10 +50,16 @@ async function applyFilters() {
 	class="sidebar"
 	class:open={isOpen}>
 	<div class="sidebar-content">
-		<div class="flex items-center justify-between mb-[24px]">
+		<div class="mb-[24px] flex items-center justify-between">
 			<h1 class="filters-title">Фильтры</h1>
-			<button type="button" on:click={toggleSidebar} aria-label="Close sidebar" class="hover:text-[#0D111D] cursor-pointer transition-colors">
-				<Icon font-size="24" icon="radix-icons:cross-1" />
+			<button
+				type="button"
+				on:click={toggleSidebar}
+				aria-label="Close sidebar"
+				class="cursor-pointer transition-colors hover:text-[#0D111D]">
+				<Icon
+					font-size="24"
+					icon="radix-icons:cross-1" />
 			</button>
 		</div>
 
