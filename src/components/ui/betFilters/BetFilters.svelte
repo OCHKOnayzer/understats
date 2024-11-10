@@ -12,14 +12,14 @@ let showBetResults = false;
 		<div class="bet-type-container">
 			<button
 				class="bet-type"
-				class:active={$filterStore.betType === 'ordinary'}
-				on:click={() => filterStore.setBetType('ordinary')}>
+				class:active={$filterStore.betType.includes('ordinary')}
+				on:click={() => filterStore.toggleBetType('ordinary')}>
 				Ординар
 			</button>
 			<button
 				class="bet-type"
-				class:active={$filterStore.betType === 'express'}
-				on:click={() => filterStore.setBetType('express')}>
+				class:active={$filterStore.betType.includes('express')}
+				on:click={() => filterStore.toggleBetType('express')}>
 				Экспресс
 			</button>
 		</div>
@@ -52,14 +52,14 @@ let showBetResults = false;
 		<div class="bet-status-row">
 			<button
 				class="bet-status"
-				class:active={$filterStore.betStatus === 'calculated'}
-				on:click={() => filterStore.setBetStatus('calculated')}>
+				class:active={$filterStore.betStatus.includes('calculated')}
+				on:click={() => filterStore.toggleBetStatus('calculated')}>
 				Рассчитана
 			</button>
 			<button
 				class="bet-status"
-				class:active={$filterStore.betStatus === 'notCalculated'}
-				on:click={() => filterStore.setBetStatus('notCalculated')}>
+				class:active={$filterStore.betStatus.includes('notCalculated')}
+				on:click={() => filterStore.toggleBetStatus('notCalculated')}>
 				Не рассчитана
 			</button>
 		</div>
