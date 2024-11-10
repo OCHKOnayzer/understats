@@ -4,6 +4,7 @@ import Calendar from '$src/components/ui/calendar/Calendar.svelte';
 import FilterTabs from '$src/components/ui/filterTabs/filterTabs.svelte';
 import SportsList from '$src/components/ui/sportsList/SportsList.svelte';
 import { filterStore } from '$src/stores/filterStore';
+import Icon from '@iconify/svelte';
 
 import { fetchFilteredData } from '../api/api';
 
@@ -48,7 +49,12 @@ async function applyFilters() {
 	class="sidebar"
 	class:open={isOpen}>
 	<div class="sidebar-content">
-		<h1 class="filters-title">Фильтры</h1>
+		<div class="flex items-center justify-between mb-[24px]">
+			<h1 class="filters-title">Фильтры</h1>
+			<button type="button" on:click={toggleSidebar} aria-label="Close sidebar" class="hover:text-[#0D111D] cursor-pointer transition-colors">
+				<Icon font-size="24" icon="radix-icons:cross-1" />
+			</button>
+		</div>
 
 		<Calendar on:select={handleDateSelect} />
 		<FilterTabs />
@@ -141,7 +147,6 @@ async function applyFilters() {
 .filters-title {
 	font-size: 32px;
 	font-weight: 600;
-	margin-bottom: 24px;
 	color: white;
 }
 
@@ -181,6 +186,7 @@ input[type='checkbox']:checked + .checkbox-custom::after {
 .label-text {
 	color: white;
 	font-size: 16px;
+	user-select: none;
 }
 
 .action-buttons {
