@@ -9,7 +9,7 @@ export interface FilterState {
 	withoutAggregation: boolean;
 	selectedSports: string[];
 	betType: 'ordinary' | 'express';
-	betResult: string;
+	betResult: string[];
 	betStatus: 'calculated' | 'notCalculated';
 	betGameStatus: 'live' | 'prematch';
 	betAmount: {
@@ -38,7 +38,7 @@ const initialState: FilterState = {
 	betType: 'ordinary',
 	betStatus: 'calculated',
 	betGameStatus: 'live',
-	betResult: '',
+	betResult: [],
 	betAmount: {
 		from: '',
 		to: ''
@@ -72,7 +72,11 @@ function createFilterStore() {
 				selectedSports: state.selectedSports.includes(sport) ? state.selectedSports.filter((s) => s !== sport) : [...state.selectedSports, sport]
 			})),
 		setBetType: (type: FilterState['betType']) => update((state) => ({ ...state, betType: type })),
-		setBetResult: (result: string) => update((state) => ({ ...state, betResult: result })),
+		toggleBetResult: (result: string) =>
+			update((state) => ({
+				...state,
+				betResult: state.betResult.includes(result) ? state.betResult.filter((r) => r !== result) : [...state.betResult, result]
+			})),
 		setBetStatus: (status: FilterState['betStatus']) => update((state) => ({ ...state, betStatus: status })),
 		setBetGameStatus: (status: FilterState['betGameStatus']) => update((state) => ({ ...state, betGameStatus: status })),
 		setBetAmount: (from: string, to: string) =>
