@@ -1,12 +1,14 @@
 <script>
+import { onMount } from 'svelte';
 import { ParaglideJS } from '@inlang/paraglide-sveltekit';
 import { waitLocale } from 'svelte-i18n';
 
+import { isModalOpen } from '$src/stores/modalStore';
 import Container from '$components/providers/container/Container.svelte';
 import Menu from '$components/ui/menu/Menu.svelte';
 import '$src/styles/fonts.css';
 import { i18n } from '$lib/i18n';
-import AuthModal from '$src/components/ui/authModal/AuthModal.svelte';
+import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
 import Header from '$src/components/ui/header/header.svelte';
 
 import { page } from '$app/stores';
@@ -18,7 +20,9 @@ let isLocaleReady = false;
 waitLocale().then(() => {
 	isLocaleReady = true;
 });
-
+onMount(() => {
+	if (isModalOpen) document.body.style.overflow = 'hidden';
+});
 const routesWithoutHeader = ['/stats', '/landing'];
 </script>
 
@@ -30,7 +34,6 @@ const routesWithoutHeader = ['/stats', '/landing'];
 
 				<div class="mainContent">
 					<AuthModal />
-
 					{#if !routesWithoutHeader.includes($page.url.pathname)}
 						<Header />
 					{/if}

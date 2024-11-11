@@ -9,7 +9,7 @@ let { onUserText } = $$props as SwitchInterface;
 </script>
 
 <div class="button_wrapper">
-	<button on:click={closeModal}>{$t(onUserText)}</button>
+	<button on:click={() => closeModal()}>{$t(onUserText)}</button>
 </div>
 
 <style>

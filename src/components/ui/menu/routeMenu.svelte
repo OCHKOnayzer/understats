@@ -1,27 +1,34 @@
 <script lang="ts">
-import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
+import { onMount } from 'svelte';
 
-let currentPath = '';
+let currentPath = window.location.pathname;
 
 onMount(() => {
-	currentPath = window.location.pathname;
-	console.log('Current path:', currentPath);
+	const updatePath = () => {
+		currentPath = window.location.pathname;
+	};
+
+	window.addEventListener('popstate', updatePath);
+
+	return () => {
+		window.removeEventListener('popstate', updatePath);
+	};
 });
 </script>
 
 <div class="menu_items">
-	<!-- <a href="/" class="card_item" class:selected={currentPath === '/h1'}>
-    <div class="image_box">
-      <img
-        src={currentPath === '/hl'
-          ? 'assets/menu/menuElements/bet.png'
-          : 'assets/menu/menuElements/bet.png'}
-        alt=""
-      />
-    </div>
-    <span class="item_name">{$t('menu.Place_bet')}</span>
-  </a> -->
+	<a
+		href="/h1"
+		class="card_item"
+		class:selected={currentPath === '/h1'}>
+		<div class="image_box">
+			<img
+				src="assets/menu/menuElements/bet.png"
+				alt="" />
+		</div>
+		<span class="item_name">{$t('menu.Place_bet')}</span>
+	</a>
 
 	<a
 		href="/"
@@ -29,7 +36,7 @@ onMount(() => {
 		class:selected={currentPath === '/'}>
 		<div class="image_box">
 			<img
-				src={currentPath === '/' ? 'assets/menu/menuElements/home.png' : 'assets/menu/menuElements/home.png'}
+				src="assets/menu/menuElements/home.png"
 				alt="Домашняя" />
 		</div>
 		<span class="item_name">{$t('menu.Main')}</span>
@@ -41,7 +48,7 @@ onMount(() => {
 		class:selected={currentPath === '/accounts'}>
 		<div class="image_box">
 			<img
-				src={currentPath === '/accounts' ? 'assets/menu/menuElements/users.png' : 'assets/menu/menuElements/users.png'}
+				src="assets/menu/menuElements/users.png"
 				alt="Профиль" />
 		</div>
 		<span class="item_name">{$t('menu.Accounts')}</span>
@@ -53,7 +60,7 @@ onMount(() => {
 		class:selected={currentPath === '/stats'}>
 		<div class="image_box">
 			<img
-				src={currentPath === '/stats' ? 'assets/menu/menuElements/FAQ.png' : 'assets/menu/menuElements/FAQ.png'}
+				src="assets/menu/menuElements/FAQ.png"
 				alt="Статистика" />
 		</div>
 		<span class="item_name">{$t('menu.Stats')}</span>
@@ -65,7 +72,7 @@ onMount(() => {
 		class:selected={currentPath === '/extensions'}>
 		<div class="image_box">
 			<img
-				src={currentPath === '/extensions' ? 'assets/menu/menuElements/mod.png' : 'assets/menu/menuElements/mod.png'}
+				src="assets/menu/menuElements/mod.png"
 				alt="Моды" />
 		</div>
 		<span class="item_name">{$t('menu.Mods')}</span>
@@ -77,10 +84,46 @@ onMount(() => {
 		class:selected={currentPath === '/setings'}>
 		<div class="image_box">
 			<img
-				src={currentPath === '/setings' ? 'assets/active/setings.png' : 'assets/menu/menuElements/setings.png'}
+				src="assets/menu/menuElements/setings.png"
 				alt="Настройки" />
 		</div>
 		<span class="item_name">{$t('menu.Setings')}</span>
+	</a>
+
+	<a
+		href="/faq"
+		class="card_item"
+		class:selected={currentPath === '/faq'}>
+		<div class="image_box">
+			<img
+				src="assets/menu/menuElements/FAQ.png"
+				alt="Настройки" />
+		</div>
+		<span class="item_name">{$t('menu.Help')}</span>
+	</a>
+
+	<a
+		href="/news"
+		class="card_item"
+		class:selected={currentPath === '/news'}>
+		<div class="image_box">
+			<img
+				src="assets/menu/menuElements/news.png"
+				alt="Новости" />
+		</div>
+		<span class="item_name">{$t('menu.News')}</span>
+	</a>
+
+	<a
+		href="/chat"
+		class="card_item"
+		class:selected={currentPath === '/chat'}>
+		<div class="image_box">
+			<img
+				src="assets/menu/menuElements/chat.png"
+				alt="Чат" />
+		</div>
+		<span class="item_name">{$t('menu.Chat')}</span>
 	</a>
 </div>
 
@@ -104,8 +147,8 @@ onMount(() => {
 	text-decoration: none;
 }
 .image_box {
-	max-height: 25px;
-	max-width: 25px;
+	max-height: 30px;
+	max-width: 30px;
 	margin-right: 10px;
 	padding-left: 10px;
 }
@@ -121,6 +164,9 @@ onMount(() => {
 }
 .selected span {
 	color: white;
+}
+.item_name {
+	font-size: 14px;
 }
 @media screen and (max-height: 800px) {
 	.card_item {

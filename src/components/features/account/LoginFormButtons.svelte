@@ -1,12 +1,11 @@
 <script lang="ts">
 import { Dialog } from 'bits-ui';
-import { tick } from 'svelte';
+import { tick, get } from 'svelte';
 
 import Button from '$components/ui/button/button.svelte';
 import * as m from '$m';
 import { accountIsSuccess, accounts, LoginForm } from '$stores/store';
 import { formatDate } from '$utils/utils';
-import { get } from 'svelte/store';
 
 const handleConnect = async () => {
 	const { login, bookmaker, password } = get(LoginForm);
