@@ -23,12 +23,6 @@ $: isActive = (href: string): boolean => currentPath === href;
 		</div>
 		<span class="item_name">{$t('menu.Help')}</span>
 	</a>
-	<!-- <a href="/" class="card_item" class:selected={isActive('/news')}>
-    <div class="image_box">
-      <img src="assets/menu/menuElements/news.png" alt="" />
-    </div>
-    <span class="item_name">{$t('menu.News')}</span>
-  </a> -->
 </div>
 
 <style>

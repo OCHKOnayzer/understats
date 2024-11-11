@@ -198,5 +198,9 @@
 		"landing_title": "Analyze. Win!",
 		"landing_content": "Want to become a betting master and outsmart the competition? Our site offers unique tools and in-depth analytics to help you make informed decisions and increase your winnings!",
 		"login_create_account": "Sign In / Create Account"
-	}
+	},
+	"leave_modal": {
+  "leave_acc": "Log out of your account?",
+  "leave_mail": "The email will appear in the specified mailbox within five minutes"
+}
 }
