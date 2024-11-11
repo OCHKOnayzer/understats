@@ -1,9 +1,6 @@
 <script>
 import { t } from 'svelte-i18n';
-
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
-
-import Header from '../../components/ui/header/header.svelte';
 import Slider from '../../components/ui/slider/extensionsSlider/Slider.svelte';
 import DownloadElement from '../../components/ui/downloadElement/DownloadElement.svelte';
 import DownloadInfo from '../../components/ui/downloadInfo/DownloadInfo.svelte';
@@ -19,59 +16,25 @@ selectHeaderTitle('extensions.extensions');
 		content="About this app" />
 </svelte:head>
 
-<div class="text-column">
-	<div class="mainContent">
-		<Slider />
-		<div class="extensionsInfo">
-			<div class="extensionsInfo_wrapper">
-				<div class="extensionInfo_element all_extension">
-					<DownloadElement Title={$t('extensions.Google_Chrome')} />
-					<DownloadElement Title={$t('extensions.Mozila_Firefox')} />
-					<DownloadElement Title={$t('extensions.Opera')} />
-					<DownloadInfo />
-				</div>
-				<div class="extensionInfo_element functional">
-					<FunctionalSection />
-				</div>
-				<div class="extensionInfo_element experience">
-					<Exp />
-				</div>
-			</div>
+<div class="mainContent">
+	<div class="pageWrapper">
+		<div class="extensions_wallpaper">
+			<img src="assets/extension/wallpaper.png" alt="">
 		</div>
 	</div>
+
 </div>
 
 <style>
-.text-column {
-	width: fit-content;
-	padding-bottom: 1%;
-}
-.extensionsInfo {
+.pageWrapper {
 	width: 98%;
 	margin: 0 auto;
+	padding-bottom: 10px;
+	box-sizing: border-box;
 }
-.extensionsInfo_wrapper {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	margin-top: 20px;
-}
-.extensionInfo_element {
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-}
-.all_extension {
-	width: 30%;
-	position: relative;
-	padding-top: 15%;
-	display: flex;
-	align-items: left;
-}
-.functional {
-	width: 40%;
-}
-.experience {
-	width: 30%;
+.extensions_wallpaper{ 
+	width: 100%;
+	border-radius: 5px;
+	margin-top: 10px;
 }
 </style>
