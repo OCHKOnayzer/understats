@@ -1,6 +1,8 @@
 <script>
 import { t } from 'svelte-i18n';
+
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
+
 import Slider from '../../components/ui/slider/extensionsSlider/Slider.svelte';
 import DownloadElement from '../../components/ui/downloadElement/DownloadElement.svelte';
 import DownloadInfo from '../../components/ui/downloadInfo/DownloadInfo.svelte';
@@ -19,10 +21,11 @@ selectHeaderTitle('extensions.extensions');
 <div class="mainContent">
 	<div class="pageWrapper">
 		<div class="extensions_wallpaper">
-			<img src="assets/extension/wallpaper.png" alt="">
+			<img
+				src="assets/extension/wallpaper.png"
+				alt="" />
 		</div>
 	</div>
-
 </div>
 
 <style>
@@ -32,7 +35,7 @@ selectHeaderTitle('extensions.extensions');
 	padding-bottom: 10px;
 	box-sizing: border-box;
 }
-.extensions_wallpaper{ 
+.extensions_wallpaper {
 	width: 100%;
 	border-radius: 5px;
 	margin-top: 10px;

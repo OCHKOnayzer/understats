@@ -10,20 +10,28 @@ const LeaveAprove = () => {
 };
 </script>
 
-<div class="leave_modal">
-	<div class="leave_wrapper">
-		<LeaveModalTitle />
-		<LeaveModalContent />
-		<div class="button_wrapper">
-			<CancelButton onUserText="other.cancel" />
-			<UserAprove
-				onUserText={'Выйти из профиля'}
-				onUserAction={LeaveAprove} />
+<div class="leave_container">
+	<div class="leave_modal">
+		<div class="leave_wrapper">
+			<LeaveModalTitle />
+			<LeaveModalContent />
+			<div class="button_wrapper">
+				<CancelButton onUserText="other.cancel" />
+				<UserAprove
+					onUserText={'Выйти из профиля'}
+					onUserAction={LeaveAprove} />
+			</div>
 		</div>
 	</div>
 </div>
 
 <style>
+.leave_container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
 .leave_modal {
 	width: 22vw;
 	height: 27vh;

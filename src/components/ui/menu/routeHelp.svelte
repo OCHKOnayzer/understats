@@ -1,6 +1,6 @@
 <script lang="ts">
 import { onMount } from 'svelte';
-import { t } from 'svelte-i18n';
+
 import UserInfo from './userInfo/UserInfo.svelte';
 
 let currentPath = '';
@@ -8,26 +8,50 @@ let currentPath = '';
 onMount(() => {
 	currentPath = window.location.pathname;
 });
-
 </script>
 
 <div class="social">
-	<UserInfo/>
+	<UserInfo />
 	<div class="social_wrapper">
-		<a href="/" target="_blank" class="social_item">
-			<img src="assets/social/telegram.svg" alt="">
+		<a
+			href="/"
+			target="_blank"
+			class="social_item">
+			<img
+				src="assets/social/telegram.svg"
+				alt="telegram" />
 		</a>
-		<a href="/" target="_blank" class="social_item">
-			<img src="assets/social/active/instagram.svg" alt="">
+		<a
+			href="/"
+			target="_blank"
+			class="social_item">
+			<img
+				src="assets/social/active/instagram.svg"
+				alt="instagram" />
 		</a>
-		<a href="/" target="_blank" class="social_item">
-			<img src="assets/social/active/discord.svg" alt="">
+		<a
+			href="/"
+			target="_blank"
+			class="social_item">
+			<img
+				src="assets/social/active/discord.svg"
+				alt="discord" />
 		</a>
-		<a href="/" target="_blank" class="social_item">
-			<img src="assets/social/active/facebook.svg" alt="">
+		<a
+			href="/"
+			target="_blank"
+			class="social_item">
+			<img
+				src="assets/social/active/facebook.svg"
+				alt="facebook" />
 		</a>
-		<a href="/" target="_blank" class="social_item">
-			<img src="assets/social/active/youtube.svg" alt="">
+		<a
+			href="/"
+			target="_blank"
+			class="social_item">
+			<img
+				src="assets/social/active/youtube.svg"
+				alt="youtube" />
 		</a>
 	</div>
 </div>
@@ -40,7 +64,7 @@ onMount(() => {
 .social_wrapper {
 	display: flex;
 	align-items: center;
-	justify-content: space-between; 
+	justify-content: space-between;
 	height: 100%;
 	width: 100%;
 	margin-top: 15px;

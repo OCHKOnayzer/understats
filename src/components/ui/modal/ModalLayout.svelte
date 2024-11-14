@@ -31,8 +31,5 @@ const components = {
 	overflow-y: unset;
 	overflow-x: hidden;
 	backdrop-filter: blur(3px);
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 </style>

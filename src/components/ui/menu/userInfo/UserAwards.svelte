@@ -1,7 +1,8 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
-import { afterNavigate } from '$app/navigation';
 import { onMount } from 'svelte';
+
+import { afterNavigate } from '$app/navigation';
 
 let currentPath = '';
 
@@ -15,7 +16,8 @@ afterNavigate(() => {
 </script>
 
 <div class="userAwards">
-	<a	href="/awards"
+	<a
+		href="/awards"
 		class="userAwardsConteiner usAwardDs"
 		class:awardsActive={currentPath === '/awards'}>
 		<span>{$t('other.awards')}</span>

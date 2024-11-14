@@ -1,9 +1,4 @@
 <script lang="ts">
-import { onMount } from 'svelte';
-import { t } from 'svelte-i18n';
-
-import { fetchUser, user } from '$stores/menu';
-
 import UserContainer from './userInfo/UserContainer.svelte';
 import RouteMenu from './routeMenu.svelte';
 import RouteHelp from './routeHelp.svelte';

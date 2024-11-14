@@ -1,17 +1,14 @@
 <script>
-
 </script>
 
-<div class="plan_container"> 
-
-</div>
+<div class="plan_container" />
 
 <style>
-    .plan_container{ 
-        background-color: #0D111D;
-        height: 100px;
-        width: 100%;
-        border-radius: 5px;
-        margin-top: 10px;
-    }
+.plan_container {
+	background-color: #0d111d;
+	height: 100px;
+	width: 100%;
+	border-radius: 5px;
+	margin-top: 10px;
+}
 </style>
