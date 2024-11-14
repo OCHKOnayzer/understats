@@ -91,3 +91,8 @@ export interface IApiError {
 export interface IAuthError extends IApiError {
 	errors?: IValidationError[];
 }
+
+export interface IAuthProfile {
+	id: string;
+	login: string;
+}

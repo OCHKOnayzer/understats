@@ -3,22 +3,23 @@ import { filterStore } from '$src/stores/filterStore';
 
 let showSportsModal = false;
 
-const mainSports = ['Футбол', 'Хоккей', 'Теннис', 'Баскетбол', 'Волейбол', 'Бейсбол'];
+const mainSports = ['Футбол', 'Баскетбол', 'Теннис', 'Хоккей', 'Бейсбол', 'Американский футбол'];
 
 const allSports = [
 	...mainSports,
-	'Американский футбол',
-	'Бадминтон',
+	'Настольный теннис',
+	'Крикет',
 	'Бокс',
 	'Гандбол',
 	'Дартс',
 	'Киберспорт',
 	'Крикет',
-	'MMA',
-	'Настольный теннис',
+	'Волейбол',
+	'Гольф',
 	'Регби',
-	'Снукер',
-	'Формула 1'
+	'Бадминтон',
+	'Плавание',
+	'ММА'
 ];
 
 let searchQuery = '';
@@ -34,6 +35,8 @@ function restoreSelections() {
 }
 
 $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase().includes(searchQuery.toLowerCase())) : allSports;
+
+
 </script>
 
 <section class="sports-section">

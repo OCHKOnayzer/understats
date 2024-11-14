@@ -32,6 +32,16 @@ class AuthService {
 			removeAccessToken();
 		}
 	}
+
+	async profile() {
+		try {
+			return await axiosWithAuth.get('/auth/me');
+		} catch (error) {
+			console.error('Logout error:', error);
+			removeAccessToken();
+			return null;
+		}
+	}
 }
 
 export const authService = new AuthService();

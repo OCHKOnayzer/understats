@@ -3,13 +3,13 @@ import { t } from 'svelte-i18n';
 
 import ApproveButton from '$src/components/ui/button/approveButton/ApproveButton.svelte';
 import SwitchButton from '$src/components/ui/button/switchButton/SwitchButton.svelte';
-import UserAprove from '$src/components/ui/button/userAprove/UserAprove.svelte';
 import CancelButton from '$src/components/ui/button/userAprove/CancelButton.svelte';
+import UserAprove from '$src/components/ui/button/userAprove/UserAprove.svelte';
 import { switchLogin, switchRecover } from '$src/stores/modalStore';
 
 import FormTitle from '../FormTitle.svelte';
-import SocialContainer from '../social/SocialContainer.svelte';
 import InputWrapper from '../Input/InputWrapper.svelte';
+import SocialContainer from '../social/SocialContainer.svelte';
 
 const createUser = () => {};
 </script>

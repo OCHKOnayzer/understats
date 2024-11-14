@@ -1,4 +1,4 @@
-import { Cookies } from 'js-cookie';
+import Cookies from 'js-cookie';
 
 export enum EnumTokens {
 	'ACCESS_TOKEN' = 'access_token'

@@ -2,29 +2,48 @@
 import { t } from 'svelte-i18n';
 
 import SwitchButton from '$src/components/ui/button/switchButton/SwitchButton.svelte';
-import UserAprove from '$src/components/ui/button/userAprove/UserAprove.svelte';
 import CancelButton from '$src/components/ui/button/userAprove/CancelButton.svelte';
-import { switchReg, switchRecover } from '$src/stores/modalStore';
+import UserAprove from '$src/components/ui/button/userAprove/UserAprove.svelte';
+import { switchRecover, switchReg } from '$src/stores/modalStore';
 
+import { useAuth } from '$src/services/auth/useAuth';
+import type { IAuthForm } from '$src/types/types';
 import FormTitle from '../FormTitle.svelte';
-import SocialContainer from '../social/SocialContainer.svelte';
 import InputWrapper from '../Input/InputWrapper.svelte';
+import SocialContainer from '../social/SocialContainer.svelte';
+const {form, mutation} = useAuth(false);
 
 const loginUser = () => {
-	console.log('hello world');
+  const data: IAuthForm = {
+    login,
+    password,
+  };
+  $mutation.mutate(data);
+};
+
+let login = '';
+let password = '';
+
+
+const submitForm = (data) => {
+  $mutation.mutate(data);
 };
 </script>
 
-<form class="form_wrapper">
+<form class="form_wrapper" on:submit|preventDefault={loginUser}>
 	<FormTitle modalActie={'social.sign_in_title'} />
 	<InputWrapper
 		default_type={'text'}
 		title_wrapper={$t('social.send_email')}
-		show_clear={false} />
+		show_clear={false}
+		bind:input={login}
+	/>
 	<InputWrapper
 		default_type={'password'}
 		title_wrapper={$t('social.send_password')}
-		show_clear={true} />
+		show_clear={true}
+		bind:input={password}
+		 />
 	<SocialContainer />
 	<div class="switch_container">
 		<SwitchButton

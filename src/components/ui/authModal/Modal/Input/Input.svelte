@@ -6,7 +6,6 @@ export let input_type: string;
 </script>
 
 <input type={input_type} />
-
 <style>
 input {
 	background-color: #20242f;

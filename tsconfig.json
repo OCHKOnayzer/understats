@@ -29,5 +29,5 @@
 		"moduleResolution": "bundler",
 		"allowImportingTsExtensions": true
 	},
-	"include": ["src/**/*", "svelte.config.js"]
+	"include": ["src/**/*", "svelte.config.js", "vite.config.ts"]
 }
