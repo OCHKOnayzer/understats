@@ -2,6 +2,7 @@
 import { ParaglideJS } from '@inlang/paraglide-sveltekit';
 import { onMount } from 'svelte';
 import { waitLocale } from 'svelte-i18n';
+import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 
 import Container from '$components/providers/container/Container.svelte';
 import Menu from '$components/ui/menu/Menu.svelte';
@@ -11,11 +12,8 @@ import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
 import { isModalOpen } from '$src/stores/modalStore';
 import '$src/styles/fonts.css';
 
-
 import { page } from '$app/stores';
-
 import { browser } from '$app/environment';
-import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 import '../app.css';
 
 let isLocaleReady = false;
@@ -29,12 +27,12 @@ onMount(() => {
 const routesWithoutHeader = ['/stats', '/landing'];
 
 const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        enabled: browser,
-      },
-    },
-  })
+	defaultOptions: {
+		queries: {
+			enabled: browser
+		}
+	}
+});
 </script>
 
 <QueryClientProvider client={queryClient}>

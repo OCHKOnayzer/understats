@@ -5,22 +5,7 @@ let showSportsModal = false;
 
 const mainSports = ['Футбол', 'Баскетбол', 'Теннис', 'Хоккей', 'Бейсбол', 'Американский футбол'];
 
-const allSports = [
-	...mainSports,
-	'Настольный теннис',
-	'Крикет',
-	'Бокс',
-	'Гандбол',
-	'Дартс',
-	'Киберспорт',
-	'Крикет',
-	'Волейбол',
-	'Гольф',
-	'Регби',
-	'Бадминтон',
-	'Плавание',
-	'ММА'
-];
+const allSports = [...mainSports, 'Настольный теннис', 'Крикет', 'Бокс', 'Гандбол', 'Дартс', 'Киберспорт', 'Крикет', 'Волейбол', 'Гольф', 'Регби', 'Бадминтон', 'Плавание', 'ММА'];
 
 let searchQuery = '';
 let previousSelections: string[] = [];
@@ -35,8 +20,6 @@ function restoreSelections() {
 }
 
 $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase().includes(searchQuery.toLowerCase())) : allSports;
-
-
 </script>
 
 <section class="sports-section">

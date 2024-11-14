@@ -3,27 +3,44 @@ import { t } from 'svelte-i18n';
 
 import ApproveButton from '$src/components/ui/button/approveButton/ApproveButton.svelte';
 import SwitchButton from '$src/components/ui/button/switchButton/SwitchButton.svelte';
-import UserAprove from '$src/components/ui/button/userAprove/UserAprove.svelte';
 import CancelButton from '$src/components/ui/button/userAprove/CancelButton.svelte';
+import UserAprove from '$src/components/ui/button/userAprove/UserAprove.svelte';
 import { switchLogin, switchRecover } from '$src/stores/modalStore';
 
+import { useAuth } from '$src/services/auth/useAuth';
+import type { IAuthForm } from '$src/types/types';
 import FormTitle from '../FormTitle.svelte';
-import SocialContainer from '../social/SocialContainer.svelte';
 import InputWrapper from '../Input/InputWrapper.svelte';
+import SocialContainer from '../social/SocialContainer.svelte';
 
-const createUser = () => {};
+const { form, mutation } = useAuth(true);
+	
+	const registerUser = () => {
+		const data: IAuthForm = {
+			login,
+			password
+		};
+		$mutation.mutate(data);
+	};
+	
+	let login = 'qweqwe';
+	let password = 'qweqweqwe';
+
 </script>
 
-<form class="form_wrapper">
+<form class="form_wrapper" on:submit|preventDefault={registerUser}>
 	<FormTitle modalActie={'social.reg_title'} />
 	<InputWrapper
 		default_type={'text'}
 		title_wrapper={$t('social.send_email')}
-		show_clear={false} />
+		show_clear={false}
+		bind:input={login} />
 	<InputWrapper
 		default_type={'password'}
 		title_wrapper={$t('social.send_password')}
-		show_clear={true} />
+		show_clear={true}
+		bind:input={password}
+		 />
 	<InputWrapper
 		default_type={'password'}
 		title_wrapper={$t('social.retry_password')}
@@ -41,7 +58,7 @@ const createUser = () => {};
 	<div class="aprove_wrapper">
 		<CancelButton onUserText={'other.cancel'} />
 		<UserAprove
-			onUserAction={createUser}
+			onUserAction={registerUser}
 			onUserText={'social.create_account'} />
 	</div>
 </form>

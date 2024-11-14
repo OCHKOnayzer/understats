@@ -22,6 +22,7 @@ export const useAuth = (isReg: boolean) => {
 				login: '',
 				password: ''
 			}));
+			console.log(data);
 			toast.success('Успешная авторизация');
 		},
 		onError: (error) => {

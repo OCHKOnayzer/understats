@@ -1,6 +1,6 @@
 import { axiosClassic, axiosWithAuth } from '$src/api/api.interceptors';
 
-import { removeAccessToken, setAccessToken } from './auth-token.service';
+import { removeAccessToken } from './auth-token.service';
 
 import type { IAuthForm, IAuthResponse } from '$src/types/types';
 
@@ -8,18 +8,15 @@ class AuthService {
 	async main(type: 'login' | 'register', data: IAuthForm) {
 		try {
 			const response = await axiosClassic<IAuthResponse>({
-				url: `${process.env.API_URL}/auth/${type}`,
+				url: `https://dev-api-gateway-v1.sntmq.1keep.bet/api/auth/${type}`,
 				method: 'POST',
-				data
+				data,
+				withCredentials: true
 			});
-
-			if (response.data.accessToken) {
-				setAccessToken(response.data.accessToken);
-			}
-
-			return response.data;
-		} catch (error) {
-			throw error;
+			return response;
+		} catch (error: any) {
+			console.error('Request error:', error.message);
+			throw new Error('Не удалось подключиться к серверу. Проверьте доступность сервиса.');
 		}
 	}
 

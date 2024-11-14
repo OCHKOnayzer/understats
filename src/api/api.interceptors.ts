@@ -8,8 +8,7 @@ import { getContentType } from './api.helper';
 const options: CreateAxiosDefaults = {
 	baseURL: process.env.SERVER_URL,
 	headers: getContentType(),
-	withCredentials: true,
-	timeout: 10000
+	withCredentials: true
 };
 
 const axiosClassic = axios.create(options);
