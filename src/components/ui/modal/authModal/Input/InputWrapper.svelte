@@ -6,16 +6,13 @@ import ErrorMessage from '$src/components/ui/errorMessage/ErrorMessage.svelte';
 import Input from './Input.svelte';
 import WrapperTitle from './WrapperTitle.svelte';
 
-interface InputProps {
-	title_wrapper: string;
-	show_clear: boolean;
-	default_type: string;
-}
+export let title_wrapper: string;
+export let show_clear: boolean;
+export let default_type: string;
+export let value: string;
 
 let Open = false;
 let showPassword = false;
-let { title_wrapper = '', show_clear = false, default_type = 'password' } = $$props as InputProps;
-
 let input_type = default_type;
 let button_text = 'social.show_pass';
 
@@ -37,7 +34,9 @@ function togglePasswordVisibility() {
 			</button>
 		{/if}
 	</div>
-	<Input {input_type} />
+	<Input
+		{input_type}
+		bind:value />
 	{#if Open}
 		<ErrorMessage />
 	{/if}

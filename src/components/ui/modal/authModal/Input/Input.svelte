@@ -1,11 +1,11 @@
 <script lang="ts">
-interface InputInterface {
-	input_type: string;
-}
 export let input_type: string;
+export let value = '';
 </script>
 
-<input type={input_type} />
+<input
+	type={input_type}
+	bind:value />
 
 <style>
 input {

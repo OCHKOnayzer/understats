@@ -10,8 +10,7 @@ class AuthService {
 			const response = await axiosClassic<IAuthResponse>({
 				url: `https://dev-api-gateway-v1.sntmq.1keep.bet/api/auth/${type}`,
 				method: 'POST',
-				data,
-				withCredentials: true
+				data
 			});
 			return response;
 		} catch (error: any) {
