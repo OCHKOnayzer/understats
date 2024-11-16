@@ -1,36 +1,55 @@
 <script lang="ts">
-import { openModal, modalComponent } from '$src/stores/modalStore';
-const LeaveModalOpen = () => {
-	if ($modalComponent === null) {
-		openModal('LeaveContainer');
-	}
+import { useUserProfile } from '$src/services/auth/useProfile';
+import { currentUser, logout, modalComponent, openModal } from '$src/stores/modalStore';
+
+import Button from '../../button/button.svelte';
+
+const { query } = useUserProfile();
+
+$: if ($query.data) {
+	currentUser.set($query.data);
+}
+
+const handleLogout = () => {
+	logout();
+	currentUser.set(null);
+	modalComponent.set('authModal');
 };
 </script>
 
 <div class="userContainer">
-	<div class="user_flex">
-		<div class="avatar">
-			<img
-				class="image"
-				src="assets/avatar.jpg"
-				alt="user avatar" />
-		</div>
-		<div class="user_info">
-			<div class="user_wrapper">
-				<div class="userName">hello world</div>
-				<span>id </span> <span> 7990962</span>
+	{#if $query.isLoading}
+		<p>Загрузка профиля...</p>
+	{:else if $currentUser}
+		<div class="user_flex">
+			<div class="avatar">
+				<img
+					class="image"
+					src="assets/avatar.jpg"
+					alt="user avatar" />
 			</div>
-			<div class="quitBtn">
-				<button
-					on:click={LeaveModalOpen}
-					class="quit_button">
-					<img
-						src={$modalComponent === 'LeaveContainer' ? 'assets/menu/activeLeave.png' : 'assets/menu/leave.png'}
-						alt="" />
-				</button>
+			<div class="user_info">
+				<div class="user_wrapper">
+					<div class="userName">{$currentUser.login || 'Имя пользователя'}</div>
+					<span>ID:</span> <span>1231234</span>
+				</div>
+				<div class="quitBtn">
+					<button
+						on:click={handleLogout}
+						class="quit_button">
+						<img
+							src="assets/menu/leave.png"
+							alt="Выйти" />
+					</button>
+				</div>
 			</div>
 		</div>
-	</div>
+	{:else}
+		<p>Вы не авторизованы.</p>
+		<Button
+			on:click={() => openModal('authModal')}
+			variant="default">Войти</Button>
+	{/if}
 </div>
 
 <style>

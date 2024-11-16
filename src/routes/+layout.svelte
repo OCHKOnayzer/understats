@@ -1,18 +1,20 @@
 <script>
-import { onMount } from 'svelte';
 import { ParaglideJS } from '@inlang/paraglide-sveltekit';
+import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
+import { onMount } from 'svelte';
 import { waitLocale } from 'svelte-i18n';
+import { Toaster } from 'svelte-french-toast';
 
-import { isModalOpen } from '$src/stores/modalStore';
 import Container from '$components/providers/container/Container.svelte';
 import Menu from '$components/ui/menu/Menu.svelte';
-import '$src/styles/fonts.css';
 import { i18n } from '$lib/i18n';
-import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
 import Header from '$src/components/ui/header/header.svelte';
+import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
+import { isModalOpen } from '$src/stores/modalStore';
+import '$src/styles/fonts.css';
 
+import { browser } from '$app/environment';
 import { page } from '$app/stores';
-
 import '../app.css';
 
 let isLocaleReady = false;
@@ -24,28 +26,42 @@ onMount(() => {
 	if (isModalOpen) document.body.style.overflow = 'hidden';
 });
 const routesWithoutHeader = ['/stats', '/landing'];
+
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			enabled: browser
+		}
+	}
+});
 </script>
 
-<ParaglideJS {i18n}>
-	<Container>
-		<main>
-			{#if isLocaleReady}
-				<Menu />
+<QueryClientProvider client={queryClient}>
+	<ParaglideJS {i18n}>
+		<Container>
+			<main>
+				{#if isLocaleReady}
+					<Menu />
 
-				<div class="mainContent">
-					<AuthModal />
-					{#if !routesWithoutHeader.includes($page.url.pathname)}
-						<Header />
-					{/if}
+					<div class="mainContent">
+						{#if $isModalOpen}
+							<AuthModal />
+						{/if}
+						{#if !routesWithoutHeader.includes($page.url.pathname)}
+							<Header />
+						{/if}
 
-					<slot />
-				</div>
-			{:else}
-				<p style="color: white; text-align: center; margin-top: 20%;">Loading translations...</p>
-			{/if}
-		</main>
-	</Container>
-</ParaglideJS>
+						<slot />
+					</div>
+				{:else}
+					<p style="color: white; text-align: center; margin-top: 20%;">Loading translations...</p>
+				{/if}
+			</main>
+
+			<Toaster />
+		</Container>
+	</ParaglideJS>
+</QueryClientProvider>
 
 <style>
 main {

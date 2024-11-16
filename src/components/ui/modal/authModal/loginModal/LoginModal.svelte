@@ -2,16 +2,19 @@
 import { t } from 'svelte-i18n';
 
 import SwitchButton from '$src/components/ui/button/switchButton/SwitchButton.svelte';
-import UserAprove from '$src/components/ui/button/userAprove/UserAprove.svelte';
 import CancelButton from '$src/components/ui/button/userAprove/CancelButton.svelte';
-import { switchReg, switchRecover } from '$src/stores/modalStore';
+import UserAprove from '$src/components/ui/button/userAprove/UserAprove.svelte';
+import { useAuth } from '$src/services/auth/useAuth';
+import { switchRecover, switchReg } from '$src/stores/modalStore';
 
 import FormTitle from '../FormTitle.svelte';
-import SocialContainer from '../social/SocialContainer.svelte';
 import InputWrapper from '../Input/InputWrapper.svelte';
+import SocialContainer from '../social/SocialContainer.svelte';
+
+const { form, mutation } = useAuth(false);
 
 const loginUser = () => {
-	console.log('hello world');
+	$mutation.mutateAsync($form);
 };
 </script>
 
@@ -20,11 +23,13 @@ const loginUser = () => {
 	<InputWrapper
 		default_type={'text'}
 		title_wrapper={$t('social.send_email')}
-		show_clear={false} />
+		show_clear={false}
+		bind:value={$form.login} />
 	<InputWrapper
 		default_type={'password'}
 		title_wrapper={$t('social.send_password')}
-		show_clear={true} />
+		show_clear={true}
+		bind:value={$form.password} />
 	<SocialContainer />
 	<div class="switch_container">
 		<SwitchButton
@@ -37,8 +42,8 @@ const loginUser = () => {
 	<div class="aprove_wrapper">
 		<CancelButton onUserText={'other.cancel'} />
 		<UserAprove
-			onUserAction={loginUser}
-			onUserText={'social.sign_in'} />
+			onUserText={'social.sign_in'}
+			onUserAction={loginUser} />
 	</div>
 </form>
 

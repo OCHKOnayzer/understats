@@ -103,7 +103,6 @@ $: showPrev = $filterStore.pagination.currentPage > 1;
 		</div>
 
 		<div class="page-buttons">
-			<!-- Предыдущая страница -->
 			<button
 				class="page-btn prev"
 				on:click={() => goToPage($filterStore.pagination.currentPage - 1)}
@@ -136,7 +135,6 @@ $: showPrev = $filterStore.pagination.currentPage > 1;
 				{/if}
 			{/each}
 
-			<!-- Следующая страница -->
 			<button
 				class="page-btn next"
 				on:click={() => goToPage($filterStore.pagination.currentPage + 1)}

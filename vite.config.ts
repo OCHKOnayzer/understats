@@ -16,7 +16,12 @@ export default defineConfig({
 	define: {
 		'process.env': process.env
 	},
+	resolve: {
+		alias: {
+			'@sveltestack/svelte-query': '@sveltestack/svelte-query/src'
+		}
+	},
 	css: {
-		postcss: './postcss.config.js' // Ensure this points to your PostCSS config file
+		postcss: './postcss.config.js'
 	}
 });
