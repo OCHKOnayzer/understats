@@ -46,7 +46,6 @@ axiosWithAuth.interceptors.response.use(
 		if (error.response?.status === 401 && !originalRequest._retry) {
 			originalRequest._retry = true;
 			removeAccessToken();
-			window.location.href = '/auth/login';
 			return Promise.reject(error);
 		}
 

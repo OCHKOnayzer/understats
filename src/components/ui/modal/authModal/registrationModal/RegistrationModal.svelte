@@ -6,7 +6,7 @@ import SwitchButton from '$src/components/ui/button/switchButton/SwitchButton.sv
 import CancelButton from '$src/components/ui/button/userAprove/CancelButton.svelte';
 import UserAprove from '$src/components/ui/button/userAprove/UserAprove.svelte';
 import { useAuth } from '$src/services/auth/useAuth';
-import { switchLogin, switchRecover } from '$src/stores/modalStore';
+import { confirmPassword, switchLogin, switchRecover } from '$src/stores/modalStore';
 
 import FormTitle from '../FormTitle.svelte';
 import InputWrapper from '../Input/InputWrapper.svelte';
@@ -14,38 +14,28 @@ import SocialContainer from '../social/SocialContainer.svelte';
 
 const { form, mutation } = useAuth(true);
 
-let formData = {
-	login: '',
-	password: ''
-};
-
 const registerUser = () => {
-	$mutation.mutate(formData);
-	console.log('Form Data:', formData);
+	$mutation.mutateAsync($form);
 };
-
-$: console.log('login:', formData.login, 'password:', formData.password);
 </script>
 
-<form
-	class="form_wrapper"
-	on:submit|preventDefault={registerUser}>
+<form class="form_wrapper">
 	<FormTitle modalActie={'social.reg_title'} />
 	<InputWrapper
 		default_type={'text'}
 		title_wrapper={$t('social.send_email')}
 		show_clear={false}
-		bind:value={formData.login} />
+		bind:value={$form.login} />
 	<InputWrapper
 		default_type={'password'}
 		title_wrapper={$t('social.send_password')}
 		show_clear={true}
-		bind:value={formData.password} />
+		bind:value={$form.password} />
 	<InputWrapper
 		default_type={'password'}
 		title_wrapper={$t('social.retry_password')}
 		show_clear={true}
-		value={formData.password} />
+		bind:value={$confirmPassword} />
 	<ApproveButton />
 	<SocialContainer />
 	<div class="switch_container">
@@ -58,7 +48,9 @@ $: console.log('login:', formData.login, 'password:', formData.password);
 	</div>
 	<div class="aprove_wrapper">
 		<CancelButton onUserText={'other.cancel'} />
-		<UserAprove onUserText={'social.create_account'} />
+		<UserAprove
+			onUserText={'social.create_account'}
+			onUserAction={registerUser} />
 	</div>
 </form>
 

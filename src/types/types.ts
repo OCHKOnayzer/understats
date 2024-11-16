@@ -68,6 +68,7 @@ export type StoreKey = 'filterInputSelect' | 'loginForm';
 export interface IAuthForm {
 	login: string;
 	password: string;
+	confirmPassword?: string;
 }
 
 export interface IAuthResponse {

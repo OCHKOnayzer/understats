@@ -1,6 +1,8 @@
 import { createMutation } from '@tanstack/svelte-query';
 import toast from 'svelte-french-toast';
-import { writable } from 'svelte/store';
+import { get, writable } from 'svelte/store';
+
+import { confirmPassword, currentModal, currentUser, isModalOpen } from '$src/stores/modalStore';
 
 import { authService } from './auth.service';
 
@@ -14,18 +16,41 @@ export const useAuth = (isReg: boolean) => {
 
 	const mutation = createMutation({
 		mutationKey: ['auth user'],
-		onMutate: async (data: IAuthForm) => {
-			authService.main(isReg ? 'register' : 'login', data);
+		mutationFn: async (data: IAuthForm) => {
+			const { password } = get(form);
+			if (get(currentModal) === 'reg' && password !== get(confirmPassword)) {
+				throw new Error('Пароли не совпадают');
+			}
+
+			const response = await toast.promise(authService.main(isReg ? 'register' : 'login', data), {
+				loading: 'Вход...',
+				success: 'Успешная авторизация!',
+				error: 'Ошибка авторизации'
+			});
+
+			if (response.data) {
+				currentUser.set(response.data);
+			}
+
+			return response;
 		},
-		onSuccess: (data) => {
+		onSuccess: async (response) => {
 			form.update(() => ({
 				login: '',
 				password: ''
 			}));
-			console.log(data);
-			toast.success('Успешная авторизация');
+			currentModal.set('');
+			isModalOpen.set(false);
+
+			const profile = await authService.profile();
+			if (profile?.data) {
+				currentUser.update((user) => ({
+					...user,
+					...profile.data
+				}));
+			}
 		},
-		onError: (error) => {
+		onError: async (error: any) => {
 			if (error.message) {
 				toast.error(error.message);
 			} else {

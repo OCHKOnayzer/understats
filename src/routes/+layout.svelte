@@ -1,8 +1,9 @@
 <script>
 import { ParaglideJS } from '@inlang/paraglide-sveltekit';
+import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 import { onMount } from 'svelte';
 import { waitLocale } from 'svelte-i18n';
-import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
+import { Toaster } from 'svelte-french-toast';
 
 import Container from '$components/providers/container/Container.svelte';
 import Menu from '$components/ui/menu/Menu.svelte';
@@ -12,8 +13,8 @@ import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
 import { isModalOpen } from '$src/stores/modalStore';
 import '$src/styles/fonts.css';
 
-import { page } from '$app/stores';
 import { browser } from '$app/environment';
+import { page } from '$app/stores';
 import '../app.css';
 
 let isLocaleReady = false;
@@ -43,7 +44,9 @@ const queryClient = new QueryClient({
 					<Menu />
 
 					<div class="mainContent">
-						<AuthModal />
+						{#if $isModalOpen}
+							<AuthModal />
+						{/if}
 						{#if !routesWithoutHeader.includes($page.url.pathname)}
 							<Header />
 						{/if}
@@ -54,6 +57,8 @@ const queryClient = new QueryClient({
 					<p style="color: white; text-align: center; margin-top: 20%;">Loading translations...</p>
 				{/if}
 			</main>
+
+			<Toaster />
 		</Container>
 	</ParaglideJS>
 </QueryClientProvider>

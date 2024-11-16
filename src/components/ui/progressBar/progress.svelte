@@ -7,8 +7,6 @@ import { t } from 'svelte-i18n';
 let { progress = 15 } = $$props as ProgressInterface;
 
 const currentProgress = (progress / 20) * 100;
-
-console.log(currentProgress);
 </script>
 
 <div class="progressWrapper">

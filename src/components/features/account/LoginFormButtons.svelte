@@ -1,11 +1,11 @@
 <script lang="ts">
 import { Dialog } from 'bits-ui';
+import { get } from 'svelte/store';
 
 import Button from '$components/ui/button/button.svelte';
 import * as m from '$m';
 import { accountIsSuccess, accounts, LoginForm } from '$stores/store';
 import { formatDate } from '$utils/utils';
-import { get } from 'svelte/store';
 
 const handleConnect = async () => {
 	const { login, bookmaker, password } = get(LoginForm);
@@ -31,7 +31,6 @@ const handleConnect = async () => {
 	setTimeout(() => {
 		accountIsSuccess.set(true);
 	}, 0);
-
 };
 </script>
 

@@ -1,6 +1,7 @@
 import { axiosClassic, axiosWithAuth } from '$src/api/api.interceptors';
+import { currentUser } from '$src/stores/modalStore';
 
-import { removeAccessToken } from './auth-token.service';
+import { removeAccessToken, setAccessToken } from './auth-token.service';
 
 import type { IAuthForm, IAuthResponse } from '$src/types/types';
 
@@ -8,14 +9,20 @@ class AuthService {
 	async main(type: 'login' | 'register', data: IAuthForm) {
 		try {
 			const response = await axiosClassic<IAuthResponse>({
-				url: `https://dev-api-gateway-v1.sntmq.1keep.bet/api/auth/${type}`,
+				url: `${process.env.SERVER_URL}/auth/${type}`,
 				method: 'POST',
 				data
 			});
-			return response;
+
+			if (response.data.accessToken) {
+				setAccessToken(response.data.accessToken);
+				return response;
+			}
+
+			throw new Error('Токен не получен');
 		} catch (error: any) {
-			console.error('Request error:', error.message);
-			throw new Error('Не удалось подключиться к серверу. Проверьте доступность сервиса.');
+			const errorMessage = error.response?.data?.message || 'Не удалось подключиться к серверу. Проверьте доступность сервиса.';
+			throw new Error(errorMessage);
 		}
 	}
 
@@ -23,18 +30,23 @@ class AuthService {
 		try {
 			await axiosWithAuth.post('/auth/logout');
 			removeAccessToken();
+			currentUser.set(null);
 		} catch (error) {
 			console.error('Logout error:', error);
 			removeAccessToken();
+			currentUser.set(null);
 		}
 	}
 
 	async profile() {
 		try {
-			return await axiosWithAuth.get('/auth/me');
+			const response = await axiosWithAuth.get('/auth/me');
+			if (response.data) {
+				currentUser.set(response.data);
+			}
+			return response;
 		} catch (error) {
-			console.error('Logout error:', error);
-			removeAccessToken();
+			console.error('Profile error:', error);
 			return null;
 		}
 	}

@@ -13,31 +13,23 @@ import SocialContainer from '../social/SocialContainer.svelte';
 
 const { form, mutation } = useAuth(false);
 
-let formData = {
-	login: '',
-	password: ''
-};
-
-const loginUser = (data) => {
-	$mutation.mutate(formData);
-	console.log('Form Data:', formData);
+const loginUser = () => {
+	$mutation.mutateAsync($form);
 };
 </script>
 
-<form
-	class="form_wrapper"
-	on:submit|preventDefault={loginUser}>
+<form class="form_wrapper">
 	<FormTitle modalActie={'social.sign_in_title'} />
 	<InputWrapper
 		default_type={'text'}
 		title_wrapper={$t('social.send_email')}
 		show_clear={false}
-		bind:value={formData.login} />
+		bind:value={$form.login} />
 	<InputWrapper
 		default_type={'password'}
 		title_wrapper={$t('social.send_password')}
 		show_clear={true}
-		bind:value={formData.password} />
+		bind:value={$form.password} />
 	<SocialContainer />
 	<div class="switch_container">
 		<SwitchButton
@@ -49,7 +41,9 @@ const loginUser = (data) => {
 	</div>
 	<div class="aprove_wrapper">
 		<CancelButton onUserText={'other.cancel'} />
-		<UserAprove onUserText={'social.sign_in'} />
+		<UserAprove
+			onUserText={'social.sign_in'}
+			onUserAction={loginUser} />
 	</div>
 </form>
 
