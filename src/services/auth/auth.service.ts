@@ -32,7 +32,6 @@ class AuthService {
 			removeAccessToken();
 			currentUser.set(null);
 		} catch (error) {
-			console.error('Logout error:', error);
 			removeAccessToken();
 			currentUser.set(null);
 		}
@@ -46,7 +45,6 @@ class AuthService {
 			}
 			return response;
 		} catch (error) {
-			console.error('Profile error:', error);
 			return null;
 		}
 	}
