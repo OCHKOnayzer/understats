@@ -5,7 +5,7 @@ import type { IApiError } from '$src/types/types';
 export class ApiError extends Error {
 	constructor(message: string) {
 		super(message);
-		this.name = 'ApiError';
+		this.name = 'Ошибка';
 	}
 }
 
@@ -18,15 +18,15 @@ export const handleAxiosError = (error: unknown) => {
 
 			switch (status) {
 				case 400:
-					throw new ApiError(data.errors ? `Validation failed: ${data.errors.map((e) => e.message).join(', ')}` : data.message);
+					throw new ApiError(data.errors ? `${data.errors.map((e) => e.message).join(', ')}` : data.message);
 				case 401:
-					throw new ApiError('Authentication required');
+					throw new ApiError('Неверный пароль');
 				case 404:
-					throw new ApiError('Resource not found');
+					throw new ApiError('Неверная почта');
 				case 409:
-					throw new ApiError('Resource already exists');
+					throw new ApiError('Аккаунт с такой почтой уже существует');
 				default:
-					throw new ApiError(data.message || 'An unexpected error occurred');
+					throw new ApiError(data.message || '');
 			}
 		}
 

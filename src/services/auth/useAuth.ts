@@ -53,8 +53,6 @@ export const useAuth = (isReg: boolean) => {
 		onError: async (error: any) => {
 			if (error.message) {
 				toast.error(error.message);
-			} else {
-				toast.error('Ошибка при авторизации');
 			}
 		}
 	});
