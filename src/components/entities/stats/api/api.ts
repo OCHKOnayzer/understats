@@ -8,6 +8,10 @@ interface FilterQuery {
 	tab: string;
 	withoutAggregation: boolean;
 	sports: string[];
+	bookmakers: string[];
+	comands: string[];
+	accounts: string[];
+	tours: string[];
 	betType: string[];
 	betResult?: string[];
 	status?: string[];
@@ -31,6 +35,10 @@ export async function fetchFilteredData(filters: FilterState) {
 		tab: filters.activeTab,
 		withoutAggregation: filters.withoutAggregation,
 		sports: filters.selectedSports,
+		bookmakers: filters.selectedBookmakers,
+		comands: filters.selectedComands,
+		accounts: filters.selectedAccounts,
+		tours: filters.selectedTours,
 		betType: filters.betType,
 		betResult: filters.betResult || undefined,
 		status: filters.betStatus,

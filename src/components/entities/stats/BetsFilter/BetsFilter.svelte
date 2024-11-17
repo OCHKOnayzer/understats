@@ -5,8 +5,9 @@ import BetFilters from '$src/components/ui/betFilters/BetFilters.svelte';
 import Calendar from '$src/components/ui/calendar/Calendar.svelte';
 import FilterTabs from '$src/components/ui/filterTabs/filterTabs.svelte';
 import SportsList from '$src/components/ui/sportsList/SportsList.svelte';
-import { filterStore } from '$src/stores/filterStore';
+import { accountsList, accountsListMain, bookmakersList, bookmakersListMain, comandList, comandListMain, filterStore, sportList, sportListMain, tourList, tourListMain } from '$src/stores/filterStore';
 
+import AccordionList from '$src/components/features/stats/AccordionList/AccordionList.svelte';
 import { fetchFilteredData } from '../api/api';
 
 let isOpen = false;
@@ -32,6 +33,8 @@ async function applyFilters() {
 		toggleSidebar();
 	}
 }
+
+
 </script>
 
 <button
@@ -70,12 +73,27 @@ async function applyFilters() {
 				type="checkbox"
 				checked={$filterStore.withoutAggregation}
 				on:change={() => filterStore.toggleAggregation()} />
+			<!-- svelte-ignore element_invalid_self_closing_tag -->
 			<span class="checkbox-custom" />
 			<span class="label-text">Без агрегации</span>
 		</label>
 
-		<SportsList />
 		<BetFilters />
+
+		<AccordionList title={'Спорт'}>
+			<SportsList setFilter={filterStore.setSelectedSports} selectedFilter={filterStore.toggleSport} selectedList={$filterStore.selectedSports} allItemsStore={sportList} mainItemsStore={sportListMain} />
+		</AccordionList>
+
+		<AccordionList title={'Букмекеры'}>
+			<SportsList setFilter={filterStore.setSelectedBookmakers} selectedFilter={filterStore.toggleBookmaker} allItemsStore={bookmakersList} selectedList={$filterStore.selectedBookmakers} mainItemsStore={bookmakersListMain} title={'Букмекеры'}/>
+		</AccordionList>
+			
+
+		<SportsList setFilter={filterStore.setSelectedAccounts} selectedFilter={filterStore.toggleAccount} selectedList={$filterStore.selectedAccounts} allItemsStore={accountsList} mainItemsStore={accountsListMain} title={'Аккаунты'}/>
+
+		<SportsList setFilter={filterStore.setSelectedComands} selectedFilter={filterStore.toggleComand} selectedList={$filterStore.selectedComands} allItemsStore={comandList} mainItemsStore={comandListMain} title={'Команды'}/>
+
+		<SportsList setFilter={filterStore.setSelectedTours} selectedFilter={filterStore.toggleTour} selectedList={$filterStore.selectedTours} allItemsStore={tourList} mainItemsStore={tourListMain} title={'Турниры'}/>
 
 		<div class="action-buttons">
 			<button
