@@ -1,10 +1,10 @@
 import { writable } from 'svelte/store';
 
-export const isModalOpen = writable(true);
+export const isModalOpen = writable(false);
 
 export const isLogOutModal = writable(false);
 
-export const modalComponent = writable<'authModal' | 'LeaveContainer' | null>('authModal');
+export const modalComponent = writable<'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | null>(null);
 
 export const currentModal = writable('reg');
 export const isChatModalOpen = writable(false);
@@ -23,7 +23,7 @@ export const toggleInputType = () => {
 	inputType.update((type) => (type === 'password' ? 'text' : 'password'));
 };
 
-export const openModal = (component: 'authModal' | 'LeaveContainer') => {
+export const openModal = (component: 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal') => {
 	isModalOpen.set(true);
 	modalComponent.set(component);
 	document.body.style.overflow = 'hidden';

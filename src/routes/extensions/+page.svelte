@@ -2,6 +2,8 @@
 import { t } from 'svelte-i18n';
 
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
+import DownloadSection from '$src/components/ui/extSections/DownloadSection.svelte';
+import QuesSection from '$src/components/ui/extSections/QuesSection.svelte';
 
 import Slider from '../../components/ui/slider/extensionsSlider/Slider.svelte';
 import DownloadElement from '../../components/ui/downloadElement/DownloadElement.svelte';
@@ -25,6 +27,10 @@ selectHeaderTitle('extensions.extensions');
 				src="assets/extension/wallpaper.png"
 				alt="" />
 		</div>
+		<div class="section_wrapper">
+			<DownloadSection />
+			<QuesSection />
+		</div>
 	</div>
 </div>
 
@@ -32,12 +38,24 @@ selectHeaderTitle('extensions.extensions');
 .pageWrapper {
 	width: 98%;
 	margin: 0 auto;
-	padding-bottom: 10px;
 	box-sizing: border-box;
 }
 .extensions_wallpaper {
 	width: 100%;
 	border-radius: 5px;
 	margin-top: 10px;
+	height: 28vh;
+}
+.extensions_wallpaper img {
+	height: 100%;
+	width: 100%;
+}
+.section_wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-top: 15px;
+	height: 59vh;
+	color: white;
 }
 </style>

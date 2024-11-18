@@ -1,56 +1,69 @@
 interface MenuInterface {
 	name: string;
 	image: string;
+	props: string;
 }
 export const MenuElement: MenuInterface[] = [
 	{
 		name: 'faq.main_content',
-		image: ''
+		image: '',
+		props: ''
 	},
 	{
 		name: 'faq.awards',
-		image: ''
+		image: '',
+		props: ''
 	},
 	{
 		name: 'faq.profile',
-		image: ''
+		image: '',
+		props: ''
 	},
 	{
 		name: 'faq.interactions',
-		image: ''
+		image: '',
+		props: 'browser'
 	},
 	{
 		name: 'faq.analytics',
-		image: ''
+		image: '',
+		props: ''
 	},
 	{
 		name: 'faq.units',
-		image: ''
+		image: '',
+		props: ''
 	},
 	{
 		name: 'faq.profile_block',
-		image: ''
+		image: '',
+		props: ''
 	},
 	{
 		name: 'faq.useful_tips',
-		image: ''
+		image: '',
+		props: ''
 	}
 ];
 export const SecretMenuElemnt: MenuInterface[] = [
 	{
 		name: 'faq.main_content',
-		image: ''
+		image: '',
+		props: ''
 	},
 	{
 		name: 'faq.awards',
-		image: ''
+		image: '',
+		props: ''
 	},
 	{
 		name: 'faq.profile',
-		image: ''
+		image: '',
+		props: ''
 	},
 	{
 		name: 'faq.interactions',
-		image: ''
+		image: '',
+		props: ''
 	}
 ];

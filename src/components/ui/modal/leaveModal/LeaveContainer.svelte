@@ -1,8 +1,8 @@
 <script>
 import UserAprove from '../../button/userAprove/UserAprove.svelte';
 import CancelButton from '../../button/userAprove/CancelButton.svelte';
+import ModalTitle from '../ModalTitle.svelte';
 
-import LeaveModalTitle from './title/LeaveModalTitle.svelte';
 import LeaveModalContent from './leaveContent/LeaveModalContent.svelte';
 
 const LeaveAprove = () => {
@@ -13,7 +13,7 @@ const LeaveAprove = () => {
 <div class="leave_container">
 	<div class="leave_modal">
 		<div class="leave_wrapper">
-			<LeaveModalTitle />
+			<ModalTitle />
 			<LeaveModalContent />
 			<div class="button_wrapper">
 				<CancelButton onUserText="other.cancel" />
@@ -39,6 +39,7 @@ const LeaveAprove = () => {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border-radius: 5px;
 }
 .leave_wrapper {
 	width: 90%;

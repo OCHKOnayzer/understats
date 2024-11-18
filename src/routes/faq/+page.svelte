@@ -1,4 +1,6 @@
 <script>
+import { t } from 'svelte-i18n';
+
 import SectionsFaq from '$src/components/ui/sectionsFaq/SectionsFaq.svelte';
 import FaqConteiner from '$src/components/ui/faqMenu/faqConteiner.svelte';
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
@@ -6,7 +8,7 @@ selectHeaderTitle('faq.faq');
 </script>
 
 <svelte:head>
-	<title>{'hello world'}</title>
+	<title>{$t('faq.faq')}</title>
 	<meta
 		name="description"
 		content="About this app" />
