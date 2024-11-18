@@ -1,101 +1,134 @@
 <script lang="ts">
-import { filterStore } from '$src/stores/filterStore';
-import { type Writable } from 'svelte/store';
-
-
+import Icon from '@iconify/svelte';
+  import { type Writable } from 'svelte/store';
+  import { slide } from 'svelte/transition';
+  
   export let mainItemsStore: Writable<string[]>;
   export let allItemsStore: Writable<string[]>;
   export let title: string = 'Спорт';
   export let showAllButtonText: string = 'Показать все';
-  export let setFilter
-  export let selectedFilter
-  export let selectedList
-
+  export let setFilter;
+  export let selectedFilter;
+  export let selectedList;
+  
   let showSportsModal = false;
   let searchQuery = '';
   let previousSelections: string[] = [];
-
+  let isAccordionOpen = false;
+  
   function savePreviousSelections() {
     previousSelections = [...selectedList];
   }
-
+  
   function restoreSelections() {
     setFilter(previousSelections);
     showSportsModal = false;
   }
-
+  
+  function toggleAccordion() {
+    isAccordionOpen = !isAccordionOpen;
+  }
+  
   $: filteredSports = searchQuery 
     ? $allItemsStore.filter((sport) => sport.toLowerCase().includes(searchQuery.toLowerCase())) 
     : $allItemsStore;
-</script>
-
-<div class="sports-section">
-  <h2 class="section-title">{title}</h2>
-  <div class="sports-grid">
-    {#each $mainItemsStore as sport}
-      <button 
-        class="sport-button {selectedList.includes(sport) ? 'active' : ''}"
-        on:click={() => selectedFilter(sport)}>
-        {sport}
+  </script>
+  
+  <div class="sports-section">
+    <a class="accordion-header" on:click={toggleAccordion}>
+      <h2 class="section-title">{title}</h2>
+      <button class="accordion-toggle" class:active={isAccordionOpen}>
+        <Icon icon="solar:alt-arrow-up-linear" />
       </button>
-    {/each}
-    <button 
-      class="sport-button show-all" 
-      on:click={() => {
-        savePreviousSelections();
-        showSportsModal = true;
-      }}>
-      {showAllButtonText} ({$allItemsStore.length})
-    </button>
-  </div>
-</div>
-
-{#if showSportsModal}
-  <div class="modal-overlay">
-    <div class="modal">
-      <div class="modal-header">
-        <h3>Виды спорта</h3>
-        <button class="close-button" on:click={() => showSportsModal = false}>✕</button>
-      </div>
-
-      <div class="search-container">
-        <input
-          type="text"
-          placeholder="Поиск..."
-          bind:value={searchQuery}
-          class="search-input"
-        />
-      </div>
-
-      <div class="sports-list">
-        {#each filteredSports as sport}
-          <label class="sport-item">
-            <input
-              type="checkbox"
-              checked={selectedList.includes(sport)}
-              on:change={() => selectedFilter(sport)}
-            />
-            <span class="sport-name">{sport}</span>
-          </label>
+    </a>
+  
+    {#if isAccordionOpen}
+      <div class="sports-grid" transition:slide>
+        {#each $mainItemsStore as sport}
+          <button 
+            class="sport-button {selectedList.includes(sport) ? 'active' : ''}"
+            on:click={() => selectedFilter(sport)}>
+            {sport}
+          </button>
         {/each}
+        <button 
+          class="sport-button show-all" 
+          on:click={() => {
+            savePreviousSelections();
+            showSportsModal = true;
+          }}>
+          {showAllButtonText} ({$allItemsStore.length})
+        </button>
       </div>
-
-      <div class="modal-footer">
-        <button class="cancel-button" on:click={restoreSelections}>
-          Отмена
-        </button>
-        <button class="apply-button" on:click={() => showSportsModal = false}>
-          Применить ({selectedList.length})
-        </button>
+    {/if}
+  </div>
+  
+  {#if showSportsModal}
+    <div class="modal-overlay">
+      <div class="modal">
+        <div class="modal-header">
+          <h3>Виды спорта</h3>
+          <button class="close-button" on:click={() => showSportsModal = false}>✕</button>
+        </div>
+  
+        <div class="search-container">
+          <input
+            type="text"
+            placeholder="Поиск..."
+            bind:value={searchQuery}
+            class="search-input"
+          />
+        </div>
+  
+        <div class="sports-list">
+          {#each filteredSports as sport}
+            <label class="sport-item">
+              <input
+                type="checkbox"
+                checked={selectedList.includes(sport)}
+                on:change={() => selectedFilter(sport)}
+              />
+              <span class="sport-name">{sport}</span>
+            </label>
+          {/each}
+        </div>
+  
+        <div class="modal-footer">
+          <button class="cancel-button" on:click={restoreSelections}>
+            Отмена
+          </button>
+          <button class="apply-button" on:click={() => showSportsModal = false}>
+            Применить ({selectedList.length})
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-{/if}
+  {/if}
 
 <style>
   .sports-section {
     margin: 32px 0;
   }
+
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .accordion-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .accordion-toggle.active {
+    transform: rotate(180deg);
+  }
+
   .section-title {
     font-size: 20px;
     font-weight: 600;
@@ -130,19 +163,6 @@ import { type Writable } from 'svelte/store';
     background: rgba(255, 255, 255, 0.05);
   }
   .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.75);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-
-  .modal-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -154,6 +174,7 @@ import { type Writable } from 'svelte/store';
     align-items: center;
     z-index: 1000;
   }
+
   .modal {
     background: #20242f;
     border-radius: 16px;
@@ -215,9 +236,9 @@ import { type Writable } from 'svelte/store';
     padding: 8px;
     border-radius: 8px;
   }
-  .sport-item:hover {
+  /* .sport-item:hover {
     background: #363a45;
-  }
+  } */
   .sport-name {
     color: white;
     font-size: 16px;

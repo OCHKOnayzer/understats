@@ -2,6 +2,6 @@
 import BetsItem from '$src/components/entities/stats/BetsItem/BetsItem.svelte';
 </script>
 
-<section>
+<section class="relative">
 	<BetsItem />
 </section>
