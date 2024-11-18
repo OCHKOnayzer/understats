@@ -68,6 +68,7 @@ export type StoreKey = 'filterInputSelect' | 'loginForm';
 export interface IAuthForm {
 	login: string;
 	password: string;
+	confirmPassword?: string;
 }
 
 export interface IAuthResponse {
@@ -90,4 +91,9 @@ export interface IApiError {
 
 export interface IAuthError extends IApiError {
 	errors?: IValidationError[];
+}
+
+export interface IAuthProfile {
+	id: string;
+	login: string;
 }

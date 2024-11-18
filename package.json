@@ -22,6 +22,8 @@
   },
   "dependencies": {
     "@inlang/paraglide-sveltekit": "0.11.1",
+    "@tanstack/svelte-query": "^5.59.20",
+    "axios": "^1.7.7",
     "bits-ui": "^0.21.16",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",

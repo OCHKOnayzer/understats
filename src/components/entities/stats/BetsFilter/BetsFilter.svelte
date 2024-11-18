@@ -24,7 +24,6 @@ async function applyFilters() {
 	try {
 		isLoading = true;
 		const data = await fetchFilteredData($filterStore);
-		console.log('Received filtered data:', data);
 		isOpen = false;
 	} catch (error) {
 		console.error('Failed to apply filters:', error);
