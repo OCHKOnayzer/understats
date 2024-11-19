@@ -1,26 +1,59 @@
 <script lang="ts">
-export let FAQIndex: number;
 import { t } from 'svelte-i18n';
-import { createEventDispatcher } from 'svelte';
+import { createEventDispatcher, onMount } from 'svelte';
 
 import { ActiveElemnts } from './activeElemnts';
+
+export let FAQIndex: number;
 
 let filteredElements = ActiveElemnts.filter((item) => item.index === FAQIndex);
 let activeIndex: number | null = null;
 
 const dispatch = createEventDispatcher();
 
+const getUrlParameter = (param: string): string | null => {
+	const urlParams = new URLSearchParams(window.location.search);
+	return urlParams.get(param);
+};
+
+const setActiveFromUrl = () => {
+	const browserParam = getUrlParameter('browser');
+	if (browserParam) {
+		const matchingElement = ActiveElemnts.find((item) => item.article === browserParam);
+		if (matchingElement) {
+			FAQIndex = matchingElement.index;
+			filteredElements = ActiveElemnts.filter((item) => item.index === FAQIndex);
+			activeIndex = ActiveElemnts.indexOf(matchingElement);
+
+			setActiveIndex(activeIndex, matchingElement.name, matchingElement.article);
+		}
+	}
+};
+
+onMount(() => {
+	setActiveFromUrl();
+	const browserParam = getUrlParameter('browser');
+	if (browserParam) {
+		const matchingElement = ActiveElemnts.find((item) => item.article === browserParam);
+		if (matchingElement) {
+			activeIndex = ActiveElemnts.indexOf(matchingElement);
+		}
+	}
+	console.log(activeIndex);
+});
+
 const setActiveIndex = (index: number, name: string, articleId: string) => {
 	activeIndex = index === activeIndex ? null : index;
 	dispatch('selectItem', { name, articleId });
 };
+console.log(activeIndex);
 </script>
 
 <div class="faqItemsWrapper">
-	{#each filteredElements as item, index}
+	{#each filteredElements as item}
 		<button
-			class="faqItem {activeIndex === index ? 'active' : ''}"
-			on:click={() => setActiveIndex(index, item.name, item.article)}>
+			class="faqItem {activeIndex === ActiveElemnts.indexOf(item) ? 'active' : ''}"
+			on:click={() => setActiveIndex(ActiveElemnts.indexOf(item), item.name, item.article)}>
 			{$t(item.name)}
 		</button>
 	{/each}

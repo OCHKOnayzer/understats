@@ -1,13 +1,17 @@
 import { derived, writable } from 'svelte/store';
 
+export const isModalOpen = writable(false);
+
+export const isLogOutModal = writable(false);
+
+export const modalComponent = writable<'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | null>(null);
+
 import { getAccessToken, removeAccessToken } from '$src/services/auth/auth-token.service';
 
 import type { IAuthResponse } from '$src/types/types';
 
-export const isModalOpen = writable(getAccessToken() ? false : true);
+// export const isModalOpen = writable(getAccessToken() ? false : true);
 
-export const isLogOutModal = writable(false);
-export const modalComponent = writable<'authModal' | 'LeaveContainer' | null>('authModal');
 export const currentModal = writable('reg');
 export const isChatModalOpen = writable(false);
 export const isChangeTypeText = writable(false);
@@ -23,7 +27,15 @@ export const switchRecover = () => currentModal.set('recover');
 export const switchReFinish = () => currentModal.set('ReFinish');
 export const switchText = () => isChangeTypeText.update((value) => !value);
 
-export const openModal = (component: 'authModal' | 'LeaveContainer') => {
+export const leaveModalOpen = () => {};
+
+export const toggleInputType = () => {
+	inputType.update((type) => (type === 'password' ? 'text' : 'password'));
+};
+
+export const openModal = (component: 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal') => {
+
+
 	isModalOpen.set(true);
 	modalComponent.set(component);
 	document.body.style.overflow = 'hidden';
@@ -44,8 +56,4 @@ export const logout = () => {
 	removeAccessToken();
 	isModalOpen.set(true);
 	currentModal.set('login');
-};
-
-export const toggleInputType = () => {
-	inputType.update((type) => (type === 'password' ? 'text' : 'password'));
 };

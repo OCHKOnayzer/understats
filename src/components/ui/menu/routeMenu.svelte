@@ -2,30 +2,28 @@
 import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 
-let currentPath = window.location.pathname;
+import { afterNavigate } from '$app/navigation';
+
+let currentPath = '';
 
 onMount(() => {
-	const updatePath = () => {
-		currentPath = window.location.pathname;
-	};
+	currentPath = window.location.pathname;
+});
 
-	window.addEventListener('popstate', updatePath);
-
-	return () => {
-		window.removeEventListener('popstate', updatePath);
-	};
+afterNavigate(() => {
+	currentPath = window.location.pathname;
 });
 </script>
 
 <div class="menu_items">
 	<a
-		href="/h1"
+		href="/bet"
 		class="card_item"
-		class:selected={currentPath === '/h1'}>
+		class:selected={currentPath === '/bet'}>
 		<div class="image_box">
 			<img
-				src="assets/menu/menuElements/bet.png"
-				alt="" />
+				src={currentPath === '/bet' ? 'assets/menu/active/bet.png' : 'assets/menu/menuElements/bet.png'}
+				alt={$t('menu.Place_bet')} />
 		</div>
 		<span class="item_name">{$t('menu.Place_bet')}</span>
 	</a>
@@ -36,22 +34,10 @@ onMount(() => {
 		class:selected={currentPath === '/'}>
 		<div class="image_box">
 			<img
-				src="assets/menu/menuElements/home.png"
-				alt="Домашняя" />
+				src={currentPath === '/' ? 'assets/menu/active/home.png' : 'assets/menu/menuElements/home.png'}
+				alt={$t('menu.Main')} />
 		</div>
 		<span class="item_name">{$t('menu.Main')}</span>
-	</a>
-
-	<a
-		href="/accounts"
-		class="card_item"
-		class:selected={currentPath === '/accounts'}>
-		<div class="image_box">
-			<img
-				src="assets/menu/menuElements/users.png"
-				alt="Профиль" />
-		</div>
-		<span class="item_name">{$t('menu.Accounts')}</span>
 	</a>
 
 	<a
@@ -60,10 +46,22 @@ onMount(() => {
 		class:selected={currentPath === '/stats'}>
 		<div class="image_box">
 			<img
-				src="assets/menu/menuElements/FAQ.png"
-				alt="Статистика" />
+				src={currentPath === '/stats' ? 'assets/menu/active/FAQ.png' : 'assets/menu/menuElements/FAQ.png'}
+				alt={$t('menu.Stats')} />
 		</div>
 		<span class="item_name">{$t('menu.Stats')}</span>
+	</a>
+
+	<a
+		href="/accounts"
+		class="card_item"
+		class:selected={currentPath === '/accounts'}>
+		<div class="image_box">
+			<img
+				src={currentPath === '/accounts' ? 'assets/menu/active/users.png' : 'assets/menu/menuElements/users.png'}
+				alt={$t('menu.Accounts')} />
+		</div>
+		<span class="item_name">{$t('menu.Accounts')}</span>
 	</a>
 
 	<a
@@ -72,8 +70,8 @@ onMount(() => {
 		class:selected={currentPath === '/extensions'}>
 		<div class="image_box">
 			<img
-				src="assets/menu/menuElements/mod.png"
-				alt="Моды" />
+				src={currentPath === '/extensions' ? 'assets/menu/active/mod.png' : 'assets/menu/menuElements/mod.png'}
+				alt={$t('menu.Mods')} />
 		</div>
 		<span class="item_name">{$t('menu.Mods')}</span>
 	</a>
@@ -84,8 +82,8 @@ onMount(() => {
 		class:selected={currentPath === '/setings'}>
 		<div class="image_box">
 			<img
-				src="assets/menu/menuElements/setings.png"
-				alt="Настройки" />
+				src={currentPath === '/setings' ? 'assets/menu/active/setings.png' : 'assets/menu/menuElements/setings.png'}
+				alt={$t('menu.Setings')} />
 		</div>
 		<span class="item_name">{$t('menu.Setings')}</span>
 	</a>
@@ -96,34 +94,10 @@ onMount(() => {
 		class:selected={currentPath === '/faq'}>
 		<div class="image_box">
 			<img
-				src="assets/menu/menuElements/FAQ.png"
-				alt="Настройки" />
+				src={currentPath === '/faq' ? 'assets/menu/active/FAQ.png' : 'assets/menu/menuElements/FAQ.png'}
+				alt={$t('menu.Help')} />
 		</div>
 		<span class="item_name">{$t('menu.Help')}</span>
-	</a>
-
-	<a
-		href="/news"
-		class="card_item"
-		class:selected={currentPath === '/news'}>
-		<div class="image_box">
-			<img
-				src="assets/menu/menuElements/news.png"
-				alt="Новости" />
-		</div>
-		<span class="item_name">{$t('menu.News')}</span>
-	</a>
-
-	<a
-		href="/chat"
-		class="card_item"
-		class:selected={currentPath === '/chat'}>
-		<div class="image_box">
-			<img
-				src="assets/menu/menuElements/chat.png"
-				alt="Чат" />
-		</div>
-		<span class="item_name">{$t('menu.Chat')}</span>
 	</a>
 </div>
 

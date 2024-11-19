@@ -8,23 +8,21 @@ selectHeaderTitle('faq.faq');
 </script>
 
 <svelte:head>
-	<title>{'hello world'}</title>
+	<title>{$t('faq.faq')}</title>
 	<meta
 		name="description"
 		content="About this app" />
 </svelte:head>
 
-<div class="text-column">
-	<div class="mainContent">
-		<div class="progressWrapper">
-			<SectionsFaq />
-		</div>
-		<FaqConteiner />
+<div class="mainContent">
+	<div class="pageWrapper">
+		<SectionsFaq />
 	</div>
+	<FaqConteiner />
 </div>
 
 <style>
-.progressWrapper {
+.pageWrapper {
 	width: 98%;
 	margin: 0 auto;
 	padding-bottom: 10px;

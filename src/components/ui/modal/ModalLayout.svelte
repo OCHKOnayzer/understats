@@ -5,13 +5,19 @@ import { isModalOpen, modalComponent } from '$src/stores/modalStore';
 
 import authModal from './authModal/authModal.svelte';
 import LeaveContainer from './leaveModal/LeaveContainer.svelte';
+import FailedModal from './payModal/FailedModal.svelte';
+import SuccessfulModal from './payModal/SuccessfulModal.svelte';
+import SorryModal from './sorryModal/SorryModal.svelte';
 
 onDestroy(() => {
 	document.body.style.overflow = '';
 });
 const components = {
 	authModal,
-	LeaveContainer
+	LeaveContainer,
+	FailedModal,
+	SuccessfulModal,
+	SorryModal
 };
 </script>
 
@@ -31,8 +37,5 @@ const components = {
 	overflow-y: unset;
 	overflow-x: hidden;
 	backdrop-filter: blur(3px);
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 </style>
