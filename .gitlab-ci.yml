@@ -53,7 +53,7 @@ deploy:
     - ls -l ~/.ssh/id_rsa
     - ssh-keygen -yf ~/.ssh/id_rsa > /dev/null
     - ssh -v dev@38.180.163.160 "echo 'SSH connection successful'"
-    - scp -r public/* dev@38.180.163.160:/path/to/deploy/
+    - scp -r public/* dev@38.180.163.160:/var/www/understat/frontend
     - scp nginx.conf dev@38.180.163.160:/etc/nginx/sites-available/dev.sntmq.1keep.bet
     - ssh dev@38.180.163.160 'sudo ln -sf /etc/nginx/sites-available/dev.sntmq.1keep.bet /etc/nginx/sites-enabled/dev.sntmq.1keep.bet'
     - ssh dev@38.180.163.160 'sudo systemctl reload nginx'
