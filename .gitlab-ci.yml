@@ -16,6 +16,7 @@ cache:
 build:
   environment:
     name: staging1
+  when: manual
   only:
     - main
     - dev
