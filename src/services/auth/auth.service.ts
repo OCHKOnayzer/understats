@@ -18,11 +18,10 @@ class AuthService {
 				setAccessToken(response.data.accessToken);
 				return response;
 			}
-
-			throw new Error('Токен не получен');
 		} catch (error: any) {
 			const errorMessage = error.response?.data?.message || 'Не удалось подключиться к серверу. Проверьте доступность сервиса.';
-			throw new Error(errorMessage);
+			console.log(error);
+			throw new Error(error);
 		}
 	}
 
@@ -39,7 +38,7 @@ class AuthService {
 
 	async profile() {
 		try {
-			const response = await axiosWithAuth.get(`${process.env.SERVER_URL}/auth/me`);
+			const response = await axiosWithAuth.get('/auth/me');
 			if (response.data) {
 				currentUser.set(response.data);
 			}
