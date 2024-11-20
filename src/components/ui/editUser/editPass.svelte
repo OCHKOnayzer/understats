@@ -134,7 +134,7 @@ const clearField = (field: FieldType) => {
 				class="selected_element input_element"
 				type="password"
 				bind:value={oldPassword}
-				placeholder="****_****_****" />
+				placeholder="*****" />
 		</div>
 		<div class="setings_item item-w">
 			<div class="item_settings_info">
@@ -150,7 +150,7 @@ const clearField = (field: FieldType) => {
 				class="selected_element input_element"
 				type="password"
 				bind:value={newPassword}
-				placeholder="****_****_****" />
+				placeholder="*****" />
 		</div>
 	</div>
 	<div class="updataBtn">
@@ -159,11 +159,11 @@ const clearField = (field: FieldType) => {
 			on:click={changePass}>
 			{$t('other.save')}
 		</button>
-		<button
-			class="btn_upd"
-			on:click={clearInputs}>
-			{$t('other.cancel')}
-		</button>
+		<!--		<button-->
+		<!--			class="btn_upd"-->
+		<!--			on:click={clearInputs}>-->
+		<!--			{$t('other.cancel')}-->
+		<!--		</button>-->
 	</div>
 </div>
 

@@ -9,7 +9,7 @@ class AuthService {
 	async main(type: 'login' | 'register', data: IAuthForm) {
 		try {
 			const response = await axiosClassic<IAuthResponse>({
-				url: `${process.env.SERVER_URL}/auth/${type}`,
+				url: `${process.env.SERVER_URL}/api/auth/${type}`,
 				method: 'POST',
 				data
 			});
@@ -28,7 +28,7 @@ class AuthService {
 
 	async logout() {
 		try {
-			await axiosWithAuth.post('/auth/logout');
+			await axiosWithAuth.post('/api/auth/logout');
 			removeAccessToken();
 			currentUser.set(null);
 		} catch (error) {
@@ -39,7 +39,7 @@ class AuthService {
 
 	async profile() {
 		try {
-			const response = await axiosWithAuth.get('/auth/me');
+			const response = await axiosWithAuth.get(`${process.env.SERVER_URL}/api/auth/me`);
 			if (response.data) {
 				currentUser.set(response.data);
 			}

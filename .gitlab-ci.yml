@@ -1,0 +1,59 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  GIT_DEPTH: 1
+  PNPM_HOME: $CI_PROJECT_DIR/.pnpm
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .pnpm-store
+
+build:
+  environment:
+    name: staging1
+  only:
+    - main
+    - dev
+    - deploy
+  tags:
+    - runner1
+  stage: build
+  script:
+    - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
+    - pnpm install --store .pnpm-store
+    - echo "SERVER_URL=$SERVER_URL" > .env
+    - pnpm build
+  artifacts:
+    paths:
+      - public/
+    expire_in: 1 hour
+
+deploy:
+  environment:
+    name: staging1
+  tags:
+    - runner1
+  stage: deploy
+  variables:
+    GIT_STRATEGY: fetch
+  only:
+    - dev
+    - deploy
+  before_script:
+    - apk add --no-cache openssh-client dos2unix
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | base64 -d > ~/.ssh/id_rsa
+    - dos2unix ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-keyscan -H 38.180.163.160 >> ~/.ssh/known_hosts
+  script:
+    - ls -l ~/.ssh/id_rsa
+    - ssh-keygen -yf ~/.ssh/id_rsa > /dev/null
+    - ssh -v dev@38.180.163.160 "echo 'SSH connection successful'"
+    - scp -r public/* dev@38.180.163.160:/path/to/deploy/
+    - scp nginx.conf dev@38.180.163.160:/etc/nginx/sites-available/dev.sntmq.1keep.bet
+    - ssh dev@38.180.163.160 'sudo ln -sf /etc/nginx/sites-available/dev.sntmq.1keep.bet /etc/nginx/sites-enabled/dev.sntmq.1keep.bet'
+    - ssh dev@38.180.163.160 'sudo systemctl reload nginx'
