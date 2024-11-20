@@ -16,7 +16,7 @@ import { extItems } from './extItems';
 				<div class="ext_card">
 					<div class="card_title">
 						<img
-							src={items.image}
+							src="{items.image}"
 							alt="" />
 						{$t(items.name)}
 					</div>

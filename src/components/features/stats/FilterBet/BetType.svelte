@@ -5,14 +5,14 @@ import { filterStore } from '$src/stores/filterStore';
 <div class="bet-type-container">
 	<button
 		class="bet-type"
-		class:active={$filterStore.betType.includes('ordinary')}
-		on:click={() => filterStore.toggleBetType('ordinary')}>
+		class:active="{$filterStore.betType.includes('ordinary')}"
+		on:click="{() => filterStore.toggleBetType('ordinary')}">
 		Ординар
 	</button>
 	<button
 		class="bet-type"
-		class:active={$filterStore.betType.includes('express')}
-		on:click={() => filterStore.toggleBetType('express')}>
+		class:active="{$filterStore.betType.includes('express')}"
+		on:click="{() => filterStore.toggleBetType('express')}">
 		Экспресс
 	</button>
 </div>

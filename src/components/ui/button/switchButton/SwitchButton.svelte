@@ -11,13 +11,13 @@ export let switch_text: string;
 
 <div class="switch_wrapper">
 	<button
-		on:click={() => {
+		on:click="{() => {
 			if (typeof switch_modal === 'function') {
 				switch_modal();
 			} else {
 				console.error('switch_modal is not a function', switch_modal);
 			}
-		}}>
+		}}">
 		{$t(switch_text)}
 	</button>
 </div>

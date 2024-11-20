@@ -27,7 +27,7 @@ async function loadArticleComponent(article2: string) {
 </script>
 
 <div class="faqSection">
-	<FaqMenu on:selectItemFromFaqMenu={handleSelectItemFromFaqMenu} />
+	<FaqMenu on:selectItemFromFaqMenu="{handleSelectItemFromFaqMenu}" />
 
 	<div class="faqChapter">
 		{#if selectedItemName && ArticleComponent}
@@ -38,8 +38,8 @@ async function loadArticleComponent(article2: string) {
 				</header>
 
 				<svelte:component
-					this={ArticleComponent}
-					title={selectedItemName}
+					this="{ArticleComponent}"
+					title="{selectedItemName}"
 					content="Текст статьи" />
 			</div>
 		{:else}

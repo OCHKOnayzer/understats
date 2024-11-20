@@ -200,7 +200,7 @@
 		"login_create_account": "Sign In / Create Account"
 	},
 	"leave_modal": {
-  "leave_acc": "Log out of your account?",
-  "leave_mail": "The email will appear in the specified mailbox within five minutes"
-}
+		"leave_acc": "Log out of your account?",
+		"leave_mail": "The email will appear in the specified mailbox within five minutes"
+	}
 }

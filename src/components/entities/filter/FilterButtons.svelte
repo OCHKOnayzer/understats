@@ -23,5 +23,5 @@ function clearFilters() {
 	<Button variant="outlineRounded">{m.show()}</Button>
 	<Button
 		variant="outlineRoundedWhite"
-		on:click={clearFilters}>{m.reset()}</Button>
+		on:click="{clearFilters}">{m.reset()}</Button>
 </div>

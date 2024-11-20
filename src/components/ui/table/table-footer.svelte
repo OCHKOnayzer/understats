@@ -10,7 +10,7 @@ export { className as class };
 </script>
 
 <tfoot
-	class={cn('bg-primary font-medium text-white', className)}
+	class="{cn('bg-primary font-medium text-white', className)}"
 	{...$$restProps}>
 	<slot />
 </tfoot>

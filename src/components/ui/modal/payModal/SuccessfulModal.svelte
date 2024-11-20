@@ -13,7 +13,7 @@ import PayTitle from './payTitle/PayTitle.svelte';
 				<img
 					src="assets/pay/Succ.svg"
 					alt="" />
-				<PayTitle PayText={'other.paySuss'} />
+				<PayTitle PayText="{'other.paySuss'}" />
 			</div>
 			<div class="button_wrapper">
 				<CloseSucc onUserText="other.okay" />

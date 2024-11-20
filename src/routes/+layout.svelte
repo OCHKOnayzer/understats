@@ -36,8 +36,8 @@ const queryClient = new QueryClient({
 });
 </script>
 
-<QueryClientProvider client={queryClient}>
-	<ParaglideJS {i18n}>
+<QueryClientProvider client="{queryClient}">
+	<ParaglideJS i18n="{i18n}">
 		<Container>
 			<main>
 				{#if isLocaleReady}

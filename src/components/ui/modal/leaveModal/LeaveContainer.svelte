@@ -18,8 +18,8 @@ const LeaveAprove = () => {
 			<div class="button_wrapper">
 				<CancelButton onUserText="other.cancel" />
 				<UserAprove
-					onUserText={'Выйти из профиля'}
-					onUserAction={LeaveAprove} />
+					onUserText="{'Выйти из профиля'}"
+					onUserAction="{LeaveAprove}" />
 			</div>
 		</div>
 	</div>

@@ -15,7 +15,7 @@ export let icon: string;
 		<div class="flex flex-col items-center justify-center">
 			<img
 				class=""
-				src={icon}
+				src="{icon}"
 				alt="trophy" />
 			<h2 class="mb-1 text-2xl text-white">{title}</h2>
 			<p class="text-sm text-[#718096]">{description}</p>

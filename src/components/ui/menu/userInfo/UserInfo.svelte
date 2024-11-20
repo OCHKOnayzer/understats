@@ -30,12 +30,12 @@ const handleLogout = () => {
 			</div>
 			<div class="user_info">
 				<div class="user_wrapper">
-					<div class="userName">{$currentUser.login || 'Имя пользователя'}</div>
-					<span>ID:</span> <span>1231234</span>
+					<div class="userName">{$currentUser.login || 'Email'}</div>
+					<!--					<span>ID:</span> <span>1231234</span>-->
 				</div>
 				<div class="quitBtn">
 					<button
-						on:click={handleLogout}
+						on:click="{handleLogout}"
 						class="quit_button">
 						<img
 							src="assets/menu/leave.png"
@@ -47,7 +47,7 @@ const handleLogout = () => {
 	{:else}
 		<p>Вы не авторизованы.</p>
 		<Button
-			on:click={() => openModal('authModal')}
+			on:click="{() => openModal('authModal')}"
 			variant="default">Войти</Button>
 	{/if}
 </div>

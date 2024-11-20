@@ -1,9 +1,9 @@
 <script>
-import ExpElements from '../../UI/expElements/ExpElements.svelte';
+// import ExpElements from '../../UI/expElements/ExpElements.svelte';
 </script>
 
 <div class="funcSection">
-	<ExpElements />
+	<!--	<ExpElements />-->
 </div>
 
 <style>

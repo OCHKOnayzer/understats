@@ -11,11 +11,11 @@ export let changeTile: (value: string) => void;
 </script>
 
 <Button
-	variant={$TileChecked === value ? 'tileChecked' : 'tile'}
-	on:click={() => changeTile(value)}
-	disabled={$TileChecked === value}>
+	variant="{$TileChecked === value ? 'tileChecked' : 'tile'}"
+	on:click="{() => changeTile(value)}"
+	disabled="{$TileChecked === value}">
 	<Icon
-		{icon}
+		icon="{icon}"
 		font-size="30px" />
 	<h2 class="title">{title}</h2>
 </Button>

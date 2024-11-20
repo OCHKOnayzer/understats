@@ -8,9 +8,9 @@ export let value: string;
 
 <Label class="flex cursor-pointer items-center gap-1">
 	<Select
-		{items}
-		bind:value
-		placeholder={title}
+		items="{items}"
+		bind:value="{value}"
+		placeholder="{title}"
 		size="lg"
 		class="rounded-sm border-none bg-gray-500/10 px-3 py-2 text-white" />
 </Label>

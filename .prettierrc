@@ -1,20 +1,24 @@
 {
 	"overrides": [
 		{
+			"files": "*.json",
+			"options": {
+				"parser": "json"
+			}
+		},
+		{
 			"files": ".ts",
 			"options": {
 				"parser": "typescript"
 			}
 		}
 	],
-  "plugins": [
-    "prettier-plugin-svelte",
-		"prettier-plugin-tailwindcss"
-  ],
-  "svelteStrictMode": false,
-  "svelteAllowShorthand": true,
-  "svelteIndentScriptAndStyle": false,
-  "htmlWhitespaceSensitivity": "strict",
+	"plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
+	"svelteStrictMode": true,
+	"svelteAllowShorthand": false,
+	"svelteIndentScriptAndStyle": false,
+	"svelteSortOrder": "options-scripts-markup-styles",
+	"htmlWhitespaceSensitivity": "strict",
 	"bracketSameLine": true,
 	"singleAttributePerLine": true,
 	"singleQuote": true,

@@ -9,9 +9,9 @@ import { SocialItem } from './social';
 		{#each SocialItem as item, index}
 			<a
 				class="social_item"
-				href={item.href}>
+				href="{item.href}">
 				<img
-					src={item.image}
+					src="{item.image}"
 					alt="" />
 			</a>
 		{/each}

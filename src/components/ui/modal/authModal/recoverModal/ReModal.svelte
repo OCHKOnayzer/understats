@@ -12,25 +12,25 @@ import InputWrapper from '../Input/InputWrapper.svelte';
 </script>
 
 <form class="form_wrapper">
-	<FormTitle modalActie={'social.recover_title'} />
+	<FormTitle modalActie="{'social.recover_title'}" />
 	<InputWrapper
-		input_type={'text'}
-		title_wrapper={$t('social.send_email')}
-		show_clear={false} />
+		input_type="{'text'}"
+		title_wrapper="{$t('social.send_email')}"
+		show_clear="{false}" />
 	<SocialContainer />
 	<div class="switch_container">
 		<SwitchButton
-			switch_text={'social.have_acc'}
-			switch_modal={switchLogin} />
+			switch_text="{'social.have_acc'}"
+			switch_modal="{switchLogin}" />
 		<SwitchButton
-			switch_text={'social.cHave_acc'}
-			switch_modal={switchReg} />
+			switch_text="{'social.cHave_acc'}"
+			switch_modal="{switchReg}" />
 	</div>
 	<div class="aprove_wrapper">
-		<CancelButton onUserText={'other.cancel'} />
+		<CancelButton onUserText="{'other.cancel'}" />
 		<UserAprove
-			onUserAction={switchReFinish}
-			onUserText={'social.post_email'} />
+			onUserAction="{switchReFinish}"
+			onUserText="{'social.post_email'}" />
 	</div>
 </form>
 

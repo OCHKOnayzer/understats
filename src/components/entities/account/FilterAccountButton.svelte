@@ -15,8 +15,8 @@ $: filterValue = $filter;
 
 <Button
 	variant="outlineYellow"
-	class={'items-center ' + (filterValue ? 'bg-yellow-500/90' : '')}
-	on:click={filterAccount}>
+	class="{'items-center ' + (filterValue ? 'bg-yellow-500/90' : '')}"
+	on:click="{filterAccount}">
 	<Icon
 		class="mr-2"
 		icon="mingcute:settings-2-line"

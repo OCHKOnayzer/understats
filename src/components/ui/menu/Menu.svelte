@@ -11,8 +11,8 @@ import RouteHelp from './routeHelp.svelte';
 				<div class="logo">
 					<div class="imgLogo">
 						<img
-							src={'/assets/menu/logo.png'}
-							alt="Лого" />
+							src="{'/assets/menu/logo.png'}"
+							alt="Logo" />
 					</div>
 					OneKeepBet
 				</div>

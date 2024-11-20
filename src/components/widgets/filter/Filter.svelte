@@ -11,11 +11,11 @@ $: filterValue = $filter;
 
 <div
 	class="filter-container"
-	class:active={filterValue}>
+	class:active="{filterValue}">
 	{#if filterValue}
 		<BackgroundContainer>
 			<section
-				transition:slide={{ duration: 300 }}
+				transition:slide="{{ duration: 300 }}"
 				class="w-full">
 				<h2 class="mb-5 text-[24px] font-medium text-white">{m.filterAccounts()}</h2>
 				<FilterForm />

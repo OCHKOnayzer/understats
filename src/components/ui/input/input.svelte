@@ -17,12 +17,12 @@ export let readonly: $$Props['readonly'] = undefined;
 </script>
 
 <input
-	class={cn(
+	class="{cn(
 		'placeholder:text-muted-white flex h-12 w-full rounded-[3px] px-3 py-2 text-sm ring-offset-background file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
 		className
-	)}
-	bind:value
-	{readonly}
+	)}"
+	bind:value="{value}"
+	readonly="{readonly}"
 	on:blur
 	on:change
 	on:click

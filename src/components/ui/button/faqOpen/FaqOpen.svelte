@@ -31,7 +31,7 @@ const sorryOpen = () => {
 
 <button
 	class="info_buttons"
-	on:click={browserName === 'unsupported' ? sorryOpen : navigate}>
+	on:click="{browserName === 'unsupported' ? sorryOpen : navigate}">
 	{$t('extensions.manual')}
 </button>
 

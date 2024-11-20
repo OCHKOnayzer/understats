@@ -25,18 +25,18 @@ function togglePasswordVisibility() {
 
 <div class="input_wrapper">
 	<div class="title_info">
-		<WrapperTitle {title_wrapper} />
+		<WrapperTitle title_wrapper="{title_wrapper}" />
 		{#if show_clear}
 			<button
 				class="clear"
-				on:click={togglePasswordVisibility}>
+				on:click="{togglePasswordVisibility}">
 				{$t(button_text)}
 			</button>
 		{/if}
 	</div>
 	<Input
-		{input_type}
-		bind:value />
+		input_type="{input_type}"
+		bind:value="{value}" />
 	{#if Open}
 		<ErrorMessage />
 	{/if}

@@ -34,8 +34,6 @@ export const toggleInputType = () => {
 };
 
 export const openModal = (component: 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal') => {
-
-
 	isModalOpen.set(true);
 	modalComponent.set(component);
 	document.body.style.overflow = 'hidden';

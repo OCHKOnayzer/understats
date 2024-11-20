@@ -5,7 +5,7 @@ const testTime = true;
 </script>
 
 <div class="UserContainer">
-	<UserAwards />
+	<!--	<UserAwards />-->
 	<UserStatus />
 </div>
 

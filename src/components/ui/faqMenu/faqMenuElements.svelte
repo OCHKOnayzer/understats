@@ -51,14 +51,14 @@ onMount(() => {
 		{#each MenuElement as item, index}
 			<button
 				class="faqItem {activeIndex === index ? 'active' : ''}"
-				on:click={() => setActiveIndex(index)}>
+				on:click="{() => setActiveIndex(index)}">
 				{$t(item.name)}
 			</button>
 
 			{#if activeIndex === index}
 				<ActiveCard
-					FAQIndex={index}
-					on:selectItem={handleSelectItem} />
+					FAQIndex="{index}"
+					on:selectItem="{handleSelectItem}" />
 			{/if}
 		{/each}
 
