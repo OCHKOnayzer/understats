@@ -8,11 +8,11 @@ import { accountsList, accountsListMain, bookmakersList, bookmakersListMain, com
 
 <Accordion title={'Спорт'}>
 	<SportsList
-			setFilter={filterStore.setSelectedSports}
-			selectedFilter={filterStore.toggleSport}
-			selectedList={$filterStore.selectedSports}
-			allItemsStore={sportList}
-			mainItemsStore={sportListMain} />
+		setFilter={filterStore.setSelectedSports}
+		selectedFilter={filterStore.toggleSport}
+		selectedList={$filterStore.selectedSports}
+		allItemsStore={sportList}
+		mainItemsStore={sportListMain} />
 </Accordion>
 
 

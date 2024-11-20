@@ -14,8 +14,7 @@ export const handleAxiosError = (error: unknown) => {
 		const axiosError = error as AxiosError<IApiError>;
 
 		if (axiosError.response) {
-			const { status, data } = axiosError.response;
-			console.log(axiosError.response);
+			const { data } = axiosError.response;
 
 			switch (data.message) {
 				case 'User not found':
@@ -46,7 +45,6 @@ export const handleAxiosError = (error: unknown) => {
 					throw new ApiError(data.message || '');
 			}
 		}
-
 		throw new ApiError('Network error occurred');
 	}
 

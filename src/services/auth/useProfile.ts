@@ -4,7 +4,7 @@ import { authService } from './auth.service';
 
 export const useUserProfile = () => {
 	const query = createQuery({
-		queryKey: ['userProfile'],
+		queryKey: ['userProfile'], // Уникальный ключ запроса
 		queryFn: async () => {
 			const response = await authService.profile();
 			if (!response || !response.data) {
@@ -12,8 +12,8 @@ export const useUserProfile = () => {
 			}
 			return response.data;
 		},
-		staleTime: 1000 * 60 * 5,
-		retry: 2
+		staleTime: 5 * 60 * 1000,
+		retry: false
 	});
 
 	return { query };
