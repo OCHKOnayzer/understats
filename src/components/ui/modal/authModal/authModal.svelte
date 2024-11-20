@@ -9,7 +9,7 @@ import ModalCurrent from './modaCurrent/ModalCurrent.svelte';
 			<ImageCurrent />
 		</div>
 		<div class="login_wrapper">
-			<svelte:component this={ModalCurrent} />
+			<svelte:component this="{ModalCurrent}" />
 		</div>
 	</div>
 </div>

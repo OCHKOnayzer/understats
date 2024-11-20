@@ -110,12 +110,12 @@ $: selectedDateRange =
 <div class="calendar-wrapper">
 	<button
 		class="period-button"
-		class:active={showCalendar}
-		on:click={() => (showCalendar = !showCalendar)}>
+		class:active="{showCalendar}"
+		on:click="{() => (showCalendar = !showCalendar)}">
 		<span>{selectedDateRange}</span>
 		<span
 			class="arrow"
-			class:open={showCalendar}>▼</span>
+			class:open="{showCalendar}">▼</span>
 	</button>
 
 	{#if showCalendar}
@@ -123,11 +123,11 @@ $: selectedDateRange =
 			<div class="calendar-header">
 				<button
 					class="nav-button"
-					on:click={prevMonth}>←</button>
+					on:click="{prevMonth}">←</button>
 				<span class="current-month">{displayMonths}</span>
 				<button
 					class="nav-button"
-					on:click={nextMonth}>→</button>
+					on:click="{nextMonth}">→</button>
 			</div>
 
 			<div class="calendars-container">
@@ -143,13 +143,13 @@ $: selectedDateRange =
 							{#if day}
 								<button
 									class="day"
-									class:selected={isDateSelected(day)}
-									class:in-range={isDateInRange(day)}
-									on:click={() => toggleDate(day)}>
+									class:selected="{isDateSelected(day)}"
+									class:in-range="{isDateInRange(day)}"
+									on:click="{() => toggleDate(day)}">
 									{day.getDate()}
 								</button>
 							{:else}
-								<div class="day empty" />
+								<div class="day empty"></div>
 							{/if}
 						{/each}
 					</div>
@@ -167,13 +167,13 @@ $: selectedDateRange =
 							{#if day}
 								<button
 									class="day"
-									class:selected={isDateSelected(day)}
-									class:in-range={isDateInRange(day)}
-									on:click={() => toggleDate(day)}>
+									class:selected="{isDateSelected(day)}"
+									class:in-range="{isDateInRange(day)}"
+									on:click="{() => toggleDate(day)}">
 									{day.getDate()}
 								</button>
 							{:else}
-								<div class="day empty" />
+								<div class="day empty"></div>
 							{/if}
 						{/each}
 					</div>

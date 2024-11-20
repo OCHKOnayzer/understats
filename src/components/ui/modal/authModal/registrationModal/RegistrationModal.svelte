@@ -20,37 +20,37 @@ const registerUser = () => {
 </script>
 
 <form class="form_wrapper">
-	<FormTitle modalActie={'social.reg_title'} />
+	<FormTitle modalActie="{'social.reg_title'}" />
 	<InputWrapper
-		default_type={'text'}
-		title_wrapper={$t('social.send_email')}
-		show_clear={false}
-		bind:value={$form.login} />
+		default_type="{'text'}"
+		title_wrapper="{$t('social.send_email')}"
+		show_clear="{false}"
+		bind:value="{$form.login}" />
 	<InputWrapper
-		default_type={'password'}
-		title_wrapper={$t('social.send_password')}
-		show_clear={true}
-		bind:value={$form.password} />
+		default_type="{'password'}"
+		title_wrapper="{$t('social.send_password')}"
+		show_clear="{true}"
+		bind:value="{$form.password}" />
 	<InputWrapper
-		default_type={'password'}
-		title_wrapper={$t('social.retry_password')}
-		show_clear={true}
-		bind:value={$confirmPassword} />
+		default_type="{'password'}"
+		title_wrapper="{$t('social.retry_password')}"
+		show_clear="{true}"
+		bind:value="{$confirmPassword}" />
 	<ApproveButton />
 	<SocialContainer />
 	<div class="switch_container">
 		<SwitchButton
-			switch_text={'social.have_acc'}
-			switch_modal={switchLogin} />
+			switch_text="{'social.have_acc'}"
+			switch_modal="{switchLogin}" />
 		<SwitchButton
-			switch_text={'social.unBlock_acc'}
-			switch_modal={switchRecover} />
+			switch_text="{'social.unBlock_acc'}"
+			switch_modal="{switchRecover}" />
 	</div>
 	<div class="aprove_wrapper">
-		<CancelButton onUserText={'other.cancel'} />
+		<CancelButton onUserText="{'other.cancel'}" />
 		<UserAprove
-			onUserText={'social.create_account'}
-			onUserAction={registerUser} />
+			onUserText="{'social.create_account'}"
+			onUserAction="{registerUser}" />
 	</div>
 </form>
 

@@ -5,14 +5,14 @@ import { filterStore } from '$src/stores/filterStore';
 <div class="bet-status-row">
 	<button
 		class="bet-status"
-		class:active={$filterStore.betGameStatus === 'live'}
-		on:click={() => filterStore.setBetGameStatus('live')}>
+		class:active="{$filterStore.betGameStatus === 'live'}"
+		on:click="{() => filterStore.setBetGameStatus('live')}">
 		Лайв
 	</button>
 	<button
 		class="bet-status"
-		class:active={$filterStore.betGameStatus === 'prematch'}
-		on:click={() => filterStore.setBetGameStatus('prematch')}>
+		class:active="{$filterStore.betGameStatus === 'prematch'}"
+		on:click="{() => filterStore.setBetGameStatus('prematch')}">
 		Прематч
 	</button>
 </div>

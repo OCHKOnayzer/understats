@@ -8,16 +8,16 @@ import { filterStore } from '$src/stores/filterStore';
 			type="text"
 			placeholder="Сумма ставки, от"
 			class="amount-input"
-			value={$filterStore.betAmount.from}
-			on:input={(e) => filterStore.setBetAmount(e.currentTarget.value, $filterStore.betAmount.to)} />
+			value="{$filterStore.betAmount.from}"
+			on:input="{(e) => filterStore.setBetAmount(e.currentTarget.value, $filterStore.betAmount.to)}" />
 	</div>
 	<div class="input-wrapper">
 		<input
 			type="text"
 			placeholder="Сумма ставки, до"
 			class="amount-input"
-			value={$filterStore.betAmount.to}
-			on:input={(e) => filterStore.setBetAmount($filterStore.betAmount.from, e.currentTarget.value)} />
+			value="{$filterStore.betAmount.to}"
+			on:input="{(e) => filterStore.setBetAmount($filterStore.betAmount.from, e.currentTarget.value)}" />
 	</div>
 </div>
 
@@ -27,16 +27,16 @@ import { filterStore } from '$src/stores/filterStore';
 			type="text"
 			placeholder="Коэффициент, от"
 			class="amount-input"
-			value={$filterStore.coefficient.from}
-			on:input={(e) => filterStore.setCoefficient(e.currentTarget.value, $filterStore.coefficient.to)} />
+			value="{$filterStore.coefficient.from}"
+			on:input="{(e) => filterStore.setCoefficient(e.currentTarget.value, $filterStore.coefficient.to)}" />
 	</div>
 	<div class="input-wrapper">
 		<input
 			type="text"
 			placeholder="Коэффициент, до"
 			class="amount-input"
-			value={$filterStore.coefficient.to}
-			on:input={(e) => filterStore.setCoefficient($filterStore.coefficient.from, e.currentTarget.value)} />
+			value="{$filterStore.coefficient.to}"
+			on:input="{(e) => filterStore.setCoefficient($filterStore.coefficient.from, e.currentTarget.value)}" />
 	</div>
 </div>
 

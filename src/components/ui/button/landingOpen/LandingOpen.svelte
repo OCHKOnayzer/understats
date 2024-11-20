@@ -6,7 +6,7 @@ const download = () => {
 </script>
 
 <div class="button_wrapper">
-	<button on:click={download}>{$t('landing.login_create_account')}</button>
+	<button on:click="{download}">{$t('landing.login_create_account')}</button>
 </div>
 
 <style>

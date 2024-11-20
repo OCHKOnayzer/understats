@@ -1,12 +1,16 @@
 <script>
 import UserAwards from './UserAwards.svelte';
-import UserInfo from './UserInfo.svelte';
 import UserStatus from './UserStatus.svelte';
+const testTime = true;
 </script>
 
-<div>
-	<UserAwards />
-	<UserInfo />
+<div class="UserContainer">
+	<!--	<UserAwards />-->
+	<UserStatus />
 </div>
 
-<style></style>
+<style>
+.UserContainer {
+	margin-bottom: 20px;
+}
+</style>

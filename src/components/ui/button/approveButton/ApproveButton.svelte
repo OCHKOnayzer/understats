@@ -12,8 +12,8 @@ function toggleCheck() {
 <div class="social_document">
 	<button
 		class="approve"
-		on:click={toggleCheck}
-		aria-pressed={isChecked}
+		on:click="{toggleCheck}"
+		aria-pressed="{isChecked}"
 		aria-label="Accept terms">
 		{#if isChecked}
 			<svg
@@ -35,14 +35,14 @@ function toggleCheck() {
 						to="22, 0"
 						dur="0.4s"
 						fill="freeze"
-						begin="0.1s" />
+						begin="0.1s"></animate>
 					<animate
 						attributeName="opacity"
 						from="0"
 						to="1"
 						dur="0.4s"
 						fill="freeze"
-						begin="0.1s" />
+						begin="0.1s"></animate>
 				</path>
 			</svg>
 		{/if}

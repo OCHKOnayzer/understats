@@ -37,7 +37,7 @@ const handleConnect = async () => {
 <div class="mt-5 flex items-center gap-3">
 	<Button
 		variant="outlineRoundedGreen"
-		on:click={handleConnect}>{m.connect()}</Button>
+		on:click="{handleConnect}">{m.connect()}</Button>
 	<Dialog.Close>
 		<Button variant="outlineRoundedWhite">{m.cancel()}</Button>
 	</Dialog.Close>

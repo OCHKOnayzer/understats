@@ -68,8 +68,8 @@ $: showPrev = $filterStore.pagination.currentPage > 1;
 		{#each timeRanges as range}
 			<button
 				class="time-range-btn"
-				class:active={$filterStore.pagination.timeRange === range.value}
-				on:click={() => filterStore.setTimeRange(range.value)}>
+				class:active="{$filterStore.pagination.timeRange === range.value}"
+				on:click="{() => filterStore.setTimeRange(range.value)}">
 				{range.label}
 			</button>
 		{/each}
@@ -80,10 +80,10 @@ $: showPrev = $filterStore.pagination.currentPage > 1;
 			<span class="label">Показать: {$filterStore.pagination.itemsPerPage}</span>
 			<div class="dropdown">
 				<select
-					value={$filterStore.pagination.itemsPerPage}
-					on:change={(e) => filterStore.setItemsPerPage(parseInt(e.currentTarget.value))}>
+					value="{$filterStore.pagination.itemsPerPage}"
+					on:change="{(e) => filterStore.setItemsPerPage(parseInt(e.currentTarget.value))}">
 					{#each itemsPerPageOptions as option}
-						<option value={option}>{option}</option>
+						<option value="{option}">{option}</option>
 					{/each}
 				</select>
 				<svg
@@ -97,7 +97,7 @@ $: showPrev = $filterStore.pagination.currentPage > 1;
 					stroke-width="2"
 					stroke-linecap="round"
 					stroke-linejoin="round">
-					<path d="M6 9l6 6 6-6" />
+					<path d="M6 9l6 6 6-6"></path>
 				</svg>
 			</div>
 		</div>
@@ -105,9 +105,9 @@ $: showPrev = $filterStore.pagination.currentPage > 1;
 		<div class="page-buttons">
 			<button
 				class="page-btn prev"
-				on:click={() => goToPage($filterStore.pagination.currentPage - 1)}
+				on:click="{() => goToPage($filterStore.pagination.currentPage - 1)}"
 				aria-label="Previous page"
-				disabled={!showPrev}>
+				disabled="{!showPrev}">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="24"
@@ -118,7 +118,7 @@ $: showPrev = $filterStore.pagination.currentPage > 1;
 					stroke-width="2"
 					stroke-linecap="round"
 					stroke-linejoin="round">
-					<path d="M15 18l-6-6 6-6" />
+					<path d="M15 18l-6-6 6-6"></path>
 				</svg>
 			</button>
 
@@ -128,8 +128,8 @@ $: showPrev = $filterStore.pagination.currentPage > 1;
 				{:else}
 					<button
 						class="page-btn"
-						class:active={$filterStore.pagination.currentPage === page}
-						on:click={() => goToPage(page)}>
+						class:active="{$filterStore.pagination.currentPage === page}"
+						on:click="{() => goToPage(page)}">
 						{page}
 					</button>
 				{/if}
@@ -137,9 +137,9 @@ $: showPrev = $filterStore.pagination.currentPage > 1;
 
 			<button
 				class="page-btn next"
-				on:click={() => goToPage($filterStore.pagination.currentPage + 1)}
+				on:click="{() => goToPage($filterStore.pagination.currentPage + 1)}"
 				aria-label="Next page"
-				disabled={!showNext}>
+				disabled="{!showNext}">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="24"
@@ -150,7 +150,7 @@ $: showPrev = $filterStore.pagination.currentPage > 1;
 					stroke-width="2"
 					stroke-linecap="round"
 					stroke-linejoin="round">
-					<path d="M9 18l6-6-6-6" />
+					<path d="M9 18l6-6-6-6"></path>
 				</svg>
 			</button>
 		</div>

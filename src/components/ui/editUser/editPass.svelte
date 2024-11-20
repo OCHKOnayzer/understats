@@ -125,45 +125,45 @@ const clearField = (field: FieldType) => {
 				<p class="settings_name">{$t('settings.old_pass')}</p>
 				<button
 					class="clear_curr max--w"
-					on:click={() => clearField('oldPassword')}>{$t('other.clear')}</button>
+					on:click="{() => clearField('oldPassword')}">{$t('other.clear')}</button>
 				<button
 					class="clear_curr min--w"
-					on:click={() => clearField('oldPassword')}>X</button>
+					on:click="{() => clearField('oldPassword')}">X</button>
 			</div>
 			<input
 				class="selected_element input_element"
 				type="password"
-				bind:value={oldPassword}
-				placeholder="****_****_****" />
+				bind:value="{oldPassword}"
+				placeholder="*****" />
 		</div>
 		<div class="setings_item item-w">
 			<div class="item_settings_info">
 				<p class="settings_name">{$t('settings.new_pass')}</p>
 				<button
 					class="clear_curr max--w"
-					on:click={() => clearField('newPassword')}>{$t('other.clear')}</button>
+					on:click="{() => clearField('newPassword')}">{$t('other.clear')}</button>
 				<button
 					class="clear_curr min--w"
-					on:click={() => clearField('oldPassword')}>X</button>
+					on:click="{() => clearField('oldPassword')}">X</button>
 			</div>
 			<input
 				class="selected_element input_element"
 				type="password"
-				bind:value={newPassword}
-				placeholder="****_****_****" />
+				bind:value="{newPassword}"
+				placeholder="*****" />
 		</div>
 	</div>
 	<div class="updataBtn">
 		<button
 			class="btn_upd"
-			on:click={changePass}>
+			on:click="{changePass}">
 			{$t('other.save')}
 		</button>
-		<button
-			class="btn_upd"
-			on:click={clearInputs}>
-			{$t('other.cancel')}
-		</button>
+		<!--		<button-->
+		<!--			class="btn_upd"-->
+		<!--			on:click={clearInputs}>-->
+		<!--			{$t('other.cancel')}-->
+		<!--		</button>-->
 	</div>
 </div>
 

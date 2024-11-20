@@ -12,7 +12,7 @@ export { className as class };
 </script>
 
 <tr
-	class={cn('border-b text-white transition-colors data-[state=selected]:bg-muted', className)}
+	class="{cn('border-b text-white transition-colors data-[state=selected]:bg-muted', className)}"
 	{...$$restProps}
 	on:click
 	on:keydown>

@@ -29,7 +29,7 @@ function goToSlide(index: number) {
 	{#each Slides2 as slide, index}
 		<div class="slide {index === currentSlide ? 'active' : ''}">
 			<img
-				src={slide.image}
+				src="{slide.image}"
 				alt="" />
 			<div class="slide_info">
 				<div class="slide_title">
@@ -47,9 +47,9 @@ function goToSlide(index: number) {
 				class="dot {dotIndex === currentSlide ? 'active' : ''}"
 				role="button"
 				tabindex="0"
-				on:click={() => goToSlide(dotIndex)}
-				on:keydown={(e) => (e.key === 'Enter' || e.key === ' ') && goToSlide(dotIndex)}
-				aria-label="Go to slide {dotIndex + 1}" />
+				on:click="{() => goToSlide(dotIndex)}"
+				on:keydown="{(e) => (e.key === 'Enter' || e.key === ' ') && goToSlide(dotIndex)}"
+				aria-label="Go to slide {dotIndex + 1}"></span>
 		{/each}
 	</div>
 </div>

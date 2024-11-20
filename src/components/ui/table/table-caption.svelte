@@ -10,7 +10,7 @@ export { className as class };
 </script>
 
 <caption
-	class={cn('text-muted-white mt-4 text-[12px]', className)}
+	class="{cn('text-muted-white mt-4 text-[12px]', className)}"
 	{...$$restProps}>
 	<slot />
 </caption>

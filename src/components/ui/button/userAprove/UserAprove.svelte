@@ -11,7 +11,7 @@ let { onUserText, onUserAction, active } = $$props as UserAproveInterface;
 <div class="button_wrapper">
 	<button
 		type="submit"
-		on:click={onUserAction}>{$t(onUserText)}</button>
+		on:click="{onUserAction}">{$t(onUserText)}</button>
 </div>
 
 <style>

@@ -73,7 +73,7 @@ onMount(() => {
 			<div class="us_av">
 				{#if $user}
 					<img
-						src={$user.image}
+						src="{$user.image}"
 						alt="Текущий аватар" />
 				{/if}
 			</div>
@@ -81,12 +81,12 @@ onMount(() => {
 
 		<div
 			class="select_avatar"
-			class:block={showSelectAvatar}>
+			class:block="{showSelectAvatar}">
 			<div class="all_avatar">
 				<div class="image usingAvatar">
 					{#if $user}
 						<img
-							src={$user.image}
+							src="{$user.image}"
 							alt="Текущий аватар" />
 					{/if}
 				</div>
@@ -96,12 +96,12 @@ onMount(() => {
 						class="image nActive"
 						tabindex="0"
 						role="button"
-						on:click={() => selectAvatar(item.path)}
-						on:keydown={(event) => {
+						on:click="{() => selectAvatar(item.path)}"
+						on:keydown="{(event) => {
 							if (event.key === 'Enter' || event.key === ' ') selectAvatar(item.path);
-						}}>
+						}}">
 						<img
-							src={item.path}
+							src="{item.path}"
 							alt="Выбор аватара" />
 					</div>
 				{/each}
@@ -113,8 +113,8 @@ onMount(() => {
 			<div class="avatar_elements_btn">
 				<button
 					class="btn_avatar"
-					class:changedColor={showSelectAvatar}
-					on:click={changeUserAvatar}>
+					class:changedColor="{showSelectAvatar}"
+					on:click="{changeUserAvatar}">
 					<span>{$t('other.select')}</span>
 				</button>
 
@@ -126,7 +126,7 @@ onMount(() => {
 						id="fileUpload"
 						type="file"
 						accept="image/*"
-						on:change={handleFileUpload}
+						on:change="{handleFileUpload}"
 						style="display: none;" />
 				</label>
 			</div>

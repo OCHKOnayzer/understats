@@ -11,7 +11,7 @@ const handleSelectItemFromMenu = (event: any) => {
 </script>
 
 <div class="faqMenu">
-	<FaqMenuElements on:selectItemFromMenu={handleSelectItemFromMenu} />
+	<FaqMenuElements on:selectItemFromMenu="{handleSelectItemFromMenu}" />
 </div>
 
 <style>

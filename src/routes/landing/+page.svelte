@@ -3,7 +3,7 @@ import LandingInfo from '$src/components/ui/landingInfo/LandingInfo.svelte';
 </script>
 
 <div class="landing-content">
-	<div class="landing_slider" />
+	<div class="landing_slider"></div>
 	<div class="landing_info_content">
 		<LandingInfo />
 	</div>

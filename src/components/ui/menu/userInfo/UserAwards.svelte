@@ -2,19 +2,24 @@
 import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 
+import { afterNavigate } from '$app/navigation';
+
 let currentPath = '';
 
 onMount(() => {
 	currentPath = window.location.pathname;
 });
 
-$: isActive = (href: string): boolean => currentPath === href;
+afterNavigate(() => {
+	currentPath = window.location.pathname;
+});
 </script>
 
 <div class="userAwards">
-	<div
+	<a
+		href="/awards"
 		class="userAwardsConteiner usAwardDs"
-		class:usAwardDs={isActive('/awards')}>
+		class:awardsActive="{currentPath === '/awards'}">
 		<span>{$t('other.awards')}</span>
 		<div class="user_award">
 			<div>
@@ -31,17 +36,17 @@ $: isActive = (href: string): boolean => currentPath === href;
 			</div>
 			<div>
 				<img
-					src="/assets/awards/gold/goldTrophLvl2.png"
+					src="/assets/awards/gold/goldTrophLvl3.png"
 					alt="Трофей" />
 				<p>0</p>
 			</div>
 		</div>
-	</div>
+	</a>
 </div>
 
 <style>
 .userAwards {
-	margin: 20px 0px 20px 0px;
+	margin: 10px 0px 10px 0px;
 	width: 100%;
 }
 .userAwardsConteiner {
@@ -53,7 +58,7 @@ $: isActive = (href: string): boolean => currentPath === href;
 	color: #9a9bbc;
 	font-size: 15px;
 }
-.usAwardDs {
+.awardsActive {
 	background-color: #2a2b5b;
 	border: 2px solid #424482;
 }
@@ -67,8 +72,8 @@ $: isActive = (href: string): boolean => currentPath === href;
 }
 .user_award div {
 	margin-right: 20px;
-	height: 100%;
-	width: 100%;
+	height: 80%;
+	width: 80%;
 	display: flex;
 	justify-content: center;
 	align-items: center;

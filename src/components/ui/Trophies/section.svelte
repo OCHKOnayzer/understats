@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes="{false}" />
 
 <script lang="ts">
 import { t } from 'svelte-i18n';
@@ -23,7 +23,7 @@ $: remaining = get(t)('awards.remaining');
 			{receivedTitle}
 			<span class="count">({awards.length === 0 ? '0%' : awards.length})</span>
 		</span>
-		<UTrophies {awards} />
+		<UTrophies awards="{awards}" />
 
 		<span class="trTtitle">
 			{futureTitle}
@@ -31,7 +31,7 @@ $: remaining = get(t)('awards.remaining');
 				({remaining}&nbsp;{allAwards.length})
 			</span>
 		</span>
-		<LockTrophies awards={allAwards} />
+		<LockTrophies awards="{allAwards}" />
 	</div>
 </section>
 

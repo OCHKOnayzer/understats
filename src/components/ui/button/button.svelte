@@ -16,8 +16,8 @@ export { className as class };
 </script>
 
 <ButtonPrimitive.Root
-	{builders}
-	class={cn(buttonVariants({ variant, size, className }))}
+	builders="{builders}"
+	class="{cn(buttonVariants({ variant, size, className }))}"
 	type="button"
 	{...$$restProps}
 	on:click

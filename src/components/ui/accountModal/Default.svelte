@@ -16,12 +16,12 @@ const Login = derived(LoginForm, ($store) => Object.values($store) as AccountOpt
 	{#each $Login as login}
 		<div class="item">
 			<FilterInput
-				placeholder={login.placeholder}
-				name={login.name}
-				selected={login.selected}
-				value={hasOptions(login) ? login.options : undefined}
-				variant={login.variant}
-				check={LoginForm} />
+				placeholder="{login.placeholder}"
+				name="{login.name}"
+				selected="{login.selected}"
+				value="{hasOptions(login) ? login.options : undefined}"
+				variant="{login.variant}"
+				check="{LoginForm}" />
 		</div>
 	{/each}
 	<LoginFormButtons />

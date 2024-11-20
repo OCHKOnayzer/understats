@@ -12,8 +12,8 @@ const tabs = [
 	{#each tabs as tab}
 		<button
 			class="tab"
-			class:active={$filterStore.activeTab === tab.id}
-			on:click={() => filterStore.setActiveTab(tab.id)}>
+			class:active="{$filterStore.activeTab === tab.id}"
+			on:click="{() => filterStore.setActiveTab(tab.id)}">
 			{tab.label}
 		</button>
 	{/each}

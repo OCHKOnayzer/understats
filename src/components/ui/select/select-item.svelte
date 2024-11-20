@@ -15,13 +15,13 @@ export { className as class };
 </script>
 
 <SelectPrimitive.Item
-	{value}
-	{disabled}
-	{label}
-	class={cn(
+	value="{value}"
+	disabled="{disabled}"
+	label="{label}"
+	class="{cn(
 		'relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[disabled]:opacity-50',
 		className
-	)}
+	)}"
 	{...$$restProps}
 	on:click
 	on:keydown

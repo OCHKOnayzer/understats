@@ -2,129 +2,88 @@
 import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 
-let currentPath = window.location.pathname;
+import { afterNavigate } from '$app/navigation';
+
+let currentPath = '';
+
+type MenuItem = {
+	href: string;
+	img1: string;
+	img2: string;
+	title: string;
+};
+
+const menuArr: MenuItem[] = [
+	/*
+	{
+		href: '/',
+		img1: 'assets/menu/active/home.png',
+		img2: 'assets/menu/menuElements/home.png',
+		title: 'menu.Main'
+	},
+	{
+		href: '/bet',
+		img1: 'assets/menu/active/bet.png',
+		img2: 'assets/menu/menuElements/bet.png',
+		title: 'menu.Place_bet'
+	},
+	
+	 */
+	{
+		href: '/stats',
+		img1: 'assets/menu/active/mod.png',
+		img2: 'assets/menu/menuElements/mod.png',
+		title: 'menu.Stats'
+	},
+	{
+		href: '/accounts',
+		img1: 'assets/menu/active/users.png',
+		img2: 'assets/menu/menuElements/users.png',
+		title: 'menu.Accounts'
+	},
+	{
+		href: '/extensions',
+		img1: 'assets/menu/active/mod.png',
+		img2: 'assets/menu/menuElements/mod.png',
+		title: 'menu.Mods'
+	},
+	{
+		href: '/setings',
+		img1: 'assets/menu/active/setings.png',
+		img2: 'assets/menu/menuElements/setings.png',
+		title: 'menu.Setings'
+	},
+	{
+		href: '/faq',
+		img1: 'assets/menu/active/FAQ.png',
+		img2: 'assets/menu/menuElements/FAQ.png',
+		title: 'menu.Help'
+	}
+];
 
 onMount(() => {
-	const updatePath = () => {
-		currentPath = window.location.pathname;
-	};
+	currentPath = window.location.pathname;
+});
 
-	window.addEventListener('popstate', updatePath);
-
-	return () => {
-		window.removeEventListener('popstate', updatePath);
-	};
+afterNavigate(() => {
+	currentPath = window.location.pathname;
 });
 </script>
 
 <div class="menu_items">
-	<a
-		href="/h1"
-		class="card_item"
-		class:selected={currentPath === '/h1'}>
-		<div class="image_box">
-			<img
-				src="assets/menu/menuElements/bet.png"
-				alt="" />
-		</div>
-		<span class="item_name">{$t('menu.Place_bet')}</span>
-	</a>
-
-	<a
-		href="/"
-		class="card_item"
-		class:selected={currentPath === '/'}>
-		<div class="image_box">
-			<img
-				src="assets/menu/menuElements/home.png"
-				alt="Домашняя" />
-		</div>
-		<span class="item_name">{$t('menu.Main')}</span>
-	</a>
-
-	<a
-		href="/accounts"
-		class="card_item"
-		class:selected={currentPath === '/accounts'}>
-		<div class="image_box">
-			<img
-				src="assets/menu/menuElements/users.png"
-				alt="Профиль" />
-		</div>
-		<span class="item_name">{$t('menu.Accounts')}</span>
-	</a>
-
-	<a
-		href="/stats"
-		class="card_item"
-		class:selected={currentPath === '/stats'}>
-		<div class="image_box">
-			<img
-				src="assets/menu/menuElements/FAQ.png"
-				alt="Статистика" />
-		</div>
-		<span class="item_name">{$t('menu.Stats')}</span>
-	</a>
-
-	<a
-		href="/extensions"
-		class="card_item"
-		class:selected={currentPath === '/extensions'}>
-		<div class="image_box">
-			<img
-				src="assets/menu/menuElements/mod.png"
-				alt="Моды" />
-		</div>
-		<span class="item_name">{$t('menu.Mods')}</span>
-	</a>
-
-	<a
-		href="/setings"
-		class="card_item"
-		class:selected={currentPath === '/setings'}>
-		<div class="image_box">
-			<img
-				src="assets/menu/menuElements/setings.png"
-				alt="Настройки" />
-		</div>
-		<span class="item_name">{$t('menu.Setings')}</span>
-	</a>
-
-	<a
-		href="/faq"
-		class="card_item"
-		class:selected={currentPath === '/faq'}>
-		<div class="image_box">
-			<img
-				src="assets/menu/menuElements/FAQ.png"
-				alt="Настройки" />
-		</div>
-		<span class="item_name">{$t('menu.Help')}</span>
-	</a>
-
-	<a
-		href="/news"
-		class="card_item"
-		class:selected={currentPath === '/news'}>
-		<div class="image_box">
-			<img
-				src="assets/menu/menuElements/news.png"
-				alt="Новости" />
-		</div>
-		<span class="item_name">{$t('menu.News')}</span>
-	</a>
-
-	<a
-		href="/chat"
-		class="card_item"
-		class:selected={currentPath === '/chat'}>
-		<div class="image_box">
-			<img
-				src="assets/menu/menuElements/chat.png"
-				alt="Чат" />
-		</div>
-		<span class="item_name">{$t('menu.Chat')}</span>
-	</a>
+	{#each menuArr as item}
+		<a
+			href="{item.href}"
+			class="card_item"
+			class:selected="{currentPath === item.href}">
+			<div class="image_box">
+				<img
+					src="{currentPath === item.href ? item.img1 : item.img2}"
+					alt="{$t('{item.title}')}" />
+			</div>
+			<span class="item_name">{$t(item.title)}</span>
+		</a>
+	{/each}
 </div>
 
 <style>

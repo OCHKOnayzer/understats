@@ -16,15 +16,15 @@ const filterInputs = derived(FilterInputSelect, ($store) => Object.values($store
 	{#each $filterInputs as filter}
 		<div class="item">
 			<FilterInput
-				placeholder={filter.placeholder}
-				name={filter.name}
-				selected={filter.selected}
-				value={hasOptions(filter) ? filter.options : undefined}
-				variant={filter.variant}
-				check={FilterInputSelect} />
+				placeholder="{filter.placeholder}"
+				name="{filter.name}"
+				selected="{filter.selected}"
+				value="{hasOptions(filter) ? filter.options : undefined}"
+				variant="{filter.variant}"
+				check="{FilterInputSelect}" />
 		</div>
 	{/each}
-	<FilterButtons filter={FilterInputSelect} />
+	<FilterButtons filter="{FilterInputSelect}" />
 </div>
 
 <style lang="scss">

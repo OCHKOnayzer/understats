@@ -7,7 +7,7 @@ selectHeaderTitle('other.accounts');
 </script>
 
 <div>
-	<SortContainer />
+	<!--	<SortContainer />-->
 	<Account />
 	<!-- <Filter /> -->
 	<Table />

@@ -4,8 +4,8 @@ export let value = '';
 </script>
 
 <input
-	type={input_type}
-	bind:value />
+	type="{input_type}"
+	bind:value="{value}" />
 
 <style>
 input {

@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes="{false}" />
 
 <script>
 import { t } from 'svelte-i18n';

@@ -11,7 +11,7 @@ import { accountIsSuccess } from '$stores/store';
 
 <Dialog.Root>
 	<Dialog.Trigger
-		on:click={accountModal}
+		on:click="{accountModal}"
 		class="inline-flex h-10 items-center justify-center rounded-md border border-green-500 bg-transparent px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-green-500/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
 		{`+ ${m.addAccount()}`}
 	</Dialog.Trigger>
@@ -24,18 +24,18 @@ import { accountIsSuccess } from '$stores/store';
 		</Dialog.Header>
 		<div class="content-wrapper">
 			{#if $accountIsSuccess === null}
-				<div transition:fade={{ duration: 200 }}>
+				<div transition:fade="{{ duration: 200 }}">
 					<Default />
 				</div>
 			{:else if $accountIsSuccess}
-				<div transition:fade={{ duration: 200 }}>
+				<div transition:fade="{{ duration: 200 }}">
 					<Success
 						title="Аккаунт подключен!"
 						description="Дополнительный текст"
 						icon="icons/trophy.svg" />
 				</div>
 			{:else}
-				<div transition:fade={{ duration: 200 }}>
+				<div transition:fade="{{ duration: 200 }}">
 					<Success
 						title="Аккаунт не подключен!"
 						description="Проверьте введенные данные"
