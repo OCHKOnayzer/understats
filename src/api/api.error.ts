@@ -15,16 +15,33 @@ export const handleAxiosError = (error: unknown) => {
 
 		if (axiosError.response) {
 			const { status, data } = axiosError.response;
+			console.log(axiosError.response);
 
-			switch (status) {
-				case 400:
-					throw new ApiError(data.errors ? `${data.errors.map((e) => e.message).join(', ')}` : data.message);
-				case 401:
+			switch (data.message) {
+				case 'User not found':
+					throw new ApiError('Пользователь не найден');
+				case 'Invalid credentials':
 					throw new ApiError('Неверный пароль');
-				case 404:
+				case 'Email not found':
 					throw new ApiError('Неверная почта');
-				case 409:
-					throw new ApiError('Аккаунт с такой почтой уже существует');
+				case 'Validation failed':
+					if (Array.isArray(data.errors) && data.errors.length > 0) {
+						const errorMessages = data.errors.map((err) => {
+							switch (err.code) {
+								case 'INVALID_LOGIN':
+									return 'Логин должен быть действительным адресом электронной почты';
+								case 'PASSWORD_TOO_SHORT':
+									return 'Пароль должен быть не менее 6 символов';
+								default:
+									return `Неизвестная ошибка в поле "${err.field}": ${err.message}`;
+							}
+						});
+						throw new ApiError(errorMessages.join('\n'));
+					} else {
+						throw new ApiError('Валидация не удалась, но подробностей нет.');
+					}
+				case 'User already exists':
+					throw new ApiError('Пользователь уже существует');
 				default:
 					throw new ApiError(data.message || '');
 			}

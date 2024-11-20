@@ -86,6 +86,7 @@ export interface IApiError {
 	statusCode: number;
 	error: string;
 	message: string;
+	method: string;
 	errors?: IValidationError[];
 }
 
