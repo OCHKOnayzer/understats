@@ -19,7 +19,7 @@ afterNavigate(() => {
 	<a
 		href="/awards"
 		class="userAwardsConteiner usAwardDs"
-		class:awardsActive={currentPath === '/awards'}>
+		class:awardsActive="{currentPath === '/awards'}">
 		<span>{$t('other.awards')}</span>
 		<div class="user_award">
 			<div>

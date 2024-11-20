@@ -9,7 +9,7 @@ import { Elements } from './FuncArray';
 		<div class="funcSection_element_title">
 			<div class="element_logo">
 				<img
-					src={item.image}
+					src="{item.image}"
 					alt="" />
 			</div>
 			<div class="element_content">

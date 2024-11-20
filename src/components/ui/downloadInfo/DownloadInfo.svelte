@@ -10,7 +10,7 @@ import { t } from 'svelte-i18n';
 		<span>
 			{$t('extensions.Attention_text')}
 		</span>
-		<span />
+		<span></span>
 	</div>
 </div>
 

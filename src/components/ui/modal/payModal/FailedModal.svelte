@@ -17,13 +17,13 @@ const RetryPay = () => {
 				<img
 					src="assets/pay/Fail.svg"
 					alt="" />
-				<PayTitle PayText={'other.payFail'} />
+				<PayTitle PayText="{'other.payFail'}" />
 			</div>
 			<div class="button_wrapper">
 				<CancelButton onUserText="other.cancel" />
 				<UserAprove
 					onUserText="other.retry"
-					onUserAction={RetryPay} />
+					onUserAction="{RetryPay}" />
 			</div>
 		</div>
 	</div>

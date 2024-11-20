@@ -28,17 +28,17 @@ $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase(
 		{#each mainSports as sport}
 			<button
 				class="sport-button"
-				class:active={$filterStore.selectedSports.includes(sport)}
-				on:click={() => filterStore.toggleSport(sport)}>
+				class:active="{$filterStore.selectedSports.includes(sport)}"
+				on:click="{() => filterStore.toggleSport(sport)}">
 				{sport}
 			</button>
 		{/each}
 		<button
 			class="sport-button show-all"
-			on:click={() => {
+			on:click="{() => {
 				savePreviousSelections();
 				showSportsModal = true;
-			}}>
+			}}">
 			Показать все ({allSports.length})
 		</button>
 	</div>
@@ -51,14 +51,14 @@ $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase(
 				<h3>Виды спорта</h3>
 				<button
 					class="close-button"
-					on:click={() => (showSportsModal = false)}>✕</button>
+					on:click="{() => (showSportsModal = false)}">✕</button>
 			</div>
 
 			<div class="search-container">
 				<input
 					type="text"
 					placeholder="Поиск..."
-					bind:value={searchQuery}
+					bind:value="{searchQuery}"
 					class="search-input" />
 			</div>
 
@@ -67,8 +67,8 @@ $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase(
 					<label class="sport-item">
 						<input
 							type="checkbox"
-							checked={$filterStore.selectedSports.includes(sport)}
-							on:change={() => filterStore.toggleSport(sport)} />
+							checked="{$filterStore.selectedSports.includes(sport)}"
+							on:change="{() => filterStore.toggleSport(sport)}" />
 						<span class="sport-name">{sport}</span>
 					</label>
 				{/each}
@@ -77,12 +77,12 @@ $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase(
 			<div class="modal-footer">
 				<button
 					class="cancel-button"
-					on:click={restoreSelections}>
+					on:click="{restoreSelections}">
 					Отмена
 				</button>
 				<button
 					class="apply-button"
-					on:click={() => (showSportsModal = false)}>
+					on:click="{() => (showSportsModal = false)}">
 					Применить ({$filterStore.selectedSports.length})
 				</button>
 			</div>

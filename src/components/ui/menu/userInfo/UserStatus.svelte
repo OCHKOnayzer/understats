@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<div class="plan_container" />
+<div class="plan_container"></div>
 
 <style>
 .plan_container {

@@ -36,28 +36,28 @@ onMount(() => {
 		<span>{proccent}</span>/<span>{count}</span>
 	</div>
 	<svg
-		width={svgSize}
-		height={svgSize}>
+		width="{svgSize}"
+		height="{svgSize}">
 		<circle
 			class="Progress_bar"
 			fill="transparent"
 			stroke="#b6b6b64a"
-			stroke-width={4}
-			cx={svgSize / 2}
-			cy={svgSize / 2}
-			r={radius} />
+			stroke-width="{4}"
+			cx="{svgSize / 2}"
+			cy="{svgSize / 2}"
+			r="{radius}"></circle>
 
 		<circle
 			class="Progress_bar user_progress"
-			bind:this={progressElement}
+			bind:this="{progressElement}"
 			fill="transparent"
-			stroke={progressColor}
-			stroke-width={4}
-			cx={svgSize / 2}
-			cy={svgSize / 2}
-			r={radius}
-			stroke-dasharray={circumference}
-			stroke-dashoffset={strokeDashoffset} />
+			stroke="{progressColor}"
+			stroke-width="{4}"
+			cx="{svgSize / 2}"
+			cy="{svgSize / 2}"
+			r="{radius}"
+			stroke-dasharray="{circumference}"
+			stroke-dashoffset="{strokeDashoffset}"></circle>
 	</svg>
 </div>
 

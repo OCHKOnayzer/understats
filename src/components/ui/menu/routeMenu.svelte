@@ -73,13 +73,13 @@ afterNavigate(() => {
 <div class="menu_items">
 	{#each menuArr as item}
 		<a
-			href={item.href}
+			href="{item.href}"
 			class="card_item"
-			class:selected={currentPath === item.href}>
+			class:selected="{currentPath === item.href}">
 			<div class="image_box">
 				<img
-					src={currentPath === item.href ? item.img1 : item.img2}
-					alt={$t('{item.title}')} />
+					src="{currentPath === item.href ? item.img1 : item.img2}"
+					alt="{$t('{item.title}')}" />
 			</div>
 			<span class="item_name">{$t(item.title)}</span>
 		</a>

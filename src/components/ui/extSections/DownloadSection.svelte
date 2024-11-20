@@ -31,7 +31,7 @@ import DownloadTitle from './titles/downloadTitle.svelte';
 			</div>
 			<div class="extension_info_wrapper">
 				<div class="extension_info_item">
-					<div><span class="item_name">{$t('extensions.support_browser')}:</span><span class="item_content" /></div>
+					<div><span class="item_name">{$t('extensions.support_browser')}:</span><span class="item_content"></span></div>
 				</div>
 				<div class="extension_info_item">
 					<div><span class="item_name">{$t('extensions.ver')}:</span><span class="item_content">1.34</span><span class="item_name">(12.11.2024)</span></div>

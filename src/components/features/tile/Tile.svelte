@@ -15,14 +15,14 @@ const changeTile = (value: string) => {
 
 <div class="wrapper">
 	<TileButton
-		title={m.sortTable()}
+		title="{m.sortTable()}"
 		value="table"
-		{changeTile}
+		changeTile="{changeTile}"
 		icon="iconamoon:menu-burger-horizontal" />
 	<TileButton
-		title={m.sortTile()}
+		title="{m.sortTile()}"
 		value="tile"
-		{changeTile}
+		changeTile="{changeTile}"
 		icon="fe:tiled" />
 
 	<Toaster />

@@ -19,31 +19,31 @@ const loginUser = () => {
 </script>
 
 <form class="form_wrapper">
-	<FormTitle modalActie={'social.sign_in_title'} />
+	<FormTitle modalActie="{'social.sign_in_title'}" />
 	<InputWrapper
-		default_type={'text'}
-		title_wrapper={$t('social.send_email')}
-		show_clear={false}
-		bind:value={$form.login} />
+		default_type="{'text'}"
+		title_wrapper="{$t('social.send_email')}"
+		show_clear="{false}"
+		bind:value="{$form.login}" />
 	<InputWrapper
-		default_type={'password'}
-		title_wrapper={$t('social.send_password')}
-		show_clear={true}
-		bind:value={$form.password} />
+		default_type="{'password'}"
+		title_wrapper="{$t('social.send_password')}"
+		show_clear="{true}"
+		bind:value="{$form.password}" />
 	<SocialContainer />
 	<div class="switch_container">
 		<SwitchButton
-			switch_text={'social.unBlock_acc'}
-			switch_modal={switchRecover} />
+			switch_text="{'social.unBlock_acc'}"
+			switch_modal="{switchRecover}" />
 		<SwitchButton
-			switch_text={'social.cHave_acc'}
-			switch_modal={switchReg} />
+			switch_text="{'social.cHave_acc'}"
+			switch_modal="{switchReg}" />
 	</div>
 	<div class="aprove_wrapper">
-		<CancelButton onUserText={'other.cancel'} />
+		<CancelButton onUserText="{'other.cancel'}" />
 		<UserAprove
-			onUserText={'social.sign_in'}
-			onUserAction={loginUser} />
+			onUserText="{'social.sign_in'}"
+			onUserAction="{loginUser}" />
 	</div>
 </form>
 

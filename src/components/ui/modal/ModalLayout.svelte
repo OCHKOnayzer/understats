@@ -23,7 +23,7 @@ const components = {
 
 {#if $isModalOpen}
 	<div class="modal_window">
-		<svelte:component this={components[$modalComponent]} />
+		<svelte:component this="{components[$modalComponent]}" />
 	</div>
 {/if}
 

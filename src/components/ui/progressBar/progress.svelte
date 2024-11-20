@@ -26,7 +26,7 @@ const currentProgress = (progress / 20) * 100;
 	<div class="progressConteiner">
 		<div
 			class="progress"
-			style="width: {(progress / 20) * 100}%" />
+			style="width: {(progress / 20) * 100}%"></div>
 	</div>
 	<div class="lastAward--minW">
 		<span class="lastAwards">{$t('other.last_award')}:&nbsp;&nbsp;</span>
@@ -35,26 +35,26 @@ const currentProgress = (progress / 20) * 100;
 	<div class="userStatus">
 		<div class="spacer_no_margin">
 			<span class="separator {currentProgress >= 0 ? 'get' : ''}">{$t('other.noob')}</span>
-			<span class="spacer" />
+			<span class="spacer"></span>
 		</div>
-		<span class="spacer" />
-		<span class="spacer" />
+		<span class="spacer"></span>
+		<span class="spacer"></span>
 		<div class="spacer_no_margin">
-			<span class="spacer" />
+			<span class="spacer"></span>
 			<span class="separator {currentProgress >= 30 ? 'get' : ''}">{$t('other.user')}</span>
-			<span class="spacer" />
+			<span class="spacer"></span>
 		</div>
-		<span class="spacer" />
-		<span class="spacer" />
+		<span class="spacer"></span>
+		<span class="spacer"></span>
 		<div class="spacer_no_margin">
-			<span class="spacer" />
+			<span class="spacer"></span>
 			<span class="separator {currentProgress >= 70 ? 'get' : ''}">{$t('other.pro')}</span>
-			<span class="spacer" />
+			<span class="spacer"></span>
 		</div>
-		<span class="spacer" />
-		<span class="spacer" />
+		<span class="spacer"></span>
+		<span class="spacer"></span>
 		<div class="spacer_no_margin">
-			<span class="spacer" />
+			<span class="spacer"></span>
 			<span class="separator {currentProgress >= 100 ? 'get' : ''}">{$t('other.legend')}</span>
 		</div>
 	</div>

@@ -77,6 +77,9 @@ module.exports = {
 
 		'prettier/prettier': 2,
 
+		"self-closing-style": 0,
+		"html/self-closing": 0,
+
 		indent: ['error', 'tab', { SwitchCase: 1 }],
 
 		'@html-eslint/indent': ['error', 'tab'],

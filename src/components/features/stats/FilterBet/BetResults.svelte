@@ -7,10 +7,10 @@ let showBetResults = false;
 
 <div
 	class="dropdown bet-result"
-	class:active={showBetResults}>
+	class:active="{showBetResults}">
 	<button
 		class="dropdown-button"
-		on:click={() => (showBetResults = !showBetResults)}>
+		on:click="{() => (showBetResults = !showBetResults)}">
 		{#if $filterStore.betResult.length > 0}
 			{$filterStore.betResult.join(', ')}
 		{:else}
@@ -18,15 +18,15 @@ let showBetResults = false;
 		{/if}
 		<span
 			class="arrow"
-			class:open={showBetResults}>▼</span>
+			class:open="{showBetResults}">▼</span>
 	</button>
 	{#if showBetResults}
 		<div class="dropdown-content">
 			{#each betResults as result}
 				<button
 					class="dropdown-item"
-					class:active={$filterStore.betResult.includes(result)}
-					on:click={() => filterStore.toggleBetResult(result)}>
+					class:active="{$filterStore.betResult.includes(result)}"
+					on:click="{() => filterStore.toggleBetResult(result)}">
 					{result}
 				</button>
 			{/each}

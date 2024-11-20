@@ -12,7 +12,7 @@ const setActiveIndex = (index: number) => {
 	{#each SectionElemnts as item, index}
 		<button
 			class="element {activeIndex === index ? 'active' : ''}"
-			on:click={() => setActiveIndex(index)}>
+			on:click="{() => setActiveIndex(index)}">
 			<span> {$t(item.name)}</span>
 		</button>
 	{/each}

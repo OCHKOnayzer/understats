@@ -26,25 +26,25 @@ const { awards } = $$props as { awards: Award[] };
 					<div class="article_content">
 						<div class="img">
 							<img
-								src={award.image}
+								src="{award.image}"
 								alt="congratulation" />
 						</div>
 						<div class="text-article">
 							<p
-								title={$t(award.name)}
+								title="{$t(award.name)}"
 								style="color: {award.get ? '#babdc6' : '#565f6e'}">
 								{$t(award.name)}
 							</p>
 							<p
-								title={$t(award.rare)}
+								title="{$t(award.rare)}"
 								style="color: {award.color}">{$t(award.rare)}</p>
 						</div>
 					</div>
 					<div>
 						{#if award.progressVis}
 							<ProgressCircle
-								proccent={award.progress}
-								count={award.count} />
+								proccent="{award.progress}"
+								count="{award.count}" />
 						{/if}
 					</div>
 				</div>

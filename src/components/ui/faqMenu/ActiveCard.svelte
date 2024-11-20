@@ -53,7 +53,7 @@ console.log(activeIndex);
 	{#each filteredElements as item}
 		<button
 			class="faqItem {activeIndex === ActiveElemnts.indexOf(item) ? 'active' : ''}"
-			on:click={() => setActiveIndex(ActiveElemnts.indexOf(item), item.name, item.article)}>
+			on:click="{() => setActiveIndex(ActiveElemnts.indexOf(item), item.name, item.article)}">
 			{$t(item.name)}
 		</button>
 	{/each}

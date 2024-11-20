@@ -83,7 +83,7 @@ import { cn } from '$utils/utils';
 		{#if $filteredAccounts.length > 0}
 			<Table.Body>
 				{#each $filteredAccounts as account, index (account.id)}
-					<Table.Row class={cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'}`)}>
+					<Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'}`)}">
 						<Table.Cell>{account.bookmaker || 'N/A'}</Table.Cell>
 						<Table.Cell>{account.id || 'N/A'}</Table.Cell>
 						<Table.Cell>

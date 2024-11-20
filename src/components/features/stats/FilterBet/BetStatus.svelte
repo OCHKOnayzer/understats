@@ -5,14 +5,14 @@ import { filterStore } from '$src/stores/filterStore';
 <div class="bet-status-row">
 	<button
 		class="bet-status"
-		class:active={$filterStore.betStatus.includes('calculated')}
-		on:click={() => filterStore.toggleBetStatus('calculated')}>
+		class:active="{$filterStore.betStatus.includes('calculated')}"
+		on:click="{() => filterStore.toggleBetStatus('calculated')}">
 		Рассчитана
 	</button>
 	<button
 		class="bet-status"
-		class:active={$filterStore.betStatus.includes('notCalculated')}
-		on:click={() => filterStore.toggleBetStatus('notCalculated')}>
+		class:active="{$filterStore.betStatus.includes('notCalculated')}"
+		on:click="{() => filterStore.toggleBetStatus('notCalculated')}">
 		Не рассчитана
 	</button>
 </div>
