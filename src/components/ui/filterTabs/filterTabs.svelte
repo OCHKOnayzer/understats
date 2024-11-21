@@ -1,5 +1,6 @@
 <script lang="ts">
 import { filterStore } from '$src/stores/filterStore';
+
 import Button from '../button/button.svelte';
 const tabs = [
 	{ id: 'halfYear', label: 'Полгода' },

@@ -1,5 +1,6 @@
 <script lang="ts">
 import { type Writable } from 'svelte/store';
+
 import Button from '../button/button.svelte';
 
 export let mainItemsStore: Writable<string[]>;
@@ -30,13 +31,11 @@ $: filteredSports = searchQuery ? $allItemsStore.filter((sport) => sport.toLower
 	<h2 class="section-title">{title}</h2>
 	<div class="sports-grid">
 		{#each $mainItemsStore as sport}
-			<button
-				on:click="{() => selectedFilter(sport)}">
+			<button on:click="{() => selectedFilter(sport)}">
 				<Button variant="{selectedList.includes(sport) ? 'filterButtonActive' : 'filterButton'}">
 					{sport}
 				</Button>
 			</button>
-
 		{/each}
 		<button
 			class="sport-button show-all"
