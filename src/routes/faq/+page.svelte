@@ -16,7 +16,7 @@ selectHeaderTitle('faq.faq');
 
 <div class="mainContent">
 	<div class="pageWrapper">
-		<SectionsFaq />
+		<!-- <SectionsFaq /> -->
 	</div>
 	<FaqConteiner />
 </div>

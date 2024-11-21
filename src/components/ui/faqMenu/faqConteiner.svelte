@@ -57,7 +57,8 @@ async function loadArticleComponent(article2: string) {
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
-	height: 82vh;
+	height: 89vh;
+	border: 1px solid red;
 }
 
 .faqChapter {

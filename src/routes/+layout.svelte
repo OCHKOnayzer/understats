@@ -26,6 +26,7 @@ onMount(() => {
 	if (isModalOpen) document.body.style.overflow = 'hidden';
 });
 const routesWithoutHeader = ['/stats', '/landing'];
+const routesWithoutMenu = ['/landing'];
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -34,6 +35,18 @@ const queryClient = new QueryClient({
 		}
 	}
 });
+
+function getUserLanguage() {
+	if (navigator.languages && navigator.languages.length) {
+		return navigator.languages[0];
+	} else if (navigator.language) {
+		return navigator.language;
+	} else {
+		return 'en';
+	}
+}
+
+console.log(getUserLanguage());
 </script>
 
 <QueryClientProvider client="{queryClient}">
@@ -41,7 +54,9 @@ const queryClient = new QueryClient({
 		<Container>
 			<main>
 				{#if isLocaleReady}
-					<Menu />
+					{#if !routesWithoutMenu.includes($page.url.pathname)}
+						<Menu />
+					{/if}
 
 					<div class="mainContent">
 						{#if $isModalOpen}
