@@ -1,31 +1,31 @@
 <script lang="ts">
 import { filterStore } from '$src/stores/filterStore';
+import Button from '../button/button.svelte';
 const tabs = [
-	{ id: 'accounts', label: 'По аккаунтам' },
-	{ id: 'sports', label: 'По спорту' },
-	{ id: 'bookmaker', label: 'По букмекеру' },
-	{ id: 'months', label: 'По месяцам' }
+	{ id: 'halfYear', label: 'Полгода' },
+	{ id: 'month', label: 'Месяц' },
+	{ id: 'week', label: 'Неделя' },
+	{ id: 'yesterday', label: 'Вчера' },
+	{ id: 'today', label: 'Сегодня' }
 ] as const;
 </script>
 
 <div class="filter-tabs">
 	{#each tabs as tab}
-		<button
-			class="tab"
-			class:active="{$filterStore.activeTab === tab.id}"
-			on:click="{() => filterStore.setActiveTab(tab.id)}">
-			{tab.label}
+		<button on:click="{() => filterStore.setActiveTab(tab.id)}">
+			<Button variant="{$filterStore.activeTab.includes(tab.id) ? 'filterButtonActive' : 'filterButton'}">
+				{tab.label}
+			</Button>
 		</button>
+		<!-- <FilterButton text="{tab.label}" active="{() => $filterStore.activeTab.includes(tab.id)}" func="{() => filterStore.setActiveTab(tab.id)}" /> -->
 	{/each}
 </div>
 
 <style>
 .filter-tabs {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 8px;
+	display: flex;
 	padding: 4px;
-	background: #363a45;
+	gap: 8px;
 	border-radius: 12px;
 }
 

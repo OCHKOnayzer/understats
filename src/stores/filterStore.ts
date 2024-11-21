@@ -5,7 +5,7 @@ export interface FilterState {
 		startDate: string;
 		endDate: string;
 	};
-	activeTab: 'accounts' | 'sports' | 'bookmaker' | 'months';
+	activeTab: 'halfYear' | 'month' | 'week' | 'yesterday' | 'today';
 	withoutAggregation: boolean;
 	selectedSports: string[];
 	selectedBookmakers: string[];
@@ -36,7 +36,7 @@ const initialState: FilterState = {
 		startDate: '',
 		endDate: ''
 	},
-	activeTab: 'accounts',
+	activeTab: 'halfYear',
 	withoutAggregation: false,
 	selectedSports: [],
 	selectedBookmakers: [],
