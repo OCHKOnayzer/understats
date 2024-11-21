@@ -7,11 +7,9 @@ import BetType from '$src/components/features/stats/FilterBet/BetType.svelte';
 <section class="bets-section">
 	<div class="bet-type-result-row">
 		<BetType />
-		<!-- <BetResults /> -->
 	</div>
 
-	<div class="flex items-center w-[100%]">
-		<!-- <BetStatus /> -->
+	<div class="flex w-[100%] items-center">
 		<BetGameStatus />
 	</div>
 

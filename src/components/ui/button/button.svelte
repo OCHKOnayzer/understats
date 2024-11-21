@@ -1,21 +1,23 @@
 <script lang="ts">
-	import { Button as ButtonPrimitive } from 'bits-ui';
-	import { cn } from '$utils/utils.js';
-	import { buttonVariants, type Events, type Props } from './index.js';
+import { Button as ButtonPrimitive } from 'bits-ui';
 
-	type $$Props = Props;
-	type $$Events = Events;
+import { cn } from '$utils/utils.js';
 
-	export let className: $$Props['class'] = undefined;
-	export let variant: $$Props['variant'] = 'default';
-	export let size: $$Props['size'] = 'default';
-	export let builders: $$Props['builders'] = [];
-	export { className as class };
+import { buttonVariants, type Events, type Props } from './index.js';
+
+type $$Props = Props;
+type $$Events = Events;
+
+export let className: $$Props['class'] = undefined;
+export let variant: $$Props['variant'] = 'default';
+export let size: $$Props['size'] = 'default';
+export let builders: $$Props['builders'] = [];
+export { className as class };
 </script>
 
 <ButtonPrimitive.Root
-	builders={builders}
-	class={cn(buttonVariants({ variant, size }), className)}
+	builders="{builders}"
+	class="{cn(buttonVariants({ variant, size }), className)}"
 	type="button"
 	{...$$restProps}
 	on:click
