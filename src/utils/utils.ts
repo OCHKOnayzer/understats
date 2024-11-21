@@ -2,8 +2,8 @@ import { type ClassValue, clsx } from 'clsx';
 import { cubicOut } from 'svelte/easing';
 import { twMerge } from 'tailwind-merge';
 
-import type { TransitionConfig } from 'svelte/transition';
 import type { FilterOption, OptionWithChoices } from '$types/types';
+import type { TransitionConfig } from 'svelte/transition';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));

@@ -15,18 +15,24 @@ import { filterStore } from '$src/stores/filterStore';
 		on:click="{() => filterStore.setBetGameStatus('prematch')}">
 		Прематч
 	</button>
+	<button
+		class="bet-status"
+		class:active="{$filterStore.betGameStatus === 'nothing'}"
+		on:click="{() => filterStore.setBetGameStatus('nothing')}">
+		Не распознано
+	</button>
 </div>
 
 <style>
 .bet-status-row {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 8px;
-	margin-bottom: 16px;
-	width: 50%;
+	display: flex;
+	flex: 1;
+	justify-content: space-around;
 	background-color: #363a45;
 	padding: 4px 6px;
 	border-radius: 12px;
+	gap: 8px;
+	margin-bottom: 12px;
 }
 
 .bet-status {

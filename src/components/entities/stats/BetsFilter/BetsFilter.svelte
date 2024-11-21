@@ -8,6 +8,8 @@
 		filterStore
 	} from '$src/stores/filterStore';
 	
+	import BetFilterResults from '$src/components/features/stats/FilterBet/BetFilterResults.svelte';
+	import Accordion from '$src/components/ui/accordion/Accordion.svelte';
 	import { fetchFilteredData } from '../api/api';
 	import BetsSelectFilter from '../BetsSelectFilter/BetsSelectFilter.svelte';
 	
@@ -66,7 +68,10 @@
 			</div>
 	
 			<Calendar on:select={handleDateSelect} />
+			
 			<FilterTabs />
+
+			<BetFilterResults />
 	
 			<label class="checkbox-container">
 				<input
@@ -81,7 +86,9 @@
 			
 			<BetsSelectFilter />
 			
-			<BetFilters />
+			<Accordion title={'Другое'}>
+				<BetFilters />
+			</Accordion>
 	
 			<div class="action-buttons">
 				<button

@@ -15,7 +15,7 @@ export interface FilterState {
 	betType: string[];
 	betStatus: string[];
 	betResult: string[];
-	betGameStatus: 'live' | 'prematch';
+	betGameStatus: 'live' | 'prematch' | 'nothing';
 	betAmount: {
 		from: string;
 		to: string;
