@@ -1,6 +1,7 @@
 <script lang="ts">
 import Icon from '@iconify/svelte';
-import { backOut, slide } from 'svelte/easing';
+import { backOut } from 'svelte/easing';
+import { slide } from 'svelte/transition';
 
 let { title, isInitiallyOpen = false, children } = $props();
 
