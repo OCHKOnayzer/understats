@@ -19,7 +19,7 @@ build:
 #  when: manual
   only:
     - main
-    - dev
+    - staging3
     - deploy
   tags:
     - runner1
@@ -43,7 +43,7 @@ deploy:
   variables:
     GIT_STRATEGY: fetch
   only:
-    - dev
+    - staging3
     - deploy
   before_script:
 #    - apk add --no-cache openssh-client dos2unix
