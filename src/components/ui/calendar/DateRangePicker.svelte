@@ -2,7 +2,6 @@
   import { filterStore } from '$src/stores/filterStore';
   import { MONTHS } from '$src/utils/constants/constants';
   import { DateUtils } from '$src/utils/utils';
-  import type { DateRange } from 'bits-ui';
   import { createEventDispatcher } from 'svelte';
   import CalendarHeader from './CalendarHeader.svelte';
   import CalendarMonth from './CalendarMonth.svelte';
