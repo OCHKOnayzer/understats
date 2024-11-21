@@ -36,7 +36,7 @@ const initialState: FilterState = {
 		startDate: '',
 		endDate: ''
 	},
-	activeTab: 'halfYear',
+	activeTab: 'month',
 	withoutAggregation: false,
 	selectedSports: [],
 	selectedBookmakers: [],

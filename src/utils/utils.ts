@@ -2,7 +2,7 @@ import { type ClassValue, clsx } from 'clsx';
 import { cubicOut } from 'svelte/easing';
 import { twMerge } from 'tailwind-merge';
 
-import type { FilterOption, OptionWithChoices } from '$types/types';
+import type { CalendarDay, FilterOption, OptionWithChoices } from '$types/types';
 import type { TransitionConfig } from 'svelte/transition';
 
 export function cn(...inputs: ClassValue[]) {
@@ -72,3 +72,44 @@ export const formatDate = (date: Date): string => {
 	const year = date.getFullYear();
 	return `${day}.${month}.${year}`;
 };
+
+export class DateUtils {
+	static formatDate(date: Date): string {
+		return date.toISOString().split('T')[0];
+	}
+
+	static getDaysInMonth(year: number, month: number): number {
+		return new Date(year, month + 1, 0).getDate();
+	}
+
+	static getFirstDayOfMonth(year: number, month: number): number {
+		const day = new Date(year, month, 1).getDay();
+		return day === 0 ? 6 : day - 1;
+	}
+
+	static generateCalendarDays(year: number, month: number): CalendarDay[] {
+		const daysInMonth = this.getDaysInMonth(year, month);
+		const firstDay = this.getFirstDayOfMonth(year, month);
+
+		return [
+			...Array(firstDay).fill(null),
+			...Array(daysInMonth)
+				.fill(0)
+				.map((_, i) => new Date(year, month, i + 1))
+		];
+	}
+
+	static isDateSelected(date: CalendarDay, selectedDates: Date[]): boolean {
+		if (!date || !selectedDates.length) return false;
+
+		const time = date.getTime();
+		return selectedDates.length === 1 ? time === selectedDates[0].getTime() : time >= selectedDates[0].getTime() && time <= selectedDates[1].getTime();
+	}
+
+	static isDateInRange(date: CalendarDay, selectedDates: Date[]): boolean {
+		if (!date || selectedDates.length !== 2) return false;
+
+		const time = date.getTime();
+		return time > selectedDates[0].getTime() && time < selectedDates[1].getTime();
+	}
+}

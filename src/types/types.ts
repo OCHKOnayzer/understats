@@ -98,3 +98,16 @@ export interface IAuthProfile {
 	id: string;
 	login: string;
 }
+
+export type DateRange = {
+	startDate: string;
+	endDate: string;
+};
+
+export type CalendarDay = Date | null;
+
+export interface CalendarProps {
+	selectedDates: Date[];
+	onDateSelect: (date: Date) => void;
+	currentDate: Date;
+}

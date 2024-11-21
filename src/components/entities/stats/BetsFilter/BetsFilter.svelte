@@ -4,7 +4,7 @@ import Icon from '@iconify/svelte';
 import BetFilterResults from '$src/components/features/stats/FilterBet/BetFilterResults.svelte';
 import Accordion from '$src/components/ui/accordion/Accordion.svelte';
 import BetFilters from '$src/components/ui/betFilters/BetFilters.svelte';
-import Calendar from '$src/components/ui/calendar/Calendar.svelte';
+import Calendar from '$src/components/ui/calendar/DateRangePicker.svelte';
 import FilterTabs from '$src/components/ui/filterTabs/filterTabs.svelte';
 import { filterStore } from '$src/stores/filterStore';
 
