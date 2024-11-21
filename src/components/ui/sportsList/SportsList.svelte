@@ -1,36 +1,40 @@
 <script lang="ts">
-import { filterStore } from '$src/stores/filterStore';
+import { type Writable } from 'svelte/store';
+
+import Button from '../button/button.svelte';
+
+export let mainItemsStore: Writable<string[]>;
+export let allItemsStore: Writable<string[]>;
+export let title = 'Спорт';
+export let showAllButtonText = 'Показать все';
+export let setFilter;
+export let selectedFilter;
+export let selectedList;
 
 let showSportsModal = false;
-
-const mainSports = ['Футбол', 'Баскетбол', 'Теннис', 'Хоккей', 'Бейсбол', 'Американский футбол'];
-
-const allSports = [...mainSports, 'Настольный теннис', 'Крикет', 'Бокс', 'Гандбол', 'Дартс', 'Киберспорт', 'Крикет', 'Волейбол', 'Гольф', 'Регби', 'Бадминтон', 'Плавание', 'ММА'];
-
 let searchQuery = '';
 let previousSelections: string[] = [];
 
 function savePreviousSelections() {
-	previousSelections = [...$filterStore.selectedSports];
+	previousSelections = [...selectedList];
 }
 
 function restoreSelections() {
-	filterStore.setSelectedSports(previousSelections);
+	setFilter(previousSelections);
 	showSportsModal = false;
 }
 
-$: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase().includes(searchQuery.toLowerCase())) : allSports;
+$: filteredSports = searchQuery ? $allItemsStore.filter((sport) => sport.toLowerCase().includes(searchQuery.toLowerCase())) : $allItemsStore;
 </script>
 
-<section class="sports-section">
-	<h2 class="section-title">Спорт</h2>
+<div class="sports-section">
+	<h2 class="section-title">{title}</h2>
 	<div class="sports-grid">
-		{#each mainSports as sport}
-			<button
-				class="sport-button"
-				class:active="{$filterStore.selectedSports.includes(sport)}"
-				on:click="{() => filterStore.toggleSport(sport)}">
-				{sport}
+		{#each $mainItemsStore as sport}
+			<button on:click="{() => selectedFilter(sport)}">
+				<Button variant="{selectedList.includes(sport) ? 'filterButtonActive' : 'filterButton'}">
+					{sport}
+				</Button>
 			</button>
 		{/each}
 		<button
@@ -39,10 +43,10 @@ $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase(
 				savePreviousSelections();
 				showSportsModal = true;
 			}}">
-			Показать все ({allSports.length})
+			{showAllButtonText} ({$allItemsStore.length})
 		</button>
 	</div>
-</section>
+</div>
 
 {#if showSportsModal}
 	<div class="modal-overlay">
@@ -67,8 +71,8 @@ $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase(
 					<label class="sport-item">
 						<input
 							type="checkbox"
-							checked="{$filterStore.selectedSports.includes(sport)}"
-							on:change="{() => filterStore.toggleSport(sport)}" />
+							checked="{selectedList.includes(sport)}"
+							on:change="{() => selectedFilter(sport)}" />
 						<span class="sport-name">{sport}</span>
 					</label>
 				{/each}
@@ -83,7 +87,7 @@ $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase(
 				<button
 					class="apply-button"
 					on:click="{() => (showSportsModal = false)}">
-					Применить ({$filterStore.selectedSports.length})
+					Применить ({selectedList.length})
 				</button>
 			</div>
 		</div>
@@ -94,20 +98,17 @@ $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase(
 .sports-section {
 	margin: 32px 0;
 }
-
 .section-title {
 	font-size: 20px;
 	font-weight: 600;
 	margin-bottom: 16px;
 	color: white;
 }
-
 .sports-grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	display: flex;
+	flex-wrap: wrap;
 	gap: 8px;
 }
-
 .sport-button {
 	padding: 12px;
 	background: #0d111d;
@@ -118,25 +119,20 @@ $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase(
 	font-size: 16px;
 	transition: all 0.2s ease-in-out;
 }
-
 .sport-button:hover {
 	background: #3a3a3c;
 }
-
 .sport-button.active {
 	background: #6366f1;
 }
-
 .show-all {
 	background: #0d111d;
 }
-
 .show-all:hover {
 	background: rgba(255, 255, 255, 0.05);
 }
-
 .modal-overlay {
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -157,7 +153,6 @@ $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase(
 	display: flex;
 	flex-direction: column;
 }
-
 .modal-header {
 	padding: 20px;
 	display: flex;
@@ -165,13 +160,11 @@ $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase(
 	align-items: center;
 	border-bottom: 1px solid #363a45;
 }
-
 .modal-header h3 {
 	font-size: 20px;
 	color: white;
 	font-weight: 600;
 }
-
 .close-button {
 	background: none;
 	border: none;
@@ -180,12 +173,10 @@ $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase(
 	cursor: pointer;
 	padding: 4px;
 }
-
 .search-container {
 	padding: 16px;
 	border-bottom: 1px solid #363a45;
 }
-
 .search-input {
 	width: 100%;
 	padding: 12px;
@@ -195,11 +186,9 @@ $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase(
 	color: white;
 	font-size: 16px;
 }
-
 .search-input::placeholder {
 	color: rgba(255, 255, 255, 0.5);
 }
-
 .sports-list {
 	padding: 16px;
 	overflow-y: auto;
@@ -208,7 +197,6 @@ $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase(
 	flex-direction: column;
 	gap: 12px;
 }
-
 .sport-item {
 	display: flex;
 	align-items: center;
@@ -217,16 +205,10 @@ $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase(
 	padding: 8px;
 	border-radius: 8px;
 }
-
-.sport-item:hover {
-	background: #363a45;
-}
-
 .sport-name {
 	color: white;
 	font-size: 16px;
 }
-
 .modal-footer {
 	padding: 16px;
 	display: flex;
@@ -234,7 +216,6 @@ $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase(
 	gap: 12px;
 	border-top: 1px solid #363a45;
 }
-
 .cancel-button,
 .apply-button {
 	padding: 12px 24px;
@@ -243,23 +224,19 @@ $: filteredSports = searchQuery ? allSports.filter((sport) => sport.toLowerCase(
 	cursor: pointer;
 	transition: all 0.2s ease;
 }
-
 .cancel-button {
 	background: transparent;
 	border: 1px solid #4a5568;
 	color: white;
 }
-
 .cancel-button:hover {
 	background: rgba(74, 85, 104, 0.2);
 }
-
 .apply-button {
 	background: #6366f1;
 	border: none;
 	color: white;
 }
-
 .apply-button:hover {
 	background: #4f46e5;
 }

@@ -5,31 +5,47 @@ import type { IApiError } from '$src/types/types';
 export class ApiError extends Error {
 	constructor(message: string) {
 		super(message);
-		this.name = 'ApiError';
+		this.name = 'Ошибка';
 	}
 }
 
 export const handleAxiosError = (error: unknown) => {
 	if (axios.isAxiosError(error)) {
 		const axiosError = error as AxiosError<IApiError>;
+		console.log(axiosError.response);
 
 		if (axiosError.response) {
-			const { status, data } = axiosError.response;
+			const { data } = axiosError.response;
 
-			switch (status) {
-				case 400:
-					throw new ApiError(data.errors ? `Validation failed: ${data.errors.map((e) => e.message).join(', ')}` : data.message);
-				case 401:
-					throw new ApiError('Authentication required');
-				case 404:
-					throw new ApiError('Resource not found');
-				case 409:
-					throw new ApiError('Resource already exists');
+			switch (data.message) {
+				case 'User not found':
+					throw new ApiError('Пользователь не найден');
+				case 'Invalid credentials':
+					throw new ApiError('Неверный пароль');
+				case 'Email not found':
+					throw new ApiError('Неверная почта');
+				case 'Validation failed':
+					if (Array.isArray(data.errors) && data.errors.length > 0) {
+						const errorMessages = data.errors.map((err) => {
+							switch (err.code) {
+								case 'INVALID_LOGIN':
+									return 'Логин должен быть действительным адресом электронной почты';
+								case 'PASSWORD_TOO_SHORT':
+									return 'Пароль должен быть не менее 6 символов';
+								default:
+									return `Неизвестная ошибка в поле "${err.field}": ${err.message}`;
+							}
+						});
+						throw new ApiError(errorMessages.join('\n'));
+					} else {
+						throw new ApiError('Валидация не удалась, но подробностей нет.');
+					}
+				case 'User already exists':
+					throw new ApiError('Пользователь уже существует');
 				default:
-					throw new ApiError(data.message || 'An unexpected error occurred');
+					throw new ApiError(data.message || '');
 			}
 		}
-
 		throw new ApiError('Network error occurred');
 	}
 

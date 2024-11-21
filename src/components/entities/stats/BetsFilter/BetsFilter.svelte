@@ -1,13 +1,15 @@
 <script lang="ts">
 import Icon from '@iconify/svelte';
 
+import BetFilterResults from '$src/components/features/stats/FilterBet/BetFilterResults.svelte';
+import Accordion from '$src/components/ui/accordion/Accordion.svelte';
 import BetFilters from '$src/components/ui/betFilters/BetFilters.svelte';
 import Calendar from '$src/components/ui/calendar/Calendar.svelte';
 import FilterTabs from '$src/components/ui/filterTabs/filterTabs.svelte';
-import SportsList from '$src/components/ui/sportsList/SportsList.svelte';
 import { filterStore } from '$src/stores/filterStore';
 
 import { fetchFilteredData } from '../api/api';
+import BetsSelectFilter from '../BetsSelectFilter/BetsSelectFilter.svelte';
 
 let isOpen = false;
 let isLoading = false;
@@ -63,19 +65,18 @@ async function applyFilters() {
 		</div>
 
 		<Calendar on:select="{handleDateSelect}" />
+
 		<FilterTabs />
 
-		<label class="checkbox-container">
-			<input
-				type="checkbox"
-				checked="{$filterStore.withoutAggregation}"
-				on:change="{() => filterStore.toggleAggregation()}" />
-			<span class="checkbox-custom"></span>
-			<span class="label-text">Без агрегации</span>
-		</label>
+		<Accordion title="{'Результат'}">
+			<BetFilterResults />
+		</Accordion>
 
-		<SportsList />
-		<BetFilters />
+		<BetsSelectFilter />
+
+		<Accordion title="{'Другое'}">
+			<BetFilters />
+		</Accordion>
 
 		<div class="action-buttons">
 			<button
@@ -154,45 +155,6 @@ async function applyFilters() {
 	font-size: 32px;
 	font-weight: 600;
 	color: white;
-}
-
-.checkbox-container {
-	display: flex;
-	align-items: center;
-	margin: 24px 0;
-	cursor: pointer;
-	gap: 12px;
-}
-
-.checkbox-container input[type='checkbox'] {
-	display: none;
-}
-
-.checkbox-custom {
-	width: 24px;
-	height: 24px;
-	border: 2px solid white;
-	border-radius: 4px;
-	position: relative;
-	background: transparent;
-}
-
-input[type='checkbox']:checked + .checkbox-custom::after {
-	content: '';
-	position: absolute;
-	top: 4px;
-	left: 8px;
-	width: 5px;
-	height: 10px;
-	border: solid white;
-	border-width: 0 2px 2px 0;
-	transform: rotate(45deg);
-}
-
-.label-text {
-	color: white;
-	font-size: 16px;
-	user-select: none;
 }
 
 .action-buttons {

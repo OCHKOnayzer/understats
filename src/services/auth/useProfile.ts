@@ -12,8 +12,8 @@ export const useUserProfile = () => {
 			}
 			return response.data;
 		},
-		staleTime: 1000 * 60 * 5,
-		retry: 2
+		staleTime: 5 * 60 * 1000,
+		retry: false
 	});
 
 	return { query };

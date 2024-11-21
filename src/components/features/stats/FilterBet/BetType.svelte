@@ -15,6 +15,12 @@ import { filterStore } from '$src/stores/filterStore';
 		on:click="{() => filterStore.toggleBetType('express')}">
 		Экспресс
 	</button>
+	<button
+		class="bet-type"
+		class:active="{$filterStore.betType.includes('nothing')}"
+		on:click="{() => filterStore.toggleBetType('nothing')}">
+		Не распознано
+	</button>
 </div>
 
 <style>

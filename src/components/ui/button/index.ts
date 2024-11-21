@@ -22,6 +22,8 @@ const buttonVariants = tv({
 			ghost: 'hover:bg-accent hover:text-accent-foreground',
 			tileChecked: 'bg-violet-500 text-white rounded-[100px]',
 			tile: 'bg-gray-500 text-white rounded-[100px] transition-colors hover:opacity-50 transition-all',
+			filterButton: 'bg-[#363A45] text-white rounded-[8px] transition-colors hover:bg-gray-500 transition-all',
+			filterButtonActive: 'bg-[#171B26] text-white rounded-[8px] transition-colors hover:bg-gray-700 transition-all',
 			link: 'text-primary underline-offset-4 hover:underline'
 		},
 		size: {
