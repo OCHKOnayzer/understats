@@ -4,14 +4,18 @@ import { DateUtils } from '$src/utils/utils';
 
   import CalendarDay from './CalendarDay.svelte';
 
-  export let currentDate: Date;
-  export let selectedDates: Date[];
-  export let onDateSelect: (date: Date) => void;
+  interface Props {
+    currentDate: Date,
+    selectedDates: Date[],
+    onDateSelect: (date: Date) => void;
+  }
 
-  $: days = DateUtils.generateCalendarDays(
+  let {currentDate,selectedDates,onDateSelect}: Props = $props()
+
+  const days = $derived(DateUtils.generateCalendarDays(
     currentDate.getFullYear(),
     currentDate.getMonth()
-  );
+  ));
 </script>
 
 <div class="month-calendar">

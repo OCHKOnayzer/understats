@@ -1,12 +1,15 @@
 <script lang="ts">
-import { MONTHS } from '$src/utils/constants/constants';
-  export let currentDate: Date;
-  export let nextMonthDate: Date;
-  export let onPrevMonth: () => void;
-  export let onNextMonth: () => void;
+  import { MONTHS } from '$src/utils/constants/constants';
+  interface Props {
+    currentDate: Date,
+    nextMonthDate: Date,
+    onPrevMonth: () => void,
+    onNextMonth: () => void,
+  }
 
-  $: displayMonths = `${MONTHS[currentDate.getMonth()]}, ${currentDate.getFullYear()}    ${
-    MONTHS[nextMonthDate.getMonth()]}, ${nextMonthDate.getFullYear()}`;
+  let {currentDate, nextMonthDate, onPrevMonth, onNextMonth}: Props = $props()
+
+  const displayMonths = $derived(`${MONTHS[currentDate.getMonth()]}, ${currentDate.getFullYear()} ${MONTHS[nextMonthDate.getMonth()]}, ${nextMonthDate.getFullYear()}`);
 </script>
 
 <div class="calendar-header">

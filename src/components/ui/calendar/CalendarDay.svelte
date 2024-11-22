@@ -1,10 +1,14 @@
 <script lang="ts">
 	import { type CalendarDay } from '$types/types';
+  interface Props {
+    day:CalendarDay,
+    selected: boolean,
+    inRange:boolean,
+    onSelect: (day: Date) => void;
+  }
 
-  export let day: CalendarDay;
-  export let selected: boolean;
-  export let inRange: boolean;
-  export let onSelect: (day: Date) => void;
+  let {day,selected,inRange,onSelect}: Props = $props() 
+  
 </script>
 
 {#if day}
