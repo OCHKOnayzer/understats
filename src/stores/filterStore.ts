@@ -1,5 +1,4 @@
 import { get, writable } from 'svelte/store';
-
 export interface FilterState {
 	dateRange: {
 		startDate: string;
@@ -149,7 +148,6 @@ function createFilterStore() {
 			return null;
 		}
 
-		// Only check other tabs if it's not a single-day selection
 		const monthStart = normalizeDate(new Date(today.getFullYear(), today.getMonth(), 1));
 		const monthEnd = normalizeDate(new Date(today.getFullYear(), today.getMonth() + 1, 0));
 		if (start.getTime() === monthStart.getTime() && end.getTime() === monthEnd.getTime()) {
