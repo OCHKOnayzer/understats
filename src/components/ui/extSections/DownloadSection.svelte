@@ -1,43 +1,88 @@
-<script>
+<script lang="ts">
 import { t } from 'svelte-i18n';
 
 import DownloadExt from '../button/downloadExt/DownloadExt.svelte';
 import FaqOpen from '../button/faqOpen/FaqOpen.svelte';
 
 import DownloadTitle from './titles/downloadTitle.svelte';
+
+interface BrowserItem {
+	name: string;
+	image: string;
+}
+
+const browserArr: BrowserItem[] = [
+	{
+		name: 'opera',
+		image: 'assets/extension/browsers/opera.svg'
+	},
+	{
+		name: '',
+		image: 'assets/extension/browsers/edge.svg'
+	},
+	{
+		name: '',
+		image: 'assets/extension/browsers/google.svg'
+	},
+	{
+		name: '',
+		image: 'assets/extension/browsers/fox.svg'
+	},
+	{
+		name: '',
+		image: 'assets/extension/browsers/yandex.svg'
+	}
+];
 </script>
 
-<div class="download_wrapper">
-	<div class="download_container">
+<div class="download">
+	<div class="download__container">
 		<DownloadTitle />
-		<div class="download_content">
-			<div class="info_wrapper">
-				<span class="ext_info">
+		<div class="download__content">
+			<div class="info-wrapper">
+				<span class="info-text">
 					{$t('extensions.desc')}
 				</span>
-				<span class="ext_info">
+				<span class="info-text">
 					{$t('extensions.bets')}
 				</span>
 			</div>
-			<div class="buttons_wrapper">
-				<div class="buttons">
+			<div class="button-wrapper">
+				<div class="button-group">
 					<DownloadExt />
 					<FaqOpen />
 				</div>
-				<div class="attention_wrapper">
-					<span class="attention">{$t('extensions.attention_key')}</span>
-					<span class="attention">{$t('extensions.attention')}</span>
+				<div class="attention-wrapper">
+					<span class="attention-text">{$t('extensions.attention_key')}</span>
+					<span class="attention-text">{$t('extensions.attention')}</span>
 				</div>
 			</div>
-			<div class="extension_info_wrapper">
-				<div class="extension_info_item">
-					<div><span class="item_name">{$t('extensions.support_browser')}:</span><span class="item_content"></span></div>
+			<div class="extensions-wrapper">
+				<div class="extensions-item">
+					<div class="extensions-item--flex">
+						<span class="extensions-title">{$t('extensions.support_browser')}:</span>
+						<span class="extensions-icons">
+							{#each browserArr as item}
+								<img
+									src="{item.image}"
+									alt="{item.name}"
+									class="extensions-icon" />
+							{/each}
+						</span>
+					</div>
 				</div>
-				<div class="extension_info_item">
-					<div><span class="item_name">{$t('extensions.ver')}:</span><span class="item_content">1.34</span><span class="item_name">(12.11.2024)</span></div>
+				<div class="extensions-item">
+					<div>
+						<span class="extensions-title">{$t('extensions.ver')}:</span>
+						<span class="extensions-content">1.34</span>
+						<span class="extensions-title">(12.11.2024)</span>
+					</div>
 				</div>
-				<div class="extension_info_item">
-					<div><span class="item_name">{$t('extensions.size')}:</span><span class="item_content">2{$t('extensions.mb')}</span></div>
+				<div class="extensions-item">
+					<div>
+						<span class="extensions-title">{$t('extensions.size')}:</span>
+						<span class="extensions-content">2{$t('extensions.mb')}</span>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -45,7 +90,7 @@ import DownloadTitle from './titles/downloadTitle.svelte';
 </div>
 
 <style>
-.download_wrapper {
+.download {
 	width: 59%;
 	background-color: #171b26;
 	border-radius: 5px;
@@ -53,7 +98,7 @@ import DownloadTitle from './titles/downloadTitle.svelte';
 	height: fit-content;
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-.download_container {
+.download__container {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
@@ -61,44 +106,54 @@ import DownloadTitle from './titles/downloadTitle.svelte';
 	height: 100%;
 	margin: 0 auto;
 }
-.download_content {
+.download__content {
 	width: 100%;
 }
-.ext_info {
+.info-wrapper {
+	padding-bottom: 10px;
+}
+.info-text {
 	font-size: 14px;
 	line-height: 20px;
 	text-align: left;
 }
-.info_wrapper {
-	padding-bottom: 10px;
-}
-.buttons_wrapper {
+.button-wrapper {
 	margin-top: 30px;
 }
-.buttons {
+.button-group {
 	display: flex;
 }
-.attention {
-	color: #718096;
-	font-size: 14px;
-}
-.attention_wrapper {
+.attention-wrapper {
 	margin-top: 12px;
 	display: flex;
 	flex-direction: column;
 }
-.extension_info_wrapper {
+.attention-text {
+	color: #718096;
+	font-size: 14px;
+}
+.extensions-wrapper {
 	margin-top: 15px;
 }
-.extension_info_item {
+.extensions-item {
 	margin-top: 10px;
 }
-.item_name {
+.extensions-item--flex {
+	display: flex;
+}
+.extensions-title {
 	color: #718096;
 }
-.item_content {
-	color: white;
+.extensions-icons {
+	display: flex;
 	margin-left: 5px;
 	margin-right: 5px;
+}
+.extensions-icon {
+	margin-right: 5px;
+}
+.extensions-content {
+	color: white;
+	margin-left: 5px;
 }
 </style>

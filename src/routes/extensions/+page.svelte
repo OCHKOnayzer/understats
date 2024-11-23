@@ -5,11 +5,6 @@ import { selectHeaderTitle } from '$src/stores/HeaderStores';
 import DownloadSection from '$src/components/ui/extSections/DownloadSection.svelte';
 import QuesSection from '$src/components/ui/extSections/QuesSection.svelte';
 
-import Slider from '../../components/ui/slider/extensionsSlider/Slider.svelte';
-import DownloadElement from '../../components/ui/downloadElement/DownloadElement.svelte';
-import DownloadInfo from '../../components/ui/downloadInfo/DownloadInfo.svelte';
-import FunctionalSection from '../../components/ui/functional/FunctionalSection.svelte';
-import Exp from '../../components/ui/exp/Exp.svelte';
 selectHeaderTitle('extensions.extensions');
 </script>
 

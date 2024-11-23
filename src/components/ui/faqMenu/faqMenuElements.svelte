@@ -25,19 +25,17 @@ const dispatch = createEventDispatcher();
 // Функция для получения параметра из URL
 const getUrlParameterKey = (param: string): string | null => {
 	const urlParams = new URLSearchParams(window.location.search);
-	const paramValue = urlParams.get(param); // Получаем значение параметра
-	return paramValue ? param : null; // Возвращаем только ключ, если значение есть
+	const paramValue = urlParams.get(param);
+	return paramValue ? param : null;
 };
 
-// Проверяем параметр 'browser' из URL и ищем соответствующий элемент в MenuElement
 onMount(() => {
-	const browserParamKey = getUrlParameterKey('browser'); // Извлекаем ключ 'browser'
+	const browserParamKey = getUrlParameterKey('browser');
 
 	if (browserParamKey) {
-		// Ищем элемент, у которого props совпадает с значением из URL
 		const matchingItem = MenuElement.find((item) => item.props === browserParamKey);
 		if (matchingItem) {
-			activeIndex = MenuElement.indexOf(matchingItem); // Устанавливаем индекс найденного элемента
+			activeIndex = MenuElement.indexOf(matchingItem);
 		}
 	}
 });
@@ -60,12 +58,6 @@ onMount(() => {
 					FAQIndex="{index}"
 					on:selectItem="{handleSelectItem}" />
 			{/if}
-		{/each}
-
-		{#each SecretMenuElemnt as item}
-			<button class="faqItem secretItem">
-				{$t(item.name)}
-			</button>
 		{/each}
 	</div>
 </div>
