@@ -1,10 +1,10 @@
 import { derived, writable } from 'svelte/store';
 
-export const isModalOpen = writable(false);
+export const isModalOpen = writable(true);
 
 export const isLogOutModal = writable(false);
 
-export const modalComponent = writable<'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | null>(null);
+export const modalComponent = writable<'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | null>('LangModal');
 
 import { getAccessToken, removeAccessToken } from '$src/services/auth/auth-token.service';
 
@@ -33,7 +33,7 @@ export const toggleInputType = () => {
 	inputType.update((type) => (type === 'password' ? 'text' : 'password'));
 };
 
-export const openModal = (component: 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal') => {
+export const openModal = (component: 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal') => {
 	isModalOpen.set(true);
 	modalComponent.set(component);
 	document.body.style.overflow = 'hidden';

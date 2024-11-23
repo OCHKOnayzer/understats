@@ -7,7 +7,7 @@ import { Toaster } from 'svelte-french-toast';
 
 import Container from '$components/providers/container/Container.svelte';
 import Menu from '$components/ui/menu/Menu.svelte';
-import { i18n } from '$lib/i18n';
+import { i18n, setLanguage } from '$lib/i18n';
 import Header from '$src/components/ui/header/header.svelte';
 import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
 import { isModalOpen } from '$src/stores/modalStore';
@@ -22,9 +22,11 @@ let isLocaleReady = false;
 waitLocale().then(() => {
 	isLocaleReady = true;
 });
+
 onMount(() => {
 	if (isModalOpen) document.body.style.overflow = 'hidden';
 });
+
 const routesWithoutHeader = ['/stats', '/landing'];
 const routesWithoutMenu = ['/landing'];
 
@@ -35,18 +37,6 @@ const queryClient = new QueryClient({
 		}
 	}
 });
-
-function getUserLanguage() {
-	if (navigator.languages && navigator.languages.length) {
-		return navigator.languages[0];
-	} else if (navigator.language) {
-		return navigator.language;
-	} else {
-		return 'en';
-	}
-}
-
-console.log(getUserLanguage());
 </script>
 
 <QueryClientProvider client="{queryClient}">

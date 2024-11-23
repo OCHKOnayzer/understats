@@ -2,6 +2,7 @@
 import { t, locale } from 'svelte-i18n';
 
 import { headerTitle } from '$src/stores/HeaderStores';
+import { openModal } from '$src/stores/modalStore';
 console.log(locale);
 </script>
 
@@ -13,7 +14,7 @@ console.log(locale);
 			</div>
 			<div class="buttonConteiner">
 				<div class="btnWrapper">
-					<button>
+					<button on:click="{() => openModal('LangModal')}">
 						<span class="lang">ENG</span>
 					</button>
 				</div>
@@ -43,6 +44,8 @@ console.log(locale);
 	padding-top: 10px;
 	width: 98%;
 	margin: 0 auto;
+	position: relative;
+	z-index: 9998;
 }
 
 .headerItem {

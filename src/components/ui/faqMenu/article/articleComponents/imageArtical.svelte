@@ -4,10 +4,10 @@ import { t } from 'svelte-i18n';
 interface ImageProps {
 	image: string;
 	name: string;
+	description: string;
 }
 
-let image = 'assets/faq/google.jpg';
-let name = 'Sample Image';
+let { image, name, description } = $$props as ImageProps;
 </script>
 
 <div class="image_article">
@@ -19,14 +19,16 @@ let name = 'Sample Image';
 
 			<img
 				src="{image}"
-				alt="{name}" />
+				alt="{$t(name)}" />
 		</div>
 	{/if}
+	<div class="image-name">
+		{$t(description)}
+	</div>
 </div>
 
 <style>
 .image_article {
-	margin-bottom: 3%;
 	position: relative;
 }
 
@@ -55,8 +57,17 @@ let name = 'Sample Image';
 
 .image-wrapper img {
 	height: auto;
-	width: 50%;
+	max-height: 550px;
+	width: auto;
+	max-width: 45%;
 	position: relative;
 	z-index: 1;
+}
+.image-name {
+	display: flex;
+	justify-content: center;
+	font-size: 13px;
+	padding: 5px;
+	color: #a3a4ab;
 }
 </style>
