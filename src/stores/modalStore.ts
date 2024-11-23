@@ -1,6 +1,6 @@
 import { derived, writable } from 'svelte/store';
 
-export const isModalOpen = writable(true);
+export const isModalOpen = writable(false);
 
 export const isLogOutModal = writable(false);
 
