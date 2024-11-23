@@ -4,7 +4,7 @@ export const isModalOpen = writable(true);
 
 export const isLogOutModal = writable(false);
 
-export const modalComponent = writable<'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | null>('LangModal');
+export const modalComponent = writable<'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | null>(null);
 
 import { getAccessToken, removeAccessToken } from '$src/services/auth/auth-token.service';
 
