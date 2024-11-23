@@ -31,8 +31,7 @@ import {
 		selectedFilter="{filterStore.toggleBookmaker}"
 		allItemsStore="{bookmakersList}"
 		selectedList="{$filterStore.selectedBookmakers}"
-		mainItemsStore="{bookmakersListMain}"
-		title="{'Букмекеры'}" />
+		mainItemsStore="{bookmakersListMain}" />
 </Accordion>
 
 <Accordion title="{'Аккаунты'}">
@@ -41,8 +40,7 @@ import {
 		selectedFilter="{filterStore.toggleAccount}"
 		selectedList="{$filterStore.selectedAccounts}"
 		allItemsStore="{accountsList}"
-		mainItemsStore="{accountsListMain}"
-		title="{'Аккаунты'}" />
+		mainItemsStore="{accountsListMain}" />
 </Accordion>
 
 <Accordion title="{'Команды'}">
@@ -51,8 +49,7 @@ import {
 		selectedFilter="{filterStore.toggleComand}"
 		selectedList="{$filterStore.selectedComands}"
 		allItemsStore="{comandList}"
-		mainItemsStore="{comandListMain}"
-		title="{'Команды'}" />
+		mainItemsStore="{comandListMain}" />
 </Accordion>
 
 <Accordion title="{'Турниры'}">
@@ -61,6 +58,5 @@ import {
 		selectedFilter="{filterStore.toggleTour}"
 		selectedList="{$filterStore.selectedTours}"
 		allItemsStore="{tourList}"
-		mainItemsStore="{tourListMain}"
-		title="{'Турниры'}" />
+		mainItemsStore="{tourListMain}" />
 </Accordion>

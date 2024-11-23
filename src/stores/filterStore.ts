@@ -36,7 +36,7 @@ const initialState: FilterState = {
 		startDate: '',
 		endDate: ''
 	},
-	activeTab: 'halfYear',
+	activeTab: 'month',
 	withoutAggregation: false,
 	selectedSports: [],
 	selectedBookmakers: [],
@@ -65,6 +65,33 @@ const initialState: FilterState = {
 function createFilterStore() {
 	const { subscribe, set, update } = writable<FilterState>(initialState);
 
+	function getDateRangeForTab(tab: FilterState['activeTab']) {
+		const today = new Date();
+		let endDate = new Date().toISOString().split('T')[0];
+		let startDate = '';
+
+		switch (tab) {
+			case 'halfYear':
+				startDate = new Date(today.setMonth(today.getMonth() - 6)).toISOString().split('T')[0];
+				break;
+			case 'month':
+				startDate = new Date(today.setMonth(today.getMonth() - 1)).toISOString().split('T')[0];
+				break;
+			case 'week':
+				startDate = new Date(today.setDate(today.getDate() - 7)).toISOString().split('T')[0];
+				break;
+			case 'yesterday':
+				startDate = new Date(today.setDate(today.getDate() - 1)).toISOString().split('T')[0];
+				endDate = startDate;
+				break;
+			case 'today':
+				startDate = endDate;
+				break;
+		}
+
+		return { startDate, endDate };
+	}
+
 	return {
 		subscribe,
 		setDateRange: (startDate: string, endDate: string) =>
@@ -72,7 +99,12 @@ function createFilterStore() {
 				...state,
 				dateRange: { startDate, endDate }
 			})),
-		setActiveTab: (tab: FilterState['activeTab']) => update((state) => ({ ...state, activeTab: tab })),
+		setActiveTab: (tab: FilterState['activeTab']) => {
+			update((state) => {
+				const dateRange = getDateRangeForTab(tab);
+				return { ...state, activeTab: tab, dateRange };
+			});
+		},
 		toggleAggregation: () => update((state) => ({ ...state, withoutAggregation: !state.withoutAggregation })),
 		toggleSport: (sport: string) =>
 			update((state) => ({

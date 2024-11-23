@@ -28,7 +28,6 @@ $: filteredSports = searchQuery ? $allItemsStore.filter((sport) => sport.toLower
 </script>
 
 <div class="sports-section">
-	<h2 class="section-title">{title}</h2>
 	<div class="sports-grid">
 		{#each $mainItemsStore as sport}
 			<button on:click="{() => selectedFilter(sport)}">
@@ -95,9 +94,6 @@ $: filteredSports = searchQuery ? $allItemsStore.filter((sport) => sport.toLower
 {/if}
 
 <style>
-.sports-section {
-	margin: 32px 0;
-}
 .section-title {
 	font-size: 20px;
 	font-weight: 600;

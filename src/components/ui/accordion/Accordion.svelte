@@ -1,9 +1,9 @@
 <script lang="ts">
-import Icon from '@iconify/svelte';
-import { backOut } from 'svelte/easing';
-import { slide } from 'svelte/transition';
+	import Icon from '@iconify/svelte';
+	import { backOut } from 'svelte/easing';
+	import { slide } from 'svelte/transition';
 
-let { title, isInitiallyOpen = false, children } = $props();
+let { title, isInitiallyOpen = true, children } = $props();
 
 function toggleAccordion() {
 	isInitiallyOpen = !isInitiallyOpen;
@@ -45,15 +45,9 @@ function handleKeyDown(event: KeyboardEvent) {
 </div>
 
 <style>
-.active {
-	transform: rotate(180deg);
-	transition: transform 0.3s ease;
-}
-
 .accordion {
 	background-color: #20242f;
 	border-radius: 12px;
-	margin: 16px 0;
 	color: white;
 	overflow: hidden;
 }
@@ -87,11 +81,13 @@ function handleKeyDown(event: KeyboardEvent) {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	transform: rotate(180deg);
 	transition: transform 0.2s ease;
 }
 
-.accordion-toggle:hover {
-	transform: scale(1.1);
+.accordion-toggle.active {
+	transform: rotate(0deg);
+	transition: transform 0.3s ease;
 }
 
 .accordion-content {
