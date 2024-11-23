@@ -15,6 +15,13 @@
   let selectedDates: Date[] = [];
   let showCalendar = false;
 
+  $: if ($filterStore.dateRange.startDate && $filterStore.dateRange.endDate) {
+    selectedDates = [
+      new Date($filterStore.dateRange.startDate),
+      new Date($filterStore.dateRange.endDate)
+    ];
+  }
+
   $: nextMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1);
 
   $: selectedDateRange = selectedDates.length === 2
