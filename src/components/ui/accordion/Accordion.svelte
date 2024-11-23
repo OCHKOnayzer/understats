@@ -1,7 +1,7 @@
 <script lang="ts">
-import Icon from '@iconify/svelte';
-import { backOut } from 'svelte/easing';
-import { slide } from 'svelte/transition';
+	import Icon from '@iconify/svelte';
+	import { backOut } from 'svelte/easing';
+	import { slide } from 'svelte/transition';
 
 let { title, isInitiallyOpen = true, children } = $props();
 
@@ -45,7 +45,6 @@ function handleKeyDown(event: KeyboardEvent) {
 </div>
 
 <style>
-
 .accordion {
 	background-color: #20242f;
 	border-radius: 12px;

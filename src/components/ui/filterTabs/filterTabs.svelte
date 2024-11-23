@@ -4,7 +4,7 @@ import { filterStore } from '$src/stores/filterStore';
 import Button from '../button/button.svelte';
 const tabs = [
 	{ id: 'halfYear', label: 'Полгода' },
-	{ id: 'month', label: new Date().toLocaleString('default', { month: 'long' })[0].toUpperCase()+new Date().toLocaleString('default', { month: 'long' }).slice(1) },
+	{ id: 'month', label: new Date().toLocaleString('default', { month: 'long' })[0].toUpperCase() + new Date().toLocaleString('default', { month: 'long' }).slice(1) },
 	{ id: 'week', label: 'Неделя' },
 	{ id: 'yesterday', label: 'Вчера' },
 	{ id: 'today', label: 'Сегодня' }
