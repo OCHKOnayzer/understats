@@ -20,7 +20,6 @@ async function loadArticleComponent(article2: string) {
 		const module = await import(`./article/state/${article2}.svelte`);
 		ArticleComponent = module.default;
 	} catch (error) {
-		console.error(`Не удалось загрузить статью с ${article2}`, error);
 		ArticleComponent = null;
 	}
 }
@@ -57,7 +56,7 @@ async function loadArticleComponent(article2: string) {
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
-	height: 82vh;
+	height: 89vh;
 }
 
 .faqChapter {

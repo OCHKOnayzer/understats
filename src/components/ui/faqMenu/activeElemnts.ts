@@ -26,48 +26,30 @@ export const ActiveElemnts: ActiveInerface[] = [
 	},
 	{
 		index: 1,
-		name: 'Котик2',
-		image: '',
-		article: ''
-	},
-	{
-		index: 1,
-		name: 'Котик2',
-		image: '',
-		article: ''
-	},
-	{
-		index: 1,
-		name: 'Котик2',
-		image: '',
-		article: ''
-	},
-	{
-		index: 3,
 		name: 'faq.ext',
 		image: '',
 		article: 'Download'
 	},
 	{
-		index: 3,
+		index: 1,
 		name: 'faq.ext_goole',
 		image: '',
 		article: 'DownloadGoogle'
 	},
 	{
-		index: 3,
+		index: 1,
 		name: 'faq.ext_firefox',
 		image: '',
 		article: 'DownloadFirefox'
 	},
 	{
-		index: 3,
+		index: 1,
 		name: 'faq.ext_yandex',
 		image: '',
 		article: 'DownloadYandex'
 	},
 	{
-		index: 3,
+		index: 1,
 		name: 'faq.ext_opera',
 		image: '',
 		article: 'DownloadOpera'

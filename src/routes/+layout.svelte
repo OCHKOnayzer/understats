@@ -7,7 +7,7 @@ import { Toaster } from 'svelte-french-toast';
 
 import Container from '$components/providers/container/Container.svelte';
 import Menu from '$components/ui/menu/Menu.svelte';
-import { i18n } from '$lib/i18n';
+import { i18n, setLanguage } from '$lib/i18n';
 import Header from '$src/components/ui/header/header.svelte';
 import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
 import { isModalOpen } from '$src/stores/modalStore';
@@ -22,10 +22,13 @@ let isLocaleReady = false;
 waitLocale().then(() => {
 	isLocaleReady = true;
 });
+
 onMount(() => {
 	if (isModalOpen) document.body.style.overflow = 'hidden';
 });
+
 const routesWithoutHeader = ['/stats', '/landing'];
+const routesWithoutMenu = ['/landing'];
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -41,7 +44,9 @@ const queryClient = new QueryClient({
 		<Container>
 			<main>
 				{#if isLocaleReady}
-					<Menu />
+					{#if !routesWithoutMenu.includes($page.url.pathname)}
+						<Menu />
+					{/if}
 
 					<div class="mainContent">
 						{#if $isModalOpen}
