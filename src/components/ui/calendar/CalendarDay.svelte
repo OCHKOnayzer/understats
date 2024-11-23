@@ -13,13 +13,14 @@ let { day, selected, inRange, onSelect }: Props = $props();
 {#if day}
 	<button
 		class="day"
-		class:selected="{selected}"
-		class:in-range="{inRange}"
-		on:click="{() => onSelect(day)}">
+		class:selected={selected}
+		class:in-range={inRange}
+		on:click={() => onSelect(day)}
+	>
 		{day.getDate()}
 	</button>
 {:else}
-	<div class="day empty"></div>
+	<div class="day empty" />
 {/if}
 
 <style>
@@ -34,20 +35,27 @@ let { day, selected, inRange, onSelect }: Props = $props();
 	cursor: pointer;
 	border-radius: 8px;
 	font-size: 14px;
-	padding: 8px;
+	padding: 4px;
+	transition: all 0.2s;
 }
 
 .day:hover:not(.empty):not(.selected) {
 	background: rgba(255, 255, 255, 0.1);
 }
 
-.day.selected,
-.day.in-range {
+.day.selected {
 	background: #718096;
-	color: #000000;
+	color: white;
+	font-weight: 500;
+}
+
+.day.in-range {
+	background: rgba(113, 128, 150, 0.3);
+	color: white;
 }
 
 .day.empty {
 	pointer-events: none;
+	background: none;
 }
 </style>

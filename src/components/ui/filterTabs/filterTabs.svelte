@@ -18,7 +18,6 @@ const tabs = [
 				{tab.label}
 			</Button>
 		</button>
-		<!-- <FilterButton text="{tab.label}" active="{() => $filterStore.activeTab.includes(tab.id)}" func="{() => filterStore.setActiveTab(tab.id)}" /> -->
 	{/each}
 </div>
 

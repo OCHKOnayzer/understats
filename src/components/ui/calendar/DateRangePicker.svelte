@@ -1,9 +1,9 @@
 <script lang="ts">
+import { DateUtils } from '$src/utils/utils';
 import { createEventDispatcher } from 'svelte';
 
 import { filterStore } from '$src/stores/filterStore';
 import { MONTHS } from '$src/utils/constants/constants';
-import { DateUtils } from '$src/utils/utils';
 
 import CalendarHeader from './CalendarHeader.svelte';
 import CalendarMonth from './CalendarMonth.svelte';
@@ -17,25 +17,31 @@ let selectedDates: Date[] = [];
 let showCalendar = false;
 
 $: if ($filterStore.dateRange.startDate && $filterStore.dateRange.endDate) {
-	selectedDates = [new Date($filterStore.dateRange.startDate), new Date($filterStore.dateRange.endDate)];
+	selectedDates = [
+		new Date($filterStore.dateRange.startDate + 'T00:00:00'),
+		new Date($filterStore.dateRange.endDate + 'T00:00:00')
+	];
 }
 
 $: nextMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1);
 
-$: selectedDateRange =
-	selectedDates.length === 2
-		? `${selectedDates[0].getDate()} ${MONTHS[selectedDates[0].getMonth()]} - ${selectedDates[1].getDate()} ${MONTHS[selectedDates[1].getMonth()]}`
-		: 'Период';
+$: selectedDateRange = selectedDates.length === 2
+	? selectedDates[0].getTime() === selectedDates[1].getTime()
+		? `${selectedDates[0].getDate()} ${MONTHS[selectedDates[0].getMonth()]}`
+		: `${selectedDates[0].getDate()} ${MONTHS[selectedDates[0].getMonth()]} - ${selectedDates[1].getDate()} ${MONTHS[selectedDates[1].getMonth()]}`
+	: 'Период';
 
 function handleDateSelection(date: Date) {
+	const newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
 	if (selectedDates.length === 0) {
-		selectedDates = [date];
+		selectedDates = [newDate];
 		return;
 	}
 
 	if (selectedDates.length === 1) {
-		const [firstDate] = selectedDates;
-		selectedDates = date < firstDate ? [date, firstDate] : [firstDate, date];
+		const firstDate = new Date(selectedDates[0].getFullYear(), selectedDates[0].getMonth(), selectedDates[0].getDate());
+		selectedDates = newDate < firstDate ? [newDate, firstDate] : [firstDate, newDate];
 
 		const startDate = DateUtils.formatDate(selectedDates[0]);
 		const endDate = DateUtils.formatDate(selectedDates[1]);
@@ -46,7 +52,7 @@ function handleDateSelection(date: Date) {
 		return;
 	}
 
-	selectedDates = [date];
+	selectedDates = [newDate];
 }
 </script>
 
@@ -130,8 +136,8 @@ function handleDateSelection(date: Date) {
 }
 
 .calendars-container {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 24px;
+	display: flex;
+  justify-content: space-between;
+  gap: 20px;
 }
 </style>

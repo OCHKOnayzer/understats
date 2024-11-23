@@ -8,15 +8,16 @@ interface Props {
 }
 
 let { currentDate, nextMonthDate, onPrevMonth, onNextMonth }: Props = $props();
-
-const displayMonths = $derived(`${MONTHS[currentDate.getMonth()]}, ${currentDate.getFullYear()} ${MONTHS[nextMonthDate.getMonth()]}, ${nextMonthDate.getFullYear()}`);
 </script>
 
 <div class="calendar-header">
 	<button
 		class="nav-button"
 		on:click="{onPrevMonth}">←</button>
-	<span class="current-month">{displayMonths}</span>
+	<div class="months-container">
+		<span class="month">{MONTHS[currentDate.getMonth()]}, {currentDate.getFullYear()}</span>
+		<span class="month">{MONTHS[nextMonthDate.getMonth()]}, {nextMonthDate.getFullYear()}</span>
+	</div>
 	<button
 		class="nav-button"
 		on:click="{onNextMonth}">→</button>
@@ -28,7 +29,22 @@ const displayMonths = $derived(`${MONTHS[currentDate.getMonth()]}, ${currentDate
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 24px;
-	padding: 0 16px;
+}
+
+.months-container {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;	
+	flex: 1;
+	margin: 0 16px;
+}
+
+.month {
+	font-size: 16px;
+	font-weight: 500;
+	color: white;
+	min-width: 140px;
+	text-align: center;
 }
 
 .nav-button {
@@ -38,11 +54,10 @@ const displayMonths = $derived(`${MONTHS[currentDate.getMonth()]}, ${currentDate
 	cursor: pointer;
 	padding: 8px;
 	font-size: 20px;
+	transition: opacity 0.2s;
 }
 
-.current-month {
-	font-size: 16px;
-	font-weight: 500;
-	color: white;
+.nav-button:hover {
+	opacity: 0.8;
 }
 </style>

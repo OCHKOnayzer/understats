@@ -65,46 +65,129 @@ const initialState: FilterState = {
 function createFilterStore() {
 	const { subscribe, set, update } = writable<FilterState>(initialState);
 
+	function normalizeDate(date: Date): Date {
+		const normalized = new Date(date);
+		normalized.setHours(0, 0, 0, 0);
+		return normalized;
+	}
+
+	function formatDate(date: Date): string {
+		const d = normalizeDate(date);
+		const year = d.getFullYear();
+		const month = String(d.getMonth() + 1).padStart(2, '0');
+		const day = String(d.getDate()).padStart(2, '0');
+		return `${year}-${month}-${day}`;
+	}
+
 	function getDateRangeForTab(tab: FilterState['activeTab']) {
-		const today = new Date();
-		let endDate = new Date().toISOString().split('T')[0];
-		let startDate = '';
+		const today = normalizeDate(new Date());
 
 		switch (tab) {
-			case 'halfYear':
-				startDate = new Date(today.setMonth(today.getMonth() - 6)).toISOString().split('T')[0];
-				break;
-			case 'month':
-				startDate = new Date(today.setMonth(today.getMonth() - 1)).toISOString().split('T')[0];
-				break;
-			case 'week':
-				startDate = new Date(today.setDate(today.getDate() - 7)).toISOString().split('T')[0];
-				break;
-			case 'yesterday':
-				startDate = new Date(today.setDate(today.getDate() - 1)).toISOString().split('T')[0];
-				endDate = startDate;
-				break;
-			case 'today':
-				startDate = endDate;
-				break;
+			case 'today': {
+				const date = formatDate(today);
+				return { startDate: date, endDate: date };
+			}
+			case 'yesterday': {
+				const yesterday = normalizeDate(new Date(today));
+				yesterday.setDate(today.getDate() - 1);
+				const date = formatDate(yesterday);
+				return { startDate: date, endDate: date };
+			}
+			case 'week': {
+				const start = normalizeDate(new Date(today));
+				start.setDate(today.getDate() - 6);
+				return {
+					startDate: formatDate(start),
+					endDate: formatDate(today)
+				};
+			}
+			case 'month': {
+				const start = normalizeDate(new Date(today));
+				start.setDate(1);
+				const end = normalizeDate(new Date(today));
+				end.setMonth(end.getMonth() + 1);
+				end.setDate(0);
+				return {
+					startDate: formatDate(start),
+					endDate: formatDate(end)
+				};
+			}
+			case 'halfYear': {
+				const start = normalizeDate(new Date(today));
+				start.setMonth(today.getMonth() - 6);
+				start.setDate(1);
+				return {
+					startDate: formatDate(start),
+					endDate: formatDate(today)
+				};
+			}
+			default:
+				return {
+					startDate: '',
+					endDate: formatDate(today)
+				};
+		}
+	}
+
+	function getTabForDateRange(startDate: string, endDate: string): FilterState['activeTab'] | null {
+		const start = normalizeDate(new Date(startDate));
+		const end = normalizeDate(new Date(endDate));
+		const today = normalizeDate(new Date());
+
+		if (startDate === endDate) {
+			const date = normalizeDate(new Date(startDate));
+			if (date.getTime() === today.getTime()) {
+				return 'today';
+			}
+
+			const yesterday = normalizeDate(new Date(today));
+			yesterday.setDate(today.getDate() - 1);
+			if (date.getTime() === yesterday.getTime()) {
+				return 'yesterday';
+			}
+
+			return null;
 		}
 
-		return { startDate, endDate };
+		// Only check other tabs if it's not a single-day selection
+		const monthStart = normalizeDate(new Date(today.getFullYear(), today.getMonth(), 1));
+		const monthEnd = normalizeDate(new Date(today.getFullYear(), today.getMonth() + 1, 0));
+		if (start.getTime() === monthStart.getTime() && end.getTime() === monthEnd.getTime()) {
+			return 'month';
+		}
+
+		const weekStart = normalizeDate(new Date(today));
+		weekStart.setDate(today.getDate() - 6);
+		if (start.getTime() === weekStart.getTime() && end.getTime() === today.getTime()) {
+			return 'week';
+		}
+
+		const halfYearStart = normalizeDate(new Date(today));
+		halfYearStart.setMonth(today.getMonth() - 6);
+		halfYearStart.setDate(1);
+		if (start.getTime() === halfYearStart.getTime() && end.getTime() === today.getTime()) {
+			return 'halfYear';
+		}
+
+		return null;
 	}
 
 	return {
 		subscribe,
 		setDateRange: (startDate: string, endDate: string) =>
-			update((state) => ({
-				...state,
-				dateRange: { startDate, endDate }
-			})),
-		setActiveTab: (tab: FilterState['activeTab']) => {
+			update((state) => {
+				const activeTab = getTabForDateRange(startDate, endDate) ?? state.activeTab;
+				return {
+					...state,
+					dateRange: { startDate, endDate },
+					activeTab
+				};
+			}),
+		setActiveTab: (tab: FilterState['activeTab']) =>
 			update((state) => {
 				const dateRange = getDateRangeForTab(tab);
 				return { ...state, activeTab: tab, dateRange };
-			});
-		},
+			}),
 		toggleAggregation: () => update((state) => ({ ...state, withoutAggregation: !state.withoutAggregation })),
 		toggleSport: (sport: string) =>
 			update((state) => ({
