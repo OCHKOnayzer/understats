@@ -36,7 +36,7 @@ import { filterStore } from '$src/stores/filterStore';
 
 .bet-type {
 	padding: 8px 14px;
-	background: rgba(255, 255, 255, 0.1);
+	background: #363A45;
 	border: none;
 	border-radius: 12px;
 	color: white;
@@ -51,6 +51,6 @@ import { filterStore } from '$src/stores/filterStore';
 }
 
 .bet-type.active {
-	background: rgba(255, 255, 255, 0.2);
+	background: #171B26;
 }
 </style>

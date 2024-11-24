@@ -61,10 +61,6 @@ function handleKeyDown(event: KeyboardEvent) {
 	transition: background-color 0.3s ease;
 }
 
-.accordion-header:hover {
-	background-color: rgba(255, 255, 255, 0.1);
-}
-
 .accordion-title {
 	font-size: 20px;
 	font-weight: 600;

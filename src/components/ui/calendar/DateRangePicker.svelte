@@ -2,6 +2,7 @@
 import { filterStore } from '$src/stores/filterStore';
 import { createDate, formatDateRange } from '$src/utils/date/dateUtils';
 import { handleDateSelection } from '$src/utils/functions/handleDateSelection';
+import { fade, scale } from 'svelte/transition';
 
 import CalendarButton from './CalendarButton.svelte';
 import CalendarDropdown from './CalendarDropdown.svelte';
@@ -39,10 +40,19 @@ function toggleCalendar() {
         onToggle={toggleCalendar} />
 
     {#if showCalendar}
-        <CalendarDropdown
-            {currentDate}
-            {selectedDates}
-            onDateSelect={onDateSelect} />
+        <div 
+            class="dropdown-container"
+            transition:scale={{
+                duration: 200,
+                start: 0.95,
+                opacity: 0
+            }}
+        >
+            <CalendarDropdown
+                {currentDate}
+                {selectedDates}
+                onDateSelect={onDateSelect} />
+        </div>
     {/if}
 </div>
 
@@ -51,5 +61,13 @@ function toggleCalendar() {
     position: relative;
     width: 100%;
     margin-bottom: 16px;
+}
+
+.dropdown-container {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 100%;
+    z-index: 10;
 }
 </style>

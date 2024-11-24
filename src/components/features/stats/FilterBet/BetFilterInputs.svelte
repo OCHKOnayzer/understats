@@ -1,124 +1,152 @@
-<script>
+<script lang="ts">
 import { filterStore } from '$src/stores/filterStore';
 
-let focusedInput = '';
+let amountFrom = $filterStore.betAmount.from;
+let amountTo = $filterStore.betAmount.to;
+
+let coefficientFrom = $filterStore.coefficient.from;
+let coefficientTo = $filterStore.coefficient.to;
+
+function handleAmountChange() {
+	filterStore.setBetAmount(amountFrom, amountTo);
+}
+
+function handleCoefficientChange() {
+	filterStore.setCoefficient(coefficientFrom, coefficientTo);
+}
 </script>
 
-<div class="input-row">
-	<div class="input-wrapper">
-		<input
-			type="text"
-			class="amount-input"
-			value="{$filterStore.betAmount.from}"
-			on:focus="{() => (focusedInput = 'betFrom')}"
-			on:blur="{() => (focusedInput = '')}"
-			on:input="{(e) => filterStore.setBetAmount(e.currentTarget.value, $filterStore.betAmount.to)}" />
-		<label
-			class="placeholder"
-			class:active="{focusedInput === 'betFrom' || $filterStore.betAmount.from}">
-			Сумма ставки, от
-		</label>
+<div class="bet-filter-inputs">
+	<div class="input-group">
+		<div class="inputs">
+			<div class="input-field">
+				<input
+					type="text"
+					class="amount-input"
+					bind:value={amountFrom}
+					on:input={handleAmountChange}
+					id="amountFrom"
+				/>
+				<label 
+					for="amountFrom"
+					class="placeholder"
+					class:filled={amountFrom}
+				>
+					Коэффициент, от
+				</label>
+			</div>
+			<div class="input-field">
+				<input
+					type="text"
+					class="amount-input"
+					bind:value={amountTo}
+					on:input={handleAmountChange}
+					id="amountTo"
+				/>
+				<label 
+					for="amountTo"
+					class="placeholder"
+					class:filled={amountTo}
+				>
+					Коэффициент, до
+				</label>
+			</div>
+		</div>
 	</div>
-	<div class="input-wrapper">
-		<input
-			type="text"
-			class="amount-input"
-			value="{$filterStore.betAmount.to}"
-			on:focus="{() => (focusedInput = 'betTo')}"
-			on:blur="{() => (focusedInput = '')}"
-			on:input="{(e) => filterStore.setBetAmount($filterStore.betAmount.from, e.currentTarget.value)}" />
-		<label
-			class="placeholder"
-			class:active="{focusedInput === 'betTo' || $filterStore.betAmount.to}">
-			Сумма ставки, до
-		</label>
-	</div>
-</div>
 
-<div class="input-row">
-	<div class="input-wrapper">
-		<input
-			type="text"
-			class="amount-input"
-			value="{$filterStore.coefficient.from}"
-			on:focus="{() => (focusedInput = 'coeffFrom')}"
-			on:blur="{() => (focusedInput = '')}"
-			on:input="{(e) => filterStore.setCoefficient(e.currentTarget.value, $filterStore.coefficient.to)}" />
-		<label
-			class="placeholder"
-			class:active="{focusedInput === 'coeffFrom' || $filterStore.coefficient.from}">
-			Коэффициент, от
-		</label>
-	</div>
-	<div class="input-wrapper">
-		<input
-			type="text"
-			class="amount-input"
-			value="{$filterStore.coefficient.to}"
-			on:focus="{() => (focusedInput = 'coeffTo')}"
-			on:blur="{() => (focusedInput = '')}"
-			on:input="{(e) => filterStore.setCoefficient($filterStore.coefficient.from, e.currentTarget.value)}" />
-		<label
-			class="placeholder"
-			class:active="{focusedInput === 'coeffTo' || $filterStore.coefficient.to}">
-			Коэффициент, до
-		</label>
+	<div class="input-group">
+		<div class="inputs">
+			<div class="input-field">
+				<input
+					type="text"
+					class="amount-input"
+					bind:value={coefficientFrom}
+					on:input={handleCoefficientChange}
+					id="coefficientFrom"
+				/>
+				<label 
+					for="coefficientFrom"
+					class="placeholder"
+					class:filled={coefficientFrom}
+				>
+					Сумма ставки, от
+				</label>
+			</div>
+			<div class="input-field">
+				<input
+					type="text"
+					class="amount-input"
+					bind:value={coefficientTo}
+					on:input={handleCoefficientChange}
+					id="coefficientTo"
+				/>
+				<label 
+					for="coefficientTo"
+					class="placeholder"
+					class:filled={coefficientTo}
+				>
+					Сумма ставки, до
+				</label>
+			</div>
+		</div>
 	</div>
 </div>
 
 <style>
-.input-row {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 8px;
-	margin-bottom: 16px;
+.bet-filter-inputs {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
 }
 
-.input-wrapper {
+.input-group {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.inputs {
+	display: flex;
+	gap: 8px;
+}
+
+.input-field {
 	position: relative;
-	background: rgba(255, 255, 255, 0.1);
-	border-radius: 12px;
-	padding-top: 4px;
+	flex: 1;
 }
 
 .amount-input {
 	width: 100%;
-	padding: 12px;
-	background: transparent;
-	border: none;
+	padding: 24px 14px 8px;
+	background: #363A45;
+	border: solid 1px transparent;
+	border-radius: 12px;
 	color: white;
-	font-size: 16px;
+	font-size: 15px;
+	line-height: 20px;
+	transition: border-color 0.2s ease-out;
 }
 
 .amount-input:focus {
 	outline: none;
+	border-color: #EE6C60;
 }
 
-.input-wrapper:focus-within {
-	background: rgba(255, 255, 255, 0.15);
+.amount-input:focus + .placeholder,
+.placeholder.filled {
+	transform: translateY(-20px) scale(0.7);
+	color: rgba(255, 255, 255, 0.9);
 }
 
 .placeholder {
 	position: absolute;
+	left: 14px;
 	top: 50%;
-	left: 12px;
-	transform: translateY(-50%);
-	font-size: 14px;
+	transform: translateY(-60%);
+	font-size: 15px;
 	color: #718096;
 	pointer-events: none;
 	transition: all 0.2s ease-out;
 	transform-origin: left top;
-	line-height: 1;
-}
-
-.placeholder.active,
-.input-wrapper:focus-within .placeholder {
-	top: 8px;
-	transform: translateY(0) scale(0.75);
-	color: #ababb2;
-}
-
-.input-wrapper:focus-within .placeholder {
-	color: rgba(255, 255, 255, 0.9);
 }
 </style>

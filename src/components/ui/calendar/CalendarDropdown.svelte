@@ -1,19 +1,23 @@
 <script lang="ts">
-    import { getNextMonthDate, getPrevMonthDate } from '$src/utils/date/dateUtils';
-    import CalendarHeader from './CalendarHeader.svelte';
-    import CalendarMonth from './CalendarMonth.svelte';
+	import { getNextMonthDate, getPrevMonthDate } from '$src/utils/date/dateUtils';
+	import CalendarHeader from './CalendarHeader.svelte';
+	import CalendarMonth from './CalendarMonth.svelte';
 
-    export let currentDate: Date;
-    export let selectedDates: Date[];
-    export let onDateSelect: (date: Date) => void;
+    interface Props {
+        currentDate: Date;
+        selectedDates: Date[];
+        onDateSelect: (date: Date) => void;
+    }
 
-    $: nextMonthDate = getNextMonthDate(currentDate);
+    let {currentDate, selectedDates, onDateSelect}: Props = $props();
 
-    function handlePrevMonth() {
+    const nextMonthDate = $derived(getNextMonthDate(currentDate));
+
+    const handlePrevMonth = () => {
         currentDate = getPrevMonthDate(currentDate);
     }
 
-    function handleNextMonth() {
+    const handleNextMonth = () => {
         currentDate = getNextMonthDate(currentDate);
     }
 </script>
@@ -39,14 +43,11 @@
 
 <style>
     .calendar {
-        position: absolute;
-        top: calc(100% + 8px);
-        left: 0;
         width: 100%;
         background: #363a45;
         border-radius: 8px;
         padding: 16px;
-        z-index: 10;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
 
     .calendars-container {
