@@ -2,7 +2,7 @@
 import { filterStore } from '$src/stores/filterStore';
 import { createDate, formatDateRange } from '$src/utils/date/dateUtils';
 import { handleDateSelection } from '$src/utils/functions/handleDateSelection';
-import { fade, scale } from 'svelte/transition';
+import { scale } from 'svelte/transition';
 
 import CalendarButton from './CalendarButton.svelte';
 import CalendarDropdown from './CalendarDropdown.svelte';

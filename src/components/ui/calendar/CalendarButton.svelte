@@ -1,4 +1,6 @@
 <script lang="ts">
+import Icon from '@iconify/svelte';
+
     interface Props {
         selectedDateRange: string;
         showCalendar: boolean;
@@ -14,7 +16,7 @@
     on:click={onToggle}
 >
     <span>{selectedDateRange}</span>
-    <span class="arrow" class:active={showCalendar}>▼</span>
+    <span class="arrow" class:active={showCalendar}><Icon font-size="25px" icon="solar:alt-arrow-up-line-duotone" /></span>
 </button>
 
 <style>
