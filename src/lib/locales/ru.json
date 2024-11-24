@@ -1,4 +1,19 @@
 {
+	"accounts": {
+		"bookmaker": "Букмекер",
+		"auth": "ID АУТЕНТИФИКАЦИИ",
+		"login": "Логин",
+		"balance": "Баланс",
+		"name": "Полное имя",
+		"mail": "Эл. почта",
+		"phone": "Телефон",
+		"regData": "Дата регистрации",
+		"lastBet": "Последняя ставка",
+		"betCount": "Ставок на аккаунте (Всего / месяц / неделя)",
+		"myAccounts": "Мои аккаунты",
+		"available": "Доступно",
+		"used": "Использовано"
+	},
 	"awards": {
 		"received": "Полученные награды",
 		"future": "Будущие награды",
@@ -170,7 +185,7 @@
 		"ext_opera_tittle": "Как установить расширение в Opera",
 		"description_image": "Настройки браузера"
 	},
-	"description_image":{ 
+	"description_image": {
 		"description_image": "Настройки браузера",
 		"description_image_google_1": "Пункт расширения",
 		"description_image_google_2": "Страница Расширения"

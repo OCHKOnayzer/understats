@@ -4,8 +4,12 @@ import Icon from '@iconify/svelte';
 import Button from '$components/ui/button/button.svelte';
 import * as Table from '$components/ui/table';
 import * as m from '$m';
+import { useAccounts } from '$src/services/accounts/useAccounts';
 import { filteredAccounts } from '$stores/store';
 import { cn } from '$utils/utils';
+import { t } from 'svelte-i18n';
+
+const { query } = useAccounts();
 </script>
 
 <div class="mt-5">
@@ -17,7 +21,7 @@ import { cn } from '$utils/utils';
 						<img
 							src="icons/bk/table.svg"
 							alt="table" />
-						{m.bookmaker()}
+							{$t('accounts.bookmaker')}
 					</div>
 				</Table.Head>
 				<Table.Head>
@@ -25,7 +29,7 @@ import { cn } from '$utils/utils';
 						<img
 							src="icons/bk/table.svg"
 							alt="table" />
-						{m.accountId()}
+							{$t('accounts.auth')}
 					</div>
 				</Table.Head>
 				<Table.Head>
@@ -33,7 +37,7 @@ import { cn } from '$utils/utils';
 						<img
 							src="icons/bk/table.svg"
 							alt="table" />
-						{m.login()}
+							{$t('accounts.login')}
 					</div>
 				</Table.Head>
 				<Table.Head>
@@ -41,7 +45,7 @@ import { cn } from '$utils/utils';
 						<img
 							src="icons/bk/table.svg"
 							alt="table" />
-						{m.creationDate()}
+							{$t('accounts.balance')}
 					</div>
 				</Table.Head>
 				<Table.Head>
@@ -49,7 +53,7 @@ import { cn } from '$utils/utils';
 						<img
 							src="icons/bk/table.svg"
 							alt="table" />
-						{m.currentBalance()}
+							{$t('accounts.name')}
 					</div>
 				</Table.Head>
 				<Table.Head>
@@ -57,7 +61,7 @@ import { cn } from '$utils/utils';
 						<img
 							src="icons/bk/table.svg"
 							alt="table" />
-						{m.totalBets()}
+							{$t('accounts.mail')}
 					</div>
 				</Table.Head>
 				<Table.Head>
@@ -65,7 +69,7 @@ import { cn } from '$utils/utils';
 						<img
 							src="icons/bk/table.svg"
 							alt="table" />
-						{m.authorization()}
+							{$t('accounts.phone')}
 					</div>
 				</Table.Head>
 				<Table.Head class="text-center">
@@ -73,10 +77,25 @@ import { cn } from '$utils/utils';
 						<img
 							src="icons/bk/table.svg"
 							alt="table" />
-						{m.accountStatus()}
+							{$t('accounts.regData')}
 					</div>
 				</Table.Head>
-				<Table.Head class="text-center">{m.action()}</Table.Head>
+				<Table.Head class="text-center">
+					<div class="flex items-center gap-1 text-center">
+						<img
+							src="icons/bk/table.svg"
+							alt="table" />
+							{$t('accounts.lastBet')}
+					</div>
+				</Table.Head>
+				<Table.Head class="text-center">
+					<div class="flex items-center gap-1 text-center">
+						<img
+							src="icons/bk/table.svg"
+							alt="table" />
+							{$t('accounts.betCount')}
+					</div>
+				</Table.Head>
 			</Table.Row>
 		</Table.Header>
 

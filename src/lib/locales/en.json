@@ -1,4 +1,19 @@
 {
+	"accounts": {
+		"bookmaker": "Bookmaker",
+		"auth": "ID AUTH",
+		"login": "Login",
+		"balance": "Balance",
+		"name": "Full name",
+		"mail": "E-mail",
+		"phone": "Phone",
+		"regData": "Reg Data",
+		"lastBet": "Last bet",
+		"betCount": "Bets on the account (All / month / week)",
+		"myAccounts": "My Accounts",
+		"available": "Available",
+		"used": "Used"
+	},
 	"awards": {
 		"received": "Received awards",
 		"future": "Future awards",
