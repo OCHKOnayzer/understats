@@ -80,11 +80,6 @@ async function applyFilters() {
 
 		<div class="action-buttons">
 			<button
-				class="clear-button"
-				on:click="{() => filterStore.reset()}">
-				Очистить фильтры
-			</button>
-			<button
 				class="apply-button"
 				on:click="{applyFilters}"
 				disabled="{isLoading}">
@@ -93,6 +88,11 @@ async function applyFilters() {
 				{:else}
 					Применить фильтры ({$filterStore.selectedSports.length})
 				{/if}
+			</button>
+			<button
+				class="clear-button"
+				on:click="{() => filterStore.reset()}">
+				Очистить фильтры
 			</button>
 		</div>
 	</div>
@@ -146,7 +146,7 @@ async function applyFilters() {
 }
 
 .sidebar-content {
-	padding: 24px;
+	padding: 24px 24px 80px 24px;
 	height: 100%;
 	overflow-y: auto;
 }
@@ -158,12 +158,14 @@ async function applyFilters() {
 }
 
 .action-buttons {
-	position: sticky;
+	position: fixed;
 	bottom: 0;
+	right: 0;
+	width: 650px;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 16px;
-	margin-top: 32px;
+	padding: 16px 24px;
 	background: #20242f;
 }
 
