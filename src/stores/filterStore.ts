@@ -4,7 +4,7 @@ export interface FilterState {
 		startDate: string;
 		endDate: string;
 	};
-	activeTab: 'halfYear' | 'month' | 'week' | 'yesterday' | 'today';
+	activeTab: 'halfYear' | 'month' | 'week' | 'yesterday' | 'today' | 'nothing';
 	withoutAggregation: boolean;
 	selectedSports: string[];
 	selectedBookmakers: string[];
@@ -174,11 +174,11 @@ function createFilterStore() {
 		subscribe,
 		setDateRange: (startDate: string, endDate: string) =>
 			update((state) => {
-				const activeTab = getTabForDateRange(startDate, endDate) ?? state.activeTab;
+				const tab = getTabForDateRange(startDate, endDate);
 				return {
 					...state,
 					dateRange: { startDate, endDate },
-					activeTab
+					activeTab: tab || 'nothing'
 				};
 			}),
 		setActiveTab: (tab: FilterState['activeTab']) =>
