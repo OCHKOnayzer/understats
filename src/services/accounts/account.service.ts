@@ -8,7 +8,7 @@ class AccountService {
 	async getAccounts() {
 		try {
 			const response = await axiosWithAuth<IAccountResponse[]>({
-				url: `${process.env.API_URL}/accounts`,
+				url: `${process.env.SERVER_URL}/accounts`,
 				method: 'GET'
 			});
 

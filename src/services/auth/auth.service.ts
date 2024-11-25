@@ -19,8 +19,6 @@ class AuthService {
 				return response;
 			}
 		} catch (error: any) {
-			const errorMessage = error.response?.data?.message || 'Не удалось подключиться к серверу. Проверьте доступность сервиса.';
-			console.log(error);
 			throw new Error(error);
 		}
 	}

@@ -1,18 +1,21 @@
 <script lang="ts">
-import Icon from '@iconify/svelte';
 
-import Button from '$components/ui/button/button.svelte';
 import * as Table from '$components/ui/table';
 import * as m from '$m';
 import { useAccounts } from '$src/services/accounts/useAccounts';
-import { filteredAccounts } from '$stores/store';
+import { allAccounts } from '$stores/store';
 import { cn } from '$utils/utils';
 import { t } from 'svelte-i18n';
+import Spinner from '$components/ui/spinner/Spinner.svelte';
 
 const { query } = useAccounts();
+
+$: $query.data && allAccounts.set($query.data);
+
+$: console.log('Query state:', $query.status, 'Data length:', $query.data?.length);
 </script>
 
-<div class="mt-5">
+<div class="mt-5 relative">
 	<Table.Root>
 		<Table.Header class="tect-[10px] bg-[#31384A]">
 			<Table.Row class="border-none">
@@ -21,7 +24,7 @@ const { query } = useAccounts();
 						<img
 							src="icons/bk/table.svg"
 							alt="table" />
-							{$t('accounts.bookmaker')}
+							<span class="whitespace-pre-line">{$t('accounts.bookmaker')}</span>
 					</div>
 				</Table.Head>
 				<Table.Head>
@@ -29,7 +32,7 @@ const { query } = useAccounts();
 						<img
 							src="icons/bk/table.svg"
 							alt="table" />
-							{$t('accounts.auth')}
+							<span class="whitespace-pre-line">{$t('accounts.auth')}</span>
 					</div>
 				</Table.Head>
 				<Table.Head>
@@ -37,7 +40,7 @@ const { query } = useAccounts();
 						<img
 							src="icons/bk/table.svg"
 							alt="table" />
-							{$t('accounts.login')}
+							<span class="whitespace-pre-line">{$t('accounts.login')}</span>
 					</div>
 				</Table.Head>
 				<Table.Head>
@@ -45,7 +48,7 @@ const { query } = useAccounts();
 						<img
 							src="icons/bk/table.svg"
 							alt="table" />
-							{$t('accounts.balance')}
+							<span class="whitespace-pre-line">{$t('accounts.balance')}</span>
 					</div>
 				</Table.Head>
 				<Table.Head>
@@ -53,7 +56,7 @@ const { query } = useAccounts();
 						<img
 							src="icons/bk/table.svg"
 							alt="table" />
-							{$t('accounts.name')}
+							<span class="whitespace-pre-line">{$t('accounts.name')}</span>
 					</div>
 				</Table.Head>
 				<Table.Head>
@@ -61,7 +64,7 @@ const { query } = useAccounts();
 						<img
 							src="icons/bk/table.svg"
 							alt="table" />
-							{$t('accounts.mail')}
+							<span class="whitespace-pre-line">{$t('accounts.mail')}</span>
 					</div>
 				</Table.Head>
 				<Table.Head>
@@ -69,7 +72,7 @@ const { query } = useAccounts();
 						<img
 							src="icons/bk/table.svg"
 							alt="table" />
-							{$t('accounts.phone')}
+							<span class="whitespace-pre-line">{$t('accounts.phone')}</span>
 					</div>
 				</Table.Head>
 				<Table.Head class="text-center">
@@ -77,7 +80,7 @@ const { query } = useAccounts();
 						<img
 							src="icons/bk/table.svg"
 							alt="table" />
-							{$t('accounts.regData')}
+							<span class="whitespace-pre-line">{$t('accounts.regData')}</span>
 					</div>
 				</Table.Head>
 				<Table.Head class="text-center">
@@ -85,57 +88,65 @@ const { query } = useAccounts();
 						<img
 							src="icons/bk/table.svg"
 							alt="table" />
-							{$t('accounts.lastBet')}
+							<span class="whitespace-pre-line">{$t('accounts.lastBet')}</span>
 					</div>
 				</Table.Head>
 				<Table.Head class="text-center">
-					<div class="flex items-center gap-1 text-center">
+					<div class="flex gap-1 text-left">
 						<img
 							src="icons/bk/table.svg"
 							alt="table" />
-							{$t('accounts.betCount')}
+							<span class="whitespace-pre-line">{$t('accounts.betCount')}</span>
 					</div>
 				</Table.Head>
 			</Table.Row>
 		</Table.Header>
 
-		{#if $filteredAccounts.length > 0}
+		{#if $query.isLoading}
 			<Table.Body>
-				{#each $filteredAccounts as account, index (account.id)}
-					<Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'}`)}">
-						<Table.Cell>{account.bookmaker || 'N/A'}</Table.Cell>
-						<Table.Cell>{account.id || 'N/A'}</Table.Cell>
+				<Table.Row>
+					<Table.Cell colspan={10} class="border-none">
+						<div class="h-[90vh] flex flex-col items-center justify-center">
+							<Spinner color="#718096" size={32} />
+							<h2 class="text-xl w-[260px] text-center text-[#718096]">{$t('accounts.loading')}</h2>
+						</div>
+					</Table.Cell>
+				</Table.Row>
+			</Table.Body>
+		{:else if $query.data?.length > 0}
+			<Table.Body>
+				{#each $query.data as account, index (`${account.siteName}-${account.extendedId}-${index}`)}
+					<Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'} active:bg-[#3D3A8540]`)}">
+						<Table.Cell>{account.siteName || 'N/A'}</Table.Cell>
+						<Table.Cell>{account.extendedId || 'N/A'}</Table.Cell>
 						<Table.Cell>
 							{account.login ? m.connected() : m.disconnected()}
 						</Table.Cell>
-						<Table.Cell>{account.createdAt}</Table.Cell>
-						<Table.Cell>999</Table.Cell>
-						<Table.Cell>999/999/999</Table.Cell>
-						<Table.Cell>{m.extension()}</Table.Cell>
-						<Table.Cell class="px-2 text-center">
-							{#if account.connected}
-								<Button
-									variant="cyberGreen"
-									size="cyber">{m.active()}</Button>
-							{:else}
-								<Button
-									variant="cyberRed"
-									size="cyber">Green</Button>
-							{/if}
+						<Table.Cell>{account.balance}</Table.Cell>
+						<Table.Cell>{account.fullName}</Table.Cell>
+						<Table.Cell>{account.email}</Table.Cell>
+						<Table.Cell>{account.phone}</Table.Cell>
+						<Table.Cell>
+							{account.registrationDate}
 						</Table.Cell>
-						<Table.Cell class="px-4 text-center">
-							<div class="flex cursor-pointer items-center gap-1">
-								<Icon
-									font-size="25px"
-									icon="proicons:pencil" />
-								<h2>{m.edit()}</h2>
-							</div>
-						</Table.Cell>
+						<Table.Cell>lastBet</Table.Cell>
+						<Table.Cell>{account.currency}</Table.Cell>
 					</Table.Row>
 				{/each}
 			</Table.Body>
 		{:else}
-			<h2 class="text-center">No accounts available</h2>
+			<Table.Body>
+				<Table.Row>
+					<Table.Cell colspan={10} class="border-none">
+						<div class="h-[90vh] flex items-center justify-center flex-col">
+							<img class="mb-2" src="/icons/accounts/file.svg" alt="" />
+							<h2 class="text-xl w-[260px] text-center text-[#718096]">
+								{$query.isError ? $t('accounts.noAuth') : $t(' accounts.noAccounts')}
+							</h2>
+						</div>
+					</Table.Cell>
+				</Table.Row>
+			</Table.Body>
 		{/if}
 	</Table.Root>
 </div>

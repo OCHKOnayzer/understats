@@ -78,7 +78,7 @@ async function applyFilters() {
 			<BetFilters />
 		</Accordion>
 
-		<div class="action-buttons">
+		<div class="action-buttons" class:open="{isOpen}">
 			<button
 				class="apply-button"
 				on:click="{applyFilters}"
@@ -146,7 +146,8 @@ async function applyFilters() {
 }
 
 .sidebar-content {
-	padding: 24px 24px 80px 24px;
+	padding: 24px 24px 0 24px;
+	position: relative;
 	height: 100%;
 	overflow-y: auto;
 }
@@ -158,12 +159,11 @@ async function applyFilters() {
 }
 
 .action-buttons {
-	position: fixed;
+	position: sticky;
 	bottom: 0;
 	right: 0;
-	width: 650px;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
+	width: 100%;
+	display: flex;
 	gap: 16px;
 	padding: 16px 24px;
 	background: #20242f;
@@ -172,6 +172,7 @@ async function applyFilters() {
 .clear-button,
 .apply-button {
 	padding: 16px;
+	width: 50%;
 	border-radius: 12px;
 	font-weight: 500;
 	font-size: 16px;
@@ -180,6 +181,7 @@ async function applyFilters() {
 }
 
 .clear-button {
+	width: 50%;
 	background: transparent;
 	color: white;
 	border: 1px solid #718096;

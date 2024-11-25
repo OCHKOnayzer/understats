@@ -9,10 +9,13 @@
 		"phone": "Phone",
 		"regData": "Reg Data",
 		"lastBet": "Last bet",
-		"betCount": "Bets on the account (All / month / week)",
+		"betCount": "Bets on the account\n(All / month / week)",
 		"myAccounts": "My Accounts",
 		"available": "Available",
-		"used": "Used"
+		"used": "Used",
+		"noAuth": "Register to see accounts",
+		"noAccounts": "Accounts not found! Connect accounts!",
+		"loading": "Loading accounts..."
 	},
 	"awards": {
 		"received": "Received awards",
