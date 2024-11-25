@@ -75,7 +75,12 @@ export const formatDate = (date: Date): string => {
 
 export class DateUtils {
 	static formatDate(date: Date): string {
-		return date.toISOString().split('T')[0];
+		const d = new Date(date);
+		d.setHours(0, 0, 0, 0);
+		const year = d.getFullYear();
+		const month = String(d.getMonth() + 1).padStart(2, '0');
+		const day = String(d.getDate()).padStart(2, '0');
+		return `${year}-${month}-${day}`;
 	}
 
 	static getDaysInMonth(year: number, month: number): number {
@@ -95,21 +100,34 @@ export class DateUtils {
 			...Array(firstDay).fill(null),
 			...Array(daysInMonth)
 				.fill(0)
-				.map((_, i) => new Date(year, month, i + 1))
+				.map((_, i) => {
+					const date = new Date(year, month, i + 1);
+					date.setHours(0, 0, 0, 0);
+					return date;
+				})
 		];
 	}
 
 	static isDateSelected(date: CalendarDay, selectedDates: Date[]): boolean {
 		if (!date || !selectedDates.length) return false;
 
-		const time = date.getTime();
-		return selectedDates.length === 1 ? time === selectedDates[0].getTime() : time >= selectedDates[0].getTime() && time <= selectedDates[1].getTime();
+		const time = new Date(date).setHours(0, 0, 0, 0);
+		return selectedDates.some((selectedDate) => {
+			const selectedTime = new Date(selectedDate).setHours(0, 0, 0, 0);
+			return time === selectedTime;
+		});
 	}
 
 	static isDateInRange(date: CalendarDay, selectedDates: Date[]): boolean {
 		if (!date || selectedDates.length !== 2) return false;
 
-		const time = date.getTime();
-		return time > selectedDates[0].getTime() && time < selectedDates[1].getTime();
+		const time = new Date(date).setHours(0, 0, 0, 0);
+		const [start, end] =
+			selectedDates[0].getTime() < selectedDates[1].getTime() ? [new Date(selectedDates[0]), new Date(selectedDates[1])] : [new Date(selectedDates[1]), new Date(selectedDates[0])];
+
+		const startTime = start.setHours(0, 0, 0, 0);
+		const endTime = end.setHours(0, 0, 0, 0);
+
+		return time >= startTime && time <= endTime;
 	}
 }

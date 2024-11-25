@@ -1,84 +1,51 @@
 <script lang="ts">
-import { createEventDispatcher } from 'svelte';
+import { scale } from 'svelte/transition';
 
 import { filterStore } from '$src/stores/filterStore';
-import { MONTHS } from '$src/utils/constants/constants';
-import { DateUtils } from '$src/utils/utils';
+import { createDate, formatDateRange } from '$src/utils/date/dateUtils';
+import { handleDateSelection } from '$src/utils/functions/handleDateSelection';
 
-import CalendarHeader from './CalendarHeader.svelte';
-import CalendarMonth from './CalendarMonth.svelte';
-
-const dispatch = createEventDispatcher<{
-	select: { startDate: string; endDate: string };
-}>();
+import CalendarButton from './CalendarButton.svelte';
+import CalendarDropdown from './CalendarDropdown.svelte';
 
 let currentDate = new Date();
 let selectedDates: Date[] = [];
 let showCalendar = false;
 
-$: if ($filterStore.dateRange.startDate && $filterStore.dateRange.endDate) {
-	selectedDates = [new Date($filterStore.dateRange.startDate), new Date($filterStore.dateRange.endDate)];
+$: selectedDates =
+	$filterStore.dateRange.startDate && $filterStore.dateRange.endDate ? [createDate($filterStore.dateRange.startDate), createDate($filterStore.dateRange.endDate)] : [];
+
+$: selectedDateRange = selectedDates.length === 2 ? formatDateRange(selectedDates[0], selectedDates[1]) : 'Период';
+
+function onDateSelect(date: Date) {
+	const result = handleDateSelection(date, selectedDates, filterStore);
+	selectedDates = result.selectedDates;
+	showCalendar = !result.shouldCloseCalendar;
 }
 
-$: nextMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1);
-
-$: selectedDateRange =
-	selectedDates.length === 2
-		? `${selectedDates[0].getDate()} ${MONTHS[selectedDates[0].getMonth()]} - ${selectedDates[1].getDate()} ${MONTHS[selectedDates[1].getMonth()]}`
-		: 'Период';
-
-function handleDateSelection(date: Date) {
-	if (selectedDates.length === 0) {
-		selectedDates = [date];
-		return;
-	}
-
-	if (selectedDates.length === 1) {
-		const [firstDate] = selectedDates;
-		selectedDates = date < firstDate ? [date, firstDate] : [firstDate, date];
-
-		const startDate = DateUtils.formatDate(selectedDates[0]);
-		const endDate = DateUtils.formatDate(selectedDates[1]);
-
-		dispatch('select', { startDate, endDate });
-		filterStore.setDateRange(startDate, endDate);
-		showCalendar = false;
-		return;
-	}
-
-	selectedDates = [date];
+function toggleCalendar() {
+	showCalendar = !showCalendar;
 }
 </script>
 
 <div class="calendar-wrapper">
-	<button
-		class="period-button"
-		class:active="{showCalendar}"
-		on:click="{() => (showCalendar = !showCalendar)}">
-		<span>{selectedDateRange}</span>
-		<span
-			class="arrow"
-			class:open="{showCalendar}">▼</span>
-	</button>
+	<CalendarButton
+		selectedDateRange="{selectedDateRange}"
+		showCalendar="{showCalendar}"
+		onToggle="{toggleCalendar}" />
 
 	{#if showCalendar}
-		<div class="calendar">
-			<CalendarHeader
+		<div
+			class="dropdown-container"
+			transition:scale="{{
+				duration: 200,
+				start: 0.95,
+				opacity: 0
+			}}">
+			<CalendarDropdown
 				currentDate="{currentDate}"
-				nextMonthDate="{nextMonthDate}"
-				onPrevMonth="{() => (currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1))}"
-				onNextMonth="{() => (currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1))}" />
-
-			<div class="calendars-container">
-				<CalendarMonth
-					currentDate="{currentDate}"
-					selectedDates="{selectedDates}"
-					onDateSelect="{handleDateSelection}" />
-				<CalendarMonth
-					currentDate="{nextMonthDate}"
-					selectedDates="{selectedDates}"
-					onDateSelect="{handleDateSelection}" />
-			</div>
+				selectedDates="{selectedDates}"
+				onDateSelect="{onDateSelect}" />
 		</div>
 	{/if}
 </div>
@@ -90,48 +57,11 @@ function handleDateSelection(date: Date) {
 	margin-bottom: 16px;
 }
 
-.period-button {
-	width: 100%;
-	padding: 12px;
-	background: #363a45;
-	border: none;
-	border-radius: 12px;
-	color: white;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	cursor: pointer;
-	font-size: 16px;
-	transition: background 0.2s ease-in-out;
-}
-
-.period-button.active {
-	border-radius: 12px 12px 0 0;
-}
-
-.arrow {
-	font-size: 12px;
-	transition: transform 0.2s ease;
-}
-
-.arrow.open {
-	transform: rotate(180deg);
-}
-
-.calendar {
+.dropdown-container {
 	position: absolute;
-	top: 100%;
+	top: calc(100% + 8px);
 	left: 0;
-	right: 0;
-	background: #363a45;
-	border-radius: 0 0 12px 12px;
-	padding: 16px;
+	width: 100%;
 	z-index: 10;
-}
-
-.calendars-container {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 24px;
 }
 </style>

@@ -1,4 +1,22 @@
 {
+	"accounts": {
+		"bookmaker": "Bookmaker",
+		"auth": "ID AUTH",
+		"login": "Login",
+		"balance": "Balance",
+		"name": "Full name",
+		"mail": "E-mail",
+		"phone": "Phone",
+		"regData": "Reg Data",
+		"lastBet": "Last bet",
+		"betCount": "Bets on the account\n(All / month / week)",
+		"myAccounts": "My Accounts",
+		"available": "Available",
+		"used": "Used",
+		"noAuth": "Register to see accounts",
+		"noAccounts": "Accounts not found! Connect accounts!",
+		"loading": "Loading accounts..."
+	},
 	"awards": {
 		"received": "Received awards",
 		"future": "Future awards",

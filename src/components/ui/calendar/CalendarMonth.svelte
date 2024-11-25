@@ -1,6 +1,6 @@
 <script lang="ts">
-import { WEEK_DAYS } from '$src/utils/constants/constants';
 import { DateUtils } from '$src/utils/utils';
+import { WEEK_DAYS } from '$src/utils/constants/constants';
 
 import CalendarDay from './CalendarDay.svelte';
 
