@@ -86,6 +86,6 @@ function handleKeyDown(event: KeyboardEvent) {
 }
 
 .accordion-content {
-	padding: 16px;
+	padding: 16px 0;
 }
 </style>

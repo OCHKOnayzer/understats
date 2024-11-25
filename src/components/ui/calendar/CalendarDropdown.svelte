@@ -43,7 +43,3 @@ const handleNextMonth = () => {
 		</div>
 	</div>
 </div>
-
-<style>
-/* Removed styles */
-</style>
