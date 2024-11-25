@@ -34,7 +34,7 @@ let { currentDate, nextMonthDate, onPrevMonth, onNextMonth }: Props = $props();
 .months-container {
 	display: flex;
 	justify-content: space-around;
-	align-items: center;	
+	align-items: center;
 	flex: 1;
 	margin: 0 16px;
 }

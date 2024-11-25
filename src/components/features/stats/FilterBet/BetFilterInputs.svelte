@@ -23,15 +23,13 @@ function handleCoefficientChange() {
 				<input
 					type="text"
 					class="amount-input"
-					bind:value={amountFrom}
-					on:input={handleAmountChange}
-					id="amountFrom"
-				/>
-				<label 
+					bind:value="{amountFrom}"
+					on:input="{handleAmountChange}"
+					id="amountFrom" />
+				<label
 					for="amountFrom"
 					class="placeholder"
-					class:filled={amountFrom}
-				>
+					class:filled="{amountFrom}">
 					Коэффициент, от
 				</label>
 			</div>
@@ -39,15 +37,13 @@ function handleCoefficientChange() {
 				<input
 					type="text"
 					class="amount-input"
-					bind:value={amountTo}
-					on:input={handleAmountChange}
-					id="amountTo"
-				/>
-				<label 
+					bind:value="{amountTo}"
+					on:input="{handleAmountChange}"
+					id="amountTo" />
+				<label
 					for="amountTo"
 					class="placeholder"
-					class:filled={amountTo}
-				>
+					class:filled="{amountTo}">
 					Коэффициент, до
 				</label>
 			</div>
@@ -60,15 +56,13 @@ function handleCoefficientChange() {
 				<input
 					type="text"
 					class="amount-input"
-					bind:value={coefficientFrom}
-					on:input={handleCoefficientChange}
-					id="coefficientFrom"
-				/>
-				<label 
+					bind:value="{coefficientFrom}"
+					on:input="{handleCoefficientChange}"
+					id="coefficientFrom" />
+				<label
 					for="coefficientFrom"
 					class="placeholder"
-					class:filled={coefficientFrom}
-				>
+					class:filled="{coefficientFrom}">
 					Сумма ставки, от
 				</label>
 			</div>
@@ -76,15 +70,13 @@ function handleCoefficientChange() {
 				<input
 					type="text"
 					class="amount-input"
-					bind:value={coefficientTo}
-					on:input={handleCoefficientChange}
-					id="coefficientTo"
-				/>
-				<label 
+					bind:value="{coefficientTo}"
+					on:input="{handleCoefficientChange}"
+					id="coefficientTo" />
+				<label
 					for="coefficientTo"
 					class="placeholder"
-					class:filled={coefficientTo}
-				>
+					class:filled="{coefficientTo}">
 					Сумма ставки, до
 				</label>
 			</div>
@@ -118,7 +110,7 @@ function handleCoefficientChange() {
 .amount-input {
 	width: 100%;
 	padding: 24px 14px 8px;
-	background: #363A45;
+	background: #363a45;
 	border: solid 1px transparent;
 	border-radius: 12px;
 	color: white;
@@ -129,7 +121,7 @@ function handleCoefficientChange() {
 
 .amount-input:focus {
 	outline: none;
-	border-color: #EE6C60;
+	border-color: #ee6c60;
 }
 
 .amount-input:focus + .placeholder,

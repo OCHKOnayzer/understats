@@ -12,7 +12,7 @@ export const useAccounts = () => {
 			}
 			return response;
 		},
-		refetchOnWindowFocus: false,
+		refetchOnWindowFocus: true,
 		staleTime: 30000,
 		retry: 1
 	});

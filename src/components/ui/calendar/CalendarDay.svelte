@@ -13,14 +13,13 @@ let { day, selected, inRange, onSelect }: Props = $props();
 {#if day}
 	<button
 		class="day"
-		class:selected={selected}
-		class:in-range={inRange}
-		on:click={() => onSelect(day)}
-	>
+		class:selected="{selected}"
+		class:in-range="{inRange}"
+		on:click="{() => onSelect(day)}">
 		{day.getDate()}
 	</button>
 {:else}
-	<div class="day empty" />
+	<div class="day empty"></div>
 {/if}
 
 <style>

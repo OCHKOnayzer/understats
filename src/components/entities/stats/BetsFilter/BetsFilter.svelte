@@ -78,7 +78,9 @@ async function applyFilters() {
 			<BetFilters />
 		</Accordion>
 
-		<div class="action-buttons" class:open="{isOpen}">
+		<div
+			class="action-buttons"
+			class:open="{isOpen}">
 			<button
 				class="apply-button"
 				on:click="{applyFilters}"

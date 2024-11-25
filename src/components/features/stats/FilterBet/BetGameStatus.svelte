@@ -37,7 +37,7 @@ import { filterStore } from '$src/stores/filterStore';
 
 .bet-status {
 	padding: 8px 14px;
-	background: #363A45;
+	background: #363a45;
 	border: none;
 	border-radius: 12px;
 	color: white;
@@ -52,6 +52,6 @@ import { filterStore } from '$src/stores/filterStore';
 }
 
 .bet-status.active {
-	background: #171B26;
+	background: #171b26;
 }
 </style>

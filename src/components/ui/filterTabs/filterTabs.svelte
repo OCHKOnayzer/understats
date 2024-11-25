@@ -17,9 +17,7 @@ $: isCustomDateRange = $filterStore.activeTab === 'nothing';
 <div class="filter-tabs">
 	{#each tabs as tab}
 		<button on:click="{() => filterStore.setActiveTab(tab.id)}">
-			<Button 
-				variant="{(!isCustomDateRange && $filterStore.activeTab === tab.id) ? 'filterButtonActive' : 'filterButton'}"
-			>
+			<Button variant="{!isCustomDateRange && $filterStore.activeTab === tab.id ? 'filterButtonActive' : 'filterButton'}">
 				{tab.label}
 			</Button>
 		</button>
