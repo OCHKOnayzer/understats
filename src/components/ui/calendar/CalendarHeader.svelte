@@ -1,5 +1,6 @@
 <script lang="ts">
 import { MONTHS } from '$src/utils/constants/constants';
+import Icon from '@iconify/svelte';
 interface Props {
 	currentDate: Date;
 	nextMonthDate: Date;
@@ -13,14 +14,18 @@ let { currentDate, nextMonthDate, onPrevMonth, onNextMonth }: Props = $props();
 <div class="calendar-header">
 	<button
 		class="nav-button"
-		on:click="{onPrevMonth}">←</button>
+		on:click="{onPrevMonth}"><Icon icon="oui:arrow-left" /></button>
 	<div class="months-container">
-		<span class="month">{MONTHS[currentDate.getMonth()]}, {currentDate.getFullYear()}</span>
-		<span class="month">{MONTHS[nextMonthDate.getMonth()]}, {nextMonthDate.getFullYear()}</span>
+		<div class="month-wrapper right">
+			<span class="month">{MONTHS[currentDate.getMonth()]}, {currentDate.getFullYear()}</span>
+		</div>
+		<div class="month-wrapper left">
+			<span class="month">{MONTHS[nextMonthDate.getMonth()]}, {nextMonthDate.getFullYear()}</span>
+		</div>
 	</div>
 	<button
 		class="nav-button"
-		on:click="{onNextMonth}">→</button>
+		on:click="{onNextMonth}"><Icon icon="oui:arrow-right" /></button>
 </div>
 
 <style>
@@ -28,36 +33,48 @@ let { currentDate, nextMonthDate, onPrevMonth, onNextMonth }: Props = $props();
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 24px;
+	margin-bottom: 16px;
 }
 
 .months-container {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 8px;
 	flex: 1;
-	margin: 0 16px;
+	padding: 0 16px;
+}
+
+.month-wrapper {
+	display: flex;
+}
+
+.month-wrapper.left {
+	justify-content: flex-start;
+	padding-left: 15px;
+}
+
+.month-wrapper.right {
+	justify-content: flex-end;
+	padding-right: 15px;
 }
 
 .month {
-	font-size: 16px;
 	font-weight: 500;
-	color: white;
-	min-width: 140px;
-	text-align: center;
+	color: #fff;
 }
 
 .nav-button {
-	background: none;
-	border: none;
-	color: white;
-	cursor: pointer;
-	padding: 8px;
-	font-size: 20px;
-	transition: opacity 0.2s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	border-radius: 4px;
+	color: #fff;
+	transition: background-color 0.2s;
 }
 
 .nav-button:hover {
-	opacity: 0.8;
+	background-color: rgba(255, 255, 255, 0.1);
 }
 </style>

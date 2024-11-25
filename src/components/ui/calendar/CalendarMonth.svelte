@@ -1,6 +1,6 @@
 <script lang="ts">
-import { DateUtils } from '$src/utils/utils';
 import { WEEK_DAYS } from '$src/utils/constants/constants';
+import { DateUtils } from '$src/utils/utils';
 
 import CalendarDay from './CalendarDay.svelte';
 
@@ -41,6 +41,7 @@ const days = $derived(DateUtils.generateCalendarDays(currentDate.getFullYear(), 
 .weekdays {
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
+	align-items: left;
 	gap: 4px;
 	margin-bottom: 8px;
 }
@@ -55,6 +56,7 @@ const days = $derived(DateUtils.generateCalendarDays(currentDate.getFullYear(), 
 .days {
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
+	text-align: left;
 	gap: 4px;
 }
 </style>

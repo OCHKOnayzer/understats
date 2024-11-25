@@ -5,8 +5,8 @@ import Spinner from '$components/ui/spinner/Spinner.svelte';
 import * as Table from '$components/ui/table';
 import * as m from '$m';
 import { useAccounts } from '$src/services/accounts/useAccounts';
-import { useUserProfile } from '$src/services/auth/useProfile';
 import { currentUser } from '$src/stores/modalStore';
+import { useUserProfile } from '$src/services/auth/useProfile';
 import { cn } from '$utils/utils';
 
 const { query } = useAccounts();
