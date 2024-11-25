@@ -11,49 +11,13 @@ let { selectedDateRange, showCalendar, onToggle }: Props = $props();
 </script>
 
 <button
-	class="period-button"
-	class:active="{showCalendar}"
+	class="w-full py-3 px-3 bg-[#363a45] border border-transparent rounded-lg text-white flex items-center justify-between cursor-pointer transition-all duration-200 hover:bg-[#4a4f5c] {showCalendar ? 'bg-[#4a4f5c] border-[#6366f1]' : ''}"
 	on:click="{onToggle}">
-	<span>{selectedDateRange}</span>
-	<span
-		class="arrow"
-		class:active="{showCalendar}"
-		><Icon
-			font-size="25px"
-			icon="solar:alt-arrow-up-line-duotone" /></span>
+	<span class="flex items-center gap-2">
+		<Icon icon="uil:calendar-alt" class="w-4 h-4" />
+		<span>{selectedDateRange}</span>
+	</span>
+	<span class="text-xs transition-transform duration-200 {showCalendar ? 'rotate-0' : 'rotate-180'}">
+		<Icon icon="solar:alt-arrow-up-line-duotone" class="text-2xl" />
+	</span>
 </button>
-
-<style>
-.period-button {
-	width: 100%;
-	padding: 12px;
-	background: #363a45;
-	border: 1px solid transparent;
-	border-radius: 8px;
-	color: white;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	cursor: pointer;
-	transition: all 0.2s ease-out;
-}
-
-.period-button:hover {
-	background: #4a4f5c;
-}
-
-.period-button.active {
-	background: #4a4f5c;
-	border-color: #6366f1;
-}
-
-.arrow {
-	font-size: 12px;
-	transition: transform 0.2s;
-	transform: rotate(180deg);
-}
-
-.arrow.active {
-	transform: rotate(0deg);
-}
-</style>

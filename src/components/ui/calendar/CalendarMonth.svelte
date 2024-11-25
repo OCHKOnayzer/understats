@@ -15,14 +15,14 @@ let { currentDate, selectedDates, onDateSelect }: Props = $props();
 const days = $derived(DateUtils.generateCalendarDays(currentDate.getFullYear(), currentDate.getMonth()));
 </script>
 
-<div class="month-calendar">
-	<div class="weekdays">
+<div class="w-full">
+	<div class="grid grid-cols-7 gap-1 items-left mb-2">
 		{#each WEEK_DAYS as day}
-			<div class="weekday">{day}</div>
+			<div class="text-center text-sm text-white/50 p-1">{day}</div>
 		{/each}
 	</div>
 
-	<div class="days">
+	<div class="grid grid-cols-7 gap-1 text-left">
 		{#each days as day}
 			<CalendarDay
 				day="{day}"
@@ -32,31 +32,3 @@ const days = $derived(DateUtils.generateCalendarDays(currentDate.getFullYear(), 
 		{/each}
 	</div>
 </div>
-
-<style>
-.month-calendar {
-	width: 100%;
-}
-
-.weekdays {
-	display: grid;
-	grid-template-columns: repeat(7, 1fr);
-	align-items: left;
-	gap: 4px;
-	margin-bottom: 8px;
-}
-
-.weekday {
-	text-align: center;
-	font-size: 14px;
-	color: rgba(255, 255, 255, 0.5);
-	padding: 4px;
-}
-
-.days {
-	display: grid;
-	grid-template-columns: repeat(7, 1fr);
-	text-align: left;
-	gap: 4px;
-}
-</style>
