@@ -50,10 +50,10 @@ let { selectedDateRange, showCalendar, onToggle }: Props = $props();
 .arrow {
 	font-size: 12px;
 	transition: transform 0.2s;
-	transform: rotate(0);
+	transform: rotate(180deg);
 }
 
 .arrow.active {
-	transform: rotate(180deg);
+	transform: rotate(0deg);
 }
 </style>

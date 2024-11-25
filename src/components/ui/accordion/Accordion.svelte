@@ -47,7 +47,6 @@ function handleKeyDown(event: KeyboardEvent) {
 <style>
 .accordion {
 	background-color: #20242f;
-	border-radius: 12px;
 	color: white;
 	overflow: hidden;
 }
@@ -56,7 +55,7 @@ function handleKeyDown(event: KeyboardEvent) {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 16px;
+	margin-bottom: 16px;
 	cursor: pointer;
 	transition: background-color 0.3s ease;
 }
