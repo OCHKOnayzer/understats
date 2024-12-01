@@ -24,10 +24,10 @@ const handleNextMonth = () => {
 </script>
 
 <div class="relative">
-	<div class="w-full bg-[#363a45] rounded-lg p-4 shadow-lg shadow-black/10">
+	<div class="w-full rounded-lg bg-[#363a45] p-4 shadow-lg shadow-black/10">
 		<CalendarHeader
-			{currentDate}
-			{nextMonthDate}
+			currentDate="{currentDate}"
+			nextMonthDate="{nextMonthDate}"
 			onPrevMonth="{handlePrevMonth}"
 			onNextMonth="{handleNextMonth}" />
 

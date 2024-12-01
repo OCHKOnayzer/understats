@@ -16,9 +16,9 @@ const days = $derived(DateUtils.generateCalendarDays(currentDate.getFullYear(), 
 </script>
 
 <div class="w-full">
-	<div class="grid grid-cols-7 gap-1 items-left mb-2">
+	<div class="items-left mb-2 grid grid-cols-7 gap-1">
 		{#each WEEK_DAYS as day}
-			<div class="text-center text-sm text-white/50 p-1">{day}</div>
+			<div class="p-1 text-center text-sm text-white/50">{day}</div>
 		{/each}
 	</div>
 

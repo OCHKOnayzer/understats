@@ -108,9 +108,14 @@ $: console.log('Query state:', $query.status, 'Profile loading:', $profileQuery.
 		{#if !isAuthenticated}
 			<Table.Body>
 				<Table.Row>
-					<Table.Cell colspan={10} class="border-none">
+					<Table.Cell
+						colspan="{10}"
+						class="border-none">
 						<div class="flex h-[90vh] flex-col items-center justify-center">
-							<img class="mb-2" src="/icons/accounts/file.svg" alt="" />
+							<img
+								class="mb-2"
+								src="/icons/accounts/file.svg"
+								alt="" />
 							<h2 class="w-[260px] text-center text-xl text-[#718096]">
 								{$t('accounts.noAuth')}
 							</h2>
@@ -121,9 +126,13 @@ $: console.log('Query state:', $query.status, 'Profile loading:', $profileQuery.
 		{:else if isLoading}
 			<Table.Body>
 				<Table.Row>
-					<Table.Cell colspan={10} class="border-none">
+					<Table.Cell
+						colspan="{10}"
+						class="border-none">
 						<div class="flex h-[90vh] flex-col items-center justify-center">
-							<Spinner color="#718096" size={32} />
+							<Spinner
+								color="#718096"
+								size="{32}" />
 							<h2 class="w-[260px] text-center text-xl text-[#718096]">{$t('accounts.loading')}</h2>
 						</div>
 					</Table.Cell>
@@ -153,9 +162,14 @@ $: console.log('Query state:', $query.status, 'Profile loading:', $profileQuery.
 		{:else}
 			<Table.Body>
 				<Table.Row>
-					<Table.Cell colspan={10} class="border-none">
+					<Table.Cell
+						colspan="{10}"
+						class="border-none">
 						<div class="flex h-[90vh] flex-col items-center justify-center">
-							<img class="mb-2" src="/icons/accounts/file.svg" alt="" />
+							<img
+								class="mb-2"
+								src="/icons/accounts/file.svg"
+								alt="" />
 							<h2 class="w-[260px] text-center text-xl text-[#718096]">
 								{$t('accounts.noAccounts')}
 							</h2>

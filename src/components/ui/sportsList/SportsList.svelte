@@ -1,52 +1,47 @@
 <script lang="ts">
-	import { type Writable } from 'svelte/store';
-	import { fade, fly } from 'svelte/transition';
+import { type Writable } from 'svelte/store';
+import { fade, fly, backOut } from 'svelte/transition';
+import Icon from '@iconify/svelte';
 
-	import Icon from '@iconify/svelte';
-	import { backOut } from 'svelte/easing';
-	import Button from '../button/button.svelte';
+import Button from '../button/button.svelte';
 
-	interface Props {
-		mainItemsStore: Writable<string[]>;
-		allItemsStore: Writable<string[]>;
-		title?: string;
-		showAllButtonText?: string;
-		setFilter: (selectedList: string[]) => void;
-		selectedFilter: (selectedItem: string) => void;
-		selectedList: string[];
+interface Props {
+	mainItemsStore: Writable<string[]>;
+	allItemsStore: Writable<string[]>;
+	title?: string;
+	showAllButtonText?: string;
+	setFilter: (selectedList: string[]) => void;
+	selectedFilter: (selectedItem: string) => void;
+	selectedList: string[];
+}
+
+let { mainItemsStore, allItemsStore, title, showAllButtonText, setFilter, selectedFilter, selectedList }: Props = $props();
+
+let showSportsModal = $state(false);
+let searchQuery = $state('');
+let previousSelections = $state<string[]>([]);
+
+function savePreviousSelections() {
+	previousSelections = [...selectedList];
+}
+
+function restoreSelections() {
+	setFilter(previousSelections);
+	showSportsModal = false;
+}
+
+$effect(() => {
+	if (showSportsModal) {
+		document.body.style.overflow = 'hidden';
+	} else {
+		document.body.style.overflow = '';
 	}
+});
 
-	let { mainItemsStore, allItemsStore, title, showAllButtonText, setFilter, selectedFilter, selectedList }: Props = $props();
-
-	let showSportsModal = $state(false);
-	let searchQuery = $state('');
-	let previousSelections = $state<string[]>([]);
-
-	function savePreviousSelections() {
-		previousSelections = [...selectedList];
-	}
-
-	function restoreSelections() {
-		setFilter(previousSelections);
-		showSportsModal = false;
-	}
-
-	$effect(() => {
-		if (showSportsModal) {
-			document.body.style.overflow = 'hidden';
-		} else {
-			document.body.style.overflow = '';
-		}
-	});
-
-	let filteredSports = $derived(
-		searchQuery
-			? $allItemsStore.filter((sport) => sport.toLowerCase().includes(searchQuery.toLowerCase()))
-			: $allItemsStore
-	);
+let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => sport.toLowerCase().includes(searchQuery.toLowerCase())) : $allItemsStore);
 </script>
 
-<div class={`sports-section ${showSportsModal ? 'overflow-hidden' : ''}`}>
+<div class="{`sports-section ${showSportsModal ? 'overflow-hidden' : ''}`}">
 	<div class="sports-grid">
 		{#each $mainItemsStore as sport}
 			<button on:click="{() => selectedFilter(sport)}">
@@ -68,21 +63,20 @@
 
 {#if showSportsModal}
 	<div
-		class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center"
-		transition:fade={{ duration: 200 }}
-		on:click|self={() => (showSportsModal = false)}
-	>
+		class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+		transition:fade="{{ duration: 200 }}"
+		on:click|self="{() => (showSportsModal = false)}">
 		<div
-			class="bg-[#20242F] rounded-xl w-[90%] max-w-[600px] max-h-[90vh] overflow-auto"
-			transition:fly={{ y: 20, duration: 300, easing: backOut }}
-		>
-			<div class="sticky top-0 z-10 flex items-center justify-between p-4 bg-[#20242F] border-b border-white/10">
+			class="max-h-[90vh] w-[90%] max-w-[600px] overflow-auto rounded-xl bg-[#20242F]"
+			transition:fly="{{ y: 20, duration: 300, easing: backOut }}">
+			<div class="sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-[#20242F] p-4">
 				<h3 class="text-xl font-semibold text-white">Виды спорта</h3>
 				<button
-					class="p-2 text-white/70 hover:text-white transition-colors"
-					on:click={() => (showSportsModal = false)}
-				>
-					<Icon icon="solar:close-circle-bold" class="w-6 h-6" />
+					class="p-2 text-white/70 transition-colors hover:text-white"
+					on:click="{() => (showSportsModal = false)}">
+					<Icon
+						icon="solar:close-circle-bold"
+						class="h-6 w-6" />
 				</button>
 			</div>
 
@@ -91,50 +85,45 @@
 					<input
 						type="text"
 						placeholder="Поиск..."
-						bind:value={searchQuery}
-						class="w-full px-4 py-2 bg-white/5 rounded-lg border border-white/10 text-white placeholder:text-white/50 focus:outline-none focus:border-white/20"
-					/>
+						bind:value="{searchQuery}"
+						class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white placeholder:text-white/50 focus:border-white/20 focus:outline-none" />
 				</div>
 
-				<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[50vh] overflow-auto mb-4">
+				<div class="mb-4 grid max-h-[50vh] grid-cols-1 gap-2 overflow-auto sm:grid-cols-2">
 					{#each filteredSports as sport}
-						<label class="flex items-center gap-3 p-2 rounded hover:bg-white/5 cursor-pointer group">
+						<label class="group flex cursor-pointer items-center gap-3 rounded p-2 hover:bg-white/5">
 							<input
 								type="checkbox"
-								checked={selectedList.includes(sport)}
-								on:change={() => selectedFilter(sport)}
-								class="hidden"
-							/>
-							<div class="relative w-5 h-5 border-2 rounded transition-colors duration-200
-								{selectedList.includes(sport) ? 'border-yellow-500 bg-yellow-500' : 'border-white/30 group-hover:border-white/50'}"
-							>
+								checked="{selectedList.includes(sport)}"
+								on:change="{() => selectedFilter(sport)}"
+								class="hidden" />
+							<div
+								class="relative h-5 w-5 rounded border-2 transition-colors duration-200
+								{selectedList.includes(sport) ? 'border-yellow-500 bg-yellow-500' : 'border-white/30 group-hover:border-white/50'}">
 								{#if selectedList.includes(sport)}
 									<Icon
 										icon="solar:check-bold"
-										class="absolute inset-0 w-full h-full text-white transition-opacity duration-200"
-									/>
+										class="absolute inset-0 h-full w-full text-white transition-opacity duration-200" />
 								{/if}
 							</div>
-							<span class="text-sm text-white/70 group-hover:text-white transition-colors duration-200">
+							<span class="text-sm text-white/70 transition-colors duration-200 group-hover:text-white">
 								{sport}
 							</span>
 						</label>
 					{/each}
 				</div>
 
-				<div class="flex justify-end gap-4 pt-4 border-t border-white/10">
+				<div class="flex justify-end gap-4 border-t border-white/10 pt-4">
 					<Button
 						variant="default"
 						class="px-6"
-						on:click={() => (showSportsModal = false)}
-					>
+						on:click="{() => (showSportsModal = false)}">
 						Применить ({selectedList.length})
 					</Button>
 					<Button
 						variant="outline"
 						class="px-6"
-						on:click={restoreSelections}
-					>
+						on:click="{restoreSelections}">
 						Отмена
 					</Button>
 				</div>

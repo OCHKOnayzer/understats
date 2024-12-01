@@ -121,7 +121,7 @@ function handleCoefficientChange() {
 
 .amount-input:focus {
 	outline: none;
-	border-color: #6660FF;
+	border-color: #6660ff;
 	border-width: 2px;
 }
 
