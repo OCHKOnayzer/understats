@@ -1,6 +1,9 @@
 <script lang="ts">
 import { type Writable } from 'svelte/store';
-import { fade, fly, backOut } from 'svelte/transition';
+// eslint-disable-next-line import/no-duplicates
+import { fade, fly } from 'svelte/transition';
+// eslint-disable-next-line import/no-duplicates
+import { backOut } from 'svelte/easing';
 import Icon from '@iconify/svelte';
 
 import Button from '../button/button.svelte';
