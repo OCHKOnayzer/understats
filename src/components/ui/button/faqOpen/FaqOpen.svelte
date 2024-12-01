@@ -46,4 +46,9 @@ const sorryOpen = () => {
 	align-items: center;
 	justify-content: center;
 }
+@media (max-height: 770px){ 
+	.info_buttons{ 
+		height: 35px;
+	}
+}
 </style>

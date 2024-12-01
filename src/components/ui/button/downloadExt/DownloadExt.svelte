@@ -48,4 +48,9 @@ async function downloadFile() {
 	margin-right: 15px;
 	cursor: pointer;
 }
+@media (max-height: 770px){ 
+	.download_buttons{ 
+		height: 35px;
+	}
+}
 </style>

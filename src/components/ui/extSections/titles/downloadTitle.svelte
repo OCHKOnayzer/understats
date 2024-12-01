@@ -14,7 +14,7 @@ import { t } from 'svelte-i18n';
 
 <style>
 .section_title {
-	margin-top: 4vh;
+	margin-top: 2vh;
 	display: flex;
 	align-items: center;
 	width: 100%;

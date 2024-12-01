@@ -10,6 +10,10 @@ import { t } from 'svelte-i18n';
 				alt="" />
 			<span class="title"> {$t('extensions.need_help')}</span>
 		</div>
+		<div class="supp-span">
+			<span>Если есть сложности с установкой? </span>
+			<span>Напишите в службу поддержки - Мы с радостью поможем Вам!</span>
+		</div>
 		<div class="problem_content">
 			<button class="open_modal_btn">
 				<div class="chat_block">
@@ -27,19 +31,16 @@ import { t } from 'svelte-i18n';
 .problems_wrapper {
 	width: 100%;
 	background-color: #252935;
-	height: 45%;
+	height: 40%;
 	border-radius: 0px 0px 5px 5px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 1px solid red;
 }
 .problem_container {
 	width: 95%;
-	height: 80%;
 }
 .problem_title {
-	margin-top: 20px;
 	margin-bottom: 10px;
 	display: flex;
 	align-items: center;
@@ -47,6 +48,14 @@ import { t } from 'svelte-i18n';
 }
 .title {
 	margin-left: 10px;
+}
+.supp-span {
+	display: flex;
+	flex-direction: column;
+	font-size: 14px;
+	color: #718096;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 .problem_content {
 	color: #718096;
@@ -57,7 +66,7 @@ import { t } from 'svelte-i18n';
 	border: 1px solid #363a45;
 	box-sizing: border-box;
 	border-radius: 5px;
-	height: 50px;
+	height: 40px;
 	color: white;
 	font-size: 16px;
 	padding-left: 5px;
@@ -68,8 +77,8 @@ import { t } from 'svelte-i18n';
 .chat_block {
 	border: 1px solid #363a45;
 	box-sizing: border-box;
-	height: 40px;
-	width: 40px;
+	height: 30px;
+	width: 30px;
 	border-radius: 5px;
 	margin-right: 10px;
 	display: flex;
@@ -77,7 +86,12 @@ import { t } from 'svelte-i18n';
 	justify-content: center;
 }
 .chat_block img {
-	height: 50%;
-	width: 50%;
+	height: 60%;
+	width: 60%;
+}
+@media (max-height: 770px){ 
+	.problems_wrapper{ 
+		display: none;
+	}
 }
 </style>
