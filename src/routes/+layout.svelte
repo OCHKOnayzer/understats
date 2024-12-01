@@ -2,12 +2,12 @@
 import { ParaglideJS } from '@inlang/paraglide-sveltekit';
 import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 import { onMount } from 'svelte';
-import { waitLocale } from 'svelte-i18n';
 import { Toaster } from 'svelte-french-toast';
+import { waitLocale } from 'svelte-i18n';
 
 import Container from '$components/providers/container/Container.svelte';
 import Menu from '$components/ui/menu/Menu.svelte';
-import { i18n, setLanguage } from '$lib/i18n';
+import { i18n } from '$lib/i18n';
 import Header from '$src/components/ui/header/header.svelte';
 import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
 import { isModalOpen } from '$src/stores/modalStore';

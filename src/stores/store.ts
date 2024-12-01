@@ -2,6 +2,7 @@ import { derived, writable } from 'svelte/store';
 
 import * as m from '$m';
 
+import type { IAccountResponse } from '$src/types/accounts';
 import type { FilterInputSelectStore, TableItems } from '$types/types';
 
 export const BOOKMAKERS = [
@@ -13,6 +14,8 @@ export const BOOKMAKERS = [
 export const TileChecked = writable<string>('tile');
 
 export const accounts = writable<TableItems>([]);
+
+export const allAccounts = writable<IAccountResponse[]>([]);
 
 export const AccountCreateSelect = writable<string>();
 export const AccountCreate = writable([

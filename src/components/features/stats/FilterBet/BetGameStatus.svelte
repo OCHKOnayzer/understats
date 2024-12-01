@@ -37,7 +37,7 @@ import { filterStore } from '$src/stores/filterStore';
 
 .bet-status {
 	padding: 8px 14px;
-	background: rgba(255, 255, 255, 0.1);
+	background: #363a45;
 	border: none;
 	border-radius: 12px;
 	color: white;
@@ -47,7 +47,11 @@ import { filterStore } from '$src/stores/filterStore';
 	transition: all 0.2s ease-in-out;
 }
 
+.bet-status:hover {
+	background: rgba(255, 255, 255, 0.15);
+}
+
 .bet-status.active {
-	background: rgba(255, 255, 255, 0.2);
+	background: #171b26;
 }
 </style>

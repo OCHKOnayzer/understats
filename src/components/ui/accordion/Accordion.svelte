@@ -1,6 +1,8 @@
 <script lang="ts">
 import Icon from '@iconify/svelte';
-import { backOut, slide } from 'svelte/easing';
+
+import { backOut } from 'svelte/easing';
+import { slide } from 'svelte/transition';
 
 let { title, isInitiallyOpen = true, children } = $props();
 
@@ -58,10 +60,6 @@ function handleKeyDown(event: KeyboardEvent) {
 	padding: 16px;
 	cursor: pointer;
 	transition: background-color 0.3s ease;
-}
-
-.accordion-header:hover {
-	background-color: rgba(255, 255, 255, 0.1);
 }
 
 .accordion-title {
