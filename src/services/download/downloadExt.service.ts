@@ -1,5 +1,6 @@
 import { ApiError } from '$src/api/api.error';
 import { axiosWithAuth } from '$src/api/api.interceptors';
+
 export async function downloadFile() {
 	try {
 		const response = await axiosWithAuth.get('/api/extension/download/', {

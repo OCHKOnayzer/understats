@@ -259,8 +259,7 @@ const maxLevel = 50;
 	/* .selected_menu_element,
 	.user_level,
 	.leave_acc_p, */
-	.other_account_wrapper
-	{
+	.other_account_wrapper {
 		font-size: 15px;
 	}
 }
