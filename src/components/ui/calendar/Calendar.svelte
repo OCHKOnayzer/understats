@@ -3,6 +3,3 @@ import DateRangePicker from './DateRangePicker.svelte';
 </script>
 
 <DateRangePicker />
-
-<style>
-</style>

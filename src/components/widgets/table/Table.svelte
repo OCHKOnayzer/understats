@@ -5,11 +5,18 @@ import Spinner from '$components/ui/spinner/Spinner.svelte';
 import * as Table from '$components/ui/table';
 import * as m from '$m';
 import { useAccounts } from '$src/services/accounts/useAccounts';
+import { useUserProfile } from '$src/services/auth/useProfile';
+import { currentUser } from '$src/stores/modalStore';
 import { cn } from '$utils/utils';
 
 const { query } = useAccounts();
+const { query: profileQuery } = useUserProfile();
 
-$: console.log('Query state:', $query.status, 'Data length:', $query.data?.length);
+$: isAuthenticated = !!$currentUser;
+$: isLoading = ($query.isLoading || $profileQuery.isLoading) && isAuthenticated;
+$: accounts = isAuthenticated ? $query.data : [];
+
+$: console.log('Query state:', $query.status, 'Profile loading:', $profileQuery.isLoading);
 </script>
 
 <div class="relative mt-5">
@@ -98,8 +105,25 @@ $: console.log('Query state:', $query.status, 'Data length:', $query.data?.lengt
 				</Table.Head>
 			</Table.Row>
 		</Table.Header>
-
-		{#if $query.isLoading}
+		{#if !isAuthenticated}
+			<Table.Body>
+				<Table.Row>
+					<Table.Cell
+						colspan="{10}"
+						class="border-none">
+						<div class="flex h-[90vh] flex-col items-center justify-center">
+							<img
+								class="mb-2"
+								src="/icons/accounts/file.svg"
+								alt="" />
+							<h2 class="w-[260px] text-center text-xl text-[#718096]">
+								{$t('accounts.noAuth')}
+							</h2>
+						</div>
+					</Table.Cell>
+				</Table.Row>
+			</Table.Body>
+		{:else if isLoading}
 			<Table.Body>
 				<Table.Row>
 					<Table.Cell
@@ -114,9 +138,9 @@ $: console.log('Query state:', $query.status, 'Data length:', $query.data?.lengt
 					</Table.Cell>
 				</Table.Row>
 			</Table.Body>
-		{:else if $query.data?.length > 0}
+		{:else if accounts?.length}
 			<Table.Body>
-				{#each $query.data as account, index (`${account.siteName}-${account.extendedId}-${index}`)}
+				{#each accounts as account, index (`${account.siteName}-${account.extendedId}-${index}`)}
 					<Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'} active:bg-[#3D3A8540]`)}">
 						<Table.Cell>{account.siteName || 'N/A'}</Table.Cell>
 						<Table.Cell>{account.extendedId || 'N/A'}</Table.Cell>
@@ -147,7 +171,7 @@ $: console.log('Query state:', $query.status, 'Data length:', $query.data?.lengt
 								src="/icons/accounts/file.svg"
 								alt="" />
 							<h2 class="w-[260px] text-center text-xl text-[#718096]">
-								{$query.isError ? $t('accounts.noAuth') : $t(' accounts.noAccounts')}
+								{$t('accounts.noAccounts')}
 							</h2>
 						</div>
 					</Table.Cell>

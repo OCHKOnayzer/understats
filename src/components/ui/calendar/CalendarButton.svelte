@@ -1,6 +1,8 @@
 <script lang="ts">
 import Icon from '@iconify/svelte';
 
+import { cn } from '$src/utils/utils';
+
 interface Props {
 	selectedDateRange: string;
 	showCalendar: boolean;
@@ -8,52 +10,29 @@ interface Props {
 }
 
 let { selectedDateRange, showCalendar, onToggle }: Props = $props();
+
+let isOpen = $state(false);
+
+$effect(() => {
+	isOpen = showCalendar;
+});
 </script>
 
 <button
-	class="period-button"
-	class:active="{showCalendar}"
+	class="{cn(
+		'flex w-full cursor-pointer items-center justify-between rounded-lg border border-transparent bg-[#363a45] px-3 py-3 text-white transition-all duration-200 hover:bg-[#4a4f5c]',
+		isOpen && 'border-[#6366f1] bg-[#4a4f5c]'
+	)}"
 	on:click="{onToggle}">
-	<span>{selectedDateRange}</span>
-	<span
-		class="arrow"
-		class:active="{showCalendar}"
-		><Icon
-			font-size="25px"
-			icon="solar:alt-arrow-up-line-duotone" /></span>
+	<span class="flex items-center gap-2">
+		<Icon
+			icon="uil:calendar-alt"
+			class="h-4 w-4" />
+		<span>{selectedDateRange}</span>
+	</span>
+	<span class="{cn('text-xs transition-transform duration-200', isOpen ? 'rotate-0' : 'rotate-180')}">
+		<Icon
+			icon="solar:alt-arrow-up-line-duotone"
+			class="text-2xl" />
+	</span>
 </button>
-
-<style>
-.period-button {
-	width: 100%;
-	padding: 12px;
-	background: #363a45;
-	border: 1px solid transparent;
-	border-radius: 8px;
-	color: white;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	cursor: pointer;
-	transition: all 0.2s ease-out;
-}
-
-.period-button:hover {
-	background: #4a4f5c;
-}
-
-.period-button.active {
-	background: #4a4f5c;
-	border-color: #6366f1;
-}
-
-.arrow {
-	font-size: 12px;
-	transition: transform 0.2s;
-	transform: rotate(0);
-}
-
-.arrow.active {
-	transform: rotate(180deg);
-}
-</style>
