@@ -165,4 +165,15 @@ const browserArr: BrowserItem[] = [
 		font-size: 13px;
 	}
 }
+@media (max-height: 720px){
+	.extensions-wrapper{
+		font-size: 13px;
+	}
+	.extensions-content{ 
+		font-size: 13px;
+	}
+	.info-text{ 
+		font-size: 13px;
+	}
+}
 </style>
