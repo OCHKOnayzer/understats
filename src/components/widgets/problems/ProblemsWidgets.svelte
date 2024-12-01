@@ -89,8 +89,8 @@ import { t } from 'svelte-i18n';
 	height: 60%;
 	width: 60%;
 }
-@media (max-height: 770px){ 
-	.problems_wrapper{ 
+@media (max-height: 770px) {
+	.problems_wrapper {
 		display: none;
 	}
 }

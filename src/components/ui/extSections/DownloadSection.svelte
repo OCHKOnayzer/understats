@@ -155,24 +155,24 @@ const browserArr: BrowserItem[] = [
 	color: white;
 	margin-left: 5px;
 }
-@media (max-height: 800px){ 
-	.info-wrapper{ 
+@media (max-height: 800px) {
+	.info-wrapper {
 		padding: 0;
 	}
 }
-@media (max-height: 770px){ 
-	.info-text{ 
+@media (max-height: 770px) {
+	.info-text {
 		font-size: 13px;
 	}
 }
-@media (max-height: 720px){
-	.extensions-wrapper{
+@media (max-height: 720px) {
+	.extensions-wrapper {
 		font-size: 13px;
 	}
-	.extensions-content{ 
+	.extensions-content {
 		font-size: 13px;
 	}
-	.info-text{ 
+	.info-text {
 		font-size: 13px;
 	}
 }
