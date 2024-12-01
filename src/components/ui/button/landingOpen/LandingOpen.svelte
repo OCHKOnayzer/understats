@@ -3,7 +3,7 @@ import { t } from 'svelte-i18n';
 
 import { openModal } from '$src/stores/modalStore';
 const download = () => {
-	openModal('AuthModal');
+	openModal('authModal');
 };
 </script>
 
