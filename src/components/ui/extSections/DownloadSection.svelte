@@ -94,8 +94,7 @@ const browserArr: BrowserItem[] = [
 	width: 59%;
 	background-color: #171b26;
 	border-radius: 5px;
-	min-height: 100%;
-	height: fit-content;
+	height: 100%;
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .download__container {
@@ -118,7 +117,7 @@ const browserArr: BrowserItem[] = [
 	text-align: left;
 }
 .button-wrapper {
-	margin-top: 30px;
+	margin-top: 10px;
 }
 .button-group {
 	display: flex;
@@ -155,5 +154,26 @@ const browserArr: BrowserItem[] = [
 .extensions-content {
 	color: white;
 	margin-left: 5px;
+}
+@media (max-height: 800px) {
+	.info-wrapper {
+		padding: 0;
+	}
+}
+@media (max-height: 770px) {
+	.info-text {
+		font-size: 13px;
+	}
+}
+@media (max-height: 720px) {
+	.extensions-wrapper {
+		font-size: 13px;
+	}
+	.extensions-content {
+		font-size: 13px;
+	}
+	.info-text {
+		font-size: 13px;
+	}
 }
 </style>

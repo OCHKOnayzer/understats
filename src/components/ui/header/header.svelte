@@ -1,48 +1,64 @@
 <script lang="ts">
-import { t, locale } from 'svelte-i18n';
+import { t } from 'svelte-i18n';
 
-import { headerTitle } from '$src/stores/HeaderStores';
-import { openModal } from '$src/stores/modalStore';
-console.log(locale);
+import { headerTitle, langImage } from '$src/stores/HeaderStores';
+import { openModal, modalComponent, closeModal } from '$src/stores/modalStore';
+
+type ModalType = 'AuthModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal';
+
+const openLangModal = (modal: ModalType) => {
+	if ($modalComponent !== null && $modalComponent !== modal) {
+		return;
+	}
+	if ($modalComponent === modal) {
+		closeModal();
+	} else {
+		openModal(modal);
+	}
+};
 </script>
 
-<div class="header">
+<header class="header">
 	<div class="headerItem">
 		<div class="flexConteiner">
 			<div class="title">
 				<p>{$t($headerTitle)}</p>
 			</div>
 			<div class="buttonConteiner">
-				<div class="btnWrapper">
-					<button on:click="{() => openModal('LangModal')}">
-						<span class="lang">ENG</span>
-					</button>
-				</div>
-				<div class="btnWrapper">
-					<button>
+				<div class="btnWrapper {$modalComponent === 'LangModal' ? 'active' : ''}">
+					<button on:click="{() => openLangModal('LangModal')}">
+						{$t(`lang.${$langImage}`)}
 						<img
-							src="assets/header/support.png"
+							class="lang-image"
+							src="{`assets/langs/${$langImage}.svg`}"
 							alt="" />
 					</button>
 				</div>
 				<div class="btnWrapper">
 					<button>
 						<img
-							src="assets/header/nname.png"
+							src="assets/header/bell.png"
+							alt="" />
+					</button>
+				</div>
+				<div class="btnWrapper {$modalComponent === 'SupportModal' ? 'active' : ''}">
+					<button on:click="{() => openLangModal('SupportModal')}">
+						<img
+							src="assets/header/support.png"
 							alt="" />
 					</button>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
+</header>
 
 <style>
 .header {
 	height: fit-content;
 	box-sizing: border-box;
 	padding-top: 10px;
-	width: 98%;
+	width: 100%;
 	margin: 0 auto;
 	position: relative;
 	z-index: 9998;
@@ -78,14 +94,10 @@ console.log(locale);
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 11%;
 	margin-right: 1%;
-}
-.lang {
-	font-size: 14px;
+	width: fit-content;
 }
 .btnWrapper {
-	height: 50%;
 	width: 40px;
 	display: flex;
 	align-items: center;
@@ -93,6 +105,15 @@ console.log(locale);
 	border: 1px solid rgba(128, 128, 128, 0.582);
 	border-radius: 4px;
 	transition: 400ms;
+	height: 40px;
+}
+.btnWrapper:nth-child(1) {
+	width: fit-content;
+}
+.lang-image {
+	height: 100%;
+	width: 100%;
+	margin-left: 10px;
 }
 .btnWrapper:nth-child(2) {
 	margin-right: 10px;
@@ -114,7 +135,10 @@ console.log(locale);
 .headerItem p {
 	font-size: 25px;
 }
-
+.active {
+	border: 1px solid #6660ff;
+	background-color: #6660ff40;
+}
 @media screen and (max-height: 800px) {
 	.title p {
 		font-size: 20px;

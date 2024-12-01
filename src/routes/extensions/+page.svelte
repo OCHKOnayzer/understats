@@ -31,15 +31,15 @@ selectHeaderTitle('extensions.extensions');
 
 <style>
 .pageWrapper {
-	width: 98%;
-	margin: 0 auto;
+	width: 100%;
 	box-sizing: border-box;
+	height: 94vh;
 }
 .extensions_wallpaper {
 	width: 100%;
 	border-radius: 5px;
 	margin-top: 10px;
-	height: 28vh;
+	height: 30%;
 }
 .extensions_wallpaper img {
 	height: 100%;
@@ -50,7 +50,7 @@ selectHeaderTitle('extensions.extensions');
 	flex-direction: row;
 	justify-content: space-between;
 	margin-top: 15px;
-	height: 59vh;
+	height: 62%;
 	color: white;
 }
 </style>

@@ -3,29 +3,31 @@ import { onDestroy } from 'svelte';
 
 import { isModalOpen, modalComponent } from '$src/stores/modalStore';
 
-import authModal from './authModal/authModal.svelte';
+import AuthModal from './authModal/AuthModal.svelte';
 import LeaveContainer from './leaveModal/LeaveContainer.svelte';
 import FailedModal from './payModal/FailedModal.svelte';
 import SuccessfulModal from './payModal/SuccessfulModal.svelte';
 import SorryModal from './sorryModal/SorryModal.svelte';
 import LangModal from './langModal/LangModal.svelte';
+import SupportModal from './supportModal/SupportModal.svelte';
 
 onDestroy(() => {
 	document.body.style.overflow = '';
 });
 
 const components = {
-	authModal,
+	AuthModal,
 	LeaveContainer,
 	FailedModal,
 	SuccessfulModal,
 	SorryModal,
-	LangModal
+	LangModal,
+	SupportModal
 };
 </script>
 
 {#if $isModalOpen}
-	<div class="modal_window {$modalComponent === 'authModal' ? 'auth-modal' : ''}">
+	<div class="modal_window {$modalComponent === 'AuthModal' ? 'auth-modal' : ''}">
 		<svelte:component this="{components[$modalComponent]}" />
 	</div>
 {/if}

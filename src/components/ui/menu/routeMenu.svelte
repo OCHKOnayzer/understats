@@ -54,7 +54,7 @@ const menuArr: MenuItem[] = [
 		title: 'menu.Setings'
 	},
 	{
-		href: '/faq',
+		href: '/help',
 		img1: 'assets/menu/active/FAQ.png',
 		img2: 'assets/menu/menuElements/FAQ.png',
 		title: 'menu.Help'
@@ -126,15 +126,5 @@ afterNavigate(() => {
 }
 .item_name {
 	font-size: 14px;
-}
-@media screen and (max-height: 800px) {
-	.card_item {
-		height: 40px;
-		padding: 5px;
-	}
-	.image_box {
-		max-height: 20px;
-		max-width: 20px;
-	}
 }
 </style>

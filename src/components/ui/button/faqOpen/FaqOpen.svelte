@@ -20,7 +20,7 @@ if (userAgent.includes('YaBrowser')) {
 }
 
 function navigate() {
-	goto(`/faq?browser=${browserName}`);
+	goto(`/help?browser=${browserName}`);
 }
 const sorryOpen = () => {
 	if ($modalComponent === null) {
@@ -45,5 +45,10 @@ const sorryOpen = () => {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+@media (max-height: 770px) {
+	.info_buttons {
+		height: 35px;
+	}
 }
 </style>

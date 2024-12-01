@@ -2,6 +2,7 @@
 import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 
+import { currentUser } from '$src/stores/modalStore';
 import { user, fetchUser } from '$stores/menu';
 
 onMount(() => {
@@ -20,7 +21,7 @@ const maxLevel = 50;
 		</div>
 	</div>
 	<div class="setings">
-		<div class="setings_item item-w">
+		<!-- <div class="setings_item item-w">
 			<div class="item_settings_info">
 				<p class="settings_name">{$t('settings.create_data')}</p>
 			</div>
@@ -31,8 +32,8 @@ const maxLevel = 50;
 					{/if}
 				</div>
 			</div>
-		</div>
-		<div class="setings_item item-w">
+		</div> -->
+		<!-- <div class="setings_item item-w">
 			<div class="item_settings_info">
 				<p class="settings_name">{$t('settings.profile_awards')}</p>
 			</div>
@@ -43,8 +44,8 @@ const maxLevel = 50;
 					{/if}/ <span class="maxlevel">{maxLevel}</span>
 				</div>
 			</div>
-		</div>
-		<div class="setings_item item-w">
+		</div> -->
+		<!-- <div class="setings_item item-w">
 			<div class="item_settings_info">
 				<p class="settings_name">{$t('settings.acc_lvl')}</p>
 			</div>
@@ -55,12 +56,12 @@ const maxLevel = 50;
 					{/if}
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 	<div class="basic_setings">
 		<div class="other_user_settings">
 			<div class="accounts">
-				<div><p class="accounts--text">{$t('settings.add_acc')}</p></div>
+				<div><p class="accounts--text">{$t('settings.create_data')}</p></div>
 				<div class="other_account_wrapper">
 					<div class="accounts_element">
 						{#if $user}
@@ -73,8 +74,8 @@ const maxLevel = 50;
 				<div><p class="accounts--text">{$t('settings.create_email')}</p></div>
 				<div class="other_account_wrapper">
 					<div class="accounts_element">
-						{#if $user}
-							<span>{$user.email}</span>
+						{#if $currentUser}
+							<span>{$currentUser.login}</span>
 						{/if}
 					</div>
 				</div>
@@ -94,20 +95,20 @@ const maxLevel = 50;
 </div>
 
 <style>
-.settings_name {
+/* .settings_name {
 	margin-top: 10px;
 	margin-bottom: 10px;
-}
+} */
 .widget_title {
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
 .accounts--text {
-	margin-top: 20px;
+	/* margin-top: 20px; */
 	margin-bottom: 20px;
 }
 .progressWrapper {
-	width: 98%;
+	width: 100%;
 	margin: 0 auto;
 	height: fit-content;
 	box-sizing: border-box;
@@ -128,12 +129,12 @@ const maxLevel = 50;
 .setings {
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
+	/* justify-content: center; */
 	align-items: center;
 	height: fit-content;
 	width: 100%;
 	position: relative;
-	padding-bottom: 10px;
+	/* padding-bottom: 10px; */
 }
 .basic_setings {
 	display: flex;
@@ -147,16 +148,16 @@ const maxLevel = 50;
 	justify-content: left;
 	width: 100%;
 }
-.btn_edit__wrapper {
+/* .btn_edit__wrapper {
 	display: flex;
 	align-items: end;
-}
+} */
 .accounts {
 	width: 22vw;
 	height: fit-content;
 	margin-right: 10px;
 }
-.setings_item {
+/* .setings_item {
 	height: 12vh;
 	border-radius: 10px;
 }
@@ -166,9 +167,9 @@ const maxLevel = 50;
 .setings_item:nth-child(1),
 .setings_item:nth-child(2) {
 	margin-right: 15px;
-}
+} */
 
-.setings_item:last-child {
+/* .setings_item:last-child {
 	margin-right: 0;
 }
 .selected_element {
@@ -179,7 +180,7 @@ const maxLevel = 50;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-}
+} */
 .other_account_wrapper {
 	background-color: #20242f;
 	border-radius: 10px;
@@ -188,7 +189,7 @@ const maxLevel = 50;
 	align-items: center;
 	padding-left: 10px;
 }
-.selected_menu_element {
+/* .selected_menu_element {
 	padding-right: 10px;
 	padding-left: 10px;
 }
@@ -199,14 +200,14 @@ const maxLevel = 50;
 }
 .maxlevel {
 	color: #707f9a;
-}
-.user_lvl {
+} */
+/* .user_lvl {
 	font-size: 20px;
 }
 .user_lvl span:nth-child(1) {
 	color: #f3c055;
-}
-.btn_edit {
+} */
+/* .btn_edit {
 	border: 1px solid #6660ff;
 	height: 7vh;
 	width: 4vw;
@@ -248,7 +249,7 @@ const maxLevel = 50;
 .user_level {
 	font-size: 20px;
 	color: #f3c055;
-}
+} */
 @media (max-width: 1200px) {
 	.main_info_wrapper .widget_title {
 		margin: 10px 0px 0px 0px;

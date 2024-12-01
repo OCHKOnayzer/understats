@@ -1,5 +1,6 @@
 <script lang="ts">
 import Icon from '@iconify/svelte';
+
 // eslint-disable-next-line import/no-duplicates
 import { backOut } from 'svelte/easing';
 // eslint-disable-next-line import/no-duplicates

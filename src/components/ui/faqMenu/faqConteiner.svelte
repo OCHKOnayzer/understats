@@ -33,7 +33,7 @@ async function loadArticleComponent(article2: string) {
 			<div class="selected_state_wrapper">
 				<header class="state_header">
 					<span class="selected_title">{$t(selectedItemName)}</span>
-					<button class="repost">{$t('faq.repost')}</button>
+					<!-- <button class="repost">{$t('faq.repost')}</button> -->
 				</header>
 
 				<svelte:component
@@ -52,7 +52,7 @@ async function loadArticleComponent(article2: string) {
 
 <style>
 .faqSection {
-	width: 98%;
+	width: 100%;
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;

@@ -1,8 +1,12 @@
 <script>
 import { t } from 'svelte-i18n';
+
+import { downloadFile } from '$src/services/download/downloadExt.service';
 </script>
 
-<button class="download_buttons">
+<button
+	class="download_buttons"
+	on:click="{downloadFile}">
 	{$t('extensions.zip')}
 </button>
 
@@ -13,5 +17,11 @@ import { t } from 'svelte-i18n';
 	height: 40px;
 	border-radius: 100px;
 	margin-right: 15px;
+	cursor: pointer;
+}
+@media (max-height: 770px) {
+	.download_buttons {
+		height: 35px;
+	}
 }
 </style>

@@ -11,8 +11,8 @@ import LandingOpen from '../button/landingOpen/LandingOpen.svelte';
 		<span>{$t('landing.landing_content')}</span>
 	</div>
 	<div class="button_wrapper">
-		<div class="button_open"><LandingOpen /></div>
-		<div class="button_download"><AppDownload /></div>
+		<LandingOpen />
+		<!-- <AppDownload /> -->
 	</div>
 </div>
 
@@ -23,59 +23,67 @@ import LandingOpen from '../button/landingOpen/LandingOpen.svelte';
 	margin: 0 auto;
 	color: #fefefc;
 	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .info_paragraph {
-	font-size: 2.5rem;
-	margin-bottom: 1.5rem;
+	margin-top: 10px;
+	font-size: 30px;
+	margin-bottom: 10px;
+	font-weight: 600;
 }
 
 .info_content {
-	font-size: 1rem;
+	font-size: 14px;
+	min-width: 60%;
 }
 
 .button_wrapper {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	gap: 0.5rem;
 	justify-content: center;
 	align-items: center;
+	margin-top: 10px;
 }
 
-@media (max-width: 1024px) {
+@media (max-height: 800px) {
 	.info_wrapper {
 		width: 70%;
 	}
+
 	.info_paragraph {
-		font-size: 2rem;
+		font-size: 24px;
+		margin-top: 5px;
+		margin-bottom: 5px;
 	}
+
 	.info_content {
-		font-size: 0.9rem;
+		font-size: 12px;
+		min-width: 80%;
+	}
+
+	.button_wrapper {
+		gap: 0.3rem;
+		flex-direction: row;
 	}
 }
 
-@media (max-width: 768px) {
+@media (max-height: 600px) {
 	.info_wrapper {
 		width: 90%;
 	}
-	.info_paragraph {
-		font-size: 1.5rem;
-	}
-	.info_content {
-		font-size: 0.8rem;
-	}
-}
 
-@media (max-width: 480px) {
-	.info_wrapper {
-		width: 95%;
-	}
 	.info_paragraph {
-		font-size: 1.2rem;
-		margin-bottom: 1rem;
+		font-size: 20px;
+		margin-top: 2px;
+		margin-bottom: 2px;
 	}
-	.info_content {
-		font-size: 0.7rem;
+
+	.button_wrapper {
+		gap: 0.2rem;
 	}
 }
 </style>
