@@ -23,36 +23,23 @@ const handleNextMonth = () => {
 };
 </script>
 
-<div class="calendar">
-	<CalendarHeader
-		currentDate="{currentDate}"
-		nextMonthDate="{nextMonthDate}"
-		onPrevMonth="{handlePrevMonth}"
-		onNextMonth="{handleNextMonth}" />
-
-	<div class="calendars-container">
-		<CalendarMonth
+<div class="relative">
+	<div class="w-full rounded-lg bg-[#363a45] p-4 shadow-lg shadow-black/10">
+		<CalendarHeader
 			currentDate="{currentDate}"
-			selectedDates="{selectedDates}"
-			onDateSelect="{onDateSelect}" />
-		<CalendarMonth
-			currentDate="{nextMonthDate}"
-			selectedDates="{selectedDates}"
-			onDateSelect="{onDateSelect}" />
+			nextMonthDate="{nextMonthDate}"
+			onPrevMonth="{handlePrevMonth}"
+			onNextMonth="{handleNextMonth}" />
+
+		<div class="flex gap-6">
+			<CalendarMonth
+				currentDate="{currentDate}"
+				selectedDates="{selectedDates}"
+				onDateSelect="{onDateSelect}" />
+			<CalendarMonth
+				currentDate="{nextMonthDate}"
+				selectedDates="{selectedDates}"
+				onDateSelect="{onDateSelect}" />
+		</div>
 	</div>
 </div>
-
-<style>
-.calendar {
-	width: 100%;
-	background: #363a45;
-	border-radius: 8px;
-	padding: 16px;
-	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-.calendars-container {
-	display: flex;
-	gap: 24px;
-}
-</style>

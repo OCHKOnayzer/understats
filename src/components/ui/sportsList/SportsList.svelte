@@ -1,19 +1,25 @@
 <script lang="ts">
 import { type Writable } from 'svelte/store';
+import { fade, fly, backOut } from 'svelte/transition';
+import Icon from '@iconify/svelte';
 
 import Button from '../button/button.svelte';
 
-export let mainItemsStore: Writable<string[]>;
-export let allItemsStore: Writable<string[]>;
-export let title = 'Спорт';
-export let showAllButtonText = 'Показать все';
-export let setFilter;
-export let selectedFilter;
-export let selectedList;
+interface Props {
+	mainItemsStore: Writable<string[]>;
+	allItemsStore: Writable<string[]>;
+	title?: string;
+	showAllButtonText?: string;
+	setFilter: (selectedList: string[]) => void;
+	selectedFilter: (selectedItem: string) => void;
+	selectedList: string[];
+}
 
-let showSportsModal = false;
-let searchQuery = '';
-let previousSelections: string[] = [];
+let { mainItemsStore, allItemsStore, title, showAllButtonText, setFilter, selectedFilter, selectedList }: Props = $props();
+
+let showSportsModal = $state(false);
+let searchQuery = $state('');
+let previousSelections = $state<string[]>([]);
 
 function savePreviousSelections() {
 	previousSelections = [...selectedList];
@@ -24,10 +30,18 @@ function restoreSelections() {
 	showSportsModal = false;
 }
 
-$: filteredSports = searchQuery ? $allItemsStore.filter((sport) => sport.toLowerCase().includes(searchQuery.toLowerCase())) : $allItemsStore;
+$effect(() => {
+	if (showSportsModal) {
+		document.body.style.overflow = 'hidden';
+	} else {
+		document.body.style.overflow = '';
+	}
+});
+
+let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => sport.toLowerCase().includes(searchQuery.toLowerCase())) : $allItemsStore);
 </script>
 
-<div class="sports-section">
+<div class="{`sports-section ${showSportsModal ? 'overflow-hidden' : ''}`}">
 	<div class="sports-grid">
 		{#each $mainItemsStore as sport}
 			<button on:click="{() => selectedFilter(sport)}">
@@ -42,52 +56,77 @@ $: filteredSports = searchQuery ? $allItemsStore.filter((sport) => sport.toLower
 				savePreviousSelections();
 				showSportsModal = true;
 			}}">
-			{showAllButtonText} ({$allItemsStore.length})
+			Показать все ({$allItemsStore.length})
 		</button>
 	</div>
 </div>
 
 {#if showSportsModal}
-	<div class="modal-overlay">
-		<div class="modal">
-			<div class="modal-header">
-				<h3>Виды спорта</h3>
+	<div
+		class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+		transition:fade="{{ duration: 200 }}"
+		on:click|self="{() => (showSportsModal = false)}">
+		<div
+			class="max-h-[90vh] w-[90%] max-w-[600px] overflow-auto rounded-xl bg-[#20242F]"
+			transition:fly="{{ y: 20, duration: 300, easing: backOut }}">
+			<div class="sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-[#20242F] p-4">
+				<h3 class="text-xl font-semibold text-white">Виды спорта</h3>
 				<button
-					class="close-button"
-					on:click="{() => (showSportsModal = false)}">✕</button>
-			</div>
-
-			<div class="search-container">
-				<input
-					type="text"
-					placeholder="Поиск..."
-					bind:value="{searchQuery}"
-					class="search-input" />
-			</div>
-
-			<div class="sports-list">
-				{#each filteredSports as sport}
-					<label class="sport-item">
-						<input
-							type="checkbox"
-							checked="{selectedList.includes(sport)}"
-							on:change="{() => selectedFilter(sport)}" />
-						<span class="sport-name">{sport}</span>
-					</label>
-				{/each}
-			</div>
-
-			<div class="modal-footer">
-				<button
-					class="cancel-button"
-					on:click="{restoreSelections}">
-					Отмена
-				</button>
-				<button
-					class="apply-button"
+					class="p-2 text-white/70 transition-colors hover:text-white"
 					on:click="{() => (showSportsModal = false)}">
-					Применить ({selectedList.length})
+					<Icon
+						icon="solar:close-circle-bold"
+						class="h-6 w-6" />
 				</button>
+			</div>
+
+			<div class="p-4">
+				<div class="relative mb-4">
+					<input
+						type="text"
+						placeholder="Поиск..."
+						bind:value="{searchQuery}"
+						class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white placeholder:text-white/50 focus:border-white/20 focus:outline-none" />
+				</div>
+
+				<div class="mb-4 grid max-h-[50vh] grid-cols-1 gap-2 overflow-auto sm:grid-cols-2">
+					{#each filteredSports as sport}
+						<label class="group flex cursor-pointer items-center gap-3 rounded p-2 hover:bg-white/5">
+							<input
+								type="checkbox"
+								checked="{selectedList.includes(sport)}"
+								on:change="{() => selectedFilter(sport)}"
+								class="hidden" />
+							<div
+								class="relative h-5 w-5 rounded border-2 transition-colors duration-200
+								{selectedList.includes(sport) ? 'border-yellow-500 bg-yellow-500' : 'border-white/30 group-hover:border-white/50'}">
+								{#if selectedList.includes(sport)}
+									<Icon
+										icon="solar:check-bold"
+										class="absolute inset-0 h-full w-full text-white transition-opacity duration-200" />
+								{/if}
+							</div>
+							<span class="text-sm text-white/70 transition-colors duration-200 group-hover:text-white">
+								{sport}
+							</span>
+						</label>
+					{/each}
+				</div>
+
+				<div class="flex justify-end gap-4 border-t border-white/10 pt-4">
+					<Button
+						variant="default"
+						class="px-6"
+						on:click="{() => (showSportsModal = false)}">
+						Применить ({selectedList.length})
+					</Button>
+					<Button
+						variant="outline"
+						class="px-6"
+						on:click="{restoreSelections}">
+						Отмена
+					</Button>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -7,7 +7,7 @@ const items = ['Не распознано', 'Не рассчитана', 'Поб
 $: console.log($filterStore.betResult);
 </script>
 
-<div class="mt-5">
+<div>
 	{#each items as item}
 		<button on:click="{() => filterStore.toggleBetResult(item)}">
 			<Button
