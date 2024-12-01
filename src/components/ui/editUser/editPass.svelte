@@ -234,9 +234,9 @@ const clearField = (field: FieldType) => {
 .setings_item:last-child {
 	margin-right: 0;
 }
-.pass_sett .selected_element {
+/* .pass_sett .selected_element {
 	background-color: #1c202b;
-}
+} */
 .selected_element {
 	background-color: #20242f;
 	color: #707f96;
@@ -251,10 +251,10 @@ const clearField = (field: FieldType) => {
 .selected_element:nth-child(2) {
 	margin-right: 15px;
 }
-.selected_menu_element {
+/* .selected_menu_element {
 	padding-right: 10px;
 	padding-left: 10px;
-}
+} */
 .item_settings_info {
 	width: 100%;
 	display: flex;
@@ -267,9 +267,9 @@ const clearField = (field: FieldType) => {
 	color: #6660ff;
 	cursor: pointer;
 }
-.user_email {
+/* .user_email {
 	font-size: 20px;
-}
+} */
 .btn_upd {
 	border: 1px solid;
 	border-radius: 80px;
@@ -312,7 +312,7 @@ const clearField = (field: FieldType) => {
 	}
 }
 @media (max-width: 1100px) {
-	.user_email,
+	/* .user_email, */
 	.input_element,
 	.item_settings_info p:nth-child(1) {
 		font-size: 15px;
@@ -338,8 +338,8 @@ const clearField = (field: FieldType) => {
 	.selected_element {
 		height: 70%;
 	}
-	.email {
+	/* .email {
 		padding-bottom: 14px;
-	}
+	} */
 }
 </style>
