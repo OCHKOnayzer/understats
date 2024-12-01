@@ -23,7 +23,7 @@ selectHeaderTitle('faq.faq');
 
 <style>
 .pageWrapper {
-	width: 98%;
+	width: 100%;
 	margin: 0 auto;
 	padding-bottom: 10px;
 	box-sizing: border-box;

@@ -47,11 +47,10 @@ const queryClient = new QueryClient({
 					{#if !routesWithoutMenu.includes($page.url.pathname)}
 						<Menu />
 					{/if}
-
+					{#if $isModalOpen}
+						<AuthModal />
+					{/if}
 					<div class="mainContent">
-						{#if $isModalOpen}
-							<AuthModal />
-						{/if}
 						{#if !routesWithoutHeader.includes($page.url.pathname)}
 							<Header />
 						{/if}
@@ -72,13 +71,13 @@ const queryClient = new QueryClient({
 main {
 	min-height: 100vh;
 	height: fit-content;
-	background-color: #0d111d;
 	display: flex;
 	gap: 1rem;
+	width: 100%;
 }
 .mainContent {
 	position: relative;
-	width: 87vw;
+	width: 100vw;
 	display: flex;
 	flex-direction: column;
 	overflow-y: auto;

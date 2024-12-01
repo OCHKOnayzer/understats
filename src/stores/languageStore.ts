@@ -1,3 +1,4 @@
+import { selectedLang } from './HeaderStores';
 const availableLanguages = ['en', 'es', 'ru', 'pt', 'zh', 'fr', 'it'];
 
 const getSystemLanguage = () => {
@@ -35,6 +36,7 @@ export const setAppLanguage = (language: string) => {
 
 	if (availableLanguages.includes(language)) {
 		localStorage.setItem('appLanguage', language);
+		selectedLang(language);
 	} else {
 		console.warn(`Language ${language} is not supported.`);
 	}

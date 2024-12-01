@@ -2,7 +2,7 @@
 import { t } from 'svelte-i18n';
 import { createEventDispatcher, onMount } from 'svelte';
 
-import { ActiveElemnts } from './activeElemnts';
+import { ActiveElemnts } from './activeElements';
 
 export let FAQIndex: number;
 

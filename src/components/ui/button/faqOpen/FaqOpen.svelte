@@ -20,7 +20,7 @@ if (userAgent.includes('YaBrowser')) {
 }
 
 function navigate() {
-	goto(`/faq?browser=${browserName}`);
+	goto(`/help?browser=${browserName}`);
 }
 const sorryOpen = () => {
 	if ($modalComponent === null) {

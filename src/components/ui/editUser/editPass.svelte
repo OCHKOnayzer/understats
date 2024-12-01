@@ -177,7 +177,7 @@ const clearField = (field: FieldType) => {
 	margin-bottom: 20px;
 }
 .progressWrapper {
-	width: 98%;
+	width: 100%;
 	margin: 0 auto;
 	height: fit-content;
 	box-sizing: border-box;
@@ -216,7 +216,6 @@ const clearField = (field: FieldType) => {
 	height: fit-content;
 	width: 100%;
 	position: relative;
-	padding-bottom: 10px;
 }
 .setings_item {
 	height: 12vh;

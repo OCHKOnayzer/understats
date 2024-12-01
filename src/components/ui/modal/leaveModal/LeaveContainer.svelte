@@ -1,4 +1,6 @@
 <script>
+import { t } from 'svelte-i18n';
+
 import UserAprove from '../../button/userAprove/UserAprove.svelte';
 import CancelButton from '../../button/userAprove/CancelButton.svelte';
 import ModalTitle from '../ModalTitle.svelte';
@@ -18,7 +20,7 @@ const LeaveAprove = () => {
 			<div class="button_wrapper">
 				<CancelButton onUserText="other.cancel" />
 				<UserAprove
-					onUserText="{'Выйти из профиля'}"
+					onUserText="{$t('other.leave_acc')}"
 					onUserAction="{LeaveAprove}" />
 			</div>
 		</div>

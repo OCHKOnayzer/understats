@@ -31,8 +31,7 @@ selectHeaderTitle('extensions.extensions');
 
 <style>
 .pageWrapper {
-	width: 98%;
-	margin: 0 auto;
+	width: 100%;
 	box-sizing: border-box;
 }
 .extensions_wallpaper {

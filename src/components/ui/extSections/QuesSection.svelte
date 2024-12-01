@@ -35,21 +35,21 @@ import { extItems } from './extItems';
 	width: 40%;
 	background-color: #171b26;
 	border-radius: 5px 5px 0px 0px;
-	min-height: 40vh;
-	height: fit-content;
+	height: 47vh;
 }
 .ques_title {
 	margin-top: 4vh;
 	width: 100%;
 	font-weight: 500;
 	font-size: 24px;
+	height: 60%;
 }
 .ques_container {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 	width: 94%;
-	height: 100%;
+	height: 80%;
 	margin: 0 auto;
 }
 .questions {

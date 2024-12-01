@@ -91,6 +91,7 @@ const browserArr: BrowserItem[] = [
 
 <style>
 .download {
+	border: 1px solid red;
 	width: 59%;
 	background-color: #171b26;
 	border-radius: 5px;

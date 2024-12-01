@@ -32,9 +32,9 @@ const loginUser = () => {
 		bind:value="{$form.password}" />
 	<SocialContainer />
 	<div class="switch_container">
-		<SwitchButton
+		<!-- <SwitchButton
 			switch_text="{'social.unBlock_acc'}"
-			switch_modal="{switchRecover}" />
+			switch_modal="{switchRecover}" /> -->
 		<SwitchButton
 			switch_text="{'social.cHave_acc'}"
 			switch_modal="{switchReg}" />

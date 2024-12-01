@@ -27,12 +27,12 @@ import { t } from 'svelte-i18n';
 .problems_wrapper {
 	width: 100%;
 	background-color: #252935;
-	min-height: 19vh;
-	height: fit-content;
+	height: 45%;
 	border-radius: 0px 0px 5px 5px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border: 1px solid red;
 }
 .problem_container {
 	width: 95%;

@@ -13,7 +13,7 @@ $: if ($query.data) {
 const handleLogout = () => {
 	logout();
 	currentUser.set(null);
-	modalComponent.set('authModal');
+	modalComponent.set('AuthModal');
 };
 </script>
 
@@ -47,7 +47,7 @@ const handleLogout = () => {
 	{:else}
 		<p>Вы не авторизованы.</p>
 		<Button
-			on:click="{() => openModal('authModal')}"
+			on:click="{() => openModal('AuthModal')}"
 			variant="default">Войти</Button>
 	{/if}
 </div>

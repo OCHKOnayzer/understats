@@ -1,13 +1,18 @@
 <script>
 import LandingInfo from '$src/components/ui/landingInfo/LandingInfo.svelte';
+import LandingSlider from '$src/components/widgets/landingSlider/LandingSlider.svelte';
 </script>
 
 <div class="landing-content">
-	<div class="landing_slider"></div>
+	<div class="eclipse-wrapper">
+		<img
+			src="assets/landing/image.png"
+			alt="" />
+	</div>
+	<LandingSlider />
 	<div class="landing_info_content">
 		<LandingInfo />
 	</div>
-	<span class="root">© 2024 stathub.bet, Inc.</span>
 </div>
 
 <style>
@@ -19,28 +24,25 @@ import LandingInfo from '$src/components/ui/landingInfo/LandingInfo.svelte';
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	max-width: 100vw;
 	box-sizing: border-box;
 	height: 100%;
 	padding: 1rem;
+	justify-content: space-around;
+	position: relative;
 }
-
-.landing_slider {
-	height: fit-content;
-	width: 100%;
-	box-sizing: border-box;
+.eclipse-wrapper {
+	position: absolute;
+	z-index: 2;
+	top: -6vh;
 }
-
+.eclipse-wrapper img {
+	height: 75vh;
+	width: 100vw;
+}
 .landing_info_content {
 	height: fit-content;
 	width: 100%;
 	box-sizing: border-box;
-}
-
-.root {
-	font-size: 10px;
-	color: #718096;
-	margin-top: auto;
-	padding: 1rem;
+	z-index: 3;
 }
 </style>

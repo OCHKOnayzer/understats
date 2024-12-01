@@ -8,7 +8,8 @@
 <style>
 .container {
 	max-width: 100%;
-	margin: 0 auto;
-	padding: 0 20px;
+	padding-right: 1rem;
+	padding-left: 0;
+	background-color: #0d111d;
 }
 </style>

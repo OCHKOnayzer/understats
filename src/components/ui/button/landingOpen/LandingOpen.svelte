@@ -1,7 +1,9 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
+
+import { openModal } from '$src/stores/modalStore';
 const download = () => {
-	console.log('hello world');
+	openModal('AuthModal');
 };
 </script>
 
@@ -12,7 +14,6 @@ const download = () => {
 <style>
 .button_wrapper {
 	min-width: 40%;
-	margin-top: 20px;
 	height: 4vh;
 	margin-right: 20px;
 }

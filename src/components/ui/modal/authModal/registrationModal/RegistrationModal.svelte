@@ -36,15 +36,15 @@ const registerUser = () => {
 		title_wrapper="{$t('social.retry_password')}"
 		show_clear="{true}"
 		bind:value="{$confirmPassword}" />
-	<ApproveButton />
+	<!-- <ApproveButton /> -->
 	<SocialContainer />
 	<div class="switch_container">
 		<SwitchButton
 			switch_text="{'social.have_acc'}"
 			switch_modal="{switchLogin}" />
-		<SwitchButton
+		<!-- <SwitchButton
 			switch_text="{'social.unBlock_acc'}"
-			switch_modal="{switchRecover}" />
+			switch_modal="{switchRecover}" /> -->
 	</div>
 	<div class="aprove_wrapper">
 		<CancelButton onUserText="{'other.cancel'}" />

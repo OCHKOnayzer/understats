@@ -12,7 +12,6 @@ const download = () => {
 <style>
 .button_wrapper {
 	min-width: 40%;
-	margin-top: 20px;
 	height: 4vh;
 	margin-right: 20px;
 }
