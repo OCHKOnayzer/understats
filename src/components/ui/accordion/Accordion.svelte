@@ -1,6 +1,9 @@
 <script lang="ts">
 import Icon from '@iconify/svelte';
-import { backOut, slide } from 'svelte/easing';
+// eslint-disable-next-line import/no-duplicates
+import { backOut } from 'svelte/easing';
+// eslint-disable-next-line import/no-duplicates
+import { slide } from 'svelte/transition';
 
 let { title, isInitiallyOpen = true, children } = $props();
 
