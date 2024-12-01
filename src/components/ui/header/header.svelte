@@ -4,7 +4,7 @@ import { t } from 'svelte-i18n';
 import { headerTitle, langImage } from '$src/stores/HeaderStores';
 import { openModal, modalComponent, closeModal } from '$src/stores/modalStore';
 
-type ModalType = 'AuthModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal';
+type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal';
 
 const openLangModal = (modal: ModalType) => {
 	if ($modalComponent !== null && $modalComponent !== modal) {
@@ -34,13 +34,13 @@ const openLangModal = (modal: ModalType) => {
 							alt="" />
 					</button>
 				</div>
-				<div class="btnWrapper">
+				<!-- <div class="btnWrapper">
 					<button>
 						<img
 							src="assets/header/bell.png"
 							alt="" />
 					</button>
-				</div>
+				</div> -->
 				<div class="btnWrapper {$modalComponent === 'SupportModal' ? 'active' : ''}">
 					<button on:click="{() => openLangModal('SupportModal')}">
 						<img

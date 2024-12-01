@@ -1,4 +1,5 @@
 import { get, writable } from 'svelte/store';
+
 export interface FilterState {
 	dateRange: {
 		startDate: string;

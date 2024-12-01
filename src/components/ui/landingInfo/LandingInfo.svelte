@@ -1,7 +1,7 @@
 <script>
 import { t } from 'svelte-i18n';
 
-import AppDownload from '../button/appDownload/AppDownload.svelte';
+// import AppDownload from '../button/appDownload/AppDownload.svelte';
 import LandingOpen from '../button/landingOpen/LandingOpen.svelte';
 </script>
 
