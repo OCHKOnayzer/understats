@@ -89,8 +89,8 @@ const setLang = (lang: string) => {
 	height: 50%;
 	width: 50%;
 }
-.active {
+/* .active {
 	border: 1px solid #6660ff;
 	background-color: #6660ff40;
-}
+} */
 </style>

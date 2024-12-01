@@ -85,9 +85,9 @@ const handleLogout = () => {
 .userName {
 	font-size: 15px;
 }
-.user_info span {
+/* .user_info span {
 	color: rgba(128, 128, 128, 0.383);
-}
+} */
 .quitBtn {
 	display: flex;
 	justify-content: center;

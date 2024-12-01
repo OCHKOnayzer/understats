@@ -256,10 +256,11 @@ const maxLevel = 50;
 	}
 }
 @media (max-width: 1000px) {
-	.other_account_wrapper,
-	.selected_menu_element,
+	/* .selected_menu_element,
 	.user_level,
-	.leave_acc_p {
+	.leave_acc_p, */
+	.other_account_wrapper
+	{
 		font-size: 15px;
 	}
 }
@@ -267,9 +268,9 @@ const maxLevel = 50;
 	.progressWrapper {
 		padding: 0 15px;
 	}
-	.leave_acc_p {
+	/* .leave_acc_p {
 		font-size: 10px;
-	}
+	} */
 	.progressTitle {
 		flex-direction: column;
 		align-items: flex-start;
@@ -289,13 +290,13 @@ const maxLevel = 50;
 	.other_user_settings {
 		margin-top: 10px;
 	}
-	.other_account_wrapper,
-	.btn_edit,
-	.leave_acc {
+	/* .btn_edit,
+	.leave_acc, */
+	.other_account_wrapper {
 		height: 9vh;
 	}
-	.selected_element {
+	/* .selected_element {
 		height: 70%;
-	}
+	} */
 }
 </style>

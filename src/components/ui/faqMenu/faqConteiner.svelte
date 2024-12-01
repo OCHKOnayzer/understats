@@ -90,7 +90,7 @@ async function loadArticleComponent(article2: string) {
 	justify-content: space-between;
 	align-items: center;
 }
-.repost {
+/* .repost {
 	width: 120px;
 	height: 44px;
 	background-color: #171b26;
@@ -103,7 +103,7 @@ async function loadArticleComponent(article2: string) {
 }
 .repost:hover {
 	background-color: #1f232f;
-}
+} */
 .selected_state_wrapper::-webkit-scrollbar {
 	border-radius: 30px;
 	width: 3px;
