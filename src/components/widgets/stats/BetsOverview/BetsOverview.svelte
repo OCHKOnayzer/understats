@@ -1,10 +1,10 @@
 <script lang="ts">
-    import { t } from 'svelte-i18n';
+    import { goto } from '$app/navigation';
     import * as Table from '$components/ui/table';
     import Tabs from '$components/ui/tabs/Tabs.svelte';
-    import BetDetails from './BetDetails.svelte';
-    import { goto } from '$app/navigation';
+    import { Loader } from 'lucide-svelte';
     import { onMount } from 'svelte';
+    import BetDetails from './BetDetails.svelte';
 
     interface AggregatedData {
         id: string;
@@ -14,7 +14,7 @@
 
     let showDetails = false;
     let selectedBetId: string | null = null;
-    let activeTab = 'no-aggregation';
+    let activeTab = 'no-aggregation';   
     let activeSubTab = 'all';
     let selectedColumns: string[] = [];
     let aggregatedData: AggregatedData | null = null;
@@ -95,7 +95,6 @@
         ]
     };
 
-    // Static mock data for different views
     const mockData = {
         'no-aggregation': {
             columns: ['Дата', 'Букмекер', 'Спорт', 'Событие', 'Ставка', 'Коэффициент', 'Сумма', 'Результат'],
@@ -189,11 +188,11 @@
     });
 </script>
 
-<section class="relative p-4">
+<section class="relative mt-[32px]">
     {#if showDetails && selectedBetId}
         <BetDetails betId={selectedBetId} />
     {:else}
-        <div class="mb-6">
+        <div class="mb-[32px]">
             <Tabs
                 tabs={mainTabs}
                 bind:activeTab
@@ -202,7 +201,7 @@
             />
         </div>
 
-        <div class="mb-4">
+        <div class="">
             <Tabs
                 tabs={subTabs}
                 bind:activeTab={activeSubTab}
@@ -213,7 +212,7 @@
 
         {#if isLoading}
             <div class="flex justify-center items-center h-40">
-                <div class="loading-spinner" />
+                <Loader/>
             </div>
         {:else if error}
             <div class="text-red-500 p-4">
@@ -221,10 +220,10 @@
             </div>
         {:else if aggregatedData}
             <Table.Root>
-                <Table.Header>
+                <Table.Header class="bg-[#31384A] text-[12px]">
                     <Table.Row>
                         {#each aggregatedData.columns as column}
-                            <Table.Head>
+                            <Table.Head class="border-[#262C3D]">
                                 <div class="flex items-center gap-1">
                                     <img src="icons/bk/table.svg" alt="table" />
                                     <span class="whitespace-pre-line">{column}</span>
@@ -233,9 +232,9 @@
                         {/each}
                     </Table.Row>
                 </Table.Header>
-                <Table.Body>
+                <Table.Body class="text-[14px]">
                     {#each aggregatedData.data as row}
-                        <Table.Row on:click={() => handleRowClick(row)}>
+                        <Table.Row class="border-[#262C3D]" on:click={() => handleRowClick(row)}>
                             {#each aggregatedData.columns as column}
                                 <Table.Cell>
                                     {row[column]}

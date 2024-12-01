@@ -1,9 +1,10 @@
 <script lang="ts">
-    import { t } from 'svelte-i18n';
     import * as Table from '$components/ui/table';
     import { onMount } from 'svelte';
 
-    export let betId: string;
+
+
+    let {betId}:{betId: string} = $props();
 
     interface DetailedData {
         id: string;
@@ -27,7 +28,6 @@
         'result'
     ];
 
-    // Column options for the checkboxes
     let columnOptions = defaultColumns.map(col => ({
         id: col,
         label: col,
@@ -47,15 +47,13 @@
         isLoading = true;
         error = '';
         try {
-            // TODO: Replace with actual API call
             const response = await fetch(`/api/bets/${betId}/details`);
             const data = await response.json();
             detailedData = data;
-            // Initialize with default columns if none selected
             if (selectedColumns.length === 0) {
                 selectedColumns = defaultColumns;
             }
-        } catch (e) {
+        } catch (e: any) {
             error = e.message;
         } finally {
             isLoading = false;
@@ -68,7 +66,6 @@
 </script>
 
 <div class="p-4">
-    <!-- Column Selection -->
     <div class="mb-4 flex flex-wrap gap-2">
         {#each columnOptions as option}
             <label class="inline-flex items-center">
@@ -83,7 +80,6 @@
         {/each}
     </div>
 
-    <!-- Detailed Table -->
     {#if isLoading}
         <div class="flex justify-center items-center h-40">
             <div class="loading-spinner" />
