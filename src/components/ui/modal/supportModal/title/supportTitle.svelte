@@ -19,7 +19,7 @@ import { t } from 'svelte-i18n';
 	color: white;
 	flex-direction: row;
 	align-items: center;
-	font-size: 24px;
+	font-size: 22px;
 	margin-top: 5px;
 }
 .title_image {
