@@ -1,5 +1,6 @@
 <script lang="ts">
 import Icon from '@iconify/svelte';
+import { onDestroy, onMount } from 'svelte';
 
 import BetFilterResults from '$src/components/features/stats/FilterBet/BetFilterResults.svelte';
 import Accordion from '$src/components/ui/accordion/Accordion.svelte';
@@ -10,7 +11,6 @@ import { filterStore } from '$src/stores/filterStore';
 
 import { fetchFilteredData } from '../api/api';
 import BetsSelectFilter from '../BetsSelectFilter/BetsSelectFilter.svelte';
-import { onDestroy, onMount } from 'svelte';
 
 let isOpen = false;
 let isLoading = false;
@@ -25,18 +25,18 @@ function handleDateSelect(event: CustomEvent<{ startDate: string; endDate: strin
 }
 
 function handleOutsideClick(event: MouseEvent) {
-    if (isOpen && sidebarElement && !sidebarElement.contains(event.target as Node)) {
-        isOpen = false;
-    }
+	if (isOpen && sidebarElement && !sidebarElement.contains(event.target as Node)) {
+		isOpen = false;
+	}
 }
 
 onMount(() => {
-    sidebarElement = document.querySelector('.sidebar') as HTMLElement;
-    document.addEventListener('mousedown', handleOutsideClick);
+	sidebarElement = document.querySelector('.sidebar');
+	document.addEventListener('mousedown', handleOutsideClick);
 });
 
 onDestroy(() => {
-    document.removeEventListener('mousedown', handleOutsideClick);
+	document.removeEventListener('mousedown', handleOutsideClick);
 });
 
 async function applyFilters() {

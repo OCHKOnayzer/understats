@@ -25,10 +25,10 @@ const days = $derived(DateUtils.generateCalendarDays(currentDate.getFullYear(), 
 	<div class="grid grid-cols-7 gap-1 text-left">
 		{#each days as day}
 			<CalendarDay
-				day={day}
-				selected={DateUtils.isDateSelected(day, selectedDates)}
-				inRange={DateUtils.isDateInRange(day, selectedDates)}
-				onSelect={onDateSelect} />
+				day="{day}"
+				selected="{DateUtils.isDateSelected(day, selectedDates)}"
+				inRange="{DateUtils.isDateInRange(day, selectedDates)}"
+				onSelect="{onDateSelect}" />
 		{/each}
 	</div>
 </div>

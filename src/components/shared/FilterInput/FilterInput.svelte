@@ -4,9 +4,10 @@ import Icon from '@iconify/svelte';
 import Input from '$components/ui/input/input.svelte';
 import * as Select from '$components/ui/select';
 import * as m from '$m';
-import type { SelectedType } from '$src/types/types';
 import { clearInput } from '$utils/functions/clearInputs';
 import { onSelectedChange } from '$utils/functions/onSelectedChange';
+
+import type { SelectedType } from '$src/types/types';
 
 interface Props {
 	placeholder: string;
@@ -17,8 +18,7 @@ interface Props {
 	check: any;
 }
 
-
-let {placeholder,name,selected,value,variant,check} = $props();
+let { placeholder, name, selected, value, variant, check } = $props();
 </script>
 
 <div class="flex flex-col justify-between">
@@ -26,21 +26,21 @@ let {placeholder,name,selected,value,variant,check} = $props();
 		<h2 class="text-[12px] text-white">{name}</h2>
 		<button
 			class="text-[12px] text-indigo-700"
-			on:click={() => clearInput(check, name)}>{m.clear()}</button>
+			on:click="{() => clearInput(check, name)}">{m.clear()}</button>
 	</div>
 	<div class="relative flex items-center justify-between">
 		{#if variant === 'select'}
 			<Select.Root
-				bind:selected={selected}
-				onSelectedChange={(value2) => onSelectedChange(value2, selected, check, name)}>
+				bind:selected="{selected}"
+				onSelectedChange="{(value2) => onSelectedChange(value2, selected, check, name)}">
 				<Select.Trigger class="bg-gray-500/10">
 					<Select.Value
 						class="text-white"
-						placeholder={placeholder} />
+						placeholder="{placeholder}" />
 				</Select.Trigger>
 				<Select.Content>
 					{#each value as item}
-						<Select.Item value={item.value}>
+						<Select.Item value="{item.value}">
 							<div class="flex items-center gap-2">
 								{#if item.icon}
 									<img
@@ -58,7 +58,7 @@ let {placeholder,name,selected,value,variant,check} = $props();
 			</Select.Root>
 		{:else}
 			<Input
-				placeholder={placeholder}
+				placeholder="{placeholder}"
 				class="w-full bg-gray-500/10 text-white placeholder:text-white/50"
 				bind:value="{selected.value}" />
 			{#if name === m.filterPresetName()}
@@ -66,7 +66,7 @@ let {placeholder,name,selected,value,variant,check} = $props();
 					{#each ['bx:save', 'material-symbols-light:delete-outline'] as icon}
 						<div class="flex h-12 w-12 cursor-pointer items-center justify-center rounded-[3px] bg-gray-500/10">
 							<Icon
-								icon={icon}
+								icon="{icon}"
 								color="6B7280"
 								font-size="28px" />
 						</div>

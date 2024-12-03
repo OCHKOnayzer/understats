@@ -30,7 +30,7 @@ const mainTabs = [
 	{ id: 'by-sport', name: 'По спорту' },
 	{ id: 'by-bookmaker', name: 'По букмекеру' },
 	{ id: 'by-period', name: 'По периоду' },
-	{ id: 'by-weekdays', name: 'По дням недели' },
+	{ id: 'by-weekdays', name: 'По дням недели' }
 ];
 
 const subTabsMap = {
@@ -72,7 +72,7 @@ const subTabsMap = {
 		{ id: 'all', name: 'Все дни' },
 		{ id: 'weekdays', name: 'Будни' },
 		{ id: 'weekend', name: 'Выходные' }
-	],
+	]
 };
 
 const mockData = {

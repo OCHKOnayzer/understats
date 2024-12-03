@@ -26,7 +26,7 @@ const buttonVariants = tv({
 			filterButtonActive: 'bg-[#171B26] text-white rounded-[8px] transition-colors hover:bg-gray-700 transition-all',
 			link: 'text-primary underline-offset-4 hover:underline',
 			apply: 'p-[16px] transition-all w-[50%] bg-[#2f3241] text-white rounded-[12px] hover:bg-[#4a4f5c]',
-			clear: 'py-[16px] px-[16px] transition-all w-[50%] bg-transparent text-white rounded-[12px] hover:bg-[#4a4f5c] border border-[#4a4f5c]',
+			clear: 'py-[16px] px-[16px] transition-all w-[50%] bg-transparent text-white rounded-[12px] hover:bg-[#4a4f5c] border border-[#4a4f5c]'
 		},
 		size: {
 			default: 'h-10 px-4 py-2',
