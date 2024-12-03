@@ -3,8 +3,8 @@ import { type Writable } from 'svelte/store';
 // eslint-disable-next-line import/no-duplicates
 import { fade, fly } from 'svelte/transition';
 // eslint-disable-next-line import/no-duplicates
-import { backOut } from 'svelte/easing';
 import Icon from '@iconify/svelte';
+import { backOut } from 'svelte/easing';
 
 import Button from '../button/button.svelte';
 
@@ -102,7 +102,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 								class="hidden" />
 							<div
 								class="relative h-5 w-5 rounded border-2 transition-colors duration-200
-								{selectedList.includes(sport) ? 'border-yellow-500 bg-yellow-500' : 'border-white/30 group-hover:border-white/50'}">
+								{selectedList.includes(sport) ? 'border-[#6660FF] bg-[#6660FF]' : 'border-white/30 group-hover:border-white/50'}">
 								{#if selectedList.includes(sport)}
 									<Icon
 										icon="solar:check-bold"
@@ -116,7 +116,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 					{/each}
 				</div>
 
-				<div class="flex justify-end gap-4 border-t border-white/10 pt-4">
+				<div class="flex justify-start gap-4 border-t border-white/10 pt-4">
 					<Button
 						variant="default"
 						class="px-6"
@@ -197,11 +197,6 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 	justify-content: space-between;
 	align-items: center;
 	border-bottom: 1px solid #363a45;
-}
-.modal-header h3 {
-	font-size: 20px;
-	color: white;
-	font-weight: 600;
 }
 .close-button {
 	background: none;

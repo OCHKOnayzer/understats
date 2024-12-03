@@ -6,13 +6,9 @@ import {
 	accountsListMain,
 	bookmakersList,
 	bookmakersListMain,
-	comandList,
-	comandListMain,
 	filterStore,
 	sportList,
-	sportListMain,
-	tourList,
-	tourListMain
+	sportListMain
 } from '$src/stores/filterStore';
 </script>
 
@@ -43,6 +39,7 @@ import {
 		mainItemsStore="{accountsListMain}" />
 </Accordion>
 
+<!-- 
 <Accordion title="{'Команды'}">
 	<SportsList
 		setFilter="{filterStore.setSelectedComands}"
@@ -59,4 +56,4 @@ import {
 		selectedList="{$filterStore.selectedTours}"
 		allItemsStore="{tourList}"
 		mainItemsStore="{tourListMain}" />
-</Accordion>
+</Accordion> -->
