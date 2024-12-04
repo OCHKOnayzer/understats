@@ -3,6 +3,7 @@ import { t } from 'svelte-i18n';
 
 import { selectedLang, langSel } from '$src/stores/HeaderStores';
 import { setLanguage } from '$src/lib/i18n';
+import { closeModal } from '$src/stores/modalStore';
 
 import LangTitle from './title/langTitle.svelte';
 import { LangArr } from './lang';
@@ -13,16 +14,28 @@ const setLang = (lang: string) => {
 };
 </script>
 
-<div class="lang-container">
-	<div class="lang-modal">
-		<div class="lang-wrapper">
+<div
+	class="inset-0 z-[9998] flex h-screen cursor-default justify-end"
+	role="button"
+	tabindex="0"
+	on:click="{() => closeModal()}"
+	on:keydown="{(e) => e.key === 'Enter' && closeModal()}">
+	<div
+		class="relative right-4 top-[10vh] flex h-fit max-w-[26vw] cursor-default items-center justify-center rounded-md border border-[#363a45] bg-[#0d111d] p-4"
+		on:click|stopPropagation
+		role="button"
+		tabindex="0"
+		on:keydown="{(e) => e.key === 'Enter'}">
+		<div class="my-2.5 h-auto w-[90%]">
 			<LangTitle />
-			<div class="sel-lang-wrapper">
+			<div class="mt-5 flex flex-wrap justify-between gap-2.5 text-white">
 				{#each LangArr as item}
 					<button
-						class="sel-lang-btn {item.lang === $langSel ? 'active' : ''}"
+						class="{`box-border flex min-w-[150px] flex-[1_1_calc(33.33%-10px)] items-center rounded border bg-[#171b26] p-2 text-sm ${
+							item.lang === $langSel ? 'border-[#6660ff] bg-[#6660ff40]' : 'border-[#171b26]'
+						}`}"
 						on:click="{() => setLang(item.lang)}">
-						<div class="image-wrapper">
+						<div class="mr-2.5">
 							<img
 								src="{item.image}"
 								alt="" />
@@ -34,69 +47,3 @@ const setLang = (lang: string) => {
 		</div>
 	</div>
 </div>
-
-<style>
-.lang-container {
-	display: flex;
-	justify-content: right;
-	height: 100vh;
-	z-index: 9998;
-}
-.lang-modal {
-	max-width: 26vw;
-	min-height: 40vh;
-	height: fit-content;
-	background-color: #0d111d;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 5px;
-	position: relative;
-	top: 10vh;
-	right: 1rem;
-	border: 1px solid #363a45;
-}
-.lang-wrapper {
-	width: 90%;
-	height: 75%;
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-.sel-lang-wrapper {
-	display: flex;
-	color: white;
-	flex-wrap: wrap;
-	margin-top: 20px;
-	gap: 10px;
-	justify-content: space-between;
-}
-
-.sel-lang-btn {
-	color: white;
-	display: flex;
-	align-items: center;
-	flex: 1 1 calc(33.33% - 10px);
-	min-width: 150px;
-	background-color: #171b26;
-	padding: 8px;
-	border-radius: 5px;
-	border: 1px solid #171b26;
-	font-size: 14px;
-	box-sizing: border-box;
-}
-
-.image-wrapper {
-	margin-right: 10px;
-}
-
-.active {
-	border: 1px solid #6660ff;
-	background-color: #6660ff40;
-}
-
-@media (max-width: 1370px) {
-	.sel-lang-wrapper {
-		margin-bottom: 10px;
-	}
-}
-</style>

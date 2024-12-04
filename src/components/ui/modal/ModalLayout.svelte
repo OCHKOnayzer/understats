@@ -10,6 +10,7 @@ import SuccessfulModal from './payModal/SuccessfulModal.svelte';
 import SorryModal from './sorryModal/SorryModal.svelte';
 import LangModal from './langModal/LangModal.svelte';
 import SupportModal from './supportModal/SupportModal.svelte';
+import ChatModal from './chatModal/ChatModal.svelte';
 
 onDestroy(() => {
 	document.body.style.overflow = '';
@@ -22,7 +23,8 @@ const components = {
 	SuccessfulModal,
 	SorryModal,
 	LangModal,
-	SupportModal
+	SupportModal,
+	ChatModal
 };
 </script>
 

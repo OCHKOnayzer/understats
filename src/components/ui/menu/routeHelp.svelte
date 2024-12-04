@@ -2,81 +2,28 @@
 import { onMount } from 'svelte';
 
 import UserInfo from './userInfo/UserInfo.svelte';
-
-let currentPath = '';
-
-onMount(() => {
-	currentPath = window.location.pathname;
-});
+import ChatMenu from './chatMenu.svelte';
+import { SocialRoutes } from './items/LinkItems';
 </script>
 
-<div class="social">
+<div class="w-full">
+	<ChatMenu />
 	<UserInfo />
-	<div class="social_wrapper">
-		<a
-			href="/"
-			target="_blank"
-			class="social_item">
-			<img
-				src="assets/social/telegram.svg"
-				alt="telegram" />
-		</a>
-		<a
-			href="/"
-			target="_blank"
-			class="social_item">
-			<img
-				src="assets/social/active/instagram.svg"
-				alt="instagram" />
-		</a>
-		<a
-			href="/"
-			target="_blank"
-			class="social_item">
-			<img
-				src="assets/social/active/discord.svg"
-				alt="discord" />
-		</a>
-		<a
-			href="/"
-			target="_blank"
-			class="social_item">
-			<img
-				src="assets/social/active/facebook.svg"
-				alt="facebook" />
-		</a>
-		<a
-			href="/"
-			target="_blank"
-			class="social_item">
-			<img
-				src="assets/social/active/youtube.svg"
-				alt="youtube" />
-		</a>
+	<div class="relative mt-4 flex h-full w-full items-center justify-between">
+		{#each SocialRoutes as items}
+			<a
+				href="{items.href}"
+				target="_blank"
+				class="group relative h-[25px] w-[25px]">
+				<img
+					src="{items.img1}"
+					alt="{items.title}"
+					class="absolute h-full w-full object-contain opacity-100 transition-opacity duration-300 group-hover:opacity-0" />
+				<img
+					src="{items.img2}"
+					alt="{items.title}"
+					class="absolute h-full w-full object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+			</a>
+		{/each}
 	</div>
 </div>
-
-<style>
-.social {
-	width: 100%;
-}
-
-.social_wrapper {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	height: 100%;
-	width: 100%;
-	margin-top: 15px;
-}
-
-.social_item {
-	width: 25px;
-	height: 25px;
-}
-
-.social_item img {
-	height: 100%;
-	width: 100%;
-}
-</style>
