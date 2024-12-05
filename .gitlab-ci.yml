@@ -58,13 +58,16 @@ deploy:
 #    - dos2unix ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
     - ssh-keyscan -H 38.180.163.160 >> ~/.ssh/known_hosts
+    - ssh dev@38.180.163.160 "curl -fsSL https://get.pnpm.io/install.sh | sh -"
+    - ssh dev@38.180.163.160 "export PNPM_HOME=\"\$HOME/.local/share/pnpm\" && export PATH=\"\$PNPM_HOME:\$PATH\" && \
+      cd /var/www/understat/frontend && \
+      pnpm install --store .pnpm-store"
   script:
     - ls -l ~/.ssh/id_rsa
     - ssh-keygen -yf ~/.ssh/id_rsa > /dev/null
     - ssh -v dev@38.180.163.160 "echo 'SSH connection successful'"
     - scp -r build/* dev@38.180.163.160:/var/www/understat/frontend
     - scp package.json pnpm-lock.yaml dev@38.180.163.160:/var/www/understat/frontend/
-    - npm install -g pnpm
     - ssh dev@38.180.163.160 "cd /var/www/understat/frontend && pnpm install --store .pnpm-store"
     - scp nginx.conf dev@38.180.163.160:/home/dev/
     - ssh dev@38.180.163.160 "pm2 reload sveltekit-app || pm2 start build/index.js --name sveltekit-app"
