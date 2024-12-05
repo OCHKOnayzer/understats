@@ -7,7 +7,6 @@ stages:
 variables:
   GIT_DEPTH: 1
   PNPM_HOME: $CI_PROJECT_DIR/.pnpm
-  NODE_ENV: production
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
