@@ -11,6 +11,15 @@ fi
 
 cd /var/www/understat/frontend || { echo "Не удалось перейти в директорию проекта."; exit 1; }
 
+if [ -f .env ]; then
+  export $(grep -v '^#' .env | xargs)
+  echo "Переменные окружения загружены из .env."
+else
+  echo ".env файл не найден."
+  exit 1
+fi
+
+
 pnpm install --store .pnpm-store
 if [ $? -ne 0 ]; then
   echo "Ошибка при установке зависимостей."
