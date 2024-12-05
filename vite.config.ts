@@ -6,6 +6,9 @@ import { defineConfig } from 'vite';
 dotenv.config();
 
 export default defineConfig({
+	server: {
+		port: +process.env.PORT || 5173
+	},
 	plugins: [
 		paraglide({
 			project: './project.inlang',
