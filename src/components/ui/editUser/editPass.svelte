@@ -120,7 +120,7 @@ const clearField = (field: FieldType) => {
         placeholder={$user?.name}
       />
     </div> -->
-		<div class="setings_item item-w">
+		<div class="setings_item item-w old-pass">
 			<div class="item_settings_info">
 				<p class="settings_name">{$t('settings.old_pass')}</p>
 				<button
@@ -136,7 +136,7 @@ const clearField = (field: FieldType) => {
 				bind:value="{oldPassword}"
 				placeholder="*****" />
 		</div>
-		<div class="setings_item item-w">
+		<div class="setings_item item-w new-pass">
 			<div class="item_settings_info">
 				<p class="settings_name">{$t('settings.new_pass')}</p>
 				<button
@@ -341,5 +341,50 @@ const clearField = (field: FieldType) => {
 	/* .email {
 		padding-bottom: 14px;
 	} */
+}
+@media (max-width: 678px) {
+	.max--w {
+		display: block;
+	}
+	.min--w {
+		display: none;
+	}
+	.progressWrapper {
+		border-radius: 24px;
+		padding-bottom: 2vh;
+		padding-right: 15px;
+		padding-left: 20px;
+	}
+	.setings {
+		padding: 0;
+	}
+	.new-pass {
+		display: none;
+	}
+	.setings {
+		width: 100%;
+	}
+	.item-w {
+		width: 100%;
+	}
+	.selected_element {
+		height: 9vh;
+	}
+	.setings_item:nth-child(1) {
+		margin-right: 0;
+	}
+	.updataBtn {
+		padding-top: 6vh;
+	}
+	.btn_upd {
+		border-radius: 12px;
+	}
+	.btn_upd:nth-child(1) {
+		background-color: transparent;
+		border: 1px solid white;
+		color: white;
+		height: 9vh;
+		width: 100%;
+	}
 }
 </style>

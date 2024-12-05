@@ -36,4 +36,14 @@ let { onUserText, onUserAction, active } = $$props as UserAproveInterface;
 .cActive {
 	background-color: #6560ff7e;
 }
+@media screen and (max-width: 768px) {
+	.button_wrapper {
+		width: 100%;
+		height: 6vh;
+	}
+	.button_wrapper button {
+		width: 100%;
+		border-radius: 16px;
+	}
+}
 </style>

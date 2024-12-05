@@ -1,7 +1,23 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
+import { onMount } from 'svelte';
+
+import { isFaqMenuOpen, openFaqMenu } from '$src/stores/faq';
 
 import FaqMenu from './FaqMenu.svelte';
+
+let isMobile = false;
+
+function checkScreenWidth() {
+	isMobile = window.innerWidth <= 768;
+}
+
+onMount(() => {
+	openFaqMenu();
+	checkScreenWidth();
+	window.addEventListener('resize', checkScreenWidth);
+	return () => window.removeEventListener('resize', checkScreenWidth);
+});
 
 let selectedItemName = '';
 let article: string | null = null;
@@ -10,6 +26,7 @@ let ArticleComponent: typeof import('svelte').SvelteComponent | null = null;
 const handleSelectItemFromFaqMenu = async (event: any) => {
 	selectedItemName = event.detail.name;
 	article = event.detail.articleId;
+
 	if (article !== null) {
 		await loadArticleComponent(article);
 	}
@@ -26,28 +43,52 @@ async function loadArticleComponent(article2: string) {
 </script>
 
 <div class="faqSection">
-	<FaqMenu on:selectItemFromFaqMenu="{handleSelectItemFromFaqMenu}" />
-
-	<div class="faqChapter">
-		{#if selectedItemName && ArticleComponent}
-			<div class="selected_state_wrapper">
-				<header class="state_header">
-					<span class="selected_title">{$t(selectedItemName)}</span>
-					<!-- <button class="repost">{$t('faq.repost')}</button> -->
-				</header>
-
-				<svelte:component
-					this="{ArticleComponent}"
-					title="{selectedItemName}"
-					content="Текст статьи" />
-			</div>
+	{#if isMobile}
+		{#if $isFaqMenuOpen}
+			<FaqMenu on:selectItemFromFaqMenu="{handleSelectItemFromFaqMenu}" />
 		{:else}
-			<div class="faq_null">
-				<span>{$t('faq.select_state')}</span>
-				<span>{$t('faq.select_razdel')}...</span>
+			<div class="faqChapter">
+				{#if selectedItemName && ArticleComponent}
+					<div class="selected_state_wrapper">
+						<header class="state_header">
+							<span class="selected_title">{$t(selectedItemName)}</span>
+						</header>
+
+						<svelte:component
+							this="{ArticleComponent}"
+							title="{selectedItemName}"
+							content="Текст статьи" />
+					</div>
+				{:else}
+					<div class="faq_null">
+						<span>{$t('faq.select_state')}</span>
+						<span>{$t('faq.select_razdel')}...</span>
+					</div>
+				{/if}
 			</div>
 		{/if}
-	</div>
+	{:else}
+		<FaqMenu on:selectItemFromFaqMenu="{handleSelectItemFromFaqMenu}" />
+		<div class="faqChapter">
+			{#if selectedItemName && ArticleComponent}
+				<div class="selected_state_wrapper">
+					<header class="state_header">
+						<span class="selected_title">{$t(selectedItemName)}</span>
+					</header>
+
+					<svelte:component
+						this="{ArticleComponent}"
+						title="{selectedItemName}"
+						content="Текст статьи" />
+				</div>
+			{:else}
+				<div class="faq_null">
+					<span>{$t('faq.select_state')}</span>
+					<span>{$t('faq.select_razdel')}...</span>
+				</div>
+			{/if}
+		</div>
+	{/if}
 </div>
 
 <style>
@@ -90,20 +131,6 @@ async function loadArticleComponent(article2: string) {
 	justify-content: space-between;
 	align-items: center;
 }
-/* .repost {
-	width: 120px;
-	height: 44px;
-	background-color: #171b26;
-	border: 1px solid #363a45;
-	box-sizing: border-box;
-	border-radius: 5px;
-	color: white;
-	cursor: pointer;
-	transition: 400ms;
-}
-.repost:hover {
-	background-color: #1f232f;
-} */
 .selected_state_wrapper::-webkit-scrollbar {
 	border-radius: 30px;
 	width: 3px;
@@ -113,5 +140,15 @@ async function loadArticleComponent(article2: string) {
 }
 .selected_state_wrapper::-webkit-scrollbar-thumb {
 	background: rgba(135, 138, 160, 0.507);
+}
+@media (max-width: 768px) {
+	.faqChapter {
+		width: 100%;
+		background-color: transparent;
+		padding: 0;
+	}
+	.selected_title {
+		font-size: 24px;
+	}
 }
 </style>

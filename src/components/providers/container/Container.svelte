@@ -12,4 +12,9 @@
 	padding-left: 0;
 	background-color: #0d111d;
 }
+@media (max-width: 678px) {
+	.container {
+		padding-left: 1rem;
+	}
+}
 </style>

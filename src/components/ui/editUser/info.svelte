@@ -9,7 +9,7 @@ onMount(() => {
 	fetchUser();
 });
 
-const maxLevel = 50;
+// const maxLevel = 50;
 </script>
 
 <div class="progressWrapper">
@@ -297,5 +297,37 @@ const maxLevel = 50;
 	/* .selected_element {
 		height: 70%;
 	} */
+}
+@media (max-width: 678px) {
+	.progressWrapper {
+		border-radius: 24px;
+		padding-bottom: 2vh;
+		padding-right: 0;
+		padding-left: 0;
+	}
+	.progressTitle {
+		padding-left: 15px;
+	}
+	.setings {
+		padding: 0;
+	}
+	.basic_setings {
+		padding: 0;
+		margin-top: 0;
+	}
+	.other_user_settings {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin-top: 0;
+	}
+	.accounts {
+		width: 90%;
+		margin: 0;
+	}
+	.accounts--text {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
 }
 </style>

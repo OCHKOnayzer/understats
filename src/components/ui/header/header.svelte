@@ -1,12 +1,15 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
+import { onMount } from 'svelte';
 
+import { isFaqMenuOpen } from '$src/stores/faq';
 import { headerTitle, langImage } from '$src/stores/HeaderStores';
 import { openModal, modalComponent, closeModal } from '$src/stores/modalStore';
+import { openMenu } from '$src/stores/menu';
 
 type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal';
 
-const openLangModal = (modal: ModalType) => {
+const openCurrentModal = (modal: ModalType) => {
 	if ($modalComponent !== null && $modalComponent !== modal) {
 		return;
 	}
@@ -16,17 +19,44 @@ const openLangModal = (modal: ModalType) => {
 		openModal(modal);
 	}
 };
+
+let isHelpPage = false;
+
+function checkHelpPage() {
+	isHelpPage = window.location.pathname.includes('/help');
+}
+
+onMount(() => {
+	checkHelpPage();
+	window.addEventListener('popstate', checkHelpPage);
+	return () => window.removeEventListener('popstate', checkHelpPage);
+});
 </script>
 
 <header class="header">
 	<div class="headerItem">
 		<div class="flexConteiner">
+			<div class="headerActions">
+				<button on:click="{() => openMenu()}">
+					<img
+						src="assets/header/menu.svg"
+						alt="" />
+				</button>
+				<img
+					src="assets/header/menu.svg"
+					alt="" />
+			</div>
 			<div class="title">
+				{#if isHelpPage && !$isFaqMenuOpen}
+					<img
+						src="assets/header/back.svg"
+						alt="" />
+				{/if}
 				<p>{$t($headerTitle)}</p>
 			</div>
 			<div class="buttonConteiner">
 				<div class="btnWrapper {$modalComponent === 'LangModal' ? 'active' : ''}">
-					<button on:click="{() => openLangModal('LangModal')}">
+					<button on:click="{() => openCurrentModal('LangModal')}">
 						{$t(`lang.${$langImage}`)}
 						<img
 							class="lang-image"
@@ -34,15 +64,8 @@ const openLangModal = (modal: ModalType) => {
 							alt="" />
 					</button>
 				</div>
-				<!-- <div class="btnWrapper">
-					<button>
-						<img
-							src="assets/header/bell.png"
-							alt="" />
-					</button>
-				</div> -->
 				<div class="btnWrapper {$modalComponent === 'SupportModal' ? 'active' : ''}">
-					<button on:click="{() => openLangModal('SupportModal')}">
+					<button on:click="{() => openCurrentModal('SupportModal')}">
 						<img
 							src="assets/header/support.png"
 							alt="" />
@@ -83,7 +106,12 @@ const openLangModal = (modal: ModalType) => {
 	padding: 0 0.05% 0 1%;
 	justify-content: space-between;
 }
-
+.headerActions {
+	display: none;
+	flex-direction: row;
+	justify-content: space-between;
+	padding-bottom: 3vh;
+}
 .title {
 	display: flex;
 	align-items: center;
@@ -142,6 +170,32 @@ const openLangModal = (modal: ModalType) => {
 @media screen and (max-height: 800px) {
 	.title p {
 		font-size: 20px;
+	}
+}
+@media screen and (max-width: 768px) {
+	.header {
+		padding-bottom: 30px;
+	}
+	.flexConteiner {
+		display: flex;
+		flex-direction: column;
+		padding: 0;
+	}
+	.headerItem {
+		background-color: transparent;
+	}
+	.buttonConteiner {
+		display: none;
+	}
+	.headerActions {
+		display: flex;
+	}
+	.title {
+		padding-left: 0;
+		width: 100%;
+	}
+	.title p {
+		font-size: 36px;
 	}
 }
 </style>

@@ -1,14 +1,28 @@
 <script>
 import { t } from 'svelte-i18n';
+import { onMount } from 'svelte';
+
+import Stats from '../stats.svelte';
+
+let isMobile = false;
+
+function checkScreenWidth() {
+	isMobile = window.innerWidth <= 768;
+}
+
+onMount(() => {
+	checkScreenWidth();
+	window.addEventListener('resize', checkScreenWidth);
+	return () => window.removeEventListener('resize', checkScreenWidth);
+});
 </script>
 
 <div class="section_title">
 	<div class="section_item_container">
 		{$t('extensions.ext')}
-		<div class="stats">
-			<span class="download_stats">{$t('extensions.down_count')}:</span>
-			<span class="download_count"> 5 541 214 {$t('extensions.count')}</span>
-		</div>
+		{#if !isMobile}
+			<Stats />
+		{/if}
 	</div>
 </div>
 
@@ -26,18 +40,10 @@ import { t } from 'svelte-i18n';
 	display: flex;
 	flex-direction: column;
 }
-.stats {
-	height: 20px;
-	display: flex;
-	align-items: center;
-	font-size: 16px;
-}
-.download_stats {
-	display: block;
-	color: #737f95;
-	padding-right: 5px;
-}
-.download_count {
-	color: #eabf67;
+@media (max-width: 678px) {
+	.section_title {
+		font-size: 20px;
+		font-weight: 500;
+	}
 }
 </style>

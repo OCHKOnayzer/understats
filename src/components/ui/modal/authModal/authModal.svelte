@@ -1,6 +1,6 @@
 <script lang="ts">
-import ImageCurrent from './modaCurrent/ImageCurrent.svelte';
-import ModalCurrent from './modaCurrent/ModalCurrent.svelte';
+import ImageCurrent from './modalCurrent/ImageCurrent.svelte';
+import ModalCurrent from './modalCurrent/ModalCurrent.svelte';
 </script>
 
 <div class="modal_window_wrapper">
@@ -40,6 +40,7 @@ import ModalCurrent from './modaCurrent/ModalCurrent.svelte';
 	background-color: #0d111d;
 	border-radius: 0px 5px 5px 0px;
 }
+
 @media screen and (max-width: 1650px) {
 	.login_wrapper {
 		width: 25vw;
@@ -51,6 +52,7 @@ import ModalCurrent from './modaCurrent/ModalCurrent.svelte';
 		height: 70%;
 	}
 }
+
 @media screen and (max-width: 1350px) {
 	.login_wrapper {
 		width: 35vw;
@@ -62,6 +64,7 @@ import ModalCurrent from './modaCurrent/ModalCurrent.svelte';
 		height: 80%;
 	}
 }
+
 @media screen and (max-width: 1100px) {
 	.login_wrapper {
 		width: 40vw;
@@ -70,6 +73,7 @@ import ModalCurrent from './modaCurrent/ModalCurrent.svelte';
 		width: 40vw;
 	}
 }
+
 @media screen and (max-width: 1050px) {
 	.login_wrapper {
 		width: 50vw;
@@ -78,34 +82,36 @@ import ModalCurrent from './modaCurrent/ModalCurrent.svelte';
 		display: none;
 	}
 }
+
+@media screen and (max-width: 768px) {
+	.modal_window_wrapper {
+		justify-content: unset;
+	}
+
+	.modal_window {
+		flex-direction: column;
+		width: 90%;
+		height: fit-content;
+	}
+	.login_wrapper {
+		width: 100%;
+		border-radius: 5px;
+		height: 90vh;
+	}
+	.image_wrapper {
+		display: none;
+	}
+}
+
 @media screen and (max-height: 750px) {
 	.modal_window {
 		height: 90%;
 	}
 }
+
 @media screen and (max-height: 700px) {
 	.image_wrapper {
 		display: none;
 	}
 }
-/* .open_wrapper{
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    background-color: #0d111d;
-    border-radius: 0px 20px 20px 0px;
-    transition: 400ms;
-    animation: swipe 1s forwards;
-}
-@keyframes swipe {
-    0% {
-        width: 100%;
-    }
-    100% {
-        width: 0%;
-        display: none;
-    }
-} */
 </style>

@@ -2,6 +2,8 @@
 import { t } from 'svelte-i18n';
 import { createEventDispatcher, onMount } from 'svelte';
 
+import { closeFaqMenu } from '$src/stores/faq';
+
 import { ActiveElemnts } from './activeElements';
 
 export let FAQIndex: number;
@@ -45,6 +47,7 @@ onMount(() => {
 const setActiveIndex = (index: number, name: string, articleId: string) => {
 	activeIndex = index === activeIndex ? null : index;
 	dispatch('selectItem', { name, articleId });
+	closeFaqMenu();
 };
 console.log(activeIndex);
 </script>

@@ -4,7 +4,7 @@ export const isModalOpen = writable(false);
 
 export const isLogOutModal = writable(false);
 
-export const modalComponent = writable<'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal' | null>(null);
+export const modalComponent = writable<'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal' | 'ChatModal' | null>(null);
 
 import { getAccessToken, removeAccessToken } from '$src/services/auth/auth-token.service';
 
@@ -33,7 +33,7 @@ export const toggleInputType = () => {
 	inputType.update((type) => (type === 'password' ? 'text' : 'password'));
 };
 
-export const openModal = (component: 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal') => {
+export const openModal = (component: 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal' | 'ChatModal') => {
 	isModalOpen.set(true);
 	modalComponent.set(component);
 	document.body.style.overflow = 'hidden';

@@ -23,4 +23,9 @@ const handleSelectItemFromMenu = (event: any) => {
 	justify-content: center;
 	align-items: center;
 }
+@media (max-width: 678px) {
+	.faqMenu {
+		width: 100%;
+	}
+}
 </style>

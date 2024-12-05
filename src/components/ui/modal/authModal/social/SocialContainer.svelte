@@ -79,4 +79,10 @@ import { SocialItem } from './social';
 		display: none;
 	}
 }
+
+@media screen and (max-width: 768px) {
+	.socail_wrapper {
+		display: none;
+	}
+}
 </style>
