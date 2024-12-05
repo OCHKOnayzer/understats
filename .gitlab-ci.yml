@@ -68,7 +68,7 @@ deploy:
     - scp -r build/* dev@38.180.163.160:/var/www/understat/frontend
     - scp package.json pnpm-lock.yaml dev@38.180.163.160:/var/www/understat/frontend/
     - scp deploy2.sh dev@38.180.163.160:/home/dev/
-    - chmod 600 ~/deploy2.sh
+    - chmod +x ~/deploy2.sh
     - ssh dev@38.180.163.160 "~/deploy2.sh"
     # Nginx
     - scp nginx.conf dev@38.180.163.160:/home/dev/
