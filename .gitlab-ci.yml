@@ -28,6 +28,8 @@ build:
     - npm install -g pnpm
     - pnpm install --store .pnpm-store
     - echo "SERVER_URL=$SERVER_URL" > .env
+    - echo "SERVER_URL=http://localhost:11250/api" > .env
+    - echo "SERVER_URL=4671" > .env
     - pnpm build
     - ls -la build/
   artifacts:
@@ -68,8 +70,8 @@ deploy:
     - scp -r build/* dev@38.180.163.160:/var/www/understat/frontend
     - scp package.json pnpm-lock.yaml dev@38.180.163.160:/var/www/understat/frontend/
     - scp deploy2.sh dev@38.180.163.160:/home/dev/
-    - chmod +x ~/deploy2.sh
-    - ssh dev@38.180.163.160 "~/deploy2.sh"
+#    - chmod +x ~/deploy2.sh
+    - ssh dev@38.180.163.160 "/home/dev/deploy2.sh"
     # Nginx
     - scp nginx.conf dev@38.180.163.160:/home/dev/
     - ssh dev@38.180.163.160 "ls -la /home/dev/nginx.conf"
