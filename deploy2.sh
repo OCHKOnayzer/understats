@@ -16,7 +16,6 @@ which pnpm || { echo "pnpm не найден."; exit 1; }
 which pm2 || { echo "pm2 не найден."; exit 1; }
 
 echo "SERVER_URL=http://https://dev-api-gateway-v1.sntmq.1keep.bet:11250/api" > .env
-echo "PORT=4671" >> .env
 echo ".env файл обновлён."
 
 if [ -f .env ]; then
@@ -34,7 +33,7 @@ if [ $? -ne 0 ]; then
 fi
 echo "Зависимости установлены."
 
-pm2 reload sveltekit-app || pm2 start ./index.js --name sveltekit-app --watch -- --port $PORT
+pm2 reload sveltekit-app || pm2 start ./index.js --name sveltekit-app
 if [ $? -ne 0 ]; then
   echo "Ошибка при запуске приложения через PM2."
   exit 1
