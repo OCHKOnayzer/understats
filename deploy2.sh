@@ -34,7 +34,7 @@ if [ $? -ne 0 ]; then
 fi
 echo "Зависимости установлены."
 
-pm2 reload sveltekit-app || pm2 start ./index.js --name sveltekit-app --watch -- --port 3000
+pm2 reload sveltekit-app || pm2 start ./index.js --name sveltekit-app --watch -- --port $PORT
 if [ $? -ne 0 ]; then
   echo "Ошибка при запуске приложения через PM2."
   exit 1
