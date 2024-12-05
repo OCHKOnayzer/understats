@@ -32,7 +32,7 @@ build:
   artifacts:
     paths:
       - build/
-    expire_in: 1 week
+#    expire_in: 1 week
 
 deploy:
   environment:
@@ -40,6 +40,8 @@ deploy:
   tags:
     - runner1
   stage: deploy
+  dependencies:
+    - build
   variables:
     GIT_STRATEGY: fetch
   only:
