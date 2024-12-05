@@ -16,7 +16,7 @@ cache:
 build:
   environment:
     name: staging1
-#  when: manual
+  when: manual
   only:
     - main
     - staging3
@@ -67,7 +67,7 @@ deploy:
     - ssh -v dev@38.180.163.160 "echo 'SSH connection successful'"
     - scp -r build/* dev@38.180.163.160:/var/www/understat/frontend
     - scp package.json pnpm-lock.yaml dev@38.180.163.160:/var/www/understat/frontend/
-    - ssh dev@38.180.163.160 "cd /var/www/understat/frontend && /home/dev/.nvm/versions/node/v22.12.0/bin/pnpm install --store .pnpm-store"
+    - ssh dev@38.180.163.160 "source /home/dev/.nvm/nvm.sh && cd /var/www/understat/frontend && pnpm install --store .pnpm-store"
     - scp nginx.conf dev@38.180.163.160:/home/dev/
     - ssh dev@38.180.163.160 "pm2 reload sveltekit-app || pm2 start build/index.js --name sveltekit-app"
     - ssh dev@38.180.163.160 "ls -la /home/dev/nginx.conf"
