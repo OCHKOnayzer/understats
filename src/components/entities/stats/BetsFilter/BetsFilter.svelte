@@ -1,5 +1,6 @@
 <script lang="ts">
 import Icon from '@iconify/svelte';
+import { onDestroy, onMount } from 'svelte';
 
 import BetFilterResults from '$src/components/features/stats/FilterBet/BetFilterResults.svelte';
 import Accordion from '$src/components/ui/accordion/Accordion.svelte';
@@ -13,6 +14,7 @@ import BetsSelectFilter from '../BetsSelectFilter/BetsSelectFilter.svelte';
 
 let isOpen = false;
 let isLoading = false;
+let sidebarElement: HTMLElement;
 
 function toggleSidebar() {
 	isOpen = !isOpen;
@@ -21,6 +23,21 @@ function toggleSidebar() {
 function handleDateSelect(event: CustomEvent<{ startDate: string; endDate: string }>) {
 	filterStore.setDateRange(event.detail.startDate, event.detail.endDate);
 }
+
+function handleOutsideClick(event: MouseEvent) {
+	if (isOpen && sidebarElement && !sidebarElement.contains(event.target as Node)) {
+		isOpen = false;
+	}
+}
+
+onMount(() => {
+	sidebarElement = document.querySelector('.sidebar');
+	document.addEventListener('mousedown', handleOutsideClick);
+});
+
+onDestroy(() => {
+	document.removeEventListener('mousedown', handleOutsideClick);
+});
 
 async function applyFilters() {
 	try {
@@ -141,6 +158,7 @@ async function applyFilters() {
 	transition: right 0.3s ease-in-out;
 	z-index: 1000;
 	color: white;
+	border-radius: 36px 0 0 36px;
 }
 
 .sidebar.open {
@@ -167,7 +185,7 @@ async function applyFilters() {
 	width: 100%;
 	display: flex;
 	gap: 16px;
-	padding: 16px 24px;
+	padding: 16px 0;
 	background: #20242f;
 }
 

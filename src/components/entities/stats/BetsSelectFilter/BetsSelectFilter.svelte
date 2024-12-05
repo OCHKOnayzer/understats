@@ -1,19 +1,7 @@
 <script>
 import Accordion from '$src/components/ui/accordion/Accordion.svelte';
 import SportsList from '$src/components/ui/sportsList/SportsList.svelte';
-import {
-	accountsList,
-	accountsListMain,
-	bookmakersList,
-	bookmakersListMain,
-	comandList,
-	comandListMain,
-	filterStore,
-	sportList,
-	sportListMain,
-	tourList,
-	tourListMain
-} from '$src/stores/filterStore';
+import { accountsList, accountsListMain, bookmakersList, bookmakersListMain, filterStore, sportList, sportListMain } from '$src/stores/filterStore';
 </script>
 
 <Accordion title="{'Спорт'}">
@@ -43,6 +31,7 @@ import {
 		mainItemsStore="{accountsListMain}" />
 </Accordion>
 
+<!--
 <Accordion title="{'Команды'}">
 	<SportsList
 		setFilter="{filterStore.setSelectedComands}"
@@ -59,4 +48,4 @@ import {
 		selectedList="{$filterStore.selectedTours}"
 		allItemsStore="{tourList}"
 		mainItemsStore="{tourListMain}" />
-</Accordion>
+</Accordion> -->

@@ -30,10 +30,7 @@ const mainTabs = [
 	{ id: 'by-sport', name: 'По спорту' },
 	{ id: 'by-bookmaker', name: 'По букмекеру' },
 	{ id: 'by-period', name: 'По периоду' },
-	{ id: 'by-weeks', name: 'По неделям' },
-	{ id: 'by-weekdays', name: 'По дням недели' },
-	{ id: 'by-coefficients', name: 'По коэффициентам' },
-	{ id: 'by-amount', name: 'По сумме' }
+	{ id: 'by-weekdays', name: 'По дням недели' }
 ];
 
 const subTabsMap = {
@@ -71,30 +68,10 @@ const subTabsMap = {
 		{ id: 'month', name: 'Месяц' },
 		{ id: 'year', name: 'Год' }
 	],
-	'by-weeks': [
-		{ id: 'all', name: 'Все недели' },
-		{ id: 'current', name: 'Текущая неделя' },
-		{ id: 'last', name: 'Прошлая неделя' },
-		{ id: 'last-4', name: 'Последние 4 недели' }
-	],
 	'by-weekdays': [
 		{ id: 'all', name: 'Все дни' },
 		{ id: 'weekdays', name: 'Будни' },
 		{ id: 'weekend', name: 'Выходные' }
-	],
-	'by-coefficients': [
-		{ id: 'all', name: 'Все коэффициенты' },
-		{ id: 'low', name: 'До 1.5' },
-		{ id: 'medium', name: '1.5 - 2.5' },
-		{ id: 'high', name: '2.5 - 5.0' },
-		{ id: 'very-high', name: 'Выше 5.0' }
-	],
-	'by-amount': [
-		{ id: 'all', name: 'Все суммы' },
-		{ id: 'low', name: 'До 1000₽' },
-		{ id: 'medium', name: '1000₽ - 5000₽' },
-		{ id: 'high', name: '5000₽ - 10000₽' },
-		{ id: 'very-high', name: 'Выше 10000₽' }
 	]
 };
 

@@ -88,7 +88,7 @@ function handleCoefficientChange() {
 .bet-filter-inputs {
 	display: flex;
 	flex-direction: column;
-	gap: 24px;
+	gap: 12px;
 }
 
 .input-group {

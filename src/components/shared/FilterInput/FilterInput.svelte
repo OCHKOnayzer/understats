@@ -7,14 +7,18 @@ import * as m from '$m';
 import { clearInput } from '$utils/functions/clearInputs';
 import { onSelectedChange } from '$utils/functions/onSelectedChange';
 
-import type { SelectedType } from '$types/types';
+import type { SelectedType } from '$src/types/types';
 
-export let placeholder: string;
-export let name: string;
-export let selected: SelectedType;
-export let value;
-export let variant: 'select' | 'input' = 'input';
-export let check: any;
+interface Props {
+	placeholder: string;
+	name: string;
+	selected: SelectedType;
+	value: string;
+	variant?: 'select' | 'input';
+	check: any;
+}
+
+let { placeholder, name, selected, value, variant, check } = $props();
 </script>
 
 <div class="flex flex-col justify-between">
