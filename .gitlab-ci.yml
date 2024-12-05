@@ -67,8 +67,9 @@ deploy:
     - ssh -v dev@38.180.163.160 "echo 'SSH connection successful'"
     - scp -r build/* dev@38.180.163.160:/var/www/understat/frontend
     - scp package.json pnpm-lock.yaml dev@38.180.163.160:/var/www/understat/frontend/
-    - ssh dev@38.180.163.160 "source /home/dev/.nvm/nvm.sh && cd /var/www/understat/frontend && pnpm install --store .pnpm-store"
-    - ssh dev@38.180.163.160 "bash -l -c 'pm2 reload sveltekit-app || pm2 start build/index.js --name sveltekit-app'"
+    - scp deploy2.sh dev@38.180.163.160:/home/dev/
+    - ssh dev@38.180.163.160 "~/deploy2.sh"
+    # Nginx
     - scp nginx.conf dev@38.180.163.160:/home/dev/
     - ssh dev@38.180.163.160 "ls -la /home/dev/nginx.conf"
     - ssh dev@38.180.163.160 "sudo mv /home/dev/nginx.conf /etc/nginx/sites-available/dev.sntmq.1keep.bet"
