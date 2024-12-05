@@ -1,12 +1,16 @@
 import adapter from '@sveltejs/adapter-node';
+// import sveltePreprocess from 'svelte-preprocess';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
-import type { Config } from '@sveltejs/kit';
-
-const config: Config = {
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
 	preprocess: vitePreprocess(),
+	// preprocess: sveltePreprocess(),
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({
+			out: 'build',
+			precompress: true
+		}),
 		alias: {
 			$src: 'src/',
 			$components: 'src/components',
