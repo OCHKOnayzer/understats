@@ -1,5 +1,6 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
+import { onMount } from 'svelte';
 
 import SwitchButton from '$src/components/ui/button/switchButton/SwitchButton.svelte';
 import CancelButton from '$src/components/ui/button/userAprove/CancelButton.svelte';
@@ -12,6 +13,19 @@ import InputWrapper from '../Input/InputWrapper.svelte';
 import SocialContainer from '../social/SocialContainer.svelte';
 
 const { form, mutation } = useAuth(false);
+
+let isMobile = false;
+
+// Проверяем размер экрана
+function checkScreenWidth() {
+	isMobile = window.innerWidth <= 768; // Считаем "мобильным" экран шириной 768px или меньше
+}
+
+onMount(() => {
+	checkScreenWidth();
+	window.addEventListener('resize', checkScreenWidth);
+	return () => window.removeEventListener('resize', checkScreenWidth);
+});
 
 const loginUser = () => {
 	$mutation.mutateAsync($form);
@@ -35,12 +49,20 @@ const loginUser = () => {
 		<!-- <SwitchButton
 			switch_text="{'social.unBlock_acc'}"
 			switch_modal="{switchRecover}" /> -->
-		<SwitchButton
-			switch_text="{'social.cHave_acc'}"
-			switch_modal="{switchReg}" />
+		{#if !isMobile}
+			<SwitchButton
+				switch_text="{'social.cHave_acc'}"
+				switch_modal="{switchReg}" />
+		{/if}
 	</div>
 	<div class="aprove_wrapper">
-		<CancelButton onUserText="{'other.cancel'}" />
+		{#if isMobile}
+			<SwitchButton
+				switch_text="{'social.cHave_acc'}"
+				switch_modal="{switchReg}" />
+		{:else}
+			<CancelButton onUserText="{'other.cancel'}" />
+		{/if}
 		<UserAprove
 			onUserText="{'social.sign_in'}"
 			onUserAction="{loginUser}" />
@@ -68,5 +90,13 @@ const loginUser = () => {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+@media screen and (max-width: 768px) {
+	.aprove_wrapper {
+		flex-direction: column-reverse;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+	}
 }
 </style>

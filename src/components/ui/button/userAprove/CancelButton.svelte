@@ -18,7 +18,6 @@ let { onUserText } = $$props as SwitchInterface;
 	margin-top: 20px;
 	height: 4vh;
 	text-align: center;
-	border-radius: 100px;
 	overflow: hidden;
 	margin-right: 20px;
 }
@@ -27,8 +26,20 @@ let { onUserText } = $$props as SwitchInterface;
 	width: 100%;
 	background-color: #718096;
 	transition: 400ms;
+	border-radius: 100px;
 }
 .button_wrapper button:hover {
 	background-color: #6b717a;
+}
+@media screen and (max-width: 768px) {
+	.button_wrapper {
+		width: 100%;
+		height: 6vh;
+		margin-right: 0px;
+	}
+	.button_wrapper button {
+		width: 100%;
+		border-radius: 16px;
+	}
 }
 </style>

@@ -31,7 +31,6 @@ import { t } from 'svelte-i18n';
 .problems_wrapper {
 	width: 100%;
 	background-color: #252935;
-	height: 40%;
 	border-radius: 0px 0px 5px 5px;
 	display: flex;
 	align-items: center;
@@ -90,6 +89,11 @@ import { t } from 'svelte-i18n';
 	width: 60%;
 }
 @media (max-height: 770px) {
+	.problems_wrapper {
+		display: none;
+	}
+}
+@media (max-width: 678px) {
 	.problems_wrapper {
 		display: none;
 	}

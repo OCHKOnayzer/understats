@@ -15,6 +15,8 @@ if (userAgent.includes('YaBrowser')) {
 	browserName = 'DownloadFirefox';
 } else if (userAgent.includes('OPR') || userAgent.includes('Opera')) {
 	browserName = 'DownloadOpera';
+} else if (userAgent.includes('Chrome') && !userAgent.includes('OPR') && !userAgent.includes('YaBrowser')) {
+	browserName = 'DownloadChrome';
 } else {
 	browserName = 'unsupported';
 }
@@ -22,6 +24,7 @@ if (userAgent.includes('YaBrowser')) {
 function navigate() {
 	goto(`/help?browser=${browserName}`);
 }
+
 const sorryOpen = () => {
 	if ($modalComponent === null) {
 		openModal('SorryModal');
@@ -49,6 +52,15 @@ const sorryOpen = () => {
 @media (max-height: 770px) {
 	.info_buttons {
 		height: 35px;
+	}
+}
+@media (max-width: 678px) {
+	.info_buttons {
+		margin-top: 20px;
+		margin-bottom: 40px;
+		width: 100%;
+		border-radius: 16px;
+		height: 56px;
 	}
 }
 </style>

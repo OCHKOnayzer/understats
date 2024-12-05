@@ -33,4 +33,21 @@ export let switch_text: string;
 	padding-right: 5px;
 	font-size: 14px;
 }
+@media screen and (max-width: 768px) {
+	.switch_wrapper {
+		width: 100%;
+		height: 6vh;
+		margin-right: 0px;
+	}
+	.switch_wrapper button {
+		height: 100%;
+		width: 100%;
+		border-radius: 16px;
+		color: white;
+		text-decoration: unset;
+		background-color: #31384a;
+		transition: 400ms;
+		font-size: 15px;
+	}
+}
 </style>

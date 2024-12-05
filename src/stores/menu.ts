@@ -16,6 +16,15 @@ export const awards = writable([]);
 export const allAwards = writable([]);
 export const user = writable<User | null>(null);
 
+export const isMenuOpen = writable(false);
+
+export const openMenu = () => {
+	isMenuOpen.set(true);
+};
+export const closeMenu = () => {
+	isMenuOpen.set(false);
+};
+
 export async function fetchAwardsData() {
 	// try {
 	//   const { data: awardsData } = await axios.get(

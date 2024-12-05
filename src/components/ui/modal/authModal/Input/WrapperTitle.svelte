@@ -16,4 +16,9 @@ let { title_wrapper = '' } = $$props as TitleProps;
 	font-size: 14px;
 	width: 100%;
 }
+@media screen and (max-width: 768px) {
+	.wrapper_title {
+		display: none;
+	}
+}
 </style>

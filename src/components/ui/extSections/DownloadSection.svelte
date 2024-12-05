@@ -1,15 +1,29 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
+import { onMount } from 'svelte';
 
 import DownloadExt from '../button/downloadExt/DownloadExt.svelte';
 import FaqOpen from '../button/faqOpen/FaqOpen.svelte';
 
 import DownloadTitle from './titles/downloadTitle.svelte';
+import Stats from './stats.svelte';
 
 interface BrowserItem {
 	name: string;
 	image: string;
 }
+
+let isMobile = false;
+
+function checkScreenWidth() {
+	isMobile = window.innerWidth <= 768;
+}
+
+onMount(() => {
+	checkScreenWidth();
+	window.addEventListener('resize', checkScreenWidth);
+	return () => window.removeEventListener('resize', checkScreenWidth);
+});
 
 const browserArr: BrowserItem[] = [
 	{
@@ -48,19 +62,27 @@ const browserArr: BrowserItem[] = [
 				</span>
 			</div>
 			<div class="button-wrapper">
-				<div class="button-group">
-					<DownloadExt />
-					<FaqOpen />
-				</div>
+				{#if isMobile}
+					<Stats />
+				{:else}
+					<div class="button-group">
+						<DownloadExt />
+						<FaqOpen />
+					</div>
+				{/if}
+
 				<div class="attention-wrapper">
 					<span class="attention-text">{$t('extensions.attention_key')}</span>
 					<span class="attention-text">{$t('extensions.attention')}</span>
 				</div>
+				{#if isMobile}
+					<FaqOpen />
+				{/if}
 			</div>
 			<div class="extensions-wrapper">
 				<div class="extensions-item">
 					<div class="extensions-item--flex">
-						<span class="extensions-title">{$t('extensions.support_browser')}:</span>
+						<span class="extensions-title brows">{$t('extensions.support_browser')}:</span>
 						<span class="extensions-icons">
 							{#each browserArr as item}
 								<img
@@ -94,7 +116,6 @@ const browserArr: BrowserItem[] = [
 	width: 59%;
 	background-color: #171b26;
 	border-radius: 5px;
-	height: 100%;
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .download__container {
@@ -174,6 +195,27 @@ const browserArr: BrowserItem[] = [
 	}
 	.info-text {
 		font-size: 13px;
+	}
+}
+@media (max-width: 768px) {
+	.download {
+		width: 100%;
+		background-color: transparent;
+	}
+	.attention-text {
+		color: #f3bf55;
+	}
+	.download__container {
+		width: 100%;
+	}
+	.brows {
+		display: none;
+	}
+	.extensions-icon {
+		margin-right: 10px;
+	}
+	.info-text {
+		font-size: 14px;
 	}
 }
 </style>

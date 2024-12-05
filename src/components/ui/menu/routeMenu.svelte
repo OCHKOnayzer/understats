@@ -2,6 +2,8 @@
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
+import { closeMenu, isMenuOpen } from '$src/stores/menu';
+
 import { pageRoutes } from './items/LinkItems';
 
 import { afterNavigate } from '$app/navigation';
@@ -19,7 +21,14 @@ onMount(async () => {
 });
 
 afterNavigate(() => {
+	const previousPath = currentPath;
 	currentPath = window.location.pathname;
+
+	if (currentPath !== previousPath) {
+		if ($isMenuOpen === true) {
+			closeMenu();
+		}
+	}
 });
 
 function preloadImage(src: string): Promise<void> {

@@ -33,13 +33,14 @@ selectHeaderTitle('extensions.extensions');
 .pageWrapper {
 	width: 100%;
 	box-sizing: border-box;
-	height: 94vh;
+	height: 99%;
+	overflow: none;
 }
 .extensions_wallpaper {
 	width: 100%;
 	border-radius: 5px;
 	margin-top: 10px;
-	height: 30%;
+	height: 35vh;
 }
 .extensions_wallpaper img {
 	height: 100%;
@@ -52,5 +53,18 @@ selectHeaderTitle('extensions.extensions');
 	margin-top: 15px;
 	height: 62%;
 	color: white;
+}
+@media (max-width: 768px) {
+	.pageWrapper {
+		height: fit-content;
+	}
+	.extensions_wallpaper {
+		display: none;
+	}
+	.section_wrapper {
+		flex-direction: column;
+		height: fit-content;
+		overflow-y: scroll;
+	}
 }
 </style>

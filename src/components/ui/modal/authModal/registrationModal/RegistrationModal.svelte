@@ -1,4 +1,5 @@
 <script lang="ts">
+import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
 import ApproveButton from '$src/components/ui/button/approveButton/ApproveButton.svelte';
@@ -6,13 +7,26 @@ import SwitchButton from '$src/components/ui/button/switchButton/SwitchButton.sv
 import CancelButton from '$src/components/ui/button/userAprove/CancelButton.svelte';
 import UserAprove from '$src/components/ui/button/userAprove/UserAprove.svelte';
 import { useAuth } from '$src/services/auth/useAuth';
-import { confirmPassword, switchLogin, switchRecover } from '$src/stores/modalStore';
+import { confirmPassword, switchLogin } from '$src/stores/modalStore';
 
 import FormTitle from '../FormTitle.svelte';
 import InputWrapper from '../Input/InputWrapper.svelte';
 import SocialContainer from '../social/SocialContainer.svelte';
 
 const { form, mutation } = useAuth(true);
+
+let isMobile = false;
+
+// Проверяем размер экрана
+function checkScreenWidth() {
+	isMobile = window.innerWidth <= 768; // Считаем "мобильным" экран шириной 768px или меньше
+}
+
+onMount(() => {
+	checkScreenWidth();
+	window.addEventListener('resize', checkScreenWidth);
+	return () => window.removeEventListener('resize', checkScreenWidth);
+});
 
 const registerUser = () => {
 	$mutation.mutateAsync($form);
@@ -36,18 +50,22 @@ const registerUser = () => {
 		title_wrapper="{$t('social.retry_password')}"
 		show_clear="{true}"
 		bind:value="{$confirmPassword}" />
-	<!-- <ApproveButton /> -->
 	<SocialContainer />
 	<div class="switch_container">
-		<SwitchButton
-			switch_text="{'social.have_acc'}"
-			switch_modal="{switchLogin}" />
-		<!-- <SwitchButton
-			switch_text="{'social.unBlock_acc'}"
-			switch_modal="{switchRecover}" /> -->
+		{#if !isMobile}
+			<SwitchButton
+				switch_text="{'social.have_acc'}"
+				switch_modal="{switchLogin}" />
+		{/if}
 	</div>
 	<div class="aprove_wrapper">
-		<CancelButton onUserText="{'other.cancel'}" />
+		{#if isMobile}
+			<SwitchButton
+				switch_text="{'social.have_acc'}"
+				switch_modal="{switchLogin}" />
+		{:else}
+			<CancelButton onUserText="{'other.cancel'}" />
+		{/if}
 		<UserAprove
 			onUserText="{'social.create_account'}"
 			onUserAction="{registerUser}" />
@@ -75,5 +93,14 @@ const registerUser = () => {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+	.aprove_wrapper {
+		flex-direction: column-reverse;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+	}
 }
 </style>

@@ -1,8 +1,11 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
+import { onMount } from 'svelte';
 
+import { isFaqMenuOpen } from '$src/stores/faq';
 import { headerTitle, langImage } from '$src/stores/HeaderStores';
 import { openModal, modalComponent, closeModal } from '$src/stores/modalStore';
+import { openMenu } from '$src/stores/menu';
 
 type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal';
 
@@ -16,38 +19,53 @@ const openCurrentModal = (modal: ModalType) => {
 		openModal(modal);
 	}
 };
+
+let isHelpPage = false;
+
+function checkHelpPage() {
+	isHelpPage = window.location.pathname.includes('/help');
+}
+
+onMount(() => {
+	checkHelpPage();
+	window.addEventListener('popstate', checkHelpPage);
+	return () => window.removeEventListener('popstate', checkHelpPage);
+});
 </script>
 
-<header class="relative z-[9998] box-border w-full pt-[10px]">
-	<div class="flex h-[8vh] items-center justify-center rounded-lg bg-[#171b26] font-sans text-white">
-		<div class="flex h-full w-full items-center justify-between px-[1%]">
-			<div class="flex items-center pl-[10px]">
-				<p class="text-[25px] md:text-[20px]">{$t($headerTitle)}</p>
+<header class="header">
+	<div class="headerItem">
+		<div class="flexConteiner">
+			<div class="headerActions">
+				<button on:click="{() => openMenu()}">
+					<img
+						src="assets/header/menu.svg"
+						alt="" />
+				</button>
+				<img
+					src="assets/header/menu.svg"
+					alt="" />
 			</div>
-
-			<div class="mr-[1%] flex items-center justify-center space-x-[10px]">
-				<div
-					class="duration-400 flex h-[40px] w-fit items-center justify-center rounded border border-gray-400/50 transition
-						{$modalComponent === 'LangModal' ? 'border-[#6660ff] bg-[#6660ff40]' : ''}
-					">
-					<button
-						class="flex h-full w-full items-center justify-center bg-transparent p-[10px]"
-						on:click="{() => openCurrentModal('LangModal')}">
+			<div class="title">
+				{#if isHelpPage && !$isFaqMenuOpen}
+					<img
+						src="assets/header/back.svg"
+						alt="" />
+				{/if}
+				<p>{$t($headerTitle)}</p>
+			</div>
+			<div class="buttonConteiner">
+				<div class="btnWrapper {$modalComponent === 'LangModal' ? 'active' : ''}">
+					<button on:click="{() => openCurrentModal('LangModal')}">
 						{$t(`lang.${$langImage}`)}
 						<img
-							class="ml-[10px] h-full w-full"
+							class="lang-image"
 							src="{`assets/langs/${$langImage}.svg`}"
 							alt="" />
 					</button>
 				</div>
-
-				<div
-					class="duration-400 flex h-[40px] w-[40px] items-center justify-center rounded border border-gray-400/50 transition
-						{$modalComponent === 'SupportModal' ? 'border-[#6660ff] bg-[#6660ff40]' : ''}
-					hover:bg-[#282d3b]">
-					<button
-						class="flex h-full w-full items-center justify-center bg-transparent p-[10px]"
-						on:click="{() => openCurrentModal('SupportModal')}">
+				<div class="btnWrapper {$modalComponent === 'SupportModal' ? 'active' : ''}">
+					<button on:click="{() => openCurrentModal('SupportModal')}">
 						<img
 							src="assets/header/support.png"
 							alt="" />
@@ -57,3 +75,127 @@ const openCurrentModal = (modal: ModalType) => {
 		</div>
 	</div>
 </header>
+
+<style>
+.header {
+	height: fit-content;
+	box-sizing: border-box;
+	padding-top: 10px;
+	width: 100%;
+	margin: 0 auto;
+	position: relative;
+	z-index: 9998;
+}
+
+.headerItem {
+	height: 8vh;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	color: white;
+	background: #171b26;
+	border-radius: 8px;
+}
+
+.flexConteiner {
+	display: flex;
+	height: 100%;
+	width: 100%;
+	padding: 0 0.05% 0 1%;
+	justify-content: space-between;
+}
+.headerActions {
+	display: none;
+	flex-direction: row;
+	justify-content: space-between;
+	padding-bottom: 3vh;
+}
+.title {
+	display: flex;
+	align-items: center;
+	padding-left: 10px;
+}
+
+.buttonConteiner {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 1%;
+	width: fit-content;
+}
+.btnWrapper {
+	width: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid rgba(128, 128, 128, 0.582);
+	border-radius: 4px;
+	transition: 400ms;
+	height: 40px;
+}
+.btnWrapper:nth-child(1) {
+	width: fit-content;
+}
+.lang-image {
+	height: 100%;
+	width: 100%;
+	margin-left: 10px;
+}
+.btnWrapper:nth-child(2) {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+.btnWrapper:hover {
+	background-color: #282d3b;
+}
+.btnWrapper button {
+	height: 100%;
+	width: 100%;
+	padding: 10px;
+	background: transparent;
+	border: unset;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.headerItem p {
+	font-size: 25px;
+}
+.active {
+	border: 1px solid #6660ff;
+	background-color: #6660ff40;
+}
+@media screen and (max-height: 800px) {
+	.title p {
+		font-size: 20px;
+	}
+}
+@media screen and (max-width: 768px) {
+	.header {
+		padding-bottom: 30px;
+	}
+	.flexConteiner {
+		display: flex;
+		flex-direction: column;
+		padding: 0;
+	}
+	.headerItem {
+		background-color: transparent;
+	}
+	.buttonConteiner {
+		display: none;
+	}
+	.headerActions {
+		display: flex;
+	}
+	.title {
+		padding-left: 0;
+		width: 100%;
+	}
+	.title p {
+		font-size: 36px;
+	}
+}
+</style>

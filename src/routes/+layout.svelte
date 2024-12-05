@@ -24,7 +24,7 @@ waitLocale().then(() => {
 });
 
 onMount(() => {
-	if (isModalOpen) document.body.style.overflow = 'hidden';
+	if ($isModalOpen) document.body.style.overflow = 'hidden';
 });
 
 const routesWithoutHeader = ['/stats', '/landing'];
@@ -80,11 +80,10 @@ main {
 	width: 100vw;
 	display: flex;
 	flex-direction: column;
-	overflow-y: auto;
 }
-@media screen and (max-width: 1024px) {
+/* @media screen and (max-width: 1024px) {
 	.mainContent {
 		margin-left: 30vw;
 	}
-}
+} */
 </style>
