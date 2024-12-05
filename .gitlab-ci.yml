@@ -27,7 +27,8 @@ build:
   script:
     - npm install -g pnpm
     - pnpm install --store .pnpm-store
-    - echo "SERVER_URL=$SERVER_URL" > .env
+    - echo "SERVER_URL=http://https://dev-api-gateway-v1.sntmq.1keep.bet:11250/api" > .env
+    - echo "PORT=4671" >> .env
     - pnpm build
     - ls -la build/
   artifacts:
