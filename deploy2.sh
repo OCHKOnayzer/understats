@@ -33,7 +33,8 @@ if [ $? -ne 0 ]; then
 fi
 echo "Зависимости установлены."
 
-pm2 reload sveltekit-app || pm2 start ./index.js --name sveltekit-app
+pm2 del sveltekit-app
+pm2 start pm2.config.js
 if [ $? -ne 0 ]; then
   echo "Ошибка при запуске приложения через PM2."
   exit 1
