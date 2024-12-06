@@ -34,7 +34,7 @@ fi
 echo "Зависимости установлены."
 
 pm2 del sveltekit-app
-pm2 start pm2.config.js
+pm2 start pm2.config.cjs
 if [ $? -ne 0 ]; then
   echo "Ошибка при запуске приложения через PM2."
   exit 1
