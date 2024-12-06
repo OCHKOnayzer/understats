@@ -15,7 +15,7 @@ echo "Текущий PATH: $PATH"
 which pnpm || { echo "pnpm не найден."; exit 1; }
 which pm2 || { echo "pm2 не найден."; exit 1; }
 
-echo "SERVER_URL=http://https://dev-api-gateway-v1.sntmq.1keep.bet:11250/api" > .env
+echo "SERVER_URL=https://dev-api-gateway-v1.sntmq.1keep.bet/api" > .env
 echo ".env файл обновлён."
 
 if [ -f .env ]; then
