@@ -15,7 +15,7 @@ $: isAuthenticated = !!$currentUser;
 $: isLoading = ($query.isLoading || $profileQuery.isLoading) && isAuthenticated;
 $: accounts = isAuthenticated ? $query.data : [];
 
-$: console.log('Query state:', $query.status, 'Profile loading:', $profileQuery.isLoading);
+$: console.log(accounts);
 </script>
 
 <div class="relative mt-5">
@@ -144,7 +144,7 @@ $: console.log('Query state:', $query.status, 'Profile loading:', $profileQuery.
 						<Table.Cell>{account.siteName || 'N/A'}</Table.Cell>
 						<Table.Cell>{account.extendedId || 'N/A'}</Table.Cell>
 						<Table.Cell>
-							{account.login ? m.connected() : m.disconnected()}
+							{account.login ? 'Подключен' : 'Не подключен'}
 						</Table.Cell>
 						<Table.Cell>{account.balance}</Table.Cell>
 						<Table.Cell>{account.fullName}</Table.Cell>
