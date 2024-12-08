@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 import SortButton from '$components/entities/sort/SortButton/SortButton.svelte';
 import * as m from '$m';
 import { AccountCreate, AccountCreateSelect, AccountStatus, AccountStatusSelect } from '$stores/store';
@@ -16,4 +16,4 @@ import { AccountCreate, AccountCreateSelect, AccountStatus, AccountStatusSelect 
 </div>
 
 <style>
-</style>
+</style> -->
