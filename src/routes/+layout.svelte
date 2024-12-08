@@ -1,5 +1,4 @@
 <script>
-import { ParaglideJS } from '@inlang/paraglide-sveltekit';
 import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 import { onMount } from 'svelte';
 import { Toaster } from 'svelte-french-toast';
@@ -7,7 +6,6 @@ import { waitLocale } from 'svelte-i18n';
 
 import Container from '$components/providers/container/Container.svelte';
 import Menu from '$components/ui/menu/Menu.svelte';
-import { i18n } from '$lib/i18n';
 import Header from '$src/components/ui/header/header.svelte';
 import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
 import { isModalOpen } from '$src/stores/modalStore';
@@ -40,7 +38,6 @@ const queryClient = new QueryClient({
 </script>
 
 <QueryClientProvider client="{queryClient}">
-	<ParaglideJS i18n="{i18n}">
 		<Container>
 			<main>
 				{#if isLocaleReady}
@@ -64,7 +61,6 @@ const queryClient = new QueryClient({
 
 			<Toaster />
 		</Container>
-	</ParaglideJS>
 </QueryClientProvider>
 
 <style>

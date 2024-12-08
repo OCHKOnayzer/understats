@@ -1,10 +1,10 @@
 <script lang="ts">
-import * as m from '$m';
+
 import { cn } from '$src/utils/utils';
 </script>
 
 <header class="header">
-	<h2 class="{`${cn('header-title')}`}">{m.stats()}</h2>
+	<h2 class="{`${cn('header-title')}`}">Статистика</h2>
 </header>
 
 <style>
