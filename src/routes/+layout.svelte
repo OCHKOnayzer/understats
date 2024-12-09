@@ -4,7 +4,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 import { onMount } from 'svelte';
 import { Toaster } from 'svelte-french-toast';
 import { waitLocale } from 'svelte-i18n';
-
 import Container from '$components/providers/container/Container.svelte';
 import Menu from '$components/ui/menu/Menu.svelte';
 import { i18n } from '$lib/i18n';
@@ -27,8 +26,8 @@ onMount(() => {
 	if ($isModalOpen) document.body.style.overflow = 'hidden';
 });
 
-const routesWithoutHeader = ['/stats', '/landing'];
-const routesWithoutMenu = ['/landing'];
+const routesWithoutHeader = ['/stats', '/'];
+const routesWithoutMenu = ['/'];
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -74,6 +73,7 @@ main {
 	display: flex;
 	gap: 1rem;
 	width: 100%;
+	height: 100%;
 }
 .mainContent {
 	position: relative;

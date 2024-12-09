@@ -7,6 +7,7 @@ import FaqOpen from '../button/faqOpen/FaqOpen.svelte';
 
 import DownloadTitle from './titles/downloadTitle.svelte';
 import Stats from './stats.svelte';
+import { extensionInfo } from '$src/stores/extensionStore';
 
 interface BrowserItem {
 	name: string;
@@ -63,7 +64,7 @@ const browserArr: BrowserItem[] = [
 			</div>
 			<div class="button-wrapper">
 				{#if isMobile}
-					<Stats />
+					<!-- <Stats /> -->
 				{:else}
 					<div class="button-group">
 						<DownloadExt />
@@ -96,8 +97,8 @@ const browserArr: BrowserItem[] = [
 				<div class="extensions-item">
 					<div>
 						<span class="extensions-title">{$t('extensions.ver')}:</span>
-						<span class="extensions-content">1.34</span>
-						<span class="extensions-title">(12.11.2024)</span>
+						<span class="extensions-content">{$extensionInfo.version}</span>
+						<span class="extensions-title">({$extensionInfo.lastUpdatedDate})</span>
 					</div>
 				</div>
 				<div class="extensions-item">
@@ -197,7 +198,7 @@ const browserArr: BrowserItem[] = [
 		font-size: 13px;
 	}
 }
-@media (max-width: 768px) {
+@media (max-width: 768px){
 	.download {
 		width: 100%;
 		background-color: transparent;

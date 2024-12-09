@@ -35,6 +35,7 @@ import { t } from 'svelte-i18n';
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	height: 30%;
 }
 .problem_container {
 	width: 95%;

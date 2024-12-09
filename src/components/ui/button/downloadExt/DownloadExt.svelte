@@ -1,12 +1,12 @@
 <script>
 import { t } from 'svelte-i18n';
 
-import { downloadFile } from '$src/services/download/downloadExt.service';
+import { extensionService } from '$src/services/extensions/extension.service';
 </script>
 
 <button
 	class="download_buttons"
-	on:click="{downloadFile}">
+	on:click="{extensionService.downloadFile}">
 	{$t('extensions.zip')}
 </button>
 
