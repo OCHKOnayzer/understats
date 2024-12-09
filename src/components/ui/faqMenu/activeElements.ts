@@ -8,19 +8,19 @@ interface ActiveInerface {
 export const ActiveElemnts: ActiveInerface[] = [
 	{
 		index: 0,
-		name: 'Зарегистрироваться',
+		name: 'faq.registr',
 		image: '',
 		article: 'CreateAccount'
 	},
 	{
 		index: 0,
-		name: 'Войти в контору',
+		name: 'faq.enter',
 		image: '',
 		article: 'login'
 	},
 	{
 		index: 0,
-		name: 'Открыть историю ставок',
+		name: 'faq.open',
 		image: '',
 		article: 'bet'
 	},

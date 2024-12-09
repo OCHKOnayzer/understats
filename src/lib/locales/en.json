@@ -120,7 +120,16 @@
 	"extensions": {
 		"extensions": "Extensions",
 		"Automated_bidding": "Automated bidding",
+		"ext": "Our extension",
+		"down_count": "Download count",
+		"count": "times",
+		"desc": "Extension OneKeepBet is the ideal solution for everyone who wants to succeed in the world of bets. With our extension, you will be able to track your bets, analyze results, and identify the most profitable strategies.",
 		"Automation_analytics": "Automation of analytics",
+		"attention_key": "Attention! In this archive is already embedded your authorization key.",
+		"attention": "Do not pass this archive to other people",
+		"support_browser": "Browser support",
+		"ver": "Actual version",
+		"size": "Size",
 		"Your_bets": "Your bets",
 		"service_does": "The service does not request access to accounts",
 		"my_acc": "My accounts",
@@ -132,13 +141,21 @@
 		"Make_a_profit_info": "Bernoulli's inequality, as follows from the above, rapidly reflects an axiomatic absolutely convergent series. The subset consistently corresponds to the axiomatic determinan",
 		"Support": "Support",
 		"Support_info": "Bernoulli's inequality, as follows from the above, rapidly reflects an axiomatic absolutely convergent series. The subset consistently corresponds to the axiomatic determinan",
+		"download": "1 Download",
+		"install": "2 Install",
+		"auth": "Authorization!",
 		"Google_Chrome": "Extension for Google Chrome",
 		"Mozila_Firefox": "Extension for Mozilla Firefox",
+		"mb": "MB",
 		"Opera": "Extension for Opera 12",
 		"Attention": "Attention!",
 		"Attention_text": "Bernoulli's inequality, as follows from the above, rapidly reflects an axiomatic absolutely convergent series. The subset consistently corresponds to the axiomatic determinan",
 		"exp_name_install": "Installations",
-		"satisfied_users": "Satisfied users"
+		"satisfied_users": "Satisfied users",
+		"need_help": "Need help?",
+		"support_chat": "Support chat",
+		"zip": "ZIP with extension",
+		"manual": "Installation instructions"
 	},
 	"slide": {
 		"slide1_title": "The best solution",
@@ -161,6 +178,9 @@
 		"profile": "My Profile",
 		"interactions": "Interactions",
 		"units": "Units of Measurement",
+		"registr": "Registration",
+		"enter": "Enter the Office",
+		"open": "Open History of Bets",
 		"profile_block": "Profile Block",
 		"useful_tips": "Useful Tips",
 		"FAQ_section": "Select FAQ Section",
@@ -220,5 +240,15 @@
 	"leave_modal": {
 		"leave_acc": "Log out of your account?",
 		"leave_mail": "The email will appear in the specified mailbox within five minutes"
+	},
+	"lang": {
+		"en": "English",
+		"ru": "Russian",
+		"es": "Spanish",
+		"pt": "Portuguese",
+		"ch": "Chinese",
+		"fr": "French",
+		"it": "Italian",
+		"title": "Select language"
 	}
 }

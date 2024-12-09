@@ -1,4 +1,4 @@
-<script
+<!-- <script
 	lang="ts"
 	module>
 import toast, { Toaster } from 'svelte-french-toast';
@@ -32,4 +32,4 @@ const changeTile = (value: string) => {
 .wrapper {
 	@apply flex gap-5;
 }
-</style>
+</style> -->

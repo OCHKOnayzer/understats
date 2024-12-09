@@ -4,6 +4,7 @@ import { filterStore } from '$src/stores/filterStore';
 
 const items = ['Не распознано', 'Не рассчитана', 'Победа', 'Проигрыш', 'Возврат', 'Отмена', 'Выигрыш/Возврат', 'Проигрыш/Возврат'];
 
+$: console.log('Test log');
 $: console.log($filterStore.betResult);
 </script>
 

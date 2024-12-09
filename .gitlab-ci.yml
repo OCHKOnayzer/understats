@@ -27,19 +27,23 @@ build:
   script:
     - npm install -g pnpm
     - pnpm install --store .pnpm-store
-    - echo "SERVER_URL=$SERVER_URL" > .env
-    - pnpm build
+    - PORT=4671 pnpm build
+    - ls -la build/
   artifacts:
     paths:
       - build/
+      - package.json
+      - pnpm-lock.yaml
     expire_in: 1 week
 
 deploy:
   environment:
-    name: staging1
+    name: staging1nano
   tags:
     - runner1
   stage: deploy
+  dependencies:
+    - build
   variables:
     GIT_STRATEGY: fetch
   only:
@@ -58,6 +62,12 @@ deploy:
     - ssh-keygen -yf ~/.ssh/id_rsa > /dev/null
     - ssh -v dev@38.180.163.160 "echo 'SSH connection successful'"
     - scp -r build/* dev@38.180.163.160:/var/www/understat/frontend
+    - scp package.json pnpm-lock.yaml dev@38.180.163.160:/var/www/understat/frontend/
+    - scp deploy2.sh dev@38.180.163.160:/home/dev/
+    - scp pm2.config.cjs dev@38.180.163.160:/var/www/understat/frontend/
+#    - chmod +x ~/deploy2.sh
+    - ssh dev@38.180.163.160 "/home/dev/deploy2.sh"
+    # Nginx
     - scp nginx.conf dev@38.180.163.160:/home/dev/
     - ssh dev@38.180.163.160 "ls -la /home/dev/nginx.conf"
     - ssh dev@38.180.163.160 "sudo mv /home/dev/nginx.conf /etc/nginx/sites-available/dev.sntmq.1keep.bet"

@@ -1,10 +1,6 @@
-import { createI18n } from '@inlang/paraglide-sveltekit';
-import { init, register, waitLocale, locale } from 'svelte-i18n';
+import { init, locale, register, waitLocale } from 'svelte-i18n';
 
-import * as runtime from '$lib/paraglide/runtime.js';
 import { getAppLanguage, setAppLanguage } from '$src/stores/languageStore';
-
-export const i18n = createI18n(runtime);
 
 register('en', () => import('./locales/en.json'));
 // register('es', () => import('./locales/es.json'));
