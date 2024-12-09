@@ -1,5 +1,4 @@
 <script lang="ts">
-
 import { cn } from '$src/utils/utils';
 </script>
 

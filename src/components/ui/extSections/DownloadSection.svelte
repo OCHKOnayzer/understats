@@ -2,12 +2,13 @@
 import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 
+import { extensionInfo } from '$src/stores/extensionStore';
+
 import DownloadExt from '../button/downloadExt/DownloadExt.svelte';
 import FaqOpen from '../button/faqOpen/FaqOpen.svelte';
 
 import DownloadTitle from './titles/downloadTitle.svelte';
 import Stats from './stats.svelte';
-import { extensionInfo } from '$src/stores/extensionStore';
 
 interface BrowserItem {
 	name: string;
@@ -198,7 +199,7 @@ const browserArr: BrowserItem[] = [
 		font-size: 13px;
 	}
 }
-@media (max-width: 768px){
+@media (max-width: 768px) {
 	.download {
 		width: 100%;
 		background-color: transparent;

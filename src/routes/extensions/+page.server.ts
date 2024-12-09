@@ -1,5 +1,5 @@
-import { extensionService } from "$src/services/extensions/extension.service";
-import { formatDate } from "$src/utils/functions/formatDate";
+import { extensionService } from '$src/services/extensions/extension.service';
+import { formatDate } from '$src/utils/functions/formatDate';
 
 export async function load() {
 	try {
@@ -7,10 +7,10 @@ export async function load() {
 
 		const formattedData = {
 			...extensionInfo,
-			lastUpdatedDate: formatDate(extensionInfo.lastUpdatedDate),
+			lastUpdatedDate: formatDate(extensionInfo.lastUpdatedDate)
 		};
 		return {
-			extensionInfo: formattedData,
+			extensionInfo: formattedData
 		};
 	} catch (err) {
 		throw new Error('Ошибка загрузки данных');

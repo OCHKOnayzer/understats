@@ -1,13 +1,18 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
-import type { IextInfo } from '$src/types/types';
+
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
 import DownloadSection from '$src/components/ui/extSections/DownloadSection.svelte';
 import QuesSection from '$src/components/ui/extSections/QuesSection.svelte';
-selectHeaderTitle('extensions.extensions');
-export let data: { extensionInfo: IextInfo };
 import { extensionInfo } from '$src/stores/extensionStore';
-extensionInfo.set(data.extensionInfo)
+
+import type { IextInfo } from '$src/types/types';
+
+selectHeaderTitle('extensions.extensions');
+
+export let data: { extensionInfo: IextInfo };
+
+extensionInfo.set(data.extensionInfo);
 </script>
 
 <svelte:head>
@@ -32,7 +37,7 @@ extensionInfo.set(data.extensionInfo)
 </div>
 
 <style>
-.pageContent{
+.pageContent {
 	height: 100%;
 }
 .pageWrapper {
@@ -59,7 +64,7 @@ extensionInfo.set(data.extensionInfo)
 	height: 68%;
 	color: white;
 }
-@media (max-width: 768px){
+@media (max-width: 768px) {
 	.pageWrapper {
 		height: fit-content;
 	}

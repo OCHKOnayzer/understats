@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 import { onMount } from 'svelte';
 import { Toaster } from 'svelte-french-toast';
 import { waitLocale } from 'svelte-i18n';
+
 import Container from '$components/providers/container/Container.svelte';
 import Menu from '$components/ui/menu/Menu.svelte';
 import Header from '$src/components/ui/header/header.svelte';
@@ -37,29 +38,29 @@ const queryClient = new QueryClient({
 </script>
 
 <QueryClientProvider client="{queryClient}">
-		<Container>
-			<main>
-				{#if isLocaleReady}
-					{#if !routesWithoutMenu.includes($page.url.pathname)}
-						<Menu />
-					{/if}
-					{#if $isModalOpen}
-						<AuthModal />
-					{/if}
-					<div class="mainContent">
-						{#if !routesWithoutHeader.includes($page.url.pathname)}
-							<Header />
-						{/if}
-
-						<slot />
-					</div>
-				{:else}
-					<p style="color: white; text-align: center; margin-top: 20%;">Loading translations...</p>
+	<Container>
+		<main>
+			{#if isLocaleReady}
+				{#if !routesWithoutMenu.includes($page.url.pathname)}
+					<Menu />
 				{/if}
-			</main>
+				{#if $isModalOpen}
+					<AuthModal />
+				{/if}
+				<div class="mainContent">
+					{#if !routesWithoutHeader.includes($page.url.pathname)}
+						<Header />
+					{/if}
 
-			<Toaster />
-		</Container>
+					<slot />
+				</div>
+			{:else}
+				<p style="color: white; text-align: center; margin-top: 20%;">Loading translations...</p>
+			{/if}
+		</main>
+
+		<Toaster />
+	</Container>
 </QueryClientProvider>
 
 <style>

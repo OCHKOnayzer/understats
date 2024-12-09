@@ -77,7 +77,7 @@ import { extItems } from './extItems';
 	color: #718096;
 	font-size: 14px;
 }
-@media (max-width: 678px){
+@media (max-width: 678px) {
 	.quess_wrapper {
 		width: 100%;
 		background-color: transparent;

@@ -5,7 +5,7 @@ import ImageArtical from '../articleComponents/imageArtical.svelte';
 </script>
 
 <div class="article_wrapper">
-	<ArticalTitle title="faq.ext_yandex_tittle"/>
+	<ArticalTitle title="faq.ext_yandex_tittle" />
 	<ArticleSection text="faq.create_acc_section_1" />
 	<ImageArtical
 		image="{'assets/faq/ya.png'}"
