@@ -111,7 +111,7 @@ export interface CalendarProps {
 	onDateSelect: (date: Date) => void;
 	currentDate: Date;
 }
-export interface IextInfo {
+export interface ExtensionInfo {
 	version: string;
 	downloadsCount: number;
 	lastUpdatedDate: string;

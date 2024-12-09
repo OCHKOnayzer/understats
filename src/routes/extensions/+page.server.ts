@@ -12,7 +12,7 @@ export async function load() {
 		return {
 			extensionInfo: formattedData
 		};
-	} catch (err) {
-		throw new Error('Ошибка загрузки данных');
+	} catch (error:any) {
+		throw new Error(error);
 	}
 }

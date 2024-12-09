@@ -1,32 +1,32 @@
+import { handleAxiosError } from '$src/api/api.error';
 import { axiosClassic, axiosWithAuth } from '$src/api/api.interceptors';
 import { ApiError } from '$src/api/api.error';
+import type { ExtensionInfo } from '$src/types/types';
 
-interface IExtensionInfo {
-	version: string;
-	downloadsCount: number;
-	lastUpdatedDate: string;
-}
 
 class ExtensionService {
-	async getExtensionInfo() {
-		try {
-			const response = await axiosClassic<IExtensionInfo>({
-				url: 'https://dev-api-gateway-v1.sntmq.1keep.bet/api/extension/info',
-				method: 'GET'
-			});
+	async getExtensionInfo(): Promise<ExtensionInfo> {
+        try {
+            const response = await axiosClassic<ExtensionInfo>({
+                url: `${process.env.API_URL}/extension/info`,
+                method: 'GET',
+            });
+    
+            if (!response.data) {
+                throw new ApiError('Network error occurred');
+            }
+    
+            return response.data;
+        } catch (error: unknown) {
+            handleAxiosError(error);
+    
+            throw new ApiError('Unhandled error occurred');
+        }
+    }
 
-			if (response.data) {
-				return response.data;
-			} else {
-				throw new Error('Не удалось получить информацию о расширении');
-			}
-		} catch (error: any) {
-			throw new Error(error.message || 'Ошибка');
-		}
-	}
 	async downloadFile() {
 		try {
-			const response = await axiosWithAuth.get('/api/extension/download/', {
+			const response = await axiosWithAuth.get('/extension/download/', {
 				responseType: 'blob',
 				headers: {
 					Accept: 'application/zip'

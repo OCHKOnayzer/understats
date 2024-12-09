@@ -6,11 +6,11 @@ import DownloadSection from '$src/components/ui/extSections/DownloadSection.svel
 import QuesSection from '$src/components/ui/extSections/QuesSection.svelte';
 import { extensionInfo } from '$src/stores/extensionStore';
 
-import type { IextInfo } from '$src/types/types';
+import type { ExtensionInfo } from '$src/types/types';
 
 selectHeaderTitle('extensions.extensions');
 
-export let data: { extensionInfo: IextInfo };
+export let data: { extensionInfo: ExtensionInfo };
 
 extensionInfo.set(data.extensionInfo);
 </script>
