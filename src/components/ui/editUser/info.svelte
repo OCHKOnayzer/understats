@@ -64,8 +64,8 @@ onMount(() => {
 				<div><p class="accounts--text">{$t('settings.create_data')}</p></div>
 				<div class="other_account_wrapper">
 					<div class="accounts_element">
-						{#if $user}
-							<span>{$user.add_account} {$t('other.acc')}</span>
+						{#if $currentUser}
+							<span> {$t('other.acc')}</span>
 						{/if}
 					</div>
 				</div>

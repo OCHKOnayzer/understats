@@ -9,7 +9,7 @@ import FilterButtons from './FilterButtons.svelte';
 
 import type { FilterOption } from '$types/types';
 
-const filterInputs = derived(FilterInputSelect, ($store) => Object.values($store) as FilterOption[]);
+const filterInputs = derived(FilterInputSelect, ($store) => Object.values($store));
 </script>
 
 <div class="wrapper">
