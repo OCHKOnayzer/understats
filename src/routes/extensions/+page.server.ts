@@ -12,7 +12,7 @@ export async function load() {
 		return {
 			extensionInfo: formattedData
 		};
-	} catch (error:any) {
+	} catch (error: any) {
 		throw new Error(error);
 	}
 }
