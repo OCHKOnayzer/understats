@@ -49,6 +49,7 @@ export const useAuth = (isReg: boolean) => {
 					...profile.data
 				}));
 			}
+			
 		},
 		onError: async (error: any) => {
 			if (error.message) {

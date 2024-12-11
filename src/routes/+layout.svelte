@@ -4,6 +4,7 @@ import { onMount } from 'svelte';
 import { Toaster } from 'svelte-french-toast';
 import { waitLocale } from 'svelte-i18n';
 
+import Test from '$src/components/ui/test.svelte';
 import Container from '$components/providers/container/Container.svelte';
 import Menu from '$components/ui/menu/Menu.svelte';
 import Header from '$src/components/ui/header/header.svelte';
@@ -55,7 +56,7 @@ const queryClient = new QueryClient({
 					<slot />
 				</div>
 			{:else}
-				<p style="color: white; text-align: center; margin-top: 20%;">Loading translations...</p>
+				<Test />
 			{/if}
 		</main>
 

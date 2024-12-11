@@ -1,5 +1,6 @@
 import { axiosClassic, axiosWithAuth } from '$src/api/api.interceptors';
 import { currentUser } from '$src/stores/modalStore';
+import { goto } from '$app/navigation';
 
 import { removeAccessToken, setAccessToken } from './auth-token.service';
 
@@ -16,6 +17,9 @@ class AuthService {
 
 			if (response.data.accessToken) {
 				setAccessToken(response.data.accessToken);
+				if (window.location.pathname === '/') {
+					goto('/accounts');
+				}
 				return response;
 			}
 		} catch (error: any) {

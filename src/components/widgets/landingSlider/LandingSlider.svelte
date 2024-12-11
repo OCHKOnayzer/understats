@@ -17,9 +17,9 @@ let slides: SlideItnerface[] = [
 
 let currentIndex = 0;
 let interval;
-const slideDuration = 3000;
+const slideDuration = 5000;
 
-const goToSlide = (index) => {
+const goToSlide = (index: number) => {
 	currentIndex = index;
 	resetInterval();
 };

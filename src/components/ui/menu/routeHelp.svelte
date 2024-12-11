@@ -1,6 +1,8 @@
 <script lang="ts">
 import { onMount } from 'svelte';
 
+import { langSel } from '$src/stores/HeaderStores';
+
 import UserInfo from './userInfo/UserInfo.svelte';
 import ChatMenu from './chatMenu.svelte';
 import { SocialRoutes } from './items/LinkItems';
@@ -12,7 +14,7 @@ import { SocialRoutes } from './items/LinkItems';
 	<div class="relative mt-4 flex h-full w-full items-center justify-between">
 		{#each SocialRoutes as items}
 			<a
-				href="{items.href}"
+				href="{$langSel === 'ru' && items.hrefRu ? items.hrefRu : items.href}"
 				target="_blank"
 				class="group relative h-[25px] w-[25px]">
 				<img

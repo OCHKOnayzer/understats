@@ -4,6 +4,9 @@ import { onMount } from 'svelte';
 
 import { user, fetchUser, updateUser } from '$stores/menu';
 
+import SettingsSections from '../settingsSections/SettingsSections.svelte';
+import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
+
 let newPassword = '';
 let oldPassword = '';
 let password = '';
@@ -83,43 +86,9 @@ const clearField = (field: FieldType) => {
 };
 </script>
 
-<div class="progressWrapper">
-	<div class="progressTitle">
-		<div class="main_info_wrapper">
-			<p class="widget_title">
-				{$t('settings.pass_change')}
-			</p>
-		</div>
-	</div>
-	<div class="pass_sett">
-		<!-- <div class="setings_item email item-w">
-      <div class="item_settings_info">
-        <p class="settings_name">{$t('settings.create_email')}</p>
-      </div>
-      <div class="selected_element">
-        <div class="selected_menu_element">
-          {#if $user}
-            <span class="user_email">{$user.email}</span>
-          {/if}
-        </div>
-      </div>
-    </div> -->
-	</div>
+<SettingsSections>
+	<SettingsTitle title="{'settings.pass_change'}" />
 	<div class="setings">
-		<!-- <div class="setings_item item-w">
-      <div class="item_settings_info">
-        <p class="settings_name">{$t('settings.display_name')}</p>
-        <button class="clear_curr max--w" on:click={() => clearField('username')}
-          >{$t('other.clear')}</button
-        >
-        <button class="clear_curr min--w" on:click={() => clearField('username')}>X</button>
-      </div>
-      <input
-        class="selected_element input_element"
-        bind:value={username}
-        placeholder={$user?.name}
-      />
-    </div> -->
 		<div class="setings_item item-w old-pass">
 			<div class="item_settings_info">
 				<p class="settings_name">{$t('settings.old_pass')}</p>
@@ -165,41 +134,20 @@ const clearField = (field: FieldType) => {
 		<!--			{$t('other.cancel')}-->
 		<!--		</button>-->
 	</div>
-</div>
+</SettingsSections>
 
 <style>
 .settings_name {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
-.widget_title {
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-.progressWrapper {
-	width: 100%;
-	margin: 0 auto;
-	height: fit-content;
-	box-sizing: border-box;
-	margin-top: 10px;
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-	color: white;
-	background: #171b26;
-	border-radius: 8px;
-	padding: 0 20px;
-}
+
 .input_element {
 	border: unset;
 	font-size: 20px;
 	padding-left: 10px;
 }
-.progressTitle {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	font-size: 20px;
-}
+
 .setings {
 	display: flex;
 	flex-direction: row;
@@ -298,11 +246,6 @@ const clearField = (field: FieldType) => {
 	background-color: #707f95;
 	color: white;
 }
-@media (max-width: 1200px) {
-	.main_info_wrapper .widget_title {
-		margin: 10px 0px 0px 0px;
-	}
-}
 @media (max-width: 1300px) {
 	.btn_upd:nth-child(1) {
 		width: 97px;
@@ -348,12 +291,6 @@ const clearField = (field: FieldType) => {
 	}
 	.min--w {
 		display: none;
-	}
-	.progressWrapper {
-		border-radius: 24px;
-		padding-bottom: 2vh;
-		padding-right: 15px;
-		padding-left: 20px;
 	}
 	.setings {
 		padding: 0;
