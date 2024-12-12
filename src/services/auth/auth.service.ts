@@ -1,10 +1,11 @@
 import { axiosClassic, axiosWithAuth } from '$src/api/api.interceptors';
 import { currentUser } from '$src/stores/modalStore';
-import { goto } from '$app/navigation';
 
 import { removeAccessToken, setAccessToken } from './auth-token.service';
 
 import type { IAuthForm, IAuthResponse } from '$src/types/types';
+
+import { goto } from '$app/navigation';
 
 class AuthService {
 	async main(type: 'login' | 'register', data: IAuthForm) {
