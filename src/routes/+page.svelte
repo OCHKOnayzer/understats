@@ -5,9 +5,9 @@ import LangButton from '$src/components/ui/button/langButton/LangButton.svelte';
 </script>
 
 <div class="landing-content">
-	<div class="lang-langing">
+	<!-- <div class="lang-langing">
 		<LangButton />
-	</div>
+	</div> -->
 	<div class="eclipse-wrapper">
 		<img
 			src="assets/landing/image.png"
