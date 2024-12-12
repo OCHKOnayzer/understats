@@ -4,8 +4,10 @@ import { onMount } from 'svelte';
 
 import { isFaqMenuOpen } from '$src/stores/faq';
 import { headerTitle, langImage } from '$src/stores/HeaderStores';
-import { openModal, modalComponent, closeModal } from '$src/stores/modalStore';
+import { openModal, modalComponent, closeModal, currentUser } from '$src/stores/modalStore';
 import { openMenu } from '$src/stores/menu';
+
+import LangButton from '../button/langButton/LangButton.svelte';
 
 type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal';
 
@@ -42,27 +44,24 @@ onMount(() => {
 						src="assets/header/menu.svg"
 						alt="" />
 				</button>
-				<img
-					src="assets/header/menu.svg"
-					alt="" />
+				{#if $currentUser}
+					<a
+						class="profile-container"
+						href="/setings">
+						<!-- <img src="" alt=""> -->
+					</a>
+				{:else}
+					<button
+						class="profile-container"
+						on:click="{() => openCurrentModal('authModal')}"></button>
+				{/if}
 			</div>
 			<div class="title">
-				{#if isHelpPage && !$isFaqMenuOpen}
-					<img
-						src="assets/header/back.svg"
-						alt="" />
-				{/if}
 				<p>{$t($headerTitle)}</p>
 			</div>
 			<div class="buttonConteiner">
 				<div class="btnWrapper {$modalComponent === 'LangModal' ? 'active' : ''}">
-					<button on:click="{() => openCurrentModal('LangModal')}">
-						{$t(`lang.${$langImage}`)}
-						<img
-							class="lang-image"
-							src="{`assets/langs/${$langImage}.svg`}"
-							alt="" />
-					</button>
+					<LangButton openCurrentModal="{openCurrentModal}" />
 				</div>
 				<div class="btnWrapper {$modalComponent === 'SupportModal' ? 'active' : ''}">
 					<button on:click="{() => openCurrentModal('SupportModal')}">
@@ -112,6 +111,16 @@ onMount(() => {
 	justify-content: space-between;
 	padding-bottom: 3vh;
 }
+.profile-container {
+	width: 42px;
+	height: 42px;
+	border-radius: 20px;
+	background-color: #d9d9d9;
+}
+/* .profile-container img{
+	height: 100%;
+	width: 100%;
+} */
 .title {
 	display: flex;
 	align-items: center;
@@ -138,11 +147,7 @@ onMount(() => {
 .btnWrapper:nth-child(1) {
 	width: fit-content;
 }
-.lang-image {
-	height: 100%;
-	width: 100%;
-	margin-left: 10px;
-}
+
 .btnWrapper:nth-child(2) {
 	margin-right: 10px;
 	margin-left: 10px;

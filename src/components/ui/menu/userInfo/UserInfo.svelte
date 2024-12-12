@@ -1,4 +1,6 @@
 <script lang="ts">
+import { t } from 'svelte-i18n';
+
 import { useUserProfile } from '$src/services/auth/useProfile';
 import { currentUser, logout, modalComponent, openModal } from '$src/stores/modalStore';
 
@@ -22,26 +24,22 @@ const handleLogout = () => {
 		<p>Загрузка профиля...</p>
 	{:else if $currentUser}
 		<div class="user_flex">
-			<div class="avatar">
-				<img
-					class="image"
-					src="assets/avatar.jpg"
-					alt="user avatar" />
-			</div>
 			<div class="user_info">
-				<div class="user_wrapper">
-					<div class="userName">{$currentUser.login || 'Email'}</div>
-					<!--					<span>ID:</span> <span>1231234</span>-->
-				</div>
-				<div class="quitBtn">
-					<button
-						on:click="{handleLogout}"
-						class="quit_button">
-						<img
-							src="assets/menu/leave.png"
-							alt="Выйти" />
-					</button>
-				</div>
+				<span>{$t('menu.YourProfile')}</span>
+				<div class="userName">{$currentUser.login || 'Email'}</div>
+				<!-- <div class="user_wrapper">
+
+									<span>ID:</span> <span>1231234</span>
+				</div> -->
+			</div>
+			<div class="quitBtn">
+				<button
+					on:click="{handleLogout}"
+					class="quit_button">
+					<img
+						src="assets/menu/leave.png"
+						alt="Выйти" />
+				</button>
 			</div>
 		</div>
 	{:else}
@@ -54,10 +52,10 @@ const handleLogout = () => {
 
 <style>
 .userContainer {
-	height: fit-content;
+	height: 7vh;
 	padding: 5px;
 	width: 100%;
-	margin: 0 auto;
+	margin-top: 10px;
 	background-color: #0d111d;
 	border-radius: 5px;
 }
@@ -65,25 +63,18 @@ const handleLogout = () => {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-.avatar {
-	border-radius: 50%;
-	height: 30px;
-	width: 30px;
-	overflow: hidden;
-}
-.image {
 	height: 100%;
-	width: 100%;
+	width: 98%;
+	margin: 0 auto;
 }
 .user_info {
-	width: 80%;
-	margin-left: 10px;
+	width: 90%;
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
 }
 .userName {
-	font-size: 15px;
+	font-size: 13px;
+	color: #718096;
 }
 /* .user_info span {
 	color: rgba(128, 128, 128, 0.383);

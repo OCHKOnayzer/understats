@@ -41,7 +41,7 @@ function preloadImage(src: string): Promise<void> {
 }
 </script>
 
-<div class="flex h-auto flex-col items-center justify-center {isImagesLoaded ? '' : 'blurred'}">
+<div class="flex h-auto flex-col items-center justify-center {isImagesLoaded ? '' : 'blurred'} mt-6">
 	{#each pageRoutes as item}
 		<a
 			href="{item.href}"

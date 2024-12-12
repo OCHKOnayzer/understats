@@ -116,3 +116,8 @@ export interface ExtensionInfo {
 	downloadsCount: number;
 	lastUpdatedDate: string;
 }
+export interface TariffsItem {
+	name: string;
+	desc: string;
+	limitations: string;
+}

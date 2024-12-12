@@ -5,6 +5,8 @@ import { removeAccessToken, setAccessToken } from './auth-token.service';
 
 import type { IAuthForm, IAuthResponse } from '$src/types/types';
 
+import { goto } from '$app/navigation';
+
 class AuthService {
 	async main(type: 'login' | 'register', data: IAuthForm) {
 		try {
@@ -16,6 +18,9 @@ class AuthService {
 
 			if (response.data.accessToken) {
 				setAccessToken(response.data.accessToken);
+				if (window.location.pathname === '/') {
+					goto('/accounts');
+				}
 				return response;
 			}
 		} catch (error: any) {
