@@ -10,7 +10,7 @@ export { className as class };
 </script>
 
 <th
-	class="{cn('text-muted-white h-12 border-2 border-[#363A45] px-4 text-left align-middle text-[10px] font-thin [&:has([role=checkbox])]:pr-0', className)}"
+	class="{cn('h-10 border-2 border-[#363A45] px-1 text-left align-middle text-[10px] font-medium [&:has([role=checkbox])]:pr-0', className)}"
 	{...$$restProps}>
 	<slot />
 </th>

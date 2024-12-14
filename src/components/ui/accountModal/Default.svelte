@@ -7,7 +7,7 @@ import { LoginForm } from '$stores/store';
 import { hasOptions } from '$utils/utils';
 
 import type { AccountOption } from '$types/types';
-const Login = derived(LoginForm, ($store) => Object.values($store) as AccountOption[]);
+const Login = derived(LoginForm, ($store) => Object.values($store));
 </script>
 
 <form

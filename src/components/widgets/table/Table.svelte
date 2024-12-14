@@ -1,107 +1,46 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
+	import { t } from 'svelte-i18n';
+	
+	import Spinner from '$components/ui/spinner/Spinner.svelte';
+	import * as Table from '$components/ui/table';
+	import { useAccounts } from '$src/services/accounts/useAccounts';
+	import { useUserProfile } from '$src/services/auth/useProfile';
+	import { currentUser } from '$src/stores/modalStore';
+	import { cn } from '$utils/utils';
+	
+	const headers = [
+		{ title: $t('accounts.bookmaker'), key: 'siteName' },
+		{ title: $t('accounts.auth'), key: 'login' },
+		{ title: $t('accounts.login'), key: 'extendedId' },
+		{ title: $t('accounts.balance'), key: 'balance' },
+		{ title: $t('accounts.name'), key: 'fullName' },
+		{ title: $t('accounts.mail'), key: 'email' },
+		{ title: $t('accounts.phone'), key: 'phone' },
+		{ title: $t('accounts.regData'), key: 'registrationDate' },
+		{ title: $t('accounts.lastBet'), key: 'lastBet' },
+		{ title: $t('accounts.betCount'), key: 'currency' },
+	];
 
-import Spinner from '$components/ui/spinner/Spinner.svelte';
-import * as Table from '$components/ui/table';
-import { useAccounts } from '$src/services/accounts/useAccounts';
-import { useUserProfile } from '$src/services/auth/useProfile';
-import { currentUser } from '$src/stores/modalStore';
-import { cn } from '$utils/utils';
-
-const { query } = useAccounts();
-const { query: profileQuery } = useUserProfile();
-
-$: isAuthenticated = !!$currentUser;
-$: isLoading = ($query.isLoading || $profileQuery.isLoading) && isAuthenticated;
-$: accounts = isAuthenticated ? $query.data : [];
-
-$: console.log(accounts);
+	const { query } = useAccounts();
+	const { query: profileQuery } = useUserProfile();
+	
+	$: isAuthenticated = !!$currentUser;
+	$: isLoading = ($query.isLoading || $profileQuery.isLoading) && isAuthenticated;
+	$: accounts = isAuthenticated ? $query.data : [];
 </script>
-
-<div class="relative mt-5">
-	<Table.Root>
-		<Table.Header class="tect-[10px] bg-[#31384A]">
+	<Table.Root class="w-full caption-bottom text-[12px] mt-3">
+		<Table.Header class="bg-[#31384A]">
 			<Table.Row class="border-none">
-				<Table.Head>
-					<div class="flex items-center gap-1">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.bookmaker')}</span>
-					</div>
-				</Table.Head>
-				<Table.Head>
-					<div class="flex items-center gap-1">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.auth')}</span>
-					</div>
-				</Table.Head>
-				<Table.Head>
-					<div class="flex items-center gap-1">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.login')}</span>
-					</div>
-				</Table.Head>
-				<Table.Head>
-					<div class="flex items-center gap-1">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.balance')}</span>
-					</div>
-				</Table.Head>
-				<Table.Head>
-					<div class="flex items-center gap-1">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.name')}</span>
-					</div>
-				</Table.Head>
-				<Table.Head>
-					<div class="flex items-center gap-1">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.mail')}</span>
-					</div>
-				</Table.Head>
-				<Table.Head>
-					<div class="flex items-center gap-1">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.phone')}</span>
-					</div>
-				</Table.Head>
-				<Table.Head class="text-center">
-					<div class="flex items-center gap-1 text-center">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.regData')}</span>
-					</div>
-				</Table.Head>
-				<Table.Head class="text-center">
-					<div class="flex items-center gap-1 text-center">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.lastBet')}</span>
-					</div>
-				</Table.Head>
-				<Table.Head class="text-center">
-					<div class="flex gap-1 text-left">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.betCount')}</span>
-					</div>
-				</Table.Head>
+				{#each headers as header}
+					<Table.Head class="sm:h-5">
+						<div class="flex items-center gap-1">
+							<img
+								src="icons/bk/table.svg"
+								alt="table" />
+							<span class="whitespace-pre-line xl:text-[10px] sm:text-[7px]">{header.title}</span>
+						</div>
+					</Table.Head>
+				{/each}
 			</Table.Row>
 		</Table.Header>
 		{#if !isAuthenticated}
@@ -178,4 +117,12 @@ $: console.log(accounts);
 			</Table.Body>
 		{/if}
 	</Table.Root>
-</div>
+
+
+<style>
+	@media (max-width: 1024px) {
+		.hello {
+			max-width: 1024px;
+		}
+	}
+</style>

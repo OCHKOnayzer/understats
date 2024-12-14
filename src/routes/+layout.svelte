@@ -38,29 +38,29 @@ const queryClient = new QueryClient({
 </script>
 
 <QueryClientProvider client="{queryClient}">
-		<Container>
-			<main>
-				{#if isLocaleReady}
-					{#if !routesWithoutMenu.includes($page.url.pathname)}
-						<Menu />
-					{/if}
-					{#if $isModalOpen}
-						<AuthModal />
-					{/if}
-					<div class="mainContent">
-						{#if !routesWithoutHeader.includes($page.url.pathname)}
-							<Header />
-						{/if}
-
-						<slot />
-					</div>
-				{:else}
-					<p style="color: white; text-align: center; margin-top: 20%;">Loading translations...</p>
+	<Container>
+		<main>
+			{#if isLocaleReady}
+				{#if !routesWithoutMenu.includes($page.url.pathname)}
+					<Menu />
 				{/if}
-			</main>
+				{#if $isModalOpen}
+					<AuthModal />
+				{/if}
+				<div class="mainContent">
+					{#if !routesWithoutHeader.includes($page.url.pathname)}
+						<Header />
+					{/if}
 
-			<Toaster />
-		</Container>
+					<slot />
+				</div>
+			{:else}
+				<p style="color: white; text-align: center; margin-top: 20%;">Loading translations...</p>
+			{/if}
+		</main>
+
+		<Toaster />
+	</Container>
 </QueryClientProvider>
 
 <style>
