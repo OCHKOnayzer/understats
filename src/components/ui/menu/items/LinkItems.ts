@@ -18,8 +18,8 @@ export const pageRoutes: LinkInterface[] = [
 	 */
 	{
 		href: '/stats',
-		img1: 'assets/menu/active/mod.png',
-		img2: 'assets/menu/menuElements/mod.png',
+		img1: 'assets/menu/active/stats.png',
+		img2: 'assets/menu/menuElements/stats.png',
 		title: 'menu.Stats'
 	},
 	{
@@ -33,6 +33,12 @@ export const pageRoutes: LinkInterface[] = [
 		img1: 'assets/menu/active/mod.png',
 		img2: 'assets/menu/menuElements/mod.png',
 		title: 'menu.Mods'
+	},
+	{
+		href: '/tariffs',
+		img1: 'assets/menu/active/tariffs.png',
+		img2: 'assets/menu/menuElements/tariffs.png',
+		title: 'menu.Tariffs'
 	},
 	{
 		href: '/setings',
@@ -49,31 +55,32 @@ export const pageRoutes: LinkInterface[] = [
 ];
 export const SocialRoutes: LinkInterface[] = [
 	{
-		href: '',
+		href: 'https://t.me/onekeepbet_channel',
+		hrefRu: 'https://t.me/onekeepbet_channel_ru',
 		img1: 'assets/social/telegram.svg',
 		img2: 'assets/social/active/telegram.svg',
 		title: 'telegram'
 	},
 	{
-		href: '',
+		href: 'https://t.me/onekeepbet_channel',
 		img1: 'assets/social/instagram.svg',
 		img2: 'assets/social/active/instagram.svg',
 		title: 'instagram'
 	},
 	{
-		href: '',
+		href: 'https://t.me/onekeepbet_channel',
 		img1: 'assets/social/discord.svg',
 		img2: 'assets/social/active/discord.svg',
 		title: 'discord'
 	},
 	{
-		href: '',
+		href: 'https://t.me/onekeepbet_channel',
 		img1: 'assets/social/facebook.svg',
 		img2: 'assets/social/active/facebook.svg',
 		title: 'facebook'
 	},
 	{
-		href: '',
+		href: 'https://t.me/onekeepbet_channel',
 		img1: 'assets/social/youtube.svg',
 		img2: 'assets/social/active/youtube.svg',
 		title: 'youtube'

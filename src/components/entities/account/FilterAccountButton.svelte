@@ -3,8 +3,9 @@ import Icon from '@iconify/svelte';
 import { get } from 'svelte/store';
 
 import Button from '$components/ui/button/button.svelte';
-import * as m from '$m';
 import { filter } from '$stores/store';
+
+import * as m from '$m';
 
 let filterAccount = () => {
 	filter.set(!get(filter));

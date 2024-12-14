@@ -5,6 +5,9 @@ import { onMount } from 'svelte';
 import { currentUser } from '$src/stores/modalStore';
 import { user, fetchUser } from '$stores/menu';
 
+import SettingsSections from '../settingsSections/SettingsSections.svelte';
+import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
+
 onMount(() => {
 	fetchUser();
 });
@@ -12,14 +15,8 @@ onMount(() => {
 // const maxLevel = 50;
 </script>
 
-<div class="progressWrapper">
-	<div class="progressTitle">
-		<div class="main_info_wrapper">
-			<p class="widget_title">
-				{$t('settings.basic_info')}
-			</p>
-		</div>
-	</div>
+<SettingsSections>
+	<SettingsTitle title="{'settings.basic_info'}" />
 	<div class="setings">
 		<!-- <div class="setings_item item-w">
 			<div class="item_settings_info">
@@ -92,40 +89,19 @@ onMount(() => {
         </div> -->
 		</div>
 	</div>
-</div>
+</SettingsSections>
 
 <style>
 /* .settings_name {
 	margin-top: 10px;
 	margin-bottom: 10px;
 } */
-.widget_title {
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
+
 .accounts--text {
 	/* margin-top: 20px; */
 	margin-bottom: 20px;
 }
-.progressWrapper {
-	width: 100%;
-	margin: 0 auto;
-	height: fit-content;
-	box-sizing: border-box;
-	margin-top: 10px;
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-	color: white;
-	background: #171b26;
-	border-radius: 8px;
-	padding: 0 20px;
-}
-.progressTitle {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	font-size: 20px;
-}
+
 .setings {
 	display: flex;
 	flex-direction: row;
@@ -250,29 +226,12 @@ onMount(() => {
 	font-size: 20px;
 	color: #f3c055;
 } */
-@media (max-width: 1200px) {
-	.main_info_wrapper .widget_title {
-		margin: 10px 0px 0px 0px;
-	}
-}
 @media (max-width: 1000px) {
 	/* .selected_menu_element,
 	.user_level,
 	.leave_acc_p, */
 	.other_account_wrapper {
 		font-size: 15px;
-	}
-}
-@media (max-width: 768px) {
-	.progressWrapper {
-		padding: 0 15px;
-	}
-	/* .leave_acc_p {
-		font-size: 10px;
-	} */
-	.progressTitle {
-		flex-direction: column;
-		align-items: flex-start;
 	}
 }
 @media (max-height: 800px) {
@@ -299,15 +258,6 @@ onMount(() => {
 	} */
 }
 @media (max-width: 678px) {
-	.progressWrapper {
-		border-radius: 24px;
-		padding-bottom: 2vh;
-		padding-right: 0;
-		padding-left: 0;
-	}
-	.progressTitle {
-		padding-left: 15px;
-	}
 	.setings {
 		padding: 0;
 	}

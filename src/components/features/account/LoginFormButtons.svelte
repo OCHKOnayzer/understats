@@ -3,9 +3,10 @@ import { Dialog } from 'bits-ui';
 import { get } from 'svelte/store';
 
 import Button from '$components/ui/button/button.svelte';
-import * as m from '$m';
 import { accountIsSuccess, accounts, LoginForm } from '$stores/store';
 import { formatDate } from '$utils/utils';
+
+import * as m from '$m';
 
 const handleConnect = async () => {
 	const { login, bookmaker, password } = get(LoginForm);

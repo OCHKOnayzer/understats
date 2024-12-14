@@ -1,10 +1,11 @@
 <script lang="ts">
 import { Dialog } from 'bits-ui';
 
-import * as m from '$m';
 import { accountIsSuccess } from '$src/stores/store';
 
 import Button from '../button/button.svelte';
+
+import * as m from '$m';
 export let title: string;
 export let description: string;
 export let icon: string;

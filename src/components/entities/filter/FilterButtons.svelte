@@ -1,9 +1,10 @@
 <script lang="ts">
 import Button from '$components/ui/button/button.svelte';
-import * as m from '$m';
 
 import type { Writable } from 'svelte/store';
 import type { FilterInputSelectStore, SelectedOption } from '$types/types';
+
+import * as m from '$m';
 
 export let filter: Writable<FilterInputSelectStore>;
 

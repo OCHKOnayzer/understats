@@ -4,6 +4,7 @@ import { onMount } from 'svelte';
 import { Toaster } from 'svelte-french-toast';
 import { waitLocale } from 'svelte-i18n';
 
+import Test from '$src/components/ui/test.svelte';
 import Container from '$components/providers/container/Container.svelte';
 import Menu from '$components/ui/menu/Menu.svelte';
 import Header from '$src/components/ui/header/header.svelte';
@@ -54,7 +55,33 @@ const isProduction = import.meta.env.PROD;
 	</script>
 	<noscript><a href="https://www.livechat.com/chat-with/18920616/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
 	<!-- End of LiveChat code -->
-	
+
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-908VK3V379"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-908VK3V379');
+	</script>
+
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript" >
+		(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+		window.ym(99212043, "init", {
+			clickmap:true,
+			trackLinks:true,
+			accurateTrackBounce:true
+		});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/99212043" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->
 	
 	<!-- prettier-ignore-end -->
 	<!-- eslint-enable -->
@@ -78,7 +105,7 @@ const isProduction = import.meta.env.PROD;
 					<slot />
 				</div>
 			{:else}
-				<p style="color: white; text-align: center; margin-top: 20%;">Loading translations...</p>
+				<Test />
 			{/if}
 		</main>
 
