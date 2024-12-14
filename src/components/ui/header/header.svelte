@@ -96,31 +96,33 @@ onMount(() => {
 	color: white;
 	background: #171b26;
 	border-radius: 8px;
+	width: 100%;
+	overflow: hidden;
 }
 
 .flexConteiner {
-	display: flex;
-	height: 100%;
 	width: 100%;
-	padding: 0 0.05% 0 1%;
+	display: flex;
 	justify-content: space-between;
+	align-items: center;
+	padding: 0 1rem;
+	box-sizing: border-box;
 }
+
 .headerActions {
 	display: none;
 	flex-direction: row;
 	justify-content: space-between;
 	padding-bottom: 3vh;
 }
+
 .profile-container {
 	width: 42px;
 	height: 42px;
 	border-radius: 20px;
 	background-color: #d9d9d9;
 }
-/* .profile-container img{
-	height: 100%;
-	width: 100%;
-} */
+
 .title {
 	display: flex;
 	align-items: center;
@@ -134,6 +136,7 @@ onMount(() => {
 	margin-right: 1%;
 	width: fit-content;
 }
+
 .btnWrapper {
 	width: 40px;
 	display: flex;
@@ -144,6 +147,7 @@ onMount(() => {
 	transition: 400ms;
 	height: 40px;
 }
+
 .btnWrapper:nth-child(1) {
 	width: fit-content;
 }
@@ -152,9 +156,11 @@ onMount(() => {
 	margin-right: 10px;
 	margin-left: 10px;
 }
+
 .btnWrapper:hover {
 	background-color: #282d3b;
 }
+
 .btnWrapper button {
 	height: 100%;
 	width: 100%;
@@ -165,40 +171,48 @@ onMount(() => {
 	justify-content: center;
 	align-items: center;
 }
+
 .headerItem p {
 	font-size: 25px;
 }
+
 .active {
 	border: 1px solid #6660ff;
 	background-color: #6660ff40;
 }
+
 @media screen and (max-height: 800px) {
 	.title p {
 		font-size: 20px;
 	}
 }
+
 @media screen and (max-width: 768px) {
 	.header {
 		padding-bottom: 30px;
 	}
+
 	.flexConteiner {
-		display: flex;
-		flex-direction: column;
-		padding: 0;
+		padding: 0 0.5rem;
 	}
+
 	.headerItem {
 		background-color: transparent;
 	}
+
 	.buttonConteiner {
 		display: none;
 	}
+
 	.headerActions {
 		display: flex;
 	}
+
 	.title {
 		padding-left: 0;
 		width: 100%;
 	}
+
 	.title p {
 		font-size: 36px;
 	}

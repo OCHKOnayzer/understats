@@ -102,12 +102,12 @@ const isProduction = import.meta.env.PROD;
 						<Header />
 					{/if}
 
-						<slot />
-					</div>
-				{:else}
-					<p style="color: white; text-align: center; margin-top: 20%;">Loading translations...</p>
-				{/if}
-			</main>
+					<slot />
+				</div>
+			{:else}
+				<Test />
+			{/if}
+		</main>
 
 		<Toaster />
 	</Container>
@@ -118,19 +118,24 @@ main {
 	min-height: 100vh;
 	height: fit-content;
 	display: flex;
-	gap: 1rem;
 	width: 100%;
-	height: 100%;
+	overflow-x: hidden;
+	position: relative;
 }
+
 .mainContent {
 	position: relative;
-	width: 100vw;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
+	overflow-x: hidden;
+	padding: 0 1rem;
+	box-sizing: border-box;
 }
-/* @media screen and (max-width: 1024px) {
+
+@media screen and (max-width: 768px) {
 	.mainContent {
-		margin-left: 30vw;
+		padding: 0 0.5rem;
 	}
-} */
+}
 </style>

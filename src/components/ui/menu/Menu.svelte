@@ -51,6 +51,7 @@ window.addEventListener('resize', () => {
 	top: 0;
 	left: 0;
 	width: 15vw;
+	z-index: 10000;
 	height: 100vh;
 }
 

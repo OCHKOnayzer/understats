@@ -28,101 +28,116 @@
 	$: isLoading = ($query.isLoading || $profileQuery.isLoading) && isAuthenticated;
 	$: accounts = isAuthenticated ? $query.data : [];
 </script>
-	<Table.Root class="w-full caption-bottom text-[12px] md:max-w-[calc(1248px-15vw)] mt-3">
-		<Table.Header class="bg-[#31384A]">
-			<Table.Row class="border-none">
-				{#each headers as header}
-					<Table.Head class="sm:h-5">
-						<div class="flex items-center gap-1">
-							<img
-								src="icons/bk/table.svg"
-								alt="table" />
-							<span class="whitespace-pre-line xl:text-[10px] sm:text-[7px]">{header.title}</span>
-						</div>
-					</Table.Head>
-				{/each}
-			</Table.Row>
-		</Table.Header>
-		{#if !isAuthenticated}
-			<Table.Body>
-				<Table.Row>
-					<Table.Cell
-						colspan="{10}"
-						class="border-none">
-						<div class="flex h-[90vh] flex-col items-center justify-center">
-							<img
-								class="mb-2"
-								src="/icons/accounts/file.svg"
-								alt="" />
-							<h2 class="w-[260px] text-center text-xl text-[#718096]">
-								{$t('accounts.noAuth')}
-							</h2>
-						</div>
-					</Table.Cell>
-				</Table.Row>
-			</Table.Body>
-		{:else if isLoading}
-			<Table.Body>
-				<Table.Row>
-					<Table.Cell
-						colspan="{10}"
-						class="border-none">
-						<div class="flex h-[90vh] flex-col items-center justify-center">
-							<Spinner
-								color="#718096"
-								size="{32}" />
-							<h2 class="w-[260px] text-center text-xl text-[#718096]">{$t('accounts.loading')}</h2>
-						</div>
-					</Table.Cell>
-				</Table.Row>
-			</Table.Body>
-		{:else if accounts?.length}
-			<Table.Body>
-				{#each accounts as account, index (`${account.siteName}-${account.extendedId}-${index}`)}
-					<Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'} active:bg-[#3D3A8540]`)}">
-						<Table.Cell>{account.siteName || 'N/A'}</Table.Cell>
-						<Table.Cell>{account.extendedId || 'N/A'}</Table.Cell>
-						<Table.Cell>
-							{account.login ? 'Подключен' : 'Не подключен'}
-						</Table.Cell>
-						<Table.Cell>{account.balance}</Table.Cell>
-						<Table.Cell>{account.fullName}</Table.Cell>
-						<Table.Cell>{account.email}</Table.Cell>
-						<Table.Cell>{account.phone}</Table.Cell>
-						<Table.Cell>
-							{account.registrationDate}
-						</Table.Cell>
-						<Table.Cell>lastBet</Table.Cell>
-						<Table.Cell>{account.currency}</Table.Cell>
-					</Table.Row>
-				{/each}
-			</Table.Body>
-		{:else}
-			<Table.Body>
-				<Table.Row>
-					<Table.Cell
-						colspan="{10}"
-						class="border-none">
-						<div class="flex h-[90vh] flex-col items-center justify-center">
-							<img
-								class="mb-2"
-								src="/icons/accounts/file.svg"
-								alt="" />
-							<h2 class="w-[260px] text-center text-xl text-[#718096]">
-								{$t('accounts.noAccounts')}
-							</h2>
-						</div>
-					</Table.Cell>
-				</Table.Row>
-			</Table.Body>
-		{/if}
-	</Table.Root>
 
+{#if !isAuthenticated}
+    <div class="message-container">
+        <img
+            class="mb-2"
+            src="/icons/accounts/file.svg"
+            alt="" />
+        <h2 class="w-[260px] text-center text-xl text-[#718096]">
+            {$t('accounts.noAuth')}
+        </h2>
+    </div>
+{:else if isLoading}
+    <div class="message-container">
+        <Spinner
+            color="#718096"
+            size="{32}" />
+        <h2 class="w-[260px] text-center text-xl text-[#718096]">{$t('accounts.loading')}</h2>
+    </div>
+{:else if accounts?.length}
+    <div class="table-wrapper">
+        <div class="table-container">
+            <Table.Root class="w-full caption-bottom text-[12px] mt-3">
+                <Table.Header class="bg-[#31384A] sticky top-0">
+                    <Table.Row class="border-none">
+                        {#each headers as header}
+                            <Table.Head class="sm:h-5 whitespace-nowrap min-w-[120px]">
+                                <div class="flex items-center gap-1">
+                                    <img
+                                        src="icons/bk/table.svg"
+                                        alt="table" />
+                                    <span class="xl:text-[10px] sm:text-[8px]">{header.title}</span>
+                                </div>
+                            </Table.Head>
+                        {/each}
+                    </Table.Row>
+                </Table.Header>
+                <Table.Body>
+                    {#each accounts as account, index (`${account.siteName}-${account.extendedId}-${index}`)}
+                        <Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'} active:bg-[#3D3A8540]`)}">
+                            <Table.Cell>{account.siteName || 'N/A'}</Table.Cell>
+                            <Table.Cell>{account.extendedId || 'N/A'}</Table.Cell>
+                            <Table.Cell>
+                                {account.login ? 'Подключен' : 'Не подключен'}
+                            </Table.Cell>
+                            <Table.Cell>{account.balance}</Table.Cell>
+                            <Table.Cell>{account.fullName}</Table.Cell>
+                            <Table.Cell>{account.email}</Table.Cell>
+                            <Table.Cell>{account.phone}</Table.Cell>
+                            <Table.Cell>
+                                {account.registrationDate}
+                            </Table.Cell>
+                            <Table.Cell>lastBet</Table.Cell>
+                            <Table.Cell>{account.currency}</Table.Cell>
+                        </Table.Row>
+                    {/each}
+                </Table.Body>
+            </Table.Root>
+        </div>
+    </div>
+{:else}
+    <div class="message-container">
+        <img
+            class="mb-2"
+            src="/icons/accounts/file.svg"
+            alt="" />
+        <h2 class="w-[260px] text-center text-xl text-[#718096]">
+            {$t('accounts.noAccounts')}
+        </h2>
+    </div>
+{/if}
 
 <style>
-	@media (max-width: 1024px) {
-		.hello {
-			max-width: 1024px;
-		}
-	}
+.message-container {
+    display: flex;
+    height: 90vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: #171B26;
+    border-radius: 8px;
+}
+
+.table-wrapper {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    background: #171B26;
+    border-radius: 8px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    box-sizing: border-box;
+}
+
+:global(.table-container table) {
+    width: 100%;
+    min-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+    .table-container {
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+        width: calc(100% + 1rem);
+    }
+}
 </style>
