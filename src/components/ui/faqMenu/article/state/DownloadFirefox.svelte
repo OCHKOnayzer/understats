@@ -1,11 +1,10 @@
 <script>
-import { t } from 'svelte-i18n';
-
+import ArticalTitle from '../articleComponents/articalTitle.svelte';
 import ArticleSection from '../articleComponents/articleSection.svelte';
 </script>
 
 <div class="article_wrapper">
-	<p>{$t('faq.ext_firefox_tittle')}</p>
+	<ArticalTitle title="{'faq.ext_firefox_tittle'}" />
 	<ArticleSection text="faq.create_acc_section_1" />
 	<ArticleSection text="faq.create_acc_section_2" />
 </div>
@@ -13,9 +12,5 @@ import ArticleSection from '../articleComponents/articleSection.svelte';
 <style>
 .article_wrapper {
 	font-size: 20px;
-}
-.article_wrapper p {
-	padding-top: 20px;
-	padding-bottom: 10px;
 }
 </style>

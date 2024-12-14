@@ -2,6 +2,8 @@
 import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 
+import { extensionInfo } from '$src/stores/extensionStore';
+
 import DownloadExt from '../button/downloadExt/DownloadExt.svelte';
 import FaqOpen from '../button/faqOpen/FaqOpen.svelte';
 
@@ -63,7 +65,7 @@ const browserArr: BrowserItem[] = [
 			</div>
 			<div class="button-wrapper">
 				{#if isMobile}
-					<Stats />
+					<!-- <Stats /> -->
 				{:else}
 					<div class="button-group">
 						<DownloadExt />
@@ -96,8 +98,8 @@ const browserArr: BrowserItem[] = [
 				<div class="extensions-item">
 					<div>
 						<span class="extensions-title">{$t('extensions.ver')}:</span>
-						<span class="extensions-content">1.34</span>
-						<span class="extensions-title">(12.11.2024)</span>
+						<span class="extensions-content">{$extensionInfo.version}</span>
+						<span class="extensions-title">({$extensionInfo.lastUpdatedDate})</span>
 					</div>
 				</div>
 				<div class="extensions-item">

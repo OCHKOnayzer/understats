@@ -19,10 +19,10 @@ onMount(() => {
 
 <div class="section_title">
 	<div class="section_item_container">
-		{$t('extensions.ext')}
-		{#if !isMobile}
+		<!-- {$t('extensions.ext')} -->
+		<!-- {#if !isMobile}
 			<Stats />
-		{/if}
+		{/if} -->
 	</div>
 </div>
 

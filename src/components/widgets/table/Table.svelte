@@ -28,7 +28,7 @@
 	$: isLoading = ($query.isLoading || $profileQuery.isLoading) && isAuthenticated;
 	$: accounts = isAuthenticated ? $query.data : [];
 </script>
-	<Table.Root class="w-full caption-bottom text-[12px] mt-3">
+	<Table.Root class="w-full caption-bottom text-[12px] md:max-w-[calc(1248px-15vw)] mt-3">
 		<Table.Header class="bg-[#31384A]">
 			<Table.Row class="border-none">
 				{#each headers as header}

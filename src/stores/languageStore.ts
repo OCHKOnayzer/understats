@@ -1,6 +1,6 @@
 import { selectedLang } from './HeaderStores';
 
-const availableLanguages = ['en', 'es', 'ru', 'pt', 'zh', 'fr', 'it'];
+const availableLanguages = ['en', 'es', 'ru', 'pt', 'de', 'fr', 'it'];
 
 const getSystemLanguage = () => {
 	if (typeof window === 'undefined') {

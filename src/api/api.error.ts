@@ -1,4 +1,5 @@
 import axios, { AxiosError } from 'axios';
+import { t } from 'svelte-i18n';
 
 import type { IApiError } from '$src/types/types';
 
