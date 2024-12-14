@@ -18,10 +18,14 @@ import '../app.css';
 
 let isLocaleReady = false;
 
-waitLocale().then(() => {
-	isLocaleReady = true;
+onMount(async () => {
+	try {
+		await waitLocale();
+		isLocaleReady = true;
+	} catch (error) {
+		console.error("Ошибка загрузки локали:", error);
+	}
 });
-
 onMount(() => {
 	if ($isModalOpen) document.body.style.overflow = 'hidden';
 });
