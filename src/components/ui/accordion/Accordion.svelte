@@ -1,4 +1,5 @@
 <script lang="ts">
+// eslint-disable-next-line import/order
 import Icon from '@iconify/svelte';
 
 // eslint-disable-next-line import/no-duplicates

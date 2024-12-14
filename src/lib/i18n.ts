@@ -3,12 +3,13 @@ import { init, locale, register, waitLocale } from 'svelte-i18n';
 import { getAppLanguage, setAppLanguage } from '$src/stores/languageStore';
 
 register('en', () => import('./locales/en.json'));
-// register('es', () => import('./locales/es.json'));
+register('es', () => import('./locales/es.json'));
 register('ru', () => import('./locales/ru.json'));
-// register('pt', () => import('./locales/pt.json'));
+register('pt', () => import('./locales/pt.json'));
 // register('zh', () => import('./locales/zh.json'));
-// register('fr', () => import('./locales/fr.json'));
-// register('it', () => import('./locales/it.json'));
+register('fr', () => import('./locales/fr.json'));
+register('it', () => import('./locales/it.json'));
+register('de', () => import('./locales/de.json'));
 
 const userLanguage = getAppLanguage();
 setAppLanguage(userLanguage);

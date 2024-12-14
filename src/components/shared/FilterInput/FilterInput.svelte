@@ -3,11 +3,12 @@ import Icon from '@iconify/svelte';
 
 import Input from '$components/ui/input/input.svelte';
 import * as Select from '$components/ui/select';
-import * as m from '$m';
 import { clearInput } from '$utils/functions/clearInputs';
 import { onSelectedChange } from '$utils/functions/onSelectedChange';
 
 import type { SelectedType } from '$src/types/types';
+
+import * as m from '$m';
 
 interface Props {
 	placeholder: string;
