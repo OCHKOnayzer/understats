@@ -82,9 +82,9 @@
 		padding-top: 10px;
 		width: 100%;
 		margin: 0 auto;
-		margin-bottom: 20px;
+		margin-bottom: 50px;
 		position: relative;
-		z-index: 9998;
+		z-index: 1;
 	}
 	
 	.headerItem {

@@ -180,7 +180,7 @@ onMount(() => {
 				on:tabChange="{handleTabChange}" />
 		</div>
 
-		<div class="">
+		<div>
 			<Tabs
 				tabs="{subTabs}"
 				bind:activeTab="{activeSubTab}"
@@ -197,7 +197,9 @@ onMount(() => {
 				{error}
 			</div>
 		{:else if aggregatedData}
-			<Table.Root>
+			<div class="w-full overflow-hidden">
+				<div class="overflow-x-auto relative w-full">
+			<Table.Root class="w-full">
 				<Table.Header class="bg-[#31384A] text-[12px]">
 					<Table.Row>
 						{#each aggregatedData.columns as column}
@@ -218,7 +220,7 @@ onMount(() => {
 							class="border-[#262C3D]"
 							on:click="{() => handleRowClick(row)}">
 							{#each aggregatedData.columns as column}
-								<Table.Cell>
+								<Table.Cell class="whitespace-nowrap">
 									{row[column]}
 								</Table.Cell>
 							{/each}
@@ -226,6 +228,8 @@ onMount(() => {
 					{/each}
 				</Table.Body>
 			</Table.Root>
+		</div>
+	</div>
 		{:else}
 			<div class="p-4 text-center"> Нет данных </div>
 		{/if}
