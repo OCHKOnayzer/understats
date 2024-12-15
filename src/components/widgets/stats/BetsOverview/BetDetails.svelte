@@ -1,8 +1,8 @@
 <script lang="ts">
 import { onMount } from 'svelte';
+import { Loader } from 'lucide-svelte';
 
 import * as Table from '$components/ui/table';
-import { Loader } from 'lucide-svelte';
 
 let { betId }: { betId: string } = $props();
 

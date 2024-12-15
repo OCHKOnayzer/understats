@@ -198,38 +198,38 @@ onMount(() => {
 			</div>
 		{:else if aggregatedData}
 			<div class="w-full overflow-hidden">
-				<div class="overflow-x-auto relative w-full">
-			<Table.Root class="w-full">
-				<Table.Header class="bg-[#31384A] text-[12px]">
-					<Table.Row>
-						{#each aggregatedData.columns as column}
-							<Table.Head class="border-[#262C3D]">
-								<div class="flex items-center gap-1">
-									<img
-										src="icons/bk/table.svg"
-										alt="table" />
-									<span class="whitespace-pre-line">{column}</span>
-								</div>
-							</Table.Head>
-						{/each}
-					</Table.Row>
-				</Table.Header>
-				<Table.Body class="text-[14px]">
-					{#each aggregatedData.data as row}
-						<Table.Row
-							class="border-[#262C3D]"
-							on:click="{() => handleRowClick(row)}">
-							{#each aggregatedData.columns as column}
-								<Table.Cell class="whitespace-nowrap">
-									{row[column]}
-								</Table.Cell>
+				<div class="relative w-full overflow-x-auto">
+					<Table.Root class="w-full">
+						<Table.Header class="bg-[#31384A] text-[12px]">
+							<Table.Row>
+								{#each aggregatedData.columns as column}
+									<Table.Head class="border-[#262C3D]">
+										<div class="flex items-center gap-1">
+											<img
+												src="icons/bk/table.svg"
+												alt="table" />
+											<span class="whitespace-pre-line">{column}</span>
+										</div>
+									</Table.Head>
+								{/each}
+							</Table.Row>
+						</Table.Header>
+						<Table.Body class="text-[14px]">
+							{#each aggregatedData.data as row}
+								<Table.Row
+									class="border-[#262C3D]"
+									on:click="{() => handleRowClick(row)}">
+									{#each aggregatedData.columns as column}
+										<Table.Cell class="whitespace-nowrap">
+											{row[column]}
+										</Table.Cell>
+									{/each}
+								</Table.Row>
 							{/each}
-						</Table.Row>
-					{/each}
-				</Table.Body>
-			</Table.Root>
-		</div>
-	</div>
+						</Table.Body>
+					</Table.Root>
+				</div>
+			</div>
 		{:else}
 			<div class="p-4 text-center"> Нет данных </div>
 		{/if}

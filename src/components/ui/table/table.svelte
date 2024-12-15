@@ -9,8 +9,8 @@ let className: $$Props['class'] = undefined;
 export { className as class };
 </script>
 
-	<table
-		class="{cn('w-full caption-bottom text-[12px]', className)}"
-		{...$$restProps}>
-		<slot />
-	</table>
+<table
+	class="{cn('w-full caption-bottom text-[12px]', className)}"
+	{...$$restProps}>
+	<slot />
+</table>
