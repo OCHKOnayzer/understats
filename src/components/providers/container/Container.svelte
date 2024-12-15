@@ -15,6 +15,7 @@
 @media (max-width: 678px) {
 	.container {
 		padding-left: 1rem;
+		padding-right: 1rem;
 	}
 }
 </style>

@@ -53,12 +53,15 @@
                 <Table.Header class="bg-[#31384A] sticky top-0">
                     <Table.Row class="border-none">
                         {#each headers as header}
-                            <Table.Head class="sm:h-5 whitespace-nowrap min-w-[120px]">
-                                <div class="flex items-center gap-1">
+                            <Table.Head class="xl:h-10 md:h-8 sm:h-7 whitespace-nowrap max-w-[150px] truncate">
+                                <div class="flex items-center gap-1 overflow-hidden">
                                     <img
+                                        class="xl:w-4 xl:h-4 md:w-2 md:h-2 sm:w-2 sm:h-2 flex-shrink-0"
                                         src="icons/bk/table.svg"
                                         alt="table" />
-                                    <span class="xl:text-[10px] sm:text-[8px]">{header.title}</span>
+                                    <span class="xl:text-[14px] md:text-[10px] sm:text-[9px] truncate overflow-hidden">
+                                        {header.title}
+                                    </span>
                                 </div>
                             </Table.Head>
                         {/each}
@@ -66,7 +69,7 @@
                 </Table.Header>
                 <Table.Body>
                     {#each accounts as account, index (`${account.siteName}-${account.extendedId}-${index}`)}
-                        <Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'} active:bg-[#3D3A8540]`)}">
+                        <Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'} active:bg-[#3D3A8540] text-[20px]`)}">
                             <Table.Cell>{account.siteName || 'N/A'}</Table.Cell>
                             <Table.Cell>{account.extendedId || 'N/A'}</Table.Cell>
                             <Table.Cell>
@@ -100,44 +103,44 @@
 {/if}
 
 <style>
-.message-container {
-    display: flex;
-    height: 90vh;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    background: #171B26;
-    border-radius: 8px;
-}
-
-.table-wrapper {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    box-sizing: border-box;
-    background: #171B26;
-    border-radius: 8px;
-}
-
-.table-container {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    position: relative;
-    box-sizing: border-box;
-}
-
-:global(.table-container table) {
-    width: 100%;
-    min-width: 800px;
-}
-
-@media screen and (max-width: 768px) {
-    .table-container {
-        margin-left: -0.5rem;
-        margin-right: -0.5rem;
-        width: calc(100% + 1rem);
+    .message-container {
+        display: flex;
+        height: 90vh;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        background: #171B26;
+        font-weight: 300;
+        font-family: 'Manrope';
     }
-}
-</style>
+    
+    .table-wrapper {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        box-sizing: border-box;
+        background: #171B26;
+    }
+    
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        position: relative;
+        box-sizing: border-box;
+    }
+    
+    :global(.table-container table) {
+        width: 100%;
+        table-layout: auto;
+    }
+    
+    :global(.table-container th) {
+        min-width: 0;
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    </style>
