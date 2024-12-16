@@ -5,7 +5,6 @@ import FilterForm from '$components/entities/filter/FilterForm.svelte';
 import BackgroundContainer from '$components/providers/backgroundContainer/BackgroundContainer.svelte';
 import { filter } from '$stores/store';
 
-import * as m from '$m';
 
 $: filterValue = $filter;
 </script>
@@ -18,7 +17,7 @@ $: filterValue = $filter;
 			<section
 				transition:slide="{{ duration: 300 }}"
 				class="w-full">
-				<h2 class="mb-5 text-[24px] font-medium text-white">{m.filterAccounts()}</h2>
+				<h2 class="mb-5 text-[24px] font-medium text-white">.</h2>
 				<FilterForm />
 			</section>
 		</BackgroundContainer>

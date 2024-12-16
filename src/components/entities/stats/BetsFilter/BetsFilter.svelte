@@ -11,6 +11,7 @@ import { filterStore } from '$src/stores/filterStore';
 
 import { fetchFilteredData } from '../api/api';
 import BetsSelectFilter from '../BetsSelectFilter/BetsSelectFilter.svelte';
+import { t } from 'svelte-i18n';
 
 let isOpen = false;
 let isLoading = false;
@@ -85,13 +86,13 @@ async function applyFilters() {
 
 		<FilterTabs />
 
-		<Accordion title="{'Результат'}">
+		<Accordion title={$t('filter.accordion.results')}>
 			<BetFilterResults />
 		</Accordion>
 
 		<BetsSelectFilter />
 
-		<Accordion title="{'Другое'}">
+		<Accordion title={$t('filter.accordion.other')}>
 			<BetFilters />
 		</Accordion>
 

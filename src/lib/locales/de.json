@@ -143,5 +143,12 @@
 		"ext_opera": "Extension for Opera",
 		"ext_opera_tittle": "How to Install the Extension in Opera",
 		"description_image": "Browser Settings"
+	},
+	"filter": {
+		"button": "Filter",
+		"tabs.halfYear": "Half a year",
+		"tabs.week": "Week",
+		"tabs.yesterday": "Yesterday",
+		"tabs.today": "Today"
 	}
 }

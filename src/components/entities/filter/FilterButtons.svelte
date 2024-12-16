@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 import Button from '$components/ui/button/button.svelte';
 
 import type { Writable } from 'svelte/store';
@@ -25,4 +25,4 @@ function clearFilters() {
 	<Button
 		variant="outlineRoundedWhite"
 		on:click="{clearFilters}">{m.reset()}</Button>
-</div>
+</div> -->

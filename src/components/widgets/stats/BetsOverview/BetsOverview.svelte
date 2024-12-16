@@ -169,7 +169,7 @@ onMount(() => {
 </script>
 
 <section class="relative mt-[32px]">
-	{#if showDetails && selectedBetId}
+	<!-- {#if showDetails && selectedBetId}
 		<BetDetails betId="{selectedBetId}" />
 	{:else}
 		<div class="mb-[32px]">
@@ -186,7 +186,7 @@ onMount(() => {
 				bind:activeTab="{activeSubTab}"
 				variant="pills"
 				on:tabChange="{handleSubTabChange}" />
-		</div>
+		</div> -->
 
 		{#if isLoading}
 			<div class="flex h-40 items-center justify-center">
@@ -233,5 +233,4 @@ onMount(() => {
 		{:else}
 			<div class="p-4 text-center"> Нет данных </div>
 		{/if}
-	{/if}
 </section>

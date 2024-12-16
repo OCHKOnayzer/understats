@@ -4,6 +4,7 @@ import { derived } from 'svelte/store';
 import { filterStore } from '$src/stores/filterStore';
 import { ITEMS_PER_PAGE_OPTIONS, TIME_RANGES } from '$src/utils/constants/constants';
 import { generatePageNumbers } from '$src/utils/functions/generatePageNumbers';
+import { t } from 'svelte-i18n';
 
 const { totalPages = 6 } = $props();
 
@@ -22,7 +23,7 @@ const canGoPrev = derived([filterStore], ([$filterStore]) => $filterStore.pagina
 					class="time-range-button"
 					class:active="{$filterStore.pagination.timeRange === range.value}"
 					onclick="{() => filterStore.setTimeRange(range.value)}">
-					{range.label}
+					{$t(range.label)}
 				</button>
 			{/each}
 		</div>

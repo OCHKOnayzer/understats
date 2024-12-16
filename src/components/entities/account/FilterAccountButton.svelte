@@ -5,8 +5,6 @@ import { get } from 'svelte/store';
 import Button from '$components/ui/button/button.svelte';
 import { filter } from '$stores/store';
 
-import * as m from '$m';
-
 let filterAccount = () => {
 	filter.set(!get(filter));
 };
@@ -24,7 +22,7 @@ $: filterValue = $filter;
 		font-size="28" />
 
 	<h2 class="text-[16px]">
-		{m.filter()}
+		filterAccountButton
 		{#if filterValue}
 			ON
 		{:else}

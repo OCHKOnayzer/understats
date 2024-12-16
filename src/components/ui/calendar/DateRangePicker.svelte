@@ -38,9 +38,9 @@ function toggleCalendar() {
 
 <div class="calendar-wrapper">
 	<CalendarButton
-		selectedDateRange="{selectedDateRange}"
-		showCalendar="{showCalendar}"
-		onToggle="{toggleCalendar}" />
+		selectedDateRange={selectedDateRange}
+		showCalendar={showCalendar}
+		onToggle={toggleCalendar} />
 
 	{#if showCalendar}
 		<div
@@ -51,9 +51,9 @@ function toggleCalendar() {
 				opacity: 0
 			}}">
 			<CalendarDropdown
-				currentDate="{currentDate}"
-				selectedDates="{selectedDates}"
-				onDateSelect="{onDateSelect}" />
+				currentDate={currentDate}
+				selectedDates={selectedDates}
+				onDateSelect={onDateSelect} />
 		</div>
 	{/if}
 </div>

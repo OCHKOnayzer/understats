@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 import Icon from '@iconify/svelte';
 
 import Input from '$components/ui/input/input.svelte';
@@ -19,7 +19,7 @@ interface Props {
 	check: any;
 }
 
-let { placeholder, name, selected, value, variant, check } = $props();
+let { placeholder, name, selected, value, variant, check } : Props = $props();
 </script>
 
 <div class="flex flex-col justify-between">
@@ -76,4 +76,4 @@ let { placeholder, name, selected, value, variant, check } = $props();
 			{/if}
 		{/if}
 	</div>
-</div>
+</div> -->

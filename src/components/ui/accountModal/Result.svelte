@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 import { Dialog } from 'bits-ui';
 
 import { accountIsSuccess } from '$src/stores/store';
@@ -25,4 +25,4 @@ export let icon: string;
 	<Dialog.Close>
 		<Button variant="outlineRoundedWhite">{$accountIsSuccess === null ? m.cancel() : m.accountsBack()}</Button>
 	</Dialog.Close>
-</div>
+</div> -->

@@ -2,9 +2,10 @@
 import Accordion from '$src/components/ui/accordion/Accordion.svelte';
 import SportsList from '$src/components/ui/sportsList/SportsList.svelte';
 import { accountsList, accountsListMain, bookmakersList, bookmakersListMain, filterStore, sportList, sportListMain } from '$src/stores/filterStore';
+import { t } from 'svelte-i18n';
 </script>
 
-<Accordion title="{'Спорт'}">
+<Accordion title="{$t('filter.accordion.sports')}">
 	<SportsList
 		setFilter="{filterStore.setSelectedSports}"
 		selectedFilter="{filterStore.toggleSport}"
@@ -13,7 +14,7 @@ import { accountsList, accountsListMain, bookmakersList, bookmakersListMain, fil
 		mainItemsStore="{sportListMain}" />
 </Accordion>
 
-<Accordion title="{'Букмекеры'}">
+<Accordion title="{$t('filter.accordion.bookmakers')}">
 	<SportsList
 		setFilter="{filterStore.setSelectedBookmakers}"
 		selectedFilter="{filterStore.toggleBookmaker}"
@@ -22,7 +23,7 @@ import { accountsList, accountsListMain, bookmakersList, bookmakersListMain, fil
 		mainItemsStore="{bookmakersListMain}" />
 </Accordion>
 
-<Accordion title="{'Аккаунты'}">
+<Accordion title="{$t('filter.accordion.accounts')}">
 	<SportsList
 		setFilter="{filterStore.setSelectedAccounts}"
 		selectedFilter="{filterStore.toggleAccount}"
@@ -32,7 +33,7 @@ import { accountsList, accountsListMain, bookmakersList, bookmakersListMain, fil
 </Accordion>
 
 <!--
-<Accordion title="{'Команды'}">
+<Accordion title="{$t('filter.accordion.teams')}">
 	<SportsList
 		setFilter="{filterStore.setSelectedComands}"
 		selectedFilter="{filterStore.toggleComand}"
@@ -41,7 +42,7 @@ import { accountsList, accountsListMain, bookmakersList, bookmakersListMain, fil
 		mainItemsStore="{comandListMain}" />
 </Accordion>
 
-<Accordion title="{'Турниры'}">
+<Accordion title="{$t('filter.accordion.leagues')}">
 	<SportsList
 		setFilter="{filterStore.setSelectedTours}"
 		selectedFilter="{filterStore.toggleTour}"
