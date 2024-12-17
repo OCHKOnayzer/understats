@@ -4,11 +4,11 @@ import { onMount } from 'svelte';
 import { Toaster } from 'svelte-french-toast';
 import { waitLocale } from 'svelte-i18n';
 
-import Test from '$src/components/ui/test.svelte';
 import Container from '$components/providers/container/Container.svelte';
 import Menu from '$components/ui/menu/Menu.svelte';
 import Header from '$src/components/ui/header/header.svelte';
 import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
+import Test from '$src/components/ui/test.svelte';
 import { isModalOpen } from '$src/stores/modalStore';
 import '$src/styles/fonts.css';
 
@@ -30,7 +30,6 @@ onMount(() => {
 	if ($isModalOpen) document.body.style.overflow = 'hidden';
 });
 
-const routesWithoutHeader = ['/stats', '/'];
 const routesWithoutMenu = ['/'];
 
 const queryClient = new QueryClient({
@@ -91,6 +90,7 @@ const isProduction = import.meta.env.PROD;
 	<!-- eslint-enable -->
 {/if}
 
+
 <QueryClientProvider client="{queryClient}">
 	<Container>
 		<main>
@@ -102,9 +102,7 @@ const isProduction = import.meta.env.PROD;
 					<AuthModal />
 				{/if}
 				<div class="mainContent">
-					{#if !routesWithoutHeader.includes($page.url.pathname)}
-						<Header />
-					{/if}
+					<Header />
 
 					<slot />
 				</div>
@@ -122,19 +120,24 @@ main {
 	min-height: 100vh;
 	height: fit-content;
 	display: flex;
-	gap: 1rem;
 	width: 100%;
-	height: 100%;
+	overflow-x: hidden;
+	position: relative;
 }
+
 .mainContent {
 	position: relative;
-	width: 100vw;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
+	overflow-x: hidden;
+	padding: 0 1rem;
+	box-sizing: border-box;
 }
-/* @media screen and (max-width: 1024px) {
+
+@media screen and (max-width: 768px) {
 	.mainContent {
-		margin-left: 30vw;
+		padding: 0 0.5rem;
 	}
-} */
+}
 </style>

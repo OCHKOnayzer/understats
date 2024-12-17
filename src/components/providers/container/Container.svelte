@@ -8,13 +8,14 @@
 <style>
 .container {
 	max-width: 100%;
-	padding-right: 1rem;
+	padding-right: 0;
 	padding-left: 0;
 	background-color: #0d111d;
 }
-@media (max-width: 678px) {
+/* @media (max-width: 678px) {
 	.container {
 		padding-left: 1rem;
+		padding-right: 1rem;
 	}
-}
+} */
 </style>

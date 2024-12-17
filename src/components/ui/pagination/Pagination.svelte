@@ -1,298 +1,186 @@
 <script lang="ts">
+import { derived } from 'svelte/store';
+
 import { filterStore } from '$src/stores/filterStore';
+import { ITEMS_PER_PAGE_OPTIONS, TIME_RANGES } from '$src/utils/constants/constants';
+import { generatePageNumbers } from '$src/utils/functions/generatePageNumbers';
+import { t } from 'svelte-i18n';
 
-const timeRanges = [
-	{ value: 'halfYear', label: 'Полгода' },
-	{ value: '3months', label: '3 месяца' },
-	{ value: 'month', label: 'Месяц' },
-	{ value: 'week', label: 'Неделя' },
-	{ value: '3days', label: '3 дня' }
-] as const;
+const { totalPages = 6 } = $props();
 
-const itemsPerPageOptions = [10, 20, 30, 50];
+const pageNumbers = derived([filterStore], ([$filterStore]) => generatePageNumbers($filterStore.pagination.currentPage, totalPages));
 
-let totalPages = 6;
+const canGoNext = derived([filterStore], ([$filterStore]) => $filterStore.pagination.currentPage < totalPages);
 
-function goToPage(page: number) {
-	if (page >= 1 && page <= totalPages) {
-		filterStore.setPage(page);
-	}
-}
-
-function getPageNumbers() {
-	const current = $filterStore.pagination.currentPage;
-	const pages = [];
-
-	if (totalPages <= 7) {
-		for (let i = 1; i <= totalPages; i++) {
-			pages.push(i);
-		}
-	} else {
-		pages.push(1);
-
-		if (current > 3) {
-			pages.push('...');
-		}
-
-		let start = Math.max(2, current - 1);
-		let end = Math.min(totalPages - 1, current + 1);
-
-		if (current <= 3) {
-			end = 4;
-		}
-		if (current >= totalPages - 2) {
-			start = totalPages - 3;
-		}
-
-		for (let i = start; i <= end; i++) {
-			pages.push(i);
-		}
-
-		if (current < totalPages - 2) {
-			pages.push('...');
-		}
-
-		pages.push(totalPages);
-	}
-
-	return pages;
-}
-
-$: pages = getPageNumbers();
-$: showNext = $filterStore.pagination.currentPage < totalPages;
-$: showPrev = $filterStore.pagination.currentPage > 1;
+const canGoPrev = derived([filterStore], ([$filterStore]) => $filterStore.pagination.currentPage > 1);
 </script>
 
-<div class="pagination-wrapper">
-	<div class="time-range-buttons">
-		{#each timeRanges as range}
-			<button
-				class="time-range-btn"
-				class:active="{$filterStore.pagination.timeRange === range.value}"
-				on:click="{() => filterStore.setTimeRange(range.value)}">
-				{range.label}
-			</button>
-		{/each}
-	</div>
-
-	<div class="pagination-controls">
-		<div class="items-per-page">
-			<span class="label">Показать: {$filterStore.pagination.itemsPerPage}</span>
-			<div class="dropdown">
-				<select
-					value="{$filterStore.pagination.itemsPerPage}"
-					on:change="{(e) => filterStore.setItemsPerPage(parseInt(e.currentTarget.value))}">
-					{#each itemsPerPageOptions as option}
-						<option value="{option}">{option}</option>
-					{/each}
-				</select>
-				<svg
-					class="arrow-icon"
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round">
-					<path d="M6 9l6 6 6-6"></path>
-				</svg>
-			</div>
+<div class="pagination-container">
+	<div class="pagination-content">
+		<div class="time-range-section">
+			{#each TIME_RANGES as range}
+				<button
+					class="time-range-button"
+					class:active="{$filterStore.pagination.timeRange === range.value}"
+					onclick="{() => filterStore.setTimeRange(range.value)}">
+					{$t(range.label)}
+				</button>
+			{/each}
 		</div>
 
-		<div class="page-buttons">
-			<button
-				class="page-btn prev"
-				on:click="{() => goToPage($filterStore.pagination.currentPage - 1)}"
-				aria-label="Previous page"
-				disabled="{!showPrev}">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round">
-					<path d="M15 18l-6-6 6-6"></path>
-				</svg>
-			</button>
+		<div class="pagination-controls">
+			<div class="items-per-page-selector">
+				<span class="items-per-page-label">Показать:</span>
+				<div class="select-wrapper">
+					<select
+						value="{$filterStore.pagination.itemsPerPage}"
+						onchange="{(e) => filterStore.setItemsPerPage(parseInt(e.currentTarget.value))}">
+						{#each ITEMS_PER_PAGE_OPTIONS as option}
+							<option value="{option}">{option}</option>
+						{/each}
+					</select>
+				</div>
+			</div>
 
-			{#each pages as page}
-				{#if page === '...'}
-					<span class="page-dots">...</span>
-				{:else}
-					<button
-						class="page-btn"
-						class:active="{$filterStore.pagination.currentPage === page}"
-						on:click="{() => goToPage(page)}">
-						{page}
-					</button>
-				{/if}
-			{/each}
+			<div class="page-navigation">
+				<button
+					class="nav-button prev-button"
+					onclick="{() => filterStore.setPage($filterStore.pagination.currentPage - 1)}"
+					aria-label="Предыдущая страница"
+					disabled="{!$canGoPrev}">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24">
+						<path d="M15 18l-6-6 6-6"></path>
+					</svg>
+				</button>
 
-			<button
-				class="page-btn next"
-				on:click="{() => goToPage($filterStore.pagination.currentPage + 1)}"
-				aria-label="Next page"
-				disabled="{!showNext}">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round">
-					<path d="M9 18l6-6-6-6"></path>
-				</svg>
-			</button>
+				<div class="page-numbers">
+					{#each $pageNumbers as page}
+						{#if page === '...'}
+							<span class="page-ellipsis">...</span>
+						{:else}
+							<button
+								class="page-number"
+								class:active="{$filterStore.pagination.currentPage === page}"
+								onclick="{() => filterStore.setPage(page as number)}">
+								{page}
+							</button>
+						{/if}
+					{/each}
+				</div>
+
+				<button
+					class="nav-button next-button"
+					onclick="{() => filterStore.setPage($filterStore.pagination.currentPage + 1)}"
+					aria-label="Следующая страница"
+					disabled="{!$canGoNext}">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24">
+						<path d="M9 18l6-6-6-6"></path>
+					</svg>
+				</button>
+			</div>
 		</div>
 	</div>
 </div>
 
-<style>
-/* Стили остаются без изменений */
-.pagination-wrapper {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 12px 24px;
-	background: #171b26;
-	border-radius: 12px;
-	width: 100%;
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	transform: translateX(-50%);
-	max-width: calc(100% - 50px);
-	z-index: 100;
+<style lang="postcss">
+.pagination-container {
+	@apply absolute bottom-0 left-0 z-50 w-full bg-[#171b26] px-2 py-2;
 }
 
-.time-range-buttons {
-	display: flex;
-	gap: 8px;
+.pagination-content {
+	@apply flex w-full max-w-full flex-col items-center
+						 justify-between space-y-2
+						 sm:flex-row sm:space-x-2 sm:space-y-0;
 }
 
-.time-range-btn {
-	padding: 8px 16px;
-	background: #20242f;
-	border: none;
-	border-radius: 8px;
-	color: white;
-	cursor: pointer;
-	transition: all 0.2s ease;
-	font-size: 14px;
+.time-range-section {
+	@apply flex flex-wrap justify-center gap-1
+						 sm:justify-start sm:gap-2;
 }
 
-.time-range-btn:hover {
-	background: #2f3241;
+.time-range-button {
+	@apply rounded-lg bg-[#20242f] px-2 py-1 text-xs
+						 text-white transition-colors
+						 duration-200 hover:bg-[#2f3241];
 }
 
-.time-range-btn.active {
-	background: #6366f1;
+.time-range-button.active {
+	@apply bg-[#6366f1];
 }
 
 .pagination-controls {
-	display: flex;
-	align-items: center;
-	gap: 24px;
+	@apply flex w-full flex-col items-center
+						 justify-between space-y-1 sm:w-auto
+						 sm:flex-row sm:justify-end
+						 sm:space-x-2 sm:space-y-0;
 }
 
-.items-per-page {
-	display: flex;
-	align-items: center;
-	gap: 12px;
+.items-per-page-selector {
+	@apply mb-1 flex items-center space-x-1 sm:mb-0;
 }
 
-.label {
-	color: white;
-	font-size: 14px;
+.items-per-page-label {
+	@apply whitespace-nowrap text-xs text-white;
 }
 
-.dropdown {
-	position: relative;
-	display: inline-block;
+.select-wrapper {
+	@apply relative w-16 sm:w-20;
 }
 
 select {
-	appearance: none;
-	padding: 8px 32px 8px 12px;
-	background: #20242f;
-	border: none;
-	border-radius: 8px;
-	color: white;
-	cursor: pointer;
-	font-size: 14px;
-	min-width: 80px;
+	@apply w-full appearance-none rounded-lg border-none
+						 bg-[#20242f] px-1 py-1
+						 pr-4 text-xs text-white;
 }
 
-.arrow-icon {
-	position: absolute;
-	right: 8px;
-	top: 50%;
-	transform: translateY(-50%);
-	width: 16px;
-	height: 16px;
-	pointer-events: none;
-	color: white;
+.page-navigation {
+	@apply flex items-center space-x-1;
 }
 
-.page-buttons {
-	display: flex;
-	gap: 4px;
-	align-items: center;
+.nav-button {
+	@apply flex h-6 w-6
+						 items-center justify-center rounded-lg bg-[#20242f]
+						 text-white transition-colors
+						 hover:bg-[#2f3241] disabled:opacity-40;
 }
 
-.page-btn {
-	min-width: 32px;
-	height: 32px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: #20242f;
-	border: none;
-	border-radius: 6px;
-	color: white;
-	cursor: pointer;
-	transition: all 0.2s ease;
-	font-size: 14px;
-	padding: 0 8px;
+.page-numbers {
+	@apply flex items-center space-x-1;
 }
 
-.page-btn:hover:not(:disabled) {
-	background: #2f3241;
+.page-number {
+	@apply flex h-6 w-6 items-center justify-center
+						 rounded-lg bg-[#20242f] text-xs text-white
+						 hover:bg-[#2f3241];
 }
 
-.page-btn.active {
-	background: #6366f1;
+.page-number.active {
+	@apply bg-[#6366f1];
 }
 
-.page-btn.next,
-.page-btn.prev {
-	padding: 4px;
+.page-ellipsis {
+	@apply px-1 text-xs text-white;
 }
 
-.page-btn.next svg,
-.page-btn.prev svg {
-	width: 16px;
-	height: 16px;
+.nav-button svg {
+	@apply h-4 w-4 stroke-current stroke-2;
 }
 
-.page-btn:disabled {
-	cursor: default;
-	opacity: 0.4;
-}
+@media (max-width: 640px) {
+	.pagination-container {
+		@apply px-1 py-1;
+	}
 
-.page-dots {
-	color: white;
-	padding: 0 4px;
-	font-size: 14px;
+	.time-range-section {
+		@apply gap-1;
+	}
+
+	.time-range-button {
+		@apply px-1.5 py-1 text-[10px];
+	}
 }
 </style>

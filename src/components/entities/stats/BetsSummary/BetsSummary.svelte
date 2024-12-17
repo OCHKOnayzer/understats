@@ -12,4 +12,7 @@ import TotalBet from '../TotalBet/TotalBet.svelte';
 	<TotalBet
 		title="356 проигрышей"
 		sum="На сумму 158 000 Р" />
+	<TotalBet
+		title="356 проигрышей"
+		sum="На сумму 158 000 Р" />
 </div>

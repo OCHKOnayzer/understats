@@ -1,14 +1,15 @@
 <script lang="ts">
 import { filterStore } from '$src/stores/filterStore';
-
+import { t } from 'svelte-i18n';
 import Button from '../button/button.svelte';
 
 const tabs = [
-	{ id: 'halfYear', label: 'Полгода' },
+
+	{ id: 'halfYear', label: 'filter.tabs.halfYear' },
 	{ id: 'month', label: new Date().toLocaleString('default', { month: 'long' })[0].toUpperCase() + new Date().toLocaleString('default', { month: 'long' }).slice(1) },
-	{ id: 'week', label: 'Неделя' },
-	{ id: 'yesterday', label: 'Вчера' },
-	{ id: 'today', label: 'Сегодня' }
+	{ id: 'week', label: 'filter.tabs.week' },
+	{ id: 'yesterday', label: 'filter.tabs.yesterday' },
+	{ id: 'today', label: 'filter.tabs.today' }
 ] as const;
 
 $: isCustomDateRange = $filterStore.activeTab === 'nothing';
@@ -18,7 +19,7 @@ $: isCustomDateRange = $filterStore.activeTab === 'nothing';
 	{#each tabs as tab}
 		<button on:click="{() => filterStore.setActiveTab(tab.id)}">
 			<Button variant="{!isCustomDateRange && $filterStore.activeTab === tab.id ? 'filterButtonActive' : 'filterButton'}">
-				{tab.label}
+				{$t(tab.label)}
 			</Button>
 		</button>
 	{/each}

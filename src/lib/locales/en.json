@@ -250,5 +250,32 @@
 		"fr": "French",
 		"it": "Italian",
 		"title": "Select language"
+	},
+	"filter": {
+		"button": "Filter",
+		"tabs.halfYear": "Half a year",
+		"tabs.week": "Week",
+		"tabs.yesterday": "Yesterday",
+		"tabs.today": "Today",
+		"accordion.results": "Result",
+		"accordion.other": "Other",
+		"accordion.sports": "Sport",
+		"accordion.bookmakers": "Bookmaker",
+		"accordion.accounts": "Accounts",
+		"accordion.teams": "Teams",
+		"accordion.leagues": "Leagues",
+		"results.won": "Win",
+		"results.lost": "Lose",
+		"results.notRecognized": "Not recognized",
+		"results.notСalculated": "Not calculated",
+		"results.return": "Return",
+		"results.cancel": "Cancel",
+		"results.wonReturn": "Win/Return",
+		"results.lostReturn": "Lose/Return",
+		"pagination.halfYear": "Half a year",
+		"pagination.3month": "3 months",
+		"pagination.month": "Month",
+		"pagination.week": "Week",
+		"pagination.3days": "3 days"
 	}
 }

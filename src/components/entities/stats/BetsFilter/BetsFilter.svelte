@@ -11,6 +11,7 @@ import { filterStore } from '$src/stores/filterStore';
 
 import { fetchFilteredData } from '../api/api';
 import BetsSelectFilter from '../BetsSelectFilter/BetsSelectFilter.svelte';
+import { t } from 'svelte-i18n';
 
 let isOpen = false;
 let isLoading = false;
@@ -65,7 +66,7 @@ async function applyFilters() {
 </button>
 
 <aside
-	class="sidebar"
+	class="sidebar w-full"
 	class:open="{isOpen}">
 	<div class="sidebar-content">
 		<div class="mb-[24px] flex items-center justify-between">
@@ -85,13 +86,13 @@ async function applyFilters() {
 
 		<FilterTabs />
 
-		<Accordion title="{'Результат'}">
+		<Accordion title={$t('filter.accordion.results')}>
 			<BetFilterResults />
 		</Accordion>
 
 		<BetsSelectFilter />
 
-		<Accordion title="{'Другое'}">
+		<Accordion title={$t('filter.accordion.other')}>
 			<BetFilters />
 		</Accordion>
 
@@ -120,13 +121,14 @@ async function applyFilters() {
 <style>
 .item {
 	display: flex;
-	padding: 30px;
 	background-color: #000000;
 	border-radius: 16px;
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
 	border: none;
-	gap: 90px;
+	width: 19%;
+	padding: 8px 16px;
+	justify-content: space-between;
 	align-items: center;
 }
 
@@ -140,12 +142,21 @@ async function applyFilters() {
 	font-weight: 600;
 	margin-right: auto;
 	color: white;
+
+	@media (max-width: 768px) {
+		font-size: 12px;
+	}
 }
 
 .icon {
 	width: 24px;
 	height: 24px;
 	transition: transform 0.2s ease-in-out;
+
+	@media (max-width: 768px) {
+		width: 20px;
+		height: 20px;
+	}
 }
 
 .sidebar {

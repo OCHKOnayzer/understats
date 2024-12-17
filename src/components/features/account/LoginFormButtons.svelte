@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 import { Dialog } from 'bits-ui';
 import { get } from 'svelte/store';
 
@@ -42,4 +42,4 @@ const handleConnect = async () => {
 	<Dialog.Close>
 		<Button variant="outlineRoundedWhite">{m.cancel()}</Button>
 	</Dialog.Close>
-</div>
+</div> -->

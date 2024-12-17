@@ -106,13 +106,13 @@
 	"main": {
 		"main": "Главная"
 	},
-	"tariffs":{
+	"tariffs": {
 		"tariffs": "Тарифы",
 		"choose": "Выберите тариф",
 		"accountLimits": "Тарифы различаются кол-вом поддерживаемых аккаунтов и ставок",
 		"lite": "Для тех, кто хочет попробовать и оценить сервис",
 		"standart": "Для тех, кто уверен в себе и готов к большему.",
-		"pro":"Для настоящих профессионалов. Пользование сервисом без ограничений",
+		"pro": "Для настоящих профессионалов. Пользование сервисом без ограничений",
 		"month": "В месяц",
 		"year": "В год",
 		"buy_in": "Купить за",
@@ -285,9 +285,36 @@
 		"it": "Итальянский",
 		"title": "Выберите язык"
 	},
-	"error":{ 
+	"error": {
 		"download.start": "Загрузка файла...",
 		"download.success": "Файл успешно загружен: {fileName}",
 		"download.error": "Ошибка загрузки файла"
+	},
+	"filter": {
+		"button": "Фильтер",
+		"tabs.halfYear": "Полгода",
+		"tabs.week": "Неделя",
+		"tabs.yesterday": "Вчера",
+		"tabs.today": "Сегодня",
+		"accordion.results": "Результаты",
+		"accordion.other": "Другое",
+		"accordion.sports": "Спорт",
+		"accordion.bookmakers": "Букмекеры",
+		"accordion.accounts": "Аккаунты",
+		"accordion.teams": "Команды",
+		"accordion.leagues": "Турниры",
+		"results.won": "Выигрыш",
+		"results.lost": "Проигрыш",
+		"results.notRecognized": "Не распознано",
+		"results.notСalculated": "Не рассчитано",
+		"results.return": "Возврат",
+		"results.cancel": "Отмена",
+		"results.wonReturn": "Выигрыш/Возврат",
+		"results.lostReturn": "Проигрыш/Отмена",
+		"pagination.halfYear": "Полгода",
+		"pagination.3month": "3 месяца",
+		"pagination.month": "Месяц",
+		"pagination.week": "Неделя",
+		"pagination.3days": "3 дня"
 	}
 }
