@@ -16,7 +16,7 @@ let { onUserText } = $$props as SwitchInterface;
 .button_wrapper {
 	width: 25%;
 	margin-top: 20px;
-	height: 4vh;
+	height: 40px;
 	text-align: center;
 	overflow: hidden;
 	margin-right: 20px;

@@ -10,7 +10,6 @@ import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
 let newPassword = '';
 let oldPassword = '';
 let password = '';
-let username = '';
 
 let isInitialized = false;
 
@@ -20,7 +19,6 @@ onMount(() => {
 
 $: if ($user && !isInitialized) {
 	password = $user.password || '';
-	username = $user.name || '';
 	isInitialized = true;
 }
 
@@ -29,8 +27,6 @@ const changePass = async () => {
 		console.error('Данные пользователя не загружены.');
 		return;
 	}
-
-	let updatedName = username.trim().length >= 3 ? username : $user.name;
 
 	let updatedPassword = $user.password;
 	if (oldPassword === $user.password && newPassword.length >= 10) {
@@ -42,7 +38,6 @@ const changePass = async () => {
 
 	const updatedUser = {
 		id: $user.id,
-		name: updatedName,
 		password: updatedPassword,
 		image: $user.image,
 		email: $user.email,
@@ -53,7 +48,6 @@ const changePass = async () => {
 	};
 
 	try {
-		await updateUser(updatedUser);
 		console.log('Данные пользователя успешно обновлены:', updatedUser);
 
 		clearInputs();
@@ -72,7 +66,6 @@ type FieldType = 'username' | 'oldPassword' | 'newPassword';
 const clearField = (field: FieldType) => {
 	switch (field) {
 		case 'username':
-			username = '';
 			break;
 		case 'oldPassword':
 			oldPassword = '';
@@ -128,11 +121,6 @@ const clearField = (field: FieldType) => {
 			on:click="{changePass}">
 			{$t('other.save')}
 		</button>
-		<!--		<button-->
-		<!--			class="btn_upd"-->
-		<!--			on:click={clearInputs}>-->
-		<!--			{$t('other.cancel')}-->
-		<!--		</button>-->
 	</div>
 </SettingsSections>
 
@@ -157,13 +145,6 @@ const clearField = (field: FieldType) => {
 	width: 100%;
 	position: relative;
 	padding-bottom: 10px;
-}
-.pass_sett {
-	display: flex;
-	align-items: center;
-	height: fit-content;
-	width: 100%;
-	position: relative;
 }
 .setings_item {
 	height: 12vh;
@@ -221,7 +202,7 @@ const clearField = (field: FieldType) => {
 .btn_upd {
 	border: 1px solid;
 	border-radius: 80px;
-	height: 4vh;
+	height: 40px;
 	width: 9vh;
 	display: flex;
 	justify-content: center;
@@ -269,10 +250,6 @@ const clearField = (field: FieldType) => {
 	.selected_element {
 		height: 50%;
 	}
-	.btn_upd:nth-child(1),
-	.btn_upd:nth-child(2) {
-		height: 30px;
-	}
 }
 @media screen and (max-height: 600px) {
 	.setings {
@@ -285,7 +262,7 @@ const clearField = (field: FieldType) => {
 		padding-bottom: 14px;
 	} */
 }
-@media (max-width: 678px) {
+@media (max-width: 768px) {
 	.max--w {
 		display: block;
 	}

@@ -85,7 +85,7 @@ import ModalCurrent from './modalCurrent/ModalCurrent.svelte';
 
 @media screen and (max-width: 768px) {
 	.modal_window_wrapper {
-		justify-content: unset;
+		justify-content: center;
 	}
 
 	.modal_window {

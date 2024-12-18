@@ -1,4 +1,6 @@
 <script lang="ts">
+import { onMount, onDestroy } from 'svelte';
+
 import { isMenuOpen, closeMenu } from '$src/stores/menu';
 
 import UserContainer from './userInfo/UserContainer.svelte';
@@ -6,9 +8,24 @@ import RouteMenu from './routeMenu.svelte';
 import RouteHelp from './routeHelp.svelte';
 
 let isMobile = window.innerWidth <= 768;
+let scrollbarWidth = 0;
 
-window.addEventListener('resize', () => {
+const getScrollbarWidth = () => {
+	return window.innerWidth - document.documentElement.clientWidth;
+};
+
+const handleResize = () => {
 	isMobile = window.innerWidth <= 768;
+	scrollbarWidth = getScrollbarWidth();
+};
+
+onMount(() => {
+	scrollbarWidth = getScrollbarWidth();
+	window.addEventListener('resize', handleResize);
+});
+
+onDestroy(() => {
+	window.removeEventListener('resize', handleResize);
 });
 </script>
 
@@ -20,9 +37,8 @@ window.addEventListener('resize', () => {
 					<div class="logo">
 						<div class="imgLogo">
 							<img
-								src="{'/assets/menu/logo.png'}"
+								src="/assets/menu/logo.png"
 								alt="Logo" />
-
 							OneKeepBet
 						</div>
 						<button
@@ -45,18 +61,21 @@ window.addEventListener('resize', () => {
 	</div>
 {/if}
 
+<div class="mainContent">
+	<!-- Ваш основной контент здесь -->
+</div>
+
 <style>
 .fixedContainer {
-	position: sticky;
+	position: fixed; /* Изменено с sticky на fixed */
 	top: 0;
 	left: 0;
-	width: 15vw;
+	width: 13vw;
 	z-index: 10000;
 	height: 100vh;
 }
 
 .menu {
-	position: static;
 	width: 100%;
 	height: 100%;
 	background-color: #171b26;
@@ -96,7 +115,7 @@ window.addEventListener('resize', () => {
 }
 @media screen and (max-width: 768px) {
 	.fixedContainer {
-		position: absolute;
+		position: absolute; /* Можно оставить или изменить на fixed, если требуется */
 		z-index: 9999;
 		width: 100vw;
 	}
@@ -106,6 +125,17 @@ window.addEventListener('resize', () => {
 	}
 	.closeMenu {
 		display: block;
+	}
+}
+
+.mainContent {
+	padding-left: 13vw; /* Соответствует ширине меню */
+	transition: padding-left 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+	.mainContent {
+		padding-left: 0;
 	}
 }
 </style>

@@ -18,7 +18,7 @@ let { onUserText, onUserAction, active } = $$props as UserAproveInterface;
 .button_wrapper {
 	min-width: 40%;
 	margin-top: 20px;
-	height: 4vh;
+	height: 40px;
 }
 .button_wrapper button {
 	height: 100%;
@@ -39,7 +39,7 @@ let { onUserText, onUserAction, active } = $$props as UserAproveInterface;
 @media screen and (max-width: 768px) {
 	.button_wrapper {
 		width: 100%;
-		height: 6vh;
+		height: 8vh;
 	}
 	.button_wrapper button {
 		width: 100%;

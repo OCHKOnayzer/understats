@@ -28,4 +28,10 @@ import Tariffs from './tariffs.svelte';
 	justify-content: space-between;
 	width: 100%;
 }
+@media screen and (max-width: 768px) {
+	.tariffs-wrapper {
+		margin-top: 10px;
+		flex-direction: column;
+	}
+}
 </style>

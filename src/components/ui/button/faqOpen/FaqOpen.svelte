@@ -16,7 +16,7 @@ if (userAgent.includes('YaBrowser')) {
 } else if (userAgent.includes('OPR') || userAgent.includes('Opera')) {
 	browserName = 'DownloadOpera';
 } else if (userAgent.includes('Chrome') && !userAgent.includes('OPR') && !userAgent.includes('YaBrowser')) {
-	browserName = 'DownloadChrome';
+	browserName = 'DownloadGoogle';
 } else {
 	browserName = 'unsupported';
 }

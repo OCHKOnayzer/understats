@@ -1,6 +1,6 @@
 import { axiosClassic, axiosWithAuth } from '$src/api/api.interceptors';
-import { currentUser } from '$src/stores/modalStore';
-import { closeModal } from '$src/stores/modalStore';
+import { currentUser, closeModal } from '$src/stores/modalStore';
+
 import { removeAccessToken, setAccessToken } from './auth-token.service';
 
 import type { IAuthForm, IAuthResponse } from '$src/types/types';
@@ -18,7 +18,7 @@ class AuthService {
 
 			if (response.data.accessToken) {
 				setAccessToken(response.data.accessToken);
-				closeModal()
+				closeModal();
 				if (window.location.pathname === '/') {
 					goto('/accounts');
 				}
@@ -43,7 +43,10 @@ class AuthService {
 	async profile() {
 		try {
 			const response = await axiosWithAuth.get('/auth/me');
-			if (response.data) {
+
+			console.log('response' + response);
+			if ('response.data' + response.data) {
+				console.log(response.data);
 				currentUser.set(response.data);
 			}
 			return response;

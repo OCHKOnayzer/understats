@@ -188,49 +188,49 @@ onMount(() => {
 				on:tabChange="{handleSubTabChange}" />
 		</div> -->
 
-		{#if isLoading}
-			<div class="flex h-40 items-center justify-center">
-				<Loader />
-			</div>
-		{:else if error}
-			<div class="p-4 text-red-500">
-				{error}
-			</div>
-		{:else if aggregatedData}
-			<div class="w-full overflow-hidden">
-				<div class="relative w-full overflow-x-auto">
-					<Table.Root class="w-full">
-						<Table.Header class="bg-[#31384A] text-[12px]">
-							<Table.Row>
+	{#if isLoading}
+		<div class="flex h-40 items-center justify-center">
+			<Loader />
+		</div>
+	{:else if error}
+		<div class="p-4 text-red-500">
+			{error}
+		</div>
+	{:else if aggregatedData}
+		<div class="w-full overflow-hidden">
+			<div class="relative w-full overflow-x-auto">
+				<Table.Root class="w-full">
+					<Table.Header class="bg-[#31384A] text-[12px]">
+						<Table.Row>
+							{#each aggregatedData.columns as column}
+								<Table.Head class="border-[#262C3D]">
+									<div class="flex items-center gap-1">
+										<img
+											src="icons/bk/table.svg"
+											alt="table" />
+										<span class="whitespace-pre-line">{column}</span>
+									</div>
+								</Table.Head>
+							{/each}
+						</Table.Row>
+					</Table.Header>
+					<Table.Body class="text-[14px]">
+						{#each aggregatedData.data as row}
+							<Table.Row
+								class="border-[#262C3D]"
+								on:click="{() => handleRowClick(row)}">
 								{#each aggregatedData.columns as column}
-									<Table.Head class="border-[#262C3D]">
-										<div class="flex items-center gap-1">
-											<img
-												src="icons/bk/table.svg"
-												alt="table" />
-											<span class="whitespace-pre-line">{column}</span>
-										</div>
-									</Table.Head>
+									<Table.Cell class="whitespace-nowrap">
+										{row[column]}
+									</Table.Cell>
 								{/each}
 							</Table.Row>
-						</Table.Header>
-						<Table.Body class="text-[14px]">
-							{#each aggregatedData.data as row}
-								<Table.Row
-									class="border-[#262C3D]"
-									on:click="{() => handleRowClick(row)}">
-									{#each aggregatedData.columns as column}
-										<Table.Cell class="whitespace-nowrap">
-											{row[column]}
-										</Table.Cell>
-									{/each}
-								</Table.Row>
-							{/each}
-						</Table.Body>
-					</Table.Root>
-				</div>
+						{/each}
+					</Table.Body>
+				</Table.Root>
 			</div>
-		{:else}
-			<div class="p-4 text-center"> Нет данных </div>
-		{/if}
+		</div>
+	{:else}
+		<div class="p-4 text-center"> Нет данных </div>
+	{/if}
 </section>

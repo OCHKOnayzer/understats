@@ -1,10 +1,10 @@
 <script lang="ts">
 import { derived } from 'svelte/store';
+import { t } from 'svelte-i18n';
 
 import { filterStore } from '$src/stores/filterStore';
 import { ITEMS_PER_PAGE_OPTIONS, TIME_RANGES } from '$src/utils/constants/constants';
 import { generatePageNumbers } from '$src/utils/functions/generatePageNumbers';
-import { t } from 'svelte-i18n';
 
 const { totalPages = 6 } = $props();
 
