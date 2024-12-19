@@ -4,6 +4,7 @@ import { onMount } from 'svelte';
 
 import { currentUser } from '$src/stores/modalStore';
 
+import Lang from '../settingsSections/lang.svelte';
 import SettingsSections from '../settingsSections/SettingsSections.svelte';
 import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
 </script>
@@ -11,7 +12,7 @@ import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
 <SettingsSections>
 	<SettingsTitle title="{'settings.pass_change'}" />
 	<div class="setings">
-		<div class="setings_item item-w old-pass">
+		<div class="setings_item item-w">
 			<div class="item_settings_info">
 				<p class="settings_name">{$t('settings.create_data')}</p>
 			</div>
@@ -21,7 +22,7 @@ import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
 				readonly
 				value="{$currentUser?.login}" />
 		</div>
-		<div class="setings_item item-w new-pass">
+		<div class="setings_item item-w">
 			<div class="item_settings_info">
 				<p class="settings_name">{$t('settings.create_email')}</p>
 			</div>
@@ -31,10 +32,20 @@ import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
 				readonly
 				value="{$currentUser?.login}" />
 		</div>
+		<Lang />
 	</div>
 </SettingsSections>
 
 <style>
+.setings {
+	display: flex;
+	flex-direction: row;
+	/* justify-content: center; */
+	align-items: center;
+	width: 100%;
+	position: relative;
+	padding-bottom: 10px;
+}
 .settings_name {
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -46,17 +57,6 @@ import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
 	padding-left: 10px;
 	outline: none;
 }
-
-.setings {
-	display: flex;
-	flex-direction: row;
-	/* justify-content: center; */
-	align-items: center;
-	height: fit-content;
-	width: 100%;
-	position: relative;
-	padding-bottom: 10px;
-}
 .setings_item {
 	height: 12vh;
 	border-radius: 10px;
@@ -64,6 +64,7 @@ import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
 .item-w {
 	width: 33%;
 }
+
 .setings_item:nth-child(1),
 .setings_item:nth-child(2) {
 	margin-right: 15px;
@@ -115,12 +116,8 @@ import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
 @media (max-width: 768px) {
 	.setings {
 		padding: 0;
-	}
-	.new-pass {
-		display: none;
-	}
-	.setings {
 		width: 100%;
+		flex-direction: column;
 	}
 	.item-w {
 		width: 100%;

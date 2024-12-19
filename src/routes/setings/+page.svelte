@@ -4,6 +4,7 @@ import { t } from 'svelte-i18n';
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
 import DemoButtons from '$src/components/widgets/demo/demoButtons/DemoButtons.svelte';
 import { currentUser } from '$src/stores/modalStore';
+
 import UserAvatar from '../../components/ui/editUser/userAvatar.svelte';
 import Info from '../../components/ui/editUser/info.svelte';
 import EditPass from '../../components/ui/editUser/editPass.svelte';
@@ -20,8 +21,8 @@ selectHeaderTitle('settings.settings');
 
 <div class="text-column">
 	<div class="mainContent">
-		{#if !$currentUser }
-		<DemoButtons />
+		{#if !$currentUser}
+			<DemoButtons />
 		{/if}
 		<div class="progressWrapper">
 			<!-- <Setings /> -->

@@ -11,9 +11,9 @@ export type LayoutData = {
 import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 import { onMount } from 'svelte';
 import { Toaster } from 'svelte-french-toast';
-import { init, locale, register, waitLocale } from 'svelte-i18n';
+import { init, locale, waitLocale } from 'svelte-i18n';
 
-import { getAppLanguage, setAppLanguage, availableLanguages, selectedLang } from '$src/stores/languageStore';
+import { setAppLanguage, selectedLang } from '$src/stores/languageStore';
 import Container from '$components/providers/container/Container.svelte';
 import Menu from '$components/ui/menu/Menu.svelte';
 import Header from '$src/components/ui/header/header.svelte';

@@ -18,7 +18,7 @@ selectHeaderTitle('tariffs.tariffs');
 
 <div class="pageContent">
 	{#if !$currentUser}
-	<DemoButtons />
+		<DemoButtons />
 	{/if}
 	<div class="tariff-title">
 		<div>{$t('tariffs.choose')}</div>

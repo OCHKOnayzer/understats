@@ -33,9 +33,9 @@ let { onUserText, onUserAction, active } = $$props as UserAproveInterface;
 .button_wrapper button:hover {
 	background-color: #3e38fa;
 }
-.cActive {
+/* .cActive {
 	background-color: #6560ff7e;
-}
+} */
 @media screen and (max-width: 768px) {
 	.button_wrapper {
 		width: 100%;

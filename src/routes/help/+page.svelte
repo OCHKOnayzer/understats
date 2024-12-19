@@ -1,5 +1,6 @@
 <script>
 import { t } from 'svelte-i18n';
+
 import { currentUser } from '$src/stores/modalStore';
 import DemoButtons from '$src/components/widgets/demo/demoButtons/DemoButtons.svelte';
 import SectionsFaq from '$src/components/ui/sectionsFaq/SectionsFaq.svelte';
@@ -18,7 +19,7 @@ selectHeaderTitle('faq.faq');
 <div class="mainContent">
 	<div class="pageWrapper">
 		{#if !$currentUser}
-		<DemoButtons />
+			<DemoButtons />
 		{/if}
 		<!-- <SectionsFaq /> -->
 	</div>
