@@ -1,13 +1,14 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
+import { t } from 'svelte-i18n';
 
-import { isFaqMenuOpen } from '$src/stores/faq';
-import { headerTitle, langImage } from '$src/stores/HeaderStores';
-import { openModal, modalComponent, closeModal, currentUser } from '$src/stores/modalStore';
+import { headerTitle } from '$src/stores/HeaderStores';
 import { openMenu } from '$src/stores/menu';
+import { closeModal, currentUser, modalComponent, openModal } from '$src/stores/modalStore';
 
+import Button from '../button/button.svelte';
 import LangButton from '../button/langButton/LangButton.svelte';
+import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';
 
 type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal';
 
@@ -52,13 +53,20 @@ onMount(() => {
 					</a>
 				{:else}
 					<button
+						aria-label="auth"
 						class="profile-container"
 						on:click="{() => openCurrentModal('authModal')}"></button>
 				{/if}
 			</div>
-			<div class="title">
-				<p>{$t($headerTitle)}</p>
+			<div class="flex items-center">
+				<div class="title">
+					<p>{$t($headerTitle)}</p>
+				</div>
+				{#if $headerTitle == 'menu.Stats'}
+					<MobileFilterButton/>
+				{/if}
 			</div>
+			
 			<div class="buttonConteiner">
 				<div class="btnWrapper {$modalComponent === 'LangModal' ? 'active' : ''}">
 					<LangButton openCurrentModal="{openCurrentModal}" />

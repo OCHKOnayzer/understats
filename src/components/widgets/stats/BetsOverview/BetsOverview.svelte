@@ -8,6 +8,7 @@ import Tabs from '$components/ui/tabs/Tabs.svelte';
 import BetDetails from './BetDetails.svelte';
 
 import { goto } from '$app/navigation';
+import { mainTabs, mockData, subTabsMap } from '$src/stores/tabsStore';
 
 interface AggregatedData {
 	id: string;
@@ -15,118 +16,16 @@ interface AggregatedData {
 	columns: string[];
 }
 
-let showDetails = false;
-let selectedBetId: string | null = null;
-let activeTab = 'no-aggregation';
-let activeSubTab = 'all';
-let selectedColumns: string[] = [];
-let aggregatedData: AggregatedData | null = null;
-let isLoading = false;
-let error = '';
+let showDetails = $state(false);
+let selectedBetId = $state<string | null>(null);
+let activeTab = $state('no-aggregation');
+let activeSubTab = $state('all');
+let selectedColumns = $state<string[]>([]);
+let aggregatedData = $state<AggregatedData | null>(null);
+let isLoading = $state(false);
+let error = $state('');
 
-const mainTabs = [
-	{ id: 'no-aggregation', name: 'Без агрегации' },
-	{ id: 'by-accounts', name: 'По аккаунтам' },
-	{ id: 'by-sport', name: 'По спорту' },
-	{ id: 'by-bookmaker', name: 'По букмекеру' },
-	{ id: 'by-period', name: 'По периоду' },
-	{ id: 'by-weekdays', name: 'По дням недели' }
-];
-
-const subTabsMap = {
-	'no-aggregation': [
-		{ id: 'all', name: 'Все ставки' },
-		{ id: 'win', name: 'Выигрышные' },
-		{ id: 'lose', name: 'Проигрышные' },
-		{ id: 'pending', name: 'В ожидании' }
-	],
-	'by-accounts': [
-		{ id: 'all', name: 'Все букмекеры' },
-		{ id: 'fonbet', name: 'Фонбет' },
-		{ id: 'winline', name: 'Winline' },
-		{ id: '1xbet', name: '1xBet' },
-		{ id: 'betboom', name: 'BetBoom' }
-	],
-	'by-sport': [
-		{ id: 'all', name: 'Все виды спорта' },
-		{ id: 'football', name: 'Футбол' },
-		{ id: 'hockey', name: 'Хоккей' },
-		{ id: 'basketball', name: 'Баскетбол' },
-		{ id: 'tennis', name: 'Теннис' }
-	],
-	'by-bookmaker': [
-		{ id: 'all', name: 'Все букмекеры' },
-		{ id: 'fonbet', name: 'Фонбет' },
-		{ id: 'winline', name: 'Winline' },
-		{ id: '1xbet', name: '1xBet' },
-		{ id: 'betboom', name: 'BetBoom' }
-	],
-	'by-period': [
-		{ id: 'all', name: 'Весь период' },
-		{ id: 'today', name: 'Сегодня' },
-		{ id: 'week', name: 'Неделя' },
-		{ id: 'month', name: 'Месяц' },
-		{ id: 'year', name: 'Год' }
-	],
-	'by-weekdays': [
-		{ id: 'all', name: 'Все дни' },
-		{ id: 'weekdays', name: 'Будни' },
-		{ id: 'weekend', name: 'Выходные' }
-	]
-};
-
-const mockData = {
-	'no-aggregation': {
-		columns: ['Дата', 'Букмекер', 'Спорт', 'Событие', 'Ставка', 'Коэффициент', 'Сумма', 'Результат'],
-		data: [
-			{
-				id: '1',
-				Дата: '2024-01-15',
-				Букмекер: 'Фонбет',
-				Спорт: 'Футбол',
-				Событие: 'Спартак - ЦСКА',
-				Ставка: 'П1',
-				Коэффициент: '1.85',
-				Сумма: '1000₽',
-				Результат: 'Выигрыш'
-			},
-			{
-				id: '2',
-				Дата: '2024-01-16',
-				Букмекер: 'Winline',
-				Спорт: 'Хоккей',
-				Событие: 'СКА - ЦСКА',
-				Ставка: 'ТБ 4.5',
-				Коэффициент: '2.1',
-				Сумма: '2000₽',
-				Результат: 'Проигрыш'
-			}
-		]
-	},
-	'by-accounts': {
-		columns: ['Букмекер', 'Количество ставок', 'Общая сумма', 'Выигрыш', 'ROI'],
-		data: [
-			{
-				id: '1',
-				Букмекер: 'Фонбет',
-				'Количество ставок': '150',
-				'Общая сумма': '150000₽',
-				Выигрыш: '+25000₽',
-				ROI: '16.7%'
-			},
-			{
-				id: '2',
-				Букмекер: 'Winline',
-				'Количество ставок': '120',
-				'Общая сумма': '100000₽',
-				Выигрыш: '-5000₽',
-				ROI: '-5%'
-			}
-		]
-	}
-};
-
-$: subTabs = subTabsMap[activeTab] || [];
+let subTabs = $derived($subTabsMap[activeTab] || []);
 
 function getAggregatedData() {
 	isLoading = true;
@@ -135,8 +34,8 @@ function getAggregatedData() {
 	try {
 		aggregatedData = {
 			id: '1',
-			columns: mockData[activeTab]?.columns || mockData['no-aggregation'].columns,
-			data: mockData[activeTab]?.data || mockData['no-aggregation'].data
+			columns: $mockData[activeTab]?.columns || mockData['no-aggregation'].columns,
+			data: $mockData[activeTab]?.data || mockData['no-aggregation'].data
 		};
 	} catch (e) {
 		error = 'Ошибка при загрузке данных';
@@ -169,12 +68,12 @@ onMount(() => {
 </script>
 
 <section class="relative mt-[32px]">
-	<!-- {#if showDetails && selectedBetId}
-		<BetDetails betId="{selectedBetId}" />
+	{#if showDetails && selectedBetId}
+		<BetDetails betId={selectedBetId} />
 	{:else}
 		<div class="mb-[32px]">
 			<Tabs
-				tabs="{mainTabs}"
+				tabs={$mainTabs}
 				bind:activeTab="{activeTab}"
 				variant="underline"
 				on:tabChange="{handleTabChange}" />
@@ -182,11 +81,11 @@ onMount(() => {
 
 		<div>
 			<Tabs
-				tabs="{subTabs}"
+				tabs={subTabs}
 				bind:activeTab="{activeSubTab}"
 				variant="pills"
 				on:tabChange="{handleSubTabChange}" />
-		</div> -->
+		</div>
 
 		{#if isLoading}
 			<div class="flex h-40 items-center justify-center">
@@ -233,4 +132,5 @@ onMount(() => {
 		{:else}
 			<div class="p-4 text-center"> Нет данных </div>
 		{/if}
+	{/if}
 </section>
