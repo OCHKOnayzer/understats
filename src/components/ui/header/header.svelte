@@ -98,7 +98,7 @@ onMount(() => {
 }
 
 .headerItem {
-	height: 8vh;
+	height: 75px;
 	box-sizing: border-box;
 	display: flex;
 	align-items: center;
@@ -188,7 +188,7 @@ onMount(() => {
 		font-size: 20px;
 	}
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
 	.header {
 		margin-bottom: 60px;
 	}

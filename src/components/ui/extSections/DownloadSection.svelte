@@ -18,7 +18,7 @@ interface BrowserItem {
 let isMobile = false;
 
 function checkScreenWidth() {
-	isMobile = window.innerWidth <= 768;
+	isMobile = window.innerWidth <= 800;
 }
 
 onMount(() => {
@@ -199,7 +199,7 @@ const browserArr: BrowserItem[] = [
 		font-size: 13px;
 	}
 }
-@media (max-width: 768px) {
+@media (max-width: 800px) {
 	.download {
 		width: 100%;
 		background-color: transparent;

@@ -3,10 +3,23 @@ import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 
 import { currentUser } from '$src/stores/modalStore';
+import { formatDate } from '$src/utils/functions/formatDate';
 
 import Lang from '../settingsSections/lang.svelte';
 import SettingsSections from '../settingsSections/SettingsSections.svelte';
 import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
+let isMobile = false;
+
+function checkScreenWidth() {
+	isMobile = window.innerWidth <= 768;
+}
+
+onMount(() => {
+	checkScreenWidth();
+	window.addEventListener('resize', checkScreenWidth);
+	return () => window.removeEventListener('resize', checkScreenWidth);
+});
+$: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : $t('settings.create_data');
 </script>
 
 <SettingsSections>
@@ -20,7 +33,7 @@ import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
 				class="selected_element input_element"
 				type="text"
 				readonly
-				value="{$currentUser?.login}" />
+				value="{date}" />
 		</div>
 		<div class="setings_item item-w">
 			<div class="item_settings_info">
@@ -30,9 +43,11 @@ import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
 				class="selected_element input_element"
 				type="text"
 				readonly
-				value="{$currentUser?.login}" />
+				value="{$currentUser?.login ?? $t('settings.create_email')}" />
 		</div>
-		<Lang />
+		{#if !isMobile}
+			<Lang />
+		{/if}
 	</div>
 </SettingsSections>
 
@@ -77,7 +92,7 @@ import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
 	color: #707f96;
 	width: 98%;
 	border-radius: 10px;
-	height: 60%;
+	height: 70px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -101,31 +116,62 @@ import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
 	.selected_element {
 		height: 50%;
 	}
+	.item-w {
+		width: 100%;
+	}
+	.setings_item {
+		height: 150px;
+	}
+	.setings_item:nth-child(1),
+	.setings_item:nth-child(2) {
+		margin-right: 0px;
+	}
+	.setings {
+		padding: 0;
+		width: 100%;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
 }
 @media screen and (max-height: 600px) {
 	.setings {
 		padding-bottom: 4%;
-	}
-	.selected_element {
-		height: 70%;
 	}
 	/* .email {
 			padding-bottom: 14px;
 		} */
 }
 @media (max-width: 768px) {
+	.setings_item {
+		display: flex;
+		flex-direction: column;
+		height: fit-content;
+		align-items: center;
+	}
 	.setings {
 		padding: 0;
 		width: 100%;
 		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 	}
 	.item-w {
 		width: 100%;
 	}
-	.selected_element {
-		height: 9vh;
+	.item_settings_info {
+		width: 80%;
 	}
-	.setings_item:nth-child(1) {
+	.selected_element {
+		height: 60px;
+		width: 80%;
+		margin: 0;
+	}
+	.selected_element:nth-child(1) {
+		margin: 0;
+	}
+	.setings_item:nth-child(1),
+	.selected_element:nth-child(2) {
 		margin-right: 0;
 	}
 }

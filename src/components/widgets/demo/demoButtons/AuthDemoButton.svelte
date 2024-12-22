@@ -8,7 +8,6 @@ const openAuth = (modal: string) => {
 	currentModal.set(modal);
 	openModal('authModal');
 };
-let { column = false } = $$props;
 </script>
 
 <div class="buttons-wrapper">
@@ -21,22 +20,22 @@ let { column = false } = $$props;
 			<button
 				class="buttons-auth"
 				on:click="{() => openAuth('login')}">{$t('social.sign_in')}</button>
-			<button
-				class="button-demo"
-				class:demo-active="{$isDemoEnabled}"
-				on:click="{() => toggleDemoMode()}">
-				{$t('other.demo')}
-			</button>
 		</div>
+		<button
+			class="button-demo"
+			class:demo-active="{$isDemoEnabled}"
+			on:click="{() => toggleDemoMode()}">
+			{$t('other.demo')}
+		</button>
 	</div>
 </div>
 
 <style>
 .buttons-wrapper {
-	width: 100%;
-	height: 120px;
-	background-color: #171b26;
-	border-radius: 8px;
+	height: 90vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .buttons-container {
 	width: 98%;
@@ -44,12 +43,14 @@ let { column = false } = $$props;
 	margin: 0 auto;
 	display: flex;
 	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 }
-
 .buttons button {
 	height: 56px;
 	color: white;
 	border-radius: 16px;
+	margin-bottom: 10px;
 }
 
 .buttons-auth {
@@ -61,7 +62,7 @@ let { column = false } = $$props;
 .button-demo {
 	width: 232px;
 	background-color: transparent;
-	border: 1px solid #363a45;
+	border: 2px solid #363a45;
 	transition: 400ms;
 	height: 56px;
 	color: white;
@@ -69,27 +70,25 @@ let { column = false } = $$props;
 }
 
 .button-demo.demo-active {
-	border: 1px solid #6660ff;
+	border: 2px solid #6660ff;
 }
-
-@media screen and (max-width: 768px) {
-	.buttons-wrapper {
-		border-radius: 16px;
-	}
-	.button-demo {
-		width: 160px;
+@media screen and (max-width: 800px) {
+	.buttons-container {
+		justify-content: unset;
 	}
 	.buttons {
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		width: 100%;
+		margin-bottom: 0;
 	}
-	.buttons-auth {
-		width: 160px;
+	.buttons button {
+		width: 60vw;
+		margin-bottom: 10px;
 	}
-	.buttons-auth:nth-child(1) {
-		display: none;
+	.button-demo {
+		width: 60vw;
 	}
 }
 </style>

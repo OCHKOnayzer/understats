@@ -69,7 +69,7 @@ const setLang = (lang: string) => {
 	color: #707f96;
 	width: 98%;
 	border-radius: 10px;
-	height: 60%;
+	height: 70px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -99,7 +99,7 @@ const setLang = (lang: string) => {
 }
 .all-lang {
 	position: absolute;
-	height: 35vh;
+	height: fit-content;
 	background-color: #20242f;
 	width: 98%;
 	border-radius: 5px;
@@ -112,13 +112,15 @@ const setLang = (lang: string) => {
 	display: flex;
 	flex-direction: column;
 	overflow-y: auto;
+	position: relative;
+	z-index: 999;
 }
 .modal-lang {
+	position: relative;
 	width: 100%;
 	height: 44px;
 	border-bottom: 1px solid #363a45;
 	transition: 400ms;
-	z-index: 5;
 	display: flex;
 	justify-content: left;
 	align-items: center;
@@ -131,6 +133,7 @@ const setLang = (lang: string) => {
 }
 .lang {
 	position: relative;
+	z-index: 999;
 }
 .lang-conteiner {
 	display: flex;
@@ -145,5 +148,31 @@ const setLang = (lang: string) => {
 }
 .select-image {
 	margin-right: 10px;
+}
+@media (max-width: 1100px) {
+	/* .user_email, */
+	.input_element,
+	.item_settings_info p:nth-child(1) {
+		font-size: 15px;
+	}
+	.selected_element {
+		height: 50%;
+	}
+	.item-w {
+		width: 100%;
+	}
+	.setings_item {
+		height: 150px;
+	}
+}
+@media screen and (max-width: 768px) {
+	.setings_item,
+	.item-w {
+		width: 98vw;
+	}
+	.lang {
+		margin-bottom: 30px;
+		color: white;
+	}
 }
 </style>

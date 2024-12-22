@@ -133,7 +133,12 @@ function changePeriod(period: string) {
 		height: 50px;
 	}
 	.tariffs-container {
-		height: 70vh;
+		width: 100%;
+		margin-bottom: 10px;
+		height: 300px;
+	}
+	.tariffs-content {
+		width: 60%;
 	}
 }
 
@@ -142,6 +147,9 @@ function changePeriod(period: string) {
 		width: 100%;
 		margin-bottom: 10px;
 		height: 300px;
+	}
+	.tariffs-content {
+		width: 100%;
 	}
 	.limits {
 		display: flex;

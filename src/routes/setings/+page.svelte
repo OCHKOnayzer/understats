@@ -1,14 +1,27 @@
 <script>
 import { t } from 'svelte-i18n';
+import { onMount } from 'svelte';
 
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
 import DemoButtons from '$src/components/widgets/demo/demoButtons/DemoButtons.svelte';
 import { currentUser } from '$src/stores/modalStore';
+import Lang from '$src/components/ui/settingsSections/lang.svelte';
 
-import UserAvatar from '../../components/ui/editUser/userAvatar.svelte';
+// import UserAvatar from '../../components/ui/editUser/userAvatar.svelte';
 import Info from '../../components/ui/editUser/info.svelte';
 import EditPass from '../../components/ui/editUser/editPass.svelte';
-import Setings from '../../components/ui/editUser/setings.svelte';
+// import Setings from '../../components/ui/editUser/setings.svelte';
+let isMobile = false;
+
+function checkScreenWidth() {
+	isMobile = window.innerWidth <= 768;
+}
+
+onMount(() => {
+	checkScreenWidth();
+	window.addEventListener('resize', checkScreenWidth);
+	return () => window.removeEventListener('resize', checkScreenWidth);
+});
 selectHeaderTitle('settings.settings');
 </script>
 
@@ -23,6 +36,9 @@ selectHeaderTitle('settings.settings');
 	<div class="mainContent">
 		{#if !$currentUser}
 			<DemoButtons />
+		{/if}
+		{#if isMobile}
+			<Lang />
 		{/if}
 		<div class="progressWrapper">
 			<!-- <Setings /> -->

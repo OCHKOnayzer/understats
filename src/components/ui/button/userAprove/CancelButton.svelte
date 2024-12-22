@@ -31,10 +31,10 @@ let { onUserText } = $$props as SwitchInterface;
 .button_wrapper button:hover {
 	background-color: #6b717a;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
 	.button_wrapper {
 		width: 100%;
-		height: 6vh;
+		height: 8vh;
 		margin-right: 0px;
 	}
 	.button_wrapper button {

@@ -30,13 +30,12 @@ class ExtensionService {
 	}
 
 	async downloadFile() {
-		// не полностью готво
 		const downloadToast = toast.loading(get(t)('error.start'));
 
 		try {
 			const accessToken = getAccessToken();
 			if (!accessToken) {
-				throw new ApiError(get(t)('error.error'));
+				throw new ApiError(get(t)('error.auth'));
 			}
 
 			const response = await fetch('/extension/download/', {
@@ -47,12 +46,12 @@ class ExtensionService {
 				}
 			});
 
-			if (!response.ok) {
-				throw new ApiError(get(t)('error.error'));
-			}
+			// if (!response) {
+			// 	throw new ApiError(get(t)('error.download'));
+			// }
 
 			const blob = await response.blob();
-			const fileName = response.headers.get('content-disposition')?.split('filename=')[1]?.replace(/['"]/g, '') || 'extension.zip';
+			const fileName = response.headers.get('content-disposition')?.split('filename=')[1]?.replace(/['"]/g, '') || 'OneKeepBet.zip';
 
 			const url = window.URL.createObjectURL(blob);
 			const a = document.createElement('a');
@@ -67,7 +66,6 @@ class ExtensionService {
 		} catch (error) {
 			const apiError = error instanceof ApiError ? error : new ApiError(get(t)('error.error'));
 			toast.error(apiError.message, { id: downloadToast });
-			console.error('Ошибка загрузки файла:', error);
 		}
 	}
 }

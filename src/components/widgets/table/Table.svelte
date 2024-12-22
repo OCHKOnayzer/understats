@@ -8,6 +8,7 @@ import { useUserProfile } from '$src/services/auth/useProfile';
 import { currentUser } from '$src/stores/modalStore';
 import { cn } from '$utils/utils';
 
+import AuthDemoButton from '../demo/demoButtons/AuthDemoButton.svelte';
 const headers = [
 	{ title: $t('accounts.bookmaker'), key: 'siteName' },
 	{ title: $t('accounts.auth'), key: 'login' },
@@ -30,15 +31,7 @@ $: accounts = isAuthenticated ? $query.data : [];
 </script>
 
 {#if !isAuthenticated}
-	<div class="message-container">
-		<img
-			class="mb-2"
-			src="/icons/accounts/file.svg"
-			alt="" />
-		<h2 class="w-[260px] text-center text-xl text-[#718096]">
-			{$t('accounts.noAuth')}
-		</h2>
-	</div>
+	<AuthDemoButton />
 {:else if isLoading}
 	<div class="message-container">
 		<Spinner

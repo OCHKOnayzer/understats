@@ -7,7 +7,7 @@ import UserContainer from './userInfo/UserContainer.svelte';
 import RouteMenu from './routeMenu.svelte';
 import RouteHelp from './routeHelp.svelte';
 
-let isMobile = window.innerWidth <= 768;
+let isMobile = window.innerWidth <= 800;
 let scrollbarWidth = 0;
 
 const getScrollbarWidth = () => {
@@ -15,7 +15,7 @@ const getScrollbarWidth = () => {
 };
 
 const handleResize = () => {
-	isMobile = window.innerWidth <= 768;
+	isMobile = window.innerWidth <= 800;
 	scrollbarWidth = getScrollbarWidth();
 };
 
@@ -61,13 +61,11 @@ onDestroy(() => {
 	</div>
 {/if}
 
-<div class="mainContent">
-	<!-- Ваш основной контент здесь -->
-</div>
+<div class="mainContent"> </div>
 
 <style>
 .fixedContainer {
-	position: fixed; /* Изменено с sticky на fixed */
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 13vw;
@@ -113,11 +111,33 @@ onDestroy(() => {
 .closeMenu {
 	display: none;
 }
-@media screen and (max-width: 768px) {
+.mainContent {
+	padding-left: 13vw;
+	transition: padding-left 0.3s ease;
+}
+@media screen and (max-width: 1200px) {
 	.fixedContainer {
-		position: absolute; /* Можно оставить или изменить на fixed, если требуется */
+		width: 16vw;
+	}
+	.mainContent {
+		padding-left: 16vw;
+	}
+}
+@media screen and (max-width: 800px) {
+	.fixedContainer {
+		position: fixed;
 		z-index: 9999;
 		width: 100vw;
+	}
+	.menuWrapper {
+		overflow-y: auto;
+	}
+	.menuWrapper::-webkit-scrollbar {
+		border-radius: 30px;
+		width: 3px;
+	}
+	.menuWrapper::-webkit-scrollbar-thumb {
+		background: rgba(135, 138, 160, 0.507);
 	}
 	.logo {
 		display: flex;
@@ -126,14 +146,6 @@ onDestroy(() => {
 	.closeMenu {
 		display: block;
 	}
-}
-
-.mainContent {
-	padding-left: 13vw; /* Соответствует ширине меню */
-	transition: padding-left 0.3s ease;
-}
-
-@media screen and (max-width: 768px) {
 	.mainContent {
 		padding-left: 0;
 	}

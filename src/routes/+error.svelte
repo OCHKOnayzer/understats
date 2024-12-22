@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 export let status;
 export let error;
 import NotFound from '$src/components/ui/errors/NotFound.svelte';
@@ -14,4 +14,4 @@ import NotFound from '$src/components/ui/errors/NotFound.svelte';
 	{:else}
 		<NotFound />
 	{/if}
-</main>
+</main> -->
