@@ -17,9 +17,8 @@ const { form, mutation } = useAuth(true);
 
 let isMobile = false;
 
-// Проверяем размер экрана
 function checkScreenWidth() {
-	isMobile = window.innerWidth <= 768; // Считаем "мобильным" экран шириной 768px или меньше
+	isMobile = window.innerWidth <= 768;
 }
 
 onMount(() => {
@@ -95,7 +94,7 @@ const registerUser = () => {
 	justify-content: space-between;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
 	.aprove_wrapper {
 		flex-direction: column-reverse;
 		justify-content: center;

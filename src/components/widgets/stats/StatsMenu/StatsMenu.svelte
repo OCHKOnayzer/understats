@@ -3,15 +3,20 @@ import BetsFilter from '$src/components/entities/stats/BetsFilter/BetsFilter.sve
 import BetsSummary from '$src/components/entities/stats/BetsSummary/BetsSummary.svelte';
 </script>
 
-<section class="wrapper">
-	<BetsSummary />
-	<BetsFilter />
-</section>
+<div class="w-full">
+	<div class="overflow-x-auto">
+		<section class="wrapper">
+			<BetsSummary />
+			<BetsFilter />
+		</section>
+	</div>
+</div>
 
 <style>
 .wrapper {
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+	flex: 1;
+	white-space: nowrap;
 }
 </style>

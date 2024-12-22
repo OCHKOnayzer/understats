@@ -1,3 +1,5 @@
+import { error } from '@sveltejs/kit';
+
 import { extensionService } from '$src/services/extensions/extension.service';
 import { formatDate } from '$src/utils/functions/formatDate';
 
@@ -9,10 +11,11 @@ export async function load() {
 			...extensionInfo,
 			lastUpdatedDate: formatDate(extensionInfo.lastUpdatedDate)
 		};
+
 		return {
 			extensionInfo: formattedData
 		};
-	} catch (error: any) {
-		throw new Error(error);
+	} catch (err: any) {
+		throw error(err.status || 500, err.message || 'Произошла ошибка при загрузке данных');
 	}
 }

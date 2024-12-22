@@ -8,6 +8,7 @@
 .SettingsWrapper {
 	width: 100%;
 	margin: 0 auto;
+	min-height: 200px;
 	height: fit-content;
 	box-sizing: border-box;
 	margin-top: 10px;

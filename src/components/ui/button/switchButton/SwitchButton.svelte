@@ -36,7 +36,7 @@ export let switch_text: string;
 @media screen and (max-width: 768px) {
 	.switch_wrapper {
 		width: 100%;
-		height: 6vh;
+		height: 8vh;
 		margin-right: 0px;
 	}
 	.switch_wrapper button {

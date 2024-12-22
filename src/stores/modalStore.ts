@@ -12,7 +12,7 @@ import type { IAuthResponse } from '$src/types/types';
 
 // export const isModalOpen = writable(getAccessToken() ? false : true);
 
-export const currentModal = writable('reg');
+export const currentModal = writable('login');
 export const isChatModalOpen = writable(false);
 export const isChangeTypeText = writable(false);
 export const confirmPassword = writable('');

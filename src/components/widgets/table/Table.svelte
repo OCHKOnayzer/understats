@@ -8,174 +8,132 @@ import { useUserProfile } from '$src/services/auth/useProfile';
 import { currentUser } from '$src/stores/modalStore';
 import { cn } from '$utils/utils';
 
+import AuthDemoButton from '../demo/demoButtons/AuthDemoButton.svelte';
+const headers = [
+	{ title: $t('accounts.bookmaker'), key: 'siteName' },
+	{ title: $t('accounts.auth'), key: 'login' },
+	{ title: $t('accounts.login'), key: 'extendedId' },
+	{ title: $t('accounts.balance'), key: 'balance' },
+	{ title: $t('accounts.name'), key: 'fullName' },
+	{ title: $t('accounts.mail'), key: 'email' },
+	{ title: $t('accounts.phone'), key: 'phone' },
+	{ title: $t('accounts.regData'), key: 'registrationDate' },
+	{ title: $t('accounts.lastBet'), key: 'lastBet' },
+	{ title: $t('accounts.betCount'), key: 'currency' }
+];
+
 const { query } = useAccounts();
 const { query: profileQuery } = useUserProfile();
 
 $: isAuthenticated = !!$currentUser;
 $: isLoading = ($query.isLoading || $profileQuery.isLoading) && isAuthenticated;
 $: accounts = isAuthenticated ? $query.data : [];
-
-$: console.log(accounts);
 </script>
 
-<div class="relative mt-5">
-	<Table.Root>
-		<Table.Header class="tect-[10px] bg-[#31384A]">
-			<Table.Row class="border-none">
-				<Table.Head>
-					<div class="flex items-center gap-1">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.bookmaker')}</span>
-					</div>
-				</Table.Head>
-				<Table.Head>
-					<div class="flex items-center gap-1">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.auth')}</span>
-					</div>
-				</Table.Head>
-				<Table.Head>
-					<div class="flex items-center gap-1">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.login')}</span>
-					</div>
-				</Table.Head>
-				<Table.Head>
-					<div class="flex items-center gap-1">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.balance')}</span>
-					</div>
-				</Table.Head>
-				<Table.Head>
-					<div class="flex items-center gap-1">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.name')}</span>
-					</div>
-				</Table.Head>
-				<Table.Head>
-					<div class="flex items-center gap-1">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.mail')}</span>
-					</div>
-				</Table.Head>
-				<Table.Head>
-					<div class="flex items-center gap-1">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.phone')}</span>
-					</div>
-				</Table.Head>
-				<Table.Head class="text-center">
-					<div class="flex items-center gap-1 text-center">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.regData')}</span>
-					</div>
-				</Table.Head>
-				<Table.Head class="text-center">
-					<div class="flex items-center gap-1 text-center">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.lastBet')}</span>
-					</div>
-				</Table.Head>
-				<Table.Head class="text-center">
-					<div class="flex gap-1 text-left">
-						<img
-							src="icons/bk/table.svg"
-							alt="table" />
-						<span class="whitespace-pre-line">{$t('accounts.betCount')}</span>
-					</div>
-				</Table.Head>
-			</Table.Row>
-		</Table.Header>
-		{#if !isAuthenticated}
-			<Table.Body>
-				<Table.Row>
-					<Table.Cell
-						colspan="{10}"
-						class="border-none">
-						<div class="flex h-[90vh] flex-col items-center justify-center">
-							<img
-								class="mb-2"
-								src="/icons/accounts/file.svg"
-								alt="" />
-							<h2 class="w-[260px] text-center text-xl text-[#718096]">
-								{$t('accounts.noAuth')}
-							</h2>
-						</div>
-					</Table.Cell>
-				</Table.Row>
-			</Table.Body>
-		{:else if isLoading}
-			<Table.Body>
-				<Table.Row>
-					<Table.Cell
-						colspan="{10}"
-						class="border-none">
-						<div class="flex h-[90vh] flex-col items-center justify-center">
-							<Spinner
-								color="#718096"
-								size="{32}" />
-							<h2 class="w-[260px] text-center text-xl text-[#718096]">{$t('accounts.loading')}</h2>
-						</div>
-					</Table.Cell>
-				</Table.Row>
-			</Table.Body>
-		{:else if accounts?.length}
-			<Table.Body>
-				{#each accounts as account, index (`${account.siteName}-${account.extendedId}-${index}`)}
-					<Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'} active:bg-[#3D3A8540]`)}">
-						<Table.Cell>{account.siteName || 'N/A'}</Table.Cell>
-						<Table.Cell>{account.extendedId || 'N/A'}</Table.Cell>
-						<Table.Cell>
-							{account.login ? 'Подключен' : 'Не подключен'}
-						</Table.Cell>
-						<Table.Cell>{account.balance}</Table.Cell>
-						<Table.Cell>{account.fullName}</Table.Cell>
-						<Table.Cell>{account.email}</Table.Cell>
-						<Table.Cell>{account.phone}</Table.Cell>
-						<Table.Cell>
-							{account.registrationDate}
-						</Table.Cell>
-						<Table.Cell>lastBet</Table.Cell>
-						<Table.Cell>{account.currency}</Table.Cell>
+{#if !isAuthenticated}
+	<AuthDemoButton />
+{:else if isLoading}
+	<div class="message-container">
+		<Spinner
+			color="#718096"
+			size="{32}" />
+		<h2 class="w-[260px] text-center text-xl text-[#718096]">{$t('accounts.loading')}</h2>
+	</div>
+{:else if accounts?.length}
+	<div class="table-wrapper">
+		<div class="table-container">
+			<Table.Root class="mt-3 w-full caption-bottom text-[12px]">
+				<Table.Header class="sticky top-0 bg-[#31384A]">
+					<Table.Row class="border-none">
+						{#each headers as header}
+							<Table.Head class="max-w-[150px] truncate whitespace-nowrap sm:h-7 md:h-8 xl:h-10">
+								<div class="flex items-center gap-1 overflow-hidden">
+									<img
+										class="flex-shrink-0 sm:h-2 sm:w-2 md:h-2 md:w-2 xl:h-4 xl:w-4"
+										src="icons/bk/table.svg"
+										alt="table" />
+									<span class="overflow-hidden truncate sm:text-[9px] md:text-[10px] xl:text-[14px]">
+										{header.title}
+									</span>
+								</div>
+							</Table.Head>
+						{/each}
 					</Table.Row>
-				{/each}
-			</Table.Body>
-		{:else}
-			<Table.Body>
-				<Table.Row>
-					<Table.Cell
-						colspan="{10}"
-						class="border-none">
-						<div class="flex h-[90vh] flex-col items-center justify-center">
-							<img
-								class="mb-2"
-								src="/icons/accounts/file.svg"
-								alt="" />
-							<h2 class="w-[260px] text-center text-xl text-[#718096]">
-								{$t('accounts.noAccounts')}
-							</h2>
-						</div>
-					</Table.Cell>
-				</Table.Row>
-			</Table.Body>
-		{/if}
-	</Table.Root>
-</div>
+				</Table.Header>
+				<Table.Body>
+					{#each accounts as account, index (`${account.siteName}-${account.extendedId}-${index}`)}
+						<Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'} text-[20px] active:bg-[#3D3A8540]`)}">
+							<Table.Cell>{account.siteName || 'N/A'}</Table.Cell>
+							<Table.Cell>{account.extendedId || 'N/A'}</Table.Cell>
+							<Table.Cell>
+								{account.login ? 'Подключен' : 'Не подключен'}
+							</Table.Cell>
+							<Table.Cell>{account.balance}</Table.Cell>
+							<Table.Cell>{account.fullName}</Table.Cell>
+							<Table.Cell>{account.email}</Table.Cell>
+							<Table.Cell>{account.phone}</Table.Cell>
+							<Table.Cell>
+								{account.registrationDate}
+							</Table.Cell>
+							<Table.Cell>lastBet</Table.Cell>
+							<Table.Cell>{account.currency}</Table.Cell>
+						</Table.Row>
+					{/each}
+				</Table.Body>
+			</Table.Root>
+		</div>
+	</div>
+{:else}
+	<div class="message-container">
+		<img
+			class="mb-2"
+			src="/icons/accounts/file.svg"
+			alt="" />
+		<h2 class="w-[260px] text-center text-xl text-[#718096]">
+			{$t('accounts.noAccounts')}
+		</h2>
+	</div>
+{/if}
+
+<style>
+.message-container {
+	display: flex;
+	height: 90vh;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	background: #171b26;
+	font-weight: 300;
+	font-family: 'Manrope';
+}
+
+.table-wrapper {
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	box-sizing: border-box;
+	background: #171b26;
+}
+
+.table-container {
+	width: 100%;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	position: relative;
+	box-sizing: border-box;
+}
+
+:global(.table-container table) {
+	width: 100%;
+	table-layout: auto;
+}
+
+:global(.table-container th) {
+	min-width: 0;
+	max-width: 150px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+</style>

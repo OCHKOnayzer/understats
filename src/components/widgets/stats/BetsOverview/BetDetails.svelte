@@ -1,5 +1,6 @@
 <script lang="ts">
 import { onMount } from 'svelte';
+import { Loader } from 'lucide-svelte';
 
 import * as Table from '$components/ui/table';
 
@@ -71,7 +72,7 @@ onMount(() => {
 
 	{#if isLoading}
 		<div class="flex h-40 items-center justify-center">
-			<div class="loading-spinner"></div>
+			<Loader size="24" />
 		</div>
 	{:else if error}
 		<div class="p-4 text-red-500">

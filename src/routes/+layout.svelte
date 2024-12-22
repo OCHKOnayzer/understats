@@ -1,14 +1,24 @@
-<script>
+<!-- src/routes/+layout.svelte -->
+<script
+	context="module"
+	lang="ts">
+export type LayoutData = {
+	locale: string;
+};
+</script>
+
+<script lang="ts">
 import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 import { onDestroy, onMount } from 'svelte';
 import { Toaster } from 'svelte-french-toast';
-import { waitLocale } from 'svelte-i18n';
+import { init, locale, waitLocale } from 'svelte-i18n';
 
-import Test from '$src/components/ui/test.svelte';
+import { setAppLanguage, selectedLang } from '$src/stores/languageStore';
 import Container from '$components/providers/container/Container.svelte';
 import Menu from '$components/ui/menu/Menu.svelte';
 import Header from '$src/components/ui/header/header.svelte';
 import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
+import Test from '$src/components/ui/test.svelte';
 import { isModalOpen } from '$src/stores/modalStore';
 import { langSel } from '$stores/HeaderStores';
 import '$src/styles/fonts.css';
@@ -18,10 +28,27 @@ import { page } from '$app/stores';
 
 import '../app.css';
 
+export let data: LayoutData;
+
+init({
+	fallbackLocale: 'en',
+	initialLocale: data.locale
+});
+
 let isLocaleReady = false;
 
-waitLocale().then(() => {
-	isLocaleReady = true;
+onMount(async () => {
+	try {
+		if ($selectedLang !== data.locale) {
+			setAppLanguage(data.locale);
+			locale.set(data.locale);
+		}
+
+		await waitLocale();
+		isLocaleReady = true;
+	} catch (error) {
+		console.error('Ошибка загрузки локали на клиенте:', error);
+	}
 });
 
 let unsubscribe;
@@ -42,7 +69,6 @@ onDestroy(() => {
 	}
 });
 
-const routesWithoutHeader = ['/stats', '/'];
 const routesWithoutMenu = ['/'];
 
 const queryClient = new QueryClient({
@@ -109,24 +135,18 @@ const isProduction = import.meta.env.PROD;
 	<Container>
 		<main>
 			{#if isLocaleReady}
-				{#if !routesWithoutMenu.includes($page.url.pathname)}
-					<Menu />
-				{/if}
+				<Menu />
 				{#if $isModalOpen}
 					<AuthModal />
 				{/if}
 				<div class="mainContent">
-					{#if !routesWithoutHeader.includes($page.url.pathname)}
-						<Header />
-					{/if}
-
+					<Header />
 					<slot />
 				</div>
 			{:else}
 				<Test />
 			{/if}
 		</main>
-
 		<Toaster />
 	</Container>
 </QueryClientProvider>
@@ -136,19 +156,24 @@ main {
 	min-height: 100vh;
 	height: fit-content;
 	display: flex;
-	gap: 1rem;
 	width: 100%;
-	height: 100%;
+	overflow-x: hidden;
+	position: relative;
 }
+
 .mainContent {
 	position: relative;
-	width: 100vw;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
+	overflow-x: hidden;
+	padding: 0 1rem;
+	box-sizing: border-box;
 }
-/* @media screen and (max-width: 1024px) {
+
+@media screen and (max-width: 768px) {
 	.mainContent {
-		margin-left: 30vw;
+		padding: 0 0.5rem;
 	}
-} */
+}
 </style>

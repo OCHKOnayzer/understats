@@ -101,25 +101,27 @@
 		"download_app": "Скачать Расширение",
 		"paySuss": "Оплата успешно выполнена!",
 		"payFail": "Оплата не выполнена!",
-		"retry": "Повторить"
+		"retry": "Повторить",
+		"demo": "Демо-доступ",
+		"": ""
 	},
 	"main": {
 		"main": "Главная"
 	},
-	"tariffs":{
+	"tariffs": {
 		"tariffs": "Тарифы",
 		"choose": "Выберите тариф",
 		"accountLimits": "Тарифы различаются кол-вом поддерживаемых аккаунтов и ставок",
 		"lite": "Для тех, кто хочет попробовать и оценить сервис",
 		"standart": "Для тех, кто уверен в себе и готов к большему.",
-		"pro":"Для настоящих профессионалов. Пользование сервисом без ограничений",
+		"pro": "Для настоящих профессионалов. Пользование сервисом без ограничений",
 		"month": "В месяц",
 		"year": "В год",
 		"buy_in": "Купить за",
 		"limits": "{accounts} аккаунтов и {bets} ставок",
 		"no_limits": "Аккаунты и ставки без ограничений",
-		"year_": "Сразу за год выгоднее",
-		"": "На 10% выгоднее"
+		"year_proccents": "Сразу за год выгоднее",
+		"proccents": "На 10% выгоднее"
 	},
 	"settings": {
 		"settings": "Настройки",
@@ -283,11 +285,46 @@
 		"ch": "Китайский",
 		"fr": "Французкий",
 		"it": "Итальянский",
-		"title": "Выберите язык"
+		"title": "Выберите язык",
+		"app_lang":"Язык интерфейса"
 	},
-	"error":{ 
-		"download.start": "Загрузка файла...",
+	"error": {
+		"start": "Загрузка файла...",
 		"download.success": "Файл успешно загружен: {fileName}",
-		"download.error": "Ошибка загрузки файла"
+		"error": "Ошибка загрузки файла",
+		"auth": "Вы не авторизованы!",
+		"success": "Расширение утсановлено!",
+		"change": "Идет процесс изменения вашего пароля.",
+		"change_success": "Пароль успешно изменен.",
+		"length_pass": "Пароль должен быть не менее 6 символов.",
+		"current_pass": " Текущий пароль неверный",
+		"pass_error": "Не удалось сменить ваш пароль. Пожалуйста, попробуйте еще раз."
+	},
+	"filter": {
+		"button": "Фильтер",
+		"tabs.halfYear": "Полгода",
+		"tabs.week": "Неделя",
+		"tabs.yesterday": "Вчера",
+		"tabs.today": "Сегодня",
+		"accordion.results": "Результаты",
+		"accordion.other": "Другое",
+		"accordion.sports": "Спорт",
+		"accordion.bookmakers": "Букмекеры",
+		"accordion.accounts": "Аккаунты",
+		"accordion.teams": "Команды",
+		"accordion.leagues": "Турниры",
+		"results.won": "Выигрыш",
+		"results.lost": "Проигрыш",
+		"results.notRecognized": "Не распознано",
+		"results.notСalculated": "Не рассчитано",
+		"results.return": "Возврат",
+		"results.cancel": "Отмена",
+		"results.wonReturn": "Выигрыш/Возврат",
+		"results.lostReturn": "Проигрыш/Отмена",
+		"pagination.halfYear": "Полгода",
+		"pagination.3month": "3 месяца",
+		"pagination.month": "Месяц",
+		"pagination.week": "Неделя",
+		"pagination.3days": "3 дня"
 	}
 }

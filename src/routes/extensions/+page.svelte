@@ -1,7 +1,9 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 
+import DemoButtons from '$src/components/widgets/demo/demoButtons/DemoButtons.svelte';
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
+import { currentUser } from '$src/stores/modalStore';
 import DownloadSection from '$src/components/ui/extSections/DownloadSection.svelte';
 import QuesSection from '$src/components/ui/extSections/QuesSection.svelte';
 import { extensionInfo } from '$src/stores/extensionStore';
@@ -23,6 +25,9 @@ extensionInfo.set(data.extensionInfo);
 </svelte:head>
 
 <div class="pageContent">
+	{#if !$currentUser}
+		<DemoButtons />
+	{/if}
 	<div class="pageWrapper">
 		<div class="extensions_wallpaper">
 			<img
@@ -43,14 +48,13 @@ extensionInfo.set(data.extensionInfo);
 .pageWrapper {
 	width: 100%;
 	box-sizing: border-box;
-	height: 98%;
 	overflow: none;
 }
 .extensions_wallpaper {
 	width: 100%;
 	border-radius: 5px;
 	margin-top: 10px;
-	height: 30%;
+	height: 29vh;
 }
 .extensions_wallpaper img {
 	height: 100%;
@@ -61,10 +65,15 @@ extensionInfo.set(data.extensionInfo);
 	flex-direction: row;
 	justify-content: space-between;
 	margin-top: 15px;
-	height: 68%;
+	height: 58vh;
 	color: white;
 }
-@media (max-width: 768px) {
+@media screen and (max-height: 660px) {
+	.section_wrapper {
+		height: fit-content;
+	}
+}
+@media (max-width: 800px) {
 	.pageWrapper {
 		height: fit-content;
 	}
@@ -73,7 +82,6 @@ extensionInfo.set(data.extensionInfo);
 	}
 	.section_wrapper {
 		flex-direction: column;
-		height: fit-content;
 	}
 }
 </style>
