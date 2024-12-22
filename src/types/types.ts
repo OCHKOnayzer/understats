@@ -74,6 +74,7 @@ export interface IAuthForm {
 export interface IAuthResponse {
 	login: string;
 	accessToken: string;
+	dateReg: string;
 }
 
 export interface IValidationError {

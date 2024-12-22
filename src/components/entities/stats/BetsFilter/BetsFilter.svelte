@@ -1,6 +1,7 @@
 <script lang="ts">
 import Icon from '@iconify/svelte';
 import { onDestroy, onMount } from 'svelte';
+import { t } from 'svelte-i18n';
 
 import BetFilterResults from '$src/components/features/stats/FilterBet/BetFilterResults.svelte';
 import Accordion from '$src/components/ui/accordion/Accordion.svelte';
@@ -11,7 +12,6 @@ import { filterStore } from '$src/stores/filterStore';
 
 import { fetchFilteredData } from '../api/api';
 import BetsSelectFilter from '../BetsSelectFilter/BetsSelectFilter.svelte';
-import { t } from 'svelte-i18n';
 
 let isOpen = false;
 let isLoading = false;
@@ -86,13 +86,13 @@ async function applyFilters() {
 
 		<FilterTabs />
 
-		<Accordion title={$t('filter.accordion.results')}>
+		<Accordion title="{$t('filter.accordion.results')}">
 			<BetFilterResults />
 		</Accordion>
 
 		<BetsSelectFilter />
 
-		<Accordion title={$t('filter.accordion.other')}>
+		<Accordion title="{$t('filter.accordion.other')}">
 			<BetFilters />
 		</Accordion>
 

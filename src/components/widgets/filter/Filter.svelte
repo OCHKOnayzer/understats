@@ -5,7 +5,6 @@ import FilterForm from '$components/entities/filter/FilterForm.svelte';
 import BackgroundContainer from '$components/providers/backgroundContainer/BackgroundContainer.svelte';
 import { filter } from '$stores/store';
 
-
 $: filterValue = $filter;
 </script>
 

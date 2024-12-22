@@ -83,9 +83,9 @@ import ModalCurrent from './modalCurrent/ModalCurrent.svelte';
 	}
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
 	.modal_window_wrapper {
-		justify-content: unset;
+		justify-content: center;
 	}
 
 	.modal_window {
@@ -109,7 +109,7 @@ import ModalCurrent from './modalCurrent/ModalCurrent.svelte';
 	}
 }
 
-@media screen and (max-height: 700px) {
+@media screen and (max-height: 600px) {
 	.image_wrapper {
 		display: none;
 	}

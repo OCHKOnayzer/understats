@@ -1,9 +1,19 @@
-<script>
+<!-- src/routes/+layout.svelte -->
+<script
+	context="module"
+	lang="ts">
+export type LayoutData = {
+	locale: string;
+};
+</script>
+
+<script lang="ts">
 import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 import { onMount } from 'svelte';
 import { Toaster } from 'svelte-french-toast';
-import { waitLocale } from 'svelte-i18n';
+import { init, locale, waitLocale } from 'svelte-i18n';
 
+import { setAppLanguage, selectedLang } from '$src/stores/languageStore';
 import Container from '$components/providers/container/Container.svelte';
 import Menu from '$components/ui/menu/Menu.svelte';
 import Header from '$src/components/ui/header/header.svelte';
@@ -16,16 +26,29 @@ import { browser } from '$app/environment';
 import { page } from '$app/stores';
 import '../app.css';
 
+export let data: LayoutData;
+
+init({
+	fallbackLocale: 'en',
+	initialLocale: data.locale
+});
+
 let isLocaleReady = false;
 
 onMount(async () => {
 	try {
+		if ($selectedLang !== data.locale) {
+			setAppLanguage(data.locale);
+			locale.set(data.locale);
+		}
+
 		await waitLocale();
 		isLocaleReady = true;
 	} catch (error) {
-		console.error("Ошибка загрузки локали:", error);
+		console.error('Ошибка загрузки локали на клиенте:', error);
 	}
 });
+
 onMount(() => {
 	if ($isModalOpen) document.body.style.overflow = 'hidden';
 });
@@ -90,27 +113,22 @@ const isProduction = import.meta.env.PROD;
 	<!-- eslint-enable -->
 {/if}
 
-
 <QueryClientProvider client="{queryClient}">
 	<Container>
 		<main>
 			{#if isLocaleReady}
-				{#if !routesWithoutMenu.includes($page.url.pathname)}
-					<Menu />
-				{/if}
+				<Menu />
 				{#if $isModalOpen}
 					<AuthModal />
 				{/if}
 				<div class="mainContent">
 					<Header />
-
 					<slot />
 				</div>
 			{:else}
 				<Test />
 			{/if}
 		</main>
-
 		<Toaster />
 	</Container>
 </QueryClientProvider>

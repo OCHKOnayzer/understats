@@ -40,7 +40,7 @@ onMount(() => {
 	display: flex;
 	flex-direction: column;
 }
-@media (max-width: 678px) {
+@media (max-width: 800px) {
 	.section_title {
 		font-size: 20px;
 		font-weight: 500;

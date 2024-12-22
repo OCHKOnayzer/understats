@@ -2,12 +2,15 @@
 import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 
-import { isFaqMenuOpen } from '$src/stores/faq';
+import { toggleDemoMode } from '$src/stores/demo';
+import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
 import { headerTitle, langImage } from '$src/stores/HeaderStores';
 import { openModal, modalComponent, closeModal, currentUser } from '$src/stores/modalStore';
 import { openMenu } from '$src/stores/menu';
 
 import LangButton from '../button/langButton/LangButton.svelte';
+
+import { page } from '$app/stores';
 
 type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal';
 
@@ -21,6 +24,8 @@ const openCurrentModal = (modal: ModalType) => {
 		openModal(modal);
 	}
 };
+
+const isTumbler = ['/', '/accounts'];
 
 let isHelpPage = false;
 
@@ -60,10 +65,15 @@ onMount(() => {
 				<p>{$t($headerTitle)}</p>
 			</div>
 			<div class="buttonConteiner">
+				{#if isTumbler.includes($page.url.pathname)}
+					<div class="btnWrapper">
+						<CheckBox />
+					</div>
+				{/if}
 				<div class="btnWrapper {$modalComponent === 'LangModal' ? 'active' : ''}">
 					<LangButton openCurrentModal="{openCurrentModal}" />
 				</div>
-				<div class="btnWrapper {$modalComponent === 'SupportModal' ? 'active' : ''}">
+				<div class="btnWrapper support {$modalComponent === 'SupportModal' ? 'active' : ''}">
 					<button on:click="{() => openCurrentModal('SupportModal')}">
 						<img
 							src="assets/header/support.png"
@@ -82,13 +92,13 @@ onMount(() => {
 	padding-top: 10px;
 	width: 100%;
 	margin: 0 auto;
-	margin-bottom: 50px;
+	margin-bottom: 10px;
 	position: relative;
 	z-index: 1;
 }
 
 .headerItem {
-	height: 8vh;
+	height: 75px;
 	box-sizing: border-box;
 	display: flex;
 	align-items: center;
@@ -135,8 +145,8 @@ onMount(() => {
 	margin-right: 1%;
 	width: fit-content;
 }
+
 .btnWrapper {
-	width: 40px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -145,13 +155,13 @@ onMount(() => {
 	transition: 400ms;
 	height: 40px;
 }
-.btnWrapper:nth-child(1) {
-	width: fit-content;
-}
 
 .btnWrapper:nth-child(2) {
 	margin-right: 10px;
 	margin-left: 10px;
+}
+.support {
+	width: 40px;
 }
 .btnWrapper:hover {
 	background-color: #282d3b;
@@ -178,9 +188,9 @@ onMount(() => {
 		font-size: 20px;
 	}
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
 	.header {
-		padding-bottom: 30px;
+		margin-bottom: 60px;
 	}
 	.flexConteiner {
 		display: flex;

@@ -51,7 +51,7 @@ input {
 .placeholderContainer {
 	position: relative;
 	width: 100%;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .placeholderContainer .int {

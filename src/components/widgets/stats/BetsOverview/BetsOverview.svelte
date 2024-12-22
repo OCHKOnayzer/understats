@@ -4,6 +4,9 @@ import { onMount } from 'svelte';
 
 import * as Table from '$components/ui/table';
 import Tabs from '$components/ui/tabs/Tabs.svelte';
+import { currentUser } from '$src/stores/modalStore';
+
+import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 
 import BetDetails from './BetDetails.svelte';
 
@@ -125,7 +128,7 @@ const mockData = {
 		]
 	}
 };
-
+$: isAuthenticated = !!$currentUser;
 $: subTabs = subTabsMap[activeTab] || [];
 
 function getAggregatedData() {
@@ -187,7 +190,7 @@ onMount(() => {
 				variant="pills"
 				on:tabChange="{handleSubTabChange}" />
 		</div> -->
-
+	{#if isAuthenticated}
 		{#if isLoading}
 			<div class="flex h-40 items-center justify-center">
 				<Loader />
@@ -233,4 +236,7 @@ onMount(() => {
 		{:else}
 			<div class="p-4 text-center"> Нет данных </div>
 		{/if}
+	{:else}
+		<AuthDemoButton />
+	{/if}
 </section>

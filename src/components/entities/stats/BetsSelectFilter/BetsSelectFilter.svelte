@@ -1,8 +1,9 @@
 <script>
+import { t } from 'svelte-i18n';
+
 import Accordion from '$src/components/ui/accordion/Accordion.svelte';
 import SportsList from '$src/components/ui/sportsList/SportsList.svelte';
 import { accountsList, accountsListMain, bookmakersList, bookmakersListMain, filterStore, sportList, sportListMain } from '$src/stores/filterStore';
-import { t } from 'svelte-i18n';
 </script>
 
 <Accordion title="{$t('filter.accordion.sports')}">
