@@ -117,9 +117,7 @@ const isProduction = import.meta.env.PROD;
 	<Container>
 		<main>
 			{#if isLocaleReady}
-				{#if !routesWithoutMenu.includes($page.url.pathname)}
-					<Menu />
-				{/if}
+				<Menu />
 				{#if $isModalOpen}
 					<AuthModal />
 				{/if}

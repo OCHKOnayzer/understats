@@ -25,7 +25,7 @@ const openCurrentModal = (modal: ModalType) => {
 	}
 };
 
-const isTumbler = ['/stats', '/accounts'];
+const isTumbler = ['/', '/accounts'];
 
 let isHelpPage = false;
 

@@ -17,7 +17,7 @@ export const pageRoutes: LinkInterface[] = [
 	
 	 */
 	{
-		href: '/stats',
+		href: '/',
 		img1: 'assets/menu/active/stats.png',
 		img2: 'assets/menu/menuElements/stats.png',
 		title: 'menu.Stats'
@@ -41,7 +41,7 @@ export const pageRoutes: LinkInterface[] = [
 		title: 'menu.Tariffs'
 	},
 	{
-		href: '/setings',
+		href: '/settings',
 		img1: 'assets/menu/active/setings.png',
 		img2: 'assets/menu/menuElements/setings.png',
 		title: 'menu.Setings'
