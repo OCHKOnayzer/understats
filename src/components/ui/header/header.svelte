@@ -63,10 +63,10 @@ onMount(() => {
 					<p>{$t($headerTitle)}</p>
 				</div>
 				{#if $headerTitle == 'menu.Stats'}
-					<MobileFilterButton/>
+					<MobileFilterButton />
 				{/if}
 			</div>
-			
+
 			<div class="buttonConteiner">
 				<div class="btnWrapper {$modalComponent === 'LangModal' ? 'active' : ''}">
 					<LangButton openCurrentModal="{openCurrentModal}" />

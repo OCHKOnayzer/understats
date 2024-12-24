@@ -1,5 +1,5 @@
 <script>
-import Button from '$src/components/ui/button/button.svelte';
+import MobileDrawer from './MobileDrawer.svelte';
 
 
 </script>
@@ -39,9 +39,5 @@ import Button from '$src/components/ui/button/button.svelte';
 			</div>
 		</div>
 	</div>
-	<Button class="h-[56px] text-[16px] w-full" variant='card'>Подробнее</Button>
+	<MobileDrawer />
 </div>
-
-<style>
-
-</style>

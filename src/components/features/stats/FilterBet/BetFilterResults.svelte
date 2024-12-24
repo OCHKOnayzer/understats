@@ -3,8 +3,16 @@ import Button from '$src/components/ui/button/button.svelte';
 import { filterStore } from '$src/stores/filterStore';
 import { t } from 'svelte-i18n';
 
-const items = ['filter.results.notRecognized', 'filter.results.notСalculated', 'filter.results.won', 'filter.results.lost', 'filter.results.return', 'filter.results.cancel', 'filter.results.wonReturn', 'filter.results.lostReturn'];
-
+const items = [
+	'filter.results.notRecognized',
+	'filter.results.notСalculated',
+	'filter.results.won',
+	'filter.results.lost',
+	'filter.results.return',
+	'filter.results.cancel',
+	'filter.results.wonReturn',
+	'filter.results.lostReturn'
+];
 </script>
 
 <div class="flex flex-wrap">

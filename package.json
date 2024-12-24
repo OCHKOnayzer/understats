@@ -16,18 +16,18 @@
 		"prepare": "husky"
 	},
 	"lint-staged": {
-		"*.{js,ts,svelte}": ["npx eslint --ext .js,.ts,.svelte src/ --fix"]
+		"*.{js,ts,svelte}": [
+			"npx eslint --ext .js,.ts,.svelte src/ --fix"
+		]
 	},
 	"dependencies": {
 		"@tanstack/svelte-query": "^5.59.20",
 		"axios": "^1.7.7",
-		"bits-ui": "^0.21.16",
 		"clsx": "^2.1.1",
 		"dotenv": "^16.4.5",
 		"formsnap": "^1.0.1",
 		"iconify-icon": "^2.1.0",
 		"js-cookie": "^3.0.5",
-		"lucide-svelte": "^0.451.0",
 		"moment": "^2.30.1",
 		"svelte-french-toast": "^1.2.0",
 		"svelte-i18n": "^4.0.0",
@@ -35,12 +35,14 @@
 		"sveltekit-superforms": "^2.19.1",
 		"tailwind-merge": "^2.5.3",
 		"tailwind-variants": "^0.2.1",
+		"tailwindcss-animate": "^1.0.7",
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
 		"@html-eslint/eslint-plugin": "^0.27.0",
 		"@html-eslint/parser": "^0.27.0",
 		"@iconify/svelte": "^4.0.2",
+		"@internationalized/date": "^3.6.0",
 		"@sveltejs/adapter-node": "^5.2.6",
 		"@sveltejs/adapter-static": "^3.0.5",
 		"@sveltejs/kit": "^2.6.4",
@@ -51,6 +53,7 @@
 		"@typescript-eslint/eslint-plugin": "~5.62.0",
 		"@typescript-eslint/parser": "^8.12.2",
 		"autoprefixer": "^10.4.20",
+		"bits-ui": "1.0.0-next.74",
 		"cross-env": "^7.0.3",
 		"eslint": "~8.57.0",
 		"eslint-config-airbnb-typescript": "~17.1.0",
@@ -65,6 +68,7 @@
 		"globals": "^15.11.0",
 		"husky": "^9.1.6",
 		"lint-staged": "^15.2.10",
+		"lucide-svelte": "^0.451.0",
 		"path": "^0.12.7",
 		"prettier": "~2.8.8",
 		"prettier-plugin-svelte": "~2.10.1",
@@ -79,6 +83,7 @@
 		"ts-node": "^10.9.2",
 		"tslib": "^2.4.1",
 		"typescript": "^5.6.3",
+		"vaul-svelte": "1.0.0-next.3",
 		"vite": "^5.4.8"
 	}
 }

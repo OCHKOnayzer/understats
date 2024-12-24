@@ -18,7 +18,7 @@ class AuthService {
 
 			if (response.data.accessToken) {
 				setAccessToken(response.data.accessToken);
-				closeModal()
+				closeModal();
 				if (window.location.pathname === '/') {
 					goto('/accounts');
 				}

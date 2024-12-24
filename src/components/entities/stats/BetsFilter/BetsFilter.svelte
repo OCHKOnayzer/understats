@@ -45,7 +45,7 @@ async function applyFilters() {
 		console.error('Failed to apply filters:', error);
 	} finally {
 		isLoading = false;
-	
+
 		toggleSidebar();
 	}
 }

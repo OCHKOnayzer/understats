@@ -4,17 +4,19 @@ import { toggleSidebar } from '$src/utils/functions/toggleSidebar';
 </script>
 
 <div class="button">
-
-	<Button variant='interactive' on:click={toggleSidebar}>
-		<img src="/icons/filter.svg" alt="">
+	<Button
+		variant="interactive"
+		onclick="{toggleSidebar}">
+		<img
+			src="/icons/filter.svg"
+			alt="" />
 	</Button>
 </div>
 
-
 <style lang="scss">
-	@media (min-width: 650px) {
-		.button {
-			display: none;
-		}
+@media (min-width: 650px) {
+	.button {
+		display: none;
 	}
+}
 </style>

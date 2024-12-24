@@ -4,7 +4,6 @@ import { t } from 'svelte-i18n';
 import Button from '../button/button.svelte';
 
 const tabs = [
-
 	{ id: 'halfYear', label: 'filter.tabs.halfYear' },
 	{ id: 'month', label: new Date().toLocaleString('default', { month: 'long' })[0].toUpperCase() + new Date().toLocaleString('default', { month: 'long' }).slice(1) },
 	{ id: 'week', label: 'filter.tabs.week' },
