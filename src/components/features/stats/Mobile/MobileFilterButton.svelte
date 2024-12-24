@@ -5,7 +5,7 @@ import { toggleSidebar } from '$src/utils/functions/toggleSidebar';
 
 <div class="button">
 
-	<Button variant='interactive' on:click={toggleSidebar}>
+	<Button variant='card' on:click={toggleSidebar}>
 		<img src="/icons/filter.svg" alt="">
 	</Button>
 </div>

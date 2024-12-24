@@ -27,7 +27,8 @@ const buttonVariants = tv({
 			link: 'text-primary underline-offset-4 hover:underline',
 			apply: 'p-[16px] transition-all w-[50%] bg-[#2f3241] text-white rounded-[12px] hover:bg-[#4a4f5c]',
 			clear: 'py-[16px] px-[16px] transition-all w-[50%] bg-transparent text-white rounded-[12px] hover:bg-[#4a4f5c] border border-[#4a4f5c]',
-			interactive: 'bg-[#363A45] hover:bg-[#2e2f31] p-0 h-[48px] w-[48px] rounded-[12px] transition-colors'
+			interactive: 'bg-[#363A45] hover:bg-[#2e2f31] p-0 h-[48px] w-[48px] rounded-[12px] transition-colors',
+			card: 'bg-[#20242F] rounded-[16px] p-[16px] hover:shadow-lg transition-all'
 		},
 		size: {
 			default: 'h-10 px-4 py-2',

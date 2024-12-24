@@ -39,10 +39,7 @@ import Button from '$src/components/ui/button/button.svelte';
 			</div>
 		</div>
 	</div>
-
-
-<Button class="h-[56px] text-[16px]" variant='card'>Подробнее</Button>
-	
+	<Button class="h-[56px] text-[16px] w-full" variant='card'>Подробнее</Button>
 </div>
 
 <style>
