@@ -16,9 +16,7 @@
 		"prepare": "husky"
 	},
 	"lint-staged": {
-		"*.{js,ts,svelte}": [
-			"npx eslint --ext .js,.ts,.svelte src/ --fix"
-		]
+		"*.{js,ts,svelte}": ["npx eslint --ext .js,.ts,.svelte src/ --fix"]
 	},
 	"dependencies": {
 		"@tanstack/svelte-query": "^5.59.20",
