@@ -19,11 +19,11 @@ onMount(() => {
 	window.addEventListener('resize', checkScreenWidth);
 	return () => window.removeEventListener('resize', checkScreenWidth);
 });
-$: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : $t('settings.create_data');
+$: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 </script>
 
 <SettingsSections>
-	<SettingsTitle title="{'settings.pass_change'}" />
+	<SettingsTitle title="{'settings.my_acc'}" />
 	<div class="setings">
 		<div class="setings_item item-w">
 			<div class="item_settings_info">
@@ -43,7 +43,7 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : $t('setting
 				class="selected_element input_element"
 				type="text"
 				readonly
-				value="{$currentUser?.login ?? $t('settings.create_email')}" />
+				value="{$currentUser?.login ?? ''}" />
 		</div>
 		{#if !isMobile}
 			<Lang />

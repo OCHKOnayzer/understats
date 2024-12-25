@@ -49,7 +49,7 @@ const registerUser = () => {
 		title_wrapper="{$t('social.retry_password')}"
 		show_clear="{true}"
 		bind:value="{$confirmPassword}" />
-	<SocialContainer />
+	<!-- <SocialContainer /> -->
 	<div class="switch_container">
 		{#if !isMobile}
 			<SwitchButton

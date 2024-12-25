@@ -42,11 +42,6 @@ const handleLogout = () => {
 				</button>
 			</div>
 		</div>
-	{:else}
-		<p>Вы не авторизованы.</p>
-		<Button
-			on:click="{() => openModal('authModal')}"
-			variant="default">Войти</Button>
 	{/if}
 </div>
 

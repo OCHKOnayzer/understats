@@ -12,14 +12,22 @@ const openAuth = (modal: string) => {
 
 <div class="buttons-wrapper">
 	<div class="buttons-container">
-		<div class="buttons-desc"> </div>
+		<div class="buttons-desc">
+			<img
+				src="assets/demo.png"
+				alt="" />
+			<div class="desc-content">
+				<span>{$t('other.demo_no_auth_title')}</span>
+				<span>{$t('other.demo_no_auth_content')}</span>
+			</div>
+		</div>
 		<div class="buttons">
 			<button
 				class="buttons-auth"
 				on:click="{() => openAuth('reg')}">{$t('social.create_account')}</button>
 			<button
 				class="buttons-auth"
-				on:click="{() => openAuth('login')}">{$t('social.sign_in')}</button>
+				on:click="{() => openAuth('login')}">{$t('social.auth')}</button>
 		</div>
 		<button
 			class="button-demo"
@@ -45,6 +53,30 @@ const openAuth = (modal: string) => {
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+}
+.buttons-desc{ 
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.buttons-desc img {
+	height: 50px;
+	width: 50px;
+}
+.desc-content{ 
+	display: flex;
+	flex-direction: column;
+	color: white;
+	text-align: center;
+	width: 80%;
+}
+.desc-content span:nth-child(1){ 
+	font-size: 25px;
+	margin-bottom: 10px;
+}
+.desc-content span:nth-child(2){ 
+	font-size: 14px;
+	margin-bottom: 20px;
 }
 .buttons button {
 	height: 56px;
@@ -84,11 +116,14 @@ const openAuth = (modal: string) => {
 		margin-bottom: 0;
 	}
 	.buttons button {
-		width: 60vw;
+		width: 80vw;
 		margin-bottom: 10px;
 	}
+	.buttons-auth{ 
+		margin-right: 0;
+	}
 	.button-demo {
-		width: 60vw;
+		width: 80vw;
 	}
 }
 </style>

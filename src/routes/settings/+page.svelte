@@ -6,6 +6,7 @@ import { selectHeaderTitle } from '$src/stores/HeaderStores';
 import DemoButtons from '$src/components/widgets/demo/demoButtons/DemoButtons.svelte';
 import { currentUser } from '$src/stores/modalStore';
 import Lang from '$src/components/ui/settingsSections/lang.svelte';
+import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
 
 // import UserAvatar from '../../components/ui/editUser/userAvatar.svelte';
 import Info from '../../components/ui/editUser/info.svelte';
@@ -38,6 +39,7 @@ selectHeaderTitle('settings.settings');
 			<DemoButtons />
 		{/if}
 		{#if isMobile}
+			<CheckBox />
 			<Lang />
 		{/if}
 		<div class="progressWrapper">

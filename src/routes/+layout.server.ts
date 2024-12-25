@@ -6,14 +6,18 @@ import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ request }) => {
 	try {
+		// Получение cookies
 		const cookies = request.headers.get('cookie') || '';
 		const match = cookies.match(/(?:^|; )app_lang=([^;]*)/);
-		const locale = match ? decodeURIComponent(match[1]) : 'en';
+		const cookieLocale = match ? decodeURIComponent(match[1]) : null;
 
-		const validLocale = availableLanguages.includes(locale) ? locale : 'en';
+		const systemLocale = request.headers.get('accept-language')?.split(',')[0]?.split('-')[0] || null;
+
+		let locale = cookieLocale || systemLocale || 'en';
+		locale = availableLanguages.includes(locale) ? locale : 'en';
 
 		return {
-			locale: validLocale
+			locale
 		};
 	} catch (err: any) {
 		console.error('Ошибка при определении локали на сервере:', err);

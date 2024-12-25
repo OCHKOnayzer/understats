@@ -44,7 +44,7 @@ const loginUser = () => {
 		title_wrapper="{$t('social.send_password')}"
 		show_clear="{true}"
 		bind:value="{$form.password}" />
-	<SocialContainer />
+	<!-- <SocialContainer /> -->
 	<div class="switch_container">
 		<!-- <SwitchButton
 			switch_text="{'social.unBlock_acc'}"

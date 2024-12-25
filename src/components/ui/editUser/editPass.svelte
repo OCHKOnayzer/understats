@@ -46,7 +46,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 				class="selected_element input_element"
 				type="password"
 				bind:value="{oldPassword}"
-				placeholder="*****" />
+				placeholder="••••••••••••••••••••" />
 		</div>
 		<div class="setings_item item-w new-pass">
 			<div class="item_settings_info">
@@ -59,7 +59,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 				class="selected_element input_element"
 				type="password"
 				bind:value="{newPassword}"
-				placeholder="*****" />
+				placeholder="••••••••••••••••••••" />
 		</div>
 	</div>
 	<div class="updataBtn">

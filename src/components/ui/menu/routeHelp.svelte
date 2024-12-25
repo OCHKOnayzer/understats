@@ -1,6 +1,7 @@
 <script lang="ts">
 import { onMount } from 'svelte';
 
+import { currentUser } from '$src/stores/modalStore';
 import { langSel } from '$src/stores/HeaderStores';
 
 import UserInfo from './userInfo/UserInfo.svelte';
@@ -10,8 +11,10 @@ import { SocialRoutes } from './items/LinkItems';
 
 <div class="w-full">
 	<ChatMenu />
-	<UserInfo />
-	<div class="relative mt-4 flex h-full w-full items-center justify-between">
+	{#if $currentUser}
+		<UserInfo />
+	{/if}
+	<!-- <div class="relative mt-4 flex h-full w-full items-center justify-between">
 		{#each SocialRoutes as items}
 			<a
 				href="{$langSel === 'ru' && items.hrefRu ? items.hrefRu : items.href}"
@@ -27,5 +30,5 @@ import { SocialRoutes } from './items/LinkItems';
 					class="absolute h-full w-full object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 			</a>
 		{/each}
-	</div>
+	</div> -->
 </div>
