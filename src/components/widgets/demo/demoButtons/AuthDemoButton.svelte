@@ -54,7 +54,7 @@ const openAuth = (modal: string) => {
 	justify-content: center;
 	flex-direction: column;
 }
-.buttons-desc{ 
+.buttons-desc {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -63,18 +63,18 @@ const openAuth = (modal: string) => {
 	height: 50px;
 	width: 50px;
 }
-.desc-content{ 
+.desc-content {
 	display: flex;
 	flex-direction: column;
 	color: white;
 	text-align: center;
 	width: 80%;
 }
-.desc-content span:nth-child(1){ 
+.desc-content span:nth-child(1) {
 	font-size: 25px;
 	margin-bottom: 10px;
 }
-.desc-content span:nth-child(2){ 
+.desc-content span:nth-child(2) {
 	font-size: 14px;
 	margin-bottom: 20px;
 }
@@ -119,7 +119,7 @@ const openAuth = (modal: string) => {
 		width: 80vw;
 		margin-bottom: 10px;
 	}
-	.buttons-auth{ 
+	.buttons-auth {
 		margin-right: 0;
 	}
 	.button-demo {

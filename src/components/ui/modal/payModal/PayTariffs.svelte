@@ -1,7 +1,9 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
-import { PayItem } from './Pay';
+
 import { closeModal, setCurrentTariffs, currentTariffs, currentLimits, currentAccounst } from '$src/stores/modalStore';
+
+import { PayItem } from './Pay';
 
 const closPayModal = () => {
 	closeModal();
@@ -31,14 +33,16 @@ const closPayModal = () => {
 				</div>
 			</div>
 			<div class="pay_method_wrapper">
-                {#each PayItem as item}
-				<div class="pay_method_container">
-                   <button class="pay_method_content">
-                        <img src={item.payMethods} alt="">
-                        <span>{$t(item.payWay)}</span>
-                   </button>
-                </div>
-                {/each}
+				{#each PayItem as item}
+					<div class="pay_method_container">
+						<button class="pay_method_content">
+							<img
+								src="{item.payMethods}"
+								alt="" />
+							<span>{$t(item.payWay)}</span>
+						</button>
+					</div>
+				{/each}
 			</div>
 		</div>
 	</div>
@@ -139,29 +143,29 @@ const closPayModal = () => {
 	border-radius: 16px;
 	margin-bottom: 10px;
 }
-.pay_method_content{ 
-    width: 90%;
-    height: 100%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-grow: 0;
-    align-items: flex-start;
+.pay_method_content {
+	width: 90%;
+	height: 100%;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	flex-grow: 0;
+	align-items: flex-start;
 }
-.pay_method_content span{ 
-    margin-top: 10px;
-    font-size: 14px;
+.pay_method_content span {
+	margin-top: 10px;
+	font-size: 14px;
 }
-.pay_method_content img{
-    height: 24px;
-    min-width: 120px;
-    flex-shrink: 0;
-    object-fit: contain;
+.pay_method_content img {
+	height: 24px;
+	min-width: 120px;
+	flex-shrink: 0;
+	object-fit: contain;
 }
-@media screen and (max-width: 1200px){ 
-    .pay_modal{ 
-        width: 30vw;
-    }
+@media screen and (max-width: 1200px) {
+	.pay_modal {
+		width: 30vw;
+	}
 }
 </style>

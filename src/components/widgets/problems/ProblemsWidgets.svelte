@@ -18,7 +18,7 @@ import { t } from 'svelte-i18n';
 			<button class="open_modal_btn">
 				<div class="chat_block">
 					<img
-						src="assets/header/nname.png"
+						src="assets/menu/menuElements/chat.png"
 						alt="" />
 				</div>
 				{$t('extensions.support_chat')}

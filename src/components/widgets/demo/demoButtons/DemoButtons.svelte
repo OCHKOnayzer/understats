@@ -53,11 +53,13 @@ const openAuth = (modal: string) => {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	flex-wrap: nowrap;
 }
 .buttons-desc {
 	display: flex;
 	align-items: center;
 	margin-right: 10px;
+	width: 40%;
 }
 .buttons-desc img {
 	height: 50px;
@@ -68,25 +70,24 @@ const openAuth = (modal: string) => {
 	flex-direction: column;
 	margin-left: 10px;
 }
-.desc-content span:nth-child(1){ 
+.desc-content span:nth-child(1) {
 	font-size: 25px;
 }
-.desc-content span:nth-child(2){ 
+.desc-content span:nth-child(2) {
 	font-size: 14px;
 }
 .buttons button {
 	height: 56px;
 	border-radius: 16px;
+	width: 200px;
 }
 
 .buttons-auth {
-	width: 200px;
 	background-color: #31384a;
 	margin-right: 10px;
 }
 
 .button-demo {
-	width: 232px;
 	background-color: transparent;
 	border: 2px solid #363a45;
 	transition: 400ms;
@@ -97,26 +98,31 @@ const openAuth = (modal: string) => {
 .button-demo.demo-active {
 	border: 2px solid #6660ff;
 }
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1300px) {
 	.buttons-wrapper {
 		border-radius: 16px;
 		height: fit-content;
 		padding: 10px;
 		margin-bottom: 20px;
 	}
-	.buttons-container{ 
+	.buttons-container {
 		flex-direction: column;
 	}
+	.buttons-desc {
+		width: 100%;
+		justify-content: center;
+	}
+	.desc-content {
+		margin-bottom: 10px;
+	}
+}
+@media screen and (max-width: 800px) {
 	.buttons-desc img {
 		display: none;
 	}
-	.desc-content{ 
+	.desc-content {
 		width: 100%;
 		margin-bottom: 10px;
-	}
-	.button-demo {
-		width: 160px;
 	}
 	.buttons {
 		display: flex;
@@ -124,8 +130,8 @@ const openAuth = (modal: string) => {
 		align-items: center;
 		width: 100%;
 	}
-	.buttons-auth {
-		width: 160px;
+	.buttons button {
+		width: 50%;
 	}
 	.buttons-auth:nth-child(1) {
 		display: none;
