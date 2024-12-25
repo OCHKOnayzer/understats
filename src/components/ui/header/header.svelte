@@ -52,7 +52,7 @@ onMount(() => {
 				{#if $currentUser}
 					<a
 						class="profile-container"
-						href="/setings">
+						href="/settings">
 						<!-- <img src="" alt=""> -->
 					</a>
 				{:else}
@@ -66,11 +66,11 @@ onMount(() => {
 			</div>
 			<div class="buttonConteiner">
 				{#if isTumbler.includes($page.url.pathname)}
-					<div class="btnWrapper">
+					<div class="btnWrapper check">
 						<CheckBox />
 					</div>
 				{/if}
-				<div class="btnWrapper {$modalComponent === 'LangModal' ? 'active' : ''}">
+				<div class="btnWrapper lang {$modalComponent === 'LangModal' ? 'active' : ''}">
 					<LangButton openCurrentModal="{openCurrentModal}" />
 				</div>
 				<div class="btnWrapper support {$modalComponent === 'SupportModal' ? 'active' : ''}">
@@ -151,17 +151,27 @@ onMount(() => {
 	align-items: center;
 	justify-content: center;
 	border: 1px solid rgba(128, 128, 128, 0.582);
-	border-radius: 4px;
+	border-radius: 12px;
 	transition: 400ms;
-	height: 40px;
+	height: 48px;
 }
-
-.btnWrapper:nth-child(2) {
+.check {
+	background-color: #363a45;
+	border: 1px solid transparent;
+}
+.lang {
+	border: 1px solid white;
+	background-color: #0d111d;
 	margin-right: 10px;
 	margin-left: 10px;
 }
 .support {
-	width: 40px;
+	width: 48px;
+	background-color: #171b26;
+}
+.support img {
+	height: 80%;
+	width: 80%;
 }
 .btnWrapper:hover {
 	background-color: #282d3b;

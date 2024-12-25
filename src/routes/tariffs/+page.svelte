@@ -10,7 +10,7 @@ selectHeaderTitle('tariffs.tariffs');
 </script>
 
 <svelte:head>
-	<title>{$t('settings.settings')}</title>
+	<title>{$t('tariffs.tariffs')}</title>
 	<meta
 		name="description"
 		content="About this app" />

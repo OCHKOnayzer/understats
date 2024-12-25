@@ -1,23 +1,28 @@
 <script lang="ts">
 import { currentModal } from '$src/stores/modalStore';
+let imageSrc = '';
+
+$: {
+	if ($currentModal === 'reg') {
+		imageSrc = 'assets/modal/Registartion.webp';
+	} else if ($currentModal === 'login') {
+		imageSrc = 'assets/modal/Auth.webp';
+	} else if ($currentModal === 'recover') {
+		imageSrc = 'assets/modal/Recover.png';
+	}
+}
+const preloadImage = (src: string) => {
+	const img = new Image();
+	img.src = src;
+};
+
+preloadImage(imageSrc);
 </script>
 
 <div class="image_current_wrapper">
-	{#key currentModal}
-		{#if $currentModal === 'reg'}
-			<img
-				src="assets/modal/Registartion.png"
-				alt="" />
-		{:else if $currentModal === 'login'}
-			<img
-				src="assets/modal/Auth.png"
-				alt="" />
-		{:else if $currentModal === 'recover'}
-			<img
-				src="assets/modal/Recover.png"
-				alt="" />
-		{/if}
-	{/key}
+	<img
+		src="{imageSrc}"
+		alt="" />
 </div>
 
 <style>

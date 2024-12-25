@@ -8,19 +8,26 @@ const openAuth = (modal: string) => {
 	currentModal.set(modal);
 	openModal('authModal');
 };
-let { column = false } = $$props;
 </script>
 
 <div class="buttons-wrapper">
 	<div class="buttons-container">
-		<div class="buttons-desc"> </div>
+		<div class="buttons-desc">
+			<img
+				src="assets/demo.png"
+				alt="" />
+			<div class="desc-content">
+				<span>{$t('other.demo_no_auth_title')}</span>
+				<span>{$t('other.demo_no_auth_content')}</span>
+			</div>
+		</div>
 		<div class="buttons">
 			<button
 				class="buttons-auth"
 				on:click="{() => openAuth('reg')}">{$t('social.create_account')}</button>
 			<button
 				class="buttons-auth"
-				on:click="{() => openAuth('login')}">{$t('social.sign_in')}</button>
+				on:click="{() => openAuth('login')}">{$t('social.auth')}</button>
 			<button
 				class="button-demo"
 				class:demo-active="{$isDemoEnabled}"
@@ -37,6 +44,7 @@ let { column = false } = $$props;
 	height: 120px;
 	background-color: #171b26;
 	border-radius: 8px;
+	color: white;
 }
 .buttons-container {
 	width: 98%;
@@ -44,40 +52,77 @@ let { column = false } = $$props;
 	margin: 0 auto;
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
+	flex-wrap: nowrap;
 }
-
+.buttons-desc {
+	display: flex;
+	align-items: center;
+	margin-right: 10px;
+	width: 40%;
+}
+.buttons-desc img {
+	height: 50px;
+	width: 50px;
+}
+.desc-content {
+	display: flex;
+	flex-direction: column;
+	margin-left: 10px;
+}
+.desc-content span:nth-child(1) {
+	font-size: 25px;
+}
+.desc-content span:nth-child(2) {
+	font-size: 14px;
+}
 .buttons button {
 	height: 56px;
-	color: white;
 	border-radius: 16px;
+	width: 200px;
 }
 
 .buttons-auth {
-	width: 200px;
 	background-color: #31384a;
 	margin-right: 10px;
 }
 
 .button-demo {
-	width: 232px;
 	background-color: transparent;
-	border: 1px solid #363a45;
+	border: 2px solid #363a45;
 	transition: 400ms;
 	height: 56px;
-	color: white;
 	border-radius: 16px;
 }
 
 .button-demo.demo-active {
-	border: 1px solid #6660ff;
+	border: 2px solid #6660ff;
 }
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1300px) {
 	.buttons-wrapper {
 		border-radius: 16px;
+		height: fit-content;
+		padding: 10px;
+		margin-bottom: 20px;
 	}
-	.button-demo {
-		width: 160px;
+	.buttons-container {
+		flex-direction: column;
+	}
+	.buttons-desc {
+		width: 100%;
+		justify-content: center;
+	}
+	.desc-content {
+		margin-bottom: 10px;
+	}
+}
+@media screen and (max-width: 800px) {
+	.buttons-desc img {
+		display: none;
+	}
+	.desc-content {
+		width: 100%;
+		margin-bottom: 10px;
 	}
 	.buttons {
 		display: flex;
@@ -85,8 +130,8 @@ let { column = false } = $$props;
 		align-items: center;
 		width: 100%;
 	}
-	.buttons-auth {
-		width: 160px;
+	.buttons button {
+		width: 50%;
 	}
 	.buttons-auth:nth-child(1) {
 		display: none;

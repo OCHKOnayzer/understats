@@ -34,7 +34,9 @@ extensionInfo.set(data.extensionInfo);
 				src="assets/extension/wallpaper.webp"
 				alt="" />
 		</div>
-		<div class="section_wrapper">
+		<div
+			class="section_wrapper"
+			style="height: {!$currentUser ? '54vh' : ''}">
 			<DownloadSection />
 			<QuesSection />
 		</div>

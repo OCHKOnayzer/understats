@@ -1,14 +1,35 @@
 <script>
 import { t } from 'svelte-i18n';
+import { onMount } from 'svelte';
 
 import { isDemoEnabled } from '$src/stores/demo';
+
+let isMobile = false;
+
+function checkScreenWidth() {
+	isMobile = window.innerWidth <= 768;
+}
+
+onMount(() => {
+	checkScreenWidth();
+	window.addEventListener('resize', checkScreenWidth);
+	return () => window.removeEventListener('resize', checkScreenWidth);
+});
+
+const toggleDemo = () => {
+	$isDemoEnabled = !$isDemoEnabled;
+};
 </script>
 
-<div class="switch-wrapper {$isDemoEnabled ? 'demo-active' : ''}">
+<div
+	class="switch-wrapper"
+	style="background-color: {$isDemoEnabled ? '#100e47' : '#363A45'}"
+	on:click="{() => toggleDemo()}">
 	<label class="switch">
 		<input
 			type="checkbox"
-			bind:checked="{$isDemoEnabled}" />
+			bind:checked="{$isDemoEnabled}"
+			on:click="{() => toggleDemo()}" />
 		<span class="slider"></span>
 	</label>
 	<div class="demo-title">
@@ -26,9 +47,7 @@ import { isDemoEnabled } from '$src/stores/demo';
 	transition: background-color 0.4s ease;
 	height: 100%;
 	border-radius: inherit;
-}
-.demo-active {
-	background-color: #100e47;
+	cursor: pointer;
 }
 
 .switch {
@@ -81,5 +100,13 @@ input:checked + .slider:before {
 .demo-title {
 	color: white;
 	margin-left: 10px;
+}
+
+@media screen and (max-width: 800px) {
+	.switch-wrapper {
+		width: 100%;
+		height: 48px;
+		border-radius: 12px;
+	}
 }
 </style>

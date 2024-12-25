@@ -40,6 +40,7 @@ const setLang = (lang: string) => {
 		<div class="modal-lang-wrapper">
 			{#each LangArr as item}
 				<button
+					style="background-color: {$selectedLang === item.lang ? '#6660ff40' : ''}"
 					on:click="{() => setLang(item.lang)}"
 					class="modal-lang">
 					<img
@@ -99,7 +100,7 @@ const setLang = (lang: string) => {
 }
 .all-lang {
 	position: absolute;
-	height: fit-content;
+	height: 320px;
 	background-color: #20242f;
 	width: 98%;
 	border-radius: 5px;
