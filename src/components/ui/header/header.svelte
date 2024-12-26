@@ -2,13 +2,15 @@
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
+import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';
 import { headerTitle } from '$src/stores/HeaderStores';
 import { openMenu } from '$src/stores/menu';
 import { closeModal, currentUser, modalComponent, openModal } from '$src/stores/modalStore';
-import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';
 
-import Button from '../button/button.svelte';
 import LangButton from '../button/langButton/LangButton.svelte';
+
+import { page } from '$app/stores';
+import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
 
 type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal';
 
@@ -22,6 +24,8 @@ const openCurrentModal = (modal: ModalType) => {
 		openModal(modal);
 	}
 };
+
+const isTumbler = ['/', '/accounts'];
 
 let isHelpPage = false;
 
@@ -48,7 +52,7 @@ onMount(() => {
 				{#if $currentUser}
 					<a
 						class="profile-container"
-						href="/setings">
+						href="/settings">
 						<!-- <img src="" alt=""> -->
 					</a>
 				{:else}
@@ -68,10 +72,15 @@ onMount(() => {
 			</div>
 
 			<div class="buttonConteiner">
-				<div class="btnWrapper {$modalComponent === 'LangModal' ? 'active' : ''}">
+				{#if isTumbler.includes($page.url.pathname)}
+					<div class="btnWrapper check">
+						<CheckBox />
+					</div>
+				{/if}
+				<div class="btnWrapper lang {$modalComponent === 'LangModal' ? 'active' : ''}">
 					<LangButton openCurrentModal="{openCurrentModal}" />
 				</div>
-				<div class="btnWrapper {$modalComponent === 'SupportModal' ? 'active' : ''}">
+				<div class="btnWrapper support {$modalComponent === 'SupportModal' ? 'active' : ''}">
 					<button on:click="{() => openCurrentModal('SupportModal')}">
 						<img
 							src="assets/header/support.png"
@@ -90,13 +99,13 @@ onMount(() => {
 	padding-top: 10px;
 	width: 100%;
 	margin: 0 auto;
-	margin-bottom: 50px;
+	margin-bottom: 10px;
 	position: relative;
 	z-index: 1;
 }
 
 .headerItem {
-	height: 8vh;
+	height: 75px;
 	box-sizing: border-box;
 	display: flex;
 	align-items: center;
@@ -143,23 +152,33 @@ onMount(() => {
 	margin-right: 1%;
 	width: fit-content;
 }
+
 .btnWrapper {
-	width: 40px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	border: 1px solid rgba(128, 128, 128, 0.582);
-	border-radius: 4px;
+	border-radius: 12px;
 	transition: 400ms;
-	height: 40px;
+	height: 48px;
 }
-.btnWrapper:nth-child(1) {
-	width: fit-content;
+.check {
+	background-color: #363a45;
+	border: 1px solid transparent;
 }
-
-.btnWrapper:nth-child(2) {
+.lang {
+	border: 1px solid white;
+	background-color: #0d111d;
 	margin-right: 10px;
 	margin-left: 10px;
+}
+.support {
+	width: 48px;
+	background-color: #171b26;
+}
+.support img {
+	height: 80%;
+	width: 80%;
 }
 .btnWrapper:hover {
 	background-color: #282d3b;
@@ -186,9 +205,9 @@ onMount(() => {
 		font-size: 20px;
 	}
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
 	.header {
-		padding-bottom: 30px;
+		margin-bottom: 60px;
 	}
 	.flexConteiner {
 		display: flex;

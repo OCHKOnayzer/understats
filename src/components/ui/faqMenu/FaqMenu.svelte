@@ -23,7 +23,7 @@ const handleSelectItemFromMenu = (event: any) => {
 	justify-content: center;
 	align-items: center;
 }
-@media (max-width: 678px) {
+@media (max-width: 800px) {
 	.faqMenu {
 		width: 100%;
 	}

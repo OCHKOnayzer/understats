@@ -3,85 +3,31 @@ import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 
 import { user, fetchUser, updateUser } from '$stores/menu';
+import { changeService } from '$src/services/auth/changePass.service';
 
 import SettingsSections from '../settingsSections/SettingsSections.svelte';
 import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
 
 let newPassword = '';
 let oldPassword = '';
-let password = '';
-let username = '';
-
-let isInitialized = false;
 
 onMount(() => {
 	fetchUser();
 });
 
-$: if ($user && !isInitialized) {
-	password = $user.password || '';
-	username = $user.name || '';
-	isInitialized = true;
-}
-
 const changePass = async () => {
-	if (!$user) {
-		console.error('Данные пользователя не загружены.');
-		return;
-	}
-
-	let updatedName = username.trim().length >= 3 ? username : $user.name;
-
-	let updatedPassword = $user.password;
-	if (oldPassword === $user.password && newPassword.length >= 10) {
-		updatedPassword = newPassword;
-	} else if (oldPassword !== '' || newPassword !== '') {
-		console.error('Ошибка: старый пароль неверен или новый пароль слишком короткий.');
-		return;
-	}
-
-	const updatedUser = {
-		id: $user.id,
-		name: updatedName,
-		password: updatedPassword,
-		image: $user.image,
-		email: $user.email,
-		date: $user.date,
-		awards: $user.awards,
-		level: $user.level,
-		add_account: $user.add_account
-	};
-
 	try {
-		await updateUser(updatedUser);
-		console.log('Данные пользователя успешно обновлены:', updatedUser);
-
-		clearInputs();
+		await changeService.changePassword(oldPassword, newPassword);
 	} catch (error) {
-		console.error('Ошибка при обновлении данных пользователя:', error);
+		console.error('Failed to change password:', error);
 	}
 };
 
-const clearInputs = () => {
-	oldPassword = '';
-	newPassword = '';
-};
-
-type FieldType = 'username' | 'oldPassword' | 'newPassword';
-
-const clearField = (field: FieldType) => {
-	switch (field) {
-		case 'username':
-			username = '';
-			break;
-		case 'oldPassword':
-			oldPassword = '';
-			break;
-		case 'newPassword':
-			newPassword = '';
-			break;
-		default:
-			break;
+const clearField = (field: 'oldPassword' | 'newPassword') => {
+	if (field === 'oldPassword') {
+		oldPassword = '';
+	} else if (field === 'newPassword') {
+		newPassword = '';
 	}
 };
 </script>
@@ -95,15 +41,12 @@ const clearField = (field: FieldType) => {
 				<button
 					class="clear_curr max--w"
 					on:click="{() => clearField('oldPassword')}">{$t('other.clear')}</button>
-				<button
-					class="clear_curr min--w"
-					on:click="{() => clearField('oldPassword')}">X</button>
 			</div>
 			<input
 				class="selected_element input_element"
 				type="password"
 				bind:value="{oldPassword}"
-				placeholder="*****" />
+				placeholder="••••••••••••••••••••" />
 		</div>
 		<div class="setings_item item-w new-pass">
 			<div class="item_settings_info">
@@ -111,15 +54,12 @@ const clearField = (field: FieldType) => {
 				<button
 					class="clear_curr max--w"
 					on:click="{() => clearField('newPassword')}">{$t('other.clear')}</button>
-				<button
-					class="clear_curr min--w"
-					on:click="{() => clearField('oldPassword')}">X</button>
 			</div>
 			<input
 				class="selected_element input_element"
 				type="password"
 				bind:value="{newPassword}"
-				placeholder="*****" />
+				placeholder="••••••••••••••••••••" />
 		</div>
 	</div>
 	<div class="updataBtn">
@@ -128,11 +68,6 @@ const clearField = (field: FieldType) => {
 			on:click="{changePass}">
 			{$t('other.save')}
 		</button>
-		<!--		<button-->
-		<!--			class="btn_upd"-->
-		<!--			on:click={clearInputs}>-->
-		<!--			{$t('other.cancel')}-->
-		<!--		</button>-->
 	</div>
 </SettingsSections>
 
@@ -151,19 +86,11 @@ const clearField = (field: FieldType) => {
 .setings {
 	display: flex;
 	flex-direction: row;
-	/* justify-content: center; */
 	align-items: center;
 	height: fit-content;
 	width: 100%;
 	position: relative;
 	padding-bottom: 10px;
-}
-.pass_sett {
-	display: flex;
-	align-items: center;
-	height: fit-content;
-	width: 100%;
-	position: relative;
 }
 .setings_item {
 	height: 12vh;
@@ -171,9 +98,6 @@ const clearField = (field: FieldType) => {
 }
 .item-w {
 	width: 33%;
-}
-.min--w {
-	display: none;
 }
 .setings_item:nth-child(1),
 .setings_item:nth-child(2) {
@@ -190,7 +114,7 @@ const clearField = (field: FieldType) => {
 	color: #707f96;
 	width: 98%;
 	border-radius: 10px;
-	height: 60%;
+	height: 70px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -221,7 +145,7 @@ const clearField = (field: FieldType) => {
 .btn_upd {
 	border: 1px solid;
 	border-radius: 80px;
-	height: 4vh;
+	height: 40px;
 	width: 9vh;
 	display: flex;
 	justify-content: center;
@@ -253,75 +177,104 @@ const clearField = (field: FieldType) => {
 	.btn_upd:nth-child(2) {
 		width: 80px;
 	}
+	.item-w {
+		width: 50%;
+	}
 }
 @media (max-width: 1100px) {
 	/* .user_email, */
+	.setings {
+		flex-direction: column;
+	}
 	.input_element,
 	.item_settings_info p:nth-child(1) {
 		font-size: 15px;
 	}
-	.min--w {
-		display: block;
-	}
-	.max--w {
-		display: none;
-	}
 	.selected_element {
 		height: 50%;
 	}
-	.btn_upd:nth-child(1),
-	.btn_upd:nth-child(2) {
-		height: 30px;
+	.setings_item {
+		height: 150px;
+	}
+	.btn_upd {
+		border-radius: 12px;
+	}
+	.item-w {
+		width: 100%;
+	}
+	.setings_item:nth-child(1),
+	.setings_item:nth-child(2) {
+		margin-right: 0px;
+	}
+	.btn_upd:nth-child(1) {
+		background-color: transparent;
+		border: 1px solid white;
+		color: white;
+		width: 98%;
+	}
+	.updataBtn {
+		padding-top: 0px;
+		margin-top: 0vh;
+	}
+	.btn_upd {
+		height: 60px;
+	}
+}
+@media screen and (max-height: 780px) {
+	.updataBtn {
+		margin-top: 3vh;
 	}
 }
 @media screen and (max-height: 600px) {
 	.setings {
 		padding-bottom: 4%;
 	}
-	.selected_element {
-		height: 70%;
-	}
-	/* .email {
-		padding-bottom: 14px;
-	} */
 }
-@media (max-width: 678px) {
-	.max--w {
-		display: block;
-	}
-	.min--w {
-		display: none;
+@media (max-width: 768px) {
+	.setings_item {
+		display: flex;
+		flex-direction: column;
+		height: fit-content;
+		align-items: center;
 	}
 	.setings {
 		padding: 0;
-	}
-	.new-pass {
-		display: none;
-	}
-	.setings {
 		width: 100%;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 	}
 	.item-w {
 		width: 100%;
 	}
+	.item_settings_info {
+		width: 80%;
+	}
 	.selected_element {
-		height: 9vh;
+		height: 60px;
+		width: 80%;
+		margin: 0;
+	}
+	.max--w {
+		display: block;
+	}
+	.setings {
+		padding: 0;
 	}
 	.setings_item:nth-child(1) {
 		margin-right: 0;
 	}
 	.updataBtn {
-		padding-top: 6vh;
+		justify-content: center;
+		padding: 20px;
 	}
-	.btn_upd {
-		border-radius: 12px;
+
+	.setings_item:nth-child(1),
+	.selected_element:nth-child(2) {
+		margin-right: 0;
 	}
 	.btn_upd:nth-child(1) {
-		background-color: transparent;
-		border: 1px solid white;
-		color: white;
-		height: 9vh;
-		width: 100%;
+		width: 80%;
 	}
 }
 </style>

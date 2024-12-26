@@ -1,7 +1,7 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 
-import { selectedLang, langSel } from '$src/stores/HeaderStores';
+import { selectedLang } from '$src/stores/languageStore';
 import { setLanguage } from '$src/lib/i18n';
 import { closeModal } from '$src/stores/modalStore';
 
@@ -10,7 +10,6 @@ import { LangArr } from './lang';
 
 const setLang = (lang: string) => {
 	setLanguage(lang);
-	selectedLang(lang);
 };
 </script>
 
@@ -32,7 +31,7 @@ const setLang = (lang: string) => {
 				{#each LangArr as item}
 					<button
 						class="{`box-border flex min-w-[150px] flex-[1_1_calc(33.33%-10px)] items-center rounded border bg-[#171b26] p-2 text-sm ${
-							item.lang === $langSel ? 'border-[#6660ff] bg-[#6660ff40]' : 'border-[#171b26]'
+							item.lang === $selectedLang ? 'border-[#6660ff] bg-[#6660ff40]' : 'border-[#171b26]'
 						}`}"
 						on:click="{() => setLang(item.lang)}">
 						<div class="mr-2.5">

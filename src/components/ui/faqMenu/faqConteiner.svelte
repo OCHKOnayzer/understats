@@ -9,7 +9,7 @@ import FaqMenu from './FaqMenu.svelte';
 let isMobile = false;
 
 function checkScreenWidth() {
-	isMobile = window.innerWidth <= 768;
+	isMobile = window.innerWidth <= 800;
 }
 
 onMount(() => {
@@ -97,7 +97,7 @@ async function loadArticleComponent(article2: string) {
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
-	height: 89vh;
+	height: 88vh;
 }
 
 .faqChapter {
@@ -141,7 +141,7 @@ async function loadArticleComponent(article2: string) {
 .selected_state_wrapper::-webkit-scrollbar-thumb {
 	background: rgba(135, 138, 160, 0.507);
 }
-@media (max-width: 768px) {
+@media (max-width: 800px) {
 	.faqChapter {
 		width: 100%;
 		background-color: transparent;

@@ -30,15 +30,13 @@ export const LangArr: langInterface[] = [
 		flag: ' (PT)',
 		lang: 'pt'
 	},
-	/*
+
 	{
 		name: 'lang.ch',
 		image: 'assets/langs/ch.svg',
 		flag: ' (CH)',
 		lang: 'ch'
 	},
-
-	 */
 
 	{
 		name: 'lang.de',

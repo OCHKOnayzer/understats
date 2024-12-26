@@ -7,10 +7,10 @@ let { ref = $bindable(null), class: className, count = 0, perPage = 10, page = $
 </script>
 
 <PaginationPrimitive.Root
-	bind:ref="{ref}"
-	class="{cn('mx-auto flex w-full flex-col items-center', className)}"
-	count="{count}"
-	perPage="{perPage}"
-	siblingCount="{siblingCount}"
-	bind:page="{page}"
+	bind:ref={ref}
+	class={cn('mx-auto flex w-full flex-col items-center', className)}
+	count={count}
+	perPage={perPage}
+	siblingCount={siblingCount}
+	bind:page={page}
 	{...restProps} />

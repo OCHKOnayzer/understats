@@ -79,13 +79,13 @@ async function applyFilters() {
 
 		<FilterTabs />
 
-		<Accordion title={$t('filter.accordion.results')}>
+		<Accordion title="{$t('filter.accordion.results')}">
 			<BetFilterResults />
 		</Accordion>
 
 		<BetsSelectFilter />
 
-		<Accordion title={$t('filter.accordion.other')}>
+		<Accordion title="{$t('filter.accordion.other')}">
 			<BetFilters />
 		</Accordion>
 

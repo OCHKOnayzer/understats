@@ -20,7 +20,7 @@ class AuthService {
 				setAccessToken(response.data.accessToken);
 				closeModal();
 				if (window.location.pathname === '/') {
-					goto('/accounts');
+					goto('/');
 				}
 				return response;
 			}
@@ -43,7 +43,10 @@ class AuthService {
 	async profile() {
 		try {
 			const response = await axiosWithAuth.get('/auth/me');
-			if (response.data) {
+
+			console.log('response' + response);
+			if ('response.data' + response.data) {
+				console.log(response.data);
 				currentUser.set(response.data);
 			}
 			return response;

@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 import { t } from 'svelte-i18n';
 
 import { openModal } from '$src/stores/modalStore';
@@ -33,4 +33,4 @@ const download = () => {
 .button_wrapper button:hover {
 	border: 1px solid #6660ff;
 }
-</style>
+</style> -->

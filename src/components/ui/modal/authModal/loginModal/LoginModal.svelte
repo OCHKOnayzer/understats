@@ -44,7 +44,7 @@ const loginUser = () => {
 		title_wrapper="{$t('social.send_password')}"
 		show_clear="{true}"
 		bind:value="{$form.password}" />
-	<SocialContainer />
+	<!-- <SocialContainer /> -->
 	<div class="switch_container">
 		<!-- <SwitchButton
 			switch_text="{'social.unBlock_acc'}"
@@ -91,7 +91,7 @@ const loginUser = () => {
 	align-items: center;
 	justify-content: space-between;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
 	.aprove_wrapper {
 		flex-direction: column-reverse;
 		justify-content: center;

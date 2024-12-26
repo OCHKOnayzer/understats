@@ -1,24 +1,26 @@
 <script>
+import { t } from 'svelte-i18n';
+
 import Tariffs from './tariffs.svelte';
+const lite = `10 ${$t('tariffs.limits_acc')} 10 000 ${$t('tariffs.limits_bets')}`;
+const standart = `50 ${$t('tariffs.limits_acc')} 100 000 ${$t('tariffs.limits_bets')}`;
 </script>
 
 <div class="tariffs-wrapper">
 	<Tariffs
 		name="{'Lite'}"
 		desc="{'tariffs.lite'}"
-		limitations="{'tariffs.limits'}"
-		accounts="{5}"
-		bets="{10000}" />
+		limitations="{'10 000'}"
+		accounts="{'5 '}" />
 	<Tariffs
 		name="{'Standart'}"
 		desc="{'tariffs.lite'}"
-		limitations="{'tariffs.limits'}"
-		accounts="{50}"
-		bets="{100000}" />
+		limitations="{'100 000'}"
+		accounts="{'50 '}" />
 	<Tariffs
 		name="{'Pro'}"
 		desc="{'tariffs.lite'}"
-		limitations="{'tariffs.no_limits'}" />
+		limitations="{$t('tariffs.no_limits')}" />
 </div>
 
 <style>
@@ -27,5 +29,16 @@ import Tariffs from './tariffs.svelte';
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
+}
+@media screen and (max-width: 1200px) {
+	.tariffs-wrapper {
+		flex-direction: column;
+	}
+}
+@media screen and (max-width: 768px) {
+	.tariffs-wrapper {
+		margin-top: 10px;
+		flex-direction: column;
+	}
 }
 </style>

@@ -1,6 +1,8 @@
 <script>
 import { t } from 'svelte-i18n';
 
+import { currentUser } from '$src/stores/modalStore';
+import DemoButtons from '$src/components/widgets/demo/demoButtons/DemoButtons.svelte';
 import SectionsFaq from '$src/components/ui/sectionsFaq/SectionsFaq.svelte';
 import FaqConteiner from '$src/components/ui/faqMenu/faqConteiner.svelte';
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
@@ -16,6 +18,9 @@ selectHeaderTitle('faq.faq');
 
 <div class="mainContent">
 	<div class="pageWrapper">
+		{#if !$currentUser}
+			<DemoButtons />
+		{/if}
 		<!-- <SectionsFaq /> -->
 	</div>
 	<FaqConteiner />

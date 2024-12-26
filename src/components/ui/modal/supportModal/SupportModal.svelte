@@ -25,7 +25,7 @@ import SupportTitle from './title/supportTitle.svelte';
 				<span class="text-[#718096]">
 					{$t('support_modal.description')}
 				</span>
-				<div class="mt-5 flex w-full">
+				<!-- <div class="mt-5 flex w-full">
 					{#each SupportItem as item}
 						<a
 							class="mr-2.5 flex h-[50px] w-[50px] items-center justify-center rounded-md border border-[#363a45] bg-[#171b26]"
@@ -36,7 +36,7 @@ import SupportTitle from './title/supportTitle.svelte';
 								class="h-1/2 w-1/2" />
 						</a>
 					{/each}
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>

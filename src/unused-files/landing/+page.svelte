@@ -1,9 +1,13 @@
-<script>
+<!-- <script>
 import LandingInfo from '$src/components/ui/landingInfo/LandingInfo.svelte';
 import LandingSlider from '$src/components/widgets/landingSlider/LandingSlider.svelte';
+import LangButton from '$src/components/ui/button/langButton/LangButton.svelte';
 </script>
 
 <div class="landing-content">
+	<div class="lang-langing">
+		<LangButton />
+	</div>
 	<div class="eclipse-wrapper">
 		<img
 			src="assets/landing/image.png"
@@ -17,10 +21,6 @@ import LandingSlider from '$src/components/widgets/landingSlider/LandingSlider.s
 
 <style>
 .landing-content {
-	background-image: url('assets/landing/back.png');
-	background-size: cover;
-	background-position: center;
-	background-color: #0d111d;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -29,6 +29,12 @@ import LandingSlider from '$src/components/widgets/landingSlider/LandingSlider.s
 	padding: 1rem;
 	justify-content: space-around;
 	position: relative;
+}
+.lang-langing {
+	position: absolute;
+	z-index: 9999;
+	top: 10px;
+	right: 10px;
 }
 .eclipse-wrapper {
 	position: absolute;
@@ -45,4 +51,4 @@ import LandingSlider from '$src/components/widgets/landingSlider/LandingSlider.s
 	box-sizing: border-box;
 	z-index: 3;
 }
-</style>
+</style> -->

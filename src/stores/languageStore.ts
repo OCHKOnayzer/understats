@@ -1,22 +1,39 @@
-import { selectedLang } from './HeaderStores';
+// src/stores/languageStore.ts
+import { writable } from 'svelte/store';
 
-const availableLanguages = ['en', 'es', 'ru', 'pt', 'de', 'fr', 'it'];
+// Доступные языки
+export const availableLanguages = ['en', 'es', 'ru', 'pt', 'de', 'fr', 'it'];
 
-const getSystemLanguage = () => {
+// Хранилище для выбранного языка
+export const selectedLang = writable<string>('en');
+
+// Функция для установки языка на клиенте и в куки
+export const setAppLanguage = (language: string) => {
+	if (availableLanguages.includes(language)) {
+		selectedLang.set(language);
+		// Сохранение в localStorage
+		if (typeof window !== 'undefined') {
+			localStorage.setItem('appLanguage', language);
+			// Установка куки на 1 год
+			document.cookie = `app_lang=${language}; Path=/; Max-Age=${60 * 60 * 24 * 365}; SameSite=Lax`;
+		}
+	} else {
+		console.warn(`Language ${language} is not supported.`);
+	}
+};
+
+// Функция для получения языка из куки на клиенте
+export const getAppLanguageFromCookie = (): string => {
 	if (typeof window === 'undefined') {
 		return 'en';
 	}
 
-	if (navigator.languages && navigator.languages.length) {
-		return navigator.languages[0].split('-')[0];
-	} else if (navigator.language) {
-		return navigator.language.split('-')[0];
-	}
-
-	return 'en';
+	const matches = document.cookie.match(new RegExp('(?:^|; )app_lang=([^;]*)'));
+	return matches ? decodeURIComponent(matches[1]) : 'en';
 };
 
-export const getAppLanguage = () => {
+// Функция для получения языка из локального хранилища или куки
+export const getAppLanguage = (): string => {
 	if (typeof window === 'undefined') {
 		return 'en';
 	}
@@ -26,19 +43,6 @@ export const getAppLanguage = () => {
 		return storedLanguage;
 	}
 
-	const systemLanguage = getSystemLanguage();
-	return availableLanguages.includes(systemLanguage) ? systemLanguage : 'en';
-};
-
-export const setAppLanguage = (language: string) => {
-	if (typeof window === 'undefined') {
-		return;
-	}
-
-	if (availableLanguages.includes(language)) {
-		localStorage.setItem('appLanguage', language);
-		selectedLang(language);
-	} else {
-		console.warn(`Language ${language} is not supported.`);
-	}
+	const cookieLanguage = getAppLanguageFromCookie();
+	return availableLanguages.includes(cookieLanguage) ? cookieLanguage : 'en';
 };

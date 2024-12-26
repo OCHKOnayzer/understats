@@ -22,7 +22,7 @@ import { t } from 'svelte-i18n';
 .download_count {
 	color: #eabf67;
 }
-@media (max-width: 678px) {
+@media (max-width: 800px) {
 	.download_count {
 		color: #6e65f5;
 	}

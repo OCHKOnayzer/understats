@@ -1,20 +1,19 @@
-<script>
+<script lang="ts">
 import { t } from 'svelte-i18n';
 
-import { modalComponent } from '$src/stores/modalStore';
-import { langImage } from '$src/stores/HeaderStores';
+import { selectedLang } from '$src/stores/languageStore';
 
 let { openCurrentModal } = $$props;
 </script>
 
-<div class="flex h-10 items-center justify-center rounded">
-	<button
-		class="flex h-full w-full items-center justify-center border-none bg-transparent px-3 focus:outline-none"
-		on:click="{() => openCurrentModal('LangModal')}">
-		{$t(`lang.${$langImage}`)}
-		<img
-			class="ml-2 h-5 w-5"
-			src="{`assets/langs/${$langImage}.svg`}"
-			alt="" />
-	</button>
-</div>
+<button
+	class="flex w-[120px] items-center justify-center rounded"
+	on:click="{() => openCurrentModal('LangModal')}">
+	<img
+		class="h-5 w-5"
+		src="{`assets/langs/${$selectedLang}.svg`}"
+		alt="{`${$selectedLang} flag`}" />
+	<span class="flex h-full items-center justify-center border-none bg-transparent pl-2 focus:outline-none">
+		{$t(`lang.${$selectedLang}`)}
+	</span>
+</button>

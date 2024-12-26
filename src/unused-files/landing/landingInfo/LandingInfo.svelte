@@ -1,22 +1,22 @@
-<script>
+<!-- <script>
 import { t } from 'svelte-i18n';
 
 // import AppDownload from '../button/appDownload/AppDownload.svelte';
 import LandingOpen from '../button/landingOpen/LandingOpen.svelte';
-</script>
+</script> -->
 
-<div class="info_wrapper">
+<!-- <div class="info_wrapper">
 	<p class="info_paragraph">{$t('landing.landing_title')}</p>
 	<div class="info_content">
 		<span>{$t('landing.landing_content')}</span>
 	</div>
 	<div class="button_wrapper">
 		<LandingOpen />
-		<!-- <AppDownload /> -->
+		<AppDownload />
 	</div>
-</div>
+</div> -->
 
-<style>
+<!-- <style>
 .info_wrapper {
 	width: 50%;
 	height: fit-content;
@@ -86,4 +86,4 @@ import LandingOpen from '../button/landingOpen/LandingOpen.svelte';
 		gap: 0.2rem;
 	}
 }
-</style>
+</style> -->

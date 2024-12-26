@@ -6,7 +6,6 @@ import Default from '$src/components/ui/accountModal/Default.svelte';
 import Success from '$src/components/ui/accountModal/Result.svelte';
 import { accountModal } from '$src/utils/functions/accountModal';
 import { accountIsSuccess } from '$stores/store';
-
 import * as m from '$m';
 </script>
 

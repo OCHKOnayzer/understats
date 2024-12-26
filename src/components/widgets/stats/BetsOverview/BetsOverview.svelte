@@ -2,13 +2,13 @@
 import { Loader } from 'lucide-svelte';
 
 import * as Table from '$components/ui/table';
-import Tabs from '$components/ui/tabs/Tabs.svelte';
-import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
-import { mainTabs, mockData, subTabsMap } from '$src/stores/tabsStore';
+import { currentUser } from '$src/stores/modalStore';
+import { mockData, subTabsMap } from '$src/stores/tabsStore';
 
-import BetDetails from './BetDetails.svelte';
 
 import { goto } from '$app/navigation';
+import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
+import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
 
 interface RowData {
 	id: string;
@@ -35,6 +35,9 @@ let subTabs = $derived($subTabsMap[activeTab] || []);
 let innerWidth = $state(0);
 
 let isMobile = $derived(innerWidth < 400);
+
+
+let isAuthenticated = $derived(!!$currentUser);
 
 function getAggregatedData() {
 	isLoading = true;
@@ -75,27 +78,25 @@ function handleRowClick(row: RowData) {
 <svelte:window bind:innerWidth="{innerWidth}" />
 
 <section class="relative mt-[32px]">
-	{#if showDetails && selectedBetId}
-		<BetDetails betId={selectedBetId} />
+	<!-- {#if showDetails && selectedBetId}
+		<BetDetails betId="{selectedBetId}" />
 	{:else}
-		{#if !isMobile}
-			<div class="mb-[32px]">
-				<Tabs
-					tabs={$mainTabs}
-					bind:activeTab="{activeTab}"
-					variant="underline"
-					on:tabChange="{handleTabChange}" />
-			</div>
+		<div class="mb-[32px]">
+			<Tabs
+				tabs="{mainTabs}"
+				bind:activeTab="{activeTab}"
+				variant="underline"
+				on:tabChange="{handleTabChange}" />
+		</div>
 
-			<div>
-				<Tabs
-					tabs={subTabs}
-					bind:activeTab="{activeSubTab}"
-					variant="pills"
-					on:tabChange="{handleSubTabChange}" />
-			</div>
-		{/if}
-
+		<div>
+			<Tabs
+				tabs="{subTabs}"
+				bind:activeTab="{activeSubTab}"
+				variant="pills"
+				on:tabChange="{handleSubTabChange}" />
+		</div> -->
+	{#if isAuthenticated}
 		{#if isMobile}
 		<div class="grid grid-cols-1 gap-4">
 			<MobileCard />
@@ -129,10 +130,10 @@ function handleRowClick(row: RowData) {
 							</Table.Row>
 						</Table.Header>
 						<Table.Body class="text-[14px]">
-							{#each aggregatedData.data as row (row.id)}
+							{#each aggregatedData.data as row}
 								<Table.Row
 									class="border-[#262C3D]"
-									onclick={() => handleRowClick(row)}>
+									onclick="{() => handleRowClick(row)}">
 									{#each aggregatedData.columns as column}
 										<Table.Cell class="whitespace-nowrap">
 											{row[column]}
@@ -147,5 +148,8 @@ function handleRowClick(row: RowData) {
 		{:else}
 			<div class="p-4 text-center"> Нет данных </div>
 		{/if}
+	{:else}
+		<AuthDemoButton />
 	{/if}
 </section>
+
