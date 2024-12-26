@@ -1,7 +1,8 @@
 <script>
+import { t } from 'svelte-i18n';
+
 import Button from '$src/components/ui/button/button.svelte';
 import { filterStore } from '$src/stores/filterStore';
-import { t } from 'svelte-i18n';
 
 const items = [
 	'filter.results.notRecognized',

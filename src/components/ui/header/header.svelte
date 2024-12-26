@@ -5,10 +5,10 @@ import { t } from 'svelte-i18n';
 import { headerTitle } from '$src/stores/HeaderStores';
 import { openMenu } from '$src/stores/menu';
 import { closeModal, currentUser, modalComponent, openModal } from '$src/stores/modalStore';
+import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';
 
 import Button from '../button/button.svelte';
 import LangButton from '../button/langButton/LangButton.svelte';
-import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';
 
 type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal';
 

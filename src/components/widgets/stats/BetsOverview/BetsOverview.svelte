@@ -3,12 +3,12 @@ import { Loader } from 'lucide-svelte';
 
 import * as Table from '$components/ui/table';
 import Tabs from '$components/ui/tabs/Tabs.svelte';
+import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
+import { mainTabs, mockData, subTabsMap } from '$src/stores/tabsStore';
 
 import BetDetails from './BetDetails.svelte';
 
 import { goto } from '$app/navigation';
-import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
-import { mainTabs, mockData, subTabsMap } from '$src/stores/tabsStore';
 
 interface RowData {
 	id: string;

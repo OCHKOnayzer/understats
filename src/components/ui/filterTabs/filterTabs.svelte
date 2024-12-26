@@ -1,6 +1,8 @@
 <script lang="ts">
-import { filterStore } from '$src/stores/filterStore';
 import { t } from 'svelte-i18n';
+
+import { filterStore } from '$src/stores/filterStore';
+
 import Button from '../button/button.svelte';
 
 const tabs = [

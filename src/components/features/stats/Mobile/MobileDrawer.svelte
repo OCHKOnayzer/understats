@@ -19,7 +19,7 @@
 					<img class="w-[73px] mb-3" src="/icons/bk/winline-big.svg" alt="">
 					<h2>Алексей Иванов</h2>
 				</div>
-		
+
 				<div>
 					<h3>ID 123413</h3>
 				</div>
@@ -48,7 +48,7 @@
 					<img class="w-[73px] mb-3" src="/icons/bk/winline-big.svg" alt="">
 					<h2>Алексей Иванов</h2>
 				</div>
-		
+
 				<div>
 					<h3>ID 123413</h3>
 				</div>

@@ -1,6 +1,7 @@
 <script lang="ts">
-import { cn } from '$src/utils/utils';
 import { Drawer as DrawerPrimitive } from 'vaul-svelte';
+
+import { cn } from '$src/utils/utils';
 
 let { ref = $bindable(null), class: className, ...restProps }: DrawerPrimitive.DescriptionProps = $props();
 </script>

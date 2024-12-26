@@ -1,6 +1,7 @@
 <script lang="ts">
-import { cn } from '$utils/utils.ts';
 import { Calendar as CalendarPrimitive } from 'bits-ui';
+
+import { cn } from '$utils/utils.ts';
 
 let { ref = $bindable(null), class: className, ...restProps }: CalendarPrimitive.CellProps = $props();
 </script>

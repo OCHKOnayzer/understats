@@ -1,6 +1,7 @@
 <script lang="ts">
 import Icon from '@iconify/svelte';
 import { onDestroy, onMount } from 'svelte';
+import { t } from 'svelte-i18n';
 
 import BetFilterResults from '$src/components/features/stats/FilterBet/BetFilterResults.svelte';
 import Accordion from '$src/components/ui/accordion/Accordion.svelte';
@@ -9,7 +10,7 @@ import Calendar from '$src/components/ui/calendar/DateRangePicker.svelte';
 import FilterTabs from '$src/components/ui/filterTabs/filterTabs.svelte';
 import { filterStore } from '$src/stores/filterStore';
 import { isOpen, toggleSidebar } from '$src/utils/functions/toggleSidebar';
-import { t } from 'svelte-i18n';
+
 import { fetchFilteredData } from '../api/api';
 import BetsSelectFilter from '../BetsSelectFilter/BetsSelectFilter.svelte';
 
@@ -51,35 +52,30 @@ async function applyFilters() {
 }
 </script>
 
-<button
-	class="item"
-	onclick="{toggleSidebar}">
+<button class="item" on:click={toggleSidebar}>
 	<h2 class="title">Фильтры</h2>
 	<img
 		class="icon"
 		src="/icons/circleArrow.svg"
 		alt="icon"
-		style:transform="{$isOpen ? 'rotate(180deg)' : 'rotate(0)'}" />
+		style:transform={$isOpen ? 'rotate(180deg)' : 'rotate(0)'} />
 </button>
 
-<aside
-	class="sidebar w-full"
-	class:open="{$isOpen}">
+<aside class="sidebar w-full" class:open={$isOpen}>
 	<div class="sidebar-content">
 		<div class="mb-[24px] flex items-center justify-between">
 			<h1 class="filters-title">Фильтры</h1>
 			<button
 				type="button"
-				onclick="{toggleSidebar}"
+				on:click={toggleSidebar}
 				aria-label="Close sidebar"
-				class="cursor-pointer transition-colors hover:text-[#0D111D]">
-				<Icon
-					font-size="24"
-					icon="radix-icons:cross-1" />
+				class="cursor-pointer transition-colors hover:text-[#0D111D]"
+			>
+				<Icon font-size="24" icon="radix-icons:cross-1" />
 			</button>
 		</div>
 
-		<Calendar on:select="{handleDateSelect}" />
+		<Calendar on:select={handleDateSelect} />
 
 		<FilterTabs />
 
@@ -93,27 +89,27 @@ async function applyFilters() {
 			<BetFilters />
 		</Accordion>
 
-		<div
-			class="action-buttons"
-			class:open="{$isOpen}">
-			<button
-				class="apply-button"
-				onclick="{applyFilters}"
-				disabled="{isLoading}">
-				{#if isLoading}
-					Загрузка...
-				{:else}
-					Применить фильтры ({$filterStore.selectedSports.length})
-				{/if}
-			</button>
-			<button
-				class="clear-button"
-				onclick="{() => filterStore.reset()}">
-				Очистить фильтры
-			</button>
+			<div class="action-buttons" class:open={$isOpen}>
+				<button
+					class="apply-button"
+					on:click={applyFilters}
+					disabled={isLoading}
+				>
+					{#if isLoading}
+						Загрузка...
+					{:else}
+						Применить фильтры ({$filterStore.selectedSports.length})
+					{/if}
+				</button>
+				<button
+					class="clear-button"
+					on:click={() => filterStore.reset()}
+				>
+					Очистить фильтры
+				</button>
+			</div>
 		</div>
-	</div>
-</aside>
+	</aside>
 
 <style>
 .item {

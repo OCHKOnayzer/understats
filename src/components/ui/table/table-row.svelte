@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { cn } from "$utils/utils.ts";
-	import type { WithElementRef } from "bits-ui";
-	import type { HTMLAttributes } from "svelte/elements";
+	import { cn } from '$utils/utils.ts';
+
+	import type { WithElementRef } from 'bits-ui';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	let {
 		ref = $bindable(null),
@@ -14,7 +15,7 @@
 <tr
 	bind:this={ref}
 	class={cn(
-		"border-b text-white transition-colors data-[state=selected]:bg-muted",
+		'border-b text-white transition-colors data-[state=selected]:bg-muted',
 		className
 	)}
 	{...restProps}
