@@ -38,11 +38,11 @@ const components = {
 
 <style>
 .modal_window {
-	position: absolute;
+	position: fixed;
 	z-index: 9997;
 	width: 100%;
 	height: 100vh;
-	background-color: #171b26b2;
+	background-color: var(--modal-background);
 	overflow-y: unset;
 	overflow-x: hidden;
 	backdrop-filter: blur(3px);

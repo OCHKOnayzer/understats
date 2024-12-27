@@ -8,6 +8,7 @@ const openAuth = (modal: string) => {
 	currentModal.set(modal);
 	openModal('authModal');
 };
+
 </script>
 
 <div class="buttons-wrapper">

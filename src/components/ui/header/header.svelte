@@ -73,13 +73,13 @@ onMount(() => {
 				<div class="btnWrapper lang {$modalComponent === 'LangModal' ? 'active' : ''}">
 					<LangButton openCurrentModal="{openCurrentModal}" />
 				</div>
-				<div class="btnWrapper support {$modalComponent === 'SupportModal' ? 'active' : ''}">
+				<!-- <div class="btnWrapper support {$modalComponent === 'SupportModal' ? 'active' : ''}">
 					<button on:click="{() => openCurrentModal('SupportModal')}">
 						<img
 							src="assets/header/support.png"
 							alt="" />
 					</button>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>

@@ -84,6 +84,7 @@ onDestroy(() => {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	transform: translateX(0);
 }
 .menuWrapper {
 	height: 95%;
@@ -128,6 +129,14 @@ onDestroy(() => {
 		position: fixed;
 		z-index: 9999;
 		width: 100vw;
+		background-color: var(--modal-background);
+		backdrop-filter: blur(3px);
+	}
+	.menu{ 
+		width: 80%;
+		border-radius: 0 24px 24px 0;
+		transform: translateX(0%); 
+		animation: slideRight 180ms ease-out forwards; 
 	}
 	.menuWrapper {
 		overflow-y: auto;
@@ -150,4 +159,12 @@ onDestroy(() => {
 		padding-left: 0;
 	}
 }
+@keyframes slideRight {
+		from {
+			transform: translateX(-100%);
+		}
+		to {
+			transform: translateX(0%);
+		}
+	}
 </style>

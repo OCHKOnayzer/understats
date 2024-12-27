@@ -24,7 +24,7 @@ afterNavigate(() => {
 	const previousPath = currentPath;
 	currentPath = window.location.pathname;
 
-	if (currentPath !== previousPath) {
+	if (currentPath) {
 		if ($isMenuOpen === true) {
 			closeMenu();
 		}

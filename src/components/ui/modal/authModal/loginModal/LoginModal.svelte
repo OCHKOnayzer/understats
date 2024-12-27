@@ -59,7 +59,7 @@ const loginUser = () => {
 		{#if isMobile}
 			<SwitchButton
 				switch_text="{'social.cHave_acc'}"
-				switch_modal="{switchReg}" />
+				switch_modal="{'/registrations'}" />
 		{:else}
 			<CancelButton onUserText="{'other.cancel'}" />
 		{/if}

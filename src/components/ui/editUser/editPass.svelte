@@ -128,7 +128,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 	padding-left: 10px;
 } */
 .item_settings_info {
-	width: 100%;
+	width: 98%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
