@@ -132,11 +132,11 @@ onDestroy(() => {
 		background-color: var(--modal-background);
 		backdrop-filter: blur(3px);
 	}
-	.menu{ 
+	.menu {
 		width: 80%;
 		border-radius: 0 24px 24px 0;
-		transform: translateX(0%); 
-		animation: slideRight 180ms ease-out forwards; 
+		transform: translateX(0%);
+		animation: slideRight 180ms ease-out forwards;
 	}
 	.menuWrapper {
 		overflow-y: auto;
@@ -160,11 +160,11 @@ onDestroy(() => {
 	}
 }
 @keyframes slideRight {
-		from {
-			transform: translateX(-100%);
-		}
-		to {
-			transform: translateX(0%);
-		}
+	from {
+		transform: translateX(-100%);
 	}
+	to {
+		transform: translateX(0%);
+	}
+}
 </style>

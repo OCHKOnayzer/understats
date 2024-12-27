@@ -53,7 +53,7 @@ onMount(() => {
 	if ($isModalOpen) document.body.style.overflow = 'hidden';
 });
 
-const routesWithoutMenu = ['/registrations','/authorization'];
+const routesWithoutMenu = ['/registrations', '/authorization'];
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -118,7 +118,7 @@ const isProduction = import.meta.env.PROD;
 		<main>
 			{#if isLocaleReady}
 				{#if !routesWithoutMenu.includes($page.url.pathname)}
-				<Menu />
+					<Menu />
 				{/if}
 				{#if $isModalOpen}
 					<AuthModal />
@@ -127,7 +127,7 @@ const isProduction = import.meta.env.PROD;
 					{#if !routesWithoutMenu.includes($page.url.pathname)}
 						<Header />
 					{/if}
-					
+
 					<slot />
 				</div>
 			{:else}

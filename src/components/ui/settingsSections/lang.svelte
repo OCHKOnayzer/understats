@@ -12,7 +12,7 @@ const openChangeLang = () => {
 };
 const setLang = (lang: string) => {
 	setLanguage(lang);
-	openChangeLang()
+	openChangeLang();
 };
 </script>
 

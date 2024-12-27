@@ -2,6 +2,7 @@
 import { t } from 'svelte-i18n';
 import toast from 'svelte-french-toast';
 import { get } from 'svelte/store';
+
 import { openModal, modalComponent } from '$src/stores/modalStore';
 
 import { page } from '$app/stores';
@@ -32,13 +33,12 @@ function navigate() {
 // 	}
 // };
 const supportClick = () => {
-    if (browserName === 'unsupported') {
-      toast.error(get(t)('error.ext'));
-    } else {
-      navigate(); 
-    }
-  };
-
+	if (browserName === 'unsupported') {
+		toast.error(get(t)('error.ext'));
+	} else {
+		navigate();
+	}
+};
 </script>
 
 <button

@@ -61,7 +61,7 @@ const registerUser = () => {
 		{#if isMobile}
 			<SwitchButton
 				switch_text="{'social.have_acc'}"
-				switch_modal="{'/authorization'}" />
+				switch_modal="{switchLogin}" />
 		{:else}
 			<CancelButton onUserText="{'other.cancel'}" />
 		{/if}
