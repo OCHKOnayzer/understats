@@ -28,8 +28,8 @@ function handleTabClick(tabId: string) {
 						? 'w-full rounded-lg md:text-xs lg:text-sm'
 						: 'rounded-tl-[12px] rounded-tr-[12px] border-2 border-[#363a45]'} {variant === 'underline' && activeTab === tab.id ? 'bg-[#171B26]' : ''} {variant === 'pills' &&
 					activeTab === tab.id
-							? 'bg-[#363A45]'
-							: ''}"
+						? 'bg-[#363A45]'
+						: ''}"
 					onclick="{() => handleTabClick(tab.id)}"
 					aria-current="{activeTab === tab.id ? 'page' : undefined}">
 					{tab.name}

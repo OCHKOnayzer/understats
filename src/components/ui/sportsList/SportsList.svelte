@@ -76,7 +76,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 				<h3 class="text-xl font-semibold text-white">Виды спорта</h3>
 				<button
 					class="p-2 text-white/70 transition-colors hover:text-white"
-					onclick={() => (showSportsModal = false)}>
+					onclick="{() => (showSportsModal = false)}">
 					<Icon
 						icon="solar:close-circle-bold"
 						class="h-6 w-6" />
@@ -98,7 +98,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 							<input
 								type="checkbox"
 								checked="{selectedList.includes(sport)}"
-								onchange={() => selectedFilter(sport)}
+								onchange="{() => selectedFilter(sport)}"
 								class="hidden" />
 							<div
 								class="relative h-5 w-5 rounded border-2 transition-colors duration-200
@@ -120,13 +120,13 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 					<Button
 						variant="default"
 						class="px-6"
-						onclick={() => (showSportsModal = false)}>
+						onclick="{() => (showSportsModal = false)}">
 						Применить ({selectedList.length})
 					</Button>
 					<Button
 						variant="outline"
 						class="px-6"
-						onclick={restoreSelections}>
+						onclick="{restoreSelections}">
 						Отмена
 					</Button>
 				</div>
