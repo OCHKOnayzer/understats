@@ -2,6 +2,7 @@
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
+import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
 import { isMobile,initializeScreenWidthListener } from '$src/stores/isMobile';
 import ApproveButton from '$src/components/ui/button/approveButton/ApproveButton.svelte';
 import SwitchButton from '$src/components/ui/button/switchButton/SwitchButton.svelte';
@@ -52,6 +53,12 @@ const registerUser = () => {
 	</div>
 	<div class="aprove_wrapper">
 		{#if $isMobile}
+			<button 
+			class="demo-btn"
+			class:demo-active="{$isDemoEnabled}"
+			 on:click="{toggleDemoMode}">
+				{$t('other.demo')}
+			</button>
 			<SwitchButton
 				switch_text="{'social.have_acc'}"
 				switch_modal="{switchLogin}" />
@@ -86,7 +93,17 @@ const registerUser = () => {
 	align-items: center;
 	justify-content: space-between;
 }
-
+.demo-btn{ 
+	width: 100%;
+	height: 56px;
+	border-radius: 16px;
+	margin-top: 36px;
+	transition: 400ms;
+	border: 2px solid #00FF47;
+}
+.demo-btn.demo-active {
+	border: 2px solid var(--accent-color);
+}
 @media screen and (max-width: 800px) {
 	.aprove_wrapper {
 		flex-direction: column-reverse;

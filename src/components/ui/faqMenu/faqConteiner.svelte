@@ -101,7 +101,7 @@ async function loadArticleComponent(article2: string) {
 }
 
 .faqChapter {
-	width: 74%;
+	width: 75%;
 	border-radius: 5px;
 	background-color: #252935;
 	padding: 20px;

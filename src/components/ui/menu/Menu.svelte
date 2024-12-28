@@ -89,7 +89,9 @@ onDestroy(() => {
 }
 .menuWrapper {
 	height: 95%;
-	width: 90%;
+	width: 100%;
+	padding-right: 12px;
+	padding-left: 12px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;

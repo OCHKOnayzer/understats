@@ -47,7 +47,7 @@ function preloadImage(src: string): Promise<void> {
 			href="{item.href}"
 			class="flex h-[60px] w-full items-center rounded-lg text-gray-500 no-underline transition duration-300 hover:cursor-pointer
 		{currentPath === item.href ? 'bg-activeElements text-white' : ''}">
-			<div class="relative ml-2 mr-2.5 flex h-[20px] w-[20px] items-center justify-center">
+			<div class="relative ml-[12px] mr-2.5 flex h-[20px] w-[20px] items-center justify-center">
 				<img
 					src="{item.img1}"
 					alt="{$t('{item.title}')} (active)"
