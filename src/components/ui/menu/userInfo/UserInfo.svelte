@@ -1,18 +1,18 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
-import { goto } from '$app/navigation';
 
-import { currentModal } from '$src/stores/modalStore';
-import { isMobile,initializeScreenWidthListener } from '$src/stores/isMobile';
+import { currentModal, currentUser, logout, modalComponent, openModal } from '$src/stores/modalStore';
+import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 import { useUserProfile } from '$src/services/auth/useProfile';
-import { currentUser, logout, modalComponent, openModal } from '$src/stores/modalStore';
 
 import Button from '../../button/button.svelte';
 
-onMount(()=>{ 
-	initializeScreenWidthListener()
-})
+import { goto } from '$app/navigation';
+
+onMount(() => {
+	initializeScreenWidthListener();
+});
 const { query } = useUserProfile();
 
 $: if ($query.data) {
@@ -21,14 +21,13 @@ $: if ($query.data) {
 
 const handleLogout = () => {
 	currentUser.set(null);
-	if($isMobile){ 
-		currentModal.set('login')
-		goto('/authorization')
-	}else{ 
+	if ($isMobile) {
+		currentModal.set('login');
+		goto('/authorization');
+	} else {
 		logout();
 		modalComponent.set('authModal');
 	}
-	
 };
 </script>
 

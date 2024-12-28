@@ -2,16 +2,21 @@
 import LoginModal from '$src/components/ui/modal/authModal/loginModal/LoginModal.svelte';
 import RegistrationModal from '$src/components/ui/modal/authModal/registrationModal/RegistrationModal.svelte';
 import { currentModal } from '$src/stores/modalStore';
-import { goto } from '$app/navigation';
 import { afterUrl } from '$src/stores/HeaderStores';
-const backToApp = () =>{ 
-	goto($afterUrl)
-}
+
+import { goto } from '$app/navigation';
+const backToApp = () => {
+	goto($afterUrl);
+};
 </script>
 
 <div class="auth">
-	<button on:click="{backToApp}" class="back-app">
-		<img src="assets/toApp.svg" alt="">
+	<button
+		on:click="{backToApp}"
+		class="back-app">
+		<img
+			src="assets/toApp.svg"
+			alt="" />
 	</button>
 	{#if $currentModal === 'login'}
 		<LoginModal />
@@ -27,7 +32,7 @@ const backToApp = () =>{
 	align-items: center;
 	color: white;
 }
-.back-app{
+.back-app {
 	position: absolute;
 	top: 10px;
 }

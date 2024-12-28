@@ -7,15 +7,15 @@ import DemoButtons from '$src/components/widgets/demo/demoButtons/DemoButtons.sv
 import { currentUser } from '$src/stores/modalStore';
 import Lang from '$src/components/ui/settingsSections/lang.svelte';
 import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
-import { isMobile,initializeScreenWidthListener } from '$src/stores/isMobile';
+import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
+
 // import UserAvatar from '../../components/ui/editUser/userAvatar.svelte';
 import Info from '../../components/ui/editUser/info.svelte';
 import EditPass from '../../components/ui/editUser/editPass.svelte';
 // import Setings from '../../components/ui/editUser/setings.svelte';
 
-
 onMount(() => {
-	initializeScreenWidthListener()
+	initializeScreenWidthListener();
 });
 selectHeaderTitle('settings.settings');
 </script>

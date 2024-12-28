@@ -1,16 +1,16 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
+
 import { afterUrl } from '$src/stores/HeaderStores';
 import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
 import { currentModal, openModal } from '$src/stores/modalStore';
-import { isMobile } from '$src/stores/isMobile';
-import { initializeScreenWidthListener } from '$src/stores/isMobile';
+import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
+
 import { goto } from '$app/navigation';
 
-
 onMount(() => {
-	initializeScreenWidthListener()
+	initializeScreenWidthListener();
 });
 const openAuth = (modal: string) => {
 	currentModal.set(modal);
@@ -19,7 +19,7 @@ const openAuth = (modal: string) => {
 const authUser = (auth: string) => {
 	currentModal.set(auth);
 	if ($isMobile) {
-		afterUrl.set(window.location.pathname)
+		afterUrl.set(window.location.pathname);
 		goto('/authorization');
 	} else {
 		openAuth(auth);
@@ -57,7 +57,8 @@ const authUser = (auth: string) => {
 
 <style>
 .buttons-wrapper {
-	margin-bottom: var(--elements-padding);
+	margin-top: var(--elements-padding);
+	margin-bottom: 24px;
 	width: 100%;
 	height: 120px;
 	background-color: #171b26;

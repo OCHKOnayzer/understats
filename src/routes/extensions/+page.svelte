@@ -65,7 +65,7 @@ extensionInfo.set(data.extensionInfo);
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	margin-top:	var(--elements-padding);
+	margin-top: var(--elements-padding);
 	height: 58vh;
 	color: white;
 }

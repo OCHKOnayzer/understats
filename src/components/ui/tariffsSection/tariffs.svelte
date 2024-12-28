@@ -33,7 +33,8 @@ console.log(accounts);
 		<span class="tariffs-desc">{$t(desc)}</span>
 		<div class="limits container">
 			{#if accounts !== undefined}
-				{accounts} {$t('tariffs.limits_acc')}
+				{accounts}
+				{$t('tariffs.limits_acc')}
 				{limitations}
 				{$t('tariffs.limits_bets')}
 			{:else}

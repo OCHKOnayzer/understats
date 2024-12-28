@@ -2,7 +2,6 @@
 import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 
-import { goto } from '$app/navigation';
 import { toggleDemoMode } from '$src/stores/demo';
 import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
 import { headerTitle, langImage } from '$src/stores/HeaderStores';
@@ -11,6 +10,7 @@ import { openMenu } from '$src/stores/menu';
 
 import LangButton from '../button/langButton/LangButton.svelte';
 
+import { goto } from '$app/navigation';
 import { page } from '$app/stores';
 
 type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal';
@@ -26,7 +26,7 @@ const openCurrentModal = (modal: ModalType) => {
 	}
 };
 
-const isTumbler = ['/', '/accounts','/help'];
+const isTumbler = ['/', '/accounts', '/help'];
 
 let isHelpPage = false;
 
@@ -159,7 +159,7 @@ onMount(() => {
 	border: 1px solid transparent;
 }
 .lang {
-	border: 1px solid #9E9E9E;
+	border: 1px solid #9e9e9e;
 	background-color: #0d111d;
 	margin-right: 24px;
 	margin-left: 10px;

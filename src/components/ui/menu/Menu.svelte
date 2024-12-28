@@ -31,7 +31,9 @@ onDestroy(() => {
 
 {#if !isMobile || $isMenuOpen}
 	<div class="fixedContainer">
-		<div class="close-mobile-menu" on:click="{closeMenu}"></div>
+		<div
+			class="close-mobile-menu"
+			on:click="{closeMenu}"></div>
 		<div class="menu">
 			<div class="menuWrapper">
 				<div class="menu_flex_up">
@@ -112,9 +114,6 @@ onDestroy(() => {
 	height: 100%;
 	width: 100%;
 }
-.closeMenu {
-	display: none;
-}
 .mainContent {
 	padding-left: 13vw;
 	transition: padding-left 0.3s ease;
@@ -128,9 +127,9 @@ onDestroy(() => {
 	}
 }
 @media screen and (max-width: 800px) {
-	.close-mobile-menu{
+	.close-mobile-menu {
 		position: absolute;
-		background-color: #000000AB;
+		background-color: #000000ab;
 		width: 100vw;
 		height: 100vh;
 	}

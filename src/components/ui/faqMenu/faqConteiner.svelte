@@ -122,9 +122,11 @@ async function loadArticleComponent(article2: string) {
 	font-size: 36px;
 }
 .selected_state_wrapper {
+	position: relative;
 	height: 100%;
 	width: 100%;
 	overflow-y: auto;
+	padding-right: 20px;
 }
 .state_header {
 	display: flex;
