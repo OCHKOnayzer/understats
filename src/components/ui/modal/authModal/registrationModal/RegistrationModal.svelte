@@ -2,6 +2,7 @@
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
+import { isMobile,initializeScreenWidthListener } from '$src/stores/isMobile';
 import ApproveButton from '$src/components/ui/button/approveButton/ApproveButton.svelte';
 import SwitchButton from '$src/components/ui/button/switchButton/SwitchButton.svelte';
 import CancelButton from '$src/components/ui/button/userAprove/CancelButton.svelte';
@@ -15,16 +16,8 @@ import SocialContainer from '../social/SocialContainer.svelte';
 
 const { form, mutation } = useAuth(true);
 
-let isMobile = false;
-
-function checkScreenWidth() {
-	isMobile = window.innerWidth <= 768;
-}
-
 onMount(() => {
-	checkScreenWidth();
-	window.addEventListener('resize', checkScreenWidth);
-	return () => window.removeEventListener('resize', checkScreenWidth);
+	initializeScreenWidthListener
 });
 
 const registerUser = () => {
@@ -51,14 +44,14 @@ const registerUser = () => {
 		bind:value="{$confirmPassword}" />
 	<!-- <SocialContainer /> -->
 	<div class="switch_container">
-		{#if !isMobile}
+		{#if !$isMobile}
 			<SwitchButton
 				switch_text="{'social.have_acc'}"
 				switch_modal="{switchLogin}" />
 		{/if}
 	</div>
 	<div class="aprove_wrapper">
-		{#if isMobile}
+		{#if $isMobile}
 			<SwitchButton
 				switch_text="{'social.have_acc'}"
 				switch_modal="{switchLogin}" />

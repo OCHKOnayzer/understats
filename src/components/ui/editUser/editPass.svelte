@@ -136,7 +136,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 .clear_curr {
 	background: transparent;
 	border: unset;
-	color: #6660ff;
+	color: var(--accent-color);
 	cursor: pointer;
 }
 /* .user_email {

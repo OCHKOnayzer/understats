@@ -4,7 +4,7 @@ import { t } from 'svelte-i18n';
 import { openModal, setCurrentTariffs, setCurrentLimits } from '$src/stores/modalStore';
 
 import type { currentTariffsType } from '$src/stores/modalStore';
-let { name, desc, limitations, accounts } = $$props;
+let { name, desc, limitations, accounts, price, price_year } = $$props;
 const openPay = (tarrifs: currentTariffsType, limits: any) => {
 	openModal('PayTariffs');
 	setCurrentTariffs(tarrifs);
@@ -33,7 +33,7 @@ console.log(accounts);
 		<span class="tariffs-desc">{$t(desc)}</span>
 		<div class="limits container">
 			{#if accounts !== undefined}
-				{accounts}{$t('tariffs.limits_acc')}
+				{accounts} {$t('tariffs.limits_acc')}
 				{limitations}
 				{$t('tariffs.limits_bets')}
 			{:else}
@@ -53,7 +53,7 @@ console.log(accounts);
 		</div>
 		<button
 			on:click="{() => openPay(name, limitations)}"
-			class="buy">{$t('tariffs.buy_in')} 100$</button>
+			class="buy">{$t('tariffs.buy_in')} {activePeriod === 'month' ? price : price_year}$</button>
 		<span class="porccents">
 			{activePeriod === 'month' ? $t(month) : $t(year)}
 		</span>
@@ -140,13 +140,13 @@ console.log(accounts);
 .buy {
 	height: 48px;
 	border-radius: 16px;
-	background-color: #6660ff;
+	background-color: var(--accent-color);
 	width: 80%;
 	font-weight: 500;
 	margin-bottom: 10px;
 }
 .porccents {
-	color: #6660ff;
+	color: var(--accent-color);
 }
 @media screen and (max-width: 1200px) {
 	.choose-period {

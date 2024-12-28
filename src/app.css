@@ -6,11 +6,12 @@
 	:root {
 		--background: rgb(15, 10, 42);
 		--foreground: 224 71.4% 4.1%;
+		--modal-background: hsla(224, 25%, 12%, 0.698); 
 
 		--active-elements: 240 100% 70%;
 
-		--modal-background: hsla(224, 25%, 12%, 0.698); 
-		
+		--accent-color: hsl(242, 100%, 69%);
+
 		--muted: 220 14.3% 95.9%;
 		--muted-foreground: 220 8.9% 46.1%;
 

@@ -7,21 +7,15 @@ import DemoButtons from '$src/components/widgets/demo/demoButtons/DemoButtons.sv
 import { currentUser } from '$src/stores/modalStore';
 import Lang from '$src/components/ui/settingsSections/lang.svelte';
 import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
-
+import { isMobile,initializeScreenWidthListener } from '$src/stores/isMobile';
 // import UserAvatar from '../../components/ui/editUser/userAvatar.svelte';
 import Info from '../../components/ui/editUser/info.svelte';
 import EditPass from '../../components/ui/editUser/editPass.svelte';
 // import Setings from '../../components/ui/editUser/setings.svelte';
-let isMobile = false;
 
-function checkScreenWidth() {
-	isMobile = window.innerWidth <= 768;
-}
 
 onMount(() => {
-	checkScreenWidth();
-	window.addEventListener('resize', checkScreenWidth);
-	return () => window.removeEventListener('resize', checkScreenWidth);
+	initializeScreenWidthListener()
 });
 selectHeaderTitle('settings.settings');
 </script>
@@ -38,7 +32,7 @@ selectHeaderTitle('settings.settings');
 		{#if !$currentUser}
 			<DemoButtons />
 		{/if}
-		{#if isMobile}
+		{#if $isMobile}
 			<CheckBox />
 			<Lang />
 		{/if}

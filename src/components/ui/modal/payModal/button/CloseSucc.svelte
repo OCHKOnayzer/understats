@@ -25,7 +25,7 @@ let { onUserText } = $$props as SwitchInterface;
 .button_wrapper button {
 	height: 100%;
 	width: 100%;
-	background-color: #6660ff;
+	background-color: var(--accent-color);
 	transition: 400ms;
 }
 .button_wrapper button:hover {

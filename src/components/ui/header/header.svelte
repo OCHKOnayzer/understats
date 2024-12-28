@@ -25,7 +25,7 @@ const openCurrentModal = (modal: ModalType) => {
 	}
 };
 
-const isTumbler = ['/', '/accounts'];
+const isTumbler = ['/', '/accounts','/help'];
 
 let isHelpPage = false;
 
@@ -160,23 +160,23 @@ onMount(() => {
 	border: 1px solid transparent;
 }
 .lang {
-	border: 1px solid white;
+	border: 1px solid #9E9E9E;
 	background-color: #0d111d;
 	margin-right: 10px;
 	margin-left: 10px;
 }
-.support {
+/* .support {
 	width: 48px;
 	background-color: #171b26;
 }
 .support img {
 	height: 80%;
 	width: 80%;
-}
+} */
 .btnWrapper:hover {
 	background-color: #282d3b;
 }
-.btnWrapper button {
+/* .btnWrapper button {
 	height: 100%;
 	width: 100%;
 	padding: 10px;
@@ -185,12 +185,12 @@ onMount(() => {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
+} */
 .headerItem p {
 	font-size: 25px;
 }
 .active {
-	border: 1px solid #6660ff;
+	border: 1px solid var(--accent-color);
 	background-color: #6660ff40;
 }
 @media screen and (max-height: 800px) {

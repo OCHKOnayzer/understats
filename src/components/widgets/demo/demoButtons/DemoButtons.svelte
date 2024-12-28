@@ -1,22 +1,16 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
-
+import { afterUrl } from '$src/stores/HeaderStores';
 import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
 import { currentModal, openModal } from '$src/stores/modalStore';
-
+import { isMobile } from '$src/stores/isMobile';
+import { initializeScreenWidthListener } from '$src/stores/isMobile';
 import { goto } from '$app/navigation';
 
-let isMobile = false;
-
-function checkScreenWidth() {
-	isMobile = window.innerWidth <= 768;
-}
 
 onMount(() => {
-	checkScreenWidth();
-	window.addEventListener('resize', checkScreenWidth);
-	return () => window.removeEventListener('resize', checkScreenWidth);
+	initializeScreenWidthListener()
 });
 const openAuth = (modal: string) => {
 	currentModal.set(modal);
@@ -24,11 +18,10 @@ const openAuth = (modal: string) => {
 };
 const authUser = (auth: string) => {
 	currentModal.set(auth);
-	if (isMobile) {
-		console.log('hello mobile');
+	if ($isMobile) {
+		afterUrl.set(window.location.pathname)
 		goto('/authorization');
 	} else {
-		console.log('hello desctop');
 		openAuth(auth);
 	}
 };
@@ -120,7 +113,7 @@ const authUser = (auth: string) => {
 }
 
 .button-demo.demo-active {
-	border: 2px solid #6660ff;
+	border: 2px solid var(--accent-color);
 }
 @media screen and (max-width: 1300px) {
 	.buttons-wrapper {
