@@ -2,6 +2,7 @@
 import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 
+import { goto } from '$app/navigation';
 import { toggleDemoMode } from '$src/stores/demo';
 import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
 import { headerTitle, langImage } from '$src/stores/HeaderStores';
@@ -58,7 +59,7 @@ onMount(() => {
 				{:else}
 					<button
 						class="profile-container"
-						on:click="{() => openCurrentModal('authModal')}"></button>
+						on:click="{() => goto('/authorization')}"></button>
 				{/if}
 			</div>
 			<div class="title">
@@ -89,10 +90,10 @@ onMount(() => {
 .header {
 	height: fit-content;
 	box-sizing: border-box;
-	padding-top: 10px;
+	padding-top: var(--elements-padding);
+	padding-bottom: var(--elements-padding);
 	width: 100%;
 	margin: 0 auto;
-	margin-bottom: 10px;
 	position: relative;
 	z-index: 1;
 }
@@ -113,7 +114,6 @@ onMount(() => {
 	display: flex;
 	height: 100%;
 	width: 100%;
-	padding: 0 0.05% 0 1%;
 	justify-content: space-between;
 }
 .headerActions {
@@ -135,14 +135,13 @@ onMount(() => {
 .title {
 	display: flex;
 	align-items: center;
-	padding-left: 10px;
+	padding-left: 24px;
 }
 
 .buttonConteiner {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-right: 1%;
 	width: fit-content;
 }
 
@@ -162,7 +161,7 @@ onMount(() => {
 .lang {
 	border: 1px solid #9E9E9E;
 	background-color: #0d111d;
-	margin-right: 10px;
+	margin-right: 24px;
 	margin-left: 10px;
 }
 /* .support {

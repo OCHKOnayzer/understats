@@ -31,6 +31,7 @@ onDestroy(() => {
 
 {#if !isMobile || $isMenuOpen}
 	<div class="fixedContainer">
+		<div class="close-mobile-menu" on:click="{closeMenu}"></div>
 		<div class="menu">
 			<div class="menuWrapper">
 				<div class="menu_flex_up">
@@ -41,13 +42,13 @@ onDestroy(() => {
 								alt="Logo" />
 							OneKeepBet
 						</div>
-						<button
+						<!-- <button
 							on:click="{() => closeMenu()}"
 							class="closeMenu">
 							<img
 								src="assets/menu/close.svg"
 								alt="" />
-						</button>
+						</button> -->
 					</div>
 					<!-- <UserContainer /> -->
 					<RouteMenu />
@@ -125,15 +126,19 @@ onDestroy(() => {
 	}
 }
 @media screen and (max-width: 800px) {
+	.close-mobile-menu{
+		position: absolute;
+		background-color: #000000AB;
+		width: 100vw;
+		height: 100vh;
+	}
 	.fixedContainer {
 		position: fixed;
 		z-index: 9999;
-		width: 100vw;
-		background-color: var(--modal-background);
-		backdrop-filter: blur(3px);
+		width: 80vw;
 	}
 	.menu {
-		width: 80%;
+		width: 100%;
 		border-radius: 0 24px 24px 0;
 		transform: translateX(0%);
 		animation: slideRight 180ms ease-out forwards;

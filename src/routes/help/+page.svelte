@@ -25,7 +25,7 @@ selectHeaderTitle('faq.faq');
 
 <div class="mainContent">
 	<div class="pageWrapper">
-		{#if $isMobile}
+		{#if $isMobile && !$currentUser} 
 			<DemoButtons />
 		{/if}
 		<!-- <SectionsFaq /> -->
@@ -36,8 +36,6 @@ selectHeaderTitle('faq.faq');
 <style>
 .pageWrapper {
 	width: 100%;
-	margin: 0 auto;
-	padding-bottom: 10px;
 	box-sizing: border-box;
 }
 </style>

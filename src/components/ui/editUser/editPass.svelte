@@ -90,7 +90,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 	height: fit-content;
 	width: 100%;
 	position: relative;
-	padding-bottom: 10px;
+	padding-bottom: var(--elements-padding);
 }
 .setings_item {
 	height: 12vh;

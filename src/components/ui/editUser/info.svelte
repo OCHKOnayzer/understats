@@ -59,7 +59,6 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 	align-items: center;
 	width: 100%;
 	position: relative;
-	padding-bottom: 10px;
 }
 .settings_name {
 	margin-top: 10px;

@@ -58,6 +58,7 @@ const authUser = (auth: string) => {
 
 <style>
 .buttons-wrapper {
+	margin-bottom: var(--elements-padding);
 	height: 90vh;
 	display: flex;
 	justify-content: center;

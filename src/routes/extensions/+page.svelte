@@ -55,7 +55,6 @@ extensionInfo.set(data.extensionInfo);
 .extensions_wallpaper {
 	width: 100%;
 	border-radius: 5px;
-	margin-top: 10px;
 	height: 29vh;
 }
 .extensions_wallpaper img {
@@ -66,7 +65,7 @@ extensionInfo.set(data.extensionInfo);
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	margin-top: 15px;
+	margin-top:	var(--elements-padding);
 	height: 58vh;
 	color: white;
 }
