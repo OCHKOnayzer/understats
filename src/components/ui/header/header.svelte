@@ -6,11 +6,11 @@ import MobileFilterButton from '$src/components/features/stats/FilterMobile/Mobi
 import { headerTitle } from '$src/stores/HeaderStores';
 import { openMenu } from '$src/stores/menu';
 import { closeModal, currentUser, modalComponent, openModal } from '$src/stores/modalStore';
+import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
 
 import LangButton from '../button/langButton/LangButton.svelte';
 
 import { page } from '$app/stores';
-import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
 
 type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal';
 

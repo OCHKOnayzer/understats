@@ -4,11 +4,11 @@ import { Loader } from 'lucide-svelte';
 import * as Table from '$components/ui/table';
 import { currentUser } from '$src/stores/modalStore';
 import { mockData, subTabsMap } from '$src/stores/tabsStore';
+import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
 
+import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 
 import { goto } from '$app/navigation';
-import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
-import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
 
 interface RowData {
 	id: string;
@@ -35,7 +35,6 @@ let subTabs = $derived($subTabsMap[activeTab] || []);
 let innerWidth = $state(0);
 
 let isMobile = $derived(innerWidth < 400);
-
 
 let isAuthenticated = $derived(!!$currentUser);
 
@@ -98,11 +97,11 @@ function handleRowClick(row: RowData) {
 		</div> -->
 	{#if isAuthenticated}
 		{#if isMobile}
-		<div class="grid grid-cols-1 gap-4">
-			<MobileCard />
-			<MobileCard />
-			<MobileCard />
-		</div>
+			<div class="grid grid-cols-1 gap-4">
+				<MobileCard />
+				<MobileCard />
+				<MobileCard />
+			</div>
 		{:else if isLoading}
 			<div class="flex h-40 items-center justify-center">
 				<Loader />
@@ -152,4 +151,3 @@ function handleRowClick(row: RowData) {
 		<AuthDemoButton />
 	{/if}
 </section>
-

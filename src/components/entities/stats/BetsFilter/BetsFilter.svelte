@@ -52,30 +52,35 @@ async function applyFilters() {
 }
 </script>
 
-<button class="item" on:click={toggleSidebar}>
+<button
+	class="item"
+	on:click="{toggleSidebar}">
 	<h2 class="title">Фильтры</h2>
 	<img
 		class="icon"
 		src="/icons/circleArrow.svg"
 		alt="icon"
-		style:transform={$isOpen ? 'rotate(180deg)' : 'rotate(0)'} />
+		style:transform="{$isOpen ? 'rotate(180deg)' : 'rotate(0)'}" />
 </button>
 
-<aside class="sidebar w-full" class:open={$isOpen}>
+<aside
+	class="sidebar w-full"
+	class:open="{$isOpen}">
 	<div class="sidebar-content">
 		<div class="mb-[24px] flex items-center justify-between">
 			<h1 class="filters-title">Фильтры</h1>
 			<button
 				type="button"
-				on:click={toggleSidebar}
+				on:click="{toggleSidebar}"
 				aria-label="Close sidebar"
-				class="cursor-pointer transition-colors hover:text-[#0D111D]"
-			>
-				<Icon font-size="24" icon="radix-icons:cross-1" />
+				class="cursor-pointer transition-colors hover:text-[#0D111D]">
+				<Icon
+					font-size="24"
+					icon="radix-icons:cross-1" />
 			</button>
 		</div>
 
-		<Calendar on:select={handleDateSelect} />
+		<Calendar on:select="{handleDateSelect}" />
 
 		<FilterTabs />
 
@@ -89,27 +94,27 @@ async function applyFilters() {
 			<BetFilters />
 		</Accordion>
 
-			<div class="action-buttons" class:open={$isOpen}>
-				<button
-					class="apply-button"
-					on:click={applyFilters}
-					disabled={isLoading}
-				>
-					{#if isLoading}
-						Загрузка...
-					{:else}
-						Применить фильтры ({$filterStore.selectedSports.length})
-					{/if}
-				</button>
-				<button
-					class="clear-button"
-					on:click={() => filterStore.reset()}
-				>
-					Очистить фильтры
-				</button>
-			</div>
+		<div
+			class="action-buttons"
+			class:open="{$isOpen}">
+			<button
+				class="apply-button"
+				on:click="{applyFilters}"
+				disabled="{isLoading}">
+				{#if isLoading}
+					Загрузка...
+				{:else}
+					Применить фильтры ({$filterStore.selectedSports.length})
+				{/if}
+			</button>
+			<button
+				class="clear-button"
+				on:click="{() => filterStore.reset()}">
+				Очистить фильтры
+			</button>
 		</div>
-	</aside>
+	</div>
+</aside>
 
 <style>
 .item {

@@ -5,6 +5,7 @@ import { t } from 'svelte-i18n';
 import BackgroundContainer from '$components/providers/backgroundContainer/BackgroundContainer.svelte';
 import Button from '$components/ui/button/button.svelte';
 import { headerTitle } from '$src/stores/HeaderStores';
+
 import * as m from '$m';
 </script>
 
