@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 import Icon from '@iconify/svelte';
 import { get } from 'svelte/store';
 
@@ -15,7 +15,7 @@ $: filterValue = $filter;
 <Button
 	variant="outlineYellow"
 	class="{'items-center ' + (filterValue ? 'bg-yellow-500/90' : '')}"
-	on:click="{filterAccount}">
+	onclick={filterAccount}>
 	<Icon
 		class="mr-2"
 		icon="mingcute:settings-2-line"
@@ -29,4 +29,4 @@ $: filterValue = $filter;
 			OFF
 		{/if}
 	</h2>
-</Button>
+</Button> -->

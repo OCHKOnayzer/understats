@@ -1,5 +1,5 @@
 import { axiosClassic, axiosWithAuth } from '$src/api/api.interceptors';
-import { currentUser, closeModal } from '$src/stores/modalStore';
+import { closeModal, currentUser } from '$src/stores/modalStore';
 
 import { removeAccessToken, setAccessToken } from './auth-token.service';
 

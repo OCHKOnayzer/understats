@@ -1,4 +1,3 @@
-<!-- src/routes/+layout.svelte -->
 <script
 	context="module"
 	lang="ts">
@@ -88,7 +87,7 @@ const isProduction = import.meta.env.PROD;
 	
 	
 	<!-- Start of LiveChat (www.livechat.com) code -->
-<!--	<script>-->
+<!--		<script>-->
 <!--		window.__lc = window.__lc || {};-->
 <!--		window.__lc.license = 18920616;-->
 <!--		window.__lc.integration_name = "manual_onboarding";-->

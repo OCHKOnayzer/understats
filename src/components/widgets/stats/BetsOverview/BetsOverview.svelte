@@ -1,135 +1,42 @@
 <script lang="ts">
 import { Loader } from 'lucide-svelte';
-import { onMount } from 'svelte';
 
 import * as Table from '$components/ui/table';
-import Tabs from '$components/ui/tabs/Tabs.svelte';
 import { currentUser } from '$src/stores/modalStore';
+import { mockData, subTabsMap } from '$src/stores/tabsStore';
+import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
 
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 
-import BetDetails from './BetDetails.svelte';
-
 import { goto } from '$app/navigation';
+
+interface RowData {
+	id: string;
+	[key: string]: string | number | any;
+}
 
 interface AggregatedData {
 	id: string;
-	data: any[];
+	data: RowData[];
 	columns: string[];
 }
 
-let showDetails = false;
-let selectedBetId: string | null = null;
-let activeTab = 'no-aggregation';
-let activeSubTab = 'all';
-let selectedColumns: string[] = [];
-let aggregatedData: AggregatedData | null = null;
-let isLoading = false;
-let error = '';
+let showDetails = $state(false);
+let isLoading = $state(false);
+let selectedBetId = $state<string | null>(null);
+let activeTab = $state('no-aggregation');
+let activeSubTab = $state('all');
+let selectedColumns = $state<string[]>([]);
+let aggregatedData = $state<AggregatedData | null>(null);
+let error = $state('');
 
-const mainTabs = [
-	{ id: 'no-aggregation', name: 'Без агрегации' },
-	{ id: 'by-accounts', name: 'По аккаунтам' },
-	{ id: 'by-sport', name: 'По спорту' },
-	{ id: 'by-bookmaker', name: 'По букмекеру' },
-	{ id: 'by-period', name: 'По периоду' },
-	{ id: 'by-weekdays', name: 'По дням недели' }
-];
+let subTabs = $derived($subTabsMap[activeTab] || []);
 
-const subTabsMap = {
-	'no-aggregation': [
-		{ id: 'all', name: 'Все ставки' },
-		{ id: 'win', name: 'Выигрышные' },
-		{ id: 'lose', name: 'Проигрышные' },
-		{ id: 'pending', name: 'В ожидании' }
-	],
-	'by-accounts': [
-		{ id: 'all', name: 'Все букмекеры' },
-		{ id: 'fonbet', name: 'Фонбет' },
-		{ id: 'winline', name: 'Winline' },
-		{ id: '1xbet', name: '1xBet' },
-		{ id: 'betboom', name: 'BetBoom' }
-	],
-	'by-sport': [
-		{ id: 'all', name: 'Все виды спорта' },
-		{ id: 'football', name: 'Футбол' },
-		{ id: 'hockey', name: 'Хоккей' },
-		{ id: 'basketball', name: 'Баскетбол' },
-		{ id: 'tennis', name: 'Теннис' }
-	],
-	'by-bookmaker': [
-		{ id: 'all', name: 'Все букмекеры' },
-		{ id: 'fonbet', name: 'Фонбет' },
-		{ id: 'winline', name: 'Winline' },
-		{ id: '1xbet', name: '1xBet' },
-		{ id: 'betboom', name: 'BetBoom' }
-	],
-	'by-period': [
-		{ id: 'all', name: 'Весь период' },
-		{ id: 'today', name: 'Сегодня' },
-		{ id: 'week', name: 'Неделя' },
-		{ id: 'month', name: 'Месяц' },
-		{ id: 'year', name: 'Год' }
-	],
-	'by-weekdays': [
-		{ id: 'all', name: 'Все дни' },
-		{ id: 'weekdays', name: 'Будни' },
-		{ id: 'weekend', name: 'Выходные' }
-	]
-};
+let innerWidth = $state(0);
 
-const mockData = {
-	'no-aggregation': {
-		columns: ['Дата', 'Букмекер', 'Спорт', 'Событие', 'Ставка', 'Коэффициент', 'Сумма', 'Результат'],
-		data: [
-			{
-				id: '1',
-				Дата: '2024-01-15',
-				Букмекер: 'Фонбет',
-				Спорт: 'Футбол',
-				Событие: 'Спартак - ЦСКА',
-				Ставка: 'П1',
-				Коэффициент: '1.85',
-				Сумма: '1000₽',
-				Результат: 'Выигрыш'
-			},
-			{
-				id: '2',
-				Дата: '2024-01-16',
-				Букмекер: 'Winline',
-				Спорт: 'Хоккей',
-				Событие: 'СКА - ЦСКА',
-				Ставка: 'ТБ 4.5',
-				Коэффициент: '2.1',
-				Сумма: '2000₽',
-				Результат: 'Проигрыш'
-			}
-		]
-	},
-	'by-accounts': {
-		columns: ['Букмекер', 'Количество ставок', 'Общая сумма', 'Выигрыш', 'ROI'],
-		data: [
-			{
-				id: '1',
-				Букмекер: 'Фонбет',
-				'Количество ставок': '150',
-				'Общая сумма': '150000₽',
-				Выигрыш: '+25000₽',
-				ROI: '16.7%'
-			},
-			{
-				id: '2',
-				Букмекер: 'Winline',
-				'Количество ставок': '120',
-				'Общая сумма': '100000₽',
-				Выигрыш: '-5000₽',
-				ROI: '-5%'
-			}
-		]
-	}
-};
-$: isAuthenticated = !!$currentUser;
-$: subTabs = subTabsMap[activeTab] || [];
+let isMobile = $derived(innerWidth < 400);
+
+let isAuthenticated = $derived(!!$currentUser);
 
 function getAggregatedData() {
 	isLoading = true;
@@ -138,8 +45,8 @@ function getAggregatedData() {
 	try {
 		aggregatedData = {
 			id: '1',
-			columns: mockData[activeTab]?.columns || mockData['no-aggregation'].columns,
-			data: mockData[activeTab]?.data || mockData['no-aggregation'].data
+			columns: $mockData[activeTab]?.columns || mockData['no-aggregation'].columns,
+			data: $mockData[activeTab]?.data || mockData['no-aggregation'].data
 		};
 	} catch (e) {
 		error = 'Ошибка при загрузке данных';
@@ -160,16 +67,14 @@ function handleSubTabChange(event: CustomEvent<string>) {
 	getAggregatedData();
 }
 
-function handleRowClick(row: any) {
+function handleRowClick(row: RowData) {
 	selectedBetId = row.id;
 	showDetails = true;
 	goto(`/bets/${row.id}`);
 }
-
-onMount(() => {
-	getAggregatedData();
-});
 </script>
+
+<svelte:window bind:innerWidth="{innerWidth}" />
 
 <section class="relative mt-[32px]">
 	<!-- {#if showDetails && selectedBetId}
@@ -191,7 +96,13 @@ onMount(() => {
 				on:tabChange="{handleSubTabChange}" />
 		</div> -->
 	{#if isAuthenticated}
-		{#if isLoading}
+		{#if isMobile}
+			<div class="grid grid-cols-1 gap-4">
+				<MobileCard />
+				<MobileCard />
+				<MobileCard />
+			</div>
+		{:else if isLoading}
 			<div class="flex h-40 items-center justify-center">
 				<Loader />
 			</div>
@@ -221,7 +132,7 @@ onMount(() => {
 							{#each aggregatedData.data as row}
 								<Table.Row
 									class="border-[#262C3D]"
-									on:click="{() => handleRowClick(row)}">
+									onclick="{() => handleRowClick(row)}">
 									{#each aggregatedData.columns as column}
 										<Table.Cell class="whitespace-nowrap">
 											{row[column]}

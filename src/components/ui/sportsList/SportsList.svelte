@@ -47,7 +47,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 <div class="{`sports-section ${showSportsModal ? 'overflow-hidden' : ''}`}">
 	<div class="sports-grid">
 		{#each $mainItemsStore as sport}
-			<button on:click="{() => selectedFilter(sport)}">
+			<button onclick="{() => selectedFilter(sport)}">
 				<Button variant="{selectedList.includes(sport) ? 'filterButtonActive' : 'filterButton'}">
 					{sport}
 				</Button>
@@ -55,7 +55,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 		{/each}
 		<button
 			class="sport-button show-all"
-			on:click="{() => {
+			onclick="{() => {
 				savePreviousSelections();
 				showSportsModal = true;
 			}}">
@@ -68,7 +68,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 	<div
 		class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
 		transition:fade="{{ duration: 200 }}"
-		on:click|self="{() => (showSportsModal = false)}">
+		onclick="{(e) => e.target === e.currentTarget && (showSportsModal = false)}">
 		<div
 			class="max-h-[90vh] w-[90%] max-w-[600px] overflow-auto rounded-xl bg-[#20242F]"
 			transition:fly="{{ y: 20, duration: 300, easing: backOut }}">
@@ -76,7 +76,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 				<h3 class="text-xl font-semibold text-white">Виды спорта</h3>
 				<button
 					class="p-2 text-white/70 transition-colors hover:text-white"
-					on:click="{() => (showSportsModal = false)}">
+					onclick="{() => (showSportsModal = false)}">
 					<Icon
 						icon="solar:close-circle-bold"
 						class="h-6 w-6" />
@@ -98,7 +98,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 							<input
 								type="checkbox"
 								checked="{selectedList.includes(sport)}"
-								on:change="{() => selectedFilter(sport)}"
+								onchange="{() => selectedFilter(sport)}"
 								class="hidden" />
 							<div
 								class="relative h-5 w-5 rounded border-2 transition-colors duration-200
@@ -120,13 +120,13 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 					<Button
 						variant="default"
 						class="px-6"
-						on:click="{() => (showSportsModal = false)}">
+						onclick="{() => (showSportsModal = false)}">
 						Применить ({selectedList.length})
 					</Button>
 					<Button
 						variant="outline"
 						class="px-6"
-						on:click="{restoreSelections}">
+						onclick="{restoreSelections}">
 						Отмена
 					</Button>
 				</div>

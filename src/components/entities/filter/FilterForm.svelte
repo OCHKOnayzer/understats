@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 import { derived } from 'svelte/store';
 
 import FilterInput from '$components/shared/FilterInput/FilterInput.svelte';
@@ -48,4 +48,4 @@ const filterInputs = derived(FilterInputSelect, ($store) => Object.values($store
 		}
 	}
 }
-</style>
+</style> -->

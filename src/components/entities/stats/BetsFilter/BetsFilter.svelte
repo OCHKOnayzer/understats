@@ -9,17 +9,13 @@ import BetFilters from '$src/components/ui/betFilters/BetFilters.svelte';
 import Calendar from '$src/components/ui/calendar/DateRangePicker.svelte';
 import FilterTabs from '$src/components/ui/filterTabs/filterTabs.svelte';
 import { filterStore } from '$src/stores/filterStore';
+import { isOpen, toggleSidebar } from '$src/utils/functions/toggleSidebar';
 
 import { fetchFilteredData } from '../api/api';
 import BetsSelectFilter from '../BetsSelectFilter/BetsSelectFilter.svelte';
 
-let isOpen = false;
-let isLoading = false;
+let isLoading = $state<boolean>(false);
 let sidebarElement: HTMLElement;
-
-function toggleSidebar() {
-	isOpen = !isOpen;
-}
 
 function handleDateSelect(event: CustomEvent<{ startDate: string; endDate: string }>) {
 	filterStore.setDateRange(event.detail.startDate, event.detail.endDate);
@@ -27,7 +23,7 @@ function handleDateSelect(event: CustomEvent<{ startDate: string; endDate: strin
 
 function handleOutsideClick(event: MouseEvent) {
 	if (isOpen && sidebarElement && !sidebarElement.contains(event.target as Node)) {
-		isOpen = false;
+		$isOpen = false;
 	}
 }
 
@@ -44,11 +40,13 @@ async function applyFilters() {
 	try {
 		isLoading = true;
 		const data = await fetchFilteredData($filterStore);
-		isOpen = false;
+		$isOpen = false;
+		console.log('Filtered data:', isOpen);
 	} catch (error) {
 		console.error('Failed to apply filters:', error);
 	} finally {
 		isLoading = false;
+
 		toggleSidebar();
 	}
 }
@@ -62,12 +60,12 @@ async function applyFilters() {
 		class="icon"
 		src="/icons/circleArrow.svg"
 		alt="icon"
-		style:transform="{isOpen ? 'rotate(180deg)' : 'rotate(0)'}" />
+		style:transform="{$isOpen ? 'rotate(180deg)' : 'rotate(0)'}" />
 </button>
 
 <aside
 	class="sidebar w-full"
-	class:open="{isOpen}">
+	class:open="{$isOpen}">
 	<div class="sidebar-content">
 		<div class="mb-[24px] flex items-center justify-between">
 			<h1 class="filters-title">Фильтры</h1>
@@ -98,7 +96,7 @@ async function applyFilters() {
 
 		<div
 			class="action-buttons"
-			class:open="{isOpen}">
+			class:open="{$isOpen}">
 			<button
 				class="apply-button"
 				on:click="{applyFilters}"
@@ -130,6 +128,12 @@ async function applyFilters() {
 	padding: 8px 16px;
 	justify-content: space-between;
 	align-items: center;
+}
+
+@media (max-width: 650px) {
+	.item {
+		display: none;
+	}
 }
 
 .item:hover {
