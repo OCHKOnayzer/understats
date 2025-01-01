@@ -42,8 +42,16 @@ async function applyFilters() {
 		const data = await fetchFilteredData($filterStore);
 		$isOpen = false;
 		console.log('Filtered data:', isOpen);
+		console.log($filterStore.selectedSports.length);
 	} catch (error) {
 		console.error('Failed to apply filters:', error);
+		console.log(
+			$filterStore.selectedSports.length,
+			$filterStore.selectedBookmakers.length,
+			$filterStore.selectedAccounts.length,
+			$filterStore.selectedComands.length,
+			$filterStore.selectedTours.length
+		);
 	} finally {
 		isLoading = false;
 
@@ -104,7 +112,14 @@ async function applyFilters() {
 				{#if isLoading}
 					Загрузка...
 				{:else}
-					Применить фильтры ({$filterStore.selectedSports.length})
+					Применить фильтры ({$filterStore.selectedSports.length +
+						$filterStore.selectedBookmakers.length +
+						$filterStore.selectedAccounts.length +
+						$filterStore.selectedComands.length +
+						$filterStore.selectedTours.length +
+						$filterStore.betResult.length +
+						$filterStore.betType.length +
+						$filterStore.betStatus.length})
 				{/if}
 			</button>
 			<button

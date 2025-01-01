@@ -221,7 +221,7 @@ function createFilterStore() {
 		toggleBetResult: (result: string) =>
 			update((state) => ({
 				...state,
-				betResult: state.betResult.includes(result) ? state.betResult.filter((r) => r !== result) : [...state.betResult, result]
+				betResult: state.betResult.includes(result) ? state.betResult.filter((t) => t !== result) : [...state.betResult, result]
 			})),
 		toggleBetStatus: (status: string) =>
 			update((state) => ({
