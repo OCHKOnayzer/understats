@@ -48,19 +48,21 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 	<div class="sports-grid">
 		{#each $mainItemsStore as sport}
 			<button onclick="{() => selectedFilter(sport)}">
-				<Button variant={selectedList.includes(sport) ? 'filterButtonActive' : 'filterButton'}>
+				<Button variant="{selectedList.includes(sport) ? 'filterButtonActive' : 'filterButton'}">
 					{sport}
 				</Button>
 			</button>
 		{/each}
-		<button
-			class="sport-button show-all"
-			onclick="{() => {
-				savePreviousSelections();
-				showModal = true;
-			}}">
-			Показать все ({$allItemsStore.length})
-		</button>
+		{#if filteredSports.length > 6}
+			<button
+				class="sport-button show-all"
+				onclick="{() => {
+					savePreviousSelections();
+					showModal = true;
+				}}">
+				Показать все ({$allItemsStore.length})
+			</button>
+		{/if}
 	</div>
 </div>
 
@@ -120,16 +122,16 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 
 				<div class="flex justify-start gap-4 border-t border-white/10 pt-4">
 					<Button
-						variant="default"
-						class="px-6"
-						onclick={() => (showModal = false)}>
-						Применить ({selectedList.length})
-					</Button>
-					<Button
 						variant="outline"
 						class="px-6"
-						onclick={restoreSelections}>
+						onclick="{restoreSelections}">
 						Отмена
+					</Button>
+					<Button
+						variant="default"
+						class="px-6"
+						onclick="{() => (showModal = false)}">
+						Применить ({selectedList.length})
 					</Button>
 				</div>
 			</div>

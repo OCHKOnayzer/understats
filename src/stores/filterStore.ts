@@ -15,7 +15,7 @@ export interface FilterState {
 	betType: string[];
 	betStatus: string[];
 	betResult: string[];
-	betGameStatus: 'live' | 'prematch' | 'nothing';
+	betGameStatus: string[];
 	betAmount: {
 		from: string;
 		to: string;
@@ -31,7 +31,9 @@ export interface FilterState {
 	};
 }
 
-const initialState: FilterState = {
+const STORAGE_KEY = 'filter_state';
+
+const getDefaultState = () => ({
 	dateRange: {
 		startDate: '',
 		endDate: ''
@@ -45,7 +47,7 @@ const initialState: FilterState = {
 	selectedTours: [],
 	betType: [],
 	betStatus: [],
-	betGameStatus: 'live',
+	betGameStatus: [],
 	betResult: [],
 	betAmount: {
 		from: '',
@@ -60,10 +62,36 @@ const initialState: FilterState = {
 		itemsPerPage: 10,
 		timeRange: 'month'
 	}
-};
+});
+
+const initialState: FilterState = (() => {
+	if (typeof window === 'undefined') return getDefaultState();
+
+	try {
+		const savedState = window.localStorage.getItem(STORAGE_KEY);
+		if (savedState) {
+			return JSON.parse(savedState);
+		}
+	} catch (error) {
+		console.warn('Error reading from localStorage:', error);
+	}
+
+	return getDefaultState();
+})();
 
 function createFilterStore() {
 	const { subscribe, set, update } = writable<FilterState>(initialState);
+
+	// Безопасное сохранение в localStorage
+	subscribe((state) => {
+		if (typeof window !== 'undefined') {
+			try {
+				window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+			} catch (error) {
+				console.warn('Error saving to localStorage:', error);
+			}
+		}
+	});
 
 	function normalizeDate(date: Date): Date {
 		const normalized = new Date(date);
@@ -228,6 +256,11 @@ function createFilterStore() {
 				...state,
 				betStatus: state.betStatus.includes(status) ? state.betStatus.filter((s) => s !== status) : [...state.betStatus, status]
 			})),
+		toggleGameStatus: (status: string) =>
+			update((state) => ({
+				...state,
+				betGameStatus: state.betGameStatus.includes(status) ? state.betGameStatus.filter((s) => s !== status) : [...state.betGameStatus, status]
+			})),
 		setBetGameStatus: (status: FilterState['betGameStatus']) => update((state) => ({ ...state, betGameStatus: status })),
 		setBetAmount: (from: string, to: string) =>
 			update((state) => ({
@@ -303,26 +336,9 @@ export const accountsList = writable<string[]>([
 	'Аккаунт 20'
 ]);
 
-export const bookmakersListMain = writable<string[]>(['Букмекер 1', 'Букмекер 2', 'Букмекер 3', 'Букмекер 4', 'Букмекер 5']);
+export const bookmakersListMain = writable<string[]>(['pinnacle', 'stake', 'fonbet', '1xbet', '1win', 'goldenbet']);
 
-export const bookmakersList = writable<string[]>([
-	...get(bookmakersListMain),
-	'Букмекер 6',
-	'Букмекер 7',
-	'Букмекер 8',
-	'Букмекер 9',
-	'Букмекер 10',
-	'Букмекер 11',
-	'Букмекер 12',
-	'Букмекер 13',
-	'Букмекер 14',
-	'Букмекер 15',
-	'Букмекер 16',
-	'Букмекер 17',
-	'Букмекер 18',
-	'Букмекер 19',
-	'Букмекер 20'
-]);
+export const bookmakersList = writable<string[]>([...get(bookmakersListMain)]);
 
 export const comandListMain = writable<string[]>(['Команда 1', 'Команда 2', 'Команда 3', 'Команда 4', 'Команда 5']);
 

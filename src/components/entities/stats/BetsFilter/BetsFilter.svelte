@@ -74,8 +74,8 @@ async function applyFilters() {
 <aside
 	class="sidebar w-full"
 	class:open="{$isOpen}">
-	<div class="sidebar-content">
-		<div class="mb-[24px] flex items-center justify-between">
+	<div class="sidebar-header">
+		<div class="flex items-center justify-between">
 			<h1 class="filters-title">Фильтры</h1>
 			<button
 				type="button"
@@ -87,9 +87,10 @@ async function applyFilters() {
 					icon="radix-icons:cross-1" />
 			</button>
 		</div>
+	</div>
 
+	<div class="sidebar-content">
 		<Calendar on:select="{handleDateSelect}" />
-
 		<FilterTabs />
 
 		<Accordion title="{$t('filter.accordion.results')}">
@@ -101,33 +102,31 @@ async function applyFilters() {
 		<Accordion title="{$t('filter.accordion.other')}">
 			<BetFilters />
 		</Accordion>
+	</div>
 
-		<div
-			class="action-buttons"
-			class:open="{$isOpen}">
-			<button
-				class="apply-button"
-				on:click="{applyFilters}"
-				disabled="{isLoading}">
-				{#if isLoading}
-					Загрузка...
-				{:else}
-					Применить фильтры ({$filterStore.selectedSports.length +
-						$filterStore.selectedBookmakers.length +
-						$filterStore.selectedAccounts.length +
-						$filterStore.selectedComands.length +
-						$filterStore.selectedTours.length +
-						$filterStore.betResult.length +
-						$filterStore.betType.length +
-						$filterStore.betStatus.length})
-				{/if}
-			</button>
-			<button
-				class="clear-button"
-				on:click="{() => filterStore.reset()}">
-				Очистить фильтры
-			</button>
-		</div>
+	<div class="action-buttons">
+		<button
+			class="clear-button"
+			on:click="{() => filterStore.reset()}">
+			Очистить фильтры
+		</button>
+		<button
+			class="apply-button"
+			on:click="{applyFilters}"
+			disabled="{isLoading}">
+			{#if isLoading}
+				Загрузка...
+			{:else}
+				Применить фильтры ({$filterStore.selectedSports.length +
+					$filterStore.selectedBookmakers.length +
+					$filterStore.selectedAccounts.length +
+					$filterStore.selectedComands.length +
+					$filterStore.selectedTours.length +
+					$filterStore.betResult.length +
+					$filterStore.betType.length +
+					$filterStore.betStatus.length})
+			{/if}
+		</button>
 	</div>
 </aside>
 
@@ -189,16 +188,26 @@ async function applyFilters() {
 	z-index: 1000;
 	color: white;
 	border-radius: 36px 0 0 36px;
+	display: flex;
+	flex-direction: column;
 }
 
 .sidebar.open {
 	right: 0;
 }
 
+.sidebar-header {
+	position: sticky;
+	top: 0;
+	background-color: #20242f;
+	padding: 24px 24px 0;
+	z-index: 2;
+	border-radius: 36px 0 0 0;
+}
+
 .sidebar-content {
-	padding: 24px 24px 0 24px;
-	position: relative;
-	height: 100%;
+	flex: 1;
+	padding: 24px 24px 0;
 	overflow-y: auto;
 }
 
@@ -211,12 +220,9 @@ async function applyFilters() {
 .action-buttons {
 	position: sticky;
 	bottom: 0;
-	right: 0;
-	width: 100%;
-	display: flex;
-	gap: 16px;
-	padding: 16px 0;
 	background: #20242f;
+	padding: 16px 24px;
+	border-top: 1px solid rgba(113, 128, 150, 0.2);
 }
 
 .clear-button,

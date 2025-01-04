@@ -5,20 +5,20 @@ import { filterStore } from '$src/stores/filterStore';
 <div class="bet-status-row">
 	<button
 		class="bet-status"
-		class:active="{$filterStore.betGameStatus === 'live'}"
-		on:click="{() => filterStore.setBetGameStatus('live')}">
+		class:active="{$filterStore.betGameStatus.includes('live')}"
+		on:click="{() => filterStore.toggleGameStatus('live')}">
 		Лайв
 	</button>
 	<button
 		class="bet-status"
-		class:active="{$filterStore.betGameStatus === 'prematch'}"
-		on:click="{() => filterStore.setBetGameStatus('prematch')}">
+		class:active="{$filterStore.betGameStatus.includes('prematch')}"
+		on:click="{() => filterStore.toggleGameStatus('prematch')}">
 		Прематч
 	</button>
 	<button
 		class="bet-status"
-		class:active="{$filterStore.betGameStatus === 'nothing'}"
-		on:click="{() => filterStore.setBetGameStatus('nothing')}">
+		class:active="{$filterStore.betGameStatus.includes('nothing')}"
+		on:click="{() => filterStore.toggleGameStatus('nothing')}">
 		Не распознано
 	</button>
 </div>
