@@ -42,7 +42,7 @@ class AuthService {
 
 	async profile() {
 		try {
-			const response = await axiosWithAuth.get('/auth/me');
+			const response = await axiosWithAuth.get('/users/me');
 
 			console.log('response' + response);
 			if ('response.data' + response.data) {

@@ -6,14 +6,14 @@ import SportsList from '$src/components/ui/sportsList/SportsList.svelte';
 import { accountsList, accountsListMain, bookmakersList, bookmakersListMain, filterStore, sportList, sportListMain } from '$src/stores/filterStore';
 </script>
 
-<Accordion title="{$t('filter.accordion.sports')}">
+<!-- <Accordion title="{$t('filter.accordion.sports')}">
 	<SportsList
 		setFilter="{filterStore.setSelectedSports}"
 		selectedFilter="{filterStore.toggleSport}"
 		selectedList="{$filterStore.selectedSports}"
 		allItemsStore="{sportList}"
 		mainItemsStore="{sportListMain}" />
-</Accordion>
+</Accordion> -->
 
 <Accordion title="{$t('filter.accordion.bookmakers')}">
 	<SportsList
