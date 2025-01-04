@@ -2,13 +2,15 @@
 import { Loader } from 'lucide-svelte';
 
 import * as Table from '$components/ui/table';
-import { currentUser } from '$src/stores/modalStore';
-import { mockData, subTabsMap } from '$src/stores/tabsStore';
 import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
+import { currentUser } from '$src/stores/modalStore';
+import { mainTabs, mockData, subTabsMap } from '$src/stores/tabsStore';
 
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 
 import { goto } from '$app/navigation';
+import Tabs from '$src/components/ui/tabs/Tabs.svelte';
+import BetDetails from './BetDetails.svelte';
 
 interface RowData {
 	id: string;
@@ -77,12 +79,12 @@ function handleRowClick(row: RowData) {
 <svelte:window bind:innerWidth="{innerWidth}" />
 
 <section class="relative mt-[32px]">
-	<!-- {#if showDetails && selectedBetId}
+	{#if showDetails && selectedBetId}
 		<BetDetails betId="{selectedBetId}" />
 	{:else}
 		<div class="mb-[32px]">
 			<Tabs
-				tabs="{mainTabs}"
+				tabs={$mainTabs}
 				bind:activeTab="{activeTab}"
 				variant="underline"
 				on:tabChange="{handleTabChange}" />
@@ -94,60 +96,62 @@ function handleRowClick(row: RowData) {
 				bind:activeTab="{activeSubTab}"
 				variant="pills"
 				on:tabChange="{handleSubTabChange}" />
-		</div> -->
-	{#if isAuthenticated}
-		{#if isMobile}
-			<div class="grid grid-cols-1 gap-4">
-				<MobileCard />
-				<MobileCard />
-				<MobileCard />
-			</div>
-		{:else if isLoading}
-			<div class="flex h-40 items-center justify-center">
-				<Loader />
-			</div>
-		{:else if error}
-			<div class="p-4 text-red-500">
-				{error}
-			</div>
-		{:else if aggregatedData}
-			<div class="w-full overflow-hidden">
-				<div class="relative w-full overflow-x-auto">
-					<Table.Root class="w-full">
-						<Table.Header class="bg-[#31384A] text-[12px]">
-							<Table.Row>
-								{#each aggregatedData.columns as column}
-									<Table.Head class="border-[#262C3D]">
-										<div class="flex items-center gap-1">
-											<img
-												src="icons/bk/table.svg"
-												alt="table" />
-											<span class="whitespace-pre-line">{column}</span>
-										</div>
-									</Table.Head>
-								{/each}
-							</Table.Row>
-						</Table.Header>
-						<Table.Body class="text-[14px]">
-							{#each aggregatedData.data as row}
-								<Table.Row
-									class="border-[#262C3D]"
-									onclick="{() => handleRowClick(row)}">
+		</div>
+
+		{#if isAuthenticated}
+			{#if isMobile}
+				<div class="grid grid-cols-1 gap-4">
+					<MobileCard />
+					<MobileCard />
+					<MobileCard />
+				</div>
+			{:else if isLoading}
+				<div class="flex h-40 items-center justify-center">
+					<Loader />
+				</div>
+			{:else if error}
+				<div class="p-4 text-red-500">
+					{error}
+				</div>
+			{:else if aggregatedData}
+				<div class="w-full overflow-hidden">
+					<div class="relative w-full overflow-x-auto">
+						<Table.Root class="w-full">
+							<Table.Header class="bg-[#31384A] text-[12px]">
+								<Table.Row>
 									{#each aggregatedData.columns as column}
-										<Table.Cell class="whitespace-nowrap">
-											{row[column]}
-										</Table.Cell>
+										<Table.Head class="border-[#262C3D]">
+											<div class="flex items-center gap-1">
+												<img
+													src="icons/bk/table.svg"
+													alt="table" />
+												<span class="whitespace-pre-line">{column}</span>
+											</div>
+										</Table.Head>
 									{/each}
 								</Table.Row>
-							{/each}
-						</Table.Body>
-					</Table.Root>
+							</Table.Header>
+							<Table.Body class="text-[14px]">
+								{#each aggregatedData.data as row}
+									<Table.Row
+										class="border-[#262C3D]"
+										onclick="{() => handleRowClick(row)}">
+										{#each aggregatedData.columns as column}
+											<Table.Cell class="whitespace-nowrap">
+												{row[column]}
+											</Table.Cell>
+										{/each}
+									</Table.Row>
+								{/each}
+							</Table.Body>
+						</Table.Root>
+					</div>
 				</div>
-			</div>
+			{:else}
+				<div class="p-4 text-center"> Нет данных </div>
+			{/if}
 		{:else}
-			<div class="p-4 text-center"> Нет данных </div>
+			<AuthDemoButton />
 		{/if}
-	{:else}
-		<AuthDemoButton />
 	{/if}
 </section>
