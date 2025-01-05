@@ -23,16 +23,16 @@ export async function fetchFilteredData(filters: FilterState) {
 		}
 
 		if (safeArrayCheck(filters?.selectedBookmakers)) {
-			params.append('bookmakers', filters.selectedBookmakers.join(','));
+			params.append('siteNames', filters.selectedBookmakers.join(','));
 		}
 
 		if (safeArrayCheck(filters?.selectedAccounts)) {
 			params.append('accounts', filters.selectedAccounts.join(','));
 		}
 
-		if (safeArrayCheck(filters?.siteNames)) {
-			params.append('siteNames', filters.siteNames.join(','));
-		}
+		// if (safeArrayCheck(filters?.siteNames)) {
+		// 	params.append('siteNames', filters.selectedBookmakers.join(','));
+		// }
 
 		if (safeArrayCheck(filters?.betResult)) {
 			const formattedResults = filters.betResult.map((result) => {
@@ -54,8 +54,8 @@ export async function fetchFilteredData(filters: FilterState) {
 
 		params.append('stakeMin', String(filters?.stakeRange?.min ?? 0));
 		params.append('stakeMax', String(filters?.stakeRange?.max ?? 100));
-		params.append('rateMin', String(filters?.rateRange?.min ?? 1));
-		params.append('rateMax', String(filters?.rateRange?.max ?? 2.3));
+		params.append('rateMin', String(filters?.rateRange?.min ?? 0));
+		params.append('rateMax', String(filters?.rateRange?.max ?? 100));
 
 		params.append('express', String(filters?.express ?? true));
 		params.append('ordinar', String(filters?.ordinar ?? true));

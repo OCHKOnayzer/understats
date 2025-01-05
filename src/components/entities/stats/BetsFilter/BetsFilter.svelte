@@ -10,6 +10,7 @@ import Calendar from '$src/components/ui/calendar/DateRangePicker.svelte';
 import FilterTabs from '$src/components/ui/filterTabs/filterTabs.svelte';
 import { filterStore } from '$src/stores/filterStore';
 import { isOpen, toggleSidebar } from '$src/utils/functions/toggleSidebar';
+import { betsTableStore } from '$src/stores/betsTableStore';
 
 import { fetchFilteredData } from '../api/api';
 import BetsSelectFilter from '../BetsSelectFilter/BetsSelectFilter.svelte';
@@ -38,17 +39,15 @@ onDestroy(() => {
 
 async function applyFilters() {
 	try {
-		isLoading = true;
+		betsTableStore.setLoading(true);
 		const data = await fetchFilteredData($filterStore);
+		betsTableStore.setData(data);
 		$isOpen = false;
-		// Изменяем логирование
-		console.log('Filtered data:', data); // Логируем данные от API
-		console.log('Selected sports:', $filterStore.selectedSports.length); // Логируем длину массива
 	} catch (error) {
 		console.error('Failed to apply filters:', error);
+		betsTableStore.setError('Ошибка при загрузке данных');
 	} finally {
-		isLoading = false;
-
+		betsTableStore.setLoading(false);
 		toggleSidebar();
 	}
 }
