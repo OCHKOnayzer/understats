@@ -82,7 +82,6 @@ const initialState: FilterState = (() => {
 function createFilterStore() {
 	const { subscribe, set, update } = writable<FilterState>(initialState);
 
-	// Безопасное сохранение в localStorage
 	subscribe((state) => {
 		if (typeof window !== 'undefined') {
 			try {

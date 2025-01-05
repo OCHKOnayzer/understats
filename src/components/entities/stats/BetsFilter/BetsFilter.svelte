@@ -45,13 +45,6 @@ async function applyFilters() {
 		console.log($filterStore.selectedSports.length);
 	} catch (error) {
 		console.error('Failed to apply filters:', error);
-		console.log(
-			$filterStore.selectedSports.length,
-			$filterStore.selectedBookmakers.length,
-			$filterStore.selectedAccounts.length,
-			$filterStore.selectedComands.length,
-			$filterStore.selectedTours.length
-		);
 	} finally {
 		isLoading = false;
 
