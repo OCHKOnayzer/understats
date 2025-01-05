@@ -41,8 +41,9 @@ async function applyFilters() {
 		isLoading = true;
 		const data = await fetchFilteredData($filterStore);
 		$isOpen = false;
-		console.log('Filtered data:', isOpen);
-		console.log($filterStore.selectedSports.length);
+		// Изменяем логирование
+		console.log('Filtered data:', data); // Логируем данные от API
+		console.log('Selected sports:', $filterStore.selectedSports.length); // Логируем длину массива
 	} catch (error) {
 		console.error('Failed to apply filters:', error);
 	} finally {
