@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { t } from 'svelte-i18n';
+import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 import { Loader } from 'lucide-svelte';
 
@@ -106,6 +106,6 @@ onMount(() => {
 			</Table.Body>
 		</Table.Root>
 	{:else}
-		<div class="p-4 text-center"> {$t('other.no_data_available')}  </div>
+		<div class="p-4 text-center"> {$t('other.no_data_available')} </div>
 	{/if}
 </div>

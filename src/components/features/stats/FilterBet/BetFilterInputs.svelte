@@ -1,5 +1,6 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
+
 import { filterStore } from '$src/stores/filterStore';
 
 let amountFrom = $filterStore.betAmount.from;

@@ -26,26 +26,26 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 	<SettingsTitle title="{'settings.my_acc'}" />
 	<div class="setings">
 		{#if $currentUser}
-		<div class="setings_item item-w">
-			<div class="item_settings_info">
-				<p class="settings_name">{$t('settings.create_data')}</p>
+			<div class="setings_item item-w">
+				<div class="item_settings_info">
+					<p class="settings_name">{$t('settings.create_data')}</p>
+				</div>
+				<input
+					class="selected_element input_element"
+					type="text"
+					readonly
+					value="{date}" />
 			</div>
-			<input
-				class="selected_element input_element"
-				type="text"
-				readonly
-				value="{date}" />
-		</div>
-		<div class="setings_item item-w">
-			<div class="item_settings_info">
-				<p class="settings_name">{$t('settings.create_email')}</p>
+			<div class="setings_item item-w">
+				<div class="item_settings_info">
+					<p class="settings_name">{$t('settings.create_email')}</p>
+				</div>
+				<input
+					class="selected_element input_element"
+					type="text"
+					readonly
+					value="{$currentUser?.login ?? ''}" />
 			</div>
-			<input
-				class="selected_element input_element"
-				type="text"
-				readonly
-				value="{$currentUser?.login ?? ''}" />
-		</div>
 		{/if}
 		{#if !isMobile}
 			<Lang />

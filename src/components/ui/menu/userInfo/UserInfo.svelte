@@ -50,7 +50,7 @@ const handleLogout = () => {
 					class="quit_button">
 					<img
 						src="assets/menu/leave.png"
-						alt={$t('menu.leave')} />
+						alt="{$t('menu.leave')}" />
 				</button>
 			</div>
 		</div>

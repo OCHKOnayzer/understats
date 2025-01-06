@@ -1,6 +1,7 @@
 <script>
-import { filterStore } from '$src/stores/filterStore';
 import { t } from 'svelte-i18n';
+
+import { filterStore } from '$src/stores/filterStore';
 </script>
 
 <div class="bet-status-row">

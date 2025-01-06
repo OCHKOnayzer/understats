@@ -1,5 +1,6 @@
 <script>
-	import { t } from 'svelte-i18n';
+import { t } from 'svelte-i18n';
+
 import { filterStore } from '$src/stores/filterStore';
 
 const betResults = [$t('stats.win'), $t('stats.lose'), $t('stats.return')];

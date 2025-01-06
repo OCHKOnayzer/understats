@@ -35,7 +35,7 @@ export const handleAxiosError = (error: unknown) => {
 								case 'PASSWORD_TOO_SHORT':
 									return get(t)('error.password_length');
 								default:
-									return get(t)('error.unknown_field_error'),`"${err.field}": ${err.message}`;
+									return get(t)('error.unknown_field_error'), `"${err.field}": ${err.message}`;
 							}
 						});
 						throw new ApiError(errorMessages.join('\n'));

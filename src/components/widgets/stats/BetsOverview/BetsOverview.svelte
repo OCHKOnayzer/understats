@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { t } from 'svelte-i18n';
+import { t } from 'svelte-i18n';
 import { Loader } from 'lucide-svelte';
 import { onMount } from 'svelte';
 

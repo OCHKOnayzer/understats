@@ -1,5 +1,6 @@
 <script>
 import { t } from 'svelte-i18n';
+
 import { filterStore } from '$src/stores/filterStore';
 </script>
 

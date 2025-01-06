@@ -1,4 +1,6 @@
 <script lang="ts">
+import { t } from 'svelte-i18n';
+
 import TotalBet from '../TotalBet/TotalBet.svelte';
 </script>
 

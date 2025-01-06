@@ -59,7 +59,7 @@ const authUser = (auth: string) => {
 .buttons-wrapper {
 	margin-top: var(--elements-padding);
 	margin-bottom: 24px;
-	width: 100%; 
+	width: 100%;
 	min-height: 120px;
 	height: 120px;
 	background-color: #171b26;

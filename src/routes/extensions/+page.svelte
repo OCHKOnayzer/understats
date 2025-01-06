@@ -42,46 +42,45 @@ extensionInfo.set(data.extensionInfo);
 </div>
 
 <style>
-  .pageContent {
-    height: 100%;
-  }
-  .pageWrapper {
-    width: 100%;
-    box-sizing: border-box;
-    overflow: none;
-  }
-  .extensions_wallpaper {
-    width: 100%;
-    border-radius: 5px;
-    height: 29vh;
-  }
-  .extensions_wallpaper img {
-    height: 100%;
-    width: 100%;
-  }
-  .section_wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 15px;
-    height: 58vh;
-    color: white;
-  }
-  @media screen and (max-height: 660px) {
-    .section_wrapper {
-      height: fit-content;
-    }
-  }
-  @media (max-width: 800px) {
-    .pageWrapper {
-      height: fit-content;
-    }
-    .extensions_wallpaper {
-      display: none;
-    }
-    .section_wrapper {
-      flex-direction: column;
-    }
-  }
-  </style>
-  
+.pageContent {
+	height: 100%;
+}
+.pageWrapper {
+	width: 100%;
+	box-sizing: border-box;
+	overflow: none;
+}
+.extensions_wallpaper {
+	width: 100%;
+	border-radius: 5px;
+	height: 29vh;
+}
+.extensions_wallpaper img {
+	height: 100%;
+	width: 100%;
+}
+.section_wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-top: 15px;
+	height: 58vh;
+	color: white;
+}
+@media screen and (max-height: 660px) {
+	.section_wrapper {
+		height: fit-content;
+	}
+}
+@media (max-width: 800px) {
+	.pageWrapper {
+		height: fit-content;
+	}
+	.extensions_wallpaper {
+		display: none;
+	}
+	.section_wrapper {
+		flex-direction: column;
+	}
+}
+</style>

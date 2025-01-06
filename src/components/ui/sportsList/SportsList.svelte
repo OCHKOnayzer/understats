@@ -88,7 +88,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 				<div class="relative mb-4">
 					<input
 						type="text"
-						placeholder={$t('other.search')}
+						placeholder="{$t('other.search')}"
 						bind:value="{searchQuery}"
 						class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white placeholder:text-white/50 focus:border-white/20 focus:outline-none" />
 				</div>
