@@ -15,7 +15,7 @@ let { day, selected, inRange, onSelect }: Props = $props();
 		class="day"
 		class:selected="{selected}"
 		class:in-range="{inRange}"
-		on:click="{() => onSelect(day)}">
+		onclick="{() => onSelect(day)}">
 		{day.getDate()}
 	</button>
 {:else}

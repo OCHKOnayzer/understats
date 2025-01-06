@@ -1,7 +1,11 @@
 <script lang="ts">
+<<<<<<< HEAD
 import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
+=======
+>>>>>>> origin/staging3
 import { Loader } from 'lucide-svelte';
+import { onMount } from 'svelte';
 
 import * as Table from '$components/ui/table';
 
@@ -13,10 +17,10 @@ interface DetailedData {
 	availableColumns: string[];
 }
 
-let selectedColumns: string[] = [];
-let detailedData: DetailedData | null = null;
-let isLoading = false;
-let error = '';
+let selectedColumns = $state<string[]>([]);
+let detailedData = $state<DetailedData | null>(null);
+let isLoading = $state<boolean>(false);
+let error = $state<string>('');
 
 const defaultColumns = ['date', 'bookmaker', 'sport', 'event', 'bet_type', 'coefficient', 'amount', 'result'];
 
@@ -65,7 +69,7 @@ onMount(() => {
 					type="checkbox"
 					class="form-checkbox h-5 w-5 text-indigo-600"
 					checked="{selectedColumns.includes(option.id)}"
-					on:change="{() => toggleColumn(option.id)}" />
+					onchange="{() => toggleColumn(option.id)}" />
 				<span class="ml-2 text-gray-700">{option.label}</span>
 			</label>
 		{/each}

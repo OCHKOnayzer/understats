@@ -1,5 +1,5 @@
 import { axiosClassic, axiosWithAuth } from '$src/api/api.interceptors';
-import { currentUser, closeModal } from '$src/stores/modalStore';
+import { closeModal, currentUser } from '$src/stores/modalStore';
 
 import { removeAccessToken, setAccessToken } from './auth-token.service';
 
@@ -40,7 +40,7 @@ class AuthService {
 
 	async profile() {
 		try {
-			const response = await axiosWithAuth.get('/auth/me');
+			const response = await axiosWithAuth.get('/users/me');
 
 			console.log('response' + response);
 			if ('response.data' + response.data) {

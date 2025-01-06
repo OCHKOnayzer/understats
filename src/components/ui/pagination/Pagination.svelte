@@ -1,20 +1,12 @@
 <script lang="ts">
-import { derived } from 'svelte/store';
-import { t } from 'svelte-i18n';
+import { Pagination as PaginationPrimitive } from 'bits-ui';
 
-import { filterStore } from '$src/stores/filterStore';
-import { ITEMS_PER_PAGE_OPTIONS, TIME_RANGES } from '$src/utils/constants/constants';
-import { generatePageNumbers } from '$src/utils/functions/generatePageNumbers';
+import { cn } from '$utils/utils.ts';
 
-const { totalPages = 6 } = $props();
-
-const pageNumbers = derived([filterStore], ([$filterStore]) => generatePageNumbers($filterStore.pagination.currentPage, totalPages));
-
-const canGoNext = derived([filterStore], ([$filterStore]) => $filterStore.pagination.currentPage < totalPages);
-
-const canGoPrev = derived([filterStore], ([$filterStore]) => $filterStore.pagination.currentPage > 1);
+let { ref = $bindable(null), class: className, count = 0, perPage = 10, page = $bindable(1), siblingCount = 1, ...restProps }: PaginationPrimitive.RootProps = $props();
 </script>
 
+<<<<<<< HEAD
 <div class="pagination-container">
 	<div class="pagination-content">
 		<div class="time-range-section">
@@ -184,3 +176,13 @@ select {
 	}
 }
 </style>
+=======
+<PaginationPrimitive.Root
+	bind:ref={ref}
+	class={cn('mx-auto flex w-full flex-col items-center', className)}
+	count={count}
+	perPage={perPage}
+	siblingCount={siblingCount}
+	bind:page={page}
+	{...restProps} />
+>>>>>>> origin/staging3

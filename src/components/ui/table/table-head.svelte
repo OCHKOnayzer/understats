@@ -1,16 +1,24 @@
 <script lang="ts">
-import { cn } from '$utils/utils';
+	import { cn } from '$utils/utils.ts';
 
-import type { HTMLThAttributes } from 'svelte/elements';
+	import type { WithElementRef } from 'bits-ui';
+	import type { HTMLThAttributes } from 'svelte/elements';
 
-type $$Props = HTMLThAttributes;
-
-let className: $$Props['class'] = undefined;
-export { className as class };
+	let {
+		ref = $bindable(null),
+		class: className,
+		children,
+		...restProps
+	}: WithElementRef<HTMLThAttributes> = $props();
 </script>
 
 <th
-	class="{cn('h-10 border-2 border-[#363A45] px-2 text-[10px] font-normal [&:has([role=checkbox])]:pr-0', className)}"
-	{...$$restProps}>
-	<slot />
+	bind:this={ref}
+	class={cn(
+		'h-10 border-2 border-[#363A45] px-2 text-[10px] font-normal [&:has([role=checkbox])]:pr-0',
+		className
+	)}
+	{...restProps}
+>
+	{@render children?.()}
 </th>

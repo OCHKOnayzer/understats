@@ -21,7 +21,7 @@ interface Props {
 
 let { mainItemsStore, allItemsStore, title, showAllButtonText, setFilter, selectedFilter, selectedList }: Props = $props();
 
-let showSportsModal = $state(false);
+let showModal = $state(false);
 let searchQuery = $state('');
 let previousSelections = $state<string[]>([]);
 
@@ -31,11 +31,11 @@ function savePreviousSelections() {
 
 function restoreSelections() {
 	setFilter(previousSelections);
-	showSportsModal = false;
+	showModal = false;
 }
 
 $effect(() => {
-	if (showSportsModal) {
+	if (showModal) {
 		document.body.style.overflow = 'hidden';
 	} else {
 		document.body.style.overflow = '';
@@ -45,15 +45,16 @@ $effect(() => {
 let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => sport.toLowerCase().includes(searchQuery.toLowerCase())) : $allItemsStore);
 </script>
 
-<div class="{`sports-section ${showSportsModal ? 'overflow-hidden' : ''}`}">
+<div class="{`sports-section ${showModal ? 'overflow-hidden' : ''}`}">
 	<div class="sports-grid">
 		{#each $mainItemsStore as sport}
-			<button on:click="{() => selectedFilter(sport)}">
+			<button onclick="{() => selectedFilter(sport)}">
 				<Button variant="{selectedList.includes(sport) ? 'filterButtonActive' : 'filterButton'}">
 					{sport}
 				</Button>
 			</button>
 		{/each}
+<<<<<<< HEAD
 		<button
 			class="sport-button show-all"
 			on:click="{() => {
@@ -62,14 +63,28 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 			}}">
 			{$t('filter.list.see')} ({$allItemsStore.length})
 		</button>
+=======
+		{#if filteredSports.length > 6}
+			<button
+				class="sport-button show-all"
+				onclick="{() => {
+					savePreviousSelections();
+					showModal = true;
+				}}">
+				Показать все ({$allItemsStore.length})
+			</button>
+		{/if}
+>>>>>>> origin/staging3
 	</div>
 </div>
 
-{#if showSportsModal}
+{#if showModal}
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div
 		class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
 		transition:fade="{{ duration: 200 }}"
-		on:click|self="{() => (showSportsModal = false)}">
+		onclick="{(e) => e.target === e.currentTarget && (showModal = false)}">
 		<div
 			class="max-h-[90vh] w-[90%] max-w-[600px] overflow-auto rounded-xl bg-[#20242F]"
 			transition:fly="{{ y: 20, duration: 300, easing: backOut }}">
@@ -77,7 +92,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 				<h3 class="text-xl font-semibold text-white">{$t('stats.types_sports')}</h3>
 				<button
 					class="p-2 text-white/70 transition-colors hover:text-white"
-					on:click="{() => (showSportsModal = false)}">
+					onclick="{() => (showModal = false)}">
 					<Icon
 						icon="solar:close-circle-bold"
 						class="h-6 w-6" />
@@ -99,7 +114,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 							<input
 								type="checkbox"
 								checked="{selectedList.includes(sport)}"
-								on:change="{() => selectedFilter(sport)}"
+								onchange="{() => selectedFilter(sport)}"
 								class="hidden" />
 							<div
 								class="relative h-5 w-5 rounded border-2 transition-colors duration-200
@@ -119,6 +134,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 
 				<div class="flex justify-start gap-4 border-t border-white/10 pt-4">
 					<Button
+<<<<<<< HEAD
 						variant="default"
 						class="px-6"
 						on:click="{() => (showSportsModal = false)}">
@@ -129,6 +145,18 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 						class="px-6"
 						on:click="{restoreSelections}">
 						{$t('filter.results.cancel')}
+=======
+						variant="outline"
+						class="px-6"
+						onclick="{restoreSelections}">
+						Отмена
+>>>>>>> origin/staging3
+					</Button>
+					<Button
+						variant="default"
+						class="px-6"
+						onclick="{() => (showModal = false)}">
+						Применить ({selectedList.length})
 					</Button>
 				</div>
 			</div>

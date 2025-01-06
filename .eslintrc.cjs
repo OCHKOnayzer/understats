@@ -68,19 +68,19 @@ module.exports = {
 		'plugin:import/typescript'
 	],
 	rules: {
-		"check-file/filename-naming-convention": [
+		'check-file/filename-naming-convention': [
 			0,
 			{
-				"src/components/**/*.{js,ts,svelte}": "PASCAL_CASE",
-				"src/routes/**/*.{js,ts,svelte}": "SNAKE_CASE"
+				'src/components/**/*.{js,ts,svelte}': 'PASCAL_CASE',
+				'src/routes/**/*.{js,ts,svelte}': 'SNAKE_CASE'
 			}
 		],
-		"check-file/folder-naming-convention": [
+		'check-file/folder-naming-convention': [
 			0,
 			{
 				// "src/components/**/": "PASCAL_CASE",
 				// "src/**/": "SNAKE_CASE",
-				"src/**/": "KEBAB_CASE",
+				'src/**/': 'KEBAB_CASE'
 			}
 		],
 
@@ -100,11 +100,7 @@ module.exports = {
 
 		'@html-eslint/indent': ['error', 'tab'],
 
-		'padding-line-between-statements': [
-			'error',
-			{ blankLine: 'always', prev: 'import', next: '*' },
-			{ blankLine: 'any', prev: 'import', next: 'import' },
-		],
+		'padding-line-between-statements': ['error', { blankLine: 'always', prev: 'import', next: '*' }, { blankLine: 'any', prev: 'import', next: 'import' }],
 
 		'@typescript-eslint/indent': ['error', 'tab', { SwitchCase: 1 }],
 		'@typescript-eslint/comma-dangle': 0,

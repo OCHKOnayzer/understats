@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 import { fade } from 'svelte/transition';
 
 import * as Dialog from '$components/ui/dialog';
@@ -59,4 +59,4 @@ import * as m from '$m';
 	right: 0;
 	bottom: 0;
 }
-</style>
+</style> -->
