@@ -31,6 +31,9 @@ onDestroy(() => {
 
 {#if !isMobile || $isMenuOpen}
 	<div class="fixedContainer">
+		<div
+			class="close-mobile-menu"
+			on:click="{closeMenu}"></div>
 		<div class="menu">
 			<div class="menuWrapper">
 				<div class="menu_flex_up">
@@ -41,13 +44,13 @@ onDestroy(() => {
 								alt="Logo" />
 							OneKeepBet
 						</div>
-						<button
+						<!-- <button
 							on:click="{() => closeMenu()}"
 							class="closeMenu">
 							<img
 								src="assets/menu/close.svg"
 								alt="" />
-						</button>
+						</button> -->
 					</div>
 					<!-- <UserContainer /> -->
 					<RouteMenu />
@@ -84,10 +87,13 @@ onDestroy(() => {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	transform: translateX(0);
 }
 .menuWrapper {
 	height: 95%;
-	width: 90%;
+	width: 100%;
+	padding-right: 12px;
+	padding-left: 12px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -108,9 +114,6 @@ onDestroy(() => {
 	height: 100%;
 	width: 100%;
 }
-.closeMenu {
-	display: none;
-}
 .mainContent {
 	padding-left: 13vw;
 	transition: padding-left 0.3s ease;
@@ -124,13 +127,26 @@ onDestroy(() => {
 	}
 }
 @media screen and (max-width: 800px) {
+	.close-mobile-menu {
+		position: absolute;
+		background-color: #000000ab;
+		width: 100vw;
+		height: 100vh;
+	}
 	.fixedContainer {
 		position: fixed;
 		z-index: 9999;
-		width: 100vw;
+		width: 80vw;
+	}
+	.menu {
+		width: 100%;
+		border-radius: 0 24px 24px 0;
+		transform: translateX(0%);
+		animation: slideRight 180ms ease-out forwards;
 	}
 	.menuWrapper {
 		overflow-y: auto;
+		height: 90%;
 	}
 	.menuWrapper::-webkit-scrollbar {
 		border-radius: 30px;
@@ -143,11 +159,16 @@ onDestroy(() => {
 		display: flex;
 		justify-content: space-between;
 	}
-	.closeMenu {
-		display: block;
-	}
 	.mainContent {
 		padding-left: 0;
+	}
+}
+@keyframes slideRight {
+	from {
+		transform: translateX(-100%);
+	}
+	to {
+		transform: translateX(0%);
 	}
 }
 </style>

@@ -101,7 +101,7 @@ async function loadArticleComponent(article2: string) {
 }
 
 .faqChapter {
-	width: 74%;
+	width: 75%;
 	border-radius: 5px;
 	background-color: #252935;
 	padding: 20px;
@@ -122,9 +122,11 @@ async function loadArticleComponent(article2: string) {
 	font-size: 36px;
 }
 .selected_state_wrapper {
+	position: relative;
 	height: 100%;
 	width: 100%;
 	overflow-y: auto;
+	padding-right: 20px;
 }
 .state_header {
 	display: flex;
@@ -142,6 +144,9 @@ async function loadArticleComponent(article2: string) {
 	background: rgba(135, 138, 160, 0.507);
 }
 @media (max-width: 800px) {
+	.faqSection {
+		height: 75vh;
+	}
 	.faqChapter {
 		width: 100%;
 		background-color: transparent;

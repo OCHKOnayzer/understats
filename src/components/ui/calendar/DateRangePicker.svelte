@@ -1,5 +1,6 @@
 <script lang="ts">
 import { scale } from 'svelte/transition';
+import { t } from 'svelte-i18n';
 
 import { createDate, formatDateRange } from '$src/utils/date/dateUtils';
 import { handleDateSelection } from '$src/utils/functions/handleDateSelection';
@@ -11,7 +12,7 @@ import CalendarDropdown from './CalendarDropdown.svelte';
 let currentDate = new Date();
 let showCalendar = $state(false);
 let selectedDates = $state<Date[]>([]);
-let selectedDateRange = $state('Период');
+let selectedDateRange = $state($t('calendar.period'));
 
 $effect(() => {
 	if ($filterStore.dateRange.startDate && $filterStore.dateRange.endDate) {
@@ -22,7 +23,7 @@ $effect(() => {
 });
 
 $effect(() => {
-	selectedDateRange = selectedDates.length === 2 ? formatDateRange(selectedDates[0], selectedDates[1]) : 'Период';
+	selectedDateRange = selectedDates.length === 2 ? formatDateRange(selectedDates[0], selectedDates[1]) : $t('calendar.period');
 });
 
 function onDateSelect(date: Date) {

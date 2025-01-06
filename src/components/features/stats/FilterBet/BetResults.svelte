@@ -1,7 +1,9 @@
 <script>
+import { t } from 'svelte-i18n';
+
 import { filterStore } from '$src/stores/filterStore';
 
-const betResults = ['Выигрыш', 'Проигрыш', 'Возврат'];
+const betResults = [$t('stats.win'), $t('stats.lose'), $t('stats.return')];
 let showBetResults = false;
 </script>
 
@@ -14,7 +16,7 @@ let showBetResults = false;
 		{#if $filterStore.betResult.length > 0}
 			{$filterStore.betResult.join(', ')}
 		{:else}
-			Результат ставки
+			{$t('stats.bet_result')}
 		{/if}
 		<span
 			class="arrow"

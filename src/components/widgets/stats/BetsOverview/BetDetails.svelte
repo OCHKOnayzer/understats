@@ -1,7 +1,7 @@
 <script lang="ts">
 import { Loader } from 'lucide-svelte';
 import { onMount } from 'svelte';
-
+import { t } from 'svelte-i18n';
 import * as Table from '$components/ui/table';
 
 let { betId }: { betId: string } = $props();
@@ -105,6 +105,6 @@ onMount(() => {
 			</Table.Body>
 		</Table.Root>
 	{:else}
-		<div class="p-4 text-center"> Нет данных </div>
+		<div class="p-4 text-center"> {$t('other.no_data_available')} </div>
 	{/if}
 </div>

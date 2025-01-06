@@ -1,20 +1,7 @@
 <script>
 import { t } from 'svelte-i18n';
-import { onMount } from 'svelte';
 
 import { isDemoEnabled } from '$src/stores/demo';
-
-let isMobile = false;
-
-function checkScreenWidth() {
-	isMobile = window.innerWidth <= 768;
-}
-
-onMount(() => {
-	checkScreenWidth();
-	window.addEventListener('resize', checkScreenWidth);
-	return () => window.removeEventListener('resize', checkScreenWidth);
-});
 
 const toggleDemo = () => {
 	$isDemoEnabled = !$isDemoEnabled;
@@ -90,7 +77,7 @@ const toggleDemo = () => {
 }
 
 input:checked + .slider {
-	background-color: #6660ff;
+	background-color: var(--accent-color);
 }
 
 input:checked + .slider:before {

@@ -54,6 +54,7 @@ const closPayModal = () => {
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
+	width: 100vw;
 }
 .pay_modal {
 	width: 22vw;
@@ -64,6 +65,7 @@ const closPayModal = () => {
 	align-items: center;
 	justify-content: center;
 	border-radius: 5px;
+	transform: translateY(0);
 }
 .pay_wrapper {
 	width: 90%;
@@ -163,9 +165,31 @@ const closPayModal = () => {
 	flex-shrink: 0;
 	object-fit: contain;
 }
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 800px) {
+	.pay_container {
+		align-items: flex-end;
+	}
 	.pay_modal {
-		width: 30vw;
+		width: 100vw;
+		border-radius: 20px 20px 0 0;
+		transform: translateY(100%);
+		animation: slideUp 0.3s ease-out forwards;
+	}
+	.close {
+		border: unset;
+	}
+	.close::before,
+	.close::after {
+		background-color: white;
+	}
+}
+
+@keyframes slideUp {
+	from {
+		transform: translateY(100%);
+	}
+	to {
+		transform: translateY(0);
 	}
 }
 </style>

@@ -7,11 +7,10 @@
 <style>
 .SettingsWrapper {
 	width: 100%;
-	margin: 0 auto;
 	min-height: 200px;
 	height: fit-content;
 	box-sizing: border-box;
-	margin-top: 10px;
+	margin-bottom: var(--elements-padding);
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	color: white;
 	background: #171b26;

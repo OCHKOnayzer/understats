@@ -90,7 +90,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 	height: fit-content;
 	width: 100%;
 	position: relative;
-	padding-bottom: 10px;
+	padding-bottom: var(--elements-padding);
 }
 .setings_item {
 	height: 12vh;
@@ -128,7 +128,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 	padding-left: 10px;
 } */
 .item_settings_info {
-	width: 100%;
+	width: 98%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -136,7 +136,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 .clear_curr {
 	background: transparent;
 	border: unset;
-	color: #6660ff;
+	color: var(--accent-color);
 	cursor: pointer;
 }
 /* .user_email {

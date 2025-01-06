@@ -25,18 +25,16 @@ extensionInfo.set(data.extensionInfo);
 </svelte:head>
 
 <div class="pageContent">
-	{#if !$currentUser}
+	<!-- {#if !$currentUser}
 		<DemoButtons />
-	{/if}
+	{/if} -->
 	<div class="pageWrapper">
 		<div class="extensions_wallpaper">
 			<img
 				src="assets/extension/wallpaper.webp"
 				alt="" />
 		</div>
-		<div
-			class="section_wrapper"
-			style="height: {!$currentUser ? '54vh' : ''}">
+		<div class="section_wrapper">
 			<DownloadSection />
 			<QuesSection />
 		</div>
@@ -55,7 +53,6 @@ extensionInfo.set(data.extensionInfo);
 .extensions_wallpaper {
 	width: 100%;
 	border-radius: 5px;
-	margin-top: 10px;
 	height: 29vh;
 }
 .extensions_wallpaper img {

@@ -1,11 +1,18 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
+import { onMount } from 'svelte';
 
+import { currentModal, currentUser, logout, modalComponent, openModal } from '$src/stores/modalStore';
+import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 import { useUserProfile } from '$src/services/auth/useProfile';
-import { currentUser, logout, modalComponent, openModal } from '$src/stores/modalStore';
 
 import Button from '../../button/button.svelte';
 
+import { goto } from '$app/navigation';
+
+onMount(() => {
+	initializeScreenWidthListener();
+});
 const { query } = useUserProfile();
 
 $: if ($query.data) {
@@ -13,19 +20,24 @@ $: if ($query.data) {
 }
 
 const handleLogout = () => {
-	logout();
 	currentUser.set(null);
-	modalComponent.set('authModal');
+	if ($isMobile) {
+		currentModal.set('login');
+		goto('/authorization');
+	} else {
+		logout();
+		modalComponent.set('authModal');
+	}
 };
 </script>
 
 <div class="userContainer">
 	{#if $query.isLoading}
-		<p>Загрузка профиля...</p>
+		<p>{$t('menu.profile_load')}</p>
 	{:else if $currentUser}
 		<div class="user_flex">
 			<div class="user_info">
-				<span>{$t('menu.YourProfile')}</span>
+				<span>{$t('menu.your_profile')}</span>
 				<div class="userName">{$currentUser.login || 'Email'}</div>
 				<!-- <div class="user_wrapper">
 
@@ -38,7 +50,7 @@ const handleLogout = () => {
 					class="quit_button">
 					<img
 						src="assets/menu/leave.png"
-						alt="Выйти" />
+						alt="{$t('menu.leave')}" />
 				</button>
 			</div>
 		</div>

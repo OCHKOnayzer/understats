@@ -1,25 +1,27 @@
 <script>
+import { t } from 'svelte-i18n';
+
 import { filterStore } from '$src/stores/filterStore';
 </script>
 
 <div class="bet-status-row">
 	<button
 		class="bet-status"
-		class:active="{$filterStore.betGameStatus.includes('live')}"
-		on:click="{() => filterStore.toggleGameStatus('live')}">
-		Лайв
+		class:active="{$filterStore.betGameStatus === 'live'}"
+		on:click="{() => filterStore.setBetGameStatus('live')}">
+		{$t('stats.live')}
 	</button>
 	<button
 		class="bet-status"
-		class:active="{$filterStore.betGameStatus.includes('prematch')}"
-		on:click="{() => filterStore.toggleGameStatus('prematch')}">
-		Прематч
+		class:active="{$filterStore.betGameStatus === 'prematch'}"
+		on:click="{() => filterStore.setBetGameStatus('prematch')}">
+		{$t('stats.prematch')}
 	</button>
 	<button
 		class="bet-status"
-		class:active="{$filterStore.betGameStatus.includes('nothing')}"
-		on:click="{() => filterStore.toggleGameStatus('nothing')}">
-		Не распознано
+		class:active="{$filterStore.betGameStatus === 'nothing'}"
+		on:click="{() => filterStore.setBetGameStatus('nothing')}">
+		{$t('stats.not_recognized')}
 	</button>
 </div>
 

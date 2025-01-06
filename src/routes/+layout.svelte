@@ -68,7 +68,7 @@ onDestroy(() => {
 	}
 });
 
-const routesWithoutMenu = ['/'];
+const routesWithoutMenu = ['/registrations', '/authorization'];
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -134,12 +134,17 @@ const isProduction = import.meta.env.PROD;
 	<Container>
 		<main>
 			{#if isLocaleReady}
-				<Menu />
+				{#if !routesWithoutMenu.includes($page.url.pathname)}
+					<Menu />
+				{/if}
 				{#if $isModalOpen}
 					<AuthModal />
 				{/if}
 				<div class="mainContent">
-					<Header />
+					{#if !routesWithoutMenu.includes($page.url.pathname)}
+						<Header />
+					{/if}
+
 					<slot />
 				</div>
 			{:else}

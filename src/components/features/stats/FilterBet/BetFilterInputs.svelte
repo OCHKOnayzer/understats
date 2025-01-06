@@ -1,4 +1,6 @@
 <script lang="ts">
+import { t } from 'svelte-i18n';
+
 import { filterStore } from '$src/stores/filterStore';
 
 let amountFrom = $filterStore.betAmount.from;
@@ -30,7 +32,7 @@ function handleCoefficientChange() {
 					for="amountFrom"
 					class="placeholder"
 					class:filled="{amountFrom}">
-					Коэффициент, от
+					{$t('stats.ratio')}, {$t('other.from')}
 				</label>
 			</div>
 			<div class="input-field">
@@ -44,7 +46,7 @@ function handleCoefficientChange() {
 					for="amountTo"
 					class="placeholder"
 					class:filled="{amountTo}">
-					Коэффициент, до
+					{$t('stats.ratio')}, {$t('stats.before')}
 				</label>
 			</div>
 		</div>
@@ -63,7 +65,7 @@ function handleCoefficientChange() {
 					for="coefficientFrom"
 					class="placeholder"
 					class:filled="{coefficientFrom}">
-					Сумма ставки, от
+					{$t('stats.bets_sum')}, {$t('other.from')}
 				</label>
 			</div>
 			<div class="input-field">
@@ -77,7 +79,7 @@ function handleCoefficientChange() {
 					for="coefficientTo"
 					class="placeholder"
 					class:filled="{coefficientTo}">
-					Сумма ставки, до
+					{$t('stats.bets_sum')}, {$t('stats.before')}
 				</label>
 			</div>
 		</div>
