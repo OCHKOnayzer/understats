@@ -13,7 +13,6 @@ export class ApiError extends Error {
 export const handleAxiosError = (error: unknown) => {
 	if (axios.isAxiosError(error)) {
 		const axiosError = error as AxiosError<IApiError>;
-		console.log(axiosError.response);
 
 		if (axiosError.response) {
 			const { data } = axiosError.response;

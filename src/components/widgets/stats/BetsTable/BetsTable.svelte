@@ -28,16 +28,13 @@ const table = createSvelteTable({
 
 async function loadData() {
 	if ($betsTableStore.isLoading) {
-		console.log('Загрузка уже идет, пропускаем');
 		return;
 	}
 
 	try {
 		betsTableStore.setLoading(true);
-		console.log('Начало загрузки данных');
 
 		const response = await fetchFilteredData($filterStore);
-		console.log('Получены данные:', response);
 
 		if (!response) {
 			throw new Error('Нет данных');
@@ -45,11 +42,9 @@ async function loadData() {
 
 		betsTableStore.setData(response);
 	} catch (err) {
-		console.error('Ошибка загрузки:', err);
 		betsTableStore.setError('Ошибка при загрузке данных');
 	} finally {
 		betsTableStore.setLoading(false);
-		console.log('Загрузка завершена');
 	}
 }
 

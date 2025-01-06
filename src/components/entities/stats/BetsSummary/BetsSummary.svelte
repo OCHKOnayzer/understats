@@ -8,8 +8,6 @@ const data = createQuery({
 	queryKey: ['bets count', params],
 	queryFn: () => betService.getMyBetsCount(params)
 });
-
-console.log(data);
 </script>
 
 <div class="flex w-[80%] items-center justify-between gap-4">

@@ -1,6 +1,6 @@
 <script lang="ts">
 import Icon from '@iconify/svelte';
-import { onDestroy, onMount } from 'svelte';
+import { onDestroy, onMount, tick } from 'svelte';
 import { t } from 'svelte-i18n';
 
 import BetFilterResults from '$src/components/features/stats/FilterBet/BetFilterResults.svelte';
@@ -38,20 +38,14 @@ onDestroy(() => {
 });
 
 async function applyFilters() {
-	if ($betsTableStore.isLoading) {
-		console.log('Already loading, skipping');
-		return;
-	}
-
 	try {
 		betsTableStore.setLoading(true);
-
+		await tick();
 		const data = await fetchFilteredData($filterStore);
-
 		betsTableStore.setData(data);
 		$isOpen = false;
 	} catch (error) {
-		betsTableStore.setError('Ошибка при применении фильтров');
+		betsTableStore.setError('Ошибка при загрузке данных');
 	} finally {
 		betsTableStore.setLoading(false);
 		toggleSidebar();
