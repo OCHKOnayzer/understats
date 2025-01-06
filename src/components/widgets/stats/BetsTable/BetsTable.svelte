@@ -75,7 +75,7 @@ $effect(() => {
 		<MobileCard />
 	</div>
 {:else if $betsTableStore.isLoading}
-	<div class="flex flex-col text-white items-center justify-center p-4 h-[70vh]">
+	<div class="flex h-[70vh] flex-col items-center justify-center p-4 text-white">
 		<span class="loading-spinner mb-3"></span>
 		<h2>Загружаем данные</h2>
 	</div>

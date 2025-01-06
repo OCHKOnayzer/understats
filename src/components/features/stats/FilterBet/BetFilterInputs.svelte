@@ -23,13 +23,14 @@ function handleCoefficientChange() {
 				<input
 					type="text"
 					class="amount-input"
-					bind:value="{amountFrom}"
-					on:input="{handleAmountChange}"
+					bind:value="{coefficientFrom}"
+					on:input="{handleCoefficientChange}"
+					autocomplete="off"
 					id="amountFrom" />
 				<label
 					for="amountFrom"
 					class="placeholder"
-					class:filled="{amountFrom}">
+					class:filled="{coefficientFrom}">
 					Коэффициент, от
 				</label>
 			</div>
@@ -37,13 +38,14 @@ function handleCoefficientChange() {
 				<input
 					type="text"
 					class="amount-input"
-					bind:value="{amountTo}"
-					on:input="{handleAmountChange}"
+					bind:value="{coefficientTo}"
+					on:input="{handleCoefficientChange}"
+					autocomplete="off"
 					id="amountTo" />
 				<label
 					for="amountTo"
 					class="placeholder"
-					class:filled="{amountTo}">
+					class:filled="{coefficientTo}">
 					Коэффициент, до
 				</label>
 			</div>
@@ -56,13 +58,13 @@ function handleCoefficientChange() {
 				<input
 					type="text"
 					class="amount-input"
-					bind:value="{coefficientFrom}"
-					on:input="{handleCoefficientChange}"
+					bind:value="{amountFrom}"
+					on:input="{handleAmountChange}"
 					id="coefficientFrom" />
 				<label
 					for="coefficientFrom"
 					class="placeholder"
-					class:filled="{coefficientFrom}">
+					class:filled="{amountFrom}">
 					Сумма ставки, от
 				</label>
 			</div>
@@ -70,13 +72,13 @@ function handleCoefficientChange() {
 				<input
 					type="text"
 					class="amount-input"
-					bind:value="{coefficientTo}"
-					on:input="{handleCoefficientChange}"
+					bind:value="{amountTo}"
+					on:input="{handleAmountChange}"
 					id="coefficientTo" />
 				<label
 					for="coefficientTo"
 					class="placeholder"
-					class:filled="{coefficientTo}">
+					class:filled="{amountTo}">
 					Сумма ставки, до
 				</label>
 			</div>

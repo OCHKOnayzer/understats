@@ -17,10 +17,18 @@ export async function fetchFilteredData(filters: FilterState) {
 	try {
 		const params = new URLSearchParams();
 
-		params.append('page', String(filters?.pagination?.currentPage ?? 1));
-		params.append('perPage', String(filters?.pagination?.itemsPerPage ?? 10));
-		params.append('sortBy', filters?.pagination?.sortBy ?? 'placed');
-		params.append('sortOrder', filters?.pagination?.sortOrder ?? 'ASC');
+		if (filters?.pagination?.currentPage) {
+			params.append('page', String(filters.pagination.currentPage));
+		}
+		if (filters?.pagination?.itemsPerPage) {
+			params.append('perPage', String(filters.pagination.itemsPerPage));
+		}
+		if (filters?.pagination?.sortBy) {
+			params.append('sortBy', filters.pagination.sortBy);
+		}
+		if (filters?.pagination?.sortOrder) {
+			params.append('sortOrder', filters.pagination.sortOrder);
+		}
 
 		const appendMultipleParams = (key: string, values?: string[]) => {
 			if (Array.isArray(values) && values.length > 0) {
@@ -50,12 +58,24 @@ export async function fetchFilteredData(filters: FilterState) {
 			appendMultipleParams('results', formattedResults);
 		}
 
-		params.append('stakeMin', String(filters?.stakeRange?.min ?? 0));
-		params.append('stakeMax', String(filters?.stakeRange?.max ?? 100));
-		params.append('rateMin', String(filters?.rateRange?.min ?? 0));
-		params.append('rateMax', String(filters?.rateRange?.max ?? 100));
-		params.append('express', String(filters?.express ?? true));
-		params.append('ordinar', String(filters?.ordinar ?? true));
+		if (filters?.betAmount?.from) {
+			params.append('stakeMin', String(filters.betAmount.from));
+		}
+		if (filters?.betAmount?.to) {
+			params.append('stakeMax', String(filters.betAmount.to));
+		}
+		if (filters?.coefficient?.from) {
+			params.append('rateMin', String(filters.coefficient.from));
+		}
+		if (filters?.coefficient?.to) {
+			params.append('rateMax', String(filters.coefficient.to));
+		}
+		if (filters?.express !== undefined) {
+			params.append('express', String(filters.express));
+		}
+		if (filters?.ordinar !== undefined) {
+			params.append('ordinar', String(filters.ordinar));
+		}
 
 		if (typeof filters?.year === 'number') params.append('year', String(filters.year));
 		if (typeof filters?.month === 'number') params.append('month', String(filters.month));
