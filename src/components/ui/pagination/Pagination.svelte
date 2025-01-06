@@ -13,7 +13,16 @@
 	const canGoNext = derived([filterStore], ([$filterStore]) => $filterStore.pagination.currentPage < totalPages);
 	
 	const canGoPrev = derived([filterStore], ([$filterStore]) => $filterStore.pagination.currentPage > 1);
-	</script>
+
+	function handlePageChange(page: number) {
+		filterStore.setPage(page);
+	}
+
+	function handleItemsPerPageChange(event: Event) {
+		const select = event.currentTarget as HTMLSelectElement;
+		filterStore.setItemsPerPage(parseInt(select.value));
+	}
+</script>
 	
 	<div class="pagination-container">
 		<div class="pagination-content">
@@ -34,7 +43,7 @@
 					<div class="select-wrapper">
 						<select
 							value="{$filterStore.pagination.itemsPerPage}"
-							onchange="{(e) => filterStore.setItemsPerPage(parseInt(e.currentTarget.value))}">
+							onchange={handleItemsPerPageChange}>
 							{#each ITEMS_PER_PAGE_OPTIONS as option}
 								<option value="{option}">{option}</option>
 							{/each}
@@ -45,7 +54,7 @@
 				<div class="page-navigation">
 					<button
 						class="nav-button prev-button"
-						onclick="{() => filterStore.setPage($filterStore.pagination.currentPage - 1)}"
+						onclick={() => handlePageChange($filterStore.pagination.currentPage - 1)}
 						aria-label="Предыдущая страница"
 						disabled="{!$canGoPrev}">
 						<svg
@@ -63,7 +72,7 @@
 								<button
 									class="page-number"
 									class:active="{$filterStore.pagination.currentPage === page}"
-									onclick="{() => filterStore.setPage(page as number)}">
+									onclick={() => handlePageChange(page as number)}>
 									{page}
 								</button>
 							{/if}
@@ -72,7 +81,7 @@
 	
 					<button
 						class="nav-button next-button"
-						onclick="{() => filterStore.setPage($filterStore.pagination.currentPage + 1)}"
+						onclick={() => handlePageChange($filterStore.pagination.currentPage + 1)}
 						aria-label="Следующая страница"
 						disabled="{!$canGoNext}">
 						<svg
@@ -184,4 +193,3 @@
 		}
 	}
 	</style>
-	

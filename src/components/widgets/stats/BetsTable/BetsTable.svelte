@@ -11,6 +11,7 @@ import { onMount } from 'svelte';
 
 import { betsTableStore } from '$src/stores/betsTableStore';
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
+import BetsNoTableData from '../BetsNoTableData/BetsNoTableData.svelte';
 import { columns } from './columns';
 
 let innerWidth = $state(0);
@@ -27,29 +28,46 @@ const table = createSvelteTable({
 
 async function loadData() {
 	if ($betsTableStore.isLoading) {
+		console.log('Загрузка уже идет, пропускаем');
 		return;
 	}
 
 	try {
 		betsTableStore.setLoading(true);
+		console.log('Начало загрузки данных');
 
 		const response = await fetchFilteredData($filterStore);
+		console.log('Получены данные:', response);
 
 		if (!response) {
-			throw new Error('No data received');
+			throw new Error('Нет данных');
 		}
 
 		betsTableStore.setData(response);
 	} catch (err) {
+		console.error('Ошибка загрузки:', err);
 		betsTableStore.setError('Ошибка при загрузке данных');
-		betsTableStore.setData([]);
 	} finally {
 		betsTableStore.setLoading(false);
+		console.log('Загрузка завершена');
 	}
 }
 
 onMount(() => {
 	loadData();
+});
+
+let prevPage = $state($filterStore.pagination.currentPage);
+let prevItemsPerPage = $state($filterStore.pagination.itemsPerPage);
+
+$effect(() => {
+	const { currentPage, itemsPerPage } = $filterStore.pagination;
+
+	if (currentPage !== prevPage || itemsPerPage !== prevItemsPerPage) {
+		prevPage = currentPage;
+		prevItemsPerPage = itemsPerPage;
+		loadData();
+	}
 });
 </script>
 
@@ -60,19 +78,18 @@ onMount(() => {
 {:else if isMobile}
 	<div class="grid grid-cols-1 gap-4">
 		<MobileCard />
-		<MobileCard />
-		<MobileCard />
 	</div>
 {:else if $betsTableStore.isLoading}
-	<div class="flex justify-center p-4">
-		<span class="loading-spinner">Загрузка...</span>
+	<div class="flex flex-col text-white items-center justify-center p-4 h-[70vh]">
+		<span class="loading-spinner mb-3"></span>
+		<h2>Загружаем данные</h2>
 	</div>
 {:else if $betsTableStore.error}
 	<div class="p-4 text-red-500">{$betsTableStore.error}</div>
 {:else if $betsTableStore.data.length === 0}
-	<div class="p-4 text-center">Нет данных для отображения</div>
+	<BetsNoTableData />
 {:else}
-	<div class="rounded-md border">
+	<div class="mt-4">
 		<Table.Root>
 			<Table.Header>
 				{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
@@ -80,9 +97,14 @@ onMount(() => {
 						{#each headerGroup.headers as header (header.id)}
 							<Table.Head>
 								{#if !header.isPlaceholder}
-									<FlexRender
-										content="{header.column.columnDef.header}"
-										context="{header.getContext()}" />
+									<div class="flex items-center gap-2">
+										<img
+											src="/icons/table-icon.svg"
+											alt="" />
+										<FlexRender
+											content="{header.column.columnDef.header}"
+											context="{header.getContext()}" />
+									</div>
 								{/if}
 							</Table.Head>
 						{/each}
@@ -111,8 +133,8 @@ onMount(() => {
 	display: inline-block;
 	width: 2rem;
 	height: 2rem;
-	border: 2px solid #f3f3f3;
-	border-top: 2px solid #3498db;
+	border: 3px solid #6660ff;
+	border-top: 3px solid transparent;
 	border-radius: 50%;
 	animation: spin 1s linear infinite;
 }

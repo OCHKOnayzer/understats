@@ -28,8 +28,10 @@ function createBetsTableStore() {
 		setLoading: (isLoading: boolean) => {
 			update((state) => {
 				if (state.isLoading && isLoading) {
+					console.log('Предотвращена повторная установка загрузки');
 					return state;
 				}
+				console.log('Установка состояния загрузки:', isLoading);
 				return { ...state, isLoading };
 			});
 		},
