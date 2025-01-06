@@ -11,7 +11,7 @@ import { t } from 'svelte-i18n';
 			<span class="title"> {$t('extensions.need_help')}</span>
 		</div>
 		<div class="supp-span">
-			<span>{$t('extensions.problmes_install')}</span>
+			<span>{$t('extensions.problems_install')}</span>
 			<span>{$t('extensions.chat_install')}</span>
 		</div>
 		<div class="problem_content">
