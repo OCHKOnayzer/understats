@@ -6,18 +6,18 @@ import { createSvelteTable, FlexRender } from '$components/ui/data-table';
 import * as Table from '$components/ui/table';
 import { fetchFilteredData } from '$src/components/entities/stats/api/api';
 import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
-import { filterStore } from '$src/stores/filterStore';
-import { currentUser } from '$src/stores/modalStore';
 import { betsTableStore } from '$src/stores/betsTableStore';
+import { filterStore } from '$src/stores/filterStore';
 
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 import BetsNoTableData from '../BetsNoTableData/BetsNoTableData.svelte';
 
+import { useUserProfile } from '$src/services/auth/useProfile';
 import { columns } from './columns';
 
 let innerWidth = $state(0);
 let isMobile = $derived(innerWidth < 400);
-let isAuthenticated = $derived(!!$currentUser);
+const isAuthenticated = useUserProfile();
 
 const table = createSvelteTable({
 	get data() {
