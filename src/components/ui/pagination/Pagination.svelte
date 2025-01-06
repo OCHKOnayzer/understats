@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { derived } from 'svelte/store';
 	import { t } from 'svelte-i18n';
+	import { derived } from 'svelte/store';
 
 	import { filterStore } from '$src/stores/filterStore';
 	import { ITEMS_PER_PAGE_OPTIONS, TIME_RANGES } from '$src/utils/constants/constants';
 	import { generatePageNumbers } from '$src/utils/functions/generatePageNumbers';
+	import PaginationSelect from './PaginationSelect.svelte';
 
 	const { totalPages = 6 } = $props();
 
@@ -16,11 +17,6 @@
 
 	function handlePageChange(page: number) {
 		filterStore.setPage(page);
-	}
-
-	function handleItemsPerPageChange(event: Event) {
-		const select = event.currentTarget as HTMLSelectElement;
-		filterStore.setItemsPerPage(parseInt(select.value));
 	}
 </script>
 
@@ -39,23 +35,15 @@
 
 			<div class="pagination-controls">
 				<div class="items-per-page-selector">
-					<span class="items-per-page-label">Показать:</span>
-					<div class="select-wrapper">
-						<select
-							value="{$filterStore.pagination.itemsPerPage}"
-							onchange={handleItemsPerPageChange}>
-							{#each ITEMS_PER_PAGE_OPTIONS as option}
-								<option value="{option}">{option}</option>
-							{/each}
-						</select>
-					</div>
+					<span class="items-per-page-label">{$t('filter.pagination.see')}</span>
+					<PaginationSelect />
 				</div>
 
 				<div class="page-navigation">
 					<button
 						class="nav-button prev-button"
 						onclick={() => handlePageChange($filterStore.pagination.currentPage - 1)}
-						aria-label="Предыдущая страница"
+						aria-label={$t('filter.pagination.prevPage')}
 						disabled="{!$canGoPrev}">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +70,7 @@
 					<button
 						class="nav-button next-button"
 						onclick={() => handlePageChange($filterStore.pagination.currentPage + 1)}
-						aria-label="Следующая страница"
+						aria-label={$t('filter.pagination.nextPage')}
 						disabled="{!$canGoNext}">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -96,100 +84,90 @@
 	</div>
 
 	<style lang="postcss">
-	.pagination-container {
-		@apply absolute bottom-0 left-0 z-50 w-full bg-[#171b26] px-2 py-2;
-	}
-
-	.pagination-content {
-		@apply flex w-full max-w-full flex-col items-center
-							 justify-between space-y-2
-							 sm:flex-row sm:space-x-2 sm:space-y-0;
-	}
-
-	.time-range-section {
-		@apply flex flex-wrap justify-center gap-1
-							 sm:justify-start sm:gap-2;
-	}
-
-	.time-range-button {
-		@apply rounded-lg bg-[#20242f] px-2 py-1 text-xs
-							 text-white transition-colors
-							 duration-200 hover:bg-[#2f3241];
-	}
-
-	.time-range-button.active {
-		@apply bg-[#6366f1];
-	}
-
-	.pagination-controls {
-		@apply flex w-full flex-col items-center
-							 justify-between space-y-1 sm:w-auto
-							 sm:flex-row sm:justify-end
-							 sm:space-x-2 sm:space-y-0;
-	}
-
-	.items-per-page-selector {
-		@apply mb-1 flex items-center space-x-1 sm:mb-0;
-	}
-
-	.items-per-page-label {
-		@apply whitespace-nowrap text-xs text-white;
-	}
-
-	.select-wrapper {
-		@apply relative w-16 sm:w-20;
-	}
-
-	select {
-		@apply w-full appearance-none rounded-lg border-none
-							 bg-[#20242f] px-1 py-1
-							 pr-4 text-xs text-white;
-	}
-
-	.page-navigation {
-		@apply flex items-center space-x-1;
-	}
-
-	.nav-button {
-		@apply flex h-6 w-6
-							 items-center justify-center rounded-lg bg-[#20242f]
-							 text-white transition-colors
-							 hover:bg-[#2f3241] disabled:opacity-40;
-	}
-
-	.page-numbers {
-		@apply flex items-center space-x-1;
-	}
-
-	.page-number {
-		@apply flex h-6 w-6 items-center justify-center
-							 rounded-lg bg-[#20242f] text-xs text-white
-							 hover:bg-[#2f3241];
-	}
-
-	.page-number.active {
-		@apply bg-[#6366f1];
-	}
-
-	.page-ellipsis {
-		@apply px-1 text-xs text-white;
-	}
-
-	.nav-button svg {
-		@apply h-4 w-4 stroke-current stroke-2;
-	}
-
-	@media (max-width: 640px) {
 		.pagination-container {
-			@apply px-1 py-1;
+			@apply absolute bottom-0 left-0 z-50 w-full bg-[#171b26] px-4 py-3;
 		}
-
+	
+		.pagination-content {
+			@apply flex w-full max-w-full flex-col items-center
+								 justify-between space-y-2
+								 sm:flex-row sm:space-x-4 sm:space-y-0;
+		}
+	
 		.time-range-section {
-			@apply gap-1;
+			@apply flex flex-wrap justify-center gap-1
+								 sm:justify-start sm:gap-3;
 		}
-
+	
 		.time-range-button {
-			@apply px-1.5 py-1 text-[10px];
+			@apply rounded-lg bg-[#20242f] px-3 py-2 text-sm
+								 text-white transition-colors
+								 duration-200 hover:bg-[#2f3241];
 		}
-	}
+	
+		.time-range-button.active {
+			@apply bg-[#6366f1];
+		}
+	
+		.pagination-controls {
+			@apply flex w-full flex-col items-center
+								 justify-between space-y-1 sm:w-auto
+								 sm:flex-row sm:justify-end
+								 sm:space-x-3 sm:space-y-0;
+		}
+	
+		.items-per-page-selector {
+			@apply mb-1 flex items-center space-x-2 sm:mb-0;
+		}
+	
+		.items-per-page-label {
+			@apply whitespace-nowrap text-sm text-white;
+		}
+	
+		.page-navigation {
+			@apply flex items-center space-x-2;
+		}
+	
+		.nav-button {
+			@apply flex h-8 w-8
+								 items-center justify-center rounded-lg bg-[#20242f]
+								 text-white transition-colors
+								 hover:bg-[#2f3241] disabled:opacity-40;
+		}
+	
+		.page-numbers {
+			@apply flex items-center space-x-2;
+		}
+	
+		.page-number {
+			@apply flex h-8 w-8 items-center justify-center
+								 rounded-lg bg-[#20242f] text-sm text-white
+								 hover:bg-[#2f3241];
+		}
+	
+		.page-number.active {
+			@apply bg-[#6366f1];
+		}
+	
+		.page-ellipsis {
+			@apply px-2 text-sm text-white;
+		}
+	
+		.nav-button svg {
+			@apply h-5 w-5 stroke-current stroke-2;
+		}
+	
+		@media (max-width: 640px) {
+			.pagination-container {
+				@apply px-1 py-1;
+			}
+	
+			.time-range-section {
+				@apply gap-1;
+			}
+	
+			.time-range-button {
+				@apply px-1.5 py-1 text-[10px];
+			}
+		}
 	</style>

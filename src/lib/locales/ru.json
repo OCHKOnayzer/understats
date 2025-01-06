@@ -382,6 +382,8 @@
 		"pagination.month": "Месяц",
 		"pagination.week": "Неделя",
 		"pagination.3days": "3 дня",
+		"pagination.prevPage": "Предыдущая страница",
+		"pagination.nextPage": "Следующая страница",
 		"list.see": "Показать все",
 		"pagination.see": "Показать:"
 	},

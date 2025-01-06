@@ -1,23 +1,22 @@
 <script lang="ts">
+import { createSvelteTable, FlexRender } from '$components/ui/data-table';
+import * as Table from '$components/ui/table';
+
+import { fetchFilteredData } from '$src/components/entities/stats/api/api';
+import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
+import { filterStore } from '$src/stores/filterStore';
+import { currentUser } from '$src/stores/modalStore';
 import { getCoreRowModel } from '@tanstack/table-core';
 import { onMount } from 'svelte';
 
-import { createSvelteTable, FlexRender } from '$components/ui/data-table';
-import * as Table from '$components/ui/table';
-import { fetchFilteredData } from '$src/components/entities/stats/api/api';
-import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
 import { betsTableStore } from '$src/stores/betsTableStore';
-import { filterStore } from '$src/stores/filterStore';
-
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 import BetsNoTableData from '../BetsNoTableData/BetsNoTableData.svelte';
-
-import { useUserProfile } from '$src/services/auth/useProfile';
 import { columns } from './columns';
 
 let innerWidth = $state(0);
 let isMobile = $derived(innerWidth < 400);
-const isAuthenticated = useUserProfile();
+let isAuthenticated = $derived(!!$currentUser);
 
 const table = createSvelteTable({
 	get data() {
@@ -85,42 +84,44 @@ $effect(() => {
 {:else if $betsTableStore.data.length === 0}
 	<BetsNoTableData />
 {:else}
-	<div class="mt-4">
-		<Table.Root>
-			<Table.Header>
-				{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
-					<Table.Row>
-						{#each headerGroup.headers as header (header.id)}
-							<Table.Head>
-								{#if !header.isPlaceholder}
-									<div class="flex items-center gap-2">
-										<img
-											src="/icons/table-icon.svg"
-											alt="" />
-										<FlexRender
-											content="{header.column.columnDef.header}"
-											context="{header.getContext()}" />
-									</div>
-								{/if}
-							</Table.Head>
-						{/each}
-					</Table.Row>
-				{/each}
-			</Table.Header>
-			<Table.Body>
-				{#each table.getRowModel().rows as row (row.id)}
-					<Table.Row data-state="{row.getIsSelected() && 'selected'}">
-						{#each row.getVisibleCells() as cell (cell.id)}
-							<Table.Cell>
-								<FlexRender
-									content="{cell.column.columnDef.cell}"
-									context="{cell.getContext()}" />
-							</Table.Cell>
-						{/each}
-					</Table.Row>
-				{/each}
-			</Table.Body>
-		</Table.Root>
+	<div class="mt-4 h-full w-full overflow-hidden">
+		<div class="relative h-full w-full overflow-auto">
+			<Table.Root>
+				<Table.Header>
+					{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
+						<Table.Row>
+							{#each headerGroup.headers as header (header.id)}
+								<Table.Head>
+									{#if !header.isPlaceholder}
+										<div class="flex items-center gap-2">
+											<img
+												src="/icons/table-icon.svg"
+												alt="" />
+											<FlexRender
+												content="{header.column.columnDef.header}"
+												context="{header.getContext()}" />
+										</div>
+									{/if}
+								</Table.Head>
+							{/each}
+						</Table.Row>
+					{/each}
+				</Table.Header>
+				<Table.Body>
+					{#each table.getRowModel().rows as row (row.id)}
+						<Table.Row data-state="{row.getIsSelected() && 'selected'}">
+							{#each row.getVisibleCells() as cell (cell.id)}
+								<Table.Cell>
+									<FlexRender
+										content="{cell.column.columnDef.cell}"
+										context="{cell.getContext()}" />
+								</Table.Cell>
+							{/each}
+						</Table.Row>
+					{/each}
+				</Table.Body>
+			</Table.Root>
+		</div>
 	</div>
 {/if}
 
