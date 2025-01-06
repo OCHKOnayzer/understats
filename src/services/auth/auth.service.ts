@@ -44,9 +44,7 @@ class AuthService {
 		try {
 			const response = await axiosWithAuth.get('/users/me');
 
-			console.log('response' + response);
 			if ('response.data' + response.data) {
-				console.log(response.data);
 				currentUser.set(response.data);
 			}
 			return response;

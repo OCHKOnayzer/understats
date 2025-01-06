@@ -21,7 +21,6 @@ const changeUserAvatar = () => {
 
 const selectAvatar = (avatarPath: string) => {
 	selectedAvatar = avatarPath;
-	console.log('Выбранный аватар:', selectedAvatar);
 
 	if ($user) {
 		const updatedUser = {
