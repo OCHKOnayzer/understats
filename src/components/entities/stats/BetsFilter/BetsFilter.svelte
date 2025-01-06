@@ -1,6 +1,6 @@
 <script lang="ts">
 import Icon from '@iconify/svelte';
-import { onDestroy, onMount } from 'svelte';
+import { onDestroy, onMount, tick } from 'svelte';
 import { t } from 'svelte-i18n';
 
 import BetFilterResults from '$src/components/features/stats/FilterBet/BetFilterResults.svelte';
@@ -8,6 +8,7 @@ import Accordion from '$src/components/ui/accordion/Accordion.svelte';
 import BetFilters from '$src/components/ui/betFilters/BetFilters.svelte';
 import Calendar from '$src/components/ui/calendar/DateRangePicker.svelte';
 import FilterTabs from '$src/components/ui/filterTabs/filterTabs.svelte';
+import { betsTableStore } from '$src/stores/betsTableStore';
 import { filterStore } from '$src/stores/filterStore';
 import { isOpen, toggleSidebar } from '$src/utils/functions/toggleSidebar';
 
@@ -38,23 +39,15 @@ onDestroy(() => {
 
 async function applyFilters() {
 	try {
-		isLoading = true;
+		betsTableStore.setLoading(true);
+		await tick();
 		const data = await fetchFilteredData($filterStore);
+		betsTableStore.setData(data);
 		$isOpen = false;
-		console.log('Filtered data:', isOpen);
-		console.log($filterStore.selectedSports.length);
 	} catch (error) {
-		console.error('Failed to apply filters:', error);
-		console.log(
-			$filterStore.selectedSports.length,
-			$filterStore.selectedBookmakers.length,
-			$filterStore.selectedAccounts.length,
-			$filterStore.selectedComands.length,
-			$filterStore.selectedTours.length
-		);
+		betsTableStore.setError('Ошибка при загрузке данных');
 	} finally {
-		isLoading = false;
-
+		betsTableStore.setLoading(false);
 		toggleSidebar();
 	}
 }

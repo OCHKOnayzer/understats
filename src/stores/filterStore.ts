@@ -28,17 +28,33 @@ export interface FilterState {
 		currentPage: number;
 		itemsPerPage: number;
 		timeRange: 'halfYear' | '3months' | 'month' | 'week' | '3days';
+		sortBy: 'id' | 'bookmakerId' | 'sport' | 'competition' | 'stake' | 'win' | 'settled' | 'placed';
+		sortOrder: 'ASC' | 'DESC';
 	};
+	express: boolean;
+	ordinar: boolean;
+	year?: number;
+	month?: number;
+	week?: number;
+	stakeRange: {
+		min: number;
+		max: number;
+	};
+	rateRange: {
+		min: number;
+		max: number;
+	};
+	siteNames: string[];
 }
 
 const STORAGE_KEY = 'filter_state';
 
-const getDefaultState = () => ({
+const getDefaultState = (): FilterState => ({
 	dateRange: {
 		startDate: '',
 		endDate: ''
 	},
-	activeTab: 'month',
+	activeTab: 'month' as FilterState['activeTab'],
 	withoutAggregation: false,
 	selectedSports: [],
 	selectedBookmakers: [],
@@ -60,8 +76,21 @@ const getDefaultState = () => ({
 	pagination: {
 		currentPage: 1,
 		itemsPerPage: 10,
-		timeRange: 'month'
-	}
+		timeRange: 'month',
+		sortBy: 'placed' as const,
+		sortOrder: 'ASC' as const
+	},
+	express: true,
+	ordinar: true,
+	stakeRange: {
+		min: 0,
+		max: 100
+	},
+	rateRange: {
+		min: 1,
+		max: 2.3
+	},
+	siteNames: []
 });
 
 const initialState: FilterState = (() => {
@@ -70,7 +99,11 @@ const initialState: FilterState = (() => {
 	try {
 		const savedState = window.localStorage.getItem(STORAGE_KEY);
 		if (savedState) {
-			return JSON.parse(savedState);
+			const parsed = JSON.parse(savedState);
+			if (!isValidActiveTab(parsed.activeTab)) {
+				parsed.activeTab = 'month';
+			}
+			return parsed as FilterState;
 		}
 	} catch (error) {
 		console.warn('Error reading from localStorage:', error);
@@ -79,10 +112,13 @@ const initialState: FilterState = (() => {
 	return getDefaultState();
 })();
 
+function isValidActiveTab(tab: unknown): tab is FilterState['activeTab'] {
+	return typeof tab === 'string' && ['halfYear', 'month', 'week', 'yesterday', 'today', 'nothing'].includes(tab);
+}
+
 function createFilterStore() {
 	const { subscribe, set, update } = writable<FilterState>(initialState);
 
-	// Безопасное сохранение в localStorage
 	subscribe((state) => {
 		if (typeof window !== 'undefined') {
 			try {
@@ -292,7 +328,49 @@ function createFilterStore() {
 				...state,
 				pagination: { ...state.pagination, timeRange: range }
 			})),
-		reset: () => set(initialState)
+		setSortBy: (sortBy: FilterState['pagination']['sortBy']) =>
+			update((state) => ({
+				...state,
+				pagination: { ...state.pagination, sortBy }
+			})),
+		setSortOrder: (sortOrder: FilterState['pagination']['sortOrder']) =>
+			update((state) => ({
+				...state,
+				pagination: { ...state.pagination, sortOrder }
+			})),
+		setStakeRange: (min = 0, max = 100) =>
+			update((state) => ({
+				...state,
+				stakeRange: { min, max }
+			})),
+		setRateRange: (min = 1, max = 2.3) =>
+			update((state) => ({
+				...state,
+				rateRange: { min, max }
+			})),
+		toggleExpress: () =>
+			update((state) => ({
+				...state,
+				express: !state.express
+			})),
+		toggleOrdinar: () =>
+			update((state) => ({
+				...state,
+				ordinar: !state.ordinar
+			})),
+		setSiteNames: (names: string[]) =>
+			update((state) => ({
+				...state,
+				siteNames: names
+			})),
+		setDateFilters: (year?: number, month?: number, week?: number) =>
+			update((state) => ({
+				...state,
+				year,
+				month,
+				week
+			})),
+		reset: () => set(getDefaultState())
 	};
 }
 
@@ -336,7 +414,7 @@ export const accountsList = writable<string[]>([
 	'Аккаунт 20'
 ]);
 
-export const bookmakersListMain = writable<string[]>(['pinnacle', 'stake', 'fonbet', '1xbet', '1win', 'goldenbet']);
+export const bookmakersListMain = writable<string[]>(['Pinnacle', 'Stake', 'Fonbet', 'Betfair', '1win', 'Goldenbet']);
 
 export const bookmakersList = writable<string[]>([...get(bookmakersListMain)]);
 
@@ -383,3 +461,5 @@ export const tourList = writable<string[]>([
 ]);
 
 export const filterStore = createFilterStore();
+
+export const siteNamesList = writable<string[]>(['Fonbet', 'Betfair', 'Onewin', 'Pinnacle']);
