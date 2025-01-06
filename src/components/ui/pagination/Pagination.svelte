@@ -3,7 +3,6 @@
 	import { derived } from 'svelte/store';
 
 	import { filterStore } from '$src/stores/filterStore';
-	import { ITEMS_PER_PAGE_OPTIONS, TIME_RANGES } from '$src/utils/constants/constants';
 	import { generatePageNumbers } from '$src/utils/functions/generatePageNumbers';
 	import PaginationSelect from './PaginationSelect.svelte';
 
@@ -21,18 +20,6 @@
 </script>
 
 	<div class="pagination-container">
-		<div class="pagination-content">
-			<div class="time-range-section">
-				{#each TIME_RANGES as range}
-					<button
-						class="time-range-button"
-						class:active="{$filterStore.pagination.timeRange === range.value}"
-						onclick="{() => filterStore.setTimeRange(range.value)}">
-						{$t(range.label)}
-					</button>
-				{/each}
-			</div>
-
 			<div class="pagination-controls">
 				<div class="items-per-page-selector">
 					<span class="items-per-page-label">{$t('filter.pagination.see')}</span>
@@ -81,39 +68,20 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
 	<style lang="postcss">
 		.pagination-container {
-			@apply absolute bottom-0 left-0 z-50 w-full bg-[#171b26] px-4 py-3;
+			@apply flex justify-between w-full bg-[#171b26] py-3 px-3;
 		}
-	
-		.pagination-content {
-			@apply flex w-full max-w-full flex-col items-center
-								 justify-between space-y-2
-								 sm:flex-row sm:space-x-4 sm:space-y-0;
-		}
-	
-		.time-range-section {
-			@apply flex flex-wrap justify-center gap-1
-								 sm:justify-start sm:gap-3;
+
+		.pagination-controls {
+			@apply flex items-center justify-between w-full
 		}
 	
 		.time-range-button {
 			@apply rounded-lg bg-[#20242f] px-3 py-2 text-sm
 								 text-white transition-colors
 								 duration-200 hover:bg-[#2f3241];
-		}
-	
-		.time-range-button.active {
-			@apply bg-[#6366f1];
-		}
-	
-		.pagination-controls {
-			@apply flex w-full flex-col items-center
-								 justify-between space-y-1 sm:w-auto
-								 sm:flex-row sm:justify-end
-								 sm:space-x-3 sm:space-y-0;
 		}
 	
 		.items-per-page-selector {
@@ -125,7 +93,7 @@
 		}
 	
 		.page-navigation {
-			@apply flex items-center space-x-2;
+			@apply flex justify-between items-center space-x-2;
 		}
 	
 		.nav-button {
@@ -155,19 +123,5 @@
 	
 		.nav-button svg {
 			@apply h-5 w-5 stroke-current stroke-2;
-		}
-	
-		@media (max-width: 640px) {
-			.pagination-container {
-				@apply px-1 py-1;
-			}
-	
-			.time-range-section {
-				@apply gap-1;
-			}
-	
-			.time-range-button {
-				@apply px-1.5 py-1 text-[10px];
-			}
 		}
 	</style>

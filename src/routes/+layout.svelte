@@ -171,13 +171,13 @@ main {
 	display: flex;
 	flex-direction: column;
 	overflow-x: hidden;
-	padding: 0 1rem;
+	padding: 0;
 	box-sizing: border-box;
 }
 
 @media screen and (max-width: 768px) {
 	.mainContent {
-		padding: 0 0.5rem;
+		padding: 0;
 	}
 }
 </style>

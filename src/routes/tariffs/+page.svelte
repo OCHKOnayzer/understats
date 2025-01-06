@@ -4,7 +4,8 @@ import { t } from 'svelte-i18n';
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
 import TariffsSection from '$src/components/ui/tariffsSection/tariffsSection.svelte';
 import DemoButtons from '$src/components/widgets/demo/demoButtons/DemoButtons.svelte';
-import { currentUser } from '$src/stores/modalStore';
+import { useUserProfile } from '$src/services/auth/useProfile';
+let isAuthenticated = useUserProfile();
 
 selectHeaderTitle('tariffs.tariffs');
 </script>
@@ -17,7 +18,7 @@ selectHeaderTitle('tariffs.tariffs');
 </svelte:head>
 
 <div class="pageContent">
-	{#if !$currentUser}
+	{#if !isAuthenticated}
 		<DemoButtons />
 	{/if}
 	<!-- <div class="tariff-title">
