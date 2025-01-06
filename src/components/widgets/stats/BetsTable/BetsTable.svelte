@@ -1,17 +1,18 @@
 <script lang="ts">
+import { getCoreRowModel } from '@tanstack/table-core';
+import { onMount } from 'svelte';
+
 import { createSvelteTable, FlexRender } from '$components/ui/data-table';
 import * as Table from '$components/ui/table';
-
 import { fetchFilteredData } from '$src/components/entities/stats/api/api';
 import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
 import { filterStore } from '$src/stores/filterStore';
 import { currentUser } from '$src/stores/modalStore';
-import { getCoreRowModel } from '@tanstack/table-core';
-import { onMount } from 'svelte';
-
 import { betsTableStore } from '$src/stores/betsTableStore';
+
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 import BetsNoTableData from '../BetsNoTableData/BetsNoTableData.svelte';
+
 import { columns } from './columns';
 
 let innerWidth = $state(0);

@@ -1,7 +1,9 @@
 <script lang="ts">
-import { betService } from '$src/services/bet.service';
 import { createQuery } from '@tanstack/svelte-query';
 import { t } from 'svelte-i18n';
+
+import { betService } from '$src/services/bet.service';
+
 import TotalBet from '../TotalBet/TotalBet.svelte';
 const params = { express: 'true', ordinar: 'true' };
 // const params2 = { express: 'false', ordinar: 'false', page: 1, perPage: 10 };

@@ -1,12 +1,12 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 import { writable } from 'svelte/store';
+import { createQuery } from '@tanstack/svelte-query';
 
 import Accordion from '$src/components/ui/accordion/Accordion.svelte';
 import SportsList from '$src/components/ui/sportsList/SportsList.svelte';
 import { sportsService } from '$src/services/sports.service';
 import { bookmakersList, bookmakersListMain, filterStore } from '$src/stores/filterStore';
-import { createQuery } from '@tanstack/svelte-query';
 
 const sports = createQuery({
 	queryKey: ['sports'],
