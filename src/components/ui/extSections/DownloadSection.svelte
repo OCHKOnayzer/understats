@@ -153,6 +153,7 @@ const browserArr: BrowserItem[] = [
 .attention-text {
 	color: #718096;
 	font-size: 14px;
+	color: #f3bf55;
 }
 .extensions-wrapper {
 	margin-top: 15px;
@@ -203,9 +204,6 @@ const browserArr: BrowserItem[] = [
 	.download {
 		width: 100%;
 		background-color: transparent;
-	}
-	.attention-text {
-		color: #f3bf55;
 	}
 	.download__container {
 		width: 100%;
