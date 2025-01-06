@@ -146,6 +146,7 @@ onDestroy(() => {
 	}
 	.menuWrapper {
 		overflow-y: auto;
+		height: 90%;
 	}
 	.menuWrapper::-webkit-scrollbar {
 		border-radius: 30px;
@@ -157,9 +158,6 @@ onDestroy(() => {
 	.logo {
 		display: flex;
 		justify-content: space-between;
-	}
-	.closeMenu {
-		display: block;
 	}
 	.mainContent {
 		padding-left: 0;

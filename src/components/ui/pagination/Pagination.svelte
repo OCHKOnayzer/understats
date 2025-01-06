@@ -30,7 +30,7 @@ const canGoPrev = derived([filterStore], ([$filterStore]) => $filterStore.pagina
 
 		<div class="pagination-controls">
 			<div class="items-per-page-selector">
-				<span class="items-per-page-label">Показать:</span>
+				<span class="items-per-page-label">{$t('filter.pagination.see')}</span>
 				<div class="select-wrapper">
 					<select
 						value="{$filterStore.pagination.itemsPerPage}"

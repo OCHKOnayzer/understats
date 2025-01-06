@@ -33,11 +33,11 @@ const handleLogout = () => {
 
 <div class="userContainer">
 	{#if $query.isLoading}
-		<p>Загрузка профиля...</p>
+		<p>{$t('menu.profile_load')}</p>
 	{:else if $currentUser}
 		<div class="user_flex">
 			<div class="user_info">
-				<span>{$t('menu.YourProfile')}</span>
+				<span>{$t('menu.your_profile')}</span>
 				<div class="userName">{$currentUser.login || 'Email'}</div>
 				<!-- <div class="user_wrapper">
 
@@ -50,7 +50,7 @@ const handleLogout = () => {
 					class="quit_button">
 					<img
 						src="assets/menu/leave.png"
-						alt="Выйти" />
+						alt={$t('menu.leave')} />
 				</button>
 			</div>
 		</div>

@@ -25,6 +25,7 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 <SettingsSections>
 	<SettingsTitle title="{'settings.my_acc'}" />
 	<div class="setings">
+		{#if $currentUser}
 		<div class="setings_item item-w">
 			<div class="item_settings_info">
 				<p class="settings_name">{$t('settings.create_data')}</p>
@@ -45,6 +46,7 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 				readonly
 				value="{$currentUser?.login ?? ''}" />
 		</div>
+		{/if}
 		{#if !isMobile}
 			<Lang />
 		{/if}

@@ -14,16 +14,16 @@ import Tariffs from './tariffs.svelte';
 		price_year="{'100,00'}" />
 	<Tariffs
 		name="{'Standart'}"
-		desc="{'tariffs.lite'}"
+		desc="{'tariffs.standart'}"
 		limitations="{'20 000'}"
 		accounts="{'100'}"
 		price="{'30,00'}"
 		price_year="{'300,00'}" />
 	<Tariffs
 		name="{'Pro'}"
-		desc="{'tariffs.lite'}"
+		desc="{'tariffs.pro'}"
 		limitations="{$t('tariffs.no_limits')}"
-		price="{'300,00'}"
+		price="{'100,00'}"
 		price_year="{'1000,00'}" />
 </div>
 

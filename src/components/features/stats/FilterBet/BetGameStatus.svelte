@@ -1,4 +1,5 @@
 <script>
+import { t } from 'svelte-i18n';
 import { filterStore } from '$src/stores/filterStore';
 </script>
 
@@ -7,19 +8,19 @@ import { filterStore } from '$src/stores/filterStore';
 		class="bet-status"
 		class:active="{$filterStore.betGameStatus === 'live'}"
 		on:click="{() => filterStore.setBetGameStatus('live')}">
-		Лайв
+		{$t('stats.live')}
 	</button>
 	<button
 		class="bet-status"
 		class:active="{$filterStore.betGameStatus === 'prematch'}"
 		on:click="{() => filterStore.setBetGameStatus('prematch')}">
-		Прематч
+		{$t('stats.prematch')}
 	</button>
 	<button
 		class="bet-status"
 		class:active="{$filterStore.betGameStatus === 'nothing'}"
 		on:click="{() => filterStore.setBetGameStatus('nothing')}">
-		Не распознано
+		{$t('filter.results.notRecognized')}
 	</button>
 </div>
 

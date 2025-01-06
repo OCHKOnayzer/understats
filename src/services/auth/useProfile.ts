@@ -1,4 +1,6 @@
 import { createQuery } from '@tanstack/svelte-query';
+import { get } from 'svelte/store';
+import { t } from 'svelte-i18n';
 
 import { authService } from './auth.service';
 
@@ -8,7 +10,7 @@ export const useUserProfile = () => {
 		queryFn: async () => {
 			const response = await authService.profile();
 			if (!response || !response.data) {
-				throw new Error('Не удалось загрузить профиль');
+				throw new Error(get(t)('error.profile_error'));
 			}
 			return response.data;
 		},

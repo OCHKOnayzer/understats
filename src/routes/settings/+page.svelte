@@ -41,7 +41,9 @@ selectHeaderTitle('settings.settings');
 		</div>
 		<!-- <UserAvatar /> -->
 		<Info />
-		<EditPass />
+		{#if $currentUser}
+			<EditPass />
+		{/if}
 	</div>
 </div>
 

@@ -57,7 +57,7 @@ async function applyFilters() {
 <button
 	class="item"
 	on:click="{toggleSidebar}">
-	<h2 class="title">Фильтры</h2>
+	<h2 class="title">{$t('stats.filters')}</h2>
 	<img
 		class="icon"
 		src="/icons/circleArrow.svg"
@@ -70,7 +70,7 @@ async function applyFilters() {
 	class:open="{isOpen}">
 	<div class="sidebar-content">
 		<div class="mb-[24px] flex items-center justify-between">
-			<h1 class="filters-title">Фильтры</h1>
+			<h1 class="filters-title">{$t('stats.filters')}</h1>
 			<button
 				type="button"
 				on:click="{toggleSidebar}"
@@ -104,15 +104,15 @@ async function applyFilters() {
 				on:click="{applyFilters}"
 				disabled="{isLoading}">
 				{#if isLoading}
-					Загрузка...
+					{$t('error.load')}
 				{:else}
-					Применить фильтры ({$filterStore.selectedSports.length})
+					{$t('stats.use_filters')} ({$filterStore.selectedSports.length})
 				{/if}
 			</button>
 			<button
 				class="clear-button"
 				on:click="{() => filterStore.reset()}">
-				Очистить фильтры
+				{$t('stats.clean_filters')}
 			</button>
 		</div>
 	</div>

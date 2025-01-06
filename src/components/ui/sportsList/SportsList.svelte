@@ -1,4 +1,5 @@
 <script lang="ts">
+import { t } from 'svelte-i18n';
 import { type Writable } from 'svelte/store';
 // eslint-disable-next-line import/no-duplicates
 import { fade, fly } from 'svelte/transition';
@@ -59,7 +60,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 				savePreviousSelections();
 				showSportsModal = true;
 			}}">
-			Показать все ({$allItemsStore.length})
+			{$t('filter.list.see')} ({$allItemsStore.length})
 		</button>
 	</div>
 </div>
@@ -73,7 +74,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 			class="max-h-[90vh] w-[90%] max-w-[600px] overflow-auto rounded-xl bg-[#20242F]"
 			transition:fly="{{ y: 20, duration: 300, easing: backOut }}">
 			<div class="sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-[#20242F] p-4">
-				<h3 class="text-xl font-semibold text-white">Виды спорта</h3>
+				<h3 class="text-xl font-semibold text-white">{$t('stats.types_sports')}</h3>
 				<button
 					class="p-2 text-white/70 transition-colors hover:text-white"
 					on:click="{() => (showSportsModal = false)}">
@@ -87,7 +88,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 				<div class="relative mb-4">
 					<input
 						type="text"
-						placeholder="Поиск..."
+						placeholder={$t('other.search')}
 						bind:value="{searchQuery}"
 						class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white placeholder:text-white/50 focus:border-white/20 focus:outline-none" />
 				</div>
@@ -121,13 +122,13 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 						variant="default"
 						class="px-6"
 						on:click="{() => (showSportsModal = false)}">
-						Применить ({selectedList.length})
+						{$t('other.apply')} ({selectedList.length})
 					</Button>
 					<Button
 						variant="outline"
 						class="px-6"
 						on:click="{restoreSelections}">
-						Отмена
+						{$t('filter.results.cancel')}
 					</Button>
 				</div>
 			</div>

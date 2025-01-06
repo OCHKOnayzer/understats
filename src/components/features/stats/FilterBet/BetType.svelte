@@ -1,4 +1,5 @@
 <script>
+import { t } from 'svelte-i18n';
 import { filterStore } from '$src/stores/filterStore';
 </script>
 
@@ -7,19 +8,19 @@ import { filterStore } from '$src/stores/filterStore';
 		class="bet-type"
 		class:active="{$filterStore.betType.includes('ordinary')}"
 		on:click="{() => filterStore.toggleBetType('ordinary')}">
-		Ординар
+		{$t('stats.ordinar')}
 	</button>
 	<button
 		class="bet-type"
 		class:active="{$filterStore.betType.includes('express')}"
 		on:click="{() => filterStore.toggleBetType('express')}">
-		Экспресс
+		{$t('stats.express')}
 	</button>
 	<button
 		class="bet-type"
 		class:active="{$filterStore.betType.includes('nothing')}"
 		on:click="{() => filterStore.toggleBetType('nothing')}">
-		Не распознано
+		{$t('stats.not_recognized')}
 	</button>
 </div>
 

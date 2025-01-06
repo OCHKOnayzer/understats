@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { t } from 'svelte-i18n';
 import { Loader } from 'lucide-svelte';
 import { onMount } from 'svelte';
 
@@ -234,7 +235,7 @@ onMount(() => {
 				</div>
 			</div>
 		{:else}
-			<div class="p-4 text-center"> Нет данных </div>
+			<div class="p-4 text-center"> {$t('other.no_data_available')} </div>
 		{/if}
 	{:else}
 		<AuthDemoButton />
