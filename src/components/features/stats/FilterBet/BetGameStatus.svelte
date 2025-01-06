@@ -9,19 +9,19 @@ import { filterStore } from '$src/stores/filterStore';
 		class="bet-status"
 		class:active="{$filterStore.betGameStatus === 'live'}"
 		on:click="{() => filterStore.setBetGameStatus('live')}">
-		Лайв
+		{$t('stats.live')}
 	</button>
 	<button
 		class="bet-status"
 		class:active="{$filterStore.betGameStatus === 'prematch'}"
 		on:click="{() => filterStore.setBetGameStatus('prematch')}">
-		Прематч
+		{$t('stats.prematch')}
 	</button>
 	<button
 		class="bet-status"
 		class:active="{$filterStore.betGameStatus === 'nothing'}"
 		on:click="{() => filterStore.setBetGameStatus('nothing')}">
-		Не распознано
+		{$t('stats.not_recognized')}
 	</button>
 </div>
 

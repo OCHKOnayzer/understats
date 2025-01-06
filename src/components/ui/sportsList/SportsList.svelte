@@ -50,7 +50,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 		{#each $mainItemsStore as sport}
 			<button onclick="{() => selectedFilter(sport)}">
 				<Button variant="{selectedList.includes(sport) ? 'filterButtonActive' : 'filterButton'}">
-					{sport}
+					{$t(sport)}
 				</Button>
 			</button>
 		{/each}
@@ -115,7 +115,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 								{/if}
 							</div>
 							<span class="text-sm text-white/70 transition-colors duration-200 group-hover:text-white">
-								{sport}
+								{$t(sport)}
 							</span>
 						</label>
 					{/each}

@@ -6,15 +6,15 @@ import TotalBet from '../TotalBet/TotalBet.svelte';
 
 <div class="flex w-[80%] items-center justify-between gap-4">
 	<TotalBet
-		title="356 ставок"
-		sum="На сумму 158 000 Р" />
+		title="356 {$t('tariffs.limits_bets')}"
+		sum="{$t('stats.in_summ')} 158 000 Р" />
 	<TotalBet
-		title="356 выигрышей"
-		sum="На сумму 158 000 Р" />
+		title="356 {$t('stats.wins')}"
+		sum="{$t('stats.in_summ')} 158 000 Р" />
 	<TotalBet
-		title="356 проигрышей"
-		sum="На сумму 158 000 Р" />
+		title="356 {$t('stats.loses')}"
+		sum="{$t('stats.in_summ')} 158 000 Р" />
 	<TotalBet
-		title="356 проигрышей"
-		sum="На сумму 158 000 Р" />
+		title="356 {$t('stats.loses')}"
+		sum="{$t('stats.in_summ')} 158 000 Р" />
 </div>

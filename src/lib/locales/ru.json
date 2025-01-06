@@ -16,7 +16,12 @@
 		"live": "Лайв",
 		"bets_sum": "Сумма ставки",
 		"ratio": "Коэффициент",
-		"types_sports": "Виды спорта"
+		"types_sports": "Виды спорта",
+		"wins": "выигрышей",
+		"loses": "проигрышей",
+		"in_summ": "На сумму",
+		"accounts": "Аккаунт",
+		"team": "Команда"
 	},
 	"accounts": {
 		"bookmaker": "Букмекер",

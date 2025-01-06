@@ -110,7 +110,7 @@ async function applyFilters() {
 		<button
 			class="clear-button"
 			on:click="{() => filterStore.reset()}">
-			Очистить фильтры
+			{$t('stats.clean_filters')}
 		</button>
 		<button
 			class="apply-button"
