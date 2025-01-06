@@ -73,17 +73,11 @@ async function applyFilters() {
 
 <aside
 	class="sidebar w-full"
-<<<<<<< HEAD
-	class:open="{isOpen}">
-	<div class="sidebar-content">
-		<div class="mb-[24px] flex items-center justify-between">
-			<h1 class="filters-title">{$t('stats.filters')}</h1>
-=======
+
 	class:open="{$isOpen}">
 	<div class="sidebar-header">
 		<div class="flex items-center justify-between">
-			<h1 class="filters-title">Фильтры</h1>
->>>>>>> origin/staging3
+			<h1 class="filters-title">{$t('stats.filters')}</h1>
 			<button
 				type="button"
 				on:click="{toggleSidebar}"
@@ -111,27 +105,7 @@ async function applyFilters() {
 		</Accordion>
 	</div>
 
-<<<<<<< HEAD
-		<div
-			class="action-buttons"
-			class:open="{isOpen}">
-			<button
-				class="apply-button"
-				on:click="{applyFilters}"
-				disabled="{isLoading}">
-				{#if isLoading}
-					{$t('error.load')}
-				{:else}
-					{$t('stats.use_filters')} ({$filterStore.selectedSports.length})
-				{/if}
-			</button>
-			<button
-				class="clear-button"
-				on:click="{() => filterStore.reset()}">
-				{$t('stats.clean_filters')}
-			</button>
-		</div>
-=======
+
 	<div class="action-buttons">
 		<button
 			class="clear-button"
@@ -143,9 +117,9 @@ async function applyFilters() {
 			on:click="{applyFilters}"
 			disabled="{isLoading}">
 			{#if isLoading}
-				Загрузка...
+			{$t('error.load')}
 			{:else}
-				Применить фильтры ({$filterStore.selectedSports.length +
+			{$t('stats.use_filters')} ({$filterStore.selectedSports.length +
 					$filterStore.selectedBookmakers.length +
 					$filterStore.selectedAccounts.length +
 					$filterStore.selectedComands.length +
@@ -155,7 +129,6 @@ async function applyFilters() {
 					$filterStore.betStatus.length})
 			{/if}
 		</button>
->>>>>>> origin/staging3
 	</div>
 </aside>
 

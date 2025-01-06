@@ -54,16 +54,6 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 				</Button>
 			</button>
 		{/each}
-<<<<<<< HEAD
-		<button
-			class="sport-button show-all"
-			on:click="{() => {
-				savePreviousSelections();
-				showSportsModal = true;
-			}}">
-			{$t('filter.list.see')} ({$allItemsStore.length})
-		</button>
-=======
 		{#if filteredSports.length > 6}
 			<button
 				class="sport-button show-all"
@@ -71,10 +61,9 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 					savePreviousSelections();
 					showModal = true;
 				}}">
-				Показать все ({$allItemsStore.length})
+				{$t('filter.list.see')} ({$allItemsStore.length})
 			</button>
 		{/if}
->>>>>>> origin/staging3
 	</div>
 </div>
 
@@ -134,29 +123,16 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 
 				<div class="flex justify-start gap-4 border-t border-white/10 pt-4">
 					<Button
-<<<<<<< HEAD
-						variant="default"
-						class="px-6"
-						on:click="{() => (showSportsModal = false)}">
-						{$t('other.apply')} ({selectedList.length})
-					</Button>
-					<Button
-						variant="outline"
-						class="px-6"
-						on:click="{restoreSelections}">
-						{$t('filter.results.cancel')}
-=======
 						variant="outline"
 						class="px-6"
 						onclick="{restoreSelections}">
-						Отмена
->>>>>>> origin/staging3
+						{$t('filter.results.cancel')}
 					</Button>
 					<Button
 						variant="default"
 						class="px-6"
 						onclick="{() => (showModal = false)}">
-						Применить ({selectedList.length})
+						{$t('other.apply')} ({selectedList.length})
 					</Button>
 				</div>
 			</div>
