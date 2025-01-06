@@ -43,7 +43,7 @@ class BetService {
 	async getMyBets(params = {}) {
 		try {
 			const response = await axiosWithAuth<IBetResponse[]>({
-				url: `${process.env.API_URL}/bets/my`,
+				url: `${process.env.SERVER_URL}/bets/my`,
 				method: 'GET',
 				params
 			});
