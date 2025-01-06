@@ -73,7 +73,6 @@ async function applyFilters() {
 
 <aside
 	class="sidebar w-full"
-
 	class:open="{$isOpen}">
 	<div class="sidebar-header">
 		<div class="flex items-center justify-between">
@@ -105,7 +104,6 @@ async function applyFilters() {
 		</Accordion>
 	</div>
 
-
 	<div class="action-buttons">
 		<button
 			class="clear-button"
@@ -117,9 +115,9 @@ async function applyFilters() {
 			on:click="{applyFilters}"
 			disabled="{isLoading}">
 			{#if isLoading}
-			{$t('error.load')}
+				{$t('error.load')}
 			{:else}
-			{$t('stats.use_filters')} ({$filterStore.selectedSports.length +
+				{$t('stats.use_filters')} ({$filterStore.selectedSports.length +
 					$filterStore.selectedBookmakers.length +
 					$filterStore.selectedAccounts.length +
 					$filterStore.selectedComands.length +
