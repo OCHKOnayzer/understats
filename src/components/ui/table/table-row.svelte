@@ -15,7 +15,7 @@
 <tr
 	bind:this={ref}
 	class={cn(
-		'border-b text-white transition-colors data-[state=selected]:bg-muted',
+		'border-b text-white text-nowrap transition-colors data-[state=selected]:bg-muted',
 		className
 	)}
 	{...restProps}

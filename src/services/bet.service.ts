@@ -8,7 +8,7 @@ class BetService {
 	async createBet(data: IBet) {
 		try {
 			const response = await axiosWithAuth<IBetResponse>({
-				url: `${process.env.API_URL}/bet`,
+				url: `${process.env.API_URL}/bets`,
 				method: 'POST',
 				data
 			});
@@ -26,8 +26,44 @@ class BetService {
 	async getBets() {
 		try {
 			const response = await axiosWithAuth<IBetResponse[]>({
-				url: `${process.env.API_URL}/bet`,
+				url: `${process.env.API_URL}/bets`,
 				method: 'GET'
+			});
+
+			return response.data;
+		} catch (error) {
+			if (axios.isAxiosError(error) && error.response) {
+				throw new Error(`Error fetching bets: ${error.response.data.message}`);
+			} else {
+				throw new Error(`Network error: ${(error as any).message}`);
+			}
+		}
+	}
+
+	async getMyBets(params = {}) {
+		try {
+			const response = await axiosWithAuth<IBetResponse[]>({
+				url: `${process.env.SERVER_URL}/bets/my`,
+				method: 'GET',
+				params
+			});
+
+			return response.data;
+		} catch (error) {
+			if (axios.isAxiosError(error) && error.response) {
+				throw new Error(`Error fetching bets: ${error.response.data.message}`);
+			} else {
+				throw new Error(`Network error: ${(error as any).message}`);
+			}
+		}
+	}
+
+	async getMyBetsCount(params = {}) {
+		try {
+			const response = await axiosWithAuth<number>({
+				url: `${process.env.SERVER_URL}/bets/my/count`,
+				method: 'GET',
+				params
 			});
 
 			return response.data;
@@ -43,7 +79,7 @@ class BetService {
 	async updateBet(id: string, data: IBet) {
 		try {
 			const response = await axiosWithAuth<IBetResponse>({
-				url: `${process.env.API_URL}/bet/${id}`,
+				url: `${process.env.SERVER_URL}/bets/${id}`,
 				method: 'PUT',
 				data
 			});

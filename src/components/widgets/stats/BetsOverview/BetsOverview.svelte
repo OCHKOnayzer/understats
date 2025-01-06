@@ -1,15 +1,17 @@
-<script lang="ts">
+<!-- <script lang="ts">
 import { t } from 'svelte-i18n';
 import { Loader } from 'lucide-svelte';
 
 import * as Table from '$components/ui/table';
-import { currentUser } from '$src/stores/modalStore';
-import { mockData, subTabsMap } from '$src/stores/tabsStore';
 import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
+import { currentUser } from '$src/stores/modalStore';
+import { mainTabs, mockData, subTabsMap } from '$src/stores/tabsStore';
 
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 
 import { goto } from '$app/navigation';
+import Tabs from '$src/components/ui/tabs/Tabs.svelte';
+import BetDetails from './BetDetails.svelte';
 
 interface RowData {
 	id: string;
@@ -78,12 +80,12 @@ function handleRowClick(row: RowData) {
 <svelte:window bind:innerWidth="{innerWidth}" />
 
 <section class="relative mt-[32px]">
-	<!-- {#if showDetails && selectedBetId}
+	{#if showDetails && selectedBetId}
 		<BetDetails betId="{selectedBetId}" />
 	{:else}
 		<div class="mb-[32px]">
 			<Tabs
-				tabs="{mainTabs}"
+				tabs={$mainTabs}
 				bind:activeTab="{activeTab}"
 				variant="underline"
 				on:tabChange="{handleTabChange}" />
@@ -96,7 +98,7 @@ function handleRowClick(row: RowData) {
 				variant="pills"
 				on:tabChange="{handleSubTabChange}" />
 		</div> -->
-	{#if isAuthenticated}
+	<!-- {#if isAuthenticated}
 		{#if isMobile}
 			<div class="grid grid-cols-1 gap-4">
 				<MobileCard />
@@ -146,9 +148,9 @@ function handleRowClick(row: RowData) {
 				</div>
 			</div>
 		{:else}
-			<div class="p-4 text-center"> {$t('other.no_data_available')} </div>
+			<div class="p-4 text-center"> Нет данных </div>
 		{/if}
 	{:else}
 		<AuthDemoButton />
 	{/if}
-</section>
+</section> --> -->
