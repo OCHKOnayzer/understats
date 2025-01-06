@@ -34,7 +34,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 
 <SettingsSections>
 	<SettingsTitle title="{'settings.pass_change'}" />
-	<div class="setings">
+	<div class="settings">
 		<div class="setings_item item-w old-pass">
 			<div class="item_settings_info">
 				<p class="settings_name">{$t('settings.old_pass')}</p>
@@ -83,7 +83,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 	padding-left: 10px;
 }
 
-.setings {
+.settings {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -183,7 +183,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 }
 @media (max-width: 1100px) {
 	/* .user_email, */
-	.setings {
+	.settings {
 		flex-direction: column;
 	}
 	.input_element,
@@ -226,7 +226,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 	}
 }
 @media screen and (max-height: 600px) {
-	.setings {
+	.settings {
 		padding-bottom: 4%;
 	}
 }
@@ -237,7 +237,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 		height: fit-content;
 		align-items: center;
 	}
-	.setings {
+	.settings {
 		padding: 0;
 		width: 100%;
 		flex-direction: column;
@@ -258,7 +258,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 	.max--w {
 		display: block;
 	}
-	.setings {
+	.settings {
 		padding: 0;
 	}
 	.setings_item:nth-child(1) {

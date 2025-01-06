@@ -10,7 +10,7 @@ import { t } from 'svelte-i18n';
 			</p>
 		</div>
 	</div>
-	<div class="setings">
+	<div class="settings">
 		<div class="setings_item">
 			<div class="item_settings_info">
 				<p class="settings_name">{$t('settings.currency_bets')}</p>
@@ -97,7 +97,7 @@ import { t } from 'svelte-i18n';
 	justify-content: space-between;
 	font-size: 20px;
 }
-.setings {
+.settings {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -169,17 +169,17 @@ import { t } from 'svelte-i18n';
 	}
 }
 @media (max-height: 800px) {
-	.setings {
+	.settings {
 		padding-bottom: 4%;
 	}
 }
 @media screen and (max-height: 700px) and (min-height: 601px) {
-	.setings {
+	.settings {
 		padding-bottom: 4%;
 	}
 }
 @media screen and (max-height: 600px) {
-	.setings {
+	.settings {
 		padding-bottom: 8%;
 	}
 	.selected_element {
