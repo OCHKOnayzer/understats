@@ -7,6 +7,16 @@ type AvailableSports = 'American_Football' | 'Badminton' | 'Bandy' | 'Baseball' 
 type SortByValues = 'id' | 'bookmakerId' | 'sport' | 'competition' | 'stake' | 'win' | 'settled' | 'placed';
 type SortOrderValues = 'ASC' | 'DESC';
 
+interface ApiResponse {
+	pagination: {
+		page: number;
+		perPage: number;
+		pageCount: number;
+		total: number;
+	};
+	res: Array<any>;
+}
+
 export async function fetchFilteredData(filters: FilterState) {
 	try {
 		const params = new URLSearchParams();
@@ -70,11 +80,25 @@ export async function fetchFilteredData(filters: FilterState) {
 			params.append('week', String(filters.week));
 		}
 
-		const { data } = await axiosWithAuth.get('/bets/my', {
+		const { data } = await axiosWithAuth.get<ApiResponse>('/bets/my', {
 			params: params
 		});
 
-		return data;
+		console.log('API Response:', data);
+
+		// Проверяем структуру данных
+		if (!data || typeof data !== 'object') {
+			console.error('Invalid API response format');
+			return [];
+		}
+
+		// Убедимся, что data.res существует и является массивом
+		if (!Array.isArray(data.res)) {
+			console.error('data.res is not an array:', data.res);
+			return [];
+		}
+
+		return data.res;
 	} catch (error) {
 		console.error('Error fetching filtered data:', error);
 		throw error;

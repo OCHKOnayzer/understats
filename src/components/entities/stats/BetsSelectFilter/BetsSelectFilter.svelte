@@ -24,14 +24,14 @@ import { accountsList, accountsListMain, bookmakersList, bookmakersListMain, fil
 		mainItemsStore="{bookmakersListMain}" />
 </Accordion>
 
-<Accordion title="{$t('filter.accordion.accounts')}">
+<!-- <Accordion title="{$t('filter.accordion.accounts')}">
 	<SportsList
 		setFilter="{filterStore.setSelectedAccounts}"
 		selectedFilter="{filterStore.toggleAccount}"
 		selectedList="{$filterStore.selectedAccounts}"
 		allItemsStore="{accountsList}"
 		mainItemsStore="{accountsListMain}" />
-</Accordion>
+</Accordion> -->
 
 <!--
 <Accordion title="{$t('filter.accordion.teams')}">

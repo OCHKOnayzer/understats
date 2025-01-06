@@ -60,8 +60,8 @@ class BetService {
 
 	async getMyBetsCount(params = {}) {
 		try {
-			const response = await axiosWithAuth<IBetResponse[]>({
-				url: `${process.env.API_URL}/bets/my/count`,
+			const response = await axiosWithAuth<number>({
+				url: `${process.env.SERVER_URL}/bets/my/count`,
 				method: 'GET',
 				params
 			});
@@ -79,7 +79,7 @@ class BetService {
 	async updateBet(id: string, data: IBet) {
 		try {
 			const response = await axiosWithAuth<IBetResponse>({
-				url: `${process.env.API_URL}/bets/${id}`,
+				url: `${process.env.SERVER_URL}/bets/${id}`,
 				method: 'PUT',
 				data
 			});

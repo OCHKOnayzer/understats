@@ -8,9 +8,9 @@ import Accordion from '$src/components/ui/accordion/Accordion.svelte';
 import BetFilters from '$src/components/ui/betFilters/BetFilters.svelte';
 import Calendar from '$src/components/ui/calendar/DateRangePicker.svelte';
 import FilterTabs from '$src/components/ui/filterTabs/filterTabs.svelte';
+import { betsTableStore } from '$src/stores/betsTableStore';
 import { filterStore } from '$src/stores/filterStore';
 import { isOpen, toggleSidebar } from '$src/utils/functions/toggleSidebar';
-import { betsTableStore } from '$src/stores/betsTableStore';
 
 import { fetchFilteredData } from '../api/api';
 import BetsSelectFilter from '../BetsSelectFilter/BetsSelectFilter.svelte';
@@ -38,14 +38,20 @@ onDestroy(() => {
 });
 
 async function applyFilters() {
+	if ($betsTableStore.isLoading) {
+		console.log('Already loading, skipping');
+		return;
+	}
+
 	try {
 		betsTableStore.setLoading(true);
+
 		const data = await fetchFilteredData($filterStore);
+
 		betsTableStore.setData(data);
 		$isOpen = false;
 	} catch (error) {
-		console.error('Failed to apply filters:', error);
-		betsTableStore.setError('Ошибка при загрузке данных');
+		betsTableStore.setError('Ошибка при применении фильтров');
 	} finally {
 		betsTableStore.setLoading(false);
 		toggleSidebar();

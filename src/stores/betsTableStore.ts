@@ -17,9 +17,28 @@ function createBetsTableStore() {
 
 	return {
 		subscribe,
-		setData: (data: Bet[]) => update((state) => ({ ...state, data })),
-		setLoading: (isLoading: boolean) => update((state) => ({ ...state, isLoading })),
-		setError: (error: string | null) => update((state) => ({ ...state, error })),
+		setData: (rawData: Bet[]) => {
+			update((state) => ({
+				...state,
+				data: Array.isArray(rawData) ? rawData : [],
+				error: null,
+				isLoading: false
+			}));
+		},
+		setLoading: (isLoading: boolean) => {
+			update((state) => {
+				if (state.isLoading && isLoading) {
+					return state;
+				}
+				return { ...state, isLoading };
+			});
+		},
+		setError: (error: string | null) =>
+			update((state) => ({
+				...state,
+				error,
+				isLoading: false
+			})),
 		reset: () => set({ data: [], isLoading: false, error: null })
 	};
 }

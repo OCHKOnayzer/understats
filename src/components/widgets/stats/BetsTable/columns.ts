@@ -1,62 +1,88 @@
 import type { ColumnDef } from '@tanstack/table-core';
 
 export interface Bet {
-	id: string;
-	sport: string;
-	competition: string;
-	stake: number;
-	win: number;
-	bookmakerId: string;
-	placed: string;
-	settled: string;
+	siteName: string;
+	userId: string;
+	accountId: string;
+	clientSeq: number;
+	rate: string;
+	outcome: string;
 	status: string;
+	amounts: {
+		stake: string;
+		win: string;
+	};
+	event: {
+		id: string;
+		sport: string;
+		competitionName: string;
+		name1: string;
+		name2: string;
+		startTime: Record<string, any>;
+	};
+	dates: {
+		placed: Record<string, any>;
+		settled: Record<string, any>;
+	};
+	meta: {
+		ordinal: number;
+	};
 }
 
 export const columns: ColumnDef<Bet>[] = [
 	{
-		accessorKey: 'sport',
-		header: 'Спорт'
-	},
-	{
-		accessorKey: 'competition',
-		header: 'Соревнование'
-	},
-	{
-		accessorKey: 'stake',
-		header: 'Ставка',
+		accessorKey: 'dates.placed',
+		header: 'Время ставки',
 		cell: ({ row }) => {
-			const amount = parseFloat(row.getValue('stake'));
-			return new Intl.NumberFormat('ru-RU', {
-				style: 'currency',
-				currency: 'RUB'
-			}).format(amount);
+			try {
+				const date = new Date();
+				return date.toLocaleString('ru-RU');
+			} catch (e) {
+				console.error('Error formatting date:', e);
+				return 'Invalid date';
+			}
 		}
 	},
 	{
-		accessorKey: 'win',
-		header: 'Выигрыш',
-		cell: ({ row }) => {
-			const amount = parseFloat(row.getValue('win'));
-			return new Intl.NumberFormat('ru-RU', {
-				style: 'currency',
-				currency: 'RUB'
-			}).format(amount);
-		}
-	},
-	{
-		accessorKey: 'bookmakerId',
+		accessorKey: 'siteName',
 		header: 'Букмекер'
 	},
 	{
-		accessorKey: 'placed',
-		header: 'Дата ставки'
+		accessorKey: 'event.sport',
+		header: 'Спорт'
 	},
 	{
-		accessorKey: 'settled',
-		header: 'Дата расчета'
+		accessorKey: 'event.competitionName',
+		header: 'Событие',
+		cell: ({ row }) => {
+			const event = row.original.event;
+			if (!event) return 'Нет данных';
+			return `${event.name1} - ${event.name2}`;
+		}
 	},
 	{
-		accessorKey: 'status',
+		accessorKey: 'amounts.stake',
+		header: 'Сумма'
+	},
+	{
+		accessorKey: 'rate',
+		header: 'Коэффициент'
+	},
+	{
+		accessorKey: 'amounts.win',
+		header: 'Выигрыш'
+	},
+	{
+		accessorKey: 'outcome',
 		header: 'Статус'
 	}
 ];
+
+function getNestedValue(obj: any, path: string, defaultValue: any = '') {
+	try {
+		return path.split('.').reduce((current, key) => current[key], obj) ?? defaultValue;
+	} catch (e) {
+		console.error(`Error accessing path ${path}:`, e);
+		return defaultValue;
+	}
+}

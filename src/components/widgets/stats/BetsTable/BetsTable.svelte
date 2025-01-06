@@ -25,17 +25,31 @@ const table = createSvelteTable({
 	getCoreRowModel: getCoreRowModel()
 });
 
-onMount(async () => {
+async function loadData() {
+	if ($betsTableStore.isLoading) {
+		return;
+	}
+
 	try {
 		betsTableStore.setLoading(true);
-		const data = await fetchFilteredData($filterStore);
-		betsTableStore.setData(data);
+
+		const response = await fetchFilteredData($filterStore);
+
+		if (!response) {
+			throw new Error('No data received');
+		}
+
+		betsTableStore.setData(response);
 	} catch (err) {
 		betsTableStore.setError('Ошибка при загрузке данных');
-		console.error(err);
+		betsTableStore.setData([]);
 	} finally {
 		betsTableStore.setLoading(false);
 	}
+}
+
+onMount(() => {
+	loadData();
 });
 </script>
 
@@ -55,6 +69,8 @@ onMount(async () => {
 	</div>
 {:else if $betsTableStore.error}
 	<div class="p-4 text-red-500">{$betsTableStore.error}</div>
+{:else if $betsTableStore.data.length === 0}
+	<div class="p-4 text-center">Нет данных для отображения</div>
 {:else}
 	<div class="rounded-md border">
 		<Table.Root>
@@ -83,14 +99,6 @@ onMount(async () => {
 									context="{cell.getContext()}" />
 							</Table.Cell>
 						{/each}
-					</Table.Row>
-				{:else}
-					<Table.Row>
-						<Table.Cell
-							colspan="{columns.length}"
-							class="h-24 text-center">
-							Нет результатов
-						</Table.Cell>
 					</Table.Row>
 				{/each}
 			</Table.Body>
