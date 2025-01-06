@@ -1,9 +1,4 @@
 <script lang="ts">
-<<<<<<< HEAD
-import { t } from 'svelte-i18n';
-import { onMount } from 'svelte';
-=======
->>>>>>> origin/staging3
 import { Loader } from 'lucide-svelte';
 import { onMount } from 'svelte';
 
