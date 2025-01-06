@@ -11,8 +11,8 @@ import { t } from 'svelte-i18n';
 			<span class="title"> {$t('extensions.need_help')}</span>
 		</div>
 		<div class="supp-span">
-			<span>Если есть сложности с установкой? </span>
-			<span>Напишите в службу поддержки - Мы с радостью поможем Вам!</span>
+			<span>{$t('extensions.problmes_install')}</span>
+			<span>{$t('extensions.chat_install')}</span>
 		</div>
 		<div class="problem_content">
 			<button class="open_modal_btn">

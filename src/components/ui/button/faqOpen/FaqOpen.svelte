@@ -1,5 +1,7 @@
 <script>
 import { t } from 'svelte-i18n';
+import toast from 'svelte-french-toast';
+import { get } from 'svelte/store';
 
 import { openModal, modalComponent } from '$src/stores/modalStore';
 
@@ -20,21 +22,28 @@ if (userAgent.includes('YaBrowser')) {
 } else {
 	browserName = 'unsupported';
 }
-
+// const hello = toast.error('hello world');
 function navigate() {
 	goto(`/help?browser=${browserName}`);
 }
 
-const sorryOpen = () => {
-	if ($modalComponent === null) {
-		openModal('SorryModal');
+// const sorryOpen = () => {
+// 	if ($modalComponent === null) {
+// 		openModal('SorryModal');
+// 	}
+// };
+const supportClick = () => {
+	if (browserName === 'unsupported') {
+		toast.error(get(t)('error.ext'));
+	} else {
+		navigate();
 	}
 };
 </script>
 
 <button
 	class="info_buttons"
-	on:click="{browserName === 'unsupported' ? sorryOpen : navigate}">
+	on:click="{supportClick}">
 	{$t('extensions.manual')}
 </button>
 

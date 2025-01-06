@@ -20,10 +20,10 @@ selectHeaderTitle('tariffs.tariffs');
 	{#if !$currentUser}
 		<DemoButtons />
 	{/if}
-	<div class="tariff-title">
+	<!-- <div class="tariff-title">
 		<div>{$t('tariffs.choose')}</div>
 		<div>{$t('tariffs.accountLimits')}</div>
-	</div>
+	</div> -->
 	<TariffsSection />
 </div>
 
@@ -31,7 +31,7 @@ selectHeaderTitle('tariffs.tariffs');
 .pageContent {
 	width: 100%;
 }
-.tariff-title {
+/* .tariff-title {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	display: flex;
@@ -49,5 +49,5 @@ selectHeaderTitle('tariffs.tariffs');
 	.tariff-title {
 		display: none;
 	}
-}
+} */
 </style>

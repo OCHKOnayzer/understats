@@ -1,23 +1,35 @@
 <script lang="ts">
-interface SwitchInterface {
-	switch_modal: () => void;
-	switch_text: string;
-}
+import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
-export let switch_modal: () => void;
+import { goto } from '$app/navigation';
+
+export let switch_modal: any;
 export let switch_text: string;
+let isMobile = false;
+
+function checkScreenWidth() {
+	isMobile = window.innerWidth <= 768;
+}
+
+onMount(() => {
+	checkScreenWidth();
+	window.addEventListener('resize', checkScreenWidth);
+	return () => window.removeEventListener('resize', checkScreenWidth);
+});
+
+function handleClick() {
+	if (typeof switch_modal === 'function') {
+		console.log('Calling switch_modal function');
+		switch_modal();
+	} else {
+		console.error('switch_modal is not a function', switch_modal);
+	}
+}
 </script>
 
 <div class="switch_wrapper">
-	<button
-		on:click="{() => {
-			if (typeof switch_modal === 'function') {
-				switch_modal();
-			} else {
-				console.error('switch_modal is not a function', switch_modal);
-			}
-		}}">
+	<button on:click="{handleClick}">
 		{$t(switch_text)}
 	</button>
 </div>
@@ -39,7 +51,11 @@ export let switch_text: string;
 		height: 8vh;
 		margin-right: 0px;
 	}
-	.switch_wrapper button {
+	.switch_wrapper button,
+	a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		height: 100%;
 		width: 100%;
 		border-radius: 16px;

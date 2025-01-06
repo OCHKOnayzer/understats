@@ -1,4 +1,5 @@
-<script lang="ts">
+<!-- <script lang="ts">
+import { t } from 'svelte-i18n';
 import { Loader } from 'lucide-svelte';
 
 import * as Table from '$components/ui/table';
@@ -96,62 +97,60 @@ function handleRowClick(row: RowData) {
 				bind:activeTab="{activeSubTab}"
 				variant="pills"
 				on:tabChange="{handleSubTabChange}" />
-		</div>
-
-		{#if isAuthenticated}
-			{#if isMobile}
-				<div class="grid grid-cols-1 gap-4">
-					<MobileCard />
-					<MobileCard />
-					<MobileCard />
-				</div>
-			{:else if isLoading}
-				<div class="flex h-40 items-center justify-center">
-					<Loader />
-				</div>
-			{:else if error}
-				<div class="p-4 text-red-500">
-					{error}
-				</div>
-			{:else if aggregatedData}
-				<div class="w-full overflow-hidden">
-					<div class="relative w-full overflow-x-auto">
-						<Table.Root class="w-full">
-							<Table.Header class="bg-[#31384A] text-[12px]">
-								<Table.Row>
+		</div> -->
+	<!-- {#if isAuthenticated}
+		{#if isMobile}
+			<div class="grid grid-cols-1 gap-4">
+				<MobileCard />
+				<MobileCard />
+				<MobileCard />
+			</div>
+		{:else if isLoading}
+			<div class="flex h-40 items-center justify-center">
+				<Loader />
+			</div>
+		{:else if error}
+			<div class="p-4 text-red-500">
+				{error}
+			</div>
+		{:else if aggregatedData}
+			<div class="w-full overflow-hidden">
+				<div class="relative w-full overflow-x-auto">
+					<Table.Root class="w-full">
+						<Table.Header class="bg-[#31384A] text-[12px]">
+							<Table.Row>
+								{#each aggregatedData.columns as column}
+									<Table.Head class="border-[#262C3D]">
+										<div class="flex items-center gap-1">
+											<img
+												src="icons/bk/table.svg"
+												alt="table" />
+											<span class="whitespace-pre-line">{column}</span>
+										</div>
+									</Table.Head>
+								{/each}
+							</Table.Row>
+						</Table.Header>
+						<Table.Body class="text-[14px]">
+							{#each aggregatedData.data as row}
+								<Table.Row
+									class="border-[#262C3D]"
+									onclick="{() => handleRowClick(row)}">
 									{#each aggregatedData.columns as column}
-										<Table.Head class="border-[#262C3D]">
-											<div class="flex items-center gap-1">
-												<img
-													src="icons/bk/table.svg"
-													alt="table" />
-												<span class="whitespace-pre-line">{column}</span>
-											</div>
-										</Table.Head>
+										<Table.Cell class="whitespace-nowrap">
+											{row[column]}
+										</Table.Cell>
 									{/each}
 								</Table.Row>
-							</Table.Header>
-							<Table.Body class="text-[14px]">
-								{#each aggregatedData.data as row}
-									<Table.Row
-										class="border-[#262C3D]"
-										onclick="{() => handleRowClick(row)}">
-										{#each aggregatedData.columns as column}
-											<Table.Cell class="whitespace-nowrap">
-												{row[column]}
-											</Table.Cell>
-										{/each}
-									</Table.Row>
-								{/each}
-							</Table.Body>
-						</Table.Root>
-					</div>
+							{/each}
+						</Table.Body>
+					</Table.Root>
 				</div>
-			{:else}
-				<div class="p-4 text-center"> Нет данных </div>
-			{/if}
+			</div>
 		{:else}
-			<AuthDemoButton />
+			<div class="p-4 text-center"> Нет данных </div>
 		{/if}
+	{:else}
+		<AuthDemoButton />
 	{/if}
-</section>
+</section> --> -->

@@ -35,7 +35,6 @@ import { extItems } from './extItems';
 	width: 40%;
 	background-color: #171b26;
 	border-radius: 5px 5px 0px 0px;
-	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;

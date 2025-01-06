@@ -1,12 +1,30 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
+import { onMount } from 'svelte';
 
+import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
+import { afterUrl } from '$src/stores/HeaderStores';
 import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
 import { currentModal, openModal } from '$src/stores/modalStore';
 
+import { goto } from '$app/navigation';
+onMount(() => {
+	initializeScreenWidthListener();
+});
 const openAuth = (modal: string) => {
 	currentModal.set(modal);
 	openModal('authModal');
+};
+const authUser = (auth: string) => {
+	currentModal.set(auth);
+	if ($isMobile) {
+		afterUrl.set(window.location.pathname);
+		console.log('hello mobile');
+		goto('/authorization');
+	} else {
+		console.log('hello desctop');
+		openAuth(auth);
+	}
 };
 </script>
 
@@ -24,10 +42,10 @@ const openAuth = (modal: string) => {
 		<div class="buttons">
 			<button
 				class="buttons-auth"
-				on:click="{() => openAuth('reg')}">{$t('social.create_account')}</button>
+				on:click="{() => authUser('reg')}">{$t('social.create_account')}</button>
 			<button
 				class="buttons-auth"
-				on:click="{() => openAuth('login')}">{$t('social.auth')}</button>
+				on:click="{() => authUser('login')}">{$t('social.auth')}</button>
 		</div>
 		<button
 			class="button-demo"
@@ -40,7 +58,9 @@ const openAuth = (modal: string) => {
 
 <style>
 .buttons-wrapper {
-	height: 90vh;
+	position: relative;
+	top: 30vh;
+	margin-bottom: var(--elements-padding);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -102,7 +122,7 @@ const openAuth = (modal: string) => {
 }
 
 .button-demo.demo-active {
-	border: 2px solid #6660ff;
+	border: 2px solid var(--accent-color);
 }
 @media screen and (max-width: 800px) {
 	.buttons-container {

@@ -1,4 +1,6 @@
 import { createQuery } from '@tanstack/svelte-query';
+import { get } from 'svelte/store';
+import { t } from 'svelte-i18n';
 
 import { accountService } from './account.service';
 
@@ -8,7 +10,7 @@ export const useAccounts = () => {
 		queryFn: async () => {
 			const response = await accountService.getAccounts();
 			if (!response) {
-				throw new Error('Не удалось загрузить профиль');
+				throw new Error(get(t)('error.profile_error'));
 			}
 			return response;
 		},

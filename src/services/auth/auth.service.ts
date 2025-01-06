@@ -19,9 +19,7 @@ class AuthService {
 			if (response.data.accessToken) {
 				setAccessToken(response.data.accessToken);
 				closeModal();
-				if (window.location.pathname === '/') {
-					goto('/');
-				}
+				goto('/');
 				return response;
 			}
 		} catch (error: any) {

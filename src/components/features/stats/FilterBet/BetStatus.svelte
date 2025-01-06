@@ -1,4 +1,6 @@
 <script>
+import { t } from 'svelte-i18n';
+
 import { filterStore } from '$src/stores/filterStore';
 </script>
 
@@ -7,13 +9,13 @@ import { filterStore } from '$src/stores/filterStore';
 		class="bet-status"
 		class:active="{$filterStore.betStatus.includes('calculated')}"
 		on:click="{() => filterStore.toggleBetStatus('calculated')}">
-		Рассчитана
+		{$t('stats.calculated')}
 	</button>
 	<button
 		class="bet-status"
 		class:active="{$filterStore.betStatus.includes('notCalculated')}"
 		on:click="{() => filterStore.toggleBetStatus('notCalculated')}">
-		Не рассчитана
+		{$t('stats.not_calculated')}
 	</button>
 </div>
 

@@ -18,6 +18,7 @@ const handleSelectItemFromMenu = (event: any) => {
 .faqMenu {
 	width: 25%;
 	border-radius: 5px;
+	margin-right: var(--elements-padding);
 	background-color: #171b26;
 	display: flex;
 	justify-content: center;

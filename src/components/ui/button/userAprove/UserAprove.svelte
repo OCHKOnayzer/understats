@@ -23,7 +23,7 @@ let { onUserText, onUserAction, active } = $$props as UserAproveInterface;
 .button_wrapper button {
 	height: 100%;
 	width: fit-content;
-	background-color: #6660ff;
+	background-color: var(--accent-color);
 	transition: 400ms;
 	border-radius: 100px;
 	padding-left: 10px;

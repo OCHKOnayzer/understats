@@ -77,7 +77,7 @@ function togglePasswordVisibility() {
 .show {
 	width: 50%;
 	text-align: right;
-	color: #6660ff;
+	color: var(--accent-color);
 	font-size: 14px;
 	background: none;
 	border: none;

@@ -2,6 +2,8 @@
 import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 
+import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
+import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 import SwitchButton from '$src/components/ui/button/switchButton/SwitchButton.svelte';
 import CancelButton from '$src/components/ui/button/userAprove/CancelButton.svelte';
 import UserAprove from '$src/components/ui/button/userAprove/UserAprove.svelte';
@@ -14,17 +16,8 @@ import SocialContainer from '../social/SocialContainer.svelte';
 
 const { form, mutation } = useAuth(false);
 
-let isMobile = false;
-
-// Проверяем размер экрана
-function checkScreenWidth() {
-	isMobile = window.innerWidth <= 768; // Считаем "мобильным" экран шириной 768px или меньше
-}
-
 onMount(() => {
-	checkScreenWidth();
-	window.addEventListener('resize', checkScreenWidth);
-	return () => window.removeEventListener('resize', checkScreenWidth);
+	initializeScreenWidthListener;
 });
 
 const loginUser = () => {
@@ -49,14 +42,20 @@ const loginUser = () => {
 		<!-- <SwitchButton
 			switch_text="{'social.unBlock_acc'}"
 			switch_modal="{switchRecover}" /> -->
-		{#if !isMobile}
+		{#if !$isMobile}
 			<SwitchButton
 				switch_text="{'social.cHave_acc'}"
 				switch_modal="{switchReg}" />
 		{/if}
 	</div>
 	<div class="aprove_wrapper">
-		{#if isMobile}
+		{#if $isMobile}
+			<button
+				class="demo-btn"
+				class:demo-active="{$isDemoEnabled}"
+				on:click="{toggleDemoMode}">
+				{$t('other.demo')}
+			</button>
 			<SwitchButton
 				switch_text="{'social.cHave_acc'}"
 				switch_modal="{switchReg}" />
@@ -90,6 +89,17 @@ const loginUser = () => {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+.demo-btn {
+	width: 100%;
+	height: 56px;
+	border-radius: 16px;
+	margin-top: 36px;
+	transition: 400ms;
+	border: 2px solid #00ff47;
+}
+.demo-btn.demo-active {
+	border: 2px solid var(--accent-color);
 }
 @media screen and (max-width: 800px) {
 	.aprove_wrapper {

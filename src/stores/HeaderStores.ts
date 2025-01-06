@@ -1,6 +1,7 @@
 import { writable } from 'svelte/store';
 
 export const headerTitle = writable('');
+export const afterUrl = writable('/');
 export const langSel = writable('');
 export const langImage = writable('');
 
