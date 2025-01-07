@@ -22,8 +22,7 @@ export const load: LayoutServerLoad = async ({ request }) => {
 	} catch (err: any) {
 		console.error('Ошибка при определении локали на сервере:', err);
 
-		const wrappedError = new Error('Произошла ошибка при определении локали');
-		wrappedError.name = 'LoadError';
-		throw svelteError(500, wrappedError.message);
+		// eslint-disable-next-line @typescript-eslint/no-throw-literal
+		throw svelteError(500, 'Произошла ошибка при определении локали');
 	}
 };

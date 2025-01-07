@@ -20,7 +20,7 @@ export const useAuth = (isReg: boolean) => {
 		mutationFn: async (data: IAuthForm) => {
 			const { password } = get(form);
 			if (get(currentModal) === 'reg' && password !== get(confirmPassword)) {
-				const pass_dmatch = await get(t)('error.pass_dmatch');
+				const pass_dmatch = get(t)('error.pass_dmatch');
 				throw new Error(pass_dmatch);
 			}
 

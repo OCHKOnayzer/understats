@@ -3,12 +3,12 @@ import { onMount } from 'svelte';
 
 import { currentUser } from '$src/stores/modalStore';
 import { langSel } from '$src/stores/HeaderStores';
+import { useUserProfile } from '$src/services/auth/useProfile';
 
 import UserInfo from './userInfo/UserInfo.svelte';
 import ChatMenu from './chatMenu.svelte';
 import { SocialRoutes } from './items/LinkItems';
-import { useUserProfile } from '$src/services/auth/useProfile';
-let {query} = useUserProfile();
+let { query } = useUserProfile();
 </script>
 
 <div class="w-full">

@@ -138,7 +138,7 @@ const isProduction = import.meta.env.PROD;
 {/if}
 
 <QueryClientProvider client="{queryClient}">
-	<div class="bg-[#0d111d] max-w-full">
+	<div class="max-w-full bg-[#0d111d]">
 		<main>
 			{#if isLocaleReady}
 				{#if !routesWithoutMenu.includes($page.url.pathname)}

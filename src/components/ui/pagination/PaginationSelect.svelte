@@ -1,15 +1,15 @@
 <script lang="ts">
-  import * as Select from "$components/ui/select/index.ts";
+  import * as Select from '$components/ui/select/index.ts';
   import { filterStore } from '$src/stores/filterStore';
   import { ITEMS_PER_PAGE_OPTIONS } from '$src/utils/constants/constants';
 
   function handleValueChange(value: string) {
-    filterStore.setItemsPerPage(parseInt(value));
+  	filterStore.setItemsPerPage(parseInt(value));
   }
 </script>
- 
-<Select.Root 
-  type="single" 
+
+<Select.Root
+  type="single"
   value={String($filterStore.pagination.itemsPerPage)}
   onValueChange={handleValueChange}
 >

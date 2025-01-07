@@ -1,18 +1,19 @@
 <script lang="ts">
-import { createSvelteTable, FlexRender } from '$components/ui/data-table';
-import * as Table from '$components/ui/table';
-
-import { fetchFilteredData } from '$src/components/entities/stats/api/api';
-import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
-import { filterStore } from '$src/stores/filterStore';
 import { getCoreRowModel } from '@tanstack/table-core';
 import { onMount } from 'svelte';
 
+import { createSvelteTable, FlexRender } from '$components/ui/data-table';
+import * as Table from '$components/ui/table';
+import { fetchFilteredData } from '$src/components/entities/stats/api/api';
+import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
+import { filterStore } from '$src/stores/filterStore';
 import { useUserProfile } from '$src/services/auth/useProfile';
 import { betsTableStore } from '$src/stores/betsTableStore';
 import { currentUser } from '$src/stores/modalStore';
+
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 import BetsNoTableData from '../BetsNoTableData/BetsNoTableData.svelte';
+
 import { columns } from './columns';
 
 let innerWidth = $state(0);
@@ -90,8 +91,8 @@ $effect(() => {
 		<div class="p-4 text-red-500">{$betsTableStore.error}</div>
 	{:else if !isInitialLoading && $betsTableStore.data.length === 0}
 		<BetsNoTableData
-			title={'Ставки отсуствуют'}
-			description={'Возможно ставок еще не было. Начинайте делать ставки и они появятся здесь'} />
+			title="{'Ставки отсуствуют'}"
+			description="{'Возможно ставок еще не было. Начинайте делать ставки и они появятся здесь'}" />
 	{:else}
 		<div class="table-container">
 			<div class="table-wrapper">
