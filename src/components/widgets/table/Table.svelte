@@ -9,6 +9,7 @@ import { currentUser } from '$src/stores/modalStore';
 import { cn } from '$utils/utils';
 
 import AuthDemoButton from '../demo/demoButtons/AuthDemoButton.svelte';
+import BetsNoTableData from '../stats/BetsNoTableData/BetsNoTableData.svelte';
 const headers = [
 	{ title: $t('accounts.bookmaker'), key: 'siteName' },
 	{ title: $t('accounts.auth'), key: 'login' },
@@ -84,15 +85,9 @@ $: accounts = isAuthenticated ? $query.data : [];
 		</div>
 	</div>
 {:else}
-	<div class="message-container">
-		<img
-			class="mb-2"
-			src="/icons/accounts/file.svg"
-			alt="" />
-		<h2 class="w-[260px] text-center text-xl text-[#718096]">
-			{$t('accounts.noAccounts')}
-		</h2>
-	</div>
+	<BetsNoTableData
+		title="{'Аккаунты отсуствуют'}"
+		description="{'Аккаунтов не найдено! Подключите аккаунты!'}" />
 {/if}
 
 <style>

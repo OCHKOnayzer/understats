@@ -19,7 +19,6 @@ function createBetsTableStore() {
 		subscribe,
 		setData: (rawData: Bet[]) => {
 			if (!Array.isArray(rawData)) {
-				console.error('Expected array of data, got:', rawData);
 				update((state) => ({ ...state, data: [] }));
 				return;
 			}

@@ -21,6 +21,8 @@ let { query } = useUserProfile();
 
 let isAuthenticated = $derived(!!$currentUser);
 
+let isInitialLoading = $state(true);
+
 const table = createSvelteTable({
 	get data() {
 		return $betsTableStore.data;
@@ -46,10 +48,9 @@ async function loadData() {
 		betsTableStore.setData(response);
 	} catch (err) {
 		betsTableStore.setError('Ошибка при загрузке данных');
-		const response = await fetchFilteredData($filterStore);
-		betsTableStore.setData(response);
 	} finally {
 		betsTableStore.setLoading(false);
+		isInitialLoading = false;
 	}
 }
 
@@ -80,13 +81,17 @@ $effect(() => {
 		<div class="grid grid-cols-1 gap-4">
 			<MobileCard />
 		</div>
-	{:else if $betsTableStore.isLoading || $query.isLoading}
+	{:else if $betsTableStore.isLoading || $query.isLoading || isInitialLoading}
 		<div class="flex h-[calc(100vh-280px)] flex-col items-center justify-center p-4 text-white">
 			<span class="loading-spinner mb-3"></span>
 			<h2>Загружаем данные</h2>
 		</div>
-	{:else if $betsTableStore.data.length === 0}
-		<BetsNoTableData />
+	{:else if $betsTableStore.error}
+		<div class="p-4 text-red-500">{$betsTableStore.error}</div>
+	{:else if !isInitialLoading && $betsTableStore.data.length === 0}
+		<BetsNoTableData
+			title={'Ставки отсуствуют'}
+			description={'Возможно ставок еще не было. Начинайте делать ставки и они появятся здесь'} />
 	{:else}
 		<div class="table-container">
 			<div class="table-wrapper">

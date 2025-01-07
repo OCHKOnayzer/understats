@@ -71,7 +71,7 @@
 
 	<style lang="postcss">
 		.pagination-container {
-			@apply flex justify-between w-full bg-[#171b26] py-3 px-3;
+			@apply flex justify-between w-full bg-[#171b26] py-3 px-3 z-50;
 		}
 
 		.pagination-controls {
