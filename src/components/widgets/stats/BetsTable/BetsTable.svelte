@@ -10,6 +10,7 @@ import { onMount } from 'svelte';
 
 import { useUserProfile } from '$src/services/auth/useProfile';
 import { betsTableStore } from '$src/stores/betsTableStore';
+import { currentUser } from '$src/stores/modalStore';
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 import BetsNoTableData from '../BetsNoTableData/BetsNoTableData.svelte';
 import { columns } from './columns';
@@ -17,6 +18,8 @@ import { columns } from './columns';
 let innerWidth = $state(0);
 let isMobile = $derived(innerWidth < 400);
 let { query } = useUserProfile();
+
+let isAuthenticated = $derived(!!$currentUser);
 
 const table = createSvelteTable({
 	get data() {
@@ -71,19 +74,17 @@ $effect(() => {
 <svelte:window bind:innerWidth="{innerWidth}" />
 
 <div class="relative h-full w-full">
-	{#if !$query.data}
+	{#if !isAuthenticated}
 		<AuthDemoButton />
 	{:else if isMobile}
 		<div class="grid grid-cols-1 gap-4">
 			<MobileCard />
 		</div>
-	{:else if $betsTableStore.isLoading}
+	{:else if $betsTableStore.isLoading || $query.isLoading}
 		<div class="flex h-[calc(100vh-280px)] flex-col items-center justify-center p-4 text-white">
 			<span class="loading-spinner mb-3"></span>
 			<h2>Загружаем данные</h2>
 		</div>
-	{:else if $betsTableStore.error}
-		<div class="p-4 text-red-500">{$betsTableStore.error}</div>
 	{:else if $betsTableStore.data.length === 0}
 		<BetsNoTableData />
 	{:else}
