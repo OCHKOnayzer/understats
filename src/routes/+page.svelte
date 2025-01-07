@@ -10,8 +10,10 @@ const { query } = useUserProfile();
 </script>
 
 <div class="flex h-full flex-col justify-between">
-	<StatsMenu />
-	<BetsTable />
+	<div class="px-[2rem]">
+		<StatsMenu />
+		<BetsTable />
+	</div>
 	{#if $query.data}
 		<Pagination />
 	{/if}

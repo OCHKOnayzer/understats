@@ -16,7 +16,7 @@ import { columns } from './columns';
 
 let innerWidth = $state(0);
 let isMobile = $derived(innerWidth < 400);
-let isAuthenticated = useUserProfile();
+let { query } = useUserProfile();
 
 const table = createSvelteTable({
 	get data() {
@@ -43,6 +43,8 @@ async function loadData() {
 		betsTableStore.setData(response);
 	} catch (err) {
 		betsTableStore.setError('Ошибка при загрузке данных');
+		const response = await fetchFilteredData($filterStore);
+		betsTableStore.setData(response);
 	} finally {
 		betsTableStore.setLoading(false);
 	}
@@ -69,7 +71,7 @@ $effect(() => {
 <svelte:window bind:innerWidth="{innerWidth}" />
 
 <div class="relative h-full w-full">
-	{#if !isAuthenticated}
+	{#if !$query.data}
 		<AuthDemoButton />
 	{:else if isMobile}
 		<div class="grid grid-cols-1 gap-4">

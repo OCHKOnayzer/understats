@@ -1,7 +1,7 @@
 import { createMutation } from '@tanstack/svelte-query';
 import toast from 'svelte-french-toast';
-import { get, writable } from 'svelte/store';
 import { t } from 'svelte-i18n';
+import { get, writable } from 'svelte/store';
 
 import { confirmPassword, currentModal, currentUser, isModalOpen } from '$src/stores/modalStore';
 

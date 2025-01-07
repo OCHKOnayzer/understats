@@ -35,6 +35,7 @@ selectHeaderTitle('faq.faq');
 
 <style>
 .pageWrapper {
+	padding: 0 2rem;
 	width: 100%;
 	box-sizing: border-box;
 }

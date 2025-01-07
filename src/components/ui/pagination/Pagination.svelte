@@ -75,7 +75,7 @@
 		}
 
 		.pagination-controls {
-			@apply flex items-center justify-between w-full
+			@apply flex items-center justify-between w-full;
 		}
 	
 		.time-range-button {
