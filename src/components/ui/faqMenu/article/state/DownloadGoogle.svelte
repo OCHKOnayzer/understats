@@ -5,7 +5,7 @@ import ImageArtical from '../articleComponents/imageArtical.svelte';
 </script>
 
 <div class="article_wrapper">
-	<ArticalTitle title="faq.ext_google_tittle" />
+	<ArticalTitle title="faq.ext_google_title" />
 	<ArticleSection
 		text="faq.create_acc_section_1"
 		mark="{false}" />

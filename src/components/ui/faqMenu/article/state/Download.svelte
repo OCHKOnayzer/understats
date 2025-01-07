@@ -4,7 +4,7 @@ import ArticleSection from '../articleComponents/articleSection.svelte';
 </script>
 
 <div class="article_wrapper">
-	<ArticalTitle title="faq.ext_tittle" />
+	<ArticalTitle title="faq.ext_title" />
 	<ArticleSection text="faq.ext_download_section_1" />
 	<ArticleSection text="faq.ext_download_section_2" />
 </div>

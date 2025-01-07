@@ -14,7 +14,7 @@ export const pageRoutes: LinkInterface[] = [
 		img2: 'assets/menu/menuElements/bet.png',
 		title: 'menu.Place_bet'
 	},
-	
+
 	 */
 	{
 		href: '/',
@@ -34,17 +34,17 @@ export const pageRoutes: LinkInterface[] = [
 		img2: 'assets/menu/menuElements/mod.png',
 		title: 'menu.Mods'
 	},
-	{
-		href: '/tariffs',
-		img1: 'assets/menu/active/tariffs.png',
-		img2: 'assets/menu/menuElements/tariffs.png',
-		title: 'menu.Tariffs'
-	},
+	// {
+	// 	href: '/tariffs',
+	// 	img1: 'assets/menu/active/tariffs.png',
+	// 	img2: 'assets/menu/menuElements/tariffs.png',
+	// 	title: 'menu.Tariffs'
+	// },
 	{
 		href: '/settings',
-		img1: 'assets/menu/active/setings.png',
-		img2: 'assets/menu/menuElements/setings.png',
-		title: 'menu.Setings'
+		img1: 'assets/menu/active/settings.png',
+		img2: 'assets/menu/menuElements/settings.png',
+		title: 'menu.Settings'
 	},
 	{
 		href: '/help',

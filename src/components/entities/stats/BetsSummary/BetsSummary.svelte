@@ -21,14 +21,14 @@ const data = createQuery({
 
 <div class="flex w-[80%] items-center justify-between gap-4">
 	<TotalBet
-		title="{String($data.data) + $t('tariffs.limits_bets')}}"
-		sum="{$t('stats.in_summ')} 158 000 Р" />
+		title="{String($data.data) + $t('tariffs.limits_bets')}"
+		sum="{$t('stats.in_summ')} $0" />
 	<TotalBet
 		title="{$t('stats.wins')}"
-		sum="{$t('stats.in_summ')} 158 000 Р" />
+		sum="{$t('stats.in_summ')} $0" />
 	<TotalBet
 		title="{$t('stats.loses')}"
-		sum="{$t('stats.in_summ')} 158 000 Р" />
+		sum="{$t('stats.in_summ')} $0" />
 	<TotalBet
 		title="356 проигрышей"
 		sum="На сумму 158 000 Р" />
