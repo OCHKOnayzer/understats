@@ -86,8 +86,8 @@ $: accounts = isAuthenticated ? $query.data : [];
 	</div>
 {:else}
 	<BetsNoTableData
-		title="{'Аккаунты отсуствуют'}"
-		description="{'Аккаунтов не найдено! Подключите аккаунты!'}" />
+		title="{$t('stats.noAccountTitle')}"
+		description="{$t('accounts.noAccountsDescription')}" />
 {/if}
 
 <style>

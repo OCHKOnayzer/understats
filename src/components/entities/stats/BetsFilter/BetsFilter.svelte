@@ -104,16 +104,16 @@ async function applyFilters() {
 		<button
 			class="clear-button"
 			on:click="{() => filterStore.reset()}">
-			Очистить фильтры
+			{$t('filter.clear_filters')}
 		</button>
 		<button
 			class="apply-button"
 			on:click="{applyFilters}"
 			disabled="{isLoading}">
 			{#if isLoading}
-				Загрузка...
+				{$t('stats.loading')}...
 			{:else}
-				Применить фильтры ({$filterStore.selectedSports.length +
+				{$t('stats.use_filters')} ({$filterStore.selectedSports.length +
 					$filterStore.selectedBookmakers.length +
 					$filterStore.selectedAccounts.length +
 					$filterStore.selectedComands.length +

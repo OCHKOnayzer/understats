@@ -6,14 +6,15 @@ import { createSvelteTable, FlexRender } from '$components/ui/data-table';
 import * as Table from '$components/ui/table';
 import { fetchFilteredData } from '$src/components/entities/stats/api/api';
 import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
-import { filterStore } from '$src/stores/filterStore';
 import { useUserProfile } from '$src/services/auth/useProfile';
 import { betsTableStore } from '$src/stores/betsTableStore';
+import { filterStore } from '$src/stores/filterStore';
 import { currentUser } from '$src/stores/modalStore';
 
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 import BetsNoTableData from '../BetsNoTableData/BetsNoTableData.svelte';
 
+import { t } from 'svelte-i18n';
 import { columns } from './columns';
 
 let innerWidth = $state(0);
@@ -85,14 +86,14 @@ $effect(() => {
 	{:else if $betsTableStore.isLoading || $query.isLoading || isInitialLoading}
 		<div class="flex h-[calc(100vh-280px)] flex-col items-center justify-center p-4 text-white">
 			<span class="loading-spinner mb-3"></span>
-			<h2>Загружаем данные</h2>
+			<h2>{$t('stats.loading_data')}</h2>
 		</div>
 	{:else if $betsTableStore.error}
 		<div class="p-4 text-red-500">{$betsTableStore.error}</div>
 	{:else if !isInitialLoading && $betsTableStore.data.length === 0}
 		<BetsNoTableData
-			title="{'Ставки отсуствуют'}"
-			description="{'Возможно ставок еще не было. Начинайте делать ставки и они появятся здесь'}" />
+			title="{$t('stats.no_bets')}"
+			description="{$t('stats.no_bets_description')}" />
 	{:else}
 		<div class="table-container">
 			<div class="table-wrapper">
