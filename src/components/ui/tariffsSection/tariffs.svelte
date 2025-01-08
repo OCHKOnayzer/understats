@@ -1,9 +1,7 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 
-import { openModal, setCurrentTariffs, setCurrentLimits } from '$src/stores/modalStore';
-
-import type { currentTariffsType } from '$src/stores/modalStore';
+import { openModal, setCurrentTariffs, setCurrentLimits, type currentTariffsType } from '$src/stores/modalStore';
 let { name, desc, limitations, accounts, price, price_year } = $$props;
 const openPay = (tarrifs: currentTariffsType, limits: any) => {
 	openModal('PayTariffs');

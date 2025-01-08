@@ -53,13 +53,14 @@ function handleKeyDown(event: KeyboardEvent) {
 	background-color: #20242f;
 	color: white;
 	overflow: hidden;
+	margin-top: 28px;
 }
 
 .accordion-header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 16px;
+	margin-bottom: 8px;
 	cursor: pointer;
 	transition: background-color 0.3s ease;
 }

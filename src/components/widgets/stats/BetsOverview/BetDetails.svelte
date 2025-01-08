@@ -2,6 +2,7 @@
 import { Loader } from 'lucide-svelte';
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
+
 import * as Table from '$components/ui/table';
 
 let { betId }: { betId: string } = $props();

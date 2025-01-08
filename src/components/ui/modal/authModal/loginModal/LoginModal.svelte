@@ -1,23 +1,22 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
+import { t } from 'svelte-i18n';
 
-import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
-import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 import SwitchButton from '$src/components/ui/button/switchButton/SwitchButton.svelte';
 import CancelButton from '$src/components/ui/button/userAprove/CancelButton.svelte';
 import UserAprove from '$src/components/ui/button/userAprove/UserAprove.svelte';
 import { useAuth } from '$src/services/auth/useAuth';
-import { switchRecover, switchReg } from '$src/stores/modalStore';
+import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
+import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
+import { switchReg } from '$src/stores/modalStore';
 
 import FormTitle from '../FormTitle.svelte';
 import InputWrapper from '../Input/InputWrapper.svelte';
-import SocialContainer from '../social/SocialContainer.svelte';
 
 const { form, mutation } = useAuth(false);
 
 onMount(() => {
-	initializeScreenWidthListener;
+	initializeScreenWidthListener();
 });
 
 const loginUser = () => {

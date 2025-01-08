@@ -98,7 +98,7 @@ function handleRowClick(row: RowData) {
 				variant="pills"
 				on:tabChange="{handleSubTabChange}" />
 		</div> -->
-	<!-- {#if isAuthenticated}
+<!-- {#if isAuthenticated}
 		{#if isMobile}
 			<div class="grid grid-cols-1 gap-4">
 				<MobileCard />
@@ -153,4 +153,5 @@ function handleRowClick(row: RowData) {
 	{:else}
 		<AuthDemoButton />
 	{/if}
-</section> --> -->
+</section> -->
+-->

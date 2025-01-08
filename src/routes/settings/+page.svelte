@@ -51,6 +51,7 @@ selectHeaderTitle('settings.settings');
 .progressWrapper {
 	width: 100%;
 	margin: 0 auto;
+	padding: 0 2rem;
 	box-sizing: border-box;
 }
 </style>

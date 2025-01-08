@@ -1,16 +1,22 @@
 <script lang="ts">
-import Container from '$src/components/providers/container/Container.svelte';
 import Pagination from '$src/components/ui/pagination/Pagination.svelte';
 import BetsTable from '$src/components/widgets/stats/BetsTable/BetsTable.svelte';
 import StatsMenu from '$src/components/widgets/stats/StatsMenu/StatsMenu.svelte';
+import { useUserProfile } from '$src/services/auth/useProfile';
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
+import { currentUser } from '$src/stores/modalStore';
+
 selectHeaderTitle('menu.Stats');
+const { query } = useUserProfile();
+let isAuthenticated = $derived(!!$currentUser);
 </script>
 
-<div>
-	<Container>
+<div class="flex h-full flex-col justify-between">
+	<div class="px-[2rem]">
 		<StatsMenu />
 		<BetsTable />
-	</Container>
-	<Pagination />
+	</div>
+	{#if $query.data && isAuthenticated}
+		<Pagination />
+	{/if}
 </div>
