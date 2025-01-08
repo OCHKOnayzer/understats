@@ -8,8 +8,8 @@ import { useUserProfile } from '$src/services/auth/useProfile';
 import { currentUser } from '$src/stores/modalStore';
 import { cn } from '$utils/utils';
 
+import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
 import AuthDemoButton from '../demo/demoButtons/AuthDemoButton.svelte';
-import BetsNoTableData from '../stats/BetsNoTableData/BetsNoTableData.svelte';
 const headers = [
 	{ title: $t('accounts.bookmaker'), key: 'siteName' },
 	{ title: $t('accounts.auth'), key: 'login' },
@@ -85,9 +85,13 @@ $: accounts = isAuthenticated ? $query.data : [];
 		</div>
 	</div>
 {:else}
-	<BetsNoTableData
-		title="{$t('stats.noAccountTitle')}"
-		description="{$t('accounts.noAccountsDescription')}" />
+	<!-- <BetsNoTableData
+		title="{$t('accounts.noAccountTitle')}"
+		description="{$t('accounts.noAccountsDescription')}" /> -->
+	<TableNoData
+		title="{$t('accounts.noAccountTitle')}"
+		description="{$t('accounts.noAccountsDescription')}"
+		variant="{'accounts'}" />
 {/if}
 
 <style>

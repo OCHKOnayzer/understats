@@ -40,6 +40,7 @@ onDestroy(() => {
 async function applyFilters() {
 	try {
 		betsTableStore.setLoading(true);
+		// Ждем завершения всех асинхронных операций
 		await tick();
 		console.log('Filters before fetch:', $filterStore);
 		const data = await fetchFilteredData($filterStore);
@@ -104,23 +105,24 @@ async function applyFilters() {
 		<button
 			class="clear-button"
 			on:click="{() => filterStore.reset()}">
-			{$t('filter.clear_filters')}
+			Очистить фильтры
 		</button>
 		<button
 			class="apply-button"
 			on:click="{applyFilters}"
 			disabled="{isLoading}">
 			{#if isLoading}
-				{$t('stats.loading')}...
+				Загрузка...
 			{:else}
-				{$t('stats.use_filters')} ({$filterStore.selectedSports.length +
+				Применить фильтры ({$filterStore.selectedSports.length +
 					$filterStore.selectedBookmakers.length +
 					$filterStore.selectedAccounts.length +
 					$filterStore.selectedComands.length +
 					$filterStore.selectedTours.length +
 					$filterStore.betResult.length +
 					$filterStore.betType.length +
-					$filterStore.betStatus.length})
+					$filterStore.betStatus.length +
+					$filterStore.betGameStatus.length})
 			{/if}
 		</button>
 	</div>

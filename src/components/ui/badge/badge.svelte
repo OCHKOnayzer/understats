@@ -14,6 +14,7 @@
 				destructiveGreen: 'bg-[#51D679] text-[#106208] inline-block',
 				outline: 'text-foreground',
 				stats: 'bg-[#363A45] text-[#FEFEFC] text-[14px] border-none rounded-[8px] py-2 px-4',
+				statsNot: 'bg-[#BDCFFF] text-[#5D58EE] text-[14px] border-none rounded-[8px] py-[10px] px-[15px] flex items-center',
 			},
 		},
 		defaultVariants: {

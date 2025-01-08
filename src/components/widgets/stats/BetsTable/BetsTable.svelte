@@ -12,18 +12,18 @@ import { filterStore } from '$src/stores/filterStore';
 import { currentUser } from '$src/stores/modalStore';
 
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
-import BetsNoTableData from '../BetsNoTableData/BetsNoTableData.svelte';
 
+import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
 import { t } from 'svelte-i18n';
 import { columns } from './columns';
 
 let innerWidth = $state(0);
 let isMobile = $derived(innerWidth < 400);
 let { query } = useUserProfile();
-
 let isAuthenticated = $derived(!!$currentUser);
-
 let isInitialLoading = $state(true);
+
+const dataItems = [''];
 
 const table = createSvelteTable({
 	get data() {
@@ -32,6 +32,10 @@ const table = createSvelteTable({
 	columns,
 	getCoreRowModel: getCoreRowModel()
 });
+
+let hasActiveFilters = $derived(
+	$filterStore.selectedSports.length > 0 || $filterStore.selectedBookmakers.length > 0 || $filterStore.selectedAccounts.length > 0 || $filterStore.betResult.length > 0
+);
 
 async function loadData() {
 	if ($betsTableStore.isLoading) {
@@ -91,9 +95,13 @@ $effect(() => {
 	{:else if $betsTableStore.error}
 		<div class="p-4 text-red-500">{$betsTableStore.error}</div>
 	{:else if !isInitialLoading && $betsTableStore.data.length === 0}
-		<BetsNoTableData
+		<!-- <BetsNoTableData
 			title="{$t('stats.no_bets')}"
-			description="{$t('stats.no_bets_description')}" />
+			description="{hasActiveFilters ? $t('stats.no_bets_filter') : $t('stats.no_bets_description')}" /> -->
+		<TableNoData
+			title="{$t('stats.no_bets')}"
+			description="{$t('stats.no_bets_description')}"
+			variant="{'stats'}" />
 	{:else}
 		<div class="table-container">
 			<div class="table-wrapper">
