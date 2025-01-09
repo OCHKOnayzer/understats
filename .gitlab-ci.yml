@@ -104,7 +104,7 @@ deploy_prod:
     - scp package.json pnpm-lock.yaml $USER_PROD@$SERVER_IP_PROD:/var/www/understat/frontend/
     - scp deploy2.sh $USER_PROD@$SERVER_IP_PROD:/home/$USER_PROD/
     - scp pm2.config.cjs $USER_PROD@$SERVER_IP_PROD:/var/www/understat/frontend/
-    - ssh -v -T $USER_PROD@$SERVER_IP_PROD "export CI_ENVIRONMENT_NAME='$CI_ENVIRONMENT_NAME' && bash /home/$USER_PROD/deploy2.sh"
+    - ssh $USER_PROD@$SERVER_IP_PROD "export CI_ENVIRONMENT_NAME='$CI_ENVIRONMENT_NAME' && bash /home/$USER_PROD/deploy2.sh"
     - ssh $USER_PROD@$SERVER_IP_PROD "/home/$USER_PROD/deploy2.sh"
     # Nginx
     - scp nginx_prod.conf $USER_PROD@$SERVER_IP_PROD:/home/$USER_PROD/nginx.conf
