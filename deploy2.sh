@@ -15,8 +15,16 @@ echo "Текущий PATH: $PATH"
 which pnpm || { echo "pnpm не найден."; exit 1; }
 which pm2 || { echo "pm2 не найден."; exit 1; }
 
-echo "SERVER_URL=https://dev-api-gateway-v1.sntmq.1keep.bet/api" > .env
-echo ".env файл обновлён."
+if [ "$CI_ENVIRONMENT_NAME" = "prod" ]; then
+	echo "SERVER_URL=https://api.1keep.bet/api" > .env
+	echo ".env файл обновлён."
+elif [ "$CI_ENVIRONMENT_NAME" = "staging1" ]; then
+	echo "SERVER_URL=https://dev-api-gateway-v1.sntmq.1keep.bet/api" > .env
+	echo ".env файл обновлён."
+else
+  echo "Неизвестное окружение: $CI_ENVIRONMENT_NAME"
+  exit 1
+fi
 
 if [ -f .env ]; then
   export $(grep -v '^#' .env | xargs)
