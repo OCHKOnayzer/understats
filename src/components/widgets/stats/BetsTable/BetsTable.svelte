@@ -1,5 +1,5 @@
 <script lang="ts">
-import { getCoreRowModel } from '@tanstack/table-core';
+import { getCoreRowModel, type CellContext, type HeaderContext } from '@tanstack/table-core';
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
@@ -7,15 +7,15 @@ import { createSvelteTable, FlexRender } from '$components/ui/data-table';
 import * as Table from '$components/ui/table';
 import { fetchFilteredData } from '$src/components/entities/stats/api/api';
 import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
+import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
 import { useUserProfile } from '$src/services/auth/useProfile';
 import { betsTableStore } from '$src/stores/betsTableStore';
 import { filterStore } from '$src/stores/filterStore';
 import { currentUser } from '$src/stores/modalStore';
-import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
 
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 
-import { columns } from './columns';
+import { columns, type Bet } from './columns';
 
 let innerWidth = $state(0);
 let isMobile = $derived(innerWidth < 400);
@@ -76,6 +76,14 @@ $effect(() => {
 		loadData();
 	}
 });
+
+type HeaderContextType = HeaderContext<Bet, unknown>;
+type CellContextType = CellContext<Bet, unknown>;
+type Context = HeaderContext<Bet, unknown> | CellContext<Bet, unknown>;
+
+function renderHeader(header: string): string {
+	return $t(header);
+}
 </script>
 
 <svelte:window bind:innerWidth="{innerWidth}" />
@@ -117,7 +125,7 @@ $effect(() => {
 													src="/icons/table-icon.svg"
 													alt="" />
 												<FlexRender
-													content="{header.column.columnDef.header}"
+													content="{renderHeader(header.column.columnDef.header as string)}"
 													context="{header.getContext()}" />
 											</div>
 										{/if}
@@ -133,7 +141,7 @@ $effect(() => {
 									<Table.Cell>
 										<FlexRender
 											content="{cell.column.columnDef.cell}"
-											context="{cell.getContext()}" />
+											context="{cell.getContext() as CellContextType}" />
 									</Table.Cell>
 								{/each}
 							</Table.Row>

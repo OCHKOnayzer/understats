@@ -393,5 +393,15 @@
 	},
 	"calendar": {
 		"period": "Период"
+	},
+	"columns": {
+		"bet.time": "Время ставки",
+		"bet.bookmaker": "Букмекер",
+		"bet.sport": "Спорт",
+		"bet.event": "Событие",
+		"bet.ammount": "Сумма",
+		"bet.ratio": "Коэффициент",
+		"bet.win": "Выигрыш",
+		"bet.status": "Статус"
 	}
 }

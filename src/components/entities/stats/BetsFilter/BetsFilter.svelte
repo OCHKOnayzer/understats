@@ -40,7 +40,6 @@ onDestroy(() => {
 async function applyFilters() {
 	try {
 		betsTableStore.setLoading(true);
-		// Ждем завершения всех асинхронных операций
 		await tick();
 		console.log('Filters before fetch:', $filterStore);
 		const data = await fetchFilteredData($filterStore);
