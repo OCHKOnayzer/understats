@@ -29,10 +29,10 @@ export interface Bet {
 	};
 }
 
-export const columns: ColumnDef<Bet>[] = [
+export const columns: ColumnDef<Bet, unknown>[] = [
 	{
 		accessorKey: 'dates.placed',
-		header: 'Время ставки',
+		header: 'columns.bet.time',
 		cell: ({ row }) => {
 			try {
 				const date = new Date();
@@ -45,15 +45,15 @@ export const columns: ColumnDef<Bet>[] = [
 	},
 	{
 		accessorKey: 'siteName',
-		header: 'Букмекер'
+		header: 'columns.bet.bookmaker'
 	},
 	{
 		accessorKey: 'event.sport',
-		header: 'Спорт'
+		header: 'columns.bet.sport'
 	},
 	{
 		accessorKey: 'event.competitionName',
-		header: 'Событие',
+		header: 'columns.bet.event',
 		cell: ({ row }) => {
 			const event = row.original.event;
 			if (!event) return 'Нет данных';
@@ -62,19 +62,19 @@ export const columns: ColumnDef<Bet>[] = [
 	},
 	{
 		accessorKey: 'amounts.stake',
-		header: 'Сумма'
+		header: 'columns.bet.ammount'
 	},
 	{
 		accessorKey: 'rate',
-		header: 'Коэффициент'
+		header: 'columns.bet.ratio'
 	},
 	{
 		accessorKey: 'amounts.win',
-		header: 'Выигрыш'
+		header: 'columns.bet.win'
 	},
 	{
 		accessorKey: 'outcome',
-		header: 'Статус'
+		header: 'columns.bet.status'
 	}
 ];
 
