@@ -22,8 +22,10 @@ elif [ "$CI_ENVIRONMENT_NAME" = "staging1" ]; then
 	echo "SERVER_URL=https://dev-api-gateway-v1.sntmq.1keep.bet/api" > .env
 	echo ".env файл обновлён."
 else
-  echo "Неизвестное окружение: $CI_ENVIRONMENT_NAME"
-  exit 1
+#  echo "Неизвестное окружение: $CI_ENVIRONMENT_NAME"
+#  exit 1
+	echo "SERVER_URL=https://dev-api-gateway-v1.sntmq.1keep.bet/api" > .env
+	echo ".env файл обновлён."
 fi
 
 if [ -f .env ]; then
