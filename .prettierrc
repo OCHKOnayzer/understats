@@ -1,0 +1,34 @@
+{
+	"overrides": [
+		{
+			"files": "*.json",
+			"options": {
+				"parser": "json"
+			}
+		},
+		{
+			"files": ".ts",
+			"options": {
+				"parser": "typescript"
+			}
+		}
+	],
+	"plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
+	"svelteStrictMode": true,
+	"svelteAllowShorthand": false,
+	"svelteIndentScriptAndStyle": false,
+	"svelteSortOrder": "options-scripts-markup-styles",
+	"htmlWhitespaceSensitivity": "strict",
+	"bracketSameLine": true,
+	"singleAttributePerLine": true,
+	"singleQuote": true,
+	"trailingComma": "none",
+	"bracketSpacing": true,
+	"printWidth": 180,
+	"tabWidth": 2,
+	"useTabs": true,
+	"semi": true,
+	"quoteProps": "as-needed",
+	"endOfLine": "auto",
+	"arrowParens": "always"
+}

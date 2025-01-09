@@ -1,0 +1,113 @@
+image: node:lts
+
+stages:
+  - build
+  - deploy
+
+variables:
+  GIT_DEPTH: 1
+  PNPM_HOME: $CI_PROJECT_DIR/.pnpm
+  SERVER_IP_DEV: "38.180.163.160"
+  SERVER_IP_PROD: "38.180.163.121"
+  USER_DEV: "dev"
+  USER_PROD: "cosmo"
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .pnpm-store
+
+build:
+  environment:
+    name: staging1
+#  when: manual
+  only:
+    - main
+    - staging3
+    - deploy
+  tags:
+    - runner1
+  stage: build
+  script:
+    - npm install -g pnpm
+    - pnpm install --store .pnpm-store
+    - PORT=4671 pnpm build
+    - ls -la build/
+  artifacts:
+    paths:
+      - build/
+      - package.json
+      - pnpm-lock.yaml
+    expire_in: 1 week
+
+deploy_dev:
+  environment:
+    name: staging1
+  tags:
+    - runner1
+  stage: deploy
+  dependencies:
+    - build
+  variables:
+    GIT_STRATEGY: fetch
+  only:
+    - staging3
+#    - deploy
+  before_script:
+#    - apk add --no-cache openssh-client dos2unix
+    - apt-get update && apt-get install -y openssh-client
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | base64 -d > ~/.ssh/id_rsa
+#    - dos2unix ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-keyscan -H $SERVER_IP_DEV >> ~/.ssh/known_hosts
+  script:
+    - ls -l ~/.ssh/id_rsa
+    - ssh-keygen -yf ~/.ssh/id_rsa > /dev/null
+    - ssh -v $USER_DEV@$SERVER_IP_DEV "echo 'SSH connection successful'"
+    - scp -r build/* $USER_DEV@$SERVER_IP_DEV:/var/www/understat/frontend
+    - scp package.json pnpm-lock.yaml $USER_DEV@$SERVER_IP_DEV:/var/www/understat/frontend/
+    - scp deploy2.sh $USER_DEV@$SERVER_IP_DEV:/home/dev/
+    - scp pm2.config.cjs $USER_DEV@$SERVER_IP_DEV:/var/www/understat/frontend/
+#    - chmod +x ~/deploy2.sh
+    - ssh $USER_DEV@$SERVER_IP_DEV "/home/dev/deploy2.sh"
+    # Nginx
+    - scp nginx.conf $USER_DEV@$SERVER_IP_DEV:/home/dev/
+    - ssh $USER_DEV@$SERVER_IP_DEV "ls -la /home/dev/nginx.conf"
+    - ssh $USER_DEV@$SERVER_IP_DEV "sudo mv /home/dev/nginx.conf /etc/nginx/sites-available/dev.sntmq.1keep.bet"
+    - ssh $USER_DEV@$SERVER_IP_DEV 'sudo ln -sf /etc/nginx/sites-available/dev.sntmq.1keep.bet /etc/nginx/sites-enabled/dev.sntmq.1keep.bet'
+    - ssh $USER_DEV@$SERVER_IP_DEV 'sudo systemctl reload nginx'
+
+deploy_prod:
+  environment:
+    name: prod
+  tags:
+    - runner1
+  stage: deploy
+  dependencies:
+    - build
+  variables:
+    GIT_STRATEGY: fetch
+  only:
+    - main
+  before_script:
+    - apt-get update && apt-get install -y openssh-client
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | base64 -d > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-keyscan -H $SERVER_IP_PROD >> ~/.ssh/known_hosts
+  script:
+    - ls -l ~/.ssh/id_rsa
+    - ssh-keygen -yf ~/.ssh/id_rsa > /dev/null
+    - ssh -v $USER_PROD@$SERVER_IP_PROD "echo 'SSH connection successful'"
+    - scp -r build/* $USER_PROD@$SERVER_IP_PROD:/var/www/understat/frontend
+    - scp package.json pnpm-lock.yaml $USER_PROD@$SERVER_IP_PROD:/var/www/understat/frontend/
+    - scp deploy2.sh $USER_PROD@$SERVER_IP_PROD:/home/dev/
+    - scp pm2.config.cjs $USER_PROD@$SERVER_IP_PROD:/var/www/understat/frontend/
+    - ssh $USER_PROD@$SERVER_IP_PROD "/home/dev/deploy2.sh"
+    # Nginx
+    - scp nginx_prod.conf $USER_PROD@$SERVER_IP_PROD:/home/dev/nginx.conf
+    - ssh $USER_PROD@$SERVER_IP_PROD "ls -la /home/dev/nginx.conf"
+    - ssh $USER_PROD@$SERVER_IP_PROD "sudo mv /home/dev/nginx.conf /etc/nginx/sites-available/1keep.bet"
+    - ssh $USER_PROD@$SERVER_IP_PROD 'sudo ln -sf /etc/nginx/sites-available/1keep.bet /etc/nginx/sites-enabled/1keep.bet'
+    - ssh $USER_PROD@$SERVER_IP_PROD 'sudo systemctl reload nginx'
