@@ -143,7 +143,7 @@ const isProduction = import.meta.env.PROD;
 					{#if !routesWithoutMenu.includes($page.url.pathname)}
 						<Header />
 					{/if}
-	
+
 					<slot />
 				</div>
 			{:else}
@@ -162,7 +162,6 @@ main {
 	width: 100%;
 	overflow-x: hidden;
 	position: relative;
-
 }
 
 .mainContent {

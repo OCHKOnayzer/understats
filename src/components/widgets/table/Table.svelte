@@ -7,8 +7,8 @@ import { useAccounts } from '$src/services/accounts/useAccounts';
 import { useUserProfile } from '$src/services/auth/useProfile';
 import { currentUser } from '$src/stores/modalStore';
 import { cn } from '$utils/utils';
-
 import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
+
 import AuthDemoButton from '../demo/demoButtons/AuthDemoButton.svelte';
 const headers = [
 	{ title: $t('accounts.bookmaker'), key: 'siteName' },

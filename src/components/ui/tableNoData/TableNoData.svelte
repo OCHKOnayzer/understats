@@ -1,6 +1,8 @@
 <script lang="ts">
-import { supportClick } from '$src/utils/functions/supportClick';
 import { t } from 'svelte-i18n';
+
+import { supportClick } from '$src/utils/functions/supportClick';
+
 import Badge from '../badge/badge.svelte';
 import Button from '../button/button.svelte';
 

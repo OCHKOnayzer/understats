@@ -1,7 +1,8 @@
-import { goto } from '$app/navigation';
 import toast from 'svelte-french-toast';
 import { t } from 'svelte-i18n';
 import { get } from 'svelte/store';
+
+import { goto } from '$app/navigation';
 
 let browserName = '';
 const userAgent = navigator.userAgent;

@@ -4,10 +4,10 @@ import toast from 'svelte-french-toast';
 import { get } from 'svelte/store';
 
 import { openModal, modalComponent } from '$src/stores/modalStore';
+import { supportClick } from '$src/utils/functions/supportClick';
 
 import { page } from '$app/stores';
 import { goto } from '$app/navigation';
-import { supportClick } from '$src/utils/functions/supportClick';
 
 
 // const hello = toast.error('hello world');
