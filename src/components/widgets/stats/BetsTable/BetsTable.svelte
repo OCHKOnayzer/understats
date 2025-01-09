@@ -80,7 +80,7 @@ $effect(() => {
 
 <svelte:window bind:innerWidth="{innerWidth}" />
 
-<div class="relative h-full w-full">
+<div class="relative w-full">
 	{#if !isAuthenticated}
 		<AuthDemoButton />
 	{:else if isMobile}
