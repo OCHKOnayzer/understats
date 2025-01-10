@@ -21,6 +21,8 @@ build_dev:
   environment:
     name: staging1
 #  when: manual
+  only:
+    - staging3
   tags:
     - runner1
   stage: build
@@ -64,7 +66,7 @@ deploy_dev:
     - runner1
   stage: deploy
   dependencies:
-    - build
+    - build_dev
   variables:
     GIT_STRATEGY: fetch
   only:
@@ -102,7 +104,7 @@ deploy_prod:
     - runner1
   stage: deploy
   dependencies:
-    - build
+    - build_prod
   variables:
     GIT_STRATEGY: fetch
   only:
