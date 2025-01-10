@@ -70,7 +70,7 @@ deploy_dev:
     - scp deploy2.sh $USER_DEV@$SERVER_IP_DEV:/home/$USER_DEV/
     - scp pm2.config.cjs $USER_DEV@$SERVER_IP_DEV:/var/www/understat/frontend/
 #    - chmod +x ~/deploy2.sh
-    - ssh -v -T $USER_DEV@$SERVER_IP_DEV "export CI_ENVIRONMENT_NAME='$CI_ENVIRONMENT_NAME' && bash /home/$USER_DEV/deploy2.sh"
+    - ssh $USER_DEV@$SERVER_IP_DEV "export CI_ENVIRONMENT_NAME='$CI_ENVIRONMENT_NAME' && bash /home/$USER_DEV/deploy2.sh"
     # Nginx
     - scp nginx.conf $USER_DEV@$SERVER_IP_DEV:/home/$USER_DEV/
     - ssh $USER_DEV@$SERVER_IP_DEV "ls -la /home/$USER_DEV/nginx.conf"
