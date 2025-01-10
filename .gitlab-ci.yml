@@ -21,8 +21,8 @@ build_dev:
   environment:
     name: staging1
 #  when: manual
-  only:
-    - staging3
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "staging3"'
   tags:
     - runner1
   stage: build
@@ -69,9 +69,8 @@ deploy_dev:
     - build_dev
   variables:
     GIT_STRATEGY: fetch
-  only:
-    - staging3
-#    - deploy
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "staging3"'
   before_script:
 #    - apk add --no-cache openssh-client dos2unix
     - apt-get update && apt-get install -y openssh-client
