@@ -21,8 +21,6 @@ build_dev:
   environment:
     name: staging1
 #  when: manual
-  only:
-    - staging3
   tags:
     - runner1
   stage: build

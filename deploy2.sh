@@ -15,7 +15,6 @@ cd /var/www/understat/frontend || { echo "Не удалось перейти в 
 
 echo "Текущий PATH: $PATH"
 which pnpm || { echo "pnpm не найден."; exit 1; }
-
 which pm2 || { echo "pm2 не найден."; exit 1; }
 
 # TODO deprecated
