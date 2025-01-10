@@ -47,7 +47,7 @@
                     {/each}
                 </div>
                 <div class="social_item_container">
-                    <a class="social_item" target="_blank" href="@OneKeepBet_bot">
+                    <a class="social_item" target="_blank" href="https://t.me/OneKeepBet_bot">
                         <img src="assets/social/support_telegram.svg" alt="">
                         {$t('other.support')}
                     </a>
