@@ -35,7 +35,9 @@ selectHeaderTitle('faq.faq');
 
 <style>
 .mainContent{ 
-	height: 89vh;
+	height: 100%;
+	padding-left: 2rem;
+	padding-right: 2rem;
 }
 .pageWrapper {
 	padding: 0 2rem;

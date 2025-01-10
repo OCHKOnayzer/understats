@@ -168,12 +168,11 @@ const setLang = (lang: string) => {
 	}
 }
 @media screen and (max-width: 768px) {
-	.setings_item,
-	.item-w {
-		width: 98vw;
+	.selected_element {
+		height: 50%;
 	}
 	.lang {
-		margin-bottom: 30px;
+		margin-bottom: 3px;
 		color: white;
 	}
 }

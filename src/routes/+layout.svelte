@@ -12,7 +12,6 @@ import { onDestroy, onMount } from 'svelte';
 import { Toaster } from 'svelte-french-toast';
 import { init, locale, waitLocale } from 'svelte-i18n';
 
-import Container from '$components/providers/container/Container.svelte';
 import Menu from '$components/ui/menu/Menu.svelte';
 import Header from '$src/components/ui/header/header.svelte';
 import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
@@ -131,7 +130,7 @@ const isProduction = import.meta.env.PROD;
 {/if}
 
 <QueryClientProvider client="{queryClient}">
-	<Container>
+	<div class="max-w-full bg-[#0d111d]">
 		<main>
 			{#if isLocaleReady}
 				{#if !routesWithoutMenu.includes($page.url.pathname)}
@@ -152,7 +151,7 @@ const isProduction = import.meta.env.PROD;
 			{/if}
 		</main>
 		<Toaster />
-	</Container>
+	</div>
 </QueryClientProvider>
 
 <style>
@@ -171,7 +170,6 @@ main {
 	display: flex;
 	flex-direction: column;
 	overflow-x: hidden;
-	padding: 0 1rem;
 	box-sizing: border-box;
 }
 

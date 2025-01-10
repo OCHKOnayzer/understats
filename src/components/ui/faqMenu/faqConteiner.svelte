@@ -98,6 +98,7 @@ async function loadArticleComponent(article2: string) {
 	display: flex;
 	justify-content: space-between;
 	height: 100%;
+	padding-bottom: 13px;
 }
 
 .faqChapter {

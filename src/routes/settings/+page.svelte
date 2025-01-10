@@ -27,27 +27,30 @@ selectHeaderTitle('settings.settings');
 		content="About this app" />
 </svelte:head>
 
-<div class="text-column">
-	<div class="mainContent">
-		{#if !$currentUser}
-			<DemoButtons />
-		{/if}
-		{#if $isMobile}
-			<CheckBox />
-			<Lang />
-		{/if}
-		<div class="progressWrapper">
-			<!-- <Settings /> -->
-		</div>
-		<!-- <UserAvatar /> -->
-		<Info />
-		{#if $currentUser}
-			<EditPass />
-		{/if}
+<div class="pageContent">
+	{#if !$currentUser}
+		<DemoButtons />
+	{/if}
+	{#if $isMobile}
+		<CheckBox />
+		<Lang />
+	{/if}
+	<div class="progressWrapper">
+		<!-- <Settings /> -->
 	</div>
+	<!-- <UserAvatar /> -->
+	<Info />
+	{#if $currentUser}
+		<EditPass />
+	{/if}
 </div>
 
 <style>
+.pageContent{ 
+	width: 100%;
+	padding-left: 2rem;
+	padding-right: 2rem;
+}
 .progressWrapper {
 	width: 100%;
 	margin: 0 auto;

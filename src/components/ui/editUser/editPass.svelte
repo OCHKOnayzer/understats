@@ -45,6 +45,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 			<input
 				class="selected_element input_element"
 				type="password"
+				autocomplete="new-password"
 				bind:value="{oldPassword}"
 				placeholder="••••••••••••••••••••" />
 		</div>
@@ -58,6 +59,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 			<input
 				class="selected_element input_element"
 				type="password"
+				autocomplete="new-password"
 				bind:value="{newPassword}"
 				placeholder="••••••••••••••••••••" />
 		</div>
