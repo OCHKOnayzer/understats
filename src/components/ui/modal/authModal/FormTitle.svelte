@@ -27,6 +27,10 @@ const { modalActie } = $$props as FormTitleProps;
 .formLogo {
 	display: none;
 }
+.formLogo img {
+	max-height: 34px;
+	max-width: 34px;
+}
 @media screen and (max-width: 768px) {
 	.form_title {
 		display: flex;
@@ -40,10 +44,6 @@ const { modalActie } = $$props as FormTitleProps;
 		display: flex;
 		font-size: 18px;
 		align-items: center;
-	}
-	.formLogo img {
-		height: 50%;
-		width: 50%;
 	}
 }
 </style>

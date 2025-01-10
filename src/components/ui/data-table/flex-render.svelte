@@ -6,8 +6,8 @@ type Context = HeaderContext<Bet, unknown> | CellContext<Bet, unknown>;
 type Content = string | ColumnDefTemplate<CellContext<Bet, unknown>> | ColumnDefTemplate<HeaderContext<Bet, unknown>>;
 
 interface Props {
-  content: Content;
-  context: Context;
+	content: Content;
+	context: Context;
 }
 
 let props = $props();

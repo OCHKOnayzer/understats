@@ -38,7 +38,7 @@ class ExtensionService {
 				throw new ApiError(get(t)('error.auth'));
 			}
 
-			const response = await fetch('/extension/download/', {
+			const response = await fetch(`${process.env.SERVER_URL}/extension/download`, {
 				method: 'GET',
 				headers: {
 					Accept: 'application/zip',

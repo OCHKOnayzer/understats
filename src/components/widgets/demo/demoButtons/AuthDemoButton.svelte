@@ -59,7 +59,7 @@ const authUser = (auth: string) => {
 <style>
 .buttons-wrapper {
 	position: relative;
-	top: 30vh;
+	top: 25vh;
 	margin-bottom: var(--elements-padding);
 	display: flex;
 	justify-content: center;
@@ -107,7 +107,7 @@ const authUser = (auth: string) => {
 
 .buttons-auth {
 	width: 200px;
-	background-color: #31384a;
+	background-color: var(--table-color);
 	margin-right: 10px;
 }
 
@@ -125,6 +125,9 @@ const authUser = (auth: string) => {
 	border: 2px solid var(--accent-color);
 }
 @media screen and (max-width: 800px) {
+	.buttons-wrapper {
+		top: 10vh;
+	}
 	.buttons-container {
 		justify-content: unset;
 	}

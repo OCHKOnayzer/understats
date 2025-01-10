@@ -23,6 +23,11 @@ export const MenuElement: MenuInterface[] = [
 		name: 'faq.interactions',
 		image: '',
 		props: 'browser'
+	},
+	{
+		name: 'faq.mobile',
+		image: '',
+		props: 'mobile'
 	}
 	// {
 	// 	name: 'faq.analytics',

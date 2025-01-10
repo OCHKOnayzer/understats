@@ -29,7 +29,8 @@ function togglePasswordVisibility() {
 		{#if show_clear}
 			<button
 				class="show"
-				on:click="{togglePasswordVisibility}">
+				on:click="{togglePasswordVisibility}"
+				tabindex="-1">
 				{$t(button_text)}
 			</button>
 			<!-- <button
@@ -90,7 +91,7 @@ function togglePasswordVisibility() {
 	position: absolute;
 	z-index: 4;
 	top: 25px;
-	left: 73vw;
+	left: 63vw;
 }
 .showEye img {
 	height: 100%;

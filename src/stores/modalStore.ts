@@ -5,7 +5,7 @@ export const isModalOpen = writable(false);
 export const isLogOutModal = writable(false);
 
 export const modalComponent = writable<
-	'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal' | 'ChatModal' | 'PayTariffs' | null
+	'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal' | 'ChatModal' | 'PayTariffs' | 'SocialModal' | null
 >(null);
 export type currentTariffsType = 'Lite' | 'Standart' | 'Pro' | '';
 export const currentTariffs = writable<currentTariffsType>('');
@@ -40,7 +40,7 @@ export const toggleInputType = () => {
 };
 
 export const openModal = (
-	component: 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal' | 'ChatModal' | 'PayTariffs'
+	component: 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal' | 'ChatModal' | 'PayTariffs' | 'SocialModal'
 ) => {
 	isModalOpen.set(true);
 	modalComponent.set(component);
