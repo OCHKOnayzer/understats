@@ -165,7 +165,7 @@ const setLang = (lang: string) => {
 	}
 }
 @media screen and (max-width: 768px) {
-	.all-lang{ 
+	.all-lang {
 		height: 30vh;
 		overflow-y: auto;
 	}

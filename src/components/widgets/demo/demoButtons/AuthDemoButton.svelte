@@ -125,7 +125,7 @@ const authUser = (auth: string) => {
 	border: 2px solid var(--accent-color);
 }
 @media screen and (max-width: 800px) {
-	.buttons-wrapper{ 
+	.buttons-wrapper {
 		top: 10vh;
 	}
 	.buttons-container {

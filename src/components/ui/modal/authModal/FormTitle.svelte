@@ -45,6 +45,5 @@ const { modalActie } = $$props as FormTitleProps;
 		font-size: 18px;
 		align-items: center;
 	}
-	
 }
 </style>

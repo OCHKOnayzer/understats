@@ -34,7 +34,7 @@ selectHeaderTitle('faq.faq');
 </div>
 
 <style>
-.mainContent{ 
+.mainContent {
 	height: 100%;
 	padding-left: 2rem;
 	padding-right: 2rem;

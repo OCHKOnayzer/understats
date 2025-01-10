@@ -46,7 +46,7 @@ selectHeaderTitle('settings.settings');
 </div>
 
 <style>
-.pageContent{ 
+.pageContent {
 	width: 100%;
 	padding-left: 2rem;
 	padding-right: 2rem;

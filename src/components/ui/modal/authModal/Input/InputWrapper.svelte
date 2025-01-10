@@ -27,12 +27,12 @@ function togglePasswordVisibility() {
 	<div class="title_info">
 		<WrapperTitle title_wrapper="{title_wrapper}" />
 		{#if show_clear}
-		<button
-        class="show"
-        on:click="{togglePasswordVisibility}"
-        tabindex="-1">
-        {$t(button_text)}
-      </button>
+			<button
+				class="show"
+				on:click="{togglePasswordVisibility}"
+				tabindex="-1">
+				{$t(button_text)}
+			</button>
 			<!-- <button
 				class="showEye"
 				on:click="{togglePasswordVisibility}">

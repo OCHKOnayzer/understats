@@ -1,5 +1,6 @@
 <script>
 import { t } from 'svelte-i18n';
+
 import { openModal } from '$src/stores/modalStore';
 </script>
 
@@ -16,7 +17,9 @@ import { openModal } from '$src/stores/modalStore';
 			<span>{$t('extensions.chat_install')}</span>
 		</div>
 		<div class="problem_content">
-			<button class="open_modal_btn" on:click={()=> openModal('SocialModal')}>
+			<button
+				class="open_modal_btn"
+				on:click="{() => openModal('SocialModal')}">
 				<div class="chat_block">
 					<img
 						src="assets/menu/menuElements/chat.png"
