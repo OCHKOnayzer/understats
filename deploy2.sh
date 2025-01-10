@@ -17,6 +17,7 @@ echo "Текущий PATH: $PATH"
 which pnpm || { echo "pnpm не найден."; exit 1; }
 which pm2 || { echo "pm2 не найден."; exit 1; }
 
+# TODO deprecated
 if [ "$ENVIRONMENT" = "prod" ]; then
 	echo "SERVER_URL=https://api.1keep.bet/api" > .env
 	echo ".env файл обновлён, окружение: $ENVIRONMENT"
