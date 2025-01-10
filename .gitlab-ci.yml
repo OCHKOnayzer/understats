@@ -70,7 +70,7 @@ deploy_dev:
     - scp deploy2.sh $USER_DEV@$SERVER_IP_DEV:/home/$USER_DEV/
     - scp pm2.config.cjs $USER_DEV@$SERVER_IP_DEV:/var/www/understat/frontend/
 #    - chmod +x ~/deploy2.sh
-    - ssh $USER_DEV@$SERVER_IP_DEV "export CI_ENVIRONMENT_NAME='$CI_ENVIRONMENT_NAME' && bash /home/$USER_DEV/deploy2.sh"
+    - ssh $USER_DEV@$SERVER_IP_DEV "export CI_ENVIRONMENT_NAME='staging1' && bash /home/$USER_DEV/deploy2.sh"
     # Nginx
     - scp nginx.conf $USER_DEV@$SERVER_IP_DEV:/home/$USER_DEV/
     - ssh $USER_DEV@$SERVER_IP_DEV "ls -la /home/$USER_DEV/nginx.conf"
@@ -104,7 +104,7 @@ deploy_prod:
     - scp package.json pnpm-lock.yaml $USER_PROD@$SERVER_IP_PROD:/var/www/understat/frontend/
     - scp deploy2.sh $USER_PROD@$SERVER_IP_PROD:/home/$USER_PROD/
     - scp pm2.config.cjs $USER_PROD@$SERVER_IP_PROD:/var/www/understat/frontend/
-    - ssh $USER_PROD@$SERVER_IP_PROD "export CI_ENVIRONMENT_NAME='$CI_ENVIRONMENT_NAME' && bash /home/$USER_PROD/deploy2.sh"
+    - ssh $USER_PROD@$SERVER_IP_PROD "export CI_ENVIRONMENT_NAME='prod' && bash /home/$USER_PROD/deploy2.sh"
     # Nginx
     - scp nginx_prod.conf $USER_PROD@$SERVER_IP_PROD:/home/$USER_PROD/nginx.conf
     - ssh $USER_PROD@$SERVER_IP_PROD "ls -la /home/$USER_PROD/nginx.conf"
