@@ -91,7 +91,7 @@ function togglePasswordVisibility() {
 	position: absolute;
 	z-index: 4;
 	top: 25px;
-	left: 73vw;
+	left: 63vw;
 }
 .showEye img {
 	height: 100%;
