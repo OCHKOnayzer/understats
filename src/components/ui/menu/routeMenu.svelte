@@ -45,7 +45,7 @@ function preloadImage(src: string): Promise<void> {
 	{#each pageRoutes as item}
 		<a
 			href="{item.href}"
-			class="flex h-[60px] w-full items-center rounded-lg text-gray-500 no-underline transition duration-300 hover:cursor-pointer
+			class="flex h-[50px] mb-[12px] w-full items-center rounded-[12px] text-gray-500 no-underline transition duration-300 hover:cursor-pointer
 		{currentPath === item.href ? 'bg-activeElements text-white' : ''}">
 			<div class="relative ml-[12px] mr-2.5 flex h-[20px] w-[20px] items-center justify-center">
 				<img

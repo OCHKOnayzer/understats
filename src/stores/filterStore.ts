@@ -414,7 +414,7 @@ export const accountsList = writable<string[]>([
 	'Аккаунт 20'
 ]);
 
-export const bookmakersListMain = writable<string[]>(['Pinnacle', 'Stake', 'Fonbet', 'Betfair', '1win', 'Goldenbet']);
+export const bookmakersListMain = writable<string[]>(['Pinnacle', 'Stake', 'Fonbet', '1xbet', '1win', 'goldenbet']);
 
 export const bookmakersList = writable<string[]>([...get(bookmakersListMain)]);
 

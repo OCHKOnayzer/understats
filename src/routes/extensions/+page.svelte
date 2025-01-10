@@ -47,6 +47,7 @@ extensionInfo.set(data.extensionInfo);
 }
 .pageWrapper {
 	width: 100%;
+	padding: 0 2rem;
 	box-sizing: border-box;
 	overflow: none;
 }

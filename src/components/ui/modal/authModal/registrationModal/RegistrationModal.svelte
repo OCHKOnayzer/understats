@@ -18,7 +18,7 @@ import SocialContainer from '../social/SocialContainer.svelte';
 const { form, mutation } = useAuth(true);
 
 onMount(() => {
-	initializeScreenWidthListener;
+	initializeScreenWidthListener();
 });
 
 const registerUser = () => {

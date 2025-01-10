@@ -3,10 +3,10 @@ import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
 import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';
+import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
 import { headerTitle } from '$src/stores/HeaderStores';
 import { openMenu } from '$src/stores/menu';
 import { closeModal, currentUser, modalComponent, openModal } from '$src/stores/modalStore';
-import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
 
 import LangButton from '../button/langButton/LangButton.svelte';
 
@@ -97,8 +97,7 @@ onMount(() => {
 .header {
 	height: fit-content;
 	box-sizing: border-box;
-	padding-top: var(--elements-padding);
-	padding-bottom: var(--elements-padding);
+	padding: var(--elements-padding) 2rem;
 	width: 100%;
 	margin: 0 auto;
 	position: relative;

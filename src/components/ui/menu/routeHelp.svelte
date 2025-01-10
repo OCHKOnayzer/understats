@@ -3,15 +3,17 @@ import { onMount } from 'svelte';
 
 import { currentUser } from '$src/stores/modalStore';
 import { langSel } from '$src/stores/HeaderStores';
+import { useUserProfile } from '$src/services/auth/useProfile';
 
 import UserInfo from './userInfo/UserInfo.svelte';
 import ChatMenu from './chatMenu.svelte';
 import { SocialRoutes } from './items/LinkItems';
+let { query } = useUserProfile();
 </script>
 
 <div class="w-full">
 	<ChatMenu />
-	{#if $currentUser}
+	{#if $query.data}
 		<UserInfo />
 	{/if}
 	<!-- <div class="relative mt-4 flex h-full w-full items-center justify-between">

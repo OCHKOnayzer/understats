@@ -24,7 +24,7 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 
 <SettingsSections>
 	<SettingsTitle title="{'settings.my_acc'}" />
-	<div class="setings">
+	<div class="settings">
 		{#if $currentUser}
 			<div class="setings_item item-w">
 				<div class="item_settings_info">
@@ -54,7 +54,7 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 </SettingsSections>
 
 <style>
-.setings {
+.settings {
 	display: flex;
 	flex-direction: row;
 	/* justify-content: center; */
@@ -127,7 +127,7 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 	.setings_item:nth-child(2) {
 		margin-right: 0px;
 	}
-	.setings {
+	.settings {
 		padding: 0;
 		width: 100%;
 		flex-direction: column;
@@ -136,7 +136,7 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 	}
 }
 @media screen and (max-height: 600px) {
-	.setings {
+	.settings {
 		padding-bottom: 4%;
 	}
 	/* .email {
@@ -150,7 +150,7 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 		height: fit-content;
 		align-items: center;
 	}
-	.setings {
+	.settings {
 		padding: 0;
 		width: 100%;
 		flex-direction: column;

@@ -10,6 +10,7 @@ import { LangArr } from './lang';
 
 const setLang = (lang: string) => {
 	setLanguage(lang);
+	closeModal()
 };
 </script>
 

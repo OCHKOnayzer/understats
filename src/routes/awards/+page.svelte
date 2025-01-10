@@ -27,4 +27,7 @@ selectHeaderTitle('other.awards');
 </div>
 
 <style>
+.text-column {
+	padding: 0 2rem;
+}
 </style>

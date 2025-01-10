@@ -34,7 +34,11 @@ selectHeaderTitle('faq.faq');
 </div>
 
 <style>
+.mainContent{ 
+	height: 89vh;
+}
 .pageWrapper {
+	padding: 0 2rem;
 	width: 100%;
 	box-sizing: border-box;
 }

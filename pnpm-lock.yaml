@@ -53,6 +53,9 @@ importers:
       tailwind-merge:
         specifier: ^2.5.3
         version: 2.5.3
+      tailwind-scrollbar:
+        specifier: 4.0.0-beta.0
+        version: 4.0.0-beta.0(tailwindcss@3.4.13(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.6.3)))
       tailwind-variants:
         specifier: ^0.2.1
         version: 0.2.1(tailwindcss@3.4.13(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.6.3)))
@@ -3088,6 +3091,12 @@ packages:
 
   tailwind-merge@2.5.3:
     resolution: {integrity: sha512-d9ZolCAIzom1nf/5p4LdD5zvjmgSxY0BGgdSvmXIoMYAiPdAW/dSpP7joCDYFY7r/HkEa2qmPtkgsu0xjQeQtw==}
+
+  tailwind-scrollbar@4.0.0-beta.0:
+    resolution: {integrity: sha512-d6qwt3rYDgsKNaQGLW0P6N1TN/87xYZDjH6/PimtFvij2NgC5i3M6mEuVKR4Ixb2u3SvMBT95t7+xzJGJRzXtA==}
+    engines: {node: '>=12.13.0'}
+    peerDependencies:
+      tailwindcss: ^4.0.0-beta.8
 
   tailwind-variants@0.2.1:
     resolution: {integrity: sha512-2xmhAf4UIc3PijOUcJPA1LP4AbxhpcHuHM2C26xM0k81r0maAO6uoUSHl3APmvHZcY5cZCY/bYuJdfFa4eGoaw==}
@@ -6192,6 +6201,10 @@ snapshots:
       svg.js: 2.7.1
 
   tailwind-merge@2.5.3: {}
+
+  tailwind-scrollbar@4.0.0-beta.0(tailwindcss@3.4.13(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.6.3))):
+    dependencies:
+      tailwindcss: 3.4.13(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.6.3))
 
   tailwind-variants@0.2.1(tailwindcss@3.4.13(ts-node@10.9.2(@types/node@22.5.5)(typescript@5.6.3))):
     dependencies:

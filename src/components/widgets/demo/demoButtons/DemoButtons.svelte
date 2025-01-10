@@ -103,7 +103,7 @@ const authUser = (auth: string) => {
 }
 
 .buttons-auth {
-	background-color: #31384a;
+	background-color: var(--table-color);
 	margin-right: 10px;
 }
 

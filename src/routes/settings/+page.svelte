@@ -12,7 +12,7 @@ import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 // import UserAvatar from '../../components/ui/editUser/userAvatar.svelte';
 import Info from '../../components/ui/editUser/info.svelte';
 import EditPass from '../../components/ui/editUser/editPass.svelte';
-// import Setings from '../../components/ui/editUser/setings.svelte';
+// import Settings from '../../components/ui/editUser/settings.svelte';
 
 onMount(() => {
 	initializeScreenWidthListener();
@@ -37,7 +37,7 @@ selectHeaderTitle('settings.settings');
 			<Lang />
 		{/if}
 		<div class="progressWrapper">
-			<!-- <Setings /> -->
+			<!-- <Settings /> -->
 		</div>
 		<!-- <UserAvatar /> -->
 		<Info />
@@ -51,6 +51,7 @@ selectHeaderTitle('settings.settings');
 .progressWrapper {
 	width: 100%;
 	margin: 0 auto;
+	padding: 0 2rem;
 	box-sizing: border-box;
 }
 </style>

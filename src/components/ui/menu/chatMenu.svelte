@@ -83,8 +83,8 @@ function openLiveChat() {
 <button
 	on:click="{toggleChat}"
 	class="flex h-auto w-full flex-col justify-center rounded-lg
-    {isChatOpen ? 'bg-activeElements' : 'bg-[#363A45]'}">
-	<div class="flex h-[60px] items-center rounded-lg text-gray-500 no-underline transition duration-300 hover:cursor-pointer">
+    {isChatOpen ? 'bg-activeElements' : 'bg-[#31384A]'}">
+	<div class="flex h-[50px] items-center rounded-lg text-gray-500 no-underline transition duration-300 hover:cursor-pointer">
 		<div class="ml-[12px] mr-2.5 flex h-[20px] w-[20px] items-center justify-center">
 			<img
 				src="{isChatOpen ? 'assets/menu/active/chat.png' : 'assets/menu/menuElements/chat.png'}"
