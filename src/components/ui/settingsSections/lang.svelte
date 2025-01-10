@@ -101,19 +101,16 @@ const setLang = (lang: string) => {
 }
 .all-lang {
 	position: absolute;
-	height: 320px;
 	background-color: #20242f;
 	width: 98%;
 	border-radius: 5px;
 	margin-top: 5px;
-	overflow: hidden;
+	overflow-y: hidden;
 }
 .modal-lang-wrapper {
 	width: 100%;
-	height: 100%;
 	display: flex;
 	flex-direction: column;
-	overflow-y: auto;
 	position: relative;
 	z-index: 999;
 }
@@ -168,6 +165,13 @@ const setLang = (lang: string) => {
 	}
 }
 @media screen and (max-width: 768px) {
+	.all-lang{ 
+		height: 30vh;
+		overflow-y: auto;
+	}
+	.setings_item {
+		height: 100px;
+	}
 	.selected_element {
 		height: 50%;
 	}
