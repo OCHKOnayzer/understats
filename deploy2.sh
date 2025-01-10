@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ENVIRONMENT=$1
+
 export NVM_DIR="$HOME/.nvm"
 if [ -s "$NVM_DIR/nvm.sh" ]; then
   \. "$NVM_DIR/nvm.sh"
@@ -15,17 +17,17 @@ echo "Текущий PATH: $PATH"
 which pnpm || { echo "pnpm не найден."; exit 1; }
 which pm2 || { echo "pm2 не найден."; exit 1; }
 
-if [ "$CI_ENVIRONMENT_NAME" = "prod" ]; then
+if [ "$ENVIRONMENT" = "prod" ]; then
 	echo "SERVER_URL=https://api.1keep.bet/api" > .env
-	echo ".env файл обновлён."
-elif [ "$CI_ENVIRONMENT_NAME" = "staging1" ]; then
+	echo ".env файл обновлён, окружение: $ENVIRONMENT"
+elif [ "$ENVIRONMENT" = "staging1" ]; then
 	echo "SERVER_URL=https://dev-api-gateway-v1.sntmq.1keep.bet/api" > .env
-	echo ".env файл обновлён."
+	echo ".env файл обновлён, окружение: $ENVIRONMENT"
 else
-#  echo "Неизвестное окружение: $CI_ENVIRONMENT_NAME"
+#  echo "Неизвестное окружение: $ENVIRONMENT"
 #  exit 1
 	echo "SERVER_URL=https://dev-api-gateway-v1.sntmq.1keep.bet/api" > .env
-	echo ".env файл обновлён."
+	echo ".env файл обновлён, окружение: $ENVIRONMENT"
 fi
 
 if [ -f .env ]; then
