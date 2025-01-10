@@ -17,14 +17,33 @@ cache:
   paths:
     - .pnpm-store
 
-build:
+build_dev:
   environment:
-    name: prod
+    name: staging1
 #  when: manual
   only:
-    - main
     - staging3
-    - deploy
+  tags:
+    - runner1
+  stage: build
+  script:
+    - npm install -g pnpm
+    - pnpm install --store .pnpm-store
+    - PORT=4671 pnpm build
+    - ls -la build/
+  artifacts:
+    paths:
+      - build/
+      - package.json
+      - pnpm-lock.yaml
+    expire_in: 1 week
+
+build_prod:
+  environment:
+    name: prod
+  #  when: manual
+  only:
+    - main
   tags:
     - runner1
   stage: build
