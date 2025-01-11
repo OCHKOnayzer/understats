@@ -16,35 +16,33 @@ let { title, description, variant }: TableNoDataProps = $props();
 const items = ['not.install', 'not.open', 'not.sign', 'not.last'];
 </script>
 
-<section class="absolute left-1/2 top-1/2 text-white">
-	<div class="flex max-w-[500px] flex-col items-start gap-[24px] rounded-[32px] bg-[#171B26] p-[32px]">
+<div class="flex text-white max-w-[500px] flex-col items-start gap-[24px] rounded-[32px] bg-[#171B26] p-[32px]">
+	<div>
+		<h2 class="text-[28px] leading-[32px]">{title}</h2>
+		<h3 class="max-w-[440px] text-[15px] leading-[22px]">{description}</h3>
+	</div>
+	<div class="flex flex-col gap-[16px]">
+		{#each variant === 'accounts' ? items.slice(0, 3) : items as item, i}
+			<div class="flex items-center gap-[12px]">
+				<Badge variant="{'statsNot'}">{i + 1}</Badge>
+				<h2>{$t(item)}</h2>
+			</div>
+		{/each}
+	</div>
+	<div class="inline-flex flex-col gap-[16px]">
 		<div>
-			<h2 class="text-[28px] leading-[32px]">{title}</h2>
-			<h3 class="max-w-[440px] text-[15px] leading-[22px]">{description}</h3>
+			<Button
+				class="h-[56px] w-full !py-[16px]"
+				variant="not">{$t('not.install_ext')}</Button>
 		</div>
-		<div class="flex flex-col gap-[16px]">
-			{#each variant === 'accounts' ? items.slice(0, 3) : items as item, i}
-				<div class="flex items-center gap-[12px]">
-					<Badge variant="{'statsNot'}">{i + 1}</Badge>
-					<h2>{$t(item)}</h2>
-				</div>
-			{/each}
-		</div>
-		<div class="inline-flex flex-col gap-[16px]">
-			<div>
-				<Button
-					class="h-[56px] w-full !py-[16px]"
-					variant="not">{$t('not.install_ext')}</Button>
-			</div>
-			<div class="flex items-center gap-[2px]">
-				<Button
-					onclick="{supportClick}"
-					class="h-[56px]"
-					variant="transparent">{$t('not.help')}</Button>
-				<Button
-					class="h-[56px]"
-					variant="transparent">{$t('not.write')}</Button>
-			</div>
+		<div class="flex items-center gap-[2px]">
+			<Button
+				onclick="{supportClick}"
+				class="h-[56px]"
+				variant="transparent">{$t('not.help')}</Button>
+			<Button
+				class="h-[56px]"
+				variant="transparent">{$t('not.write')}</Button>
 		</div>
 	</div>
-</section>
+</div>

@@ -104,10 +104,12 @@ function renderHeader(header: string): string {
 		<!-- <BetsNoTableData
 			title="{$t('stats.no_bets')}"
 			description="{hasActiveFilters ? $t('stats.no_bets_filter') : $t('stats.no_bets_description')}" /> -->
-		<TableNoData
-			title="{$t('stats.no_bets')}"
-			description="{$t('stats.no_bets_description')}"
-			variant="{'stats'}" />
+		<div class="message-container">
+			<TableNoData
+				title="{$t('stats.no_bets')}"
+				description="{$t('stats.no_bets_description')}"
+				variant="{'stats'}" />
+		</div>
 	{:else}
 		<div class="table-container">
 			<div class="table-wrapper">
@@ -154,6 +156,10 @@ function renderHeader(header: string): string {
 <style lang="postcss">
 .table-container {
 	@apply relative h-[calc(100vh-280px)] w-full;
+}
+
+.message-container {
+	@apply flex h-[calc(100vh-190px)] flex-col items-center justify-center p-4 text-white;
 }
 
 .table-wrapper {
