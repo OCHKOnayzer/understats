@@ -1,5 +1,5 @@
 <script lang="ts">
-import { getCoreRowModel, type CellContext, type HeaderContext } from '@tanstack/table-core';
+import { getCoreRowModel, type CellContext } from '@tanstack/table-core';
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
@@ -77,9 +77,7 @@ $effect(() => {
 	}
 });
 
-type HeaderContextType = HeaderContext<Bet, unknown>;
 type CellContextType = CellContext<Bet, unknown>;
-type Context = HeaderContext<Bet, unknown> | CellContext<Bet, unknown>;
 
 function renderHeader(header: string): string {
 	return $t(header);

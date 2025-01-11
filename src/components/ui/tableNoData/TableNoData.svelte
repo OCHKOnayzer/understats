@@ -16,11 +16,11 @@ let { title, description, variant }: TableNoDataProps = $props();
 const items = ['not.install', 'not.open', 'not.sign', 'not.last'];
 </script>
 
-<section class="flex flex-col items-center justify-center p-4 text-white">
+<section class="absolute left-1/2 top-1/2 text-white">
 	<div class="flex max-w-[500px] flex-col items-start gap-[24px] rounded-[32px] bg-[#171B26] p-[32px]">
 		<div>
 			<h2 class="text-[28px] leading-[32px]">{title}</h2>
-			<h3 class="max-w-[400px] text-[15px] leading-[22px]">{description}</h3>
+			<h3 class="max-w-[440px] text-[15px] leading-[22px]">{description}</h3>
 		</div>
 		<div class="flex flex-col gap-[16px]">
 			{#each variant === 'accounts' ? items.slice(0, 3) : items as item, i}
