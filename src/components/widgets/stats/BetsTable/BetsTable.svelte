@@ -1,6 +1,6 @@
 <script lang="ts">
 import { getCoreRowModel, type CellContext } from '@tanstack/table-core';
-import { onMount } from 'svelte';
+import { onMount, onDestroy } from 'svelte';
 import { t } from 'svelte-i18n';
 
 import { createSvelteTable, FlexRender } from '$components/ui/data-table';
@@ -37,6 +37,9 @@ let hasActiveFilters = $derived(
 	$filterStore.selectedSports.length > 0 || $filterStore.selectedBookmakers.length > 0 || $filterStore.selectedAccounts.length > 0 || $filterStore.betResult.length > 0
 );
 
+let showLoading = $state(false);
+let loadingTimer: ReturnType<typeof setTimeout>;
+
 async function loadData() {
 	if ($betsTableStore.isLoading) {
 		return;
@@ -44,6 +47,9 @@ async function loadData() {
 
 	try {
 		betsTableStore.setLoading(true);
+		loadingTimer = setTimeout(() => {
+			showLoading = true;
+		}, 1000);
 
 		const response = await fetchFilteredData($filterStore);
 
@@ -55,6 +61,8 @@ async function loadData() {
 	} catch (err) {
 		betsTableStore.setError('Ошибка при загрузке данных');
 	} finally {
+		clearTimeout(loadingTimer);
+		showLoading = false;
 		betsTableStore.setLoading(false);
 		isInitialLoading = false;
 	}
@@ -62,6 +70,10 @@ async function loadData() {
 
 onMount(() => {
 	loadData();
+});
+
+onDestroy(() => {
+	clearTimeout(loadingTimer);
 });
 
 let prevPage = $state($filterStore.pagination.currentPage);
@@ -93,7 +105,7 @@ function renderHeader(header: string): string {
 		<div class="grid grid-cols-1 gap-4">
 			<MobileCard />
 		</div>
-	{:else if $betsTableStore.isLoading || $query.isLoading || isInitialLoading}
+	{:else if showLoading && ($betsTableStore.isLoading || $query.isLoading || isInitialLoading)}
 		<div class="flex h-[calc(100vh-280px)] flex-col items-center justify-center p-4 text-white">
 			<span class="loading-spinner mb-3"></span>
 			<h2>{$t('stats.loading_data')}</h2>
