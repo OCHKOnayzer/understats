@@ -1,6 +1,10 @@
 <script lang="ts">
-export let title = 'Bets Summary';
-export let sum = 'Total Bets: 100';
+interface BetsNoTableDataProps {
+	title: string;
+	sum: string;
+}
+
+let { title, sum }: BetsNoTableDataProps = $props();
 </script>
 
 <div class="item">

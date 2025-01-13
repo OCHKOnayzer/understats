@@ -26,9 +26,17 @@ const headers = [
 const { query } = useAccounts();
 const { query: profileQuery } = useUserProfile();
 
-$: isAuthenticated = !!$currentUser;
-$: isLoading = ($query.isLoading || $profileQuery.isLoading) && isAuthenticated;
-$: accounts = isAuthenticated ? $query.data : [];
+let accounts = $state([]);
+let isAuthenticated = $derived(!!$currentUser);
+let isLoading = $derived(isAuthenticated && ($query.isLoading || $profileQuery.isLoading));
+
+$effect(() => {
+	if (isAuthenticated) {
+		accounts = $query.data || [];
+	} else {
+		accounts = [];
+	}
+});
 </script>
 
 {#if !isAuthenticated}
