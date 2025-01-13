@@ -20,7 +20,7 @@ let { title, description, variant }: TableNoDataProps = $props();
 const items = ['not.install', 'not.open', 'not.sign', 'not.last'];
 
 let innerWidth = $state(0);
-let isMobile = false;
+let isMobile = $state(false);
 let isAuthenticated = $derived(!!$currentUser);
 
 $effect(() => {
@@ -40,6 +40,7 @@ onMount(() => {
 	<AuthDemoButton />
 {:else if isMobile}
 	<div class="mobile-message flex flex-col items-center justify-center gap-4 p-6 text-center text-white">
+		<img src="/icons/PC.svg" alt="">
 		<h2 class="text-xl font-semibold">Зайдите с компьютера</h2>
 		<p class="text-sm">Чтобы статистика появилась нужно установить расширение с компьютера</p>
 	</div>
@@ -81,7 +82,6 @@ onMount(() => {
 .mobile-message {
 	background: #171b26;
 	border-radius: 16px;
-	width: 90%;
 	margin: 0 auto;
 }
 </style>
