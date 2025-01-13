@@ -3,6 +3,7 @@ import { t } from 'svelte-i18n';
 
 import { supportClick } from '$src/utils/functions/supportClick';
 
+import { navigateToExtension } from '$src/utils/functions/navigate';
 import Badge from '../badge/badge.svelte';
 import Button from '../button/button.svelte';
 
@@ -11,12 +12,13 @@ interface TableNoDataProps {
 	description: string;
 	variant: 'accounts' | 'stats';
 }
+
 let { title, description, variant }: TableNoDataProps = $props();
 
 const items = ['not.install', 'not.open', 'not.sign', 'not.last'];
 </script>
 
-<div class="flex text-white max-w-[500px] flex-col items-start gap-[24px] rounded-[32px] bg-[#171B26] p-[32px]">
+<div class="flex max-w-[500px] flex-col items-start gap-[24px] rounded-[32px] bg-[#171B26] p-[32px] text-white">
 	<div>
 		<h2 class="text-[28px] leading-[32px]">{title}</h2>
 		<h3 class="max-w-[440px] text-[15px] leading-[22px]">{description}</h3>
@@ -32,6 +34,7 @@ const items = ['not.install', 'not.open', 'not.sign', 'not.last'];
 	<div class="inline-flex flex-col gap-[16px]">
 		<div>
 			<Button
+				onclick="{navigateToExtension}"
 				class="h-[56px] w-full !py-[16px]"
 				variant="not">{$t('not.install_ext')}</Button>
 		</div>
