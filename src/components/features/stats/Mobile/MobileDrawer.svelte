@@ -1,7 +1,14 @@
-<script>
+<script lang="ts">
 import * as Drawer from '$components/ui/drawer/index.ts';
 import Badge from '$src/components/ui/badge/badge.svelte';
 import Button from '$src/components/ui/button/button.svelte';
+import type { Bet } from '$src/components/widgets/stats/BetsTable/columns';
+
+interface Props {
+	data: Bet;
+}
+
+let { data }: Props = $props();
 </script>
 
 <Drawer.Root>
@@ -43,7 +50,6 @@ import Button from '$src/components/ui/button/button.svelte';
 
 			<div class="mt-[20px]">
 				<h4 class="text-[32px]">20 005 000, 00 ₽</h4>
-				<Badge variant="destructiveGreen">+25 000, 00 ₽ · 10%</Badge>
 			</div>
 		</div>
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 import { getCoreRowModel, type CellContext } from '@tanstack/table-core';
-import { onMount, onDestroy } from 'svelte';
+import { onDestroy, onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
 import { createSvelteTable, FlexRender } from '$components/ui/data-table';
@@ -15,6 +15,7 @@ import { currentUser } from '$src/stores/modalStore';
 
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 
+import { generateBetKey } from '$src/utils/functions/generateBetKey';
 import { columns, type Bet } from './columns';
 
 let innerWidth = $state(0);
@@ -101,10 +102,6 @@ function renderHeader(header: string): string {
 <div class="relative w-full">
 	{#if !isAuthenticated}
 		<AuthDemoButton />
-	{:else if isMobile}
-		<div class="grid grid-cols-1 gap-4">
-			<MobileCard />
-		</div>
 	{:else if showLoading && ($betsTableStore.isLoading || $query.isLoading || isInitialLoading)}
 		<div class="flex h-[calc(100vh-280px)] flex-col items-center justify-center p-4 text-white">
 			<span class="loading-spinner mb-3"></span>
@@ -113,14 +110,17 @@ function renderHeader(header: string): string {
 	{:else if $betsTableStore.error}
 		<div class="p-4 text-red-500">{$betsTableStore.error}</div>
 	{:else if !isInitialLoading && $betsTableStore.data.length === 0}
-		<!-- <BetsNoTableData
-			title="{$t('stats.no_bets')}"
-			description="{hasActiveFilters ? $t('stats.no_bets_filter') : $t('stats.no_bets_description')}" /> -->
 		<div class="message-container">
 			<TableNoData
 				title="{$t('stats.no_bets')}"
 				description="{$t('stats.no_bets_description')}"
 				variant="{'stats'}" />
+		</div>
+	{:else if isMobile}
+		<div class="grid grid-cols-1 gap-4">
+			{#each $betsTableStore.data as bet, index (generateBetKey(bet, index))}
+				<MobileCard data="{bet}" />
+			{/each}
 		</div>
 	{:else}
 		<div class="table-container">
@@ -147,7 +147,7 @@ function renderHeader(header: string): string {
 						{/each}
 					</Table.Header>
 					<Table.Body>
-						{#each table.getRowModel().rows as row (row.id)}
+						{#each table.getRowModel().rows as row, index (generateBetKey(row.original, index))}
 							<Table.Row data-state="{row.getIsSelected() && 'selected'}">
 								{#each row.getVisibleCells() as cell (cell.id)}
 									<Table.Cell>
