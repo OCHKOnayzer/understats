@@ -3,11 +3,11 @@ import { t } from 'svelte-i18n';
 
 import Spinner from '$components/ui/spinner/Spinner.svelte';
 import * as Table from '$components/ui/table';
+import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
 import { useAccounts } from '$src/services/accounts/useAccounts';
 import { useUserProfile } from '$src/services/auth/useProfile';
 import { currentUser } from '$src/stores/modalStore';
 import { cn } from '$utils/utils';
-import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
 
 import AuthDemoButton from '../demo/demoButtons/AuthDemoButton.svelte';
 const headers = [
@@ -26,9 +26,17 @@ const headers = [
 const { query } = useAccounts();
 const { query: profileQuery } = useUserProfile();
 
-$: isAuthenticated = !!$currentUser;
-$: isLoading = ($query.isLoading || $profileQuery.isLoading) && isAuthenticated;
-$: accounts = isAuthenticated ? $query.data : [];
+let accounts = $state([]);
+let isAuthenticated = $derived(!!$currentUser);
+let isLoading = $derived(isAuthenticated && ($query.isLoading || $profileQuery.isLoading));
+
+$effect(() => {
+	if (isAuthenticated) {
+		accounts = $query.data || [];
+	} else {
+		accounts = [];
+	}
+});
 </script>
 
 {#if !isAuthenticated}
@@ -88,16 +96,19 @@ $: accounts = isAuthenticated ? $query.data : [];
 	<!-- <BetsNoTableData
 		title="{$t('accounts.noAccountTitle')}"
 		description="{$t('accounts.noAccountsDescription')}" /> -->
-	<TableNoData
-		title="{$t('accounts.noAccountTitle')}"
-		description="{$t('accounts.noAccountsDescription')}"
-		variant="{'accounts'}" />
+	<div class="data-container">
+		<TableNoData
+			title="{$t('accounts.noAccountTitle')}"
+			description="{$t('accounts.noAccountsDescription')}"
+			variant="{'accounts'}" />
+	</div>
 {/if}
 
 <style>
 .message-container {
 	display: flex;
 	height: 90vh;
+	z-index: 5000;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
@@ -105,6 +116,15 @@ $: accounts = isAuthenticated ? $query.data : [];
 	background: #171b26;
 	font-weight: 300;
 	font-family: 'Manrope';
+}
+
+.data-container {
+	display: flex;
+	height: 90vh;
+	z-index: 5000;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .table-wrapper {

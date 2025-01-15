@@ -1,6 +1,6 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
+import { t } from 'svelte-i18n';
 
 import { isFaqMenuOpen, openFaqMenu } from '$src/stores/faq';
 

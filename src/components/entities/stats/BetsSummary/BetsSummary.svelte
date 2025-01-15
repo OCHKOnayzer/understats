@@ -24,12 +24,12 @@ const data = createQuery({
 		title="{$data.data ? String($data.data) : 0} {$t('tariffs.limits_bets')}"
 		sum="{$t('stats.in_summ')} $0" />
 	<TotalBet
-		title="{$t('stats.wins')}"
+		title="0 {$t('stats.wins')}"
 		sum="{$t('stats.in_summ')} $0" />
 	<TotalBet
-		title="{$t('stats.loses')}"
+		title="0 {$t('stats.loses')}"
 		sum="{$t('stats.in_summ')} $0" />
 	<TotalBet
-		title="{$t('stats.loses')}"
+		title="0 {$t('stats.loses')}"
 		sum="{$t('stats.in_summ')} $0" />
 </div>

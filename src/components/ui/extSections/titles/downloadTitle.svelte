@@ -1,8 +1,5 @@
 <script>
-import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
-
-import Stats from '../stats.svelte';
 
 let isMobile = false;
 

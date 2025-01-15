@@ -1,6 +1,6 @@
 <script lang="ts">
-import { getCoreRowModel, type CellContext, type HeaderContext } from '@tanstack/table-core';
-import { onMount } from 'svelte';
+import { getCoreRowModel, type CellContext } from '@tanstack/table-core';
+import { onDestroy, onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
 import { createSvelteTable, FlexRender } from '$components/ui/data-table';
@@ -12,6 +12,7 @@ import { useUserProfile } from '$src/services/auth/useProfile';
 import { betsTableStore } from '$src/stores/betsTableStore';
 import { filterStore } from '$src/stores/filterStore';
 import { currentUser } from '$src/stores/modalStore';
+import { generateBetKey } from '$src/utils/functions/generateBetKey';
 
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 
@@ -37,6 +38,9 @@ let hasActiveFilters = $derived(
 	$filterStore.selectedSports.length > 0 || $filterStore.selectedBookmakers.length > 0 || $filterStore.selectedAccounts.length > 0 || $filterStore.betResult.length > 0
 );
 
+let showLoading = $state(false);
+let loadingTimer: ReturnType<typeof setTimeout>;
+
 async function loadData() {
 	if ($betsTableStore.isLoading) {
 		return;
@@ -44,6 +48,9 @@ async function loadData() {
 
 	try {
 		betsTableStore.setLoading(true);
+		loadingTimer = setTimeout(() => {
+			showLoading = true;
+		}, 1000);
 
 		const response = await fetchFilteredData($filterStore);
 
@@ -55,6 +62,8 @@ async function loadData() {
 	} catch (err) {
 		betsTableStore.setError('Ошибка при загрузке данных');
 	} finally {
+		clearTimeout(loadingTimer);
+		showLoading = false;
 		betsTableStore.setLoading(false);
 		isInitialLoading = false;
 	}
@@ -62,6 +71,10 @@ async function loadData() {
 
 onMount(() => {
 	loadData();
+});
+
+onDestroy(() => {
+	clearTimeout(loadingTimer);
 });
 
 let prevPage = $state($filterStore.pagination.currentPage);
@@ -77,9 +90,7 @@ $effect(() => {
 	}
 });
 
-type HeaderContextType = HeaderContext<Bet, unknown>;
 type CellContextType = CellContext<Bet, unknown>;
-type Context = HeaderContext<Bet, unknown> | CellContext<Bet, unknown>;
 
 function renderHeader(header: string): string {
 	return $t(header);
@@ -91,11 +102,7 @@ function renderHeader(header: string): string {
 <div class="relative w-full">
 	{#if !isAuthenticated}
 		<AuthDemoButton />
-	{:else if isMobile}
-		<div class="grid grid-cols-1 gap-4">
-			<MobileCard />
-		</div>
-	{:else if $betsTableStore.isLoading || $query.isLoading || isInitialLoading}
+	{:else if showLoading && ($betsTableStore.isLoading || $query.isLoading || isInitialLoading)}
 		<div class="flex h-[calc(100vh-280px)] flex-col items-center justify-center p-4 text-white">
 			<span class="loading-spinner mb-3"></span>
 			<h2>{$t('stats.loading_data')}</h2>
@@ -103,13 +110,18 @@ function renderHeader(header: string): string {
 	{:else if $betsTableStore.error}
 		<div class="p-4 text-red-500">{$betsTableStore.error}</div>
 	{:else if !isInitialLoading && $betsTableStore.data.length === 0}
-		<!-- <BetsNoTableData
-			title="{$t('stats.no_bets')}"
-			description="{hasActiveFilters ? $t('stats.no_bets_filter') : $t('stats.no_bets_description')}" /> -->
-		<TableNoData
-			title="{$t('stats.no_bets')}"
-			description="{$t('stats.no_bets_description')}"
-			variant="{'stats'}" />
+		<div class="message-container">
+			<TableNoData
+				title="{$t('stats.no_bets')}"
+				description="{$t('stats.no_bets_description')}"
+				variant="{'stats'}" />
+		</div>
+	{:else if isMobile}
+		<div class="mt-4 grid grid-cols-1 gap-2">
+			{#each $betsTableStore.data as bet, index (generateBetKey(bet, index))}
+				<MobileCard data="{bet}" />
+			{/each}
+		</div>
 	{:else}
 		<div class="table-container">
 			<div class="table-wrapper">
@@ -135,7 +147,7 @@ function renderHeader(header: string): string {
 						{/each}
 					</Table.Header>
 					<Table.Body>
-						{#each table.getRowModel().rows as row (row.id)}
+						{#each table.getRowModel().rows as row, index (generateBetKey(row.original, index))}
 							<Table.Row data-state="{row.getIsSelected() && 'selected'}">
 								{#each row.getVisibleCells() as cell (cell.id)}
 									<Table.Cell>
@@ -156,6 +168,10 @@ function renderHeader(header: string): string {
 <style lang="postcss">
 .table-container {
 	@apply relative h-[calc(100vh-280px)] w-full;
+}
+
+.message-container {
+	@apply flex h-[calc(100vh-190px)] flex-col items-center justify-center p-4 text-white;
 }
 
 .table-wrapper {
