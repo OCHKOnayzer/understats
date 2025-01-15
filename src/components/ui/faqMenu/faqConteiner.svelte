@@ -1,13 +1,23 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
+import { t } from 'svelte-i18n';
 
 import { isFaqMenuOpen, openFaqMenu } from '$src/stores/faq';
-import { useBreakpoint } from '$src/hooks/useBreakpoint';
 
 import FaqMenu from './FaqMenu.svelte';
 
-const { isMobile } = useBreakpoint(800);
+let isMobile = false;
+
+function checkScreenWidth() {
+	isMobile = window.innerWidth <= 800;
+}
+
+onMount(() => {
+	openFaqMenu();
+	checkScreenWidth();
+	window.addEventListener('resize', checkScreenWidth);
+	return () => window.removeEventListener('resize', checkScreenWidth);
+});
 
 let selectedItemName = '';
 let article: string | null = null;

@@ -10,9 +10,9 @@ export let data: Bet;
 
 <div class="rounded-[20px] bg-[#363A45] p-4 text-white">
 	<div class="mb-4 flex items-center justify-between text-[20px]">
-		<div class="w-full rounded-[8px] bg-[#171B26]">
+		<!-- <div class="w-full rounded-[8px] bg-[#171B26]">
 			<h2 class="p-2 text-[12px]">22222</h2>
-		</div>
+		</div> -->
 	</div>
 
 	<div class="mb-4 flex flex-col">
@@ -40,7 +40,7 @@ export let data: Bet;
 			</div>
 			<div>
 				<h2 class="text-[12px] font-normal">{$t('columns.bet.result')}</h2>
-				<h3 class="text-[16px] font-bold text-[#5EC654]">{+data.amounts.stake + +data.amounts.win}</h3>
+				<h3 class="text-[16px] font-bold text-[#5EC654]">{data.amounts.win}</h3>
 			</div>
 		</div>
 	</div>

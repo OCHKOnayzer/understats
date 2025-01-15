@@ -79,7 +79,7 @@ console.log(data);
 				</div>
 				<div>
 					<h2 class="text-[12px] font-normal">{$t('columns.bet.result')}</h2>
-					<h3 class="text-[16px] font-bold text-[#5EC654]">{+data.amounts.stake + +data.amounts.win}</h3>
+					<h3 class="text-[16px] font-bold text-[#5EC654]">{data.amounts.win}</h3>
 				</div>
 			</div>
 		</div>

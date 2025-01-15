@@ -1,12 +1,17 @@
 <script>
-import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 
-import { useBreakpoint } from '$src/hooks/useBreakpoint';
+let isMobile = false;
 
-import Stats from '../stats.svelte';
+function checkScreenWidth() {
+	isMobile = window.innerWidth <= 768;
+}
 
-const { isMobile } = useBreakpoint(768);
+onMount(() => {
+	checkScreenWidth();
+	window.addEventListener('resize', checkScreenWidth);
+	return () => window.removeEventListener('resize', checkScreenWidth);
+});
 </script>
 
 <div class="section_title">

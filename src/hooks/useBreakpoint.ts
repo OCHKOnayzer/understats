@@ -1,17 +1,14 @@
 import { onMount } from 'svelte';
+import { writable } from 'svelte/store';
 
 export const useBreakpoint = (breakpoint = 400) => {
-	let isMobile = $state(false);
-	let innerWidth = $state(0);
+	const isMobile = writable(false);
+	const innerWidth = writable(0);
 
 	const updateWidth = () => {
-		innerWidth = window.innerWidth;
-		isMobile = innerWidth <= breakpoint;
+		innerWidth.set(window.innerWidth);
+		isMobile.set(window.innerWidth <= breakpoint);
 	};
-
-	$effect(() => {
-		isMobile = innerWidth < breakpoint;
-	});
 
 	onMount(() => {
 		updateWidth();

@@ -1,10 +1,10 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
-
 import { useBreakpoint } from '$src/hooks/useBreakpoint';
 import { currentUser } from '$src/stores/modalStore';
 import { navigateToExtension } from '$src/utils/functions/navigate';
 import { supportClick } from '$src/utils/functions/supportClick';
+import { get } from 'svelte/store';
 
 import AuthDemoButton from '../../widgets/demo/demoButtons/AuthDemoButton.svelte';
 import Badge from '../badge/badge.svelte';
@@ -25,7 +25,7 @@ const { isMobile } = useBreakpoint(400);
 
 {#if !isAuthenticated}
 	<AuthDemoButton />
-{:else if isMobile}
+{:else if $isMobile}
 	<div class="mobile-message flex flex-col items-center justify-center gap-4 p-6 text-center text-white">
 		<img
 			src="/icons/PC.svg"
