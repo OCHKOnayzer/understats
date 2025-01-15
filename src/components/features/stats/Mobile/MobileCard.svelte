@@ -1,7 +1,9 @@
 <script lang="ts">
-import type { Bet } from '$src/components/widgets/stats/BetsTable/columns';
 import { t } from 'svelte-i18n';
+
 import MobileDrawer from './MobileDrawer.svelte';
+
+import type { Bet } from '$src/components/widgets/stats/BetsTable/columns';
 
 export let data: Bet;
 </script>

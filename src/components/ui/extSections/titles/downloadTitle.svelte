@@ -2,8 +2,9 @@
 import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 
-import Stats from '../stats.svelte';
 import { useBreakpoint } from '$src/hooks/useBreakpoint';
+
+import Stats from '../stats.svelte';
 
 const { isMobile } = useBreakpoint(768);
 </script>

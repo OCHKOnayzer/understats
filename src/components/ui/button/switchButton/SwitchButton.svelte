@@ -1,6 +1,7 @@
 <script lang="ts">
-import { useBreakpoint } from '$src/hooks/useBreakpoint';
 import { t } from 'svelte-i18n';
+
+import { useBreakpoint } from '$src/hooks/useBreakpoint';
 
 
 export let switch_modal: any;

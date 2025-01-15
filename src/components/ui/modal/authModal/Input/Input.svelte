@@ -1,6 +1,7 @@
 <script lang="ts">
-import { useBreakpoint } from '$src/hooks/useBreakpoint';
 import { onMount } from 'svelte';
+
+import { useBreakpoint } from '$src/hooks/useBreakpoint';
 export let input_type: string;
 export let value = '';
 export let input_name: string;

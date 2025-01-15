@@ -3,9 +3,9 @@ import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 
 import { isFaqMenuOpen, openFaqMenu } from '$src/stores/faq';
+import { useBreakpoint } from '$src/hooks/useBreakpoint';
 
 import FaqMenu from './FaqMenu.svelte';
-import { useBreakpoint } from '$src/hooks/useBreakpoint';
 
 const { isMobile } = useBreakpoint(800);
 

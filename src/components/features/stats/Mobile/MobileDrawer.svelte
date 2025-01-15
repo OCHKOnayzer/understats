@@ -1,8 +1,10 @@
 <script lang="ts">
+import { t } from 'svelte-i18n';
+
 import * as Drawer from '$components/ui/drawer/index.ts';
 import Button from '$src/components/ui/button/button.svelte';
+
 import type { Bet } from '$src/components/widgets/stats/BetsTable/columns';
-import { t } from 'svelte-i18n';
 
 interface Props {
 	data: Bet;

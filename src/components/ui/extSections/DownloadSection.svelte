@@ -2,11 +2,11 @@
 import { t } from 'svelte-i18n';
 
 import { extensionInfo } from '$src/stores/extensionStore';
+import { useBreakpoint } from '$src/hooks/useBreakpoint';
 
 import DownloadExt from '../button/downloadExt/DownloadExt.svelte';
 import FaqOpen from '../button/faqOpen/FaqOpen.svelte';
 
-import { useBreakpoint } from '$src/hooks/useBreakpoint';
 import DownloadTitle from './titles/downloadTitle.svelte';
 
 interface BrowserItem {

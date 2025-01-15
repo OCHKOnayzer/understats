@@ -12,10 +12,10 @@ import { useUserProfile } from '$src/services/auth/useProfile';
 import { betsTableStore } from '$src/stores/betsTableStore';
 import { filterStore } from '$src/stores/filterStore';
 import { currentUser } from '$src/stores/modalStore';
+import { generateBetKey } from '$src/utils/functions/generateBetKey';
 
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 
-import { generateBetKey } from '$src/utils/functions/generateBetKey';
 import { columns, type Bet } from './columns';
 
 let innerWidth = $state(0);
@@ -117,7 +117,7 @@ function renderHeader(header: string): string {
 				variant="{'stats'}" />
 		</div>
 	{:else if isMobile}
-		<div class="grid grid-cols-1 gap-2 mt-4">
+		<div class="mt-4 grid grid-cols-1 gap-2">
 			{#each $betsTableStore.data as bet, index (generateBetKey(bet, index))}
 				<MobileCard data="{bet}" />
 			{/each}
