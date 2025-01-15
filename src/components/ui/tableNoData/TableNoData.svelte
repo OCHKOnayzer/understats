@@ -43,8 +43,8 @@ onMount(() => {
 		<img
 			src="/icons/PC.svg"
 			alt="" />
-		<h2 class="text-xl font-semibold">Зайдите с компьютера</h2>
-		<p class="text-sm">Чтобы статистика появилась нужно установить расширение с компьютера</p>
+		<h2 class="text-xl font-semibold">{$t('not.pc')}</h2>
+		<p class="text-sm">{$t('not.pc_desc')}</p>
 	</div>
 {:else}
 	<div class="flex max-w-[500px] flex-col items-start gap-[24px] rounded-[32px] bg-[#171B26] p-[32px] text-white">

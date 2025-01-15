@@ -17,18 +17,18 @@ console.log(data);
 	<Drawer.Trigger class="w-full focus:outline-none focus:ring-0">
 		<Button
 			class="h-[56px] w-full text-[16px]"
-			variant="card">Подробнее</Button>
+			variant="card">{$t('not.more')}</Button>
 	</Drawer.Trigger>
 	<Drawer.Content class="rounded-[16px] border-none bg-[#20242F] p-4 text-white focus:outline-none focus:ring-0">
 		<Drawer.Header>
-			<Drawer.Title class="text-left text-[30px]">Подробнее</Drawer.Title>
+			<Drawer.Title class="text-left text-[30px]">{$t('not.more')}</Drawer.Title>
 		</Drawer.Header>
 
 		<div class="mb-[30px] rounded-[20px] bg-[#0D111D] p-4">
 			<div class="mb-4 flex items-center justify-between text-[20px]">
-				<div class="w-full rounded-[8px] bg-[#171B26]">
+				<!-- <div class="w-full rounded-[8px] bg-[#171B26]">
 					<h2 class="p-2 text-[12px]">22222</h2>
-				</div>
+				</div> -->
 			</div>
 
 			<div class="flex items-center justify-between text-[20px]">
