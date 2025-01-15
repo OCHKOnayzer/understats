@@ -1,31 +1,20 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
-import { onMount } from 'svelte';
 
 import { extensionInfo } from '$src/stores/extensionStore';
 
 import DownloadExt from '../button/downloadExt/DownloadExt.svelte';
 import FaqOpen from '../button/faqOpen/FaqOpen.svelte';
 
+import { useBreakpoint } from '$src/hooks/useBreakpoint';
 import DownloadTitle from './titles/downloadTitle.svelte';
-import Stats from './stats.svelte';
 
 interface BrowserItem {
 	name: string;
 	image: string;
 }
 
-let isMobile = false;
-
-function checkScreenWidth() {
-	isMobile = window.innerWidth <= 800;
-}
-
-onMount(() => {
-	checkScreenWidth();
-	window.addEventListener('resize', checkScreenWidth);
-	return () => window.removeEventListener('resize', checkScreenWidth);
-});
+const { isMobile } = useBreakpoint(800);
 
 const browserArr: BrowserItem[] = [
 	{

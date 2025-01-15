@@ -1,20 +1,11 @@
 <script lang="ts">
+import { useBreakpoint } from '$src/hooks/useBreakpoint';
 import { onMount } from 'svelte';
 export let input_type: string;
 export let value = '';
 export let input_name: string;
 
-let isMobile = false;
-
-function checkScreenWidth() {
-	isMobile = window.innerWidth <= 768;
-}
-
-onMount(() => {
-	checkScreenWidth();
-	window.addEventListener('resize', checkScreenWidth);
-	return () => window.removeEventListener('resize', checkScreenWidth);
-});
+const { isMobile } = useBreakpoint(768);
 </script>
 
 {#if isMobile}

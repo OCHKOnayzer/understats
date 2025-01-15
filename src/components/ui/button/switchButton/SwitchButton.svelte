@@ -1,22 +1,12 @@
 <script lang="ts">
-import { onMount } from 'svelte';
+import { useBreakpoint } from '$src/hooks/useBreakpoint';
 import { t } from 'svelte-i18n';
 
-import { goto } from '$app/navigation';
 
 export let switch_modal: any;
 export let switch_text: string;
-let isMobile = false;
 
-function checkScreenWidth() {
-	isMobile = window.innerWidth <= 768;
-}
-
-onMount(() => {
-	checkScreenWidth();
-	window.addEventListener('resize', checkScreenWidth);
-	return () => window.removeEventListener('resize', checkScreenWidth);
-});
+const { isMobile } = useBreakpoint(768);
 
 function handleClick() {
 	if (typeof switch_modal === 'function') {

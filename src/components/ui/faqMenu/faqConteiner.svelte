@@ -5,19 +5,9 @@ import { onMount } from 'svelte';
 import { isFaqMenuOpen, openFaqMenu } from '$src/stores/faq';
 
 import FaqMenu from './FaqMenu.svelte';
+import { useBreakpoint } from '$src/hooks/useBreakpoint';
 
-let isMobile = false;
-
-function checkScreenWidth() {
-	isMobile = window.innerWidth <= 800;
-}
-
-onMount(() => {
-	openFaqMenu();
-	checkScreenWidth();
-	window.addEventListener('resize', checkScreenWidth);
-	return () => window.removeEventListener('resize', checkScreenWidth);
-});
+const { isMobile } = useBreakpoint(800);
 
 let selectedItemName = '';
 let article: string | null = null;

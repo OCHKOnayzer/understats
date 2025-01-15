@@ -1,12 +1,10 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
-import AuthDemoButton from '../../widgets/demo/demoButtons/AuthDemoButton.svelte';
-
-import { supportClick } from '$src/utils/functions/supportClick';
-
+import { useBreakpoint } from '$src/hooks/useBreakpoint';
 import { currentUser } from '$src/stores/modalStore';
 import { navigateToExtension } from '$src/utils/functions/navigate';
-import { onMount } from 'svelte';
+import { supportClick } from '$src/utils/functions/supportClick';
+import { t } from 'svelte-i18n';
+import AuthDemoButton from '../../widgets/demo/demoButtons/AuthDemoButton.svelte';
 import Badge from '../badge/badge.svelte';
 import Button from '../button/button.svelte';
 
@@ -19,22 +17,9 @@ interface TableNoDataProps {
 let { title, description, variant }: TableNoDataProps = $props();
 const items = ['not.install', 'not.open', 'not.sign', 'not.last'];
 
-let innerWidth = $state(0);
-let isMobile = $state(false);
 let isAuthenticated = $derived(!!$currentUser);
-
-$effect(() => {
-	isMobile = innerWidth < 400;
-});
-
-onMount(() => {
-	window.addEventListener('resize', () => {
-		isMobile = window.innerWidth <= 400;
-	});
-});
+const { isMobile } = useBreakpoint(400);
 </script>
-
-<svelte:window bind:innerWidth="{innerWidth}" />
 
 {#if !isAuthenticated}
 	<AuthDemoButton />
