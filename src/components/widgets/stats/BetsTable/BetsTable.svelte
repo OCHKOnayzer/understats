@@ -117,7 +117,7 @@ function renderHeader(header: string): string {
 				variant="{'stats'}" />
 		</div>
 	{:else if isMobile}
-		<div class="grid grid-cols-1 gap-4">
+		<div class="grid grid-cols-1 gap-2 mt-4">
 			{#each $betsTableStore.data as bet, index (generateBetKey(bet, index))}
 				<MobileCard data="{bet}" />
 			{/each}

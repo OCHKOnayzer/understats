@@ -15,7 +15,7 @@ let shouldShowPagination = $derived($query.data && isAuthenticated && !$betsTabl
 </script>
 
 <div class="flex h-full flex-col justify-between">
-	<div class="px-[2rem]">
+	<div class="px-[1.5rem]">
 		<StatsMenu />
 		<BetsTable />
 	</div>

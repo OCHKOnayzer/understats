@@ -411,6 +411,7 @@
 		"bet.ammount": "Сумма",
 		"bet.ratio": "Коэффициент",
 		"bet.win": "Выигрыш",
-		"bet.status": "Статус"
+		"bet.status": "Статус",
+		"bet.result": "Итого"
 	}
 }
