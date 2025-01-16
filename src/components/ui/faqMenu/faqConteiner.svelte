@@ -102,6 +102,7 @@ async function loadArticleComponent(article2: string) {
 }
 
 .faqChapter {
+	height: 100%;
 	width: 75%;
 	border-radius: 5px;
 	background-color: #252935;
@@ -111,7 +112,6 @@ async function loadArticleComponent(article2: string) {
 }
 .faq_null {
 	width: 100%;
-	height: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;

@@ -10,21 +10,21 @@ import Tariffs from './tariffs.svelte';
 		desc="{'tariffs.lite'}"
 		limitations="{'1 000'}"
 		accounts="{'5'}"
-		price="{'10,00'}"
-		price_year="{'100,00'}" />
+		price="{'10'}"
+		price_year="{'100'}" />
 	<Tariffs
 		name="{'Standart'}"
 		desc="{'tariffs.standart'}"
 		limitations="{'20 000'}"
 		accounts="{'100'}"
-		price="{'30,00'}"
-		price_year="{'300,00'}" />
+		price="{'30'}"
+		price_year="{'300'}" />
 	<Tariffs
 		name="{'Pro'}"
 		desc="{'tariffs.pro'}"
 		limitations="{$t('tariffs.no_limits')}"
-		price="{'100,00'}"
-		price_year="{'1000,00'}" />
+		price="{'100'}"
+		price_year="{'1000'}" />
 </div>
 
 <style>

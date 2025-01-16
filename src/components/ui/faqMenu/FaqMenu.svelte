@@ -23,10 +23,13 @@ const handleSelectItemFromMenu = (event: any) => {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	height: 100%;
 }
 @media (max-width: 800px) {
 	.faqMenu {
 		width: 100%;
+		margin-right: 0px;
 	}
+	
 }
 </style>

@@ -34,7 +34,7 @@ let { title } = $$props;
 	.progressTitle {
 		flex-direction: column;
 		align-items: flex-start;
-		padding-left: 35px;
+		padding-left: 28px;
 		font-size: 25px;
 	}
 }

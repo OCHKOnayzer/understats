@@ -1,7 +1,7 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 
-interface ImageProps {
+type ImageProps = {
 	image: string;
 	name: string;
 	description: string;
