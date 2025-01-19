@@ -50,7 +50,7 @@ console.log(data);
 
 		<div class="rounded-[28px] bg-[#171B26] p-4">
 			<div class="flex items-center justify-between">
-				<h2>{data.event.competitionName}</h2>
+				<h2>{data.event.competitionName.default}</h2>
 			</div>
 
 			<div class="mt-[12px]">
@@ -59,8 +59,8 @@ console.log(data);
 
 			<div class="flex justify-between border-b-2 border-dashed border-[#20242F]">
 				<div class="w-full pb-4">
-					<h2 class="mb-2 text-[20px] font-bold">{data.event.name1} - {data.event.name2}</h2>
-					<h3 class="text-[14px] font-medium">{data.outcome}</h3>
+					<h2 class="mb-2 text-[20px] font-bold">{data.event.name1.default} - {data.event.name2.default}</h2>
+					<h3 class="text-[14px] font-medium">{data.outcome.default}</h3>
 				</div>
 
 				<div>

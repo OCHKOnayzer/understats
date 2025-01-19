@@ -1,18 +1,7 @@
+import type { IAccountResponse } from '$src/types/accounts';
 import type { ColumnDef } from '@tanstack/table-core';
 
-export interface IAccountResponse {
-	balance: string;
-	betsCount: number;
-	clientSeq: number;
-	currency: string;
-	email: string;
-	extendedId: string;
-	fullName: string;
-	login: string;
-	phone: string;
-	registrationDate: string;
-	siteName: string;
-}
+export type { IAccountResponse };
 
 export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 	{
@@ -26,39 +15,48 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 				console.error('Error formatting date:', e);
 				return 'Invalid date';
 			}
-		}
+		},
+		meta: { width: '120px' }
 	},
 	{
 		accessorKey: 'clientSeq',
-		header: 'accounts.id'
+		header: 'accounts.id',
+		meta: { width: '80px' }
 	},
 	{
 		accessorKey: 'login',
-		header: 'accounts.name'
+		header: 'accounts.login',
+		meta: { width: '100px' }
 	},
 	{
 		accessorKey: 'balance',
-		header: 'accounts.balance'
+		header: 'accounts.balance',
+		meta: { width: '100px' }
 	},
 	{
 		accessorKey: 'fullName',
-		header: 'accounts.fullName'
+		header: 'accounts.fullName',
+		meta: { width: '150px' }
 	},
 	{
 		accessorKey: 'email',
-		header: 'accounts.email'
+		header: 'accounts.mail',
+		meta: { width: '180px' }
 	},
 	{
 		accessorKey: 'phone',
-		header: 'accounts.phone'
+		header: 'accounts.phone',
+		meta: { width: '120px' }
 	},
 	{
 		accessorKey: 'registrationDate',
-		header: 'accounts.registrationDate'
+		header: 'accounts.regData',
+		meta: { width: '130px' }
 	},
 	{
 		accessorKey: 'lastBet',
-		header: 'accounts.lastBet'
+		header: 'accounts.lastBet',
+		meta: { width: '130px' }
 	},
 	{
 		accessorKey: 'outcome',

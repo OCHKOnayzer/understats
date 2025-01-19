@@ -6,7 +6,9 @@ export interface Bet {
 	accountId: string;
 	clientSeq: number;
 	rate: string;
-	outcome: string;
+	outcome: {
+		default: string;
+	};
 	status: string;
 	amounts: {
 		stake: string;
@@ -15,9 +17,15 @@ export interface Bet {
 	event: {
 		id: string;
 		sport: string;
-		competitionName: string;
-		name1: string;
-		name2: string;
+		competitionName: {
+			default: string;
+		};
+		name1: {
+			default: string;
+		};
+		name2: {
+			default: string;
+		};
 		startTime: Record<string, any>;
 	};
 	dates: {
@@ -52,13 +60,13 @@ export const columns: ColumnDef<Bet, unknown>[] = [
 		header: 'columns.bet.sport'
 	},
 	{
-		accessorKey: 'event.competitionName',
-		header: 'columns.bet.event',
-		cell: ({ row }) => {
-			const event = row.original.event;
-			if (!event) return 'Нет данных';
-			return `${event.name1} - ${event.name2}`;
-		}
+		accessorKey: 'event.competitionName.default',
+		header: 'columns.bet.event'
+		// cell: ({ row }) => {
+		// 	const event = row.original.event;
+		// 	if (!event) return 'Нет данных';
+		// 	return `${event.name1} - ${event.name2}`;
+		// }
 	},
 	{
 		accessorKey: 'amounts.stake',
@@ -73,7 +81,7 @@ export const columns: ColumnDef<Bet, unknown>[] = [
 		header: 'columns.bet.win'
 	},
 	{
-		accessorKey: 'outcome',
+		accessorKey: 'status',
 		header: 'columns.bet.status'
 	}
 ];

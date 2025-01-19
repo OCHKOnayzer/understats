@@ -1,42 +1,41 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
-
 import Spinner from '$components/ui/spinner/Spinner.svelte';
 import * as Table from '$components/ui/table';
+import { createSvelteTable, FlexRender } from '$src/components/ui/data-table';
 import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
 import { useAccounts } from '$src/services/accounts/useAccounts';
 import { useUserProfile } from '$src/services/auth/useProfile';
 import { currentUser } from '$src/stores/modalStore';
-import { cn } from '$utils/utils';
-
+import type { IAccountResponse } from '$src/types/accounts';
+import { generateAccountKey } from '$src/utils/functions/generateAccountKey';
+import { cn } from '$src/utils/utils';
+import { getCoreRowModel, type CellContext } from '@tanstack/table-core';
+import { t } from 'svelte-i18n';
 import AuthDemoButton from '../demo/demoButtons/AuthDemoButton.svelte';
-const headers = [
-	{ title: $t('accounts.bookmaker'), key: 'siteName' },
-	{ title: $t('accounts.auth'), key: 'login' },
-	{ title: $t('accounts.login'), key: 'extendedId' },
-	{ title: $t('accounts.balance'), key: 'balance' },
-	{ title: $t('accounts.name'), key: 'fullName' },
-	{ title: $t('accounts.mail'), key: 'email' },
-	{ title: $t('accounts.phone'), key: 'phone' },
-	{ title: $t('accounts.regData'), key: 'registrationDate' },
-	{ title: $t('accounts.lastBet'), key: 'lastBet' },
-	{ title: $t('accounts.betCount'), key: 'currency' }
-];
+import { accountsColumns } from './accountsColumns';
 
 const { query } = useAccounts();
 const { query: profileQuery } = useUserProfile();
 
-let accounts = $state([]);
+let accounts = $state<IAccountResponse[]>([]);
 let isAuthenticated = $derived(!!$currentUser);
 let isLoading = $derived(isAuthenticated && ($query.isLoading || $profileQuery.isLoading));
 
 $effect(() => {
-	if (isAuthenticated) {
-		accounts = $query.data || [];
-	} else {
-		accounts = [];
-	}
+	accounts = isAuthenticated ? $query.data || [] : [];
 });
+
+const table = createSvelteTable({
+	get data() {
+		return accounts;
+	},
+	columns: accountsColumns,
+	getCoreRowModel: getCoreRowModel()
+});
+
+type CellContextType = CellContext<IAccountResponse, unknown>;
+
+const renderHeader = (header: string): string => $t(header);
 </script>
 
 {#if !isAuthenticated}
@@ -52,40 +51,37 @@ $effect(() => {
 	<div class="table-wrapper">
 		<div class="table-container">
 			<Table.Root class="mt-3 w-full caption-bottom text-[12px]">
-				<Table.Header class="sticky top-0 bg-[#31384A]">
-					<Table.Row class="border-none">
-						{#each headers as header}
-							<Table.Head class="max-w-[150px] truncate whitespace-nowrap sm:h-7 md:h-8 xl:h-10">
-								<div class="flex items-center gap-1 overflow-hidden">
-									<img
-										class="flex-shrink-0 sm:h-2 sm:w-2 md:h-2 md:w-2 xl:h-4 xl:w-4"
-										src="icons/bk/table.svg"
-										alt="table" />
-									<span class="overflow-hidden truncate sm:text-[9px] md:text-[10px] xl:text-[14px]">
-										{header.title}
-									</span>
-								</div>
-							</Table.Head>
-						{/each}
-					</Table.Row>
+				<Table.Header class="table-head sticky top-0 bg-[#31384A]">
+					{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
+						<Table.Row class="border-none">
+							{#each headerGroup.headers as header (header.id)}
+								<Table.Head class="table-head">
+									<div class="header-content">
+										<img
+											class="header-icon"
+											src="icons/bk/table.svg"
+											alt="table" />
+										<span class="header-text">
+											<FlexRender
+												content="{renderHeader(header.column.columnDef.header as string)}"
+												context="{header.getContext()}" />
+										</span>
+									</div>
+								</Table.Head>
+							{/each}
+						</Table.Row>
+					{/each}
 				</Table.Header>
 				<Table.Body>
-					{#each accounts as account, index (`${account.siteName}-${account.extendedId}-${index}`)}
-						<Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'} text-[20px] active:bg-[#3D3A8540]`)}">
-							<Table.Cell>{account.siteName || 'N/A'}</Table.Cell>
-							<Table.Cell>{account.extendedId || 'N/A'}</Table.Cell>
-							<Table.Cell>
-								{account.login ? 'Подключен' : 'Не подключен'}
-							</Table.Cell>
-							<Table.Cell>{account.balance}</Table.Cell>
-							<Table.Cell>{account.fullName}</Table.Cell>
-							<Table.Cell>{account.email}</Table.Cell>
-							<Table.Cell>{account.phone}</Table.Cell>
-							<Table.Cell>
-								{account.registrationDate}
-							</Table.Cell>
-							<Table.Cell>lastBet</Table.Cell>
-							<Table.Cell>{account.currency}</Table.Cell>
+					{#each table.getRowModel().rows as row, index (generateAccountKey(row.original, index))}
+						<Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'} text-[10px] active:bg-[#3D3A8540]`)}">
+							{#each row.getVisibleCells() as cell (cell.id)}
+								<Table.Cell>
+									<FlexRender
+										content="{cell.column.columnDef.cell}"
+										context="{cell.getContext() as CellContextType}" />
+								</Table.Cell>
+							{/each}
 						</Table.Row>
 					{/each}
 				</Table.Body>
@@ -93,9 +89,6 @@ $effect(() => {
 		</div>
 	</div>
 {:else}
-	<!-- <BetsNoTableData
-		title="{$t('accounts.noAccountTitle')}"
-		description="{$t('accounts.noAccountsDescription')}" /> -->
 	<div class="data-container">
 		<TableNoData
 			title="{$t('accounts.noAccountTitle')}"
@@ -104,55 +97,46 @@ $effect(() => {
 	</div>
 {/if}
 
-<style>
-.message-container {
-	display: flex;
-	height: 90vh;
-	z-index: 5000;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	background: #171b26;
-	font-weight: 300;
-	font-family: 'Manrope';
+<style lang="postcss">
+.message-container,
+.data-container {
+	@apply flex h-[90vh] w-full flex-col items-center justify-center;
 }
 
-.data-container {
-	display: flex;
-	height: 90vh;
-	z-index: 5000;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+.message-container {
+	@apply z-[5000] bg-[#171b26] font-[Manrope] font-light;
 }
 
 .table-wrapper {
-	width: 100%;
-	position: relative;
-	overflow: hidden;
-	box-sizing: border-box;
-	background: #171b26;
+	@apply relative w-full overflow-hidden bg-[#171b26];
 }
 
 .table-container {
-	width: 100%;
-	overflow-x: auto;
+	@apply relative w-full overflow-x-auto;
 	-webkit-overflow-scrolling: touch;
-	position: relative;
-	box-sizing: border-box;
+}
+
+.table-head {
+	@apply min-h-[40px] max-w-[150px] !text-[12px] sm:min-h-[28px] md:min-h-[32px] xl:min-h-[40px];
+}
+
+.header-content {
+	@apply flex h-full items-center gap-1;
+}
+
+.header-icon {
+	@apply flex-shrink-0 sm:h-2 sm:w-2 md:h-2 md:w-2 xl:h-4 xl:w-4;
+}
+
+.header-text {
+	@apply sm:text-[9px] md:text-[10px] xl:text-[10px];
 }
 
 :global(.table-container table) {
-	width: 100%;
-	table-layout: auto;
+	@apply w-full table-auto;
 }
 
 :global(.table-container th) {
-	min-width: 0;
-	max-width: 150px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+	@apply min-w-0 max-w-[150px];
 }
 </style>
