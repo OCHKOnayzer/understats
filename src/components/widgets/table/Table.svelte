@@ -9,9 +9,10 @@ import { currentUser } from '$src/stores/modalStore';
 import type { IAccountResponse } from '$src/types/accounts';
 import { generateAccountKey } from '$src/utils/functions/generateAccountKey';
 import { cn } from '$src/utils/utils';
-import { getCoreRowModel, type CellContext } from '@tanstack/table-core';
+import { getCoreRowModel, getSortedRowModel, type CellContext, type SortingState } from '@tanstack/table-core';
 import { t } from 'svelte-i18n';
 import AuthDemoButton from '../demo/demoButtons/AuthDemoButton.svelte';
+import DataTableEmailButton from '../stats/BetsTable/data-table-id-button.svelte.svelte';
 import { accountsColumns } from './accountsColumns';
 
 const { query } = useAccounts();
@@ -20,6 +21,21 @@ const { query: profileQuery } = useUserProfile();
 let accounts = $state<IAccountResponse[]>([]);
 let isAuthenticated = $derived(!!$currentUser);
 let isLoading = $derived(isAuthenticated && ($query.isLoading || $profileQuery.isLoading));
+
+let sorting = $state<SortingState>(
+	(() => {
+		try {
+			const saved = localStorage.getItem('tableSorting');
+			return saved ? JSON.parse(saved) : [];
+		} catch {
+			return [];
+		}
+	})()
+);
+
+$effect(() => {
+	localStorage.setItem('tableSorting', JSON.stringify(sorting));
+});
 
 $effect(() => {
 	accounts = isAuthenticated ? $query.data || [] : [];
@@ -30,12 +46,34 @@ const table = createSvelteTable({
 		return accounts;
 	},
 	columns: accountsColumns,
-	getCoreRowModel: getCoreRowModel()
+	getCoreRowModel: getCoreRowModel(),
+	getSortedRowModel: getSortedRowModel(),
+	onSortingChange: (updater) => {
+		if (typeof updater === 'function') {
+			sorting = updater(sorting);
+		} else {
+			sorting = updater;
+		}
+		localStorage.setItem('tableSorting', JSON.stringify(sorting));
+	},
+	state: {
+		get sorting() {
+			return sorting;
+		}
+	}
 });
 
 type CellContextType = CellContext<IAccountResponse, unknown>;
 
-const renderHeader = (header: string): string => $t(header);
+const renderHeader = (header: unknown): unknown => {
+	if (typeof header === 'function') {
+		return header();
+	}
+	if (typeof header === 'string') {
+		return $t(header);
+	}
+	return header;
+};
 </script>
 
 {#if !isAuthenticated}
@@ -58,13 +96,18 @@ const renderHeader = (header: string): string => $t(header);
 								<Table.Head class="table-head">
 									<div class="header-content">
 										<img
-											class="header-icon"
+											class="header-icon {header.column.getIsSorted() === 'desc' ? 'rotate-180' : ''} 
+												   {typeof header.column.columnDef.header === 'function' ? 'transition-transform duration-200' : ''}"
 											src="icons/bk/table.svg"
 											alt="table" />
-										<span class="header-text">
-											<FlexRender
-												content="{renderHeader(header.column.columnDef.header as string)}"
-												context="{header.getContext()}" />
+										<span class="header-text {header.column.getIsSorted() ? 'font-bold' : ''}">
+											{#if typeof header.column.columnDef.header === 'function'}
+												<svelte:component
+													this="{DataTableEmailButton}"
+													column="{header.column}" />
+											{:else}
+												{renderHeader(header.column.columnDef.header)}
+											{/if}
 										</span>
 									</div>
 								</Table.Head>
@@ -117,7 +160,7 @@ const renderHeader = (header: string): string => $t(header);
 }
 
 .table-head {
-	@apply min-h-[40px] max-w-[150px] !text-[12px] sm:min-h-[28px] md:min-h-[32px] xl:min-h-[40px];
+	@apply min-h-[40px] w-[500px] !text-[12px] sm:min-h-[28px] md:min-h-[32px] xl:min-h-[40px];
 }
 
 .header-content {
@@ -126,6 +169,10 @@ const renderHeader = (header: string): string => $t(header);
 
 .header-icon {
 	@apply flex-shrink-0 sm:h-2 sm:w-2 md:h-2 md:w-2 xl:h-4 xl:w-4;
+}
+
+.rotate-180 {
+	transform: rotate(180deg);
 }
 
 .header-text {

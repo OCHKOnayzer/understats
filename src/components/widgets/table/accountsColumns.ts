@@ -1,3 +1,7 @@
+import { renderComponent } from '$src/components/ui/data-table';
+
+import DataTableIdButton from '../stats/BetsTable/data-table-id-button.svelte.svelte';
+
 import type { IAccountResponse } from '$src/types/accounts';
 import type { ColumnDef } from '@tanstack/table-core';
 
@@ -7,20 +11,15 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 	{
 		accessorKey: 'siteName',
 		header: 'accounts.bookmaker',
-		cell: ({ row }) => {
-			try {
-				const date = new Date();
-				return date.toLocaleString('ru-RU');
-			} catch (e) {
-				console.error('Error formatting date:', e);
-				return 'Invalid date';
-			}
-		},
 		meta: { width: '120px' }
 	},
 	{
 		accessorKey: 'clientSeq',
-		header: 'accounts.id',
+		header: ({ column }) =>
+			renderComponent(DataTableIdButton, {
+				column,
+				'data-state': column.getIsSorted() ? 'sorted' : 'unsorted'
+			}),
 		meta: { width: '80px' }
 	},
 	{
