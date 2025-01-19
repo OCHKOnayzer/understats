@@ -1,4 +1,7 @@
 <script lang="ts">
+import { getCoreRowModel, getSortedRowModel, type CellContext, type SortingState } from '@tanstack/table-core';
+import { t } from 'svelte-i18n';
+
 import Spinner from '$components/ui/spinner/Spinner.svelte';
 import * as Table from '$components/ui/table';
 import { createSvelteTable, FlexRender } from '$src/components/ui/data-table';
@@ -6,14 +9,15 @@ import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
 import { useAccounts } from '$src/services/accounts/useAccounts';
 import { useUserProfile } from '$src/services/auth/useProfile';
 import { currentUser } from '$src/stores/modalStore';
-import type { IAccountResponse } from '$src/types/accounts';
 import { generateAccountKey } from '$src/utils/functions/generateAccountKey';
 import { cn } from '$src/utils/utils';
-import { getCoreRowModel, getSortedRowModel, type CellContext, type SortingState } from '@tanstack/table-core';
-import { t } from 'svelte-i18n';
+
 import AuthDemoButton from '../demo/demoButtons/AuthDemoButton.svelte';
 import DataTableEmailButton from '../stats/BetsTable/data-table-id-button.svelte.svelte';
+
 import { accountsColumns } from './accountsColumns';
+
+import type { IAccountResponse } from '$src/types/accounts';
 
 const { query } = useAccounts();
 const { query: profileQuery } = useUserProfile();
@@ -96,7 +100,7 @@ const renderHeader = (header: unknown): unknown => {
 								<Table.Head class="table-head">
 									<div class="header-content">
 										<img
-											class="header-icon {header.column.getIsSorted() === 'desc' ? 'rotate-180' : ''} 
+											class="header-icon {header.column.getIsSorted() === 'desc' ? 'rotate-180' : ''}
 												   {typeof header.column.columnDef.header === 'function' ? 'transition-transform duration-200' : ''}"
 											src="icons/bk/table.svg"
 											alt="table" />
@@ -117,7 +121,7 @@ const renderHeader = (header: unknown): unknown => {
 				</Table.Header>
 				<Table.Body>
 					{#each table.getRowModel().rows as row, index (generateAccountKey(row.original, index))}
-						<Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'} text-[10px] active:bg-[#3D3A8540]`)}">
+						<Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'} cursor-pointer text-[10px] transition-all duration-300 ease-in-out hover:bg-[#3D3A8540]`)}">
 							{#each row.getVisibleCells() as cell (cell.id)}
 								<Table.Cell>
 									<FlexRender

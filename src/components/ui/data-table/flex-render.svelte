@@ -3,8 +3,8 @@ import type { Bet } from '$src/components/widgets/stats/BetsTable/columns';
 import type { IAccountResponse } from '$src/types/accounts';
 import type { CellContext, ColumnDefTemplate, HeaderContext } from '@tanstack/table-core';
 
-type Context = HeaderContext<Bet|IAccountResponse, unknown> | CellContext<Bet, unknown>;
-type Content = string | ColumnDefTemplate<CellContext<Bet|IAccountResponse, unknown>> | ColumnDefTemplate<HeaderContext<Bet|IAccountResponse, unknown>>;
+type Context = HeaderContext<Bet | IAccountResponse, unknown> | CellContext<Bet, unknown>;
+type Content = string | ColumnDefTemplate<CellContext<Bet | IAccountResponse, unknown>> | ColumnDefTemplate<HeaderContext<Bet | IAccountResponse, unknown>>;
 
 interface Props {
 	content: Content;

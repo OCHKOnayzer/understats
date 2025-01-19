@@ -1,5 +1,6 @@
 <script lang="ts">
 import Button from '$src/components/ui/button/button.svelte';
+
 import type { ComponentProps } from 'svelte';
 
 type Props = ComponentProps<typeof Button> & {
