@@ -1,4 +1,5 @@
-import { onMount, writable } from 'svelte';
+import { onMount } from 'svelte';
+import { writable } from 'svelte/store';
 
 export const useBreakpoint = (breakpoint = 400) => {
 	const isMobile = writable(false);
