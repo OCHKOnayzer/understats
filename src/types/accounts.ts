@@ -1,11 +1,14 @@
 export interface IAccountResponse {
-	siteName: string;
-	extendedId: string;
-	phone: string;
-	login: string;
-	email: string;
-	fullName: string;
-	registrationDate: string;
-	balance: number;
+	balance: string;
+	betsCount: number;
+	clientSeq: number;
 	currency: string;
+	email: string;
+	extendedId: string;
+	fullName: string;
+	login: string;
+	phone: string;
+	registrationDate: string;
+	siteName: string;
+	lastBet?: string;
 }

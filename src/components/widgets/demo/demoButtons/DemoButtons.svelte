@@ -1,11 +1,11 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
+import { t } from 'svelte-i18n';
 
 import { afterUrl } from '$src/stores/HeaderStores';
 import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
+import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
 import { currentModal, openModal } from '$src/stores/modalStore';
-import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 
 import { goto } from '$app/navigation';
 

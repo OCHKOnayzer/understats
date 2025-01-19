@@ -24,8 +24,6 @@ let { query } = useUserProfile();
 let isAuthenticated = $derived(!!$currentUser);
 let isInitialLoading = $state(true);
 
-const dataItems = [''];
-
 const table = createSvelteTable({
 	get data() {
 		return $betsTableStore.data;
@@ -37,6 +35,8 @@ const table = createSvelteTable({
 let hasActiveFilters = $derived(
 	$filterStore.selectedSports.length > 0 || $filterStore.selectedBookmakers.length > 0 || $filterStore.selectedAccounts.length > 0 || $filterStore.betResult.length > 0
 );
+
+type CellContextType = CellContext<Bet, unknown>;
 
 let showLoading = $state(false);
 let loadingTimer: ReturnType<typeof setTimeout>;
@@ -69,6 +69,10 @@ async function loadData() {
 	}
 }
 
+function renderHeader(header: string): string {
+	return $t(header);
+}
+
 onMount(() => {
 	loadData();
 });
@@ -89,12 +93,6 @@ $effect(() => {
 		loadData();
 	}
 });
-
-type CellContextType = CellContext<Bet, unknown>;
-
-function renderHeader(header: string): string {
-	return $t(header);
-}
 </script>
 
 <svelte:window bind:innerWidth="{innerWidth}" />
