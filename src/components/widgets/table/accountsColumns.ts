@@ -1,4 +1,5 @@
 import { renderComponent } from '$src/components/ui/data-table';
+import { formatDate } from '$src/utils/functions/formatDate';
 
 import DataTableIdButton from '../stats/BetsTable/data-table-id-button.svelte.svelte';
 
@@ -50,6 +51,7 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 	{
 		accessorKey: 'registrationDate',
 		header: 'accounts.regData',
+		cell: ({ row }) => formatDate(row.original.registrationDate),
 		meta: { width: '130px' }
 	},
 	{
