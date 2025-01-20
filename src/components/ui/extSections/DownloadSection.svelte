@@ -53,7 +53,7 @@ const browserArr: BrowserItem[] = [
 				</span>
 			</div>
 			<div class="button-wrapper">
-				{#if isMobile}
+				{#if $isMobile}
 					<!-- <Stats /> -->
 				{:else}
 					<div class="button-group">
@@ -66,7 +66,7 @@ const browserArr: BrowserItem[] = [
 					<span class="attention-text">{$t('extensions.attention_key')}</span>
 					<span class="attention-text">{$t('extensions.attention')}</span>
 				</div>
-				{#if isMobile}
+				{#if $isMobile}
 					<FaqOpen />
 				{/if}
 			</div>

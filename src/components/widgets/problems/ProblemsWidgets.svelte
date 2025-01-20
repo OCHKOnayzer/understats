@@ -39,7 +39,8 @@ import { openModal } from '$src/stores/modalStore';
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 30%;
+	min-height: 30%;
+	height: fit-content;
 }
 .problem_container {
 	width: 95%;
@@ -75,6 +76,7 @@ import { openModal } from '$src/stores/modalStore';
 	font-size: 16px;
 	padding-left: 5px;
 	padding-right: 5px;
+	margin-top: 5px;
 	display: flex;
 	align-items: center;
 }
