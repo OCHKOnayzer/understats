@@ -144,9 +144,6 @@ async function loadArticleComponent(article2: string) {
 	background: rgba(135, 138, 160, 0.507);
 }
 @media (max-width: 800px) {
-	.faqSection {
-		height: 75vh;
-	}
 	.faqChapter {
 		width: 100%;
 		background-color: transparent;
