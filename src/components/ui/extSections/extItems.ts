@@ -7,17 +7,17 @@ interface ExtInterface {
 export const extItems: ExtInterface[] = [
 	{
 		name: 'extensions.download',
-		description: "Bernoulli's inequality, as follows from the above, rapidly reflects an axiomatic absolutely convergent series",
-		image: '/assets/extension/download.svg'
+		description: "extensions.ext_download",
+		image: '/icons/extensions/download.svg'
 	},
 	{
 		name: 'extensions.install',
-		description: "Bernoulli's inequality, as follows from the above, rapidly reflects an axiomatic absolutely convergent series",
-		image: 'assets/extension/install.svg'
+		description: "extensions.ext_instl",
+		image: '/icons/extensions/install.svg'
 	},
 	{
 		name: 'extensions.auth',
-		description: "Bernoulli's inequality, as follows from the above, rapidly reflects an axiomatic absolutely convergent series",
-		image: 'assets/extension/download.svg'
+		description: "extensions.ext_auth",
+		image: '/icons/extensions/auth.svg'
 	}
 ];

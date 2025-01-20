@@ -13,7 +13,7 @@ import LangButton from '../button/langButton/LangButton.svelte';
 import { goto } from '$app/navigation';
 import { page } from '$app/stores';
 
-type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal';
+type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal'| 'SocialModal' ;
 
 const openCurrentModal = (modal: ModalType) => {
 	if ($modalComponent !== null && $modalComponent !== modal) {
@@ -81,13 +81,13 @@ onMount(() => {
 				<div class="btnWrapper lang {$modalComponent === 'LangModal' ? 'active' : ''}">
 					<LangButton openCurrentModal="{openCurrentModal}" />
 				</div>
-				<!-- <div class="btnWrapper support {$modalComponent === 'SupportModal' ? 'active' : ''}">
-					<button on:click="{() => openCurrentModal('SupportModal')}">
+				<div class="btnWrapper support {$modalComponent === 'SocialModal' ? 'active' : ''}">
+					<button on:click="{() => openCurrentModal('SocialModal')}">
 						<img
 							src="assets/header/support.png"
 							alt="" />
 					</button>
-				</div> -->
+				</div>
 			</div>
 		</div>
 	</div>
@@ -167,21 +167,22 @@ onMount(() => {
 .lang {
 	border: 1px solid #9e9e9e;
 	background-color: #0d111d;
-	margin-right: 24px;
+	margin-right: 10px;
 	margin-left: 10px;
 }
-/* .support {
+.support {
 	width: 48px;
 	background-color: #171b26;
+	margin-right: 24px;
 }
 .support img {
-	height: 80%;
-	width: 80%;
-} */
+	height: 100%;
+	width: 100%;
+}
 .btnWrapper:hover {
 	background-color: #282d3b;
 }
-/* .btnWrapper button {
+.btnWrapper button {
 	height: 100%;
 	width: 100%;
 	padding: 10px;
@@ -190,7 +191,7 @@ onMount(() => {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-} */
+}
 .headerItem p {
 	font-size: 25px;
 }

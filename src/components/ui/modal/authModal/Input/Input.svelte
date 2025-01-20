@@ -9,7 +9,7 @@ export let input_name: string;
 const { isMobile } = useBreakpoint(768);
 </script>
 
-{#if isMobile}
+{#if $isMobile}
 	<div class="placeholderContainer">
 		<input
 			class="int"

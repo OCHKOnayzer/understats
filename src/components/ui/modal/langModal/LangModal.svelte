@@ -21,17 +21,17 @@ const setLang = (lang: string) => {
 	on:click="{() => closeModal()}"
 	on:keydown="{(e) => e.key === 'Enter' && closeModal()}">
 	<div
-		class="relative right-4 top-[10vh] flex h-fit max-w-[26vw] cursor-default items-center justify-center rounded-md border border-[#363a45] bg-[#0d111d] p-4"
+		class="relative right-4 top-[10vh] flex h-fit max-w-[473px] cursor-default items-center justify-center rounded-md border border-[#363a45] bg-[#0d111d] p-4"
 		on:click|stopPropagation
 		role="button"
 		tabindex="0"
 		on:keydown="{(e) => e.key === 'Enter'}">
-		<div class="my-2.5 h-auto w-[90%]">
+		<div class="my-2.5 h-auto w-[100%]">
 			<LangTitle />
-			<div class="mt-5 flex flex-wrap justify-between gap-2.5 text-white">
+			<div class="mt-5 flex flex-wrap gap-[12px] text-white">
 				{#each LangArr as item}
 					<button
-						class="{`box-border flex min-w-[150px] flex-[1_1_calc(33.33%-10px)] items-center rounded border bg-[#171b26] p-2 text-sm ${
+						class="{`box-border flex min-w-[204px] items-center rounded border bg-[#171b26] p-2 text-sm ${
 							item.lang === $selectedLang ? 'border-[#6660ff] bg-[#6660ff40]' : 'border-[#171b26]'
 						}`}"
 						on:click="{() => setLang(item.lang)}">
