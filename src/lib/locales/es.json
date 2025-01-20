@@ -21,7 +21,12 @@
 		"loses": "losses",
 		"in_summ": "Por el monto de",
 		"accounts": "Cuenta",
-		"team": "Equipo"
+		"team": "Equipo",
+		"loading": "Cargando...",
+		"loading_data": "Cargando datos",
+		"no_bets": "No hay apuestas disponibles",
+		"no_bets_description": "Para ver las estadísticas de tus apuestas, sigue estos pasos",
+		"no_bets_filter": "Pruebe a seleccionar otros parámetros en los filtros"
 	},
 	"accounts": {
 		"bookmaker": "Casa de Apuestas",
@@ -38,8 +43,12 @@
 		"available": "Disponible",
 		"used": "Utilizado",
 		"noAuth": "Regístrate para ver las cuentas",
-		"noAccounts": "¡No se encontraron cuentas! ¡Vincula tus cuentas!",
-		"loading": "Cargando cuentas..."
+		"loading": "Cargando cuentas...",
+		"fullName": "Nombre Completo",
+		"id": "ID",
+		"noAccountTitle": "Las cuentas están ausentes",
+		"noAccountsDescription": "Para que las cuentas aparezcan — ejecuta los siguientes pasos",
+		"register": "Registro"
 	},
 	"awards": {
 		"received": "Premios recibidos",
@@ -136,7 +145,15 @@
 		"before": "a",
 		"apply": "Aplicar",
 		"search": "Buscar...",
-		"no_data_available": "No hay datos disponibles"
+		"no_data_available": "No hay datos disponibles",
+		"contacts": "Contactos",
+		"copied": "¡Copiado!",
+		"copy": "¿Copiar?",
+		"open_contacts": "Abrir contactos",
+		"support": "Soporte",
+		"all_acc": "Total de cuentas",
+		"last_pay": "Fecha del último pago",
+		"all_pays": "Total de apuestas"
 	},
 	"main": {
 		"main": "Principal"
@@ -196,14 +213,17 @@
 		"size": "Tamaño",
 		"mb": "MB",
 		"how_to_work": "¿Cómo funciona?",
-		"download": "1 Descargar",
-		"install": "2 Instalar",
-		"auth": "¡Autorización!",
+		"download": "Descargando",
+		"install": "Descomprimiendo archivos",
+		"auth": "Instalación en el navegador",
 		"problems_install": "¿Tienes problemas con la instalación?",
 		"chat_install": "Escribe al servicio de soporte - ¡Estaremos encantados de ayudarte!",
 		"support_chat": "Escribir al soporte",
 		"need_help": "¿Tienes preguntas?",
-		"ext_info_blocked": "Información de la extensión no disponible"
+		"ext_info_blocked": "Información de la extensión no disponible",
+		"ext_download": "Haga clic en el botón “ZIP con extensión” — el archivo comenzará a descargarse automáticamente. Guárdelo en su computadora.",
+		"ext_instl": "Espere a que finalice la descarga del archivo, ábralo y extraiga los archivos a una carpeta conveniente.",
+		"ext_auth": "Acceda a la configuración del navegador, active el modo desarrollador e instale la extensión descomprimida."
 	},
 	"faq": {
 		"faq": "Ayuda",
@@ -245,12 +265,19 @@
 		"ext_edge_title": "Cómo instalar la extensión en Edge",
 		"ext_opera": "Extensión para Opera",
 		"ext_opera_title": "Cómo instalar la extensión en Opera",
-		"description_image": "Configuración del navegador"
+		"description_image": "Configuración del navegador",
+		"ext_safari": "Extensión para Safari",
+		"ext_safari_title": "Cómo instalar la extensión en Safari",
+		"ext_mobile": "Extensión móvil",
+		"ext_mobile_title": "Soporte para navegadores móviles"
 	},
 	"description_image": {
 		"description_image": "Configuración del navegador",
 		"description_image_google_1": "Punto de extensión",
-		"description_image_google_2": "Página de Extensiones"
+		"description_image_google_2": "Página de Extensiones",
+		"auth_btns": "Botones de autorización",
+		"auth_form": "Formulario de autorización/registro",
+		"acc_block": "Cuenta autorizada"
 	},
 	"artical_faq": {
 		"artical_faq_google_1": "En la esquina superior derecha de la ventana del navegador Google Chrome se encuentran tres puntos verticales. Este es el botón para abrir el menú principal del navegador, donde se recopilan las configuraciones principales del navegador. Al hacer clic en él, verás una lista desplegable en la que puedes abrir secciones como \"Historial\", \"Descargas\", \"Marcadores\", así como acceder a herramientas y funciones adicionales.",
@@ -262,7 +289,17 @@
 		"artical_faq_yandex_2": "El menú del navegador Yandex incluye una sección \"Extensiones\", donde puedes gestionar las extensiones instaladas. Esta sección permite activar, desactivar o eliminar extensiones, así como instalar nuevas desde el catálogo de complementos. Para acceder a esta sección, selecciona la opción \"Extensiones\" en el menú.",
 		"artical_faq_yandex_3": "La sección \"Extensiones\" del navegador Yandex proporciona una interfaz conveniente para gestionar las extensiones. Aquí puedes ver la lista de todas las extensiones disponibles, cambiar su estado usando el botón \"Activar/Desactivar\" y eliminar extensiones innecesarias. Esta herramienta ayuda a personalizar la funcionalidad del navegador según tus necesidades individuales.",
 		"artical_faq_yandex_4": "El catálogo de complementos del navegador Yandex permite encontrar e instalar fácilmente nuevas extensiones. Para abrirlo, simplemente accede a la sección \"Extensiones\" a través del menú del navegador y selecciona el botón \"Catálogo de complementos\". El catálogo ofrece diversas herramientas para mejorar la usabilidad del navegador.",
-		"artical_faq_yandex_5": "Para acceder a la página de gestión de extensiones en el navegador Yandex, abre el menú y selecciona la opción \"Extensiones\". Aquí se muestran todas las extensiones activas e inactivas. Para activar o desactivar una extensión, haz clic en el interruptor junto a su nombre. Esta sección es la herramienta principal para personalizar la funcionalidad del navegador."
+		"artical_faq_yandex_5": "Para acceder a la página de gestión de extensiones en el navegador Yandex, abre el menú y selecciona la opción \"Extensiones\". Aquí se muestran todas las extensiones activas e inactivas. Para activar o desactivar una extensión, haz clic en el interruptor junto a su nombre. Esta sección es la herramienta principal para personalizar la funcionalidad del navegador.",
+		"artical_faq_safari": "Actualmente, nuestra extensión no es compatible con el navegador Safari. Sin embargo, puedes descargarla e instalarla fácilmente en tu dispositivo. Estamos trabajando en mejorar la compatibilidad y esperamos poder ofrecer soporte para Safari en el futuro.",
+		"artical_faq_mobile_1": "Tenga en cuenta que nuestra extensión no es compatible con los navegadores móviles. Esto se debe a las restricciones de la plataforma y a la falta de opciones para instalar extensiones en las versiones móviles de los navegadores.",
+		"artical_faq_mobile_2": "Para aprovechar al máximo todas las funciones de nuestra extensión, le recomendamos instalarla en la versión de escritorio de su navegador.",
+		"artical_faq_mobile_3": "Si tiene alguna pregunta o necesita asistencia, por favor contacte a nuestro equipo de soporte.",
+		"artical_faq_reg_1": "Para usar todas las funciones de nuestra aplicación sin limitaciones, es necesario registrarse. Un usuario registrado podrá guardar datos, personalizar ajustes y acceder a funcionalidades adicionales.",
+		"artical_faq_reg_2": "Para iniciar el proceso de registro o inicio de sesión, haga clic en el botón correspondiente: 'Crear cuenta' o 'Iniciar sesión'. A continuación, se abrirá una ventana para que ingrese la información requerida.",
+		"artical_faq_reg_3": "En el formulario de registro, complete todos los campos: ingrese un email válido, cree una contraseña segura y confírmela. Para ver la contraseña ingresada, use el botón 'Mostrar contraseña'. Si decide no registrarse, haga clic en 'Cancelar'. Para completar el registro, haga clic en 'Crear cuenta'.",
+		"artical_faq_reg_4": "Después de iniciar sesión, tendrá acceso a todas las funciones de nuestro servicio. Podrá guardar datos, personalizar ajustes, gestionar su perfil y utilizar funciones avanzadas diseñadas para su comodidad.",
+		"artical_faq_reg_5": "El registro es el primer paso para desbloquear todo el potencial de nuestro servicio. ¡Únase a nosotros para disfrutar de todas sus funciones y hacer que su experiencia sea lo más cómoda y eficiente posible!",
+		"pin": "Para su conveniencia y rápido acceso a todas las funciones de nuestra extensión, le recomendamos fijarla en la barra de herramientas de su navegador. Esto le permitirá utilizar sus funciones al instante sin pasos adicionales. Siga las instrucciones en la configuración del navegador para tener nuestra extensión siempre a mano."
 	},
 	"social": {
 		"questions": "¿Tienes preguntas?",
@@ -372,9 +409,36 @@
 		"pagination.week": "Semana",
 		"pagination.3days": "3 días",
 		"list.see": "Ver todo",
-		"pagination.see": "Mostrar:"
+		"pagination.see": "Mostrar:",
+		"pagination": {
+			"nextPage": "Página siguiente",
+			"prevPage": "Página anterior"
+		}
 	},
 	"calendar": {
 		"period": "Período"
+	},
+	"not": {
+		"help": "Ayuda con la instalación",
+		"install": "Instale nuestra extensión para el navegador",
+		"install_ext": "Instale la extensión",
+		"last": "Vaya a la sección de historial de apuestas de la casa de apuestas",
+		"open": "Abra el sitio web de la casa de apuestas",
+		"sign": "Inicie sesión en su cuenta en el sitio de la casa de apuestas",
+		"more": "Ver detalles",
+		"pc": "Acceda desde un ordenador",
+		"pc_desc": "Para que aparezcan las estadísticas, instale la extensión en el navegador en un ordenador",
+		"write": "Contactar con el soporte"
+	},
+	"columns": {
+		"bet.time": "Hora de la apuesta",
+		"bet.bookmaker": "Casa de apuestas",
+		"bet.sport": "Deporte",
+		"bet.event": "Evento",
+		"bet.ammount": "Cantidad",
+		"bet.ratio": "Cuota",
+		"bet.win": "Ganancia",
+		"bet.status": "Estado",
+		"bet.result": "Total"
 	}
 }
