@@ -150,7 +150,10 @@
     "copied": "Kopiert!",
     "copy": "Kopieren?",
     "open_contacts": "Kontakte öffnen",
-    "support": "Support"
+    "support": "Support",
+    "all_acc": "Gesamtkonten",
+    "last_pay": "Datum der letzten Zahlung",
+    "all_pays": "Gesamtwetten"
   },
   "main": {
     "main": "Startseite"
@@ -217,7 +220,10 @@
     "chat_install": "Schreiben Sie an den Support-Service - Wir helfen Ihnen gerne weiter!",
     "support_chat": "Support kontaktieren",
     "need_help": "Haben Sie Fragen?",
-    "ext_info_blocked": "Erweiterungsinformationen sind nicht verfügbar"
+    "ext_info_blocked": "Erweiterungsinformationen sind nicht verfügbar",
+		"ext_download": "Klicken Sie auf die Schaltfläche „ZIP mit Erweiterung“ — die Datei wird automatisch heruntergeladen. Speichern Sie sie auf Ihrem Computer.",
+    "ext_instl": "Warten Sie, bis der Archivdownload abgeschlossen ist, öffnen Sie das Archiv und entpacken Sie die Dateien in einen geeigneten Ordner.",
+    "ext_auth": "Gehen Sie zu den Browser-Einstellungen, aktivieren Sie den Entwicklermodus und installieren Sie die entpackte Erweiterung."
   },
   "faq": {
     "faq": "Hilfe",
@@ -261,13 +267,17 @@
     "ext_opera_title": "Wie man die Erweiterung in Opera installiert",
     "description_image": "Browser-Einstellungen",
     "ext_safari": "Safari-Erweiterung",
-    "ext_safari_title": "Safari-Erweiterung",
-    "mobile": "Mobile Geräte"
+    "ext_safari_title": "So installieren Sie die Erweiterung in Safari",
+    "ext_mobile": "Mobile Erweiterung",
+    "ext_mobile_title": "Unterstützung mobiler Browser"
   },
   "description_image": {
     "description_image": "Browser-Einstellungen",
     "description_image_google_1": "Erweiterungspunkt",
-    "description_image_google_2": "Erweiterungsseite"
+    "description_image_google_2": "Erweiterungsseite",
+		"auth_btns": "Anmeldeschaltflächen",
+    "auth_form": "Anmelde-/Registrierungsformular",
+    "acc_block": "Authentifiziertes Konto"
   },
   "artical_faq": {
     "artical_faq_google_1": "In der oberen rechten Ecke des Google Chrome-Browserfensters befinden sich drei vertikale Punkte. Dies ist die Schaltfläche zum Aufrufen des Hauptmenüs des Browsers, in dem die grundlegenden Browsereinstellungen gesammelt sind. Wenn Sie darauf klicken, sehen Sie ein Dropdown-Menü, in dem Sie Bereiche wie \"Verlauf\", \"Downloads\", \"Lesezeichen\" öffnen können, sowie Zugang zu zusätzlichen Tools und Funktionen erhalten.",
@@ -280,7 +290,16 @@
     "artical_faq_yandex_3": "Der Abschnitt \"Erweiterungen\" im Yandex.Browser bietet eine bequeme Schnittstelle zur Verwaltung von Erweiterungen. Hier können Sie eine Liste aller verfügbaren Erweiterungen sehen, deren Status mit der Schaltfläche \"Aktivieren/Deaktivieren\" umschalten und unnötige Erweiterungen entfernen. Dieses Tool hilft dabei, die Browserfunktionalität an individuelle Bedürfnisse anzupassen.",
     "artical_faq_yandex_4": "Der Erweiterungskatalog des Yandex.Browsers ermöglicht es Ihnen, neue Erweiterungen einfach zu finden und zu installieren. Um ihn zu öffnen, gehen Sie einfach zum Abschnitt \"Erweiterungen\" über das Browsermenü und wählen Sie die Schaltfläche \"Erweiterungskatalog\". Im Katalog stehen verschiedene Tools zur Verbesserung der Benutzerfreundlichkeit des Browsers zur Verfügung.",
     "artical_faq_yandex_5": "Um auf die Seite zur Verwaltung von Erweiterungen im Yandex.Browser zuzugreifen, können Sie das Menü öffnen und den Punkt \"Erweiterungen\" auswählen. Hier werden alle aktiven und inaktiven Erweiterungen angezeigt. Um eine Erweiterung ein- oder auszuschalten, klicken Sie auf den Schalter neben ihrem Namen. Dieser Abschnitt ist das Hauptwerkzeug zur Anpassung der Browserfunktionalität.",
-    "artical_faq_safari": "Zurzeit unterstützt unsere Erweiterung den Safari-Browser nicht. Sie können sie jedoch problemlos auf Ihrem Gerät herunterladen und installieren. Wir arbeiten an der Verbesserung der Kompatibilität und hoffen in Zukunft auf Unterstützung für Safari."
+    "artical_faq_safari": "Zurzeit unterstützt unsere Erweiterung den Safari-Browser nicht. Sie können sie jedoch problemlos auf Ihrem Gerät herunterladen und installieren. Wir arbeiten an der Verbesserung der Kompatibilität und hoffen in Zukunft auf Unterstützung für Safari.",
+		"artical_faq_mobile_1": "Bitte beachten Sie, dass unsere Erweiterung in mobilen Browsern nicht unterstützt wird. Dies liegt an den Beschränkungen der Plattformen und daran, dass es in mobilen Versionen von Browsern keine Möglichkeit gibt, Erweiterungen zu installieren.",
+    "artical_faq_mobile_2": "Um alle Funktionen unserer Erweiterung vollständig zu nutzen, empfehlen wir, sie in der Desktop-Version Ihres Browsers zu installieren.",
+    "artical_faq_mobile_3": "Wenn Sie Fragen haben oder Unterstützung benötigen, wenden Sie sich bitte an unseren Support.",
+    "artical_faq_reg_1": "Um alle Funktionen unserer Anwendung uneingeschränkt nutzen zu können, ist eine Registrierung erforderlich. Ein registrierter Benutzer kann Daten speichern, Einstellungen personalisieren und auf zusätzliche Funktionen zugreifen.",
+    "artical_faq_reg_2": "Um den Registrierungs- oder Anmeldeprozess zu starten, klicken Sie auf die entsprechende Schaltfläche: 'Konto erstellen' oder 'Anmelden'. Anschließend öffnet sich ein Fenster, in dem Sie die erforderlichen Informationen eingeben können.",
+    "artical_faq_reg_3": "Füllen Sie im Registrierungsformular alle Felder aus: Geben Sie eine gültige E-Mail-Adresse ein, erstellen Sie ein sicheres Passwort und bestätigen Sie es. Um das eingegebene Passwort anzuzeigen, verwenden Sie die Schaltfläche 'Passwort anzeigen'. Wenn Sie sich gegen eine Registrierung entscheiden, klicken Sie auf 'Abbrechen'. Um die Registrierung abzuschließen, klicken Sie auf 'Konto erstellen'.",
+    "artical_faq_reg_4": "Nach dem Login haben Sie Zugriff auf alle Funktionen unseres Dienstes. Sie können Daten speichern, Einstellungen personalisieren, Ihr Profil verwalten und erweiterte Funktionen nutzen, die zu Ihrem Komfort entwickelt wurden.",
+    "artical_faq_reg_5": "Die Registrierung ist der erste Schritt, um das volle Potenzial unseres Dienstes freizuschalten. Treten Sie bei, um alle Funktionen zu nutzen und Ihre Erfahrung so komfortabel und effizient wie möglich zu gestalten!",
+    "pin": "Für Ihren Komfort und schnellen Zugriff auf alle Funktionen unserer Erweiterung empfehlen wir, diese in Ihrer Browser-Symbolleiste anzupinnen. So können Sie die Funktionen sofort nutzen, ohne zusätzliche Schritte. Befolgen Sie einfach die Anweisungen in den Browsereinstellungen, um unsere Erweiterung stets griffbereit zu haben."
   },
   "social": {
     "questions": "Haben Sie Fragen?",
