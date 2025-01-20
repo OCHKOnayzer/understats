@@ -22,7 +22,6 @@ const handleSelectItem = (event: any) => {
 
 const dispatch = createEventDispatcher();
 
-// Функция для получения параметра из URL
 const getUrlParameterKey = (param: string): string | null => {
 	const urlParams = new URLSearchParams(window.location.search);
 	const paramValue = urlParams.get(param);
@@ -65,7 +64,7 @@ onMount(() => {
 <style>
 .menuWrapper {
 	width: 96%;
-	height: 96%;
+	height: 100%;
 	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
@@ -101,9 +100,9 @@ onMount(() => {
 	padding-left: 15px;
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-.secretItem {
+/* .secretItem {
 	background-color: #1e222d;
-}
+} */
 .faqItem:nth-of-type(1) {
 	margin-top: 0%;
 }
@@ -111,9 +110,9 @@ onMount(() => {
 	background-color: #6660ff40;
 	border-color: #6660ff;
 }
-.secretItem:hover {
+/* .secretItem:hover {
 	background-color: #393d4b;
-}
+} */
 .menuWrapper::-webkit-scrollbar {
 	border-radius: 30px;
 	width: 3px;

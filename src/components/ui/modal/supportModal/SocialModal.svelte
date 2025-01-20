@@ -42,12 +42,11 @@ const copyToClipboard = (text) => {
 					{#each SocialLink as item}
 						<div class="link_item">
 							{item.name}
-							<span
-								class="color_link"
-								on:click="{() => copyToClipboard(item.link)}">
+							<a class="color_link"
+							href="/">
 								{item.link}
-							</span>
-							<div class="copy_message">{$t(copy)}</div>
+							</a>
+							<!-- <div class="copy_message">{$t(copy)}</div> -->
 						</div>
 					{/each}
 				</div>

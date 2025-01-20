@@ -78,8 +78,7 @@ async function loadArticleComponent(article2: string) {
 
 					<svelte:component
 						this="{ArticleComponent}"
-						title="{selectedItemName}"
-						content="Текст статьи" />
+						title="{selectedItemName}" />
 				</div>
 			{:else}
 				<div class="faq_null">
@@ -112,6 +111,7 @@ async function loadArticleComponent(article2: string) {
 }
 .faq_null {
 	width: 100%;
+	height: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
