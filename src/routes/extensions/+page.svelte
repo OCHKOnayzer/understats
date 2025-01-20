@@ -50,11 +50,12 @@ extensionInfo.set(data.extensionInfo);
 	padding: 0 2rem;
 	box-sizing: border-box;
 	overflow: none;
+	height: 100%;
 }
 .extensions_wallpaper {
 	width: 100%;
 	border-radius: 5px;
-	height: 29vh;
+	height: 30%;
 }
 .extensions_wallpaper img {
 	height: 100%;
@@ -65,13 +66,9 @@ extensionInfo.set(data.extensionInfo);
 	flex-direction: row;
 	justify-content: space-between;
 	margin-top: 15px;
-	height: 58vh;
+	height: 68%;
 	color: white;
-}
-@media screen and (max-height: 660px) {
-	.section_wrapper {
-		height: fit-content;
-	}
+	padding-bottom: 8px;
 }
 @media (max-width: 800px) {
 	.pageWrapper {

@@ -21,7 +21,12 @@
 		"loses": "losses",
 		"in_summ": "Per l'importo di",
 		"accounts": "Account",
-		"team": "Squadra"
+		"team": "Squadra",
+		"loading": "Caricamento...",
+		"loading_data": "Caricamento dati",
+		"no_bets": "Nessuna scommessa disponibile",
+		"no_bets_description": "Per visualizzare le statistiche delle tue scommesse, segui questi passaggi",
+		"no_bets_filter": "Prova a selezionare altri parametri nei filtri"
 	},
 	"accounts": {
 		"bookmaker": "Bookmaker",
@@ -38,8 +43,12 @@
 		"available": "Disponibile",
 		"used": "Utilizzato",
 		"noAuth": "Registrati per visualizzare gli account",
-		"noAccounts": "Nessun account trovato! Collega gli account!",
-		"loading": "Caricamento degli account..."
+		"loading": "Caricamento degli account...",
+		"fullName": "Nome Completo",
+		"id": "ID",
+		"noAccountTitle": "Gli account sono assenti",
+		"noAccountsDescription": "Per far apparire gli account — eseguire i passaggi seguenti",
+		"register": "Registrazione"
 	},
 	"awards": {
 		"received": "Premi ricevuti",
@@ -136,7 +145,15 @@
 		"before": "a",
 		"apply": "Applica",
 		"search": "Cerca...",
-		"no_data_available": "Nessun dato disponibile"
+		"no_data_available": "Nessun dato disponibile",
+		"contacts": "Contatti",
+		"copied": "Copiato!",
+		"copy": "Copiare?",
+		"open_contacts": "Apri contatti",
+		"support": "Supporto",
+		"all_acc": "Totale account",
+		"last_pay": "Data dell'ultimo pagamento",
+		"all_pays": "Totale scommesse"
 	},
 	"main": {
 		"main": "Principale"
@@ -196,14 +213,17 @@
 		"size": "Dimensione",
 		"mb": "MB",
 		"how_to_work": "Come funziona?",
-		"download": "1 Scarica",
-		"install": "2 Installa",
-		"auth": "Autorizzazione!",
+		"download": "Download",
+		"install": "Estrazione dei file",
+		"auth": "Installazione nel browser",
 		"problems_install": "Hai problemi con l'installazione?",
 		"chat_install": "Scrivi al servizio di supporto - Siamo felici di aiutarti!",
 		"support_chat": "Scrivi al supporto",
 		"need_help": "Hai domande?",
-		"ext_info_blocked": "Informazioni sull'estensione non disponibili"
+		"ext_info_blocked": "Informazioni sull'estensione non disponibili",
+		"ext_download": "Clicca sul pulsante “ZIP con estensione” — il file inizierà a scaricarsi automaticamente. Salvalo sul tuo computer.",
+		"ext_instl": "Attendi il completamento del download dell'archivio, aprilo ed estrai i file in una cartella a tua scelta.",
+		"ext_auth": "Vai alle impostazioni del browser, attiva la modalità sviluppatore e installa l'estensione scompattata."
 	},
 	"faq": {
 		"faq": "Aiuto",
@@ -245,12 +265,20 @@
 		"ext_edge_title": "Come installare l'estensione in Edge",
 		"ext_opera": "Estensione per Opera",
 		"ext_opera_title": "Come installare l'estensione in Opera",
-		"description_image": "Impostazioni del browser"
+		"description_image": "Impostazioni del browser",
+		"ext_safari": "Estensione per Safari",
+		"ext_safari_title": "Come installare l'estensione su Safari",
+		"ext_mobile": "Estensione mobile",
+		"ext_mobile_title": "Supporto per i browser mobili",
+		"mobile": "Dispositivi mobili"
 	},
 	"description_image": {
 		"description_image": "Impostazioni del browser",
 		"description_image_google_1": "Punto di estensione",
-		"description_image_google_2": "Pagina delle estensioni"
+		"description_image_google_2": "Pagina delle estensioni",
+		"auth_btns": "Pulsanti di autorizzazione",
+		"auth_form": "Modulo di autorizzazione/registrazione",
+		"acc_block": "Account autorizzato"
 	},
 	"artical_faq": {
 		"artical_faq_google_1": "Nell'angolo in alto a destra della finestra del browser Google Chrome ci sono tre punti verticali. Questo è il pulsante per aprire il menu principale del browser, dove sono raccolte le impostazioni principali del browser. Facendo clic su di esso, vedrai un menu a tendina in cui puoi aprire sezioni come \"Cronologia\", \"Download\", \"Preferiti\", oltre ad accedere a strumenti e funzionalità aggiuntive.",
@@ -262,7 +290,17 @@
 		"artical_faq_yandex_2": "Il menu del browser Yandex include una sezione \"Estensioni\", dove puoi gestire le estensioni installate. Questa sezione consente di attivare, disattivare o rimuovere estensioni, oltre a installarne di nuove dal catalogo dei componenti aggiuntivi. Per accedere a questa sezione, seleziona l'opzione \"Estensioni\" nel menu.",
 		"artical_faq_yandex_3": "La sezione \"Estensioni\" del browser Yandex offre un'interfaccia comoda per gestire le estensioni. Qui puoi vedere l'elenco di tutte le estensioni disponibili, modificare il loro stato utilizzando il pulsante \"Attiva/Disattiva\" e rimuovere estensioni inutili. Questo strumento aiuta a personalizzare le funzionalità del browser secondo le tue esigenze individuali.",
 		"artical_faq_yandex_4": "Il catalogo dei componenti aggiuntivi del browser Yandex consente di trovare e installare facilmente nuove estensioni. Per aprirlo, basta accedere alla sezione \"Estensioni\" tramite il menu del browser e selezionare il pulsante \"Catalogo dei componenti aggiuntivi\". Il catalogo offre vari strumenti per migliorare la facilità d'uso del browser.",
-		"artical_faq_yandex_5": "Per accedere alla pagina di gestione delle estensioni nel browser Yandex, apri il menu e seleziona l'opzione \"Estensioni\". Qui vengono mostrate tutte le estensioni attive e inattive. Per attivare o disattivare un'estensione, fai clic sull'interruttore accanto al suo nome. Questa sezione è lo strumento principale per personalizzare le funzionalità del browser."
+		"artical_faq_yandex_5": "Per accedere alla pagina di gestione delle estensioni nel browser Yandex, apri il menu e seleziona l'opzione \"Estensioni\". Qui vengono mostrate tutte le estensioni attive e inattive. Per attivare o disattivare un'estensione, fai clic sull'interruttore accanto al suo nome. Questa sezione è lo strumento principale per personalizzare le funzionalità del browser.",
+		"artical_faq_safari": "Al momento, la nostra estensione non supporta il browser Safari. Tuttavia, puoi facilmente scaricarla e installarla sul tuo dispositivo. Stiamo lavorando per migliorare la compatibilità e speriamo di supportare Safari in futuro.",
+		"artical_faq_mobile_1": "Si noti che la nostra estensione non è supportata nei browser mobili. Ciò è dovuto alle limitazioni della piattaforma e alla mancanza di opzioni per installare estensioni nelle versioni mobili dei browser.",
+		"artical_faq_mobile_2": "Per utilizzare appieno tutte le funzionalità della nostra estensione, ti consigliamo di installarla nella versione desktop del tuo browser.",
+		"artical_faq_mobile_3": "Se hai domande o necessiti assistenza, contatta il nostro supporto.",
+		"artical_faq_reg_1": "Per utilizzare tutte le funzionalità della nostra applicazione senza limitazioni, è necessaria la registrazione. Un utente registrato può salvare dati, personalizzare le impostazioni e accedere a funzionalità aggiuntive.",
+		"artical_faq_reg_2": "Per iniziare il processo di registrazione o accesso, fai clic sul pulsante appropriato: 'Crea account' o 'Accedi'. Verrà quindi aperta una finestra per inserire le informazioni richieste.",
+		"artical_faq_reg_3": "Nel modulo di registrazione, compila tutti i campi: inserisci un'email valida, crea una password sicura e confermala. Per visualizzare la password inserita, utilizza il pulsante 'Mostra password'. Se decidi di non registrarti, clicca su 'Annulla'. Per completare la registrazione, clicca su 'Crea account'.",
+		"artical_faq_reg_4": "Dopo aver effettuato l'accesso, avrai accesso a tutte le funzionalità del nostro servizio. Potrai salvare dati, personalizzare le impostazioni, gestire il tuo profilo e utilizzare funzioni avanzate progettate per il tuo comfort.",
+		"artical_faq_reg_5": "La registrazione è il primo passo per sfruttare appieno il potenziale del nostro servizio. Unisciti a noi per usufruire di tutte le funzionalità e rendere la tua esperienza la più comoda ed efficiente possibile!",
+		"pin": "Per tua comodità e per un accesso rapido a tutte le funzionalità della nostra estensione, ti consigliamo di ancorarla alla barra degli strumenti del tuo browser. In questo modo potrai utilizzare le sue funzionalità immediatamente, senza passaggi aggiuntivi. Segui le istruzioni nelle impostazioni del browser per avere sempre la nostra estensione a portata di mano."
 	},
 	"social": {
 		"questions": "Hai domande?",
@@ -372,9 +410,36 @@
 		"pagination.week": "Settimana",
 		"pagination.3days": "3 giorni",
 		"list.see": "Vedi tutto",
-		"pagination.see": "Mostra:"
+		"pagination.see": "Mostra:",
+		"pagination": {
+			"nextPage": "Pagina successiva",
+			"prevPage": "Pagina precedente"
+		}
 	},
 	"calendar": {
 		"period": "Periodo"
+	},
+	"not": {
+		"help": "Aiuto con l'installazione",
+		"install": "Installa la nostra estensione per il browser",
+		"install_ext": "Installa l'estensione",
+		"last": "Vai alla sezione della cronologia delle scommesse del bookmaker",
+		"open": "Apri il sito del bookmaker",
+		"sign": "Accedi al tuo account sul sito del bookmaker",
+		"more": "Vedi dettagli",
+		"pc": "Accedi da un computer",
+		"pc_desc": "Per visualizzare le statistiche, installa l'estensione nel tuo browser su un computer",
+		"write": "Contatta il supporto"
+	},
+	"columns": {
+		"bet.time": "Orario scommessa",
+		"bet.bookmaker": "Bookmaker",
+		"bet.sport": "Sport",
+		"bet.event": "Evento",
+		"bet.ammount": "Importo",
+		"bet.ratio": "Quota",
+		"bet.win": "Vincita",
+		"bet.status": "Stato",
+		"bet.result": "Totale"
 	}
 }

@@ -21,7 +21,12 @@
 		"loses": "losses",
 		"in_summ": "For the amount of",
 		"accounts": "Account",
-		"team": "Team"
+		"team": "Team",
+		"loading": "Loading...",
+		"loading_data": "Loading data",
+		"no_bets": "No bets available",
+		"no_bets_description": "To view your bet statistics, follow these steps",
+		"no_bets_filter": "Try selecting different parameters in the filters"
 	},
 	"accounts": {
 		"bookmaker": "Bookmaker",
@@ -38,8 +43,12 @@
 		"available": "Available",
 		"used": "Used",
 		"noAuth": "Register to see accounts",
-		"noAccounts": "Accounts not found! Connect accounts!",
-		"loading": "Loading accounts..."
+		"loading": "Loading accounts...",
+		"fullName": "Full Name",
+		"id": "ID",
+		"noAccountTitle": "Accounts are absent",
+		"noAccountsDescription": "To have accounts appear — complete the following steps",
+		"register": "Registration"
 	},
 	"awards": {
 		"received": "Received awards",
@@ -49,7 +58,6 @@
 		"condition": "Conditions of receipt"
 	},
 	"award": {
-		"accounts": "My Accounts",
 		"first_step": "First Step",
 		"first_step_desc": "For obtaining the first bookmaker's account",
 		"analyst": "Analyst",
@@ -94,7 +102,8 @@
 		"OpenChat": "Open Chat",
 		"your_profile": "Your Profile",
 		"profile_load": "Loading profile...",
-		"leave": "Log Out"
+		"leave": "Log Out",
+		"Tariffs": "Tariffs"
 	},
 	"other": {
 		"accounts": "My Accounts",
@@ -136,7 +145,15 @@
 		"before": "to",
 		"apply": "Apply",
 		"search": "Search...",
-		"no_data_available": "No data available"
+		"no_data_available": "No data available",
+		"contacts": "Contacts",
+		"copied": "Copied!",
+		"copy": "Copy?",
+		"open_contacts": "Open Contacts",
+		"support": "Support",
+		"all_acc": "Total accounts",
+		"last_pay": "Date of last payment",
+		"all_pays": "Total bets"
 	},
 	"main": {
 		"main": "Main"
@@ -196,14 +213,17 @@
 		"size": "Size",
 		"mb": "MB",
 		"how_to_work": "How does it work?",
-		"download": "1 Download",
-		"install": "2 Install",
-		"auth": "Authorization!",
+		"download": "Downloading",
+		"install": "Unarchiving files",
+		"auth": "Installing in browser",
 		"problems_install": "Having trouble installing?",
 		"chat_install": "Write to the support service - We will be happy to help you!",
 		"support_chat": "Write to Support",
 		"need_help": "Have questions?",
-		"ext_info_blocked": "Extension information is unavailable"
+		"ext_info_blocked": "Extension information is unavailable",
+		"ext_download": "Click the “ZIP with extension” button — the file will start downloading automatically. Save it on your computer.",
+		"ext_instl": "Wait for the archive to finish downloading, then open it and extract the files to a folder of your choice.",
+		"ext_auth": "Go to your browser settings, enable developer mode, and install the unpacked extension."
 	},
 	"faq": {
 		"faq": "Help",
@@ -236,7 +256,6 @@
 		"ext_goole": "Extension for Google Chrome",
 		"ext_google_title": "How to Install the Extension in Google Chrome",
 		"ext_google": "To use the extension in the Google Chrome browser, please read this brief installation guide!",
-		"ext_image_google_1": "In the browser, navigate to Settings: More tools: Extensions",
 		"ext_firefox": "Extension for Firefox",
 		"ext_firefox_title": "How to Install the Extension in Firefox",
 		"ext_yandex": "Extension for Yandex Browser",
@@ -245,12 +264,21 @@
 		"ext_edge_title": "How to Install the Extension in Edge",
 		"ext_opera": "Extension for Opera",
 		"ext_opera_title": "How to Install the Extension in Opera",
-		"description_image": "Browser Settings"
+		"description_image": "Browser Settings",
+		"ext_iamge_goole_1": "In the browser, navigate to: Settings: More Tools: Extensions",
+		"ext_safari": "Safari Extension",
+		"ext_safari_title": "How to install the extension in Safari",
+		"ext_mobile": "Mobile extension",
+		"ext_mobile_title": "Support for mobile browsers",
+		"mobile": "Mobile Devices"
 	},
 	"description_image": {
 		"description_image": "Browser Settings",
 		"description_image_google_1": "Extension Point",
-		"description_image_google_2": "Extensions Page"
+		"description_image_google_2": "Extensions Page",
+		"auth_btns": "Authorization buttons",
+		"auth_form": "Authorization/Registration form",
+		"acc_block": "Authorized account"
 	},
 	"artical_faq": {
 		"artical_faq_google_1": "In the top right corner of the Google Chrome browser window are three vertical dots. This is the button to open the main browser menu, where the main browser settings are collected. By clicking on it, you will see a dropdown list where you can open sections such as \"History\", \"Downloads\", \"Bookmarks\", as well as access additional tools and functions.",
@@ -262,7 +290,17 @@
 		"artical_faq_yandex_2": "In the Yandex Browser menu, there is an \"Extensions\" section, where you can manage installed extensions. This section allows you to enable, disable, or remove extensions, as well as install new ones from the add-ons catalog. To access this section, select the \"Extensions\" option in the menu.",
 		"artical_faq_yandex_3": "The \"Extensions\" section of the Yandex Browser provides a convenient interface for managing extensions. Here, you can see a list of all available extensions, toggle their state using the \"Enable/Disable\" button, and remove unnecessary extensions. This tool helps customize the browser's functionality to individual needs.",
 		"artical_faq_yandex_4": "The Yandex Browser add-ons catalog allows you to easily find and install new extensions. To open it, simply go to the \"Extensions\" section through the browser menu and select the \"Add-ons Catalog\" button. The catalog offers various tools to enhance browser usability.",
-		"artical_faq_yandex_5": "To access the extensions management page in Yandex Browser, open the menu and select the \"Extensions\" option. Here, all active and inactive extensions are displayed. To enable or disable an extension, click the toggle next to its name. This section is the main tool for customizing the browser's functionality."
+		"artical_faq_yandex_5": "To access the extensions management page in Yandex Browser, open the menu and select the \"Extensions\" option. Here, all active and inactive extensions are displayed. To enable or disable an extension, click the toggle next to its name. This section is the main tool for customizing the browser's functionality.",
+		"artical_faq_safari": "At the moment, our extension does not support the Safari browser. However, you can easily download and install it on your device. We are working on improving compatibility and hope to support Safari in the future.",
+		"artical_faq_mobile_1": "Please note that our extension is not supported in mobile browsers. This is due to platform restrictions and the lack of options to install extensions in mobile browser versions.",
+		"artical_faq_mobile_2": "For the full functionality of our extension, we recommend installing it on your browser's desktop version.",
+		"artical_faq_mobile_3": "If you have any questions or need assistance, please contact our support team.",
+		"artical_faq_reg_1": "To use all features of our application without limitations, registration is required. A registered user can save data, personalize settings, and access additional functionalities.",
+		"artical_faq_reg_2": "To begin the registration or login process, click the appropriate button: 'Create account' or 'Log in'. A window will then open for you to enter the required information.",
+		"artical_faq_reg_3": "In the registration form, fill out all the fields: enter a valid email, create a strong password and confirm it. To view the password, use the 'Show password' button. If you decide not to register, click 'Cancel'. To complete registration, click 'Create account'.",
+		"artical_faq_reg_4": "After logging in, you will have access to all features of our service. You can save data, personalize settings, manage your profile, and use advanced functionalities designed for your convenience.",
+		"artical_faq_reg_5": "Registration is the first step to fully unlocking the potential of our service. Join us to enjoy all its features and make your experience as convenient and efficient as possible!",
+		"pin": "For your convenience and quick access to all features of our extension, we recommend pinning it to your browser's toolbar. This will allow you to use its functionalities instantly without additional steps. Simply follow the instructions in your browser settings to keep our extension handy."
 	},
 	"social": {
 		"questions": "Have questions?",
@@ -372,9 +410,36 @@
 		"pagination.week": "Week",
 		"pagination.3days": "3 Days",
 		"list.see": "See all",
-		"pagination.see": "Show:"
+		"pagination.see": "Show:",
+		"pagination": {
+			"nextPage": "Next page",
+			"prevPage": "Previous page"
+		}
 	},
 	"calendar": {
 		"period": "Period"
+	},
+	"not": {
+		"help": "Installation Assistance",
+		"install": "Install our browser extension",
+		"install_ext": "Install the extension",
+		"last": "Go to the bookmaker’s bet history section",
+		"open": "Open the bookmaker’s website",
+		"sign": "Log in to your account on the bookmaker’s site",
+		"more": "View Details",
+		"pc": "Access from a computer",
+		"pc_desc": "To view statistics, install the extension in your browser on a computer",
+		"write": "Contact Support"
+	},
+	"columns": {
+		"bet.time": "Bet Time",
+		"bet.bookmaker": "Bookmaker",
+		"bet.sport": "Sport",
+		"bet.event": "Event",
+		"bet.ammount": "Amount",
+		"bet.ratio": "Ratio",
+		"bet.win": "Win",
+		"bet.status": "Status",
+		"bet.result": "Total"
 	}
 }

@@ -21,7 +21,12 @@
 		"loses": "pertes",
 		"in_summ": "Pour le montant de",
 		"accounts": "Compte",
-		"team": "Équipe"
+		"team": "Équipe",
+		"loading": "Chargement...",
+		"loading_data": "Chargement des données",
+		"no_bets": "Aucun pari disponible",
+		"no_bets_description": "Pour voir les statistiques de vos paris, suivez ces étapes",
+		"no_bets_filter": "Essayez de sélectionner d'autres paramètres dans les filtres"
 	},
 	"accounts": {
 		"bookmaker": "Bookmaker",
@@ -38,8 +43,12 @@
 		"available": "Disponible",
 		"used": "Utilisé",
 		"noAuth": "Inscrivez-vous pour voir les comptes",
-		"noAccounts": "Aucun compte trouvé ! Connectez des comptes !",
-		"loading": "Chargement des comptes..."
+		"loading": "Chargement des comptes...",
+		"fullName": "Nom complet",
+		"id": "ID",
+		"noAccountTitle": "Les comptes sont absents",
+		"noAccountsDescription": "Pour que les comptes apparaissent — effectuez les étapes suivantes",
+		"register": "Inscription"
 	},
 	"awards": {
 		"received": "Récompenses reçues",
@@ -136,7 +145,15 @@
 		"before": "à",
 		"apply": "Appliquer",
 		"search": "Recherche...",
-		"no_data_available": "Aucune donnée disponible"
+		"no_data_available": "Aucune donnée disponible",
+		"contacts": "Contacts",
+		"copied": "Copié !",
+		"copy": "Copier ?",
+		"open_contacts": "Ouvrir les contacts",
+		"support": "Support",
+		"all_acc": "Total des comptes",
+		"last_pay": "Date du dernier paiement",
+		"all_pays": "Total des paris"
 	},
 	"main": {
 		"main": "Accueil"
@@ -196,14 +213,17 @@
 		"size": "Taille",
 		"mb": "Mo",
 		"how_to_work": "Comment ça marche?",
-		"download": "1 Télécharger",
-		"install": "2 Installer",
-		"auth": "Autorisation!",
+		"download": "Téléchargement",
+		"install": "Décompression des fichiers",
+		"auth": "Installation dans le navigateur",
 		"problems_install": "Des difficultés lors de l'installation?",
 		"chat_install": "Écrivez au service support - Nous serons ravis de vous aider!",
 		"support_chat": "Écrire au support",
 		"need_help": "Des questions?",
-		"ext_info_blocked": "Informations sur l'extension indisponibles"
+		"ext_info_blocked": "Informations sur l'extension indisponibles",
+		"ext_download": "Cliquez sur le bouton “ZIP avec extension” — le fichier commencera à se télécharger automatiquement. Enregistrez-le sur votre ordinateur.",
+		"ext_instl": "Attendez que le téléchargement de l'archive soit terminé, ouvrez-la et décompressez les fichiers dans un dossier de votre choix.",
+		"ext_auth": "Accédez aux paramètres du navigateur, activez le mode développeur et installez l'extension décompressée."
 	},
 	"faq": {
 		"faq": "Aide",
@@ -236,7 +256,6 @@
 		"ext_goole": "Extension pour Google Chrome",
 		"ext_google_title": "Comment installer l'extension dans Google Chrome",
 		"ext_google": "Pour utiliser l'extension dans le navigateur Google Chrome, veuillez lire ce bref guide d'installation !",
-		"ext_image_google_1": "Dans le navigateur, accédez à Paramètres : Plus d'outils : Extensions",
 		"ext_firefox": "Extension pour Firefox",
 		"ext_firefox_title": "Comment installer l'extension dans Firefox",
 		"ext_yandex": "Extension pour Yandex Browser",
@@ -245,12 +264,21 @@
 		"ext_edge_title": "Comment installer l'extension dans Edge",
 		"ext_opera": "Extension pour Opera",
 		"ext_opera_title": "Comment installer l'extension dans Opera",
-		"description_image": "Paramètres du navigateur"
+		"description_image": "Paramètres du navigateur",
+		"ext_iamge_goole_1": "Dans le navigateur, allez dans: Paramètres: Outils supplémentaires: Extensions",
+		"ext_safari": "Extension pour Safari",
+		"ext_safari_title": "Comment installer l’extension dans Safari",
+		"ext_mobile": "Extension mobile",
+		"ext_mobile_title": "Support des navigateurs mobiles",
+		"mobile": "Appareils mobiles"
 	},
 	"description_image": {
 		"description_image": "Paramètres du navigateur",
 		"description_image_google_1": "Point d'extension",
-		"description_image_google_2": "Page des extensions"
+		"description_image_google_2": "Page des extensions",
+		"auth_btns": "Boutons d'authentification",
+		"auth_form": "Formulaire d'authentification/inscription",
+		"acc_block": "Compte autorisé"
 	},
 	"artical_faq": {
 		"artical_faq_google_1": "Dans le coin supérieur droit de la fenêtre du navigateur Google Chrome se trouvent trois points verticaux. C'est le bouton pour ouvrir le menu principal du navigateur, où les paramètres principaux du navigateur sont regroupés. En cliquant dessus, vous verrez une liste déroulante dans laquelle vous pouvez ouvrir des sections telles que \"Historique\", \"Téléchargements\", \"Signets\", ainsi qu'accéder à des outils et fonctionnalités supplémentaires.",
@@ -262,7 +290,17 @@
 		"artical_faq_yandex_2": "Le menu du navigateur Yandex inclut une section \"Extensions\", où vous pouvez gérer les extensions installées. Cette section permet d'activer, de désactiver ou de supprimer des extensions, ainsi que d'installer de nouvelles extensions depuis le catalogue des compléments. Pour accéder à cette section, sélectionnez l'option \"Extensions\" dans le menu.",
 		"artical_faq_yandex_3": "La section \"Extensions\" du navigateur Yandex offre une interface conviviale pour gérer les extensions. Ici, vous pouvez voir la liste de toutes les extensions disponibles, basculer leur état à l'aide du bouton \"Activer/Désactiver\" et supprimer les extensions inutiles. Cet outil aide à personnaliser les fonctionnalités du navigateur selon vos besoins individuels.",
 		"artical_faq_yandex_4": "Le catalogue des compléments du navigateur Yandex permet de trouver et d'installer facilement de nouvelles extensions. Pour l'ouvrir, il suffit d'accéder à la section \"Extensions\" via le menu du navigateur et de sélectionner le bouton \"Catalogue des compléments\". Le catalogue propose divers outils pour améliorer la convivialité du navigateur.",
-		"artical_faq_yandex_5": "Pour accéder à la page de gestion des extensions dans le navigateur Yandex, ouvrez le menu et sélectionnez l'option \"Extensions\". Toutes les extensions actives et inactives y sont affichées. Pour activer ou désactiver une extension, cliquez sur le commutateur à côté de son nom. Cette section est l'outil principal pour personnaliser les fonctionnalités du navigateur."
+		"artical_faq_yandex_5": "Pour accéder à la page de gestion des extensions dans le navigateur Yandex, ouvrez le menu et sélectionnez l'option \"Extensions\". Toutes les extensions actives et inactives y sont affichées. Pour activer ou désactiver une extension, cliquez sur le commutateur à côté de son nom. Cette section est l'outil principal pour personnaliser les fonctionnalités du navigateur.",
+		"artical_faq_safari": "Pour le moment, notre extension ne prend pas en charge le navigateur Safari. Toutefois, vous pouvez facilement la télécharger et l’installer sur votre appareil. Nous travaillons à améliorer la compatibilité et espérons prendre en charge Safari à l’avenir.",
+		"artical_faq_mobile_1": "Veuillez noter que notre extension n'est pas compatible avec les navigateurs mobiles. Cela est dû aux limitations de la plateforme et à l'absence d'options pour installer des extensions dans les versions mobiles des navigateurs.",
+		"artical_faq_mobile_2": "Pour bénéficier pleinement de toutes les fonctionnalités de notre extension, nous vous recommandons de l'installer sur la version de bureau de votre navigateur.",
+		"artical_faq_mobile_3": "Si vous avez des questions ou besoin d'assistance, veuillez contacter notre service support.",
+		"artical_faq_reg_1": "Pour utiliser toutes les fonctionnalités de notre application sans restrictions, l'inscription est nécessaire. Un utilisateur inscrit pourra sauvegarder ses données, personnaliser ses paramètres et accéder à des fonctionnalités supplémentaires.",
+		"artical_faq_reg_2": "Pour démarrer le processus d'inscription ou de connexion, cliquez sur le bouton approprié : 'Créer un compte' ou 'Se connecter'. Une fenêtre s'ouvrira alors pour vous permettre de saisir les informations requises.",
+		"artical_faq_reg_3": "Dans le formulaire d'inscription, remplissez tous les champs : saisissez un email valide, créez un mot de passe sécurisé et confirmez-le. Pour afficher le mot de passe saisi, utilisez le bouton 'Afficher le mot de passe'. Si vous décidez de ne pas vous inscrire, cliquez sur 'Annuler'. Pour finaliser l'inscription, cliquez sur 'Créer un compte'.",
+		"artical_faq_reg_4": "Une fois connecté, vous aurez accès à toutes les fonctionnalités de notre service. Vous pourrez sauvegarder vos données, personnaliser vos paramètres, gérer votre profil et utiliser des fonctionnalités avancées conçues pour votre confort.",
+		"artical_faq_reg_5": "L'inscription est la première étape pour exploiter pleinement le potentiel de notre service. Rejoignez-nous pour profiter de toutes ses fonctionnalités et rendre votre expérience aussi confortable et efficace que possible !",
+		"pin": "Pour votre commodité et un accès rapide à toutes les fonctionnalités de notre extension, nous vous recommandons de l'épingler à la barre d'outils de votre navigateur. Cela vous permettra d'utiliser ses fonctionnalités instantanément sans étapes supplémentaires. Suivez les instructions dans les paramètres de votre navigateur pour toujours avoir notre extension à portée de main."
 	},
 	"social": {
 		"questions": "Vous avez des questions ?",
@@ -372,9 +410,36 @@
 		"pagination.week": "Semaine",
 		"pagination.3days": "3 jours",
 		"list.see": "Voir tout",
-		"pagination.see": "Afficher :"
+		"pagination.see": "Afficher :",
+		"pagination": {
+			"nextPage": "Page suivante",
+			"prevPage": "Page précédente"
+		}
 	},
 	"calendar": {
 		"period": "Période"
+	},
+	"not": {
+		"help": "Assistance à l'installation",
+		"install": "Installez notre extension pour navigateur",
+		"install_ext": "Installer l'extension",
+		"last": "Accédez à la section historique des paris du bookmaker",
+		"open": "Ouvrez le site du bookmaker",
+		"sign": "Connectez-vous à votre compte sur le site du bookmaker",
+		"more": "Voir les détails",
+		"pc": "Accédez depuis un ordinateur",
+		"pc_desc": "Pour afficher les statistiques, installez l'extension dans votre navigateur sur un ordinateur",
+		"write": "Contacter le support"
+	},
+	"columns": {
+		"bet.time": "Heure du pari",
+		"bet.bookmaker": "Bookmaker",
+		"bet.sport": "Sport",
+		"bet.event": "Événement",
+		"bet.ammount": "Montant",
+		"bet.ratio": "Cote",
+		"bet.win": "Gain",
+		"bet.status": "Statut",
+		"bet.result": "Total"
 	}
 }

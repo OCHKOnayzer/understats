@@ -1,10 +1,11 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
+import { get } from 'svelte/store';
+
 import { useBreakpoint } from '$src/hooks/useBreakpoint';
 import { currentUser } from '$src/stores/modalStore';
 import { navigateToExtension } from '$src/utils/functions/navigate';
 import { supportClick } from '$src/utils/functions/supportClick';
-import { get } from 'svelte/store';
 
 import AuthDemoButton from '../../widgets/demo/demoButtons/AuthDemoButton.svelte';
 import Badge from '../badge/badge.svelte';

@@ -6,7 +6,7 @@ function checkScreenWidth() {
 	isMobile.set(window.innerWidth <= 768);
 }
 export function initializeScreenWidthListener() {
-	checkScreenWidth(); // Проверяем изначальное состояние
+	checkScreenWidth();
 	window.addEventListener('resize', checkScreenWidth);
 	return () => {
 		window.removeEventListener('resize', checkScreenWidth);

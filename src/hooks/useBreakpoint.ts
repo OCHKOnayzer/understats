@@ -1,3 +1,4 @@
+// Не изменять импорт
 import { onMount } from 'svelte';
 import { writable } from 'svelte/store';
 
