@@ -269,7 +269,8 @@
 		"ext_safari": "Estensione per Safari",
 		"ext_safari_title": "Come installare l'estensione su Safari",
 		"ext_mobile": "Estensione mobile",
-		"ext_mobile_title": "Supporto per i browser mobili"
+		"ext_mobile_title": "Supporto per i browser mobili",
+		"mobile": "Dispositivi mobili"
 	},
 	"description_image": {
 		"description_image": "Impostazioni del browser",

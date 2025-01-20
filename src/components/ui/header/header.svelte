@@ -13,7 +13,7 @@ import LangButton from '../button/langButton/LangButton.svelte';
 import { goto } from '$app/navigation';
 import { page } from '$app/stores';
 
-type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal'| 'SocialModal' ;
+type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal' | 'SocialModal';
 
 const openCurrentModal = (modal: ModalType) => {
 	if ($modalComponent !== null && $modalComponent !== modal) {

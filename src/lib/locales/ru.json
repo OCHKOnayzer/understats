@@ -424,7 +424,11 @@
 		"pagination.prevPage": "Предыдущая страница",
 		"pagination.nextPage": "Следующая страница",
 		"list.see": "Показать все",
-		"pagination.see": "Показать:"
+		"pagination.see": "Показать:",
+		"pagination": {
+			"nextPage": "Следующая страница",
+			"prevPage": "Предыдущая страница"
+		}
 	},
 	"calendar": {
 		"period": "Период"

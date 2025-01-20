@@ -269,7 +269,8 @@
 		"ext_safari": "Safari Extension",
 		"ext_safari_title": "How to install the extension in Safari",
 		"ext_mobile": "Mobile extension",
-		"ext_mobile_title": "Support for mobile browsers"
+		"ext_mobile_title": "Support for mobile browsers",
+		"mobile": "Mobile Devices"
 	},
 	"description_image": {
 		"description_image": "Browser Settings",

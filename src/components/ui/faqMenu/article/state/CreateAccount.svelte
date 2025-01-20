@@ -31,13 +31,13 @@ import ImageArtical from '../articleComponents/imageArtical.svelte';
 	{/if}
 	<ArticleSection text="artical_faq.artical_faq_reg_4" />
 	{#if $selectedLang === 'ru'}
-	<ImageArtical
-		image="{'assets/article/login_profile.png'}"
-		description="{'description_image.acc_block'}" />
+		<ImageArtical
+			image="{'assets/article/login_profile.png'}"
+			description="{'description_image.acc_block'}" />
 	{:else}
-	<ImageArtical
-		image="{'assets/article/en/login_profile.png'}"
-		description="{'description_image.acc_block'}" />
+		<ImageArtical
+			image="{'assets/article/en/login_profile.png'}"
+			description="{'description_image.acc_block'}" />
 	{/if}
 	<ArticleSection text="artical_faq.artical_faq_reg_5" />
 </div>

@@ -3,7 +3,7 @@ import { t } from 'svelte-i18n';
 
 type TitleProps = {
 	title: string;
-}
+};
 
 let { title } = $$props as TitleProps;
 </script>

@@ -43,14 +43,14 @@ selectHeaderTitle('faq.faq');
 	width: 100%;
 	box-sizing: border-box;
 }
-@media screen and (height: 1440px){ 
-	.mainContent{ 
+@media screen and (height: 1440px) {
+	.mainContent {
 		height: 93vh;
 		padding-bottom: 18px;
 	}
 }
-@media screen and (max-height: 870px){ 
-	.mainContent{ 
+@media screen and (max-height: 870px) {
+	.mainContent {
 		padding-bottom: 13px;
 	}
 }

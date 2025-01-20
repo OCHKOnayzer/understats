@@ -149,7 +149,7 @@ const setLang = (lang: string) => {
 	margin-right: 10px;
 	transition: transform 0.2s ease;
 }
-.open-lang{ 
+.open-lang {
 	transform: rotate(180deg);
 }
 @media (max-width: 1100px) {

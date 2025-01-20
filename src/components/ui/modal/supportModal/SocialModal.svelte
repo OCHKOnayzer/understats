@@ -26,10 +26,12 @@ const copyToClipboard = (text) => {
 };
 </script>
 
-<div class="social_container"
+<div
+	class="social_container"
 	on:click="{closeModal}">
-	<div class="social_modal"
-	on:click|stopPropagation>
+	<div
+		class="social_modal"
+		on:click|stopPropagation>
 		<div class="social_wrapper">
 			<div class="social_title">
 				{$t('other.contacts')}
@@ -42,9 +44,10 @@ const copyToClipboard = (text) => {
 					{#each SocialLink as item}
 						<div class="link_item">
 							{item.name}
-							<a class="color_link"
-							target="_blank"
-							href={item.href}>
+							<a
+								class="color_link"
+								target="_blank"
+								href="{item.href}">
 								{item.link}
 							</a>
 							<!-- <div class="copy_message">{$t(copy)}</div> -->
@@ -218,7 +221,7 @@ const copyToClipboard = (text) => {
 	transition: 300ms;
 }
 
-.active:hover{ 
+.active:hover {
 	background-color: hsl(222, 17%, 28%);
 }
 

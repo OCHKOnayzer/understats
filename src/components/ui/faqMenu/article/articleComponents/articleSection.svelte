@@ -2,7 +2,7 @@
 type ArticalSectionProps = {
 	text: string;
 	mark: boolean;
-}
+};
 import { t } from 'svelte-i18n';
 let { text, mark } = $$props as ArticalSectionProps;
 </script>
