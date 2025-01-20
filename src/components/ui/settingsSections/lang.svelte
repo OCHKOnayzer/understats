@@ -30,7 +30,7 @@ const setLang = (lang: string) => {
 				alt="{`${$selectedLang} flag`}" />
 			<span class="lang-name">{$t(`lang.${$selectedLang}`)}</span>
 		</div>
-		<span class="select-image"
+		<span class="select-image {changeLang ? 'open-lang' : ''}"
 			><img
 				src="assets/arrowSell.svg"
 				alt="" /></span>
@@ -69,7 +69,7 @@ const setLang = (lang: string) => {
 .selected_element {
 	background-color: #20242f;
 	color: #707f96;
-	width: 98%;
+	width: 100%;
 	border-radius: 10px;
 	height: 70px;
 	display: flex;
@@ -102,7 +102,7 @@ const setLang = (lang: string) => {
 .all-lang {
 	position: absolute;
 	background-color: #20242f;
-	width: 98%;
+	width: 100%;
 	border-radius: 5px;
 	margin-top: 5px;
 	overflow-y: hidden;
@@ -147,6 +147,10 @@ const setLang = (lang: string) => {
 }
 .select-image {
 	margin-right: 10px;
+	transition: transform 0.2s ease;
+}
+.open-lang{ 
+	transform: rotate(180deg);
 }
 @media (max-width: 1100px) {
 	/* .user_email, */

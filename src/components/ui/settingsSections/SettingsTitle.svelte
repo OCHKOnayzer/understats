@@ -16,14 +16,13 @@ let { title } = $$props;
 <style>
 .progressTitle {
 	width: 100%;
-	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	font-size: 20px;
 }
 .widget_title {
-	margin-top: 20px;
-	margin-bottom: 20px;
+	padding-top: var(--elements-padding);
+	margin-bottom: 14px;
 }
 @media (max-width: 1200px) {
 	.main_info_wrapper .widget_title {
@@ -34,7 +33,7 @@ let { title } = $$props;
 	.progressTitle {
 		flex-direction: column;
 		align-items: flex-start;
-		padding-left: 35px;
+		padding-left: 28px;
 		font-size: 25px;
 	}
 }

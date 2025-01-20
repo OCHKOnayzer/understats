@@ -59,5 +59,11 @@ export const ActiveElemnts: ActiveInerface[] = [
 		name: 'faq.ext_safari',
 		image: '',
 		article: 'DownloadSafari'
+	},
+	{
+		index: 2,
+		name: 'faq.ext_mobile',
+		image: '',
+		article: 'DownloadMobileExt'
 	}
 ];

@@ -78,8 +78,7 @@ async function loadArticleComponent(article2: string) {
 
 					<svelte:component
 						this="{ArticleComponent}"
-						title="{selectedItemName}"
-						content="Текст статьи" />
+						title="{selectedItemName}" />
 				</div>
 			{:else}
 				<div class="faq_null">
@@ -98,10 +97,10 @@ async function loadArticleComponent(article2: string) {
 	display: flex;
 	justify-content: space-between;
 	height: 100%;
-	padding-bottom: 13px;
 }
 
 .faqChapter {
+	height: 100%;
 	width: 75%;
 	border-radius: 5px;
 	background-color: #252935;
