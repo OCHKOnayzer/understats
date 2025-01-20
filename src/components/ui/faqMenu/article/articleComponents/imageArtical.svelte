@@ -5,7 +5,7 @@ type ImageProps = {
 	image: string;
 	name: string;
 	description: string;
-}
+};
 
 let { image, name, description } = $$props as ImageProps;
 </script>
