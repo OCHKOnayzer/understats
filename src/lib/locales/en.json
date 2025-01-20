@@ -140,7 +140,7 @@
 		"demo": "Demo Access",
 		"pay_method": "Payment Method",
 		"demo_no_auth_title": "You are not authorized",
-		"demo_no_auth_content": "To start using the service — log in or create an account.",
+		"demo_no_auth_content": "To start using the service — log in or create an account",
 		"from": "from",
 		"before": "to",
 		"apply": "Apply",
