@@ -30,7 +30,7 @@ const setLang = (lang: string) => {
 				alt="{`${$selectedLang} flag`}" />
 			<span class="lang-name">{$t(`lang.${$selectedLang}`)}</span>
 		</div>
-		<span class="select-image"
+		<span class="select-image {changeLang ? 'open-lang' : ''}"
 			><img
 				src="assets/arrowSell.svg"
 				alt="" /></span>
@@ -147,6 +147,10 @@ const setLang = (lang: string) => {
 }
 .select-image {
 	margin-right: 10px;
+	transition: transform 0.2s ease;
+}
+.open-lang{ 
+	transform: rotate(180deg);
 }
 @media (max-width: 1100px) {
 	/* .user_email, */
