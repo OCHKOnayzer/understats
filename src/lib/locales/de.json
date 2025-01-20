@@ -221,7 +221,7 @@
     "support_chat": "Support kontaktieren",
     "need_help": "Haben Sie Fragen?",
     "ext_info_blocked": "Erweiterungsinformationen sind nicht verfügbar",
-		"ext_download": "Klicken Sie auf die Schaltfläche „ZIP mit Erweiterung“ — die Datei wird automatisch heruntergeladen. Speichern Sie sie auf Ihrem Computer.",
+    "ext_download": "Klicken Sie auf die Schaltfläche „ZIP mit Erweiterung“ — die Datei wird automatisch heruntergeladen. Speichern Sie sie auf Ihrem Computer.",
     "ext_instl": "Warten Sie, bis der Archivdownload abgeschlossen ist, öffnen Sie das Archiv und entpacken Sie die Dateien in einen geeigneten Ordner.",
     "ext_auth": "Gehen Sie zu den Browser-Einstellungen, aktivieren Sie den Entwicklermodus und installieren Sie die entpackte Erweiterung."
   },
@@ -269,13 +269,14 @@
     "ext_safari": "Safari-Erweiterung",
     "ext_safari_title": "So installieren Sie die Erweiterung in Safari",
     "ext_mobile": "Mobile Erweiterung",
-    "ext_mobile_title": "Unterstützung mobiler Browser"
+    "ext_mobile_title": "Unterstützung mobiler Browser",
+    "mobile": "Mobile Geräte"
   },
   "description_image": {
     "description_image": "Browser-Einstellungen",
     "description_image_google_1": "Erweiterungspunkt",
     "description_image_google_2": "Erweiterungsseite",
-		"auth_btns": "Anmeldeschaltflächen",
+    "auth_btns": "Anmeldeschaltflächen",
     "auth_form": "Anmelde-/Registrierungsformular",
     "acc_block": "Authentifiziertes Konto"
   },
@@ -291,7 +292,7 @@
     "artical_faq_yandex_4": "Der Erweiterungskatalog des Yandex.Browsers ermöglicht es Ihnen, neue Erweiterungen einfach zu finden und zu installieren. Um ihn zu öffnen, gehen Sie einfach zum Abschnitt \"Erweiterungen\" über das Browsermenü und wählen Sie die Schaltfläche \"Erweiterungskatalog\". Im Katalog stehen verschiedene Tools zur Verbesserung der Benutzerfreundlichkeit des Browsers zur Verfügung.",
     "artical_faq_yandex_5": "Um auf die Seite zur Verwaltung von Erweiterungen im Yandex.Browser zuzugreifen, können Sie das Menü öffnen und den Punkt \"Erweiterungen\" auswählen. Hier werden alle aktiven und inaktiven Erweiterungen angezeigt. Um eine Erweiterung ein- oder auszuschalten, klicken Sie auf den Schalter neben ihrem Namen. Dieser Abschnitt ist das Hauptwerkzeug zur Anpassung der Browserfunktionalität.",
     "artical_faq_safari": "Zurzeit unterstützt unsere Erweiterung den Safari-Browser nicht. Sie können sie jedoch problemlos auf Ihrem Gerät herunterladen und installieren. Wir arbeiten an der Verbesserung der Kompatibilität und hoffen in Zukunft auf Unterstützung für Safari.",
-		"artical_faq_mobile_1": "Bitte beachten Sie, dass unsere Erweiterung in mobilen Browsern nicht unterstützt wird. Dies liegt an den Beschränkungen der Plattformen und daran, dass es in mobilen Versionen von Browsern keine Möglichkeit gibt, Erweiterungen zu installieren.",
+    "artical_faq_mobile_1": "Bitte beachten Sie, dass unsere Erweiterung in mobilen Browsern nicht unterstützt wird. Dies liegt an den Beschränkungen der Plattformen und daran, dass es in mobilen Versionen von Browsern keine Möglichkeit gibt, Erweiterungen zu installieren.",
     "artical_faq_mobile_2": "Um alle Funktionen unserer Erweiterung vollständig zu nutzen, empfehlen wir, sie in der Desktop-Version Ihres Browsers zu installieren.",
     "artical_faq_mobile_3": "Wenn Sie Fragen haben oder Unterstützung benötigen, wenden Sie sich bitte an unseren Support.",
     "artical_faq_reg_1": "Um alle Funktionen unserer Anwendung uneingeschränkt nutzen zu können, ist eine Registrierung erforderlich. Ein registrierter Benutzer kann Daten speichern, Einstellungen personalisieren und auf zusätzliche Funktionen zugreifen.",
