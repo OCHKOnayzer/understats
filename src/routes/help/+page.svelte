@@ -35,7 +35,7 @@ selectHeaderTitle('faq.faq');
 
 <style>
 .mainContent {
-	height: 89vh;
+	height: calc(90vh - 13px);
 	padding-left: 2rem;
 	padding-right: 2rem;
 }
@@ -43,11 +43,15 @@ selectHeaderTitle('faq.faq');
 	width: 100%;
 	box-sizing: border-box;
 }
-
 @media screen and (height: 1440px){ 
 	.mainContent{ 
 		height: 93vh;
+		padding-bottom: 18px;
 	}
 }
-
+@media screen and (max-height: 870px){ 
+	.mainContent{ 
+		padding-bottom: 13px;
+	}
+}
 </style>

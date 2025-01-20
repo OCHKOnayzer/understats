@@ -29,7 +29,7 @@ selectHeaderTitle('settings.settings');
 </svelte:head>
 
 <div class="pageContent">
-	<UserActivity/>
+	<!-- <UserActivity/> -->
 	{#if !$currentUser}
 		<DemoButtons />
 	{/if}

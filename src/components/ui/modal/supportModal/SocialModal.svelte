@@ -43,7 +43,8 @@ const copyToClipboard = (text) => {
 						<div class="link_item">
 							{item.name}
 							<a class="color_link"
-							href="/">
+							target="_blank"
+							href={item.href}>
 								{item.link}
 							</a>
 							<!-- <div class="copy_message">{$t(copy)}</div> -->
