@@ -13,16 +13,8 @@ export const SocialLink: SocialInterface[] = [
 		link: 't.com/onekeepbet'
 	},
 	{
-		name: 'Twitter EN',
-		link: 'x.com/onekeepbet'
-	},
-	{
 		name: 'Youtube',
 		link: 'x.com/onekeepbet'
-	},
-	{
-		name: 'Discord',
-		link: 't.com/onekeepbet'
 	},
 	{
 		name: 'Почта',

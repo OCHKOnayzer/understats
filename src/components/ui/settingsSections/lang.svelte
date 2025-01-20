@@ -69,7 +69,7 @@ const setLang = (lang: string) => {
 .selected_element {
 	background-color: #20242f;
 	color: #707f96;
-	width: 98%;
+	width: 100%;
 	border-radius: 10px;
 	height: 70px;
 	display: flex;
@@ -102,7 +102,7 @@ const setLang = (lang: string) => {
 .all-lang {
 	position: absolute;
 	background-color: #20242f;
-	width: 98%;
+	width: 100%;
 	border-radius: 5px;
 	margin-top: 5px;
 	overflow-y: hidden;

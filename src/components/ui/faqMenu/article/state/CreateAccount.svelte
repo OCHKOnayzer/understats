@@ -11,7 +11,15 @@ import ImageArtical from '../articleComponents/imageArtical.svelte';
 	<ImageArtical
 		image="{'assets/article/auth_buttons.png'}"
 		description="{'description_image.auth_btns'}" />
-	
+		<ArticleSection text="artical_faq.artical_faq_reg_3" />
+	<ImageArtical
+		image="{'assets/article/auth_form.png'}"
+		description="{'description_image.auth_form'}" />
+	<ArticleSection text="artical_faq.artical_faq_reg_4" />
+	<ImageArtical
+		image="{'assets/article/login_profile.png'}"
+		description="{'description_image.acc_block'}" />
+	<ArticleSection text="artical_faq.artical_faq_reg_5" />
 </div>
 
 <style>

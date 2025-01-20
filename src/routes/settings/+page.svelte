@@ -2,6 +2,7 @@
 import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 
+import UserActivity from '$src/components/ui/settingsSections/UserActivity.svelte';
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
 import DemoButtons from '$src/components/widgets/demo/demoButtons/DemoButtons.svelte';
 import { currentUser } from '$src/stores/modalStore';
@@ -28,6 +29,7 @@ selectHeaderTitle('settings.settings');
 </svelte:head>
 
 <div class="pageContent">
+	<UserActivity/>
 	{#if !$currentUser}
 		<DemoButtons />
 	{/if}
