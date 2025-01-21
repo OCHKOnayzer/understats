@@ -26,8 +26,12 @@ const copyToClipboard = (text) => {
 };
 </script>
 
-<div class="social_container">
-	<div class="social_modal">
+<div
+	class="social_container"
+	on:click="{closeModal}">
+	<div
+		class="social_modal"
+		on:click|stopPropagation>
 		<div class="social_wrapper">
 			<div class="social_title">
 				{$t('other.contacts')}
@@ -40,18 +44,19 @@ const copyToClipboard = (text) => {
 					{#each SocialLink as item}
 						<div class="link_item">
 							{item.name}
-							<span
+							<a
 								class="color_link"
-								on:click="{() => copyToClipboard(item.link)}">
+								target="_blank"
+								href="{item.href}">
 								{item.link}
-							</span>
-							<div class="copy_message">{$t(copy)}</div>
+							</a>
+							<!-- <div class="copy_message">{$t(copy)}</div> -->
 						</div>
 					{/each}
 				</div>
 				<div class="social_item_container">
 					<a
-						class="social_item"
+						class="social_item active"
 						target="_blank"
 						href="https://t.me/OneKeepBet_bot">
 						<img
@@ -213,6 +218,11 @@ const copyToClipboard = (text) => {
 	justify-content: center;
 	user-select: none;
 	gap: 10px;
+	transition: 300ms;
+}
+
+.active:hover {
+	background-color: hsl(222, 17%, 28%);
 }
 
 .nactiv {

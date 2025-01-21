@@ -24,7 +24,8 @@ const closPayModal = () => {
 				<div class="tariffs-name-container">
 					{$currentTariffs}:
 					{#if $currentAccounst || $currentLimits}
-						{$currentAccounst}{$t('tariffs.limits_acc')}
+						{$currentAccounst}
+						{$t('tariffs.limits_acc')}
 						{$currentLimits}
 						{$t('tariffs.limits_bets')}
 					{:else}
