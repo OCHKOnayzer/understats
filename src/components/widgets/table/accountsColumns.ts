@@ -10,17 +10,17 @@ export type { IAccountResponse };
 
 export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 	{
-		accessorKey: 'siteName',
-		header: 'accounts.bookmaker',
-		meta: { width: '120px' }
-	},
-	{
 		accessorKey: 'clientSeq',
 		header: ({ column }) =>
 			renderComponent(DataTableIdButton, {
 				column,
 				'data-state': column.getIsSorted() ? 'sorted' : 'unsorted'
 			}),
+		meta: { width: '120px' }
+	},
+	{
+		accessorKey: 'siteName',
+		header: 'accounts.bookmaker',
 		meta: { width: '80px' }
 	},
 	{
@@ -29,18 +29,18 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 		meta: { width: '100px' }
 	},
 	{
-		accessorKey: 'balance',
-		header: 'accounts.balance',
+		accessorKey: 'email',
+		header: 'accounts.mail',
 		meta: { width: '100px' }
+	},
+	{
+		accessorKey: 'bkId',
+		header: 'accounts.bkId',
+		meta: { width: '150px' }
 	},
 	{
 		accessorKey: 'fullName',
 		header: 'accounts.fullName',
-		meta: { width: '150px' }
-	},
-	{
-		accessorKey: 'email',
-		header: 'accounts.mail',
 		meta: { width: '180px' }
 	},
 	{
@@ -55,12 +55,16 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 		meta: { width: '130px' }
 	},
 	{
-		accessorKey: 'lastBet',
-		header: 'accounts.lastBet',
+		accessorKey: 'balance',
+		header: 'accounts.balance',
 		meta: { width: '130px' }
 	},
 	{
-		accessorKey: 'outcome',
+		accessorKey: 'lastBet',
+		header: 'accounts.lastBet'
+	},
+	{
+		accessorKey: 'betsCount',
 		header: 'accounts.betCount'
 	}
 ];

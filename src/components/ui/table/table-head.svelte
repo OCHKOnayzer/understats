@@ -15,7 +15,7 @@
 <th
 	bind:this={ref}
 	class={cn(
-		'border-2 border-[#363A45] pl-2 pr-10 py-1 text-left text-[10px] font-normal align-top [&:has([role=checkbox])]:pr-0',
+		'border-2 border-[#363A45] pl-1 pr-18 py-1 text-left text-[10px] font-normal align-top [&:has([role=checkbox])]:pr-0',
 		className
 	)}
 	{...restProps}

@@ -1,4 +1,6 @@
-import { onMount, writable } from 'svelte';
+/* eslint-disable import/no-duplicates */
+import { onMount } from 'svelte';
+import { writable } from 'svelte/store';
 
 export const useBreakpoint = (breakpoint = 400) => {
 	const isMobile = writable(false);

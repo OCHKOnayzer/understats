@@ -12,12 +12,10 @@ import { currentUser } from '$src/stores/modalStore';
 import { generateAccountKey } from '$src/utils/functions/generateAccountKey';
 import { cn } from '$src/utils/utils';
 
-import AuthDemoButton from '../demo/demoButtons/AuthDemoButton.svelte';
-import DataTableEmailButton from '../stats/BetsTable/data-table-id-button.svelte.svelte';
-
-import { accountsColumns } from './accountsColumns';
-
 import type { IAccountResponse } from '$src/types/accounts';
+import AuthDemoButton from '../demo/demoButtons/AuthDemoButton.svelte';
+import { accountsColumns } from './accountsColumns';
+import DataTableIdButton from './data-table-id-button.svelte';
 
 const { query } = useAccounts();
 const { query: profileQuery } = useUserProfile();
@@ -93,26 +91,26 @@ const renderHeader = (header: unknown): unknown => {
 	<div class="table-wrapper">
 		<div class="table-container">
 			<Table.Root class="mt-3 w-full caption-bottom text-[12px]">
-				<Table.Header class="table-head sticky top-0 bg-[#31384A]">
+				<Table.Header class="sticky top-0 bg-[#31384A]">
 					{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
 						<Table.Row class="border-none">
 							{#each headerGroup.headers as header (header.id)}
-								<Table.Head class="table-head">
+								<Table.Head class="w-[350px]">
 									<div class="header-content">
 										<img
 											class="header-icon {header.column.getIsSorted() === 'desc' ? 'rotate-180' : ''}
-												   {typeof header.column.columnDef.header === 'function' ? 'transition-transform duration-200' : ''}"
+											{typeof header.column.columnDef.header === 'function' ? 'transition-transform duration-200' : ''}"
 											src="icons/bk/table.svg"
 											alt="table" />
-										<span class="header-text {header.column.getIsSorted() ? 'font-bold' : ''}">
-											{#if typeof header.column.columnDef.header === 'function'}
-												<svelte:component
-													this="{DataTableEmailButton}"
-													column="{header.column}" />
-											{:else}
-												{renderHeader(header.column.columnDef.header)}
-											{/if}
-										</span>
+										<div class="header-text-wrapper">
+											<span class="header-text {header.column.getIsSorted() ? 'font-bold' : ''}">
+												{#if typeof header.column.columnDef.header === 'function'}
+													<DataTableIdButton column="{header.column}" />
+												{:else}
+													{renderHeader(header.column.columnDef.header)}
+												{/if}
+											</span>
+										</div>
 									</div>
 								</Table.Head>
 							{/each}
@@ -121,12 +119,14 @@ const renderHeader = (header: unknown): unknown => {
 				</Table.Header>
 				<Table.Body>
 					{#each table.getRowModel().rows as row, index (generateAccountKey(row.original, index))}
-						<Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'} cursor-pointer text-[10px] transition-all duration-300 ease-in-out hover:bg-[#3D3A8540]`)}">
+						<Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'} cursor-pointer text-[14px] transition-all duration-300 ease-in-out hover:bg-[#3D3A8540]`)}">
 							{#each row.getVisibleCells() as cell (cell.id)}
 								<Table.Cell>
-									<FlexRender
-										content="{cell.column.columnDef.cell}"
-										context="{cell.getContext() as CellContextType}" />
+									<div class="cell-content">
+										<FlexRender
+											content="{cell.column.columnDef.cell}"
+											context="{cell.getContext() as CellContextType}" />
+									</div>
 								</Table.Cell>
 							{/each}
 						</Table.Row>
@@ -163,24 +163,30 @@ const renderHeader = (header: unknown): unknown => {
 	-webkit-overflow-scrolling: touch;
 }
 
-.table-head {
-	@apply min-h-[40px] w-[500px] !text-[12px] sm:min-h-[28px] md:min-h-[32px] xl:min-h-[40px];
-}
-
 .header-content {
-	@apply flex h-full items-center gap-1;
+	@apply flex h-[40px] w-full items-center gap-1 px-2;
 }
 
 .header-icon {
 	@apply flex-shrink-0 sm:h-2 sm:w-2 md:h-2 md:w-2 xl:h-4 xl:w-4;
 }
 
-.rotate-180 {
-	transform: rotate(180deg);
+.header-text-wrapper {
+	@apply flex min-w-0 flex-1 items-center overflow-hidden;
+	max-height: 32px;
 }
 
 .header-text {
-	@apply sm:text-[9px] md:text-[10px] xl:text-[10px];
+	@apply block w-full whitespace-normal sm:text-[9px] md:text-[12px] xl:text-[12px];
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	line-height: 16px;
+	overflow: hidden;
+}
+
+.rotate-180 {
+	transform: rotate(180deg);
 }
 
 :global(.table-container table) {
@@ -188,6 +194,18 @@ const renderHeader = (header: unknown): unknown => {
 }
 
 :global(.table-container th) {
-	@apply min-w-0 max-w-[150px];
+	@apply min-w-[150px] max-w-[350px];
+}
+
+:global(.table-container td) {
+	@apply p-2;
+}
+
+.cell-content {
+	@apply min-w-0 whitespace-normal;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 }
 </style>
