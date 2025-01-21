@@ -181,7 +181,7 @@ console.log(accounts);
 		font-size: 15px;
 	}
 	.choose-period {
-		height: 8vh;
+		height: 40px;
 	}
 }
 </style>

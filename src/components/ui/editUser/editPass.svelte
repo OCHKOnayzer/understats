@@ -268,15 +268,15 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 	}
 	.updataBtn {
 		justify-content: center;
-		padding: 20px;
+		padding-top: 20px;
 	}
-
 	.setings_item:nth-child(1),
 	.selected_element:nth-child(2) {
 		margin-right: 0;
 	}
 	.btn_upd:nth-child(1) {
 		width: 80%;
+		margin: 0px;
 	}
 }
 </style>

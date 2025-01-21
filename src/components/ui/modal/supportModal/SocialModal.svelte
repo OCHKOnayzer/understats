@@ -87,7 +87,6 @@ const copyToClipboard = (text) => {
 
 .social_modal {
 	width: 525px;
-	min-height: 380px;
 	background-color: #20242f;
 	display: flex;
 	align-items: center;

@@ -50,13 +50,17 @@ selectHeaderTitle('settings.settings');
 <style>
 .pageContent {
 	width: 100%;
-	padding-left: 2rem;
-	padding-right: 2rem;
 }
 .progressWrapper {
 	width: 100%;
 	margin: 0 auto;
 	padding: 0 2rem;
 	box-sizing: border-box;
+}
+@media (max-width: 768px) {
+	.pageContent {
+		padding-right: 24px;
+		padding-left: 24px;
+	}
 }
 </style>

@@ -171,6 +171,8 @@ main {
 	flex-direction: column;
 	overflow-x: hidden;
 	box-sizing: border-box;
+	padding-left: 24px;
+	padding-right: 24px;
 }
 
 @media screen and (max-width: 768px) {

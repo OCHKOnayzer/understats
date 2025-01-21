@@ -97,7 +97,8 @@ onMount(() => {
 .header {
 	height: fit-content;
 	box-sizing: border-box;
-	padding: var(--elements-padding) 2rem;
+	padding-top: var(--elements-padding);
+	padding-bottom: var(--elements-padding);
 	width: 100%;
 	margin: 0 auto;
 	position: relative;
@@ -207,6 +208,8 @@ onMount(() => {
 @media screen and (max-width: 800px) {
 	.header {
 		margin-bottom: 60px;
+		margin-left: 24px;
+		padding-right: 24px;
 	}
 	.flexConteiner {
 		display: flex;
