@@ -250,11 +250,12 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 		width: 100%;
 	}
 	.item_settings_info {
-		width: 80%;
+		padding-right: 28px;
+		padding-left: 28px;
 	}
 	.selected_element {
 		height: 60px;
-		width: 80%;
+		width: 90%;
 		margin: 0;
 	}
 	.max--w {
@@ -275,7 +276,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 		margin-right: 0;
 	}
 	.btn_upd:nth-child(1) {
-		width: 80%;
+		width: 90%;
 		margin: 0px;
 	}
 }

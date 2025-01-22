@@ -1,4 +1,5 @@
 <script lang="ts">
+import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
 import { closeModal } from '$src/stores/modalStore';
@@ -8,22 +9,80 @@ import { SocialLink } from './social';
 const closPayModal = () => {
 	closeModal();
 };
+let isChatOpen = false;
 
-let copy = 'other.copy';
-let timeoutId;
+onMount(() => {
+	if (window.LC_API) {
+		window.LC_API.on_chat_window_opened = () => {
+			isChatOpen = true;
+		};
 
-const copyToClipboard = (text) => {
-	navigator.clipboard.writeText(text);
-	copy = 'other.copied';
-
-	if (timeoutId) {
-		clearTimeout(timeoutId);
+		window.LC_API.on_chat_window_hidden = () => {
+			isChatOpen = false;
+		};
 	}
 
-	timeoutId = setTimeout(() => {
-		copy = 'other.copy';
-	}, 1000);
-};
+	if (window.jivo_onOpen) {
+		window.jivo_onOpen = () => {
+			isChatOpen = true;
+		};
+	}
+
+	if (window.jivo_onClose) {
+		window.jivo_onClose = () => {
+			isChatOpen = false;
+		};
+	}
+
+	if (window.jivo_destroy) {
+		window.jivo_destroy();
+	}
+});
+
+function toggleChat() {
+	if (isChatOpen) {
+		closeChat();
+	} else {
+		openChat();
+	}
+}
+
+function openChat() {
+	openJivositeChat();
+	// openLiveChat();
+
+	isChatOpen = true;
+}
+
+function openJivositeChat() {
+	if (window.jivo_api) {
+		window.jivo_api.open({});
+	}
+}
+
+function closeChat() {
+	if (window.jivo_api) {
+		window.jivo_api.close();
+	}
+
+	isChatOpen = false;
+}
+
+function openLiveChat() {
+	if (typeof window.LC_API !== 'undefined') {
+		// window.LiveChatWidget.call('set_language', 'ru');
+
+		var liveChatScript = document.createElement('script');
+		liveChatScript.src = 'https://cdn.livechatinc.com/widget.js';
+		liveChatScript.async = true;
+		liveChatScript.onload = function () {
+			window.LiveChatWidget.call('set_language', 'ru');
+		};
+		document.head.appendChild(liveChatScript);
+
+		window.LC_API.open_chat_window();
+	}
+}
 </script>
 
 <div
@@ -71,6 +130,9 @@ const copyToClipboard = (text) => {
 						{$t('other.support')}
 					</div>
 				</div>
+				<button on:click="{toggleChat}" class="open-chat">
+					{$t('other.chat_open')}
+				</button>
 			</div>
 		</div>
 	</div>
@@ -204,7 +266,6 @@ const copyToClipboard = (text) => {
 	align-items: center;
 	width: 100%;
 	gap: 10px;
-	padding-bottom: 48px;
 }
 
 .social_item {
@@ -227,6 +288,18 @@ const copyToClipboard = (text) => {
 .nactiv {
 	background-color: #363a4592;
 	cursor: not-allowed;
-	color: #718096;
+	color: var(--inactive-elements);
+}
+.open-chat{ 
+	height: 56px;
+	width: 100%;
+	border: 1px solid var(--inactive-elements);
+	border-radius: 16px;
+	margin-top: 10px;
+	margin-bottom: 35px;
+	transition: 300ms;
+}
+.open-chat:hover{ 
+	border-color: #9aa8bd;
 }
 </style>

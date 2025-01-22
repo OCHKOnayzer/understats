@@ -17,6 +17,6 @@ export async function load() {
 		};
 	} catch (err: any) {
 		// eslint-disable-next-line @typescript-eslint/no-throw-literal
-		throw error(err.status || 500, err.message || 'Произошла ошибка при загрузке данных');
+		throw error(err.status || 500, err.message );
 	}
 }

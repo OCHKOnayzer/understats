@@ -72,7 +72,7 @@ onDestroy(() => {
 	top: 0;
 	left: 0;
 	width: 13vw;
-	z-index: 10000;
+	z-index: 9997;
 	height: 100vh;
 }
 
@@ -118,7 +118,7 @@ onDestroy(() => {
 	padding-left: 13vw;
 	transition: padding-left 0.3s ease;
 }
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1300px) {
 	.fixedContainer {
 		width: 16vw;
 	}

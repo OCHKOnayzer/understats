@@ -208,8 +208,6 @@ onMount(() => {
 @media screen and (max-width: 800px) {
 	.header {
 		margin-bottom: 60px;
-		margin-left: 24px;
-		padding-right: 24px;
 	}
 	.flexConteiner {
 		display: flex;

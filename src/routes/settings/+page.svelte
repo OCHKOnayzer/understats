@@ -45,6 +45,7 @@ selectHeaderTitle('settings.settings');
 	{#if $currentUser}
 		<EditPass />
 	{/if}
+	<EditPass />
 </div>
 
 <style>
@@ -56,11 +57,5 @@ selectHeaderTitle('settings.settings');
 	margin: 0 auto;
 	padding: 0 2rem;
 	box-sizing: border-box;
-}
-@media (max-width: 768px) {
-	.pageContent {
-		padding-right: 24px;
-		padding-left: 24px;
-	}
 }
 </style>

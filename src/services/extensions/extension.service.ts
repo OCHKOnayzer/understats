@@ -7,6 +7,8 @@ import { handleAxiosError, ApiError } from '$src/api/api.error';
 
 import { getAccessToken } from '../auth/auth-token.service';
 
+import { extensionInfo } from '$src/stores/extensionStore';
+
 import type { ExtensionInfo } from '$src/types/types';
 
 class ExtensionService {
@@ -51,7 +53,7 @@ class ExtensionService {
 			// }
 
 			const blob = await response.blob();
-			const fileName = response.headers.get('content-disposition')?.split('filename=')[1]?.replace(/['"]/g, '') || 'OneKeepBet.zip';
+			const fileName = response.headers.get('content-disposition')?.split('filename=')[1]?.replace(/['"]/g, '') || `OneKeepBet ${get(extensionInfo).version}.zip`;
 
 			const url = window.URL.createObjectURL(blob);
 			const a = document.createElement('a');

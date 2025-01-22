@@ -161,11 +161,12 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 		width: 100%;
 	}
 	.item_settings_info {
-		width: 80%;
+		padding-right: 28px;
+		padding-left: 28px;
 	}
 	.selected_element {
 		height: 60px;
-		width: 80%;
+		width: 92%;
 		margin: 0;
 	}
 	.selected_element:nth-child(1) {

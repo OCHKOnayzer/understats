@@ -48,7 +48,7 @@ function handleClick() {
 @media screen and (max-width: 768px) {
 	.switch_wrapper {
 		width: 100%;
-		height: 8vh;
+		height: 56px;
 		margin-right: 0px;
 	}
 	.switch_wrapper button,
