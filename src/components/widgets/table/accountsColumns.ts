@@ -1,7 +1,7 @@
 import { renderComponent } from '$src/components/ui/data-table';
 import { formatDate } from '$src/utils/functions/formatDate';
 
-import DataTableIdButton from '../stats/BetsTable/data-table-id-button.svelte.svelte';
+import DataTableIdButton from './data-table-id-button.svelte';
 
 import type { IAccountResponse } from '$src/types/accounts';
 import type { ColumnDef } from '@tanstack/table-core';

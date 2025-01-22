@@ -15,7 +15,6 @@ import { cn } from '$src/utils/utils';
 import type { IAccountResponse } from '$src/types/accounts';
 import AuthDemoButton from '../demo/demoButtons/AuthDemoButton.svelte';
 import { accountsColumns } from './accountsColumns';
-import DataTableIdButton from './data-table-id-button.svelte';
 
 const { query } = useAccounts();
 const { query: profileQuery } = useUserProfile();
@@ -56,7 +55,6 @@ const table = createSvelteTable({
 		} else {
 			sorting = updater;
 		}
-		localStorage.setItem('tableSorting', JSON.stringify(sorting));
 	},
 	state: {
 		get sorting() {
@@ -90,26 +88,22 @@ const renderHeader = (header: unknown): unknown => {
 {:else if accounts?.length}
 	<div class="table-wrapper">
 		<div class="table-container">
-			<Table.Root class="mt-3 w-full caption-bottom text-[12px]">
-				<Table.Header class="sticky top-0 bg-[#31384A]">
+			<Table.Root class="">
+				<Table.Header class="top-0 bg-[#31384A]">
 					{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
 						<Table.Row class="border-none">
 							{#each headerGroup.headers as header (header.id)}
-								<Table.Head class="w-[350px]">
-									<div class="header-content">
+								<Table.Head class="">
+									<div class="flex gap-2 pl-1 pr-5">
 										<img
 											class="header-icon {header.column.getIsSorted() === 'desc' ? 'rotate-180' : ''}
 											{typeof header.column.columnDef.header === 'function' ? 'transition-transform duration-200' : ''}"
 											src="icons/bk/table.svg"
 											alt="table" />
-										<div class="header-text-wrapper">
-											<span class="header-text {header.column.getIsSorted() ? 'font-bold' : ''}">
-												{#if typeof header.column.columnDef.header === 'function'}
-													<DataTableIdButton column="{header.column}" />
-												{:else}
-													{renderHeader(header.column.columnDef.header)}
-												{/if}
-											</span>
+										<div class="text-[14px]">
+											<FlexRender
+												content="{header.column.columnDef.header}"
+												context="{header.getContext()}" />
 										</div>
 									</div>
 								</Table.Head>
@@ -152,60 +146,5 @@ const renderHeader = (header: unknown): unknown => {
 
 .message-container {
 	@apply z-[5000] bg-[#171b26] font-[Manrope] font-light;
-}
-
-.table-wrapper {
-	@apply relative w-full overflow-hidden bg-[#171b26];
-}
-
-.table-container {
-	@apply relative w-full overflow-x-auto;
-	-webkit-overflow-scrolling: touch;
-}
-
-.header-content {
-	@apply flex h-[40px] w-full items-center gap-1 px-2;
-}
-
-.header-icon {
-	@apply flex-shrink-0 sm:h-2 sm:w-2 md:h-2 md:w-2 xl:h-4 xl:w-4;
-}
-
-.header-text-wrapper {
-	@apply flex min-w-0 flex-1 items-center overflow-hidden;
-	max-height: 32px;
-}
-
-.header-text {
-	@apply block w-full whitespace-normal sm:text-[9px] md:text-[12px] xl:text-[12px];
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-	line-height: 16px;
-	overflow: hidden;
-}
-
-.rotate-180 {
-	transform: rotate(180deg);
-}
-
-:global(.table-container table) {
-	@apply w-full table-auto;
-}
-
-:global(.table-container th) {
-	@apply min-w-[150px] max-w-[350px];
-}
-
-:global(.table-container td) {
-	@apply p-2;
-}
-
-.cell-content {
-	@apply min-w-0 whitespace-normal;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
 }
 </style>

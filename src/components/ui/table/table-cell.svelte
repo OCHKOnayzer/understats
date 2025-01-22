@@ -14,7 +14,7 @@
 
 <td
 	bind:this={ref}
-	class={cn('active: border-spacing-10 border border-[#363A45] px-4 py-2 text-left align-middle [&:has([role=checkbox])]:pr-0', className)}
+	class={cn('active: border-spacing-10 border border-[#363A45] px-2 py-2 text-left align-middle [&:has([role=checkbox])]:pr-0', className)}
 	{...restProps}
 >
 	{@render children?.()}
