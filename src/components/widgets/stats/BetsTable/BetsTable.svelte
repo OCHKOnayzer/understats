@@ -32,10 +32,6 @@ const table = createSvelteTable({
 	getCoreRowModel: getCoreRowModel()
 });
 
-let hasActiveFilters = $derived(
-	$filterStore.selectedSports.length > 0 || $filterStore.selectedBookmakers.length > 0 || $filterStore.selectedAccounts.length > 0 || $filterStore.betResult.length > 0
-);
-
 type CellContextType = CellContext<Bet, unknown>;
 
 let showLoading = $state(false);
@@ -67,10 +63,6 @@ async function loadData() {
 		betsTableStore.setLoading(false);
 		isInitialLoading = false;
 	}
-}
-
-function renderHeader(header: string): string {
-	return $t(header);
 }
 
 onMount(() => {
@@ -135,7 +127,7 @@ $effect(() => {
 													src="/icons/table-icon.svg"
 													alt="" />
 												<FlexRender
-													content="{renderHeader(header.column.columnDef.header as string)}"
+													content="{header.column.columnDef.header}"
 													context="{header.getContext()}" />
 											</div>
 										{/if}

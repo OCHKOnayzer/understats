@@ -23,16 +23,7 @@ let accounts = $state<IAccountResponse[]>([]);
 let isAuthenticated = $derived(!!$currentUser);
 let isLoading = $derived(isAuthenticated && ($query.isLoading || $profileQuery.isLoading));
 
-let sorting = $state<SortingState>(
-	(() => {
-		try {
-			const saved = localStorage.getItem('tableSorting');
-			return saved ? JSON.parse(saved) : [];
-		} catch {
-			return [];
-		}
-	})()
-);
+let sorting = $state<SortingState>([]);
 
 $effect(() => {
 	localStorage.setItem('tableSorting', JSON.stringify(sorting));
@@ -64,16 +55,6 @@ const table = createSvelteTable({
 });
 
 type CellContextType = CellContext<IAccountResponse, unknown>;
-
-const renderHeader = (header: unknown): unknown => {
-	if (typeof header === 'function') {
-		return header();
-	}
-	if (typeof header === 'string') {
-		return $t(header);
-	}
-	return header;
-};
 </script>
 
 {#if !isAuthenticated}
@@ -94,12 +75,7 @@ const renderHeader = (header: unknown): unknown => {
 						<Table.Row class="border-none">
 							{#each headerGroup.headers as header (header.id)}
 								<Table.Head class="">
-									<div class="flex gap-2 pl-1 pr-5">
-										<img
-											class="header-icon {header.column.getIsSorted() === 'desc' ? 'rotate-180' : ''}
-											{typeof header.column.columnDef.header === 'function' ? 'transition-transform duration-200' : ''}"
-											src="icons/bk/table.svg"
-											alt="table" />
+									<div class="flex gap-2 pl-2 pr-7">
 										<div class="text-[14px]">
 											<FlexRender
 												content="{header.column.columnDef.header}"

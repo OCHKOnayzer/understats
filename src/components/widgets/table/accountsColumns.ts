@@ -1,7 +1,7 @@
 import { renderComponent } from '$src/components/ui/data-table';
 import { formatDate } from '$src/utils/functions/formatDate';
 
-import DataTableIdButton from './data-table-id-button.svelte';
+import SortableHeader from './SortableHeader.svelte';
 
 import type { IAccountResponse } from '$src/types/accounts';
 import type { ColumnDef } from '@tanstack/table-core';
@@ -12,15 +12,21 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 	{
 		accessorKey: 'clientSeq',
 		header: ({ column }) =>
-			renderComponent(DataTableIdButton, {
-				column,
-				'data-state': column.getIsSorted() ? 'sorted' : 'unsorted'
+			renderComponent(SortableHeader, {
+				title: 'ID',
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
 			}),
 		meta: { width: '120px' }
 	},
 	{
 		accessorKey: 'siteName',
-		header: 'accounts.bookmaker',
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: 'accounts.bookmaker',
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			}),
 		meta: { width: '80px' }
 	},
 	{
@@ -50,21 +56,41 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 	},
 	{
 		accessorKey: 'registrationDate',
-		header: 'accounts.regData',
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: 'accounts.regData',
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			}),
 		cell: ({ row }) => formatDate(row.original.registrationDate),
 		meta: { width: '130px' }
 	},
 	{
 		accessorKey: 'balance',
-		header: 'accounts.balance',
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: 'accounts.balance',
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			}),
 		meta: { width: '130px' }
 	},
 	{
 		accessorKey: 'lastBet',
-		header: 'accounts.lastBet'
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: 'accounts.lastBet',
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			})
 	},
 	{
 		accessorKey: 'betsCount',
-		header: 'accounts.betCount'
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: 'accounts.betCount',
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			})
 	}
 ];
