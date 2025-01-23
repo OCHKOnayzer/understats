@@ -154,7 +154,6 @@ onDestroy(() => {
 	.menuWrapper {
 		overflow-y: auto;
 		height: 90%;
-		justify-content: unset;
 	}
 	.menuWrapper::-webkit-scrollbar {
 		border-radius: 30px;

@@ -304,4 +304,29 @@ function openLiveChat() {
 .open-chat:hover {
 	border-color: #9aa8bd;
 }
+@media screen and (max-width: 800px) {
+	.social_container {
+		align-items: flex-end;
+	}
+	.social_modal {
+		width: 100vw;
+		border-radius: 20px 20px 0 0;
+		transform: translateY(100%);
+		animation: slideUp 0.3s ease-out forwards;
+	}
+	.social_item_container {
+		flex-direction: column;
+	}
+	.social_item {
+		width: 100%;
+	}
+}
+@keyframes slideUp {
+	from {
+		transform: translateY(100%);
+	}
+	to {
+		transform: translateY(0);
+	}
+}
 </style>

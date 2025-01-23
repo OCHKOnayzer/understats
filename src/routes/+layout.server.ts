@@ -1,7 +1,5 @@
 import { get } from 'svelte/store';
-
 import { t } from 'svelte-i18n';
-
 import { error as svelteError } from '@sveltejs/kit';
 
 import { availableLanguages } from '$src/stores/languageStore';
@@ -10,7 +8,6 @@ import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ request }) => {
 	try {
-		
 		const cookies = request.headers.get('cookie') || '';
 		const match = cookies.match(/(?:^|; )app_lang=([^;]*)/);
 		const cookieLocale = match ? decodeURIComponent(match[1]) : null;

@@ -1,12 +1,15 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
-import { onMount } from 'svelte';
 
+// import { onMount } from 'svelte';
+import { isMenuOpen } from '$src/stores/menu';
 import { openModal, modalComponent } from '$src/stores/modalStore';
 
 function test() {
+	if ($isMenuOpen) {
+		isMenuOpen.set(false);
+	}
 	openModal('SocialModal');
-	console.log($modalComponent);
 }
 </script>
 

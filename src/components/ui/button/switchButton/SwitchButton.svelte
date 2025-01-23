@@ -51,8 +51,7 @@ function handleClick() {
 		height: 56px;
 		margin-right: 0px;
 	}
-	.switch_wrapper button,
-	a {
+	.switch_wrapper button{
 		display: flex;
 		justify-content: center;
 		align-items: center;
