@@ -1,5 +1,11 @@
 <script>
+import { onMount } from 'svelte';
+import { goto } from '$app/navigation';
 import { t } from 'svelte-i18n';
+import { modalComponent,currentModal,logout } from '$src/stores/modalStore';
+
+import { currentUser } from '$src/stores/modalStore';
+import { isMobile,initializeScreenWidthListener } from '$src/stores/isMobile';
 
 import UserAprove from '../../button/userAprove/UserAprove.svelte';
 import CancelButton from '../../button/userAprove/CancelButton.svelte';
@@ -7,9 +13,22 @@ import ModalTitle from '../ModalTitle.svelte';
 
 import LeaveModalContent from './leaveContent/LeaveModalContent.svelte';
 
-const LeaveAprove = () => {
-	console.log('hello world');
+onMount(() => {
+	initializeScreenWidthListener();
+});
+
+
+const handleLogout = () => {
+	currentUser.set(null);
+	if ($isMobile) {
+		currentModal.set('login');
+		goto('/authorization');
+	} else {
+		logout();
+		modalComponent.set('authModal');
+	}
 };
+
 </script>
 
 <div class="leave_container">
@@ -21,7 +40,7 @@ const LeaveAprove = () => {
 				<CancelButton onUserText="other.cancel" />
 				<UserAprove
 					onUserText="{$t('other.leave_acc')}"
-					onUserAction="{LeaveAprove}" />
+					onUserAction="{handleLogout}" />
 			</div>
 		</div>
 	</div>
@@ -35,8 +54,8 @@ const LeaveAprove = () => {
 	height: 100vh;
 }
 .leave_modal {
-	width: 22vw;
-	height: 27vh;
+	width: 420px;
+	height: 230px;
 	background-color: #0d111d;
 	display: flex;
 	align-items: center;
@@ -51,5 +70,28 @@ const LeaveAprove = () => {
 	color: white;
 	height: fit-content;
 	display: flex;
+	padding-bottom: 20px;
+	gap: 10px;
+}
+@media screen and (max-width: 800px){ 
+	.leave_container{ 
+		height: 100dvh;
+		align-items: flex-end;
+	}
+	.leave_modal{ 
+		height: 250px;
+		width: 100vw;
+		border-radius: 20px 20px 0 0;
+		transform: translateY(100%);
+		animation: slideUp 0.1s ease-out forwards;
+	}
+}
+@keyframes slideUp {
+	from {
+		transform: translateY(100%);
+	}
+	to {
+		transform: translateY(0);
+	}
 }
 </style>

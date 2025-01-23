@@ -27,4 +27,9 @@ import { t } from 'svelte-i18n';
 	color: #718096;
 	font-size: 16px;
 }
+@media screen and (max-width: 800px){ 
+	.leave_content{ 
+		height: auto;
+	}
+}
 </style>

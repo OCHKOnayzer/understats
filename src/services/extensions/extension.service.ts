@@ -3,6 +3,7 @@ import { t } from 'svelte-i18n';
 import toast from 'svelte-french-toast';
 
 import { axiosClassic, axiosWithAuth } from '$src/api/api.interceptors';
+import { openModal } from '$src/stores/modalStore';
 import { handleAxiosError, ApiError } from '$src/api/api.error';
 import { extensionInfo } from '$src/stores/extensionStore';
 
@@ -36,6 +37,7 @@ class ExtensionService {
 		try {
 			const accessToken = getAccessToken();
 			if (!accessToken) {
+				openModal('authModal')
 				throw new ApiError(get(t)('error.auth'));
 			}
 
