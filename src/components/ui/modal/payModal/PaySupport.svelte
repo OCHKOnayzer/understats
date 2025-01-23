@@ -34,7 +34,7 @@ import { closeModal } from '$src/stores/modalStore';
 .pay_support_modal{
     background-color: #20242F;
     width: 525px;
-    height: 342px;
+    min-height: 342px;
     border-radius: 36px;
 }
 .title{ 
@@ -66,9 +66,20 @@ import { closeModal } from '$src/stores/modalStore';
     margin-bottom: 12px;
 }
 .button_wrapper button:nth-child(1):hover{ 
-    background-color: var(--accent-color);
+    background-color: hsl(242, 76%, 67%);
+    transition: 300ms;
 }
 .button_wrapper button:nth-child(2){ 
     background-color: #0D111D;
+    margin-bottom: 32px;
+}
+@media screen and (max-width: 800px){ 
+    .pay_support_container{ 
+        align-items: flex-end;
+    }
+    .pay_support_modal{ 
+        width: 100vw;
+        border-radius: 20px 20px 0 0; 
+    }
 }
 </style>
