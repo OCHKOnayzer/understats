@@ -2,11 +2,9 @@
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
-import { openModal } from '$src/stores/modalStore';
+import { openModal, currentModal, currentUser, logout, modalComponent } from '$src/stores/modalStore';
 import { useUserProfile } from '$src/services/auth/useProfile';
 import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
-import { currentModal, currentUser, logout, modalComponent } from '$src/stores/modalStore';
-
 import { isMenuOpen } from '$src/stores/menu';
 
 onMount(() => {
@@ -16,19 +14,18 @@ onMount(() => {
 const { query } = useUserProfile();
 let isAuthenticated = $derived(!!$currentUser && !!$query.data);
 
-const leave =()=>{ 
-	if($isMobile){ 
-		isMenuOpen.set(false)
+const leave = () => {
+	if ($isMobile) {
+		isMenuOpen.set(false);
 	}
 	openModal('LeaveContainer');
-}
+};
 
 $effect(() => {
 	if ($query.data) {
 		currentUser.set($query.data);
 	}
 });
-
 </script>
 
 {#if isAuthenticated}

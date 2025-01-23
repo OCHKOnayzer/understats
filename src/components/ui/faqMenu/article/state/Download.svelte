@@ -26,8 +26,7 @@ import ArticalAttention from '../articleComponents/articalAttention.svelte';
 		image="{'assets/article/ext_work.jpg'}"
 		description="{'description_image.description_image'}" />
 	<ArticleSection text="artical_faq.artical_faq_ext_work_2" />
-	<ArticalAttention text="artical_faq.artical_faq_ext_work_3"/>
-	
+	<ArticalAttention text="artical_faq.artical_faq_ext_work_3" />
 </div>
 
 <style>

@@ -1,11 +1,9 @@
 <script>
 import { onMount } from 'svelte';
-import { goto } from '$app/navigation';
 import { t } from 'svelte-i18n';
-import { modalComponent,currentModal,logout } from '$src/stores/modalStore';
 
-import { currentUser } from '$src/stores/modalStore';
-import { isMobile,initializeScreenWidthListener } from '$src/stores/isMobile';
+import { modalComponent, currentModal, logout, currentUser } from '$src/stores/modalStore';
+import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 
 import UserAprove from '../../button/userAprove/UserAprove.svelte';
 import CancelButton from '../../button/userAprove/CancelButton.svelte';
@@ -13,10 +11,11 @@ import ModalTitle from '../ModalTitle.svelte';
 
 import LeaveModalContent from './leaveContent/LeaveModalContent.svelte';
 
+import { goto } from '$app/navigation';
+
 onMount(() => {
 	initializeScreenWidthListener();
 });
-
 
 const handleLogout = () => {
 	currentUser.set(null);
@@ -28,7 +27,6 @@ const handleLogout = () => {
 		modalComponent.set('authModal');
 	}
 };
-
 </script>
 
 <div class="leave_container">
@@ -73,12 +71,12 @@ const handleLogout = () => {
 	padding-bottom: 20px;
 	gap: 10px;
 }
-@media screen and (max-width: 800px){ 
-	.leave_container{ 
+@media screen and (max-width: 800px) {
+	.leave_container {
 		height: 100dvh;
 		align-items: flex-end;
 	}
-	.leave_modal{ 
+	.leave_modal {
 		height: 250px;
 		width: 100vw;
 		border-radius: 20px 20px 0 0;

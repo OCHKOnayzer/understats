@@ -37,7 +37,7 @@ class ExtensionService {
 		try {
 			const accessToken = getAccessToken();
 			if (!accessToken) {
-				openModal('authModal')
+				openModal('authModal');
 				throw new ApiError(get(t)('error.auth'));
 			}
 
