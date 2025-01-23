@@ -1,3 +1,7 @@
+import { get } from 'svelte/store';
+
+import { t } from 'svelte-i18n';
+
 import { error as svelteError } from '@sveltejs/kit';
 
 import { availableLanguages } from '$src/stores/languageStore';
@@ -6,7 +10,7 @@ import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ request }) => {
 	try {
-		// Получение cookies
+		
 		const cookies = request.headers.get('cookie') || '';
 		const match = cookies.match(/(?:^|; )app_lang=([^;]*)/);
 		const cookieLocale = match ? decodeURIComponent(match[1]) : null;
@@ -20,9 +24,9 @@ export const load: LayoutServerLoad = async ({ request }) => {
 			locale
 		};
 	} catch (err: any) {
-		console.error('Ошибка при определении локали на сервере:', err);
+		console.error(get(t)('error.local_error_in_server'), err);
 
 		// eslint-disable-next-line @typescript-eslint/no-throw-literal
-		throw svelteError(500, 'Произошла ошибка при определении локали');
+		throw svelteError(500, get(t)('error.local_error'));
 	}
 };

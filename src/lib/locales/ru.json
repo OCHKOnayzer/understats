@@ -399,7 +399,9 @@
 		"unknown_valid_error": "Валидация не удалась, но подробностей нет.",
 		"unknown_field_error": "Неизвестная ошибка в поле",
 		"error_title": "Ошибка",
-		"network_error_occurred": "Произошла сетевая ошибка"
+		"network_error_occurred": "Произошла сетевая ошибка",
+		"local_error_in_server": "Ошибка при определении локали на сервере:",
+		"local_error": "Произошла ошибка при определении локали"
 	},
 	"filter": {
 		"button": "Фильтер",
