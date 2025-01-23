@@ -238,6 +238,8 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 		flex-direction: column;
 		height: fit-content;
 		align-items: center;
+		padding-left: 28px;
+		padding-right: 28px;
 	}
 	.settings {
 		padding: 0;
@@ -249,13 +251,9 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 	.item-w {
 		width: 100%;
 	}
-	.item_settings_info {
-		padding-right: 28px;
-		padding-left: 28px;
-	}
 	.selected_element {
 		height: 60px;
-		width: 90%;
+		width: 100%;
 		margin: 0;
 	}
 	.max--w {
@@ -270,13 +268,15 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 	.updataBtn {
 		justify-content: center;
 		padding-top: 20px;
+		padding-left: 28px;
+		padding-right: 28px;
 	}
 	.setings_item:nth-child(1),
 	.selected_element:nth-child(2) {
 		margin-right: 0;
 	}
 	.btn_upd:nth-child(1) {
-		width: 90%;
+		width: 100%;
 		margin: 0px;
 	}
 }

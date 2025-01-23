@@ -80,7 +80,6 @@ console.log(activeIndex);
 	display: flex;
 	align-items: center;
 	padding-left: 15px;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	animation: fadeInUp 0.5s ease-in-out;
 }
 .active {

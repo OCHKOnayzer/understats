@@ -27,6 +27,7 @@ const openCurrentModal = (modal: ModalType) => {
 };
 
 const isTumbler = ['/', '/accounts', '/help', '/extensions'];
+const isSettings = ['/settings']
 
 let isHelpPage = false;
 
@@ -50,12 +51,15 @@ onMount(() => {
 						src="assets/header/menu.svg"
 						alt="" />
 				</button>
+				
 				{#if $currentUser}
+					{#if isSettings.includes($page.url.pathname)}
 					<a
 						class="profile-container"
 						href="/settings">
 						<!-- <img src="" alt=""> -->
 					</a>
+					{/if}
 				{:else}
 					<button
 						aria-label="auth"
@@ -111,7 +115,6 @@ onMount(() => {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	color: white;
 	background: #171b26;
 	border-radius: 8px;

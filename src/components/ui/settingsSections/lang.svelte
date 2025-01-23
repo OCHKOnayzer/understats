@@ -1,6 +1,6 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
-
+import { modalComponent } from '$src/stores/modalStore';
 import { selectedLang } from '$src/stores/languageStore';
 import { setLanguage } from '$src/lib/i18n';
 
@@ -10,6 +10,11 @@ const openChangeLang = () => {
 	changeLang = !changeLang;
 	console.log(changeLang);
 };
+$: {
+	if ($modalComponent === 'LangModal') {
+		changeLang = false;
+	}
+}
 const setLang = (lang: string) => {
 	setLanguage(lang);
 	openChangeLang();

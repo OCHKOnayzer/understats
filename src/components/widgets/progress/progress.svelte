@@ -68,7 +68,6 @@ console.log(currentProgress);
 	height: fit-content;
 	box-sizing: border-box;
 	margin-top: 10px;
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	color: white;
 	background: #171b26;
 	border-radius: 8px;

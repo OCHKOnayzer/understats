@@ -149,6 +149,8 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 		flex-direction: column;
 		height: fit-content;
 		align-items: center;
+		padding-left: 28px;
+		padding-right: 28px;
 	}
 	.settings {
 		padding: 0;
@@ -160,13 +162,9 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 	.item-w {
 		width: 100%;
 	}
-	.item_settings_info {
-		padding-right: 28px;
-		padding-left: 28px;
-	}
 	.selected_element {
 		height: 60px;
-		width: 92%;
+		width: 100%;
 		margin: 0;
 	}
 	.selected_element:nth-child(1) {

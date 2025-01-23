@@ -20,6 +20,11 @@ import ImageArtical from '../articleComponents/imageArtical.svelte';
 			description="{'description_image.description_image'}" />
 	{/if}
 	<ArticleSection text="artical_faq.pin" />
+	<ArticleSection text="artical_faq.artical_faq_ext_work"/>
+	<ImageArtical
+			image="{'assets/article/ext_work.jpg'}"
+			description="{'description_image.description_image'}" />
+	<ArticleSection text="artical_faq.artical_faq_ext_work_2"/>
 </div>
 
 <style>

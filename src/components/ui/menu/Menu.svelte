@@ -81,7 +81,6 @@ onDestroy(() => {
 	height: 100%;
 	background-color: #171b26;
 	color: white;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	box-sizing: border-box;
 	z-index: 3;
 	display: flex;

@@ -17,7 +17,7 @@ function test(){
 	<div class="flex h-[50px] items-center rounded-lg text-gray-500 no-underline transition duration-300 hover:cursor-pointer">
 		<div class="ml-[12px] mr-2.5 flex h-[20px] w-[20px] items-center justify-center">
 			<img
-				src="{$modalComponent === 'SocialModal' ? 'assets/menu/active/chat.png' : 'assets/menu/menuElements/chat.png'}"
+				src="{$modalComponent === 'SocialModal' ? 'assets/menu/menuElements/cont.svg' : 'assets/menu/active/cont.svg'}"
 				alt="{$t('{item.title}')}"
 				class="h-full w-full object-contain" />
 		</div>

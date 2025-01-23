@@ -41,11 +41,12 @@ selectHeaderTitle('settings.settings');
 		<!-- <Settings /> -->
 	</div>
 	<!-- <UserAvatar /> -->
-	<Info />
+	{#if (!$isMobile) || ($isMobile && $currentUser)}
+		<Info />
+	{/if}
 	{#if $currentUser}
 		<EditPass />
 	{/if}
-	<EditPass />
 </div>
 
 <style>
