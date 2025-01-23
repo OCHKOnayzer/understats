@@ -53,7 +53,7 @@ onMount(() => {
 				</button>
 				
 				{#if $currentUser}
-					{#if isSettings.includes($page.url.pathname)}
+					{#if !isSettings.includes($page.url.pathname)}
 					<a
 						class="profile-container"
 						href="/settings">

@@ -164,13 +164,10 @@ const setLang = (lang: string) => {
 		font-size: 15px;
 	}
 	.selected_element {
-		height: 50%;
+		height: 60px;
 	}
 	.item-w {
 		width: 100%;
-	}
-	.setings_item {
-		height: 150px;
 	}
 }
 @media screen and (max-width: 768px) {

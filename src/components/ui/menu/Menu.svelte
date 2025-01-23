@@ -125,6 +125,14 @@ onDestroy(() => {
 		padding-left: 16vw;
 	}
 }
+@media screen and (max-width: 1050px) {
+	.fixedContainer {
+		width: 20vw;
+	}
+	.mainContent {
+		padding-left: 20vw;
+	}
+}
 @media screen and (max-width: 800px) {
 	.close-mobile-menu {
 		position: absolute;
