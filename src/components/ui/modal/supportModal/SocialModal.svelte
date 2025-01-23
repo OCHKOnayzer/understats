@@ -130,7 +130,9 @@ function openLiveChat() {
 						{$t('other.support')}
 					</div>
 				</div>
-				<button on:click="{toggleChat}" class="open-chat">
+				<button
+					on:click="{toggleChat}"
+					class="open-chat">
 					{$t('other.chat_open')}
 				</button>
 			</div>
@@ -290,7 +292,7 @@ function openLiveChat() {
 	cursor: not-allowed;
 	color: var(--inactive-elements);
 }
-.open-chat{ 
+.open-chat {
 	height: 56px;
 	width: 100%;
 	border: 1px solid var(--inactive-elements);
@@ -299,7 +301,7 @@ function openLiveChat() {
 	margin-bottom: 35px;
 	transition: 300ms;
 }
-.open-chat:hover{ 
+.open-chat:hover {
 	border-color: #9aa8bd;
 }
 </style>

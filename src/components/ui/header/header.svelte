@@ -27,7 +27,7 @@ const openCurrentModal = (modal: ModalType) => {
 };
 
 const isTumbler = ['/', '/accounts', '/help', '/extensions'];
-const isSettings = ['/settings']
+const isSettings = ['/settings'];
 
 let isHelpPage = false;
 
@@ -51,14 +51,14 @@ onMount(() => {
 						src="assets/header/menu.svg"
 						alt="" />
 				</button>
-				
+
 				{#if $currentUser}
 					{#if !isSettings.includes($page.url.pathname)}
-					<a
-						class="profile-container"
-						href="/settings">
-						<!-- <img src="" alt=""> -->
-					</a>
+						<a
+							class="profile-container"
+							href="/settings">
+							<!-- <img src="" alt=""> -->
+						</a>
 					{/if}
 				{:else}
 					<button

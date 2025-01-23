@@ -43,8 +43,8 @@ function togglePasswordVisibility() {
 	<Input
 		input_type="{input_type}"
 		input_name="{title_wrapper}"
-		show_clear = "{show_clear}"
-		show_function = "{togglePasswordVisibility}"
+		show_clear="{show_clear}"
+		show_function="{togglePasswordVisibility}"
 		bind:value="{value}" />
 	{#if Open}
 		<ErrorMessage />

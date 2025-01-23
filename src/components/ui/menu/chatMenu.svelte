@@ -1,13 +1,13 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
-import { openModal,modalComponent } from '$src/stores/modalStore';
 
-function test(){ 
-	openModal('SocialModal')
-	console.log($modalComponent)
+import { openModal, modalComponent } from '$src/stores/modalStore';
+
+function test() {
+	openModal('SocialModal');
+	console.log($modalComponent);
 }
-
 </script>
 
 <button

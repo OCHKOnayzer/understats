@@ -4,10 +4,9 @@ import toast from 'svelte-french-toast';
 
 import { axiosClassic, axiosWithAuth } from '$src/api/api.interceptors';
 import { handleAxiosError, ApiError } from '$src/api/api.error';
+import { extensionInfo } from '$src/stores/extensionStore';
 
 import { getAccessToken } from '../auth/auth-token.service';
-
-import { extensionInfo } from '$src/stores/extensionStore';
 
 import type { ExtensionInfo } from '$src/types/types';
 

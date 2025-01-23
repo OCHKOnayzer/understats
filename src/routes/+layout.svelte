@@ -181,6 +181,5 @@ main {
 		margin-right: var(--mobile-elements-padding);
 		margin-left: var(--mobile-elements-padding);
 	}
-	
 }
 </style>

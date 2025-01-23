@@ -6,7 +6,7 @@ export let input_type: string;
 export let value = '';
 export let input_name: string;
 export let show_clear: boolean;
-export let show_function: () => void;	
+export let show_function: () => void;
 
 const { isMobile } = useBreakpoint(768);
 </script>
@@ -20,13 +20,13 @@ const { isMobile } = useBreakpoint(768);
 			placeholder=" " />
 		<label>{input_name}</label>
 		{#if show_clear}
-		<button
-			class="showEye"
-			on:click="{show_function}">
-			<img
-				src="assets/modal/glaz.png"
-				alt="Show/Hide Password" />
-		</button>
+			<button
+				class="showEye"
+				on:click="{show_function}">
+				<img
+					src="assets/modal/glaz.png"
+					alt="Show/Hide Password" />
+			</button>
 		{/if}
 	</div>
 {:else}

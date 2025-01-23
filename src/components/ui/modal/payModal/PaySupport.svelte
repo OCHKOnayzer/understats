@@ -1,9 +1,7 @@
 <script>
-
 </script>
-<div>
-    
-</div>
-<style>
 
+<div> </div>
+
+<style>
 </style>
