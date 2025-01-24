@@ -11,7 +11,6 @@
 	height: fit-content;
 	box-sizing: border-box;
 	margin-bottom: 20px;
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	color: white;
 	background: #171b26;
 	border-radius: 8px;
@@ -22,10 +21,10 @@
 		padding: 0 15px;
 	}
 }
-@media (max-width: 678px) {
+@media (max-width: 768px) {
 	.SettingsWrapper {
 		border-radius: 24px;
-		padding-bottom: 2vh;
+		padding-bottom: 28px;
 		padding-right: 0;
 		padding-left: 0;
 	}

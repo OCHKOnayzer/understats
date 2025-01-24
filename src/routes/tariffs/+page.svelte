@@ -30,7 +30,6 @@ selectHeaderTitle('tariffs.tariffs');
 
 <style>
 .pageContent {
-	padding: 0 2rem;
 	width: 100%;
 }
 /* .tariff-title {

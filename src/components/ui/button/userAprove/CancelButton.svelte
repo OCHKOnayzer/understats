@@ -34,7 +34,7 @@ let { onUserText } = $$props as SwitchInterface;
 @media screen and (max-width: 800px) {
 	.button_wrapper {
 		width: 100%;
-		height: 8vh;
+		height: 56px;
 		margin-right: 0px;
 	}
 	.button_wrapper button {

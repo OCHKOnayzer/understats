@@ -1,6 +1,7 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 
+import { modalComponent } from '$src/stores/modalStore';
 import { selectedLang } from '$src/stores/languageStore';
 import { setLanguage } from '$src/lib/i18n';
 
@@ -10,6 +11,11 @@ const openChangeLang = () => {
 	changeLang = !changeLang;
 	console.log(changeLang);
 };
+$: {
+	if ($modalComponent === 'LangModal') {
+		changeLang = false;
+	}
+}
 const setLang = (lang: string) => {
 	setLanguage(lang);
 	openChangeLang();
@@ -159,13 +165,10 @@ const setLang = (lang: string) => {
 		font-size: 15px;
 	}
 	.selected_element {
-		height: 50%;
+		height: 60px;
 	}
 	.item-w {
 		width: 100%;
-	}
-	.setings_item {
-		height: 150px;
 	}
 }
 @media screen and (max-width: 768px) {

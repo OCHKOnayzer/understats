@@ -25,6 +25,11 @@ const handleSelectItemFromMenu = (event: any) => {
 	align-items: center;
 	height: 100%;
 }
+@media screen and (max-width: 1100px) {
+	.faqMenu {
+		width: 40%;
+	}
+}
 @media (max-width: 800px) {
 	.faqMenu {
 		width: 100%;

@@ -72,7 +72,7 @@ onDestroy(() => {
 	top: 0;
 	left: 0;
 	width: 13vw;
-	z-index: 10000;
+	z-index: 9997;
 	height: 100vh;
 }
 
@@ -81,7 +81,6 @@ onDestroy(() => {
 	height: 100%;
 	background-color: #171b26;
 	color: white;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	box-sizing: border-box;
 	z-index: 3;
 	display: flex;
@@ -118,12 +117,20 @@ onDestroy(() => {
 	padding-left: 13vw;
 	transition: padding-left 0.3s ease;
 }
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1300px) {
 	.fixedContainer {
 		width: 16vw;
 	}
 	.mainContent {
 		padding-left: 16vw;
+	}
+}
+@media screen and (max-width: 1050px) {
+	.fixedContainer {
+		width: 20vw;
+	}
+	.mainContent {
+		padding-left: 20vw;
 	}
 }
 @media screen and (max-width: 800px) {
@@ -147,7 +154,6 @@ onDestroy(() => {
 	.menuWrapper {
 		overflow-y: auto;
 		height: 90%;
-		justify-content: unset;
 	}
 	.menuWrapper::-webkit-scrollbar {
 		border-radius: 30px;
