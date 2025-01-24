@@ -10,7 +10,7 @@
 	min-height: 200px;
 	height: fit-content;
 	box-sizing: border-box;
-	margin-bottom: 20px;
+	margin-bottom: 12px;
 	color: white;
 	background: #171b26;
 	border-radius: 8px;

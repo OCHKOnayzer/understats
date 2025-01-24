@@ -166,7 +166,6 @@ const browserArr: BrowserItem[] = [
 }
 .extensions-content {
 	color: white;
-	margin-left: 5px;
 }
 @media (max-height: 800px) {
 	.info-wrapper {

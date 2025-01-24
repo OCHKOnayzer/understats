@@ -25,9 +25,9 @@ selectHeaderTitle('faq.faq');
 
 <div class="mainContent">
 	<div class="pageWrapper">
-		{#if $isMobile && !$currentUser}
+		<!-- {#if $isMobile && !$currentUser}
 			<DemoButtons />
-		{/if}
+		{/if} -->
 		<!-- <SectionsFaq /> -->
 	</div>
 	<FaqConteiner />

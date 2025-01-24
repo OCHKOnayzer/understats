@@ -56,8 +56,7 @@ async function loadArticleComponent(article2: string) {
 
 						<svelte:component
 							this="{ArticleComponent}"
-							title="{selectedItemName}"
-							content="Текст статьи" />
+							title="{selectedItemName}"/>
 					</div>
 				{:else}
 					<div class="faq_null">

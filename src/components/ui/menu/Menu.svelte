@@ -89,10 +89,12 @@ onDestroy(() => {
 	transform: translateX(0);
 }
 .menuWrapper {
-	height: 95%;
+	height: 100%;
 	width: 100%;
-	padding-right: 12px;
-	padding-left: 12px;
+	padding-top: var(--elements-padding);
+	padding-bottom: var(--elements-padding);
+	padding-right: var(--elements-padding);
+	padding-left: var(--elements-padding);
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;

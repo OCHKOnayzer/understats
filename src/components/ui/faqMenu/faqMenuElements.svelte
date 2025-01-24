@@ -42,7 +42,7 @@ onMount(() => {
 
 <div class="menuWrapper">
 	<div class="menu_title">
-		<span>{$t('faq.FAQ_section')}</span>
+		<!-- <span>{$t('faq.FAQ_section')}</span> -->
 	</div>
 	<div class="faqItemsWrapper">
 		{#each MenuElement as item, index}

@@ -114,6 +114,7 @@ console.log(accounts);
 	border-radius: 16px;
 	padding: 5px;
 	margin: 10px;
+	margin-top: 20px;
 	display: flex;
 	justify-content: space-between;
 }
