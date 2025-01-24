@@ -8,7 +8,7 @@ import { ActivityArray } from './activity';
 	<div class="tariffsContainer"> </div>
 	{#each ActivityArray as item}
 		<div class="activityContainer">
-			<div class="ContainerItems">
+			<div class="containerItems">
 				<span>
 					{$t(item.option)}
 				</span>
@@ -42,7 +42,7 @@ import { ActivityArray } from './activity';
 	margin-left: var(--elements-padding);
 	border-radius: 5px;
 }
-.ContainerItems {
+.containerItems {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -50,13 +50,21 @@ import { ActivityArray } from './activity';
 	text-align: left;
 	margin-left: 24px;
 }
-.ContainerItems span:nth-child(1) {
+.containerItems span:nth-child(1) {
 	font-weight: 700;
 	font-size: 34px;
 }
-.ContainerItems span:nth-child(2) {
+.containerItems span:nth-child(2) {
 	font-size: 14px;
 	font-weight: 400;
 	color: #9d9d9d;
+}
+@media screen and (max-width: 800px){ 
+	.activityWrapper{ 
+		overflow-x: scroll;
+	}
+	.activityContainer{ 
+		width: 250px;
+	}
 }
 </style>
