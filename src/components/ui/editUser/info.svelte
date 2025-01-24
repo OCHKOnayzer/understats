@@ -91,7 +91,7 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 .selected_element {
 	background-color: #20242f;
 	color: #707f96;
-	width: 98%;
+	width: 100%;
 	border-radius: 10px;
 	height: 70px;
 	display: flex;
@@ -115,13 +115,13 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 		font-size: 15px;
 	}
 	.selected_element {
-		height: 50%;
+		height: 60px;
+	}
+	.setings_item {
+		height: fit-content;
 	}
 	.item-w {
 		width: 100%;
-	}
-	.setings_item {
-		height: 150px;
 	}
 	.setings_item:nth-child(1),
 	.setings_item:nth-child(2) {
@@ -149,6 +149,8 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 		flex-direction: column;
 		height: fit-content;
 		align-items: center;
+		padding-left: 28px;
+		padding-right: 28px;
 	}
 	.settings {
 		padding: 0;
@@ -160,12 +162,9 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 	.item-w {
 		width: 100%;
 	}
-	.item_settings_info {
-		width: 80%;
-	}
 	.selected_element {
 		height: 60px;
-		width: 80%;
+		width: 100%;
 		margin: 0;
 	}
 	.selected_element:nth-child(1) {

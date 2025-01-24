@@ -10,6 +10,10 @@
 
 		--elements-padding: 12px;
 
+		--inactive-elements: #718096;
+
+		--mobile-elements-padding: 24px;
+
 		--active-elements: 240 100% 70%;
 
 		--table-color: hsl(223, 20%, 24%);

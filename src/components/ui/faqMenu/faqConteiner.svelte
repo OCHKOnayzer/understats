@@ -106,7 +106,6 @@ async function loadArticleComponent(article2: string) {
 	background-color: #252935;
 	padding: 20px;
 	color: white;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .faq_null {
 	width: 100%;

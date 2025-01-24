@@ -27,29 +27,22 @@ const setActiveFromUrl = () => {
 			filteredElements = ActiveElemnts.filter((item) => item.index === FAQIndex);
 			activeIndex = ActiveElemnts.indexOf(matchingElement);
 
-			setActiveIndex(activeIndex, matchingElement.name, matchingElement.article);
+			dispatch('selectItem', { name: matchingElement.name, articleId: matchingElement.article });
 		}
+	}
+};
+
+const setActiveIndex = (index: number, name: string, articleId: string) => {
+	if (activeIndex !== index) {
+		activeIndex = index;
+		dispatch('selectItem', { name, articleId });
+		closeFaqMenu();
 	}
 };
 
 onMount(() => {
 	setActiveFromUrl();
-	const browserParam = getUrlParameter('browser');
-	if (browserParam) {
-		const matchingElement = ActiveElemnts.find((item) => item.article === browserParam);
-		if (matchingElement) {
-			activeIndex = ActiveElemnts.indexOf(matchingElement);
-		}
-	}
-	console.log(activeIndex);
 });
-
-const setActiveIndex = (index: number, name: string, articleId: string) => {
-	activeIndex = index === activeIndex ? null : index;
-	dispatch('selectItem', { name, articleId });
-	closeFaqMenu();
-};
-console.log(activeIndex);
 </script>
 
 <div class="faqItemsWrapper">
@@ -80,7 +73,6 @@ console.log(activeIndex);
 	display: flex;
 	align-items: center;
 	padding-left: 15px;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	animation: fadeInUp 0.5s ease-in-out;
 }
 .active {

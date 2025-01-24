@@ -78,7 +78,6 @@ onMount(() => {
 	display: flex;
 	align-items: center;
 	font-weight: 500;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	margin-bottom: 4%;
 	margin-top: 16px;
 }
@@ -99,7 +98,6 @@ onMount(() => {
 	display: flex;
 	align-items: center;
 	padding-left: 15px;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 /* .secretItem {
 	background-color: #1e222d;

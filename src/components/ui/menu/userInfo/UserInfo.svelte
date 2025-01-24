@@ -2,11 +2,10 @@
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
+import { openModal, currentModal, currentUser, logout, modalComponent } from '$src/stores/modalStore';
 import { useUserProfile } from '$src/services/auth/useProfile';
 import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
-import { currentModal, currentUser, logout, modalComponent } from '$src/stores/modalStore';
-
-import { goto } from '$app/navigation';
+import { isMenuOpen } from '$src/stores/menu';
 
 onMount(() => {
 	initializeScreenWidthListener();
@@ -15,22 +14,18 @@ onMount(() => {
 const { query } = useUserProfile();
 let isAuthenticated = $derived(!!$currentUser && !!$query.data);
 
+const leave = () => {
+	if ($isMobile) {
+		isMenuOpen.set(false);
+	}
+	openModal('LeaveContainer');
+};
+
 $effect(() => {
 	if ($query.data) {
 		currentUser.set($query.data);
 	}
 });
-
-const handleLogout = () => {
-	currentUser.set(null);
-	if ($isMobile) {
-		currentModal.set('login');
-		goto('/authorization');
-	} else {
-		logout();
-		modalComponent.set('authModal');
-	}
-};
 </script>
 
 {#if isAuthenticated}
@@ -42,7 +37,7 @@ const handleLogout = () => {
 			</div>
 			<div class="quitBtn">
 				<button
-					on:click="{handleLogout}"
+					on:click="{leave}"
 					class="quit_button">
 					<img
 						src="assets/menu/leave.png"
