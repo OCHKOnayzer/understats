@@ -1,7 +1,82 @@
 <script>
+import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
 import { closeModal } from '$src/stores/modalStore';
+let isChatOpen = false;
+
+onMount(() => {
+	if (window.LC_API) {
+		window.LC_API.on_chat_window_opened = () => {
+			isChatOpen = true;
+		};
+
+		window.LC_API.on_chat_window_hidden = () => {
+			isChatOpen = false;
+		};
+	}
+
+	if (window.jivo_onOpen) {
+		window.jivo_onOpen = () => {
+			isChatOpen = true;
+		};
+	}
+
+	if (window.jivo_onClose) {
+		window.jivo_onClose = () => {
+			isChatOpen = false;
+		};
+	}
+
+	if (window.jivo_destroy) {
+		window.jivo_destroy();
+	}
+});
+
+function toggleChat() {
+	if (isChatOpen) {
+		closeChat();
+	} else {
+		openChat();
+	}
+}
+
+function openChat() {
+	openJivositeChat();
+	// openLiveChat();
+
+	isChatOpen = true;
+}
+
+function openJivositeChat() {
+	if (window.jivo_api) {
+		window.jivo_api.open({});
+	}
+}
+
+function closeChat() {
+	if (window.jivo_api) {
+		window.jivo_api.close();
+	}
+
+	isChatOpen = false;
+}
+
+function openLiveChat() {
+	if (typeof window.LC_API !== 'undefined') {
+		// window.LiveChatWidget.call('set_language', 'ru');
+
+		var liveChatScript = document.createElement('script');
+		liveChatScript.src = 'https://cdn.livechatinc.com/widget.js';
+		liveChatScript.async = true;
+		liveChatScript.onload = function () {
+			window.LiveChatWidget.call('set_language', 'ru');
+		};
+		document.head.appendChild(liveChatScript);
+
+		window.LC_API.open_chat_window();
+	}
+}
 </script>
 
 <div class="pay_support_container">
@@ -13,7 +88,7 @@ import { closeModal } from '$src/stores/modalStore';
 			{$t('tariffs.pay_support_content')}
 		</div>
 		<div class="button_wrapper">
-			<button>
+			<button on:click="{toggleChat}">
 				{$t('tariffs.go_pay')}
 			</button>
 			<button on:click="{closeModal}">
@@ -81,6 +156,18 @@ import { closeModal } from '$src/stores/modalStore';
 	.pay_support_modal {
 		width: 100vw;
 		border-radius: 20px 20px 0 0;
+		min-height: 300px;
+		height: fit-content;
+		transform: translateY(100%);
+		animation: slideUp 0.3s ease-out forwards;
+	}
+}
+@keyframes slideUp {
+	from {
+		transform: translateY(100%);
+	}
+	to {
+		transform: translateY(0);
 	}
 }
 </style>

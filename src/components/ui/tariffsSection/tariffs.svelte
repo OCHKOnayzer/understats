@@ -174,6 +174,9 @@ console.log(accounts);
 	.tariffs-content {
 		width: 100%;
 	}
+	.tariffs-desc {
+		width: 90%;
+	}
 	.limits {
 		display: flex;
 		align-items: center;
