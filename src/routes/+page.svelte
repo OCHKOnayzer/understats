@@ -1,5 +1,6 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
+
 import Pagination from '$src/components/ui/pagination/Pagination.svelte';
 import BetsTable from '$src/components/widgets/stats/BetsTable/BetsTable.svelte';
 import StatsMenu from '$src/components/widgets/stats/StatsMenu/StatsMenu.svelte';

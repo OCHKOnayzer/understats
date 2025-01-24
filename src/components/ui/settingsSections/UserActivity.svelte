@@ -59,11 +59,11 @@ import { ActivityArray } from './activity';
 	font-weight: 400;
 	color: #9d9d9d;
 }
-@media screen and (max-width: 800px){ 
-	.activityWrapper{ 
+@media screen and (max-width: 800px) {
+	.activityWrapper {
 		overflow-x: scroll;
 	}
-	.activityContainer{ 
+	.activityContainer {
 		width: 250px;
 	}
 }
