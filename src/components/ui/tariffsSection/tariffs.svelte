@@ -189,7 +189,7 @@ console.log(accounts);
 	.choose-period {
 		height: 40px;
 	}
-	.porccents{ 
+	.porccents {
 		padding-bottom: 10px;
 	}
 }
