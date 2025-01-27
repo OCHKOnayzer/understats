@@ -63,7 +63,6 @@ const setLang = (lang: string) => {
 
 <style>
 .setings_item {
-	height: 12vh;
 	border-radius: 10px;
 }
 .input_element {

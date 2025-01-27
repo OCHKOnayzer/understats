@@ -109,7 +109,6 @@ import { t } from 'svelte-i18n';
 }
 .setings_item {
 	width: 40%;
-	height: 12vh;
 	border-radius: 10px;
 }
 .setings_item:nth-child(1),

@@ -1,6 +1,5 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
-
 import { onMount } from 'svelte';
 
 import { useBreakpoint } from '$src/hooks/useBreakpoint';
@@ -27,7 +26,7 @@ const { isMobile } = useBreakpoint(768);
 				on:click="{show_function}">
 				<img
 					src="assets/modal/glaz.png"
-					alt={$t('other.show')} />
+					alt="{$t('other.show')}" />
 			</button>
 		{/if}
 	</div>

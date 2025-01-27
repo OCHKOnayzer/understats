@@ -64,7 +64,7 @@ extensionInfo.set(data.extensionInfo);
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	margin-top: 15px;
+	margin-top: 12px;
 	height: 68%;
 	color: white;
 	padding-bottom: 8px;

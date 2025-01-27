@@ -74,13 +74,11 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 	outline: none;
 }
 .setings_item {
-	height: 12vh;
 	border-radius: 10px;
 }
 .item-w {
 	width: 33%;
 }
-
 .setings_item:nth-child(1),
 .setings_item:nth-child(2) {
 	margin-right: 15px;

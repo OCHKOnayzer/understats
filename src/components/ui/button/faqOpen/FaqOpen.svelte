@@ -43,7 +43,7 @@ import { goto } from '$app/navigation';
 		height: 35px;
 	}
 }
-@media (max-width: 678px) {
+@media (max-width: 768px) {
 	.info_buttons {
 		margin-top: 20px;
 		margin-bottom: 40px;

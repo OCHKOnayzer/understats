@@ -21,7 +21,7 @@ const setLang = (lang: string) => {
 	on:click="{() => closeModal()}"
 	on:keydown="{(e) => e.key === 'Enter' && closeModal()}">
 	<div
-		class="relative right-4 top-[10vh] flex h-fit max-w-[473px] cursor-default items-center justify-center rounded-md border border-[#363a45] bg-[#0d111d] p-4"
+		class="relative right-4 top-[10vh] flex h-fit max-w-[454px] cursor-default items-center justify-center rounded-md border border-[#363a45] bg-[#0d111d] p-4"
 		on:click|stopPropagation
 		role="button"
 		tabindex="0"
