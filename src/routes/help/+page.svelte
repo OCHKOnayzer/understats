@@ -41,7 +41,7 @@ selectHeaderTitle('faq.faq');
 	width: 100%;
 	box-sizing: border-box;
 }
-@media screen and (min-height: 1200px) {
+@media screen and (height: 1200px) {
 	.mainContent {
 		height: 92vh;
 		padding-bottom: 20px;

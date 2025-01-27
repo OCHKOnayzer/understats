@@ -156,7 +156,7 @@ const isProduction = import.meta.env.PROD;
 
 <style>
 main {
-	font-family: url(https://fonts.googleapis.com/css?family=Manrope:200,300,regular,500,600,700,800);
+	font-family: 'Manrope', sans-serif;
 	min-height: 100vh;
 	height: fit-content;
 	display: flex;
