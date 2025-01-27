@@ -146,6 +146,7 @@ onDestroy(() => {
 		position: fixed;
 		z-index: 9999;
 		width: 80vw;
+		height: 100dvh;
 	}
 	.menu {
 		width: 100%;

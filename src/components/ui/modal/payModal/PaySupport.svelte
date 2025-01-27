@@ -91,6 +91,7 @@ const PayFunction = () => {
 }
 @media screen and (max-width: 800px) {
 	.pay_support_container {
+		height: 100dvh;
 		align-items: flex-end;
 	}
 	.pay_support_modal {

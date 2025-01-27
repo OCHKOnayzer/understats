@@ -44,6 +44,7 @@ extensionInfo.set(data.extensionInfo);
 <style>
 .pageContent {
 	height: 100%;
+	overflow: unset;
 }
 .pageWrapper {
 	width: 100%;
@@ -65,7 +66,8 @@ extensionInfo.set(data.extensionInfo);
 	flex-direction: row;
 	justify-content: space-between;
 	margin-top: 12px;
-	height: 68%;
+	min-height: 68%;
+	height: fit-content;
 	color: white;
 	padding-bottom: 8px;
 }

@@ -237,6 +237,7 @@ onMount(() => {
 }
 @media screen and (max-width: 800px) {
 	.social_container {
+		height: 100dvh;
 		align-items: flex-end;
 	}
 	.social_modal {
