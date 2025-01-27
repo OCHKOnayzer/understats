@@ -34,8 +34,8 @@ const { isMobile } = useBreakpoint(768);
 {:else}
 	<div class="input_conteiner">
 		<input
-		type="{input_type}"
-		bind:value="{value}" />
+			type="{input_type}"
+			bind:value="{value}" />
 		{#if show_clear}
 			<button
 				class="showEye"
@@ -47,15 +47,14 @@ const { isMobile } = useBreakpoint(768);
 			</button>
 		{/if}
 	</div>
-	
 {/if}
 
 <style>
-	.input_conteiner{ 
-		width: 100%;
-		height: 60px;
-		position: relative;
-	}
+.input_conteiner {
+	width: 100%;
+	height: 60px;
+	position: relative;
+}
 input {
 	background-color: #20242f;
 	border-radius: 5px;
