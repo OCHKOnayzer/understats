@@ -4,9 +4,10 @@ import { t } from 'svelte-i18n';
 
 import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';
 import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
-import { headerTitle } from '$src/stores/HeaderStores';
+import { headerTitle, closeState } from '$src/stores/HeaderStores';
 import { openMenu } from '$src/stores/menu';
 import { closeModal, currentUser, modalComponent, openModal } from '$src/stores/modalStore';
+import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 
 import LangButton from '../button/langButton/LangButton.svelte';
 
@@ -14,6 +15,10 @@ import { goto } from '$app/navigation';
 import { page } from '$app/stores';
 
 type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal' | 'SocialModal';
+
+onMount(() => {
+	initializeScreenWidthListener();
+});
 
 const openCurrentModal = (modal: ModalType) => {
 	if ($modalComponent !== null && $modalComponent !== modal) {
@@ -28,18 +33,11 @@ const openCurrentModal = (modal: ModalType) => {
 
 const isTumbler = ['/', '/accounts', '/help', '/extensions'];
 const isSettings = ['/settings'];
+const isHelp = ['/help'];
 
-let isHelpPage = false;
-
-function checkHelpPage() {
-	isHelpPage = window.location.pathname.includes('/help');
+function closeStateFunction() {
+	closeState.set(false);
 }
-
-onMount(() => {
-	checkHelpPage();
-	window.addEventListener('popstate', checkHelpPage);
-	return () => window.removeEventListener('popstate', checkHelpPage);
-});
 </script>
 
 <header class="header">
@@ -69,6 +67,12 @@ onMount(() => {
 			</div>
 			<div class="flex items-center">
 				<div class="title">
+					{#if $isMobile && $closeState && isHelp.includes($page.url.pathname)}
+						<button on:click="{() => closeStateFunction()}"
+							><img
+								src="/icons/back_arrow.svg"
+								alt="" /></button>
+					{/if}
 					<p>{$t($headerTitle)}</p>
 				</div>
 				{#if $headerTitle == 'menu.Stats'}

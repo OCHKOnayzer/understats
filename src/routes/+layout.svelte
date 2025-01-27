@@ -156,6 +156,7 @@ const isProduction = import.meta.env.PROD;
 
 <style>
 main {
+	font-family: 'Manrope', sans-serif;
 	min-height: 100vh;
 	height: fit-content;
 	display: flex;
@@ -171,8 +172,8 @@ main {
 	flex-direction: column;
 	overflow-x: hidden;
 	box-sizing: border-box;
-	padding-left: 24px;
-	padding-right: 24px;
+	padding-left: var(--elements-padding);
+	padding-right: var(--elements-padding);
 }
 
 @media screen and (max-width: 768px) {
