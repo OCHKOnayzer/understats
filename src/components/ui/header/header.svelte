@@ -18,7 +18,7 @@ import { page } from '$app/stores';
 type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal' | 'SocialModal';
 
 onMount(() => {
-	if(!isHelp.includes($page.url.pathname)){ 
+	if (!isHelp.includes($page.url.pathname)) {
 		closeState.set(false);
 	}
 	initializeScreenWidthListener();
@@ -41,7 +41,7 @@ const isHelp = ['/help'];
 
 function closeStateFunction() {
 	closeState.set(false);
-	openFaqMenu()
+	openFaqMenu();
 }
 </script>
 

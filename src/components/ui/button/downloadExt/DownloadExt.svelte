@@ -19,7 +19,7 @@ import { extensionService } from '$src/services/extensions/extension.service';
 	margin-right: 15px;
 	cursor: pointer;
 }
-@media screen and (max-width: 1200px){ 
+@media screen and (max-width: 1200px){
 	.download_buttons {
 		width: 50%;
 	}

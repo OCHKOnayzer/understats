@@ -44,7 +44,7 @@ import { goto } from '$app/navigation';
 		height: 35px;
 	}
 }
-@media screen and (max-width: 1200px){ 
+@media screen and (max-width: 1200px){
 	.info_buttons {
 		min-width: 50%;
 		width: fit-content;
