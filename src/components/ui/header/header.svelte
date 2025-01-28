@@ -154,7 +154,7 @@ function closeStateFunction() {
 .title {
 	display: flex;
 	align-items: center;
-	padding-left: 24px;
+	padding-left: 16px;
 }
 
 .buttonConteiner {
@@ -186,7 +186,7 @@ function closeStateFunction() {
 .support {
 	width: 48px;
 	background-color: #171b26;
-	margin-right: 24px;
+	margin-right: 16px
 }
 .support img {
 	height: 100%;
