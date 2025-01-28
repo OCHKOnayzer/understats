@@ -18,10 +18,16 @@ onMount(() => {
 
 <div
 	class="social_container"
-	on:click="{closeModal}">
+	on:click="{closeModal}"
+	role="button"
+	tabindex="0"
+	on:keydown="{(e) => e.key === 'Escape' && closeModal()}">
 	<div
 		class="social_modal"
-		on:click|stopPropagation>
+		on:click|stopPropagation
+		role="button"
+		tabindex="0"
+		on:keydown="{(e) => e.key === 'Escape' && closeModal()}">
 		<div class="social_wrapper">
 			<div class="social_title">
 				{$t('other.contacts')}
@@ -78,6 +84,7 @@ onMount(() => {
 	align-items: center;
 	height: 100vh;
 	color: white;
+	cursor: default;
 }
 
 .social_modal {
@@ -87,6 +94,7 @@ onMount(() => {
 	align-items: center;
 	justify-content: center;
 	border-radius: 32px;
+	cursor: default;
 }
 
 .social_title {
