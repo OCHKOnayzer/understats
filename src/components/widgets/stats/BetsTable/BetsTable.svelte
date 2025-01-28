@@ -23,6 +23,8 @@ let isMobile = $derived(innerWidth < 400);
 let { query } = useUserProfile();
 let isAuthenticated = $derived(!!$currentUser);
 let isInitialLoading = $state(true);
+let prevPage = $state($filterStore.pagination.currentPage);
+let prevItemsPerPage = $state($filterStore.pagination.itemsPerPage);
 
 const table = createSvelteTable({
 	get data() {
@@ -72,9 +74,6 @@ onMount(() => {
 onDestroy(() => {
 	clearTimeout(loadingTimer);
 });
-
-let prevPage = $state($filterStore.pagination.currentPage);
-let prevItemsPerPage = $state($filterStore.pagination.itemsPerPage);
 
 $effect(() => {
 	const { currentPage, itemsPerPage } = $filterStore.pagination;

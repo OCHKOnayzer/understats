@@ -15,12 +15,17 @@ import { cn } from '$src/utils/utils';
 import type { IAccountResponse } from '$src/types/accounts';
 import AuthDemoButton from '../demo/demoButtons/AuthDemoButton.svelte';
 import { accountsColumns } from './accountsColumns';
+import AccountsMobile from './AccountsMobile.svelte';
 
 const { query } = useAccounts();
 const { query: profileQuery } = useUserProfile();
 
+let innerWidth = $state(typeof window !== 'undefined' ? window.innerWidth : 1024);
+let isMobile = $derived(innerWidth < 400);
 let accounts = $state<IAccountResponse[]>([]);
 let isAuthenticated = $derived(!!$currentUser);
+
+let isInitializing = $derived($profileQuery.isInitialLoading);
 let isLoading = $derived(isAuthenticated && ($query.isLoading || $profileQuery.isLoading));
 
 let sorting = $state<SortingState>([]);
@@ -57,7 +62,16 @@ const table = createSvelteTable({
 type CellContextType = CellContext<IAccountResponse, unknown>;
 </script>
 
-{#if !isAuthenticated}
+<svelte:window bind:innerWidth="{innerWidth}" />
+
+{#if isInitializing}
+	<div class="message-container">
+		<Spinner
+			color="#718096"
+			size="{32}" />
+		<h2 class="w-[260px] text-center text-xl text-[#718096]">{$t('accounts.loading')}</h2>
+	</div>
+{:else if !isAuthenticated}
 	<AuthDemoButton />
 {:else if isLoading}
 	<div class="message-container">
@@ -65,6 +79,12 @@ type CellContextType = CellContext<IAccountResponse, unknown>;
 			color="#718096"
 			size="{32}" />
 		<h2 class="w-[260px] text-center text-xl text-[#718096]">{$t('accounts.loading')}</h2>
+	</div>
+{:else if isMobile}
+	<div class="absolute left-0 right-0 flex flex-col gap-4">
+		{#each accounts as account}
+			<AccountsMobile account="{account}" />
+		{/each}
 	</div>
 {:else if accounts?.length}
 	<div class="table-wrapper">
