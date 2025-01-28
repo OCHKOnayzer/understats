@@ -24,7 +24,7 @@ const setActiveFromUrl = () => {
 	if (browserParam) {
 		const matchingElement = ActiveElemnts.find((item) => item.article === browserParam);
 		if (matchingElement) {
-			FAQIndex = matchingElement.index;
+			// FAQIndex = matchingElement.index;
 			filteredElements = ActiveElemnts.filter((item) => item.index === FAQIndex);
 			activeIndex = ActiveElemnts.indexOf(matchingElement);
 			closeState.set(true);
