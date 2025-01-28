@@ -29,6 +29,7 @@ $: isCustomDateRange = $filterStore.activeTab === 'nothing';
 <style>
 .filter-tabs {
 	display: flex;
+	flex-wrap: wrap;
 	gap: 8px;
 	margin-bottom: 32px;
 	border-radius: 12px;

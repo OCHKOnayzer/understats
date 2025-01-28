@@ -97,10 +97,12 @@ const isProduction = import.meta.env.PROD;
 
 	<!-- End of LiveChat code -->
 	<!-- End of LiveChat code -->
+	<!-- End of LiveChat code -->
 	<script
 		src="//code.jivosite.com/widget/fNvHA3AiqP"
 		async></script>
 
+	<!-- Google tag (gtag.js) -->
 	<!-- Google tag (gtag.js) -->
 	<!-- Google tag (gtag.js) -->
 	<!-- Google tag (gtag.js) -->
