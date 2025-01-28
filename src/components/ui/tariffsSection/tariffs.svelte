@@ -4,7 +4,7 @@ import { t } from 'svelte-i18n';
 import { openModal, setCurrentTariffs, setCurrentLimits, type currentTariffsType } from '$src/stores/modalStore';
 let { name, desc, limitations, accounts, price, price_year } = $$props;
 const openPay = (tarrifs: currentTariffsType, limits: any) => {
-	openModal('PayTariffs');
+	openModal('PaySupport');
 	setCurrentTariffs(tarrifs);
 	if (accounts !== undefined) {
 		setCurrentLimits(limits, accounts);
@@ -108,12 +108,13 @@ console.log(accounts);
 }
 
 .choose-period {
-	height: 50px;
+	min-height: 50px;
 	position: relative;
 	align-items: center;
 	border-radius: 16px;
 	padding: 5px;
 	margin: 10px;
+	margin-top: 20px;
 	display: flex;
 	justify-content: space-between;
 }
@@ -137,7 +138,7 @@ console.log(accounts);
 	z-index: 3;
 }
 .buy {
-	height: 48px;
+	min-height: 48px;
 	border-radius: 16px;
 	background-color: var(--accent-color);
 	width: 80%;
@@ -146,6 +147,7 @@ console.log(accounts);
 }
 .porccents {
 	color: var(--accent-color);
+	font-size: 14px;
 }
 @media screen and (max-width: 1200px) {
 	.choose-period {
@@ -168,20 +170,27 @@ console.log(accounts);
 	.tariffs-container {
 		width: 100%;
 		margin-bottom: 10px;
-		height: 300px;
+		min-height: 300px;
+		height: fit-content;
 	}
 	.tariffs-content {
 		width: 100%;
+	}
+	.tariffs-desc {
+		width: 90%;
 	}
 	.limits {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		height: 40px;
-		font-size: 15px;
+		font-size: 14px;
 	}
 	.choose-period {
-		height: 8vh;
+		height: 40px;
+	}
+	.porccents {
+		padding-bottom: 10px;
 	}
 }
 </style>

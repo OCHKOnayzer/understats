@@ -114,7 +114,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 .selected_element {
 	background-color: #20242f;
 	color: #707f96;
-	width: 98%;
+	width: 100%;
 	border-radius: 10px;
 	height: 70px;
 	display: flex;
@@ -130,7 +130,7 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 	padding-left: 10px;
 } */
 .item_settings_info {
-	width: 98%;
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -193,10 +193,10 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 		font-size: 15px;
 	}
 	.selected_element {
-		height: 50%;
+		height: 60px;
 	}
 	.setings_item {
-		height: 150px;
+		height: fit-content;
 	}
 	.btn_upd {
 		border-radius: 12px;
@@ -212,7 +212,8 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 		background-color: transparent;
 		border: 1px solid white;
 		color: white;
-		width: 98%;
+		width: 100%;
+		margin-right: 0px;
 	}
 	.updataBtn {
 		padding-top: 0px;
@@ -238,6 +239,8 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 		flex-direction: column;
 		height: fit-content;
 		align-items: center;
+		padding-left: 28px;
+		padding-right: 28px;
 	}
 	.settings {
 		padding: 0;
@@ -249,12 +252,9 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 	.item-w {
 		width: 100%;
 	}
-	.item_settings_info {
-		width: 80%;
-	}
 	.selected_element {
 		height: 60px;
-		width: 80%;
+		width: 100%;
 		margin: 0;
 	}
 	.max--w {
@@ -268,15 +268,17 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 	}
 	.updataBtn {
 		justify-content: center;
-		padding: 20px;
+		padding-top: 20px;
+		padding-left: 28px;
+		padding-right: 28px;
 	}
-
 	.setings_item:nth-child(1),
 	.selected_element:nth-child(2) {
 		margin-right: 0;
 	}
 	.btn_upd:nth-child(1) {
-		width: 80%;
+		width: 100%;
+		margin: 0px;
 	}
 }
 </style>

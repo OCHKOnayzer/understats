@@ -1,6 +1,8 @@
 <script lang="ts">
+import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
+import { toggleChat, ifWindow } from '$src/utils/functions/chat';
 import { closeModal } from '$src/stores/modalStore';
 
 import { SocialLink } from './social';
@@ -9,21 +11,9 @@ const closPayModal = () => {
 	closeModal();
 };
 
-let copy = 'other.copy';
-let timeoutId;
-
-const copyToClipboard = (text) => {
-	navigator.clipboard.writeText(text);
-	copy = 'other.copied';
-
-	if (timeoutId) {
-		clearTimeout(timeoutId);
-	}
-
-	timeoutId = setTimeout(() => {
-		copy = 'other.copy';
-	}, 1000);
-};
+onMount(() => {
+	ifWindow();
+});
 </script>
 
 <div
@@ -71,6 +61,11 @@ const copyToClipboard = (text) => {
 						{$t('other.support')}
 					</div>
 				</div>
+				<button
+					on:click="{toggleChat}"
+					class="open-chat">
+					{$t('other.chat_open')}
+				</button>
 			</div>
 		</div>
 	</div>
@@ -87,7 +82,6 @@ const copyToClipboard = (text) => {
 
 .social_modal {
 	width: 525px;
-	min-height: 380px;
 	background-color: #20242f;
 	display: flex;
 	align-items: center;
@@ -205,7 +199,6 @@ const copyToClipboard = (text) => {
 	align-items: center;
 	width: 100%;
 	gap: 10px;
-	padding-bottom: 48px;
 }
 
 .social_item {
@@ -228,6 +221,44 @@ const copyToClipboard = (text) => {
 .nactiv {
 	background-color: #363a4592;
 	cursor: not-allowed;
-	color: #718096;
+	color: var(--inactive-elements);
+}
+.open-chat {
+	height: 56px;
+	width: 100%;
+	border: 1px solid var(--inactive-elements);
+	border-radius: 16px;
+	margin-top: 10px;
+	margin-bottom: 35px;
+	transition: 300ms;
+}
+.open-chat:hover {
+	border-color: #9aa8bd;
+}
+@media screen and (max-width: 800px) {
+	.social_container {
+		height: 100dvh;
+		align-items: flex-end;
+	}
+	.social_modal {
+		width: 100vw;
+		border-radius: 20px 20px 0 0;
+		transform: translateY(100%);
+		animation: slideUp 0.3s ease-out forwards;
+	}
+	.social_item_container {
+		flex-direction: column;
+	}
+	.social_item {
+		width: 100%;
+	}
+}
+@keyframes slideUp {
+	from {
+		transform: translateY(100%);
+	}
+	to {
+		transform: translateY(0);
+	}
 }
 </style>

@@ -4,9 +4,10 @@ import { t } from 'svelte-i18n';
 
 import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';
 import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
-import { headerTitle } from '$src/stores/HeaderStores';
+import { headerTitle, closeState } from '$src/stores/HeaderStores';
 import { openMenu } from '$src/stores/menu';
 import { closeModal, currentUser, modalComponent, openModal } from '$src/stores/modalStore';
+import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 
 import LangButton from '../button/langButton/LangButton.svelte';
 
@@ -14,6 +15,10 @@ import { goto } from '$app/navigation';
 import { page } from '$app/stores';
 
 type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal' | 'SocialModal';
+
+onMount(() => {
+	initializeScreenWidthListener();
+});
 
 const openCurrentModal = (modal: ModalType) => {
 	if ($modalComponent !== null && $modalComponent !== modal) {
@@ -27,18 +32,12 @@ const openCurrentModal = (modal: ModalType) => {
 };
 
 const isTumbler = ['/', '/accounts', '/help', '/extensions'];
+const isSettings = ['/settings'];
+const isHelp = ['/help'];
 
-let isHelpPage = false;
-
-function checkHelpPage() {
-	isHelpPage = window.location.pathname.includes('/help');
+function closeStateFunction() {
+	closeState.set(false);
 }
-
-onMount(() => {
-	checkHelpPage();
-	window.addEventListener('popstate', checkHelpPage);
-	return () => window.removeEventListener('popstate', checkHelpPage);
-});
 </script>
 
 <header class="header">
@@ -50,12 +49,15 @@ onMount(() => {
 						src="assets/header/menu.svg"
 						alt="" />
 				</button>
+
 				{#if $currentUser}
-					<a
-						class="profile-container"
-						href="/settings">
-						<!-- <img src="" alt=""> -->
-					</a>
+					{#if !isSettings.includes($page.url.pathname)}
+						<a
+							class="profile-container"
+							href="/settings">
+							<!-- <img src="" alt=""> -->
+						</a>
+					{/if}
 				{:else}
 					<button
 						aria-label="auth"
@@ -65,6 +67,12 @@ onMount(() => {
 			</div>
 			<div class="flex items-center">
 				<div class="title">
+					{#if $isMobile && $closeState && isHelp.includes($page.url.pathname)}
+						<button on:click="{() => closeStateFunction()}"
+							><img
+								src="/icons/back_arrow.svg"
+								alt="" /></button>
+					{/if}
 					<p>{$t($headerTitle)}</p>
 				</div>
 				{#if $headerTitle == 'menu.Stats'}
@@ -97,7 +105,8 @@ onMount(() => {
 .header {
 	height: fit-content;
 	box-sizing: border-box;
-	padding: var(--elements-padding) 2rem;
+	padding-top: var(--elements-padding);
+	padding-bottom: var(--elements-padding);
 	width: 100%;
 	margin: 0 auto;
 	position: relative;
@@ -110,7 +119,6 @@ onMount(() => {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	color: white;
 	background: #171b26;
 	border-radius: 8px;

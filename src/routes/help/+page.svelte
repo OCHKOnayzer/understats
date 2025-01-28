@@ -25,9 +25,9 @@ selectHeaderTitle('faq.faq');
 
 <div class="mainContent">
 	<div class="pageWrapper">
-		{#if $isMobile && !$currentUser}
+		<!-- {#if $isMobile && !$currentUser}
 			<DemoButtons />
-		{/if}
+		{/if} -->
 		<!-- <SectionsFaq /> -->
 	</div>
 	<FaqConteiner />
@@ -36,17 +36,15 @@ selectHeaderTitle('faq.faq');
 <style>
 .mainContent {
 	height: calc(90vh - 13px);
-	padding-left: 2rem;
-	padding-right: 2rem;
 }
 .pageWrapper {
 	width: 100%;
 	box-sizing: border-box;
 }
-@media screen and (height: 1440px) {
+@media screen and (height: 1200px) {
 	.mainContent {
-		height: 93vh;
-		padding-bottom: 18px;
+		height: 92vh;
+		padding-bottom: 20px;
 	}
 }
 @media screen and (max-height: 870px) {

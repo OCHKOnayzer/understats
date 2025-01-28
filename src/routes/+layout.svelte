@@ -96,10 +96,12 @@ const isProduction = import.meta.env.PROD;
 	<!-- End of LiveChat code -->
 
 	<!-- End of LiveChat code -->
+	<!-- End of LiveChat code -->
 	<script
 		src="//code.jivosite.com/widget/fNvHA3AiqP"
 		async></script>
 
+	<!-- Google tag (gtag.js) -->
 	<!-- Google tag (gtag.js) -->
 	<!-- Google tag (gtag.js) -->
 	<script
@@ -163,6 +165,7 @@ const isProduction = import.meta.env.PROD;
 
 <style>
 main {
+	font-family: 'Manrope', sans-serif;
 	min-height: 100vh;
 	height: fit-content;
 	display: flex;
@@ -178,11 +181,15 @@ main {
 	flex-direction: column;
 	overflow-x: hidden;
 	box-sizing: border-box;
+	padding-left: var(--elements-padding);
+	padding-right: var(--elements-padding);
 }
 
 @media screen and (max-width: 768px) {
-	/* .mainContent {
+	.mainContent {
 		padding: 0 0.5rem;
-	} */
+		margin-right: var(--mobile-elements-padding);
+		margin-left: var(--mobile-elements-padding);
+	}
 }
 </style>

@@ -3,7 +3,9 @@ import { t } from 'svelte-i18n';
 import toast from 'svelte-french-toast';
 
 import { axiosClassic, axiosWithAuth } from '$src/api/api.interceptors';
+import { openModal } from '$src/stores/modalStore';
 import { handleAxiosError, ApiError } from '$src/api/api.error';
+import { extensionInfo } from '$src/stores/extensionStore';
 
 import { getAccessToken } from '../auth/auth-token.service';
 
@@ -35,6 +37,7 @@ class ExtensionService {
 		try {
 			const accessToken = getAccessToken();
 			if (!accessToken) {
+				openModal('authModal');
 				throw new ApiError(get(t)('error.auth'));
 			}
 
@@ -51,7 +54,7 @@ class ExtensionService {
 			// }
 
 			const blob = await response.blob();
-			const fileName = response.headers.get('content-disposition')?.split('filename=')[1]?.replace(/['"]/g, '') || 'OneKeepBet.zip';
+			const fileName = response.headers.get('content-disposition')?.split('filename=')[1]?.replace(/['"]/g, '') || `OneKeepBet ${get(extensionInfo).version}.zip`;
 
 			const url = window.URL.createObjectURL(blob);
 			const a = document.createElement('a');

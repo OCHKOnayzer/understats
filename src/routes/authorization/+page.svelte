@@ -28,7 +28,6 @@ const backToApp = () => {
 <style>
 .auth {
 	height: 100vh;
-	padding: 0 2rem;
 	display: flex;
 	align-items: center;
 	color: white;

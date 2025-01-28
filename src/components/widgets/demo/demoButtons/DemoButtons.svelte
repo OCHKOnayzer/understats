@@ -132,6 +132,14 @@ const authUser = (auth: string) => {
 		width: 100%;
 		justify-content: center;
 	}
+	.buttons {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	.buttons button {
+		width: 30%;
+	}
 	.desc-content {
 		margin-bottom: 10px;
 	}
@@ -145,10 +153,7 @@ const authUser = (auth: string) => {
 		margin-bottom: 10px;
 	}
 	.buttons {
-		display: flex;
-		justify-content: center;
 		align-items: center;
-		width: 100%;
 	}
 	.buttons button {
 		width: 50%;

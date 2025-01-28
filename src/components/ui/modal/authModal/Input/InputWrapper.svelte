@@ -26,28 +26,30 @@ function togglePasswordVisibility() {
 <div class="input_wrapper">
 	<div class="title_info">
 		<WrapperTitle title_wrapper="{title_wrapper}" />
-		{#if show_clear}
+		<!-- {#if show_clear}
 			<button
 				class="show"
 				on:click="{togglePasswordVisibility}"
 				tabindex="-1">
 				{$t(button_text)}
 			</button>
-			<!-- <button
+			<button
 				class="showEye"
 				on:click="{togglePasswordVisibility}">
 				<img src="assets/modal/glaz.png" alt="">
-			</button> -->
-		{/if}
+			</button>
+		{/if} -->
 	</div>
 	<Input
 		input_type="{input_type}"
 		input_name="{title_wrapper}"
+		show_clear="{show_clear}"
+		show_function="{togglePasswordVisibility}"
 		bind:value="{value}" />
 	{#if Open}
 		<ErrorMessage />
 	{/if}
-	{#if show_clear}
+	<!-- {#if show_clear}
 		<button
 			class="showEye"
 			on:click="{togglePasswordVisibility}">
@@ -55,7 +57,7 @@ function togglePasswordVisibility() {
 				src="assets/modal/glaz.png"
 				alt="Show/Hide Password" />
 		</button>
-	{/if}
+	{/if} -->
 </div>
 
 <style>
@@ -83,19 +85,6 @@ function togglePasswordVisibility() {
 	background: none;
 	border: none;
 	cursor: pointer;
-}
-.showEye {
-	display: none;
-	height: 20px;
-	width: 20px;
-	position: absolute;
-	z-index: 4;
-	top: 25px;
-	left: 63vw;
-}
-.showEye img {
-	height: 100%;
-	width: 100%;
 }
 @media screen and (max-width: 768px) {
 	.input_wrapper {

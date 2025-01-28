@@ -42,7 +42,7 @@ onMount(() => {
 
 <div class="menuWrapper">
 	<div class="menu_title">
-		<span>{$t('faq.FAQ_section')}</span>
+		<!-- <span>{$t('faq.FAQ_section')}</span> -->
 	</div>
 	<div class="faqItemsWrapper">
 		{#each MenuElement as item, index}
@@ -78,7 +78,6 @@ onMount(() => {
 	display: flex;
 	align-items: center;
 	font-weight: 500;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	margin-bottom: 4%;
 	margin-top: 16px;
 }
@@ -99,7 +98,6 @@ onMount(() => {
 	display: flex;
 	align-items: center;
 	padding-left: 15px;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 /* .secretItem {
 	background-color: #1e222d;

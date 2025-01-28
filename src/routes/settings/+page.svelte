@@ -41,7 +41,9 @@ selectHeaderTitle('settings.settings');
 		<!-- <Settings /> -->
 	</div>
 	<!-- <UserAvatar /> -->
-	<Info />
+	{#if !$isMobile || ($isMobile && $currentUser)}
+		<Info />
+	{/if}
 	{#if $currentUser}
 		<EditPass />
 	{/if}
@@ -50,8 +52,6 @@ selectHeaderTitle('settings.settings');
 <style>
 .pageContent {
 	width: 100%;
-	padding-left: 2rem;
-	padding-right: 2rem;
 }
 .progressWrapper {
 	width: 100%;

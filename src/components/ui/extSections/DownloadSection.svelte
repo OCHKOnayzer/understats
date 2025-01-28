@@ -65,6 +65,9 @@ const browserArr: BrowserItem[] = [
 				<div class="attention-wrapper">
 					<span class="attention-text">{$t('extensions.attention_key')}</span>
 					<span class="attention-text">{$t('extensions.attention')}</span>
+					{#if $isMobile}
+						<span class="attention-text">{$t('extensions.mobile_ext')}</span>
+					{/if}
 				</div>
 				{#if $isMobile}
 					<FaqOpen />
@@ -166,7 +169,6 @@ const browserArr: BrowserItem[] = [
 }
 .extensions-content {
 	color: white;
-	margin-left: 5px;
 }
 @media (max-height: 800px) {
 	.info-wrapper {

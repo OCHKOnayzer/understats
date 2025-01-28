@@ -39,7 +39,6 @@ const setActiveIndex = (index: number) => {
 	justify-content: center;
 	align-items: center;
 	padding: 15px;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .element:hover {
 	background-color: #6560ff7e;
