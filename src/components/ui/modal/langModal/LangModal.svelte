@@ -19,14 +19,14 @@ const setLang = (lang: string) => {
 	role="button"
 	tabindex="0"
 	on:click="{() => closeModal()}"
-	on:keydown="{(e) => e.key === 'Enter' && closeModal()}">
+	on:keydown="{(e) => e.key === 'Escape' && closeModal()}">
 	<div
-		class="relative right-4 top-[10vh] flex h-fit max-w-[473px] cursor-default items-center justify-center rounded-md border border-[#363a45] bg-[#0d111d] p-4"
+		class="relative right-4 top-[10vh] flex h-fit max-w-[454px] cursor-default items-center justify-center rounded-md border border-[#363a45] bg-[#0d111d] p-4"
 		on:click|stopPropagation
 		role="button"
 		tabindex="0"
-		on:keydown="{(e) => e.key === 'Enter'}">
-		<div class="my-2.5 h-auto w-[100%]">
+		on:keydown="{(e) => e.key === 'Escape'}">
+		<div class="h-auto w-[100%]">
 			<LangTitle />
 			<div class="mt-5 flex flex-wrap gap-[12px] text-white">
 				{#each LangArr as item}

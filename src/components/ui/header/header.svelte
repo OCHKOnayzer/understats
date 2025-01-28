@@ -4,9 +4,11 @@ import { t } from 'svelte-i18n';
 
 import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';
 import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
-import { headerTitle } from '$src/stores/HeaderStores';
+import { openFaqMenu } from '$src/stores/faq';
+import { headerTitle, closeState } from '$src/stores/HeaderStores';
 import { openMenu } from '$src/stores/menu';
 import { closeModal, currentUser, modalComponent, openModal } from '$src/stores/modalStore';
+import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 
 import LangButton from '../button/langButton/LangButton.svelte';
 
@@ -14,6 +16,13 @@ import { goto } from '$app/navigation';
 import { page } from '$app/stores';
 
 type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal' | 'SocialModal';
+
+onMount(() => {
+	if (!isHelp.includes($page.url.pathname)) {
+		closeState.set(false);
+	}
+	initializeScreenWidthListener();
+});
 
 const openCurrentModal = (modal: ModalType) => {
 	if ($modalComponent !== null && $modalComponent !== modal) {
@@ -28,18 +37,12 @@ const openCurrentModal = (modal: ModalType) => {
 
 const isTumbler = ['/', '/accounts', '/help', '/extensions'];
 const isSettings = ['/settings'];
+const isHelp = ['/help'];
 
-let isHelpPage = false;
-
-function checkHelpPage() {
-	isHelpPage = window.location.pathname.includes('/help');
+function closeStateFunction() {
+	closeState.set(false);
+	openFaqMenu();
 }
-
-onMount(() => {
-	checkHelpPage();
-	window.addEventListener('popstate', checkHelpPage);
-	return () => window.removeEventListener('popstate', checkHelpPage);
-});
 </script>
 
 <header class="header">
@@ -69,6 +72,12 @@ onMount(() => {
 			</div>
 			<div class="flex items-center">
 				<div class="title">
+					{#if $isMobile && $closeState && isHelp.includes($page.url.pathname)}
+						<button on:click="{() => closeStateFunction()}"
+							><img
+								src="/icons/back_arrow.svg"
+								alt="" /></button>
+					{/if}
 					<p>{$t($headerTitle)}</p>
 				</div>
 				{#if $headerTitle == 'menu.Stats'}
@@ -145,7 +154,7 @@ onMount(() => {
 .title {
 	display: flex;
 	align-items: center;
-	padding-left: 24px;
+	padding-left: 16px;
 }
 
 .buttonConteiner {
@@ -177,7 +186,7 @@ onMount(() => {
 .support {
 	width: 48px;
 	background-color: #171b26;
-	margin-right: 24px;
+	margin-right: 16px;
 }
 .support img {
 	height: 100%;

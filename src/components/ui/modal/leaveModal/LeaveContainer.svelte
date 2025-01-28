@@ -2,7 +2,7 @@
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
-import { modalComponent, currentModal, logout, currentUser } from '$src/stores/modalStore';
+import { modalComponent, currentModal, logout, currentUser, closeModal } from '$src/stores/modalStore';
 import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 
 import UserAprove from '../../button/userAprove/UserAprove.svelte';
@@ -29,8 +29,18 @@ const handleLogout = () => {
 };
 </script>
 
-<div class="leave_container">
-	<div class="leave_modal">
+<div
+	class="leave_container"
+	role="button"
+	tabindex="0"
+	on:click="{() => closeModal()}"
+	on:keydown="{(e) => e.key === 'Escape' && closeModal()}">
+	<div
+		class="leave_modal"
+		on:click|stopPropagation
+		role="button"
+		tabindex="0"
+		on:keydown="{(e) => e.key === 'Escape'}">
 		<div class="leave_wrapper">
 			<ModalTitle />
 			<LeaveModalContent />
@@ -50,6 +60,7 @@ const handleLogout = () => {
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
+	cursor: default;
 }
 .leave_modal {
 	width: 420px;
@@ -59,6 +70,7 @@ const handleLogout = () => {
 	align-items: center;
 	justify-content: center;
 	border-radius: 5px;
+	cursor: default;
 }
 .leave_wrapper {
 	width: 90%;

@@ -2,85 +2,31 @@
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
+import { toggleChat, ifWindow } from '$src/utils/functions/chat';
 import { closeModal } from '$src/stores/modalStore';
-let isChatOpen = false;
 
 onMount(() => {
-	if (window.LC_API) {
-		window.LC_API.on_chat_window_opened = () => {
-			isChatOpen = true;
-		};
-
-		window.LC_API.on_chat_window_hidden = () => {
-			isChatOpen = false;
-		};
-	}
-
-	if (window.jivo_onOpen) {
-		window.jivo_onOpen = () => {
-			isChatOpen = true;
-		};
-	}
-
-	if (window.jivo_onClose) {
-		window.jivo_onClose = () => {
-			isChatOpen = false;
-		};
-	}
-
-	if (window.jivo_destroy) {
-		window.jivo_destroy();
-	}
+	ifWindow();
 });
 
-function toggleChat() {
-	if (isChatOpen) {
-		closeChat();
-	} else {
-		openChat();
-	}
-}
-
-function openChat() {
-	openJivositeChat();
-	// openLiveChat();
-
-	isChatOpen = true;
-}
-
-function openJivositeChat() {
-	if (window.jivo_api) {
-		window.jivo_api.open({});
-	}
-}
-
-function closeChat() {
-	if (window.jivo_api) {
-		window.jivo_api.close();
-	}
-
-	isChatOpen = false;
-}
-
-function openLiveChat() {
-	if (typeof window.LC_API !== 'undefined') {
-		// window.LiveChatWidget.call('set_language', 'ru');
-
-		var liveChatScript = document.createElement('script');
-		liveChatScript.src = 'https://cdn.livechatinc.com/widget.js';
-		liveChatScript.async = true;
-		liveChatScript.onload = function () {
-			window.LiveChatWidget.call('set_language', 'ru');
-		};
-		document.head.appendChild(liveChatScript);
-
-		window.LC_API.open_chat_window();
-	}
-}
+const PayFunction = () => {
+	closeModal();
+	toggleChat();
+};
 </script>
 
-<div class="pay_support_container">
-	<div class="pay_support_modal">
+<div
+	class="pay_support_container"
+	on:click="{closeModal}"
+	role="button"
+	tabindex="0"
+	on:keydown="{(e) => e.key === 'Escape' && closeModal()}">
+	<div
+		class="pay_support_modal"
+		on:click|stopPropagation
+		role="button"
+		tabindex="0"
+		on:keydown="{(e) => e.key === 'Escape' && closeModal()}">
 		<div class="title">
 			<span>{$t('tariffs.pay_support_title')}</span>
 		</div>
@@ -88,7 +34,7 @@ function openLiveChat() {
 			{$t('tariffs.pay_support_content')}
 		</div>
 		<div class="button_wrapper">
-			<button on:click="{toggleChat}">
+			<button on:click="{PayFunction}">
 				{$t('tariffs.go_pay')}
 			</button>
 			<button on:click="{closeModal}">
@@ -106,12 +52,14 @@ function openLiveChat() {
 	height: 100%;
 	width: 100%;
 	color: white;
+	cursor: default;
 }
 .pay_support_modal {
 	background-color: #20242f;
 	width: 525px;
 	min-height: 342px;
 	border-radius: 36px;
+	cursor: default;
 }
 .title {
 	margin-top: 32px;
@@ -140,17 +88,22 @@ function openLiveChat() {
 	background-color: var(--accent-color);
 	margin-top: 24px;
 	margin-bottom: 12px;
+	transition: 300ms;
 }
 .button_wrapper button:nth-child(1):hover {
 	background-color: hsl(242, 76%, 67%);
-	transition: 300ms;
 }
 .button_wrapper button:nth-child(2) {
 	background-color: #0d111d;
 	margin-bottom: 32px;
+	transition: 300ms;
+}
+.button_wrapper button:nth-child(2):hover {
+	background-color: #0d0f16;
 }
 @media screen and (max-width: 800px) {
 	.pay_support_container {
+		height: 100dvh;
 		align-items: flex-end;
 	}
 	.pay_support_modal {

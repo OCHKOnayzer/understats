@@ -57,8 +57,7 @@ const authUser = (auth: string) => {
 
 <style>
 .buttons-wrapper {
-	margin-top: var(--elements-padding);
-	margin-bottom: 24px;
+	margin-bottom: var(--elements-padding);
 	width: 100%;
 	min-height: 120px;
 	height: 120px;
@@ -132,6 +131,14 @@ const authUser = (auth: string) => {
 		width: 100%;
 		justify-content: center;
 	}
+	.buttons {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	.buttons button {
+		width: 30%;
+	}
 	.desc-content {
 		margin-bottom: 10px;
 	}
@@ -145,10 +152,7 @@ const authUser = (auth: string) => {
 		margin-bottom: 10px;
 	}
 	.buttons {
-		display: flex;
-		justify-content: center;
 		align-items: center;
-		width: 100%;
 	}
 	.buttons button {
 		width: 50%;

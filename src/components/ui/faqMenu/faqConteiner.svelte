@@ -56,8 +56,7 @@ async function loadArticleComponent(article2: string) {
 
 						<svelte:component
 							this="{ArticleComponent}"
-							title="{selectedItemName}"
-							content="Текст статьи" />
+							title="{selectedItemName}" />
 					</div>
 				{:else}
 					<div class="faq_null">
@@ -147,6 +146,9 @@ async function loadArticleComponent(article2: string) {
 		width: 100%;
 		background-color: transparent;
 		padding: 0;
+	}
+	.selected_state_wrapper {
+		margin: 0px;
 	}
 	.selected_title {
 		font-size: 24px;

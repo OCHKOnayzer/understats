@@ -37,13 +37,20 @@ import { goto } from '$app/navigation';
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	font-size: 15px;
 }
 @media (max-height: 770px) {
 	.info_buttons {
 		height: 35px;
 	}
 }
-@media (max-width: 678px) {
+@media screen and (max-width: 1200px){
+	.info_buttons {
+		min-width: 50%;
+		width: fit-content;
+	}
+}
+@media screen and (max-width: 800px) {
 	.info_buttons {
 		margin-top: 20px;
 		margin-bottom: 40px;

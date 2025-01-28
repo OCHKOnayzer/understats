@@ -114,6 +114,7 @@ console.log(accounts);
 	border-radius: 16px;
 	padding: 5px;
 	margin: 10px;
+	margin-top: 20px;
 	display: flex;
 	justify-content: space-between;
 }
@@ -146,6 +147,7 @@ console.log(accounts);
 }
 .porccents {
 	color: var(--accent-color);
+	font-size: 14px;
 }
 @media screen and (max-width: 1200px) {
 	.choose-period {
@@ -182,10 +184,13 @@ console.log(accounts);
 		align-items: center;
 		justify-content: center;
 		height: 40px;
-		font-size: 15px;
+		font-size: 14px;
 	}
 	.choose-period {
 		height: 40px;
+	}
+	.porccents {
+		padding-bottom: 10px;
 	}
 }
 </style>

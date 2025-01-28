@@ -1,9 +1,10 @@
 import { writable } from 'svelte/store';
 
-export const headerTitle = writable('');
-export const afterUrl = writable('/');
+export const headerTitle = writable<string>('');
+export const afterUrl = writable<string>('/');
 export const langSel = writable('');
 export const langImage = writable('');
+export const closeState = writable<boolean>(false);
 
 export const selectHeaderTitle = (title: string) => {
 	headerTitle.set(title);

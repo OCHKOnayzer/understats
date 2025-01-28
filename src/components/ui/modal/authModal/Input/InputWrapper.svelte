@@ -26,19 +26,19 @@ function togglePasswordVisibility() {
 <div class="input_wrapper">
 	<div class="title_info">
 		<WrapperTitle title_wrapper="{title_wrapper}" />
-		{#if show_clear}
+		<!-- {#if show_clear}
 			<button
 				class="show"
 				on:click="{togglePasswordVisibility}"
 				tabindex="-1">
 				{$t(button_text)}
 			</button>
-			<!-- <button
+			<button
 				class="showEye"
 				on:click="{togglePasswordVisibility}">
 				<img src="assets/modal/glaz.png" alt="">
-			</button> -->
-		{/if}
+			</button>
+		{/if} -->
 	</div>
 	<Input
 		input_type="{input_type}"

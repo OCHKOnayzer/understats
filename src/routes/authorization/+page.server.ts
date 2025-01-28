@@ -1,15 +1,11 @@
-import type { PageServerLoad } from './$types';
+import { redirect } from '@sveltejs/kit';
 
-export const load: PageServerLoad = async ({ request, url }) => {
+export async function load({ request }) {
 	const userAgent = request.headers.get('user-agent') || '';
-	const isMobile = /Mobi|Android|iPhone|iPad/i.test(userAgent);
+
+	const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
 
 	if (!isMobile) {
-		return {
-			status: 303,
-			redirect: '/'
-		};
+		throw redirect(307, '/');
 	}
-
-	return {};
-};
+}

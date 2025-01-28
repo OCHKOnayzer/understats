@@ -11,6 +11,9 @@ import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
 let newPassword = '';
 let oldPassword = '';
 
+let newField = false;
+let oldField = false;
+
 onMount(() => {
 	fetchUser();
 });
@@ -30,6 +33,10 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 		newPassword = '';
 	}
 };
+
+const showField = (field: string) => {
+	return field === 'newPass' ? (newField = !newField) : (oldField = !oldField);
+};
 </script>
 
 <SettingsSections>
@@ -44,10 +51,17 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 			</div>
 			<input
 				class="selected_element input_element"
-				type="password"
+				type="{newField ? 'text' : 'password'}"
 				autocomplete="new-password"
 				bind:value="{oldPassword}"
 				placeholder="••••••••••••••••••••" />
+			<button
+				class="show_pass"
+				on:click="{() => showField('newPass')}">
+				<img
+					src="assets/modal/glaz.png"
+					alt="" />
+			</button>
 		</div>
 		<div class="setings_item item-w new-pass">
 			<div class="item_settings_info">
@@ -58,10 +72,17 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 			</div>
 			<input
 				class="selected_element input_element"
-				type="password"
+				type="{oldField ? 'text' : 'password'}"
 				autocomplete="new-password"
 				bind:value="{newPassword}"
 				placeholder="••••••••••••••••••••" />
+			<button
+				class="show_pass"
+				on:click="{() => showField('oldPass')}">
+				<img
+					src="assets/modal/glaz.png"
+					alt="" />
+			</button>
 		</div>
 	</div>
 	<div class="updataBtn">
@@ -95,8 +116,8 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 	padding-bottom: var(--elements-padding);
 }
 .setings_item {
-	height: 12vh;
 	border-radius: 10px;
+	position: relative;
 }
 .item-w {
 	width: 33%;
@@ -120,6 +141,23 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+.show_pass {
+	position: absolute;
+	right: 10px;
+	top: 60%;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	height: 20px;
+	width: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 2;
+}
+.show_pass img {
+	height: 100%;
 }
 .selected_element:nth-child(1),
 .selected_element:nth-child(2) {
@@ -234,6 +272,9 @@ const clearField = (field: 'oldPassword' | 'newPassword') => {
 	}
 }
 @media (max-width: 768px) {
+	.show_pass {
+		right: 40px;
+	}
 	.setings_item {
 		display: flex;
 		flex-direction: column;
