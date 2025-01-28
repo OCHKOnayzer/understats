@@ -4,6 +4,7 @@ import { t } from 'svelte-i18n';
 
 import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';
 import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
+import { openFaqMenu } from '$src/stores/faq';
 import { headerTitle, closeState } from '$src/stores/HeaderStores';
 import { openMenu } from '$src/stores/menu';
 import { closeModal, currentUser, modalComponent, openModal } from '$src/stores/modalStore';
@@ -17,6 +18,9 @@ import { page } from '$app/stores';
 type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal' | 'SocialModal';
 
 onMount(() => {
+	if (!isHelp.includes($page.url.pathname)) {
+		closeState.set(false);
+	}
 	initializeScreenWidthListener();
 });
 
@@ -37,6 +41,7 @@ const isHelp = ['/help'];
 
 function closeStateFunction() {
 	closeState.set(false);
+	openFaqMenu();
 }
 </script>
 
@@ -149,7 +154,7 @@ function closeStateFunction() {
 .title {
 	display: flex;
 	align-items: center;
-	padding-left: 24px;
+	padding-left: 16px;
 }
 
 .buttonConteiner {
@@ -181,7 +186,7 @@ function closeStateFunction() {
 .support {
 	width: 48px;
 	background-color: #171b26;
-	margin-right: 24px;
+	margin-right: 16px;
 }
 .support img {
 	height: 100%;

@@ -15,8 +15,18 @@ const PayFunction = () => {
 };
 </script>
 
-<div class="pay_support_container">
-	<div class="pay_support_modal">
+<div
+	class="pay_support_container"
+	on:click="{closeModal}"
+	role="button"
+	tabindex="0"
+	on:keydown="{(e) => e.key === 'Escape' && closeModal()}">
+	<div
+		class="pay_support_modal"
+		on:click|stopPropagation
+		role="button"
+		tabindex="0"
+		on:keydown="{(e) => e.key === 'Escape' && closeModal()}">
 		<div class="title">
 			<span>{$t('tariffs.pay_support_title')}</span>
 		</div>
@@ -42,12 +52,14 @@ const PayFunction = () => {
 	height: 100%;
 	width: 100%;
 	color: white;
+	cursor: default;
 }
 .pay_support_modal {
 	background-color: #20242f;
 	width: 525px;
 	min-height: 342px;
 	border-radius: 36px;
+	cursor: default;
 }
 .title {
 	margin-top: 32px;
