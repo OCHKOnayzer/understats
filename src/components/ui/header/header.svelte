@@ -186,7 +186,7 @@ function closeStateFunction() {
 .support {
 	width: 48px;
 	background-color: #171b26;
-	margin-right: 16px
+	margin-right: 16px;
 }
 .support img {
 	height: 100%;
