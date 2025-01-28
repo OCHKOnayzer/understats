@@ -56,6 +56,12 @@ export const ActiveElemnts: ActiveInerface[] = [
 	},
 	{
 		index: 1,
+		name: 'faq.ext_edge',
+		image: '',
+		article: 'DownloadEdge'
+	},
+	{
+		index: 1,
 		name: 'faq.ext_safari',
 		image: '',
 		article: 'DownloadSafari'
