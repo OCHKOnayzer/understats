@@ -2,6 +2,8 @@
 import { t } from 'svelte-i18n';
 import { createEventDispatcher, onMount } from 'svelte';
 
+import { closeState } from '$src/stores/HeaderStores';
+
 import { closeFaqMenu } from '$src/stores/faq';
 
 import { ActiveElemnts } from './activeElements';
@@ -26,7 +28,7 @@ const setActiveFromUrl = () => {
 			FAQIndex = matchingElement.index;
 			filteredElements = ActiveElemnts.filter((item) => item.index === FAQIndex);
 			activeIndex = ActiveElemnts.indexOf(matchingElement);
-
+			closeState.set(true)
 			dispatch('selectItem', { name: matchingElement.name, articleId: matchingElement.article });
 		}
 	}
@@ -36,6 +38,7 @@ const setActiveIndex = (index: number, name: string, articleId: string) => {
 	if (activeIndex !== index) {
 		activeIndex = index;
 		dispatch('selectItem', { name, articleId });
+		closeState.set(true)
 		closeFaqMenu();
 	}
 };

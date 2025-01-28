@@ -19,6 +19,11 @@ import { extensionService } from '$src/services/extensions/extension.service';
 	margin-right: 15px;
 	cursor: pointer;
 }
+@media screen and (max-width: 1200px){ 
+	.download_buttons {
+		width: 50%;
+	}
+}
 @media (max-height: 770px) {
 	.download_buttons {
 		height: 35px;

@@ -147,6 +147,9 @@ async function loadArticleComponent(article2: string) {
 		background-color: transparent;
 		padding: 0;
 	}
+	.selected_state_wrapper{ 
+		margin: 0px;
+	}
 	.selected_title {
 		font-size: 24px;
 	}

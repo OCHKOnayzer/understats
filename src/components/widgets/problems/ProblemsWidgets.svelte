@@ -100,7 +100,7 @@ import { openModal } from '$src/stores/modalStore';
 		display: none;
 	}
 }
-@media (max-width: 768px) {
+@media (max-width: 800px) {
 	.problems_wrapper {
 		display: none;
 	}

@@ -26,7 +26,7 @@ const setLang = (lang: string) => {
 		role="button"
 		tabindex="0"
 		on:keydown="{(e) => e.key === 'Enter'}">
-		<div class="my-2.5 h-auto w-[100%]">
+		<div class="h-auto w-[100%]">
 			<LangTitle />
 			<div class="mt-5 flex flex-wrap gap-[12px] text-white">
 				{#each LangArr as item}
