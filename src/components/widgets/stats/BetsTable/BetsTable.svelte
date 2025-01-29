@@ -1,5 +1,5 @@
 <script lang="ts">
-import { getCoreRowModel, type CellContext } from '@tanstack/table-core';
+import { getCoreRowModel, type CellContext, type ColumnDef } from '@tanstack/table-core';
 import { onDestroy, onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
@@ -25,6 +25,14 @@ let isAuthenticated = $derived(!!$currentUser);
 let isInitialLoading = $state(true);
 let prevPage = $state($filterStore.pagination.currentPage);
 let prevItemsPerPage = $state($filterStore.pagination.itemsPerPage);
+
+type BetColumnMeta = {
+    textAlign?: 'left' | 'right';
+}
+
+type BetColumnDef = ColumnDef<Bet, unknown> & {
+    meta?: BetColumnMeta;
+}
 
 const table = createSvelteTable({
 	get data() {
@@ -121,7 +129,7 @@ $effect(() => {
 								{#each headerGroup.headers as header (header.id)}
 									<Table.Head>
 										{#if !header.isPlaceholder}
-											<div class="flex items-center gap-2">
+											<div class="flex items-center gap-2" style="justify-content: {header.column.columnDef.meta?.textAlign === 'right' ? 'flex-end' : 'flex-start'}">
 												<img
 													src="/icons/table-icon.svg"
 													alt="" />
@@ -139,7 +147,7 @@ $effect(() => {
 						{#each table.getRowModel().rows as row, index (generateBetKey(row.original, index))}
 							<Table.Row data-state="{row.getIsSelected() && 'selected'}">
 								{#each row.getVisibleCells() as cell (cell.id)}
-									<Table.Cell>
+									<Table.Cell style="text-align: {cell.column.columnDef.meta?.textAlign || 'left'}">
 										<FlexRender
 											content="{cell.column.columnDef.cell}"
 											context="{cell.getContext() as CellContextType}" />

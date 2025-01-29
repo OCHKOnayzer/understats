@@ -37,10 +37,19 @@ export interface Bet {
 	};
 }
 
-export const columns: ColumnDef<Bet, unknown>[] = [
+type BetColumnMeta = {
+	textAlign?: 'left' | 'right';
+};
+
+type BetColumnDef = ColumnDef<Bet, unknown> & {
+	meta?: BetColumnMeta;
+};
+
+export const columns: ColumnDef<Bet>[] = [
 	{
 		accessorKey: 'dates.placed',
 		header: 'columns.bet.time',
+		meta: { textAlign: 'left' } as BetColumnMeta,
 		cell: ({ row }) => {
 			try {
 				const date = new Date();
@@ -53,7 +62,8 @@ export const columns: ColumnDef<Bet, unknown>[] = [
 	},
 	{
 		accessorKey: 'siteName',
-		header: 'columns.bet.bookmaker'
+		header: 'columns.bet.bookmaker',
+		meta: { textAlign: 'left' } as BetColumnMeta
 	},
 	{
 		accessorKey: 'event.sport',
@@ -62,23 +72,21 @@ export const columns: ColumnDef<Bet, unknown>[] = [
 	{
 		accessorKey: 'event.competitionName.default',
 		header: 'columns.bet.event'
-		// cell: ({ row }) => {
-		// 	const event = row.original.event;
-		// 	if (!event) return 'Нет данных';
-		// 	return `${event.name1} - ${event.name2}`;
-		// }
 	},
 	{
 		accessorKey: 'amounts.stake',
-		header: 'columns.bet.ammount'
+		header: 'columns.bet.ammount',
+		meta: { textAlign: 'right' } as BetColumnMeta
 	},
 	{
 		accessorKey: 'rate',
-		header: 'columns.bet.ratio'
+		header: 'columns.bet.ratio',
+		meta: { textAlign: 'right' } as BetColumnMeta
 	},
 	{
 		accessorKey: 'amounts.win',
-		header: 'columns.bet.win'
+		header: 'columns.bet.win',
+		meta: { textAlign: 'right' } as BetColumnMeta
 	},
 	{
 		accessorKey: 'status',
