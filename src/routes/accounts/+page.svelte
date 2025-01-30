@@ -14,7 +14,7 @@ selectHeaderTitle('other.accounts');
 		content="About this app" />
 </svelte:head>
 
-<div class="px-[2rem]">
+<div>
 	<!--	<SortContainer />-->
 	<Account />
 	<!-- <Filter /> -->

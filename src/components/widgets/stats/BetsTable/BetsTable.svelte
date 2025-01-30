@@ -10,6 +10,7 @@ import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte'
 import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
 import { useUserProfile } from '$src/services/auth/useProfile';
 import { betsTableStore } from '$src/stores/betsTableStore';
+import { isDemoEnabled } from '$src/stores/demo';
 import { filterStore } from '$src/stores/filterStore';
 import { currentUser } from '$src/stores/modalStore';
 import { generateBetKey } from '$src/utils/functions/generateBetKey';
@@ -27,12 +28,12 @@ let prevPage = $state($filterStore.pagination.currentPage);
 let prevItemsPerPage = $state($filterStore.pagination.itemsPerPage);
 
 type BetColumnMeta = {
-    textAlign?: 'left' | 'right';
-}
+	textAlign?: 'left' | 'right';
+};
 
 type BetColumnDef = ColumnDef<Bet, unknown> & {
-    meta?: BetColumnMeta;
-}
+	meta?: BetColumnMeta;
+};
 
 const table = createSvelteTable({
 	get data() {
@@ -46,6 +47,13 @@ type CellContextType = CellContext<Bet, unknown>;
 
 let showLoading = $state(false);
 let loadingTimer: ReturnType<typeof setTimeout>;
+
+$effect(() => {
+	const demoState = $isDemoEnabled;
+	if (demoState !== undefined && !isInitialLoading) {
+		loadData();
+	}
+});
 
 async function loadData() {
 	if ($betsTableStore.isLoading) {
@@ -66,6 +74,7 @@ async function loadData() {
 
 		betsTableStore.setData(response);
 	} catch (err) {
+		console.error('Error loading data:', err);
 		betsTableStore.setError('Ошибка при загрузке данных');
 	} finally {
 		clearTimeout(loadingTimer);
@@ -92,6 +101,15 @@ $effect(() => {
 		loadData();
 	}
 });
+
+let isLoading = $derived($betsTableStore.isLoading || $query.isLoading || isInitialLoading);
+
+// Ensure data is valid before rendering
+$effect(() => {
+	if ($betsTableStore.data && !Array.isArray($betsTableStore.data)) {
+		betsTableStore.setData([] as Bet[]);
+	}
+});
 </script>
 
 <svelte:window bind:innerWidth="{innerWidth}" />
@@ -99,14 +117,14 @@ $effect(() => {
 <div class="relative w-full">
 	{#if !isAuthenticated}
 		<AuthDemoButton />
-	{:else if showLoading && ($betsTableStore.isLoading || $query.isLoading || isInitialLoading)}
+	{:else if ($betsTableStore.isLoading || isInitialLoading) && showLoading}
 		<div class="flex h-[calc(100vh-280px)] flex-col items-center justify-center p-4 text-white">
 			<span class="loading-spinner mb-3"></span>
 			<h2>{$t('stats.loading_data')}</h2>
 		</div>
 	{:else if $betsTableStore.error}
 		<div class="p-4 text-red-500">{$betsTableStore.error}</div>
-	{:else if !isInitialLoading && $betsTableStore.data.length === 0}
+	{:else if !$betsTableStore.isLoading && $betsTableStore.data.length === 0}
 		<div class="message-container">
 			<TableNoData
 				title="{$t('stats.no_bets')}"
@@ -115,8 +133,10 @@ $effect(() => {
 		</div>
 	{:else if isMobile}
 		<div class="mt-4 grid grid-cols-1 gap-2">
-			{#each $betsTableStore.data as bet, index (generateBetKey(bet, index))}
-				<MobileCard data="{bet}" />
+			{#each $betsTableStore.data || [] as bet, index (generateBetKey(bet, index))}
+				{#if bet}
+					<MobileCard data="{bet satisfies Bet}" />
+				{/if}
 			{/each}
 		</div>
 	{:else}
@@ -129,7 +149,9 @@ $effect(() => {
 								{#each headerGroup.headers as header (header.id)}
 									<Table.Head>
 										{#if !header.isPlaceholder}
-											<div class="flex items-center gap-2" style="justify-content: {header.column.columnDef.meta?.textAlign === 'right' ? 'flex-end' : 'flex-start'}">
+											<div
+												class="flex items-center gap-2"
+												style="justify-content: {header.column.columnDef.meta?.textAlign === 'right' ? 'flex-end' : 'flex-start'}">
 												<img
 													src="/icons/table-icon.svg"
 													alt="" />

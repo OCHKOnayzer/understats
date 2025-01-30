@@ -4,10 +4,10 @@ import { t } from 'svelte-i18n';
 
 import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';
 import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
-import { headerTitle, closeState } from '$src/stores/HeaderStores';
+import { closeState, headerTitle } from '$src/stores/HeaderStores';
+import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
 import { openMenu } from '$src/stores/menu';
 import { closeModal, currentUser, modalComponent, openModal } from '$src/stores/modalStore';
-import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 
 import LangButton from '../button/langButton/LangButton.svelte';
 

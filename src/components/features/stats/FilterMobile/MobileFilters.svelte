@@ -10,7 +10,6 @@ import Accordion from '$src/components/ui/accordion/Accordion.svelte';
 import BetFilters from '$src/components/ui/betFilters/BetFilters.svelte';
 import Calendar from '$src/components/ui/calendar/DateRangePicker.svelte';
 import FilterTabs from '$src/components/ui/filterTabs/filterTabs.svelte';
-
 import { fetchFilteredData } from '$src/components/entities/stats/api/api';
 import BetsSelectFilter from '$src/components/entities/stats/BetsSelectFilter/BetsSelectFilter.svelte';
 import { betsTableStore } from '$src/stores/betsTableStore';

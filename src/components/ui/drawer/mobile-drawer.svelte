@@ -18,4 +18,4 @@ let { shouldScaleBackground = false, open = $bindable(false), activeSnapPoint = 
   --snap-point-height: unset !important;
   height: var(--snap-point) !important;
 }
-</style> 
+</style>

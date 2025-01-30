@@ -1,5 +1,6 @@
 <script lang="ts">
 import { filterStore } from '$src/stores/filterStore';
+
 import MobileFilters from './MobileFilters.svelte';
 
 let isOpen = $state(false);

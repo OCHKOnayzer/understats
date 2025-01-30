@@ -52,17 +52,17 @@ export const toggleInputType = () => {
 
 export const openModal = (
 	component:
-	| 'authModal'
-	| 'LeaveContainer'
-	| 'FailedModal'
-	| 'SuccessfulModal'
-	| 'SorryModal'
-	| 'LangModal'
-	| 'SupportModal'
-	| 'ChatModal'
-	| 'PayTariffs'
-	| 'SocialModal'
-	| 'PaySupport'
+		| 'authModal'
+		| 'LeaveContainer'
+		| 'FailedModal'
+		| 'SuccessfulModal'
+		| 'SorryModal'
+		| 'LangModal'
+		| 'SupportModal'
+		| 'ChatModal'
+		| 'PayTariffs'
+		| 'SocialModal'
+		| 'PaySupport'
 ) => {
 	isModalOpen.set(true);
 	modalComponent.set(component);

@@ -7,7 +7,7 @@ let { variant = 'ghost', ...restProps }: ComponentProps<typeof Button> = $props(
 </script>
 
 <button
-	class="flex gap-1 items-center text-[14px]"
+	class="flex items-center gap-1 text-[14px]"
 	{...restProps}>
 	<img
 		src="/icons/table-icon.svg"

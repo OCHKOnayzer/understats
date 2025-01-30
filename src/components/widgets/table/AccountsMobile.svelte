@@ -1,6 +1,7 @@
 <script lang="ts">
-import { formatDate } from '$src/utils/functions/formatDate';
 import { t } from 'svelte-i18n';
+
+import { formatDate } from '$src/utils/functions/formatDate';
 
 let { account } = $props();
 console.log(account);

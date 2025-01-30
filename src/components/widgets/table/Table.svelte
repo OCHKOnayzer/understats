@@ -12,10 +12,12 @@ import { currentUser } from '$src/stores/modalStore';
 import { generateAccountKey } from '$src/utils/functions/generateAccountKey';
 import { cn } from '$src/utils/utils';
 
-import type { IAccountResponse } from '$src/types/accounts';
 import AuthDemoButton from '../demo/demoButtons/AuthDemoButton.svelte';
+
 import { accountsColumns } from './accountsColumns';
 import AccountsMobile from './AccountsMobile.svelte';
+
+import type { IAccountResponse } from '$src/types/accounts';
 
 const { query } = useAccounts();
 const { query: profileQuery } = useUserProfile();

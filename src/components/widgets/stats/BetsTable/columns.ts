@@ -4,37 +4,19 @@ export interface Bet {
 	siteName: string;
 	userId: string;
 	accountId: string;
-	clientSeq: number;
-	rate: string;
-	outcome: {
-		default: string;
-	};
+	clientSeq: string;
+	rate: number;
+	outcome: string;
 	status: string;
-	amounts: {
-		stake: string;
-		win: string;
-	};
-	event: {
-		id: string;
-		sport: string;
-		competitionName: {
-			default: string;
-		};
-		name1: {
-			default: string;
-		};
-		name2: {
-			default: string;
-		};
-		startTime: Record<string, any>;
-	};
-	dates: {
-		placed: Record<string, any>;
-		settled: Record<string, any>;
-	};
-	meta: {
-		ordinal: number;
-	};
+	amounts: number;
+	event: string;
+	date: string;
+	meta: string;
+	betId: string;
+	sport: string;
+	amount: number;
+	coefficient: number;
+	result: string;
 }
 
 type BetColumnMeta = {

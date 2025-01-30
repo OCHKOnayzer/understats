@@ -4,7 +4,7 @@ import {
 	type TableOptionsResolved,
 	type TableState,
 	createTable,
-} from '@tanstack/table-core'
+} from '@tanstack/table-core';
 
 /**
  * Creates a reactive TanStack table object for Svelte.
