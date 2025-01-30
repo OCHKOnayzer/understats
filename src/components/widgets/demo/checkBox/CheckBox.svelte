@@ -17,34 +17,41 @@ async function handleDemoToggle() {
 	try {
 		const newDemoState = !get(isDemoEnabled);
 
-		betsTableStore.setLoading(true);
-
 		betsTableStore.reset();
 		currentUser.set(null);
 
-		await authService.main('login', newDemoState ? { login: demo.login, password: demo.password } : { login, password });
+		const loginResponse = await authService.main('login', newDemoState ? { login: demo.login, password: demo.password } : { login, password });
+
+		if (!loginResponse?.data) {
+			throw new Error('Ошибка авторизации');
+		}
 
 		if (!newDemoState) {
 			authService.removeDemoToken();
 			removeDemoToken();
 		}
 
-		isDemoEnabled.set(newDemoState);
-
 		const profile = await authService.profile();
 		if (profile?.data) {
 			currentUser.set(profile.data);
-		}
 
+			isDemoEnabled.set(newDemoState);
+			await loadData();
+		}
+	} catch (error) {
+		console.error('Error during demo toggle:', error);
+		betsTableStore.setError('Ошибка при переключении режима');
+	}
+}
+
+async function loadData() {
+	try {
 		const response = await fetchFilteredData(get(filterStore));
 		if (response) {
 			betsTableStore.setData(response);
 		}
 	} catch (error) {
-		console.error('Error during demo toggle:', error);
-		betsTableStore.setError('Ошибка при переключении режима');
-	} finally {
-		betsTableStore.setLoading(false);
+		console.error('Error loading data:', error);
 	}
 }
 </script>

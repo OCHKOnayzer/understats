@@ -1,10 +1,10 @@
-import axios, { type CreateAxiosDefaults } from 'axios';
+import axios, { type CreateAxiosDefaults } from 'axios'
 
-import { getAccessToken, removeAccessToken } from '$src/services/auth/auth-token.service';
+import { getAccessToken, removeAccessToken } from '$src/services/auth/auth-token.service'
 
-import { betsTableStore } from '$src/stores/betsTableStore';
-import { ApiError, handleAxiosError } from './api.error';
-import { getContentType } from './api.helper';
+import { betsTableStore } from '$src/stores/betsTableStore'
+import { ApiError, handleAxiosError } from './api.error'
+import { getContentType } from './api.helper'
 
 const options: CreateAxiosDefaults = {
 	baseURL: process.env.SERVER_URL,
@@ -72,4 +72,5 @@ const setLoading = (isLoading: boolean) => {
 	betsTableStore.setLoading(isLoading);
 };
 
-export { axiosClassic, axiosWithAuth };
+export { axiosClassic, axiosWithAuth }
+

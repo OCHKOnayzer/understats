@@ -1,6 +1,6 @@
-import { writable } from 'svelte/store';
+import { writable } from 'svelte/store'
 
-import type { IAccountRequest } from '$src/types/accounts';
+import type { IAccountRequest } from '$src/types/accounts'
 
 function createAccountStore() {
 	const isBrowser = typeof window !== 'undefined';

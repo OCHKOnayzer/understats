@@ -10,7 +10,6 @@ import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte'
 import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
 import { useUserProfile } from '$src/services/auth/useProfile';
 import { betsTableStore } from '$src/stores/betsTableStore';
-import { isDemoEnabled } from '$src/stores/demo';
 import { filterStore } from '$src/stores/filterStore';
 import { currentUser } from '$src/stores/modalStore';
 import { generateBetKey } from '$src/utils/functions/generateBetKey';
@@ -23,7 +22,6 @@ let innerWidth = $state(0);
 let isMobile = $derived(innerWidth < 400);
 let { query } = useUserProfile();
 let isAuthenticated = $derived(!!$currentUser);
-let isInitialLoading = $state(true);
 let prevPage = $state($filterStore.pagination.currentPage);
 let prevItemsPerPage = $state($filterStore.pagination.itemsPerPage);
 
@@ -45,15 +43,7 @@ const table = createSvelteTable({
 
 type CellContextType = CellContext<Bet, unknown>;
 
-let showLoading = $state(false);
-let loadingTimer: ReturnType<typeof setTimeout>;
-
-$effect(() => {
-	const demoState = $isDemoEnabled;
-	if (demoState !== undefined && !isInitialLoading) {
-		loadData();
-	}
-});
+let isLoading = $derived($betsTableStore.isLoading);
 
 async function loadData() {
 	if ($betsTableStore.isLoading) {
@@ -62,12 +52,8 @@ async function loadData() {
 
 	try {
 		betsTableStore.setLoading(true);
-		loadingTimer = setTimeout(() => {
-			showLoading = true;
-		}, 1000);
 
 		const response = await fetchFilteredData($filterStore);
-
 		if (!response) {
 			throw new Error('Нет данных');
 		}
@@ -76,11 +62,6 @@ async function loadData() {
 	} catch (err) {
 		console.error('Error loading data:', err);
 		betsTableStore.setError('Ошибка при загрузке данных');
-	} finally {
-		clearTimeout(loadingTimer);
-		showLoading = false;
-		betsTableStore.setLoading(false);
-		isInitialLoading = false;
 	}
 }
 
@@ -88,9 +69,7 @@ onMount(() => {
 	loadData();
 });
 
-onDestroy(() => {
-	clearTimeout(loadingTimer);
-});
+onDestroy(() => {});
 
 $effect(() => {
 	const { currentPage, itemsPerPage } = $filterStore.pagination;
@@ -102,9 +81,6 @@ $effect(() => {
 	}
 });
 
-let isLoading = $derived($betsTableStore.isLoading || $query.isLoading || isInitialLoading);
-
-// Ensure data is valid before rendering
 $effect(() => {
 	if ($betsTableStore.data && !Array.isArray($betsTableStore.data)) {
 		betsTableStore.setData([] as Bet[]);
@@ -117,14 +93,14 @@ $effect(() => {
 <div class="relative w-full">
 	{#if !isAuthenticated}
 		<AuthDemoButton />
-	{:else if ($betsTableStore.isLoading || isInitialLoading) && showLoading}
+	{:else if $betsTableStore.error}
+		<div class="p-4 text-red-500">{$betsTableStore.error}</div>
+	{:else if $betsTableStore.isLoading}
 		<div class="flex h-[calc(100vh-280px)] flex-col items-center justify-center p-4 text-white">
 			<span class="loading-spinner mb-3"></span>
 			<h2>{$t('stats.loading_data')}</h2>
 		</div>
-	{:else if $betsTableStore.error}
-		<div class="p-4 text-red-500">{$betsTableStore.error}</div>
-	{:else if !$betsTableStore.isLoading && $betsTableStore.data.length === 0}
+	{:else if !$betsTableStore.data?.length}
 		<div class="message-container">
 			<TableNoData
 				title="{$t('stats.no_bets')}"
