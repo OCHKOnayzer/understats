@@ -13,29 +13,24 @@ import { generateAccountKey } from '$src/utils/functions/generateAccountKey';
 import { cn } from '$src/utils/utils';
 
 import AuthDemoButton from '../demo/demoButtons/AuthDemoButton.svelte';
-import DataTableEmailButton from '../stats/BetsTable/data-table-id-button.svelte.svelte';
 
 import { accountsColumns } from './accountsColumns';
+import AccountsMobile from './AccountsMobile.svelte';
 
 import type { IAccountResponse } from '$src/types/accounts';
 
 const { query } = useAccounts();
 const { query: profileQuery } = useUserProfile();
 
+let innerWidth = $state(typeof window !== 'undefined' ? window.innerWidth : 1024);
+let isMobile = $derived(innerWidth < 400);
 let accounts = $state<IAccountResponse[]>([]);
 let isAuthenticated = $derived(!!$currentUser);
+
+let isInitializing = $derived($profileQuery.isInitialLoading);
 let isLoading = $derived(isAuthenticated && ($query.isLoading || $profileQuery.isLoading));
 
-let sorting = $state<SortingState>(
-	(() => {
-		try {
-			const saved = localStorage.getItem('tableSorting');
-			return saved ? JSON.parse(saved) : [];
-		} catch {
-			return [];
-		}
-	})()
-);
+let sorting = $state<SortingState>([]);
 
 $effect(() => {
 	localStorage.setItem('tableSorting', JSON.stringify(sorting));
@@ -58,7 +53,6 @@ const table = createSvelteTable({
 		} else {
 			sorting = updater;
 		}
-		localStorage.setItem('tableSorting', JSON.stringify(sorting));
 	},
 	state: {
 		get sorting() {
@@ -68,19 +62,18 @@ const table = createSvelteTable({
 });
 
 type CellContextType = CellContext<IAccountResponse, unknown>;
-
-const renderHeader = (header: unknown): unknown => {
-	if (typeof header === 'function') {
-		return header();
-	}
-	if (typeof header === 'string') {
-		return $t(header);
-	}
-	return header;
-};
 </script>
 
-{#if !isAuthenticated}
+<svelte:window bind:innerWidth="{innerWidth}" />
+
+{#if isInitializing}
+	<div class="message-container">
+		<Spinner
+			color="#718096"
+			size="{32}" />
+		<h2 class="w-[260px] text-center text-xl text-[#718096]">{$t('accounts.loading')}</h2>
+	</div>
+{:else if !isAuthenticated}
 	<AuthDemoButton />
 {:else if isLoading}
 	<div class="message-container">
@@ -89,30 +82,27 @@ const renderHeader = (header: unknown): unknown => {
 			size="{32}" />
 		<h2 class="w-[260px] text-center text-xl text-[#718096]">{$t('accounts.loading')}</h2>
 	</div>
+{:else if isMobile}
+	<div class="absolute left-0 right-0 flex flex-col gap-4">
+		{#each accounts as account}
+			<AccountsMobile account="{account}" />
+		{/each}
+	</div>
 {:else if accounts?.length}
 	<div class="table-wrapper">
 		<div class="table-container">
-			<Table.Root class="mt-3 w-full caption-bottom text-[12px]">
-				<Table.Header class="table-head sticky top-0 bg-[#31384A]">
+			<Table.Root class="">
+				<Table.Header class="top-0 bg-[#31384A]">
 					{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
 						<Table.Row class="border-none">
 							{#each headerGroup.headers as header (header.id)}
-								<Table.Head class="table-head">
-									<div class="header-content">
-										<img
-											class="header-icon {header.column.getIsSorted() === 'desc' ? 'rotate-180' : ''}
-												   {typeof header.column.columnDef.header === 'function' ? 'transition-transform duration-200' : ''}"
-											src="icons/bk/table.svg"
-											alt="table" />
-										<span class="header-text {header.column.getIsSorted() ? 'font-bold' : ''}">
-											{#if typeof header.column.columnDef.header === 'function'}
-												<svelte:component
-													this="{DataTableEmailButton}"
-													column="{header.column}" />
-											{:else}
-												{renderHeader(header.column.columnDef.header)}
-											{/if}
-										</span>
+								<Table.Head class="">
+									<div class="flex gap-2 pl-2 pr-7">
+										<div class="text-[14px]">
+											<FlexRender
+												content="{header.column.columnDef.header}"
+												context="{header.getContext()}" />
+										</div>
 									</div>
 								</Table.Head>
 							{/each}
@@ -121,12 +111,14 @@ const renderHeader = (header: unknown): unknown => {
 				</Table.Header>
 				<Table.Body>
 					{#each table.getRowModel().rows as row, index (generateAccountKey(row.original, index))}
-						<Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'} cursor-pointer text-[10px] transition-all duration-300 ease-in-out hover:bg-[#3D3A8540]`)}">
+						<Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'} cursor-pointer text-[14px] transition-all duration-300 ease-in-out hover:bg-[#3D3A8540]`)}">
 							{#each row.getVisibleCells() as cell (cell.id)}
 								<Table.Cell>
-									<FlexRender
-										content="{cell.column.columnDef.cell}"
-										context="{cell.getContext() as CellContextType}" />
+									<div class="cell-content">
+										<FlexRender
+											content="{cell.column.columnDef.cell}"
+											context="{cell.getContext() as CellContextType}" />
+									</div>
 								</Table.Cell>
 							{/each}
 						</Table.Row>
@@ -152,42 +144,5 @@ const renderHeader = (header: unknown): unknown => {
 
 .message-container {
 	@apply z-[5000] bg-[#171b26] font-[Manrope] font-light;
-}
-
-.table-wrapper {
-	@apply relative w-full overflow-hidden bg-[#171b26];
-}
-
-.table-container {
-	@apply relative w-full overflow-x-auto;
-	-webkit-overflow-scrolling: touch;
-}
-
-.table-head {
-	@apply min-h-[40px] w-[500px] !text-[12px] sm:min-h-[28px] md:min-h-[32px] xl:min-h-[40px];
-}
-
-.header-content {
-	@apply flex h-full items-center gap-1;
-}
-
-.header-icon {
-	@apply flex-shrink-0 sm:h-2 sm:w-2 md:h-2 md:w-2 xl:h-4 xl:w-4;
-}
-
-.rotate-180 {
-	transform: rotate(180deg);
-}
-
-.header-text {
-	@apply sm:text-[9px] md:text-[10px] xl:text-[10px];
-}
-
-:global(.table-container table) {
-	@apply w-full table-auto;
-}
-
-:global(.table-container th) {
-	@apply min-w-0 max-w-[150px];
 }
 </style>

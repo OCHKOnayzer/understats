@@ -1,6 +1,7 @@
 import axios, { type CreateAxiosDefaults } from 'axios';
 
 import { getAccessToken, removeAccessToken } from '$src/services/auth/auth-token.service';
+import { betsTableStore } from '$src/stores/betsTableStore';
 
 import { ApiError, handleAxiosError } from './api.error';
 import { getContentType } from './api.helper';
@@ -67,6 +68,8 @@ axiosClassic.interceptors.response.use(
 	}
 );
 
-const setLoading = (isLoading: boolean) => {};
+const setLoading = (isLoading: boolean) => {
+	betsTableStore.setLoading(isLoading);
+};
 
 export { axiosClassic, axiosWithAuth };

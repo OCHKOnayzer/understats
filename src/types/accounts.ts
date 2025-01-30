@@ -12,3 +12,8 @@ export interface IAccountResponse {
 	siteName: string;
 	lastBet?: string;
 }
+
+export interface IAccountRequest {
+	login: string;
+	password: string;
+}

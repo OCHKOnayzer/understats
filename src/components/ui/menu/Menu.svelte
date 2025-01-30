@@ -1,11 +1,10 @@
 <script lang="ts">
-import { onMount, onDestroy } from 'svelte';
+import { onDestroy, onMount } from 'svelte';
 
-import { isMenuOpen, closeMenu } from '$src/stores/menu';
+import { closeMenu, isMenuOpen } from '$src/stores/menu';
 
-import UserContainer from './userInfo/UserContainer.svelte';
-import RouteMenu from './routeMenu.svelte';
 import RouteHelp from './routeHelp.svelte';
+import RouteMenu from './routeMenu.svelte';
 
 let isMobile = window.innerWidth <= 800;
 let scrollbarWidth = 0;

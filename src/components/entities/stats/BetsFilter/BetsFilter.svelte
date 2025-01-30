@@ -104,7 +104,7 @@ async function applyFilters() {
 		<button
 			class="clear-button"
 			on:click="{() => filterStore.reset()}">
-			{$t('filter.clear_filters')}
+			{$t('stats.clean_filters')}
 		</button>
 		<button
 			class="apply-button"
@@ -113,7 +113,7 @@ async function applyFilters() {
 			{#if isLoading}
 				{$t('stats.loading')}...
 			{:else}
-				{$t('stats.use_filters')} z ({$filterStore.selectedSports.length +
+				{$t('stats.use_filters')} ({$filterStore.selectedSports.length +
 					$filterStore.selectedBookmakers.length +
 					$filterStore.selectedAccounts.length +
 					$filterStore.selectedComands.length +

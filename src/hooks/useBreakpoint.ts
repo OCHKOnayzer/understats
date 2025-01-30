@@ -1,4 +1,4 @@
-// Не изменять импорт
+/* eslint-disable import/no-duplicates */
 import { onMount } from 'svelte';
 import { writable } from 'svelte/store';
 
