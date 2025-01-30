@@ -1,5 +1,6 @@
-import { queryClient } from '$src/lib/queryClient'
-import { writable } from 'svelte/store'
+import { writable } from 'svelte/store';
+
+import { queryClient } from '$src/lib/queryClient';
 
 const isBrowser = typeof window !== 'undefined';
 const storedDemoState = isBrowser ? localStorage.getItem('isDemoEnabled') === 'true' : false;

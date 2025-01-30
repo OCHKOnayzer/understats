@@ -1,6 +1,6 @@
-import { writable } from 'svelte/store'
+import { writable } from 'svelte/store';
 
-import type { Bet } from '$src/components/widgets/stats/BetsTable/columns'
+import type { Bet } from '$src/components/widgets/stats/BetsTable/columns';
 
 interface BetsTableState {
 	data: Bet[];

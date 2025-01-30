@@ -1,8 +1,8 @@
-import axios from 'axios'
+import axios from 'axios';
 
-import { axiosWithAuth } from '$src/api/api.interceptors'
+import { axiosWithAuth } from '$src/api/api.interceptors';
 
-import type { IBet, IBetResponse } from '$src/types/bet'
+import type { IBet, IBetResponse } from '$src/types/bet';
 
 class BetService {
 	async createBet(data: IBet) {
