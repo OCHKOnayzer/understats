@@ -16,7 +16,7 @@ function test() {
 <button
 	on:click="{test}"
 	class="flex h-auto w-full flex-col justify-center rounded-lg
-    {$modalComponent === 'SocialModal' ? 'bg-activeElements' : 'bg-[#31384A]'}">
+    {$modalComponent === 'SocialModal' ? 'bg-activeElements' : 'bg-[#31384A]'} transition duration-300 hover:bg-[#41495D]">
 	<div class="flex h-[50px] items-center rounded-lg text-gray-500 no-underline transition duration-300 hover:cursor-pointer">
 		<div class="ml-[12px] mr-2.5 flex h-[20px] w-[20px] items-center justify-center">
 			<img

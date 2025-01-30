@@ -22,7 +22,7 @@ import Tariffs from './tariffs.svelte';
 	<Tariffs
 		name="{'Pro'}"
 		desc="{'tariffs.pro'}"
-		limitations="{$t('tariffs.no_limits')}"
+		limitations="{'tariffs.no_limits'}"
 		price="{'100'}"
 		price_year="{'1000'}" />
 </div>

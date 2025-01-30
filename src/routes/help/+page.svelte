@@ -52,4 +52,10 @@ selectHeaderTitle('faq.faq');
 		padding-bottom: 13px;
 	}
 }
+@media screen and (max-width: 800px) {
+	.mainContent {
+		height: 100%;
+		padding-bottom: 12px;
+	}
+}
 </style>

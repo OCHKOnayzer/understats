@@ -7,19 +7,32 @@ import { setLanguage } from '$src/lib/i18n';
 
 import { LangArr } from '../modal/langModal/lang';
 let changeLang = false;
+
 const openChangeLang = () => {
 	changeLang = !changeLang;
 	console.log(changeLang);
 };
+
 $: {
 	if ($modalComponent === 'LangModal') {
 		changeLang = false;
 	}
 }
+
 const setLang = (lang: string) => {
 	setLanguage(lang);
 	openChangeLang();
 };
+
+const handleFocus = () => {
+	changeLang = false;
+};
+
+document.addEventListener('focusin', (event) => {
+	if (event.target instanceof HTMLInputElement) {
+		handleFocus();
+	}
+});
 </script>
 
 <div class="setings_item item-w lang">

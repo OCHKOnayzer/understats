@@ -90,8 +90,8 @@ onDestroy(() => {
 .menuWrapper {
 	height: 100%;
 	width: 100%;
-	padding-top: var(--elements-padding);
-	padding-bottom: var(--elements-padding);
+	padding-top: 16px;
+	padding-bottom: 16px;
 	padding-right: var(--elements-padding);
 	padding-left: var(--elements-padding);
 	display: flex;
