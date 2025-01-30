@@ -7,7 +7,7 @@ export const MenuElement: MenuInterface[] = [
 	{
 		name: 'faq.main_content',
 		image: '',
-		props: ''
+		props: 'main'
 	},
 	// {
 	// 	name: 'faq.awards',

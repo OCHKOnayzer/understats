@@ -219,7 +219,7 @@ function closeStateFunction() {
 }
 @media screen and (max-width: 800px) {
 	.header {
-		margin-bottom: 60px;
+		margin-bottom: 5vh;
 	}
 	.flexConteiner {
 		display: flex;

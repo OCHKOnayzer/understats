@@ -2,15 +2,39 @@
 import { t } from 'svelte-i18n';
 import { createEventDispatcher, onMount } from 'svelte';
 
-import { MenuElement, SecretMenuElemnt } from './menuElments';
+import { MenuElement } from './menuElments';
 import ActiveCard from './ActiveCard.svelte';
 
 let activeIndex: number | null = null;
 let selectedItemName: string | null = null;
 let selectedArticleId: string | null = null;
 
+const dispatch = createEventDispatcher();
+
+const updateURL = (props: string | null, article: string | null) => {
+	const url = new URL(window.location.href);
+
+	// Удаляем старые параметры
+	url.searchParams.forEach((_, key) => url.searchParams.delete(key));
+
+	if (props) {
+		url.searchParams.set(props, article || props);
+	}
+
+	window.history.replaceState({}, '', url.toString());
+};
+
 const setActiveIndex = (index: number) => {
-	activeIndex = index === activeIndex ? null : index;
+	const newProps = MenuElement[index].props;
+
+	if (activeIndex === index) {
+		activeIndex = null;
+		selectedArticleId = null;
+		updateURL(null, null);
+	} else {
+		activeIndex = index;
+		updateURL(newProps, selectedArticleId);
+	}
 };
 
 const handleSelectItem = (event: any) => {
@@ -18,32 +42,30 @@ const handleSelectItem = (event: any) => {
 	selectedArticleId = event.detail.articleId;
 
 	dispatch('selectItemFromMenu', { name: selectedItemName, articleId: selectedArticleId });
+
+	const currentProps = MenuElement[activeIndex]?.props || null;
+	updateURL(currentProps, selectedArticleId);
 };
 
-const dispatch = createEventDispatcher();
-
-const getUrlParameterKey = (param: string): string | null => {
+const loadFromURL = () => {
 	const urlParams = new URLSearchParams(window.location.search);
-	const paramValue = urlParams.get(param);
-	return paramValue ? param : null;
+
+	for (let i = 0; i < MenuElement.length; i++) {
+		if (urlParams.has(MenuElement[i].props)) {
+			activeIndex = i;
+			selectedArticleId = urlParams.get(MenuElement[i].props);
+			break;
+		}
+	}
 };
 
 onMount(() => {
-	const browserParamKey = getUrlParameterKey('browser');
-
-	if (browserParamKey) {
-		const matchingItem = MenuElement.find((item) => item.props === browserParamKey);
-		if (matchingItem) {
-			activeIndex = MenuElement.indexOf(matchingItem);
-		}
-	}
+	loadFromURL();
 });
 </script>
 
 <div class="menuWrapper">
-	<div class="menu_title">
-		<!-- <span>{$t('faq.FAQ_section')}</span> -->
-	</div>
+	<div class="menu_title"></div>
 	<div class="faqItemsWrapper">
 		{#each MenuElement as item, index}
 			<button
@@ -99,9 +121,6 @@ onMount(() => {
 	align-items: center;
 	padding-left: 15px;
 }
-/* .secretItem {
-	background-color: #1e222d;
-} */
 .faqItem:nth-of-type(1) {
 	margin-top: 0%;
 }
@@ -109,9 +128,6 @@ onMount(() => {
 	background-color: #6660ff40;
 	border-color: #6660ff;
 }
-/* .secretItem:hover {
-	background-color: #393d4b;
-} */
 .menuWrapper::-webkit-scrollbar {
 	border-radius: 30px;
 	width: 3px;
