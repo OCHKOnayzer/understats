@@ -1,7 +1,7 @@
 import { renderComponent } from '$src/components/ui/data-table';
 import { formatDate } from '$src/utils/functions/formatDate';
 
-import DataTableIdButton from '../stats/BetsTable/data-table-id-button.svelte.svelte';
+import SortableHeader from './SortableHeader.svelte';
 
 import type { IAccountResponse } from '$src/types/accounts';
 import type { ColumnDef } from '@tanstack/table-core';
@@ -10,16 +10,22 @@ export type { IAccountResponse };
 
 export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 	{
-		accessorKey: 'siteName',
-		header: 'accounts.bookmaker',
+		accessorKey: 'clientSeq',
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: 'ID',
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			}),
 		meta: { width: '120px' }
 	},
 	{
-		accessorKey: 'clientSeq',
+		accessorKey: 'siteName',
 		header: ({ column }) =>
-			renderComponent(DataTableIdButton, {
-				column,
-				'data-state': column.getIsSorted() ? 'sorted' : 'unsorted'
+			renderComponent(SortableHeader, {
+				title: 'accounts.bookmaker',
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
 			}),
 		meta: { width: '80px' }
 	},
@@ -29,18 +35,18 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 		meta: { width: '100px' }
 	},
 	{
-		accessorKey: 'balance',
-		header: 'accounts.balance',
+		accessorKey: 'email',
+		header: 'accounts.mail',
 		meta: { width: '100px' }
+	},
+	{
+		accessorKey: 'bkId',
+		header: 'accounts.bkId',
+		meta: { width: '150px' }
 	},
 	{
 		accessorKey: 'fullName',
 		header: 'accounts.fullName',
-		meta: { width: '150px' }
-	},
-	{
-		accessorKey: 'email',
-		header: 'accounts.mail',
 		meta: { width: '180px' }
 	},
 	{
@@ -50,17 +56,41 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 	},
 	{
 		accessorKey: 'registrationDate',
-		header: 'accounts.regData',
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: 'accounts.regData',
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			}),
 		cell: ({ row }) => formatDate(row.original.registrationDate),
 		meta: { width: '130px' }
 	},
 	{
-		accessorKey: 'lastBet',
-		header: 'accounts.lastBet',
+		accessorKey: 'balance',
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: 'accounts.balance',
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			}),
 		meta: { width: '130px' }
 	},
 	{
-		accessorKey: 'outcome',
-		header: 'accounts.betCount'
+		accessorKey: 'lastBet',
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: 'accounts.lastBet',
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			})
+	},
+	{
+		accessorKey: 'betsCount',
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: 'accounts.betCount',
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			})
 	}
 ];

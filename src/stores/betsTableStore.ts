@@ -19,13 +19,13 @@ function createBetsTableStore() {
 		subscribe,
 		setData: (rawData: Bet[]) => {
 			if (!Array.isArray(rawData)) {
-				update((state) => ({ ...state, data: [] }));
+				update((state) => ({ ...state, data: [], isLoading: false }));
 				return;
 			}
-			update((state) => ({ ...state, data: rawData }));
+			update((state) => ({ ...state, data: rawData, isLoading: false }));
 		},
 		setLoading: (isLoading: boolean) => update((state) => ({ ...state, isLoading })),
-		setError: (error: string | null) => update((state) => ({ ...state, error })),
+		setError: (error: string | null) => update((state) => ({ ...state, error, isLoading: false })),
 		reset: () => set({ data: [], isLoading: false, error: null })
 	};
 }

@@ -4,16 +4,16 @@ import { t } from 'svelte-i18n';
 
 import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';
 import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
-import { openFaqMenu } from '$src/stores/faq';
-import { headerTitle, closeState } from '$src/stores/HeaderStores';
+import { closeState, headerTitle } from '$src/stores/HeaderStores';
 import { openMenu } from '$src/stores/menu';
 import { closeModal, currentUser, modalComponent, openModal } from '$src/stores/modalStore';
-import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 
 import LangButton from '../button/langButton/LangButton.svelte';
 
 import { goto } from '$app/navigation';
 import { page } from '$app/stores';
+import { openFaqMenu } from '$src/stores/faq';
+import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
 
 type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal' | 'SocialModal';
 
