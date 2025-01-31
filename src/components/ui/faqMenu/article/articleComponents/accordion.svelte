@@ -1,9 +1,8 @@
 <script>
 import { onMount } from 'svelte';
 
-let activeIndex = null; // Отслеживаем активную секцию
+let activeIndex = null;
 
-// Функция для переключения активного раздела
 const toggleAccordion = (index) => {
 	activeIndex = activeIndex === index ? null : index;
 };
