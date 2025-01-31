@@ -1,33 +1,33 @@
 let isChatOpen = false;
 
+// Проверяем, доступен ли JivoChat или LiveChat
 export function ifWindow() {
+	if (window.jivo_api) {
+		window.jivo_api.onOpen = () => {
+			isChatOpen = true;
+			console.log('JivoChat открыт');
+		};
+
+		window.jivo_api.onClose = () => {
+			isChatOpen = false;
+			console.log('JivoChat закрыт');
+		};
+	}
+
 	if (window.LC_API) {
 		window.LC_API.on_chat_window_opened = () => {
 			isChatOpen = true;
+			console.log('LiveChat открыт');
 		};
 
 		window.LC_API.on_chat_window_hidden = () => {
 			isChatOpen = false;
+			console.log('LiveChat закрыт');
 		};
-	}
-
-	if (window.jivo_onOpen) {
-		window.jivo_onOpen = () => {
-			isChatOpen = true;
-		};
-	}
-
-	if (window.jivo_onClose) {
-		window.jivo_onClose = () => {
-			isChatOpen = false;
-		};
-	}
-
-	if (window.jivo_destroy) {
-		window.jivo_destroy();
 	}
 }
 
+// Функция для открытия/закрытия чата
 export function toggleChat() {
 	if (isChatOpen) {
 		closeChat();
@@ -36,25 +36,32 @@ export function toggleChat() {
 	}
 }
 
+// Открыть чат
 function openChat() {
 	openJivositeChat();
-	// openLiveChat();
+	// openLiveChat(); // Оставь, если нужен LiveChat
 
 	isChatOpen = true;
 }
 
-function openJivositeChat() {
-	if (window.jivo_api) {
-		window.jivo_api.open({});
-	}
-}
-
+// Закрыть чат
 function closeChat() {
 	if (window.jivo_api) {
 		window.jivo_api.close();
 	}
 
+	if (window.LC_API) {
+		window.LC_API.minimize_chat_window();
+	}
+
 	isChatOpen = false;
+}
+
+// Открыть JivoChat
+function openJivositeChat() {
+	if (window.jivo_api) {
+		window.jivo_api.open();
+	}
 }
 
 function openLiveChat() {

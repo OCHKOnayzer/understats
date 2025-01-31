@@ -37,20 +37,18 @@ const handleLogout = () => {
 		role="button"
 		tabindex="0"
 		on:keydown="{(e) => e.key === 'Escape'}">
-		<!-- Кнопка закрытия (крестик) в правом верхнем углу -->
-		<button
-			class="close_btn"
-			on:click="{closeModal}">✖</button>
-
 		<div class="leave_wrapper">
-			<h2 class="modal_title">{$t('other.leave_acc')}</h2>
 			<LeaveModalContent />
-
 			<div class="button_wrapper">
 				<button
 					class="logout_btn"
 					on:click="{handleLogout}">
 					{$t('other.leave_acc')}
+				</button>
+				<button
+					class="cancel_btn"
+					on:click="{closeModal}">
+					{$t('other.cancel')}
 				</button>
 			</div>
 		</div>
@@ -66,7 +64,6 @@ const handleLogout = () => {
 	width: 100vw;
 	animation: fade-in 0.3s ease-out;
 }
-
 .leave_modal {
 	width: 420px;
 	min-height: 250px;
@@ -80,23 +77,6 @@ const handleLogout = () => {
 	animation: slide-in 0.3s ease-out forwards;
 	position: relative;
 }
-
-.close_btn {
-	position: absolute;
-	top: 12px;
-	right: 12px;
-	background: none;
-	border: none;
-	color: #718096;
-	font-size: 20px;
-	cursor: pointer;
-	transition: 0.4s ease-in-out;
-}
-
-.close_btn:hover {
-	color: white;
-}
-
 .leave_wrapper {
 	width: 100%;
 	padding: 24px;
@@ -105,24 +85,17 @@ const handleLogout = () => {
 	align-items: center;
 }
 
-.modal_title {
-	color: white;
-	font-size: 20px;
-	font-weight: 600;
-	margin-bottom: 12px;
-}
-
 .button_wrapper {
 	width: 100%;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	margin-top: 20px;
 }
-
-.logout_btn {
+.logout_btn,
+.cancel_btn {
 	width: 100%;
-	background: var(--accent-color);
 	color: white;
 	font-size: 16px;
 	font-weight: 600;
@@ -132,7 +105,16 @@ const handleLogout = () => {
 	cursor: pointer;
 	transition: 0.4s ease-in-out;
 }
-
+.logout_btn {
+	background: var(--accent-color);
+	margin-bottom: var(--elements-padding);
+}
+.cancel_btn {
+	background-color: #20242f;
+}
+.cancel_btn:hover {
+	background-color: #191a1b;
+}
 .logout_btn:hover {
 	background: #ff5252;
 }

@@ -3,7 +3,7 @@ import Accordion from '../articleComponents/accordion.svelte';
 </script>
 
 <div class="article_wrapper">
-	<Accordion />
+	<!-- <Accordion /> -->
 </div>
 
 <style>

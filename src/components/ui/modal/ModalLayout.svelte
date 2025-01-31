@@ -14,6 +14,7 @@ import ChatModal from './chatModal/ChatModal.svelte';
 import PayTariffs from './payModal/PayTariffs.svelte';
 import SocialModal from './supportModal/SocialModal.svelte';
 import PaySupport from './payModal/PaySupport.svelte';
+import PlanExpiredModal from './payModal/PlanExpiredModal.svelte';
 
 onDestroy(() => {
 	document.body.style.overflow = '';
@@ -30,7 +31,8 @@ const components = {
 	ChatModal,
 	PayTariffs,
 	SocialModal,
-	PaySupport
+	PaySupport,
+	PlanExpiredModal
 };
 </script>
 

@@ -10,8 +10,9 @@ export type LayoutData = {
 import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 import { onDestroy, onMount } from 'svelte';
 import { Toaster } from 'svelte-french-toast';
-import { init, locale, waitLocale } from 'svelte-i18n';
+import { init, locale, waitLocale, t } from 'svelte-i18n';
 
+import { ifWindow } from '$src/utils/functions/chat';
 import Menu from '$components/ui/menu/Menu.svelte';
 import Header from '$src/components/ui/header/header.svelte';
 import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
@@ -45,8 +46,9 @@ onMount(async () => {
 		await waitLocale();
 		isLocaleReady = true;
 	} catch (error) {
-		console.error('Ошибка загрузки локали на клиенте:', error);
+		console.error($t('error.locale_error_in_client'), error);
 	}
+	ifWindow();
 });
 
 let unsubscribe;
