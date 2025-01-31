@@ -85,6 +85,7 @@ onMount(() => {
 	height: 100vh;
 	color: white;
 	cursor: default;
+	animation: fade-in 0.3s ease-out;
 }
 
 .social_modal {
@@ -95,6 +96,8 @@ onMount(() => {
 	justify-content: center;
 	border-radius: 32px;
 	cursor: default;
+	transform: translateY(-20px);
+	animation: slide-in 0.3s ease-out forwards;
 }
 
 .social_title {
@@ -259,6 +262,23 @@ onMount(() => {
 	}
 	.social_item {
 		width: 100%;
+	}
+}
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slide-in {
+	from {
+		transform: translateY(-20px);
+	}
+	to {
+		transform: translateY(0);
 	}
 }
 @keyframes slideUp {

@@ -25,6 +25,12 @@ export const ActiveElemnts: ActiveInerface[] = [
 		article: 'bet'
 	},
 	{
+		index: 0,
+		name: 'faq.asked_questions',
+		image: '',
+		article: 'FrequentlyAskedQuestions'
+	},
+	{
 		index: 1,
 		name: 'faq.ext',
 		image: '',

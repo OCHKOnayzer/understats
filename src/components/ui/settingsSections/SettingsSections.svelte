@@ -7,14 +7,13 @@
 <style>
 .SettingsWrapper {
 	width: 100%;
-	min-height: 200px;
 	height: fit-content;
 	box-sizing: border-box;
 	margin-bottom: 12px;
 	color: white;
 	background: #171b26;
 	border-radius: 8px;
-	padding: 0 20px;
+	padding: 0px var(--elements-padding) var(--elements-padding) var(--elements-padding);
 }
 @media (max-width: 768px) {
 	.SettingsWrapper {

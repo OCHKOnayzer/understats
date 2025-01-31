@@ -18,12 +18,14 @@ import { page } from '$app/stores';
 type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal' | 'SocialModal';
 
 onMount(() => {
+	initializeScreenWidthListener();
+});
+$: {
 	if (!isHelp.includes($page.url.pathname)) {
 		closeState.set(false);
 	}
-	initializeScreenWidthListener();
-});
-
+	console.log($closeState);
+}
 const openCurrentModal = (modal: ModalType) => {
 	if ($modalComponent !== null && $modalComponent !== modal) {
 		return;
@@ -73,7 +75,9 @@ function closeStateFunction() {
 			<div class="flex items-center">
 				<div class="title">
 					{#if $isMobile && $closeState && isHelp.includes($page.url.pathname)}
-						<button on:click="{() => closeStateFunction()}"
+						<button
+							class="help"
+							on:click="{() => closeStateFunction()}"
 							><img
 								src="/icons/back_arrow.svg"
 								alt="" /></button>
@@ -211,6 +215,9 @@ function closeStateFunction() {
 .active {
 	border: 1px solid var(--accent-color);
 	background-color: #6660ff40;
+}
+.help {
+	padding-right: 12px;
 }
 @media screen and (max-height: 800px) {
 	.title p {

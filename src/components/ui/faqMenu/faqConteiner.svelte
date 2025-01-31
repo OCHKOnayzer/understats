@@ -113,7 +113,7 @@ async function loadArticleComponent(article2: string) {
 	align-items: center;
 	justify-content: center;
 	color: #718096;
-	font-size: 14px;
+	font-size: 18px;
 	flex-direction: column;
 }
 .selected_title {

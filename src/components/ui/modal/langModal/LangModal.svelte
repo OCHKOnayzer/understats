@@ -20,8 +20,9 @@ const setLang = (lang: string) => {
 	tabindex="0"
 	on:click="{() => closeModal()}"
 	on:keydown="{(e) => e.key === 'Escape' && closeModal()}">
+	<!-- Добавлен класс 'slide-in' для анимации -->
 	<div
-		class="relative right-4 top-[10vh] flex h-fit max-w-[454px] cursor-default items-center justify-center rounded-md border border-[#363a45] bg-[#0d111d] p-4"
+		class="slide-in relative right-4 top-[10vh] flex h-fit max-w-[454px] cursor-default items-center justify-center rounded-md border border-[#363a45] bg-[#0d111d] p-4"
 		on:click|stopPropagation
 		role="button"
 		tabindex="0"
@@ -47,3 +48,20 @@ const setLang = (lang: string) => {
 		</div>
 	</div>
 </div>
+
+<style>
+@keyframes slide-in-right {
+	from {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+.slide-in {
+	animation: slide-in-right 0.2s ease-out forwards;
+}
+</style>

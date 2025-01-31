@@ -5,10 +5,6 @@ import { t } from 'svelte-i18n';
 import { modalComponent, currentModal, logout, currentUser, closeModal } from '$src/stores/modalStore';
 import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 
-import UserAprove from '../../button/userAprove/UserAprove.svelte';
-import CancelButton from '../../button/userAprove/CancelButton.svelte';
-import ModalTitle from '../ModalTitle.svelte';
-
 import LeaveModalContent from './leaveContent/LeaveModalContent.svelte';
 
 import { goto } from '$app/navigation';
@@ -33,7 +29,7 @@ const handleLogout = () => {
 	class="leave_container"
 	role="button"
 	tabindex="0"
-	on:click="{() => closeModal()}"
+	on:click="{closeModal}"
 	on:keydown="{(e) => e.key === 'Escape' && closeModal()}">
 	<div
 		class="leave_modal"
@@ -41,14 +37,21 @@ const handleLogout = () => {
 		role="button"
 		tabindex="0"
 		on:keydown="{(e) => e.key === 'Escape'}">
+		<!-- Кнопка закрытия (крестик) в правом верхнем углу -->
+		<button
+			class="close_btn"
+			on:click="{closeModal}">✖</button>
+
 		<div class="leave_wrapper">
-			<ModalTitle />
+			<h2 class="modal_title">{$t('other.leave_acc')}</h2>
 			<LeaveModalContent />
+
 			<div class="button_wrapper">
-				<CancelButton onUserText="other.cancel" />
-				<UserAprove
-					onUserText="{$t('other.leave_acc')}"
-					onUserAction="{handleLogout}" />
+				<button
+					class="logout_btn"
+					on:click="{handleLogout}">
+					{$t('other.leave_acc')}
+				</button>
 			</div>
 		</div>
 	</div>
@@ -60,48 +63,118 @@ const handleLogout = () => {
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
-	cursor: default;
+	width: 100vw;
+	animation: fade-in 0.3s ease-out;
 }
+
 .leave_modal {
 	width: 420px;
-	height: 230px;
-	background-color: #0d111d;
+	min-height: 250px;
+	background: #0d111d;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border-radius: 5px;
+	border-radius: 12px;
 	cursor: default;
+	transform: translateY(-20px);
+	animation: slide-in 0.3s ease-out forwards;
+	position: relative;
 }
-.leave_wrapper {
-	width: 90%;
-	height: 80%;
+
+.close_btn {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	background: none;
+	border: none;
+	color: #718096;
+	font-size: 20px;
+	cursor: pointer;
+	transition: 0.4s ease-in-out;
 }
-.button_wrapper {
+
+.close_btn:hover {
 	color: white;
-	height: fit-content;
-	display: flex;
-	padding-bottom: 20px;
-	gap: 10px;
 }
+
+.leave_wrapper {
+	width: 100%;
+	padding: 24px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.modal_title {
+	color: white;
+	font-size: 20px;
+	font-weight: 600;
+	margin-bottom: 12px;
+}
+
+.button_wrapper {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.logout_btn {
+	width: 100%;
+	background: var(--accent-color);
+	color: white;
+	font-size: 16px;
+	font-weight: 600;
+	border-radius: 16px;
+	height: 56px;
+	border: none;
+	cursor: pointer;
+	transition: 0.4s ease-in-out;
+}
+
+.logout_btn:hover {
+	background: #ff5252;
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slide-in {
+	from {
+		transform: translateY(-20px);
+	}
+	to {
+		transform: translateY(0);
+	}
+}
+
 @media screen and (max-width: 800px) {
 	.leave_container {
 		height: 100dvh;
 		align-items: flex-end;
 	}
+
 	.leave_modal {
-		height: 250px;
 		width: 100vw;
 		border-radius: 20px 20px 0 0;
 		transform: translateY(100%);
-		animation: slideUp 0.1s ease-out forwards;
+		animation: slideUp 0.3s ease-out forwards;
 	}
-}
-@keyframes slideUp {
-	from {
-		transform: translateY(100%);
-	}
-	to {
-		transform: translateY(0);
+
+	@keyframes slideUp {
+		from {
+			transform: translateY(100%);
+		}
+		to {
+			transform: translateY(0);
+		}
 	}
 }
 </style>

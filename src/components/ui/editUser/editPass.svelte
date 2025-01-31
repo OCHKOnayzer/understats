@@ -195,8 +195,6 @@ const showField = (field: string) => {
 }
 .updataBtn {
 	display: flex;
-	padding-top: 20px;
-	padding-bottom: 20px;
 	font-size: 20px;
 }
 .btn_upd:nth-child(1) {
@@ -261,16 +259,16 @@ const showField = (field: string) => {
 		height: 60px;
 	}
 }
-@media screen and (max-height: 780px) {
+/* @media screen and (max-height: 780px) {
 	.updataBtn {
 		margin-top: 3vh;
 	}
-}
-@media screen and (max-height: 600px) {
+} */
+/* @media screen and (max-height: 600px) {
 	.settings {
 		padding-bottom: 4%;
 	}
-}
+} */
 @media (max-width: 768px) {
 	.show_pass {
 		right: 40px;

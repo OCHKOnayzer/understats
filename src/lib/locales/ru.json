@@ -290,7 +290,8 @@
 		"ext_safari": "Расширение для Safari",
 		"ext_safari_title": "Как установить расширение в Safari",
 		"ext_mobile": "Мобильное расширение",
-		"ext_mobile_title": "Поддержка мобильных браузеров"
+		"ext_mobile_title": "Поддержка мобильных браузеров",
+		"asked_questions": "Часто задаваемые вопросы"
 	},
 	"description_image": {
 		"description_image": "Настройки браузера",

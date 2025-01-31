@@ -41,6 +41,7 @@ onMount(() => {
 	.section_title {
 		font-size: 20px;
 		font-weight: 500;
+		margin: 0;
 	}
 }
 </style>

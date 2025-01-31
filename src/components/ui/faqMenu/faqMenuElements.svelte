@@ -100,7 +100,6 @@ onMount(() => {
 	display: flex;
 	align-items: center;
 	font-weight: 500;
-	margin-bottom: 4%;
 	margin-top: 16px;
 }
 .faqItemsWrapper {

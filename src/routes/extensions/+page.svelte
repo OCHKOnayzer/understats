@@ -64,7 +64,6 @@ extensionInfo.set(data.extensionInfo);
 .section_wrapper {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
 	margin-top: 12px;
 	min-height: 68%;
 	height: fit-content;
@@ -79,6 +78,7 @@ extensionInfo.set(data.extensionInfo);
 		display: none;
 	}
 	.section_wrapper {
+		margin-top: 0px;
 		flex-direction: column;
 	}
 }
