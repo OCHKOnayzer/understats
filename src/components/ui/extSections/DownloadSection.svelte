@@ -107,10 +107,11 @@ const browserArr: BrowserItem[] = [
 
 <style>
 .download {
-	width: 59%;
+	width: 58%;
 	background-color: #171b26;
 	border-radius: 5px;
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	margin-right: var(--elements-padding);
 }
 .download__container {
 	display: flex;

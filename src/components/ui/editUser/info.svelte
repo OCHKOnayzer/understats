@@ -2,28 +2,24 @@
 import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 
+import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 import { currentUser } from '$src/stores/modalStore';
 import { formatDate } from '$src/utils/functions/formatDate';
 
 import Lang from '../settingsSections/lang.svelte';
 import SettingsSections from '../settingsSections/SettingsSections.svelte';
 import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
-let isMobile = false;
-
-function checkScreenWidth() {
-	isMobile = window.innerWidth <= 768;
-}
 
 onMount(() => {
-	checkScreenWidth();
-	window.addEventListener('resize', checkScreenWidth);
-	return () => window.removeEventListener('resize', checkScreenWidth);
+	initializeScreenWidthListener();
 });
 $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 </script>
 
 <SettingsSections>
-	<SettingsTitle title="{'settings.my_acc'}" />
+	{#if $currentUser}
+		<SettingsTitle title="{'settings.my_acc'}" />
+	{/if}
 	<div class="settings">
 		{#if $currentUser}
 			<div class="setings_item item-w">
@@ -47,7 +43,7 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 					value="{$currentUser?.login ?? ''}" />
 			</div>
 		{/if}
-		{#if !isMobile}
+		{#if !$isMobile}
 			<Lang />
 		{/if}
 	</div>
@@ -133,14 +129,11 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 		justify-content: center;
 	}
 }
-@media screen and (max-height: 600px) {
-	.settings {
-		padding-bottom: 4%;
-	}
-	/* .email {
+/* @media screen and (max-height: 600px) {
+	.email {
 			padding-bottom: 14px;
-		} */
-}
+		}
+} */
 @media (max-width: 768px) {
 	.setings_item {
 		display: flex;

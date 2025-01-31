@@ -1,18 +1,10 @@
 <script>
 import { t } from 'svelte-i18n';
-import { onMount } from 'svelte';
 
-import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
-import { currentUser } from '$src/stores/modalStore';
-import DemoButtons from '$src/components/widgets/demo/demoButtons/DemoButtons.svelte';
-import SectionsFaq from '$src/components/ui/sectionsFaq/SectionsFaq.svelte';
 import FaqConteiner from '$src/components/ui/faqMenu/faqConteiner.svelte';
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
 
-onMount(() => {
-	initializeScreenWidthListener();
-});
-
+// Установка заголовка страницы
 selectHeaderTitle('faq.faq');
 </script>
 
@@ -25,37 +17,38 @@ selectHeaderTitle('faq.faq');
 
 <div class="mainContent">
 	<div class="pageWrapper">
-		<!-- {#if $isMobile && !$currentUser}
-			<DemoButtons />
-		{/if} -->
-		<!-- <SectionsFaq /> -->
+		<FaqConteiner />
 	</div>
-	<FaqConteiner />
 </div>
 
 <style>
 .mainContent {
-	height: calc(90vh - 13px);
+	display: flex;
+	flex-direction: column;
+	height: 89vh;
+	overflow: hidden;
 }
+
 .pageWrapper {
-	width: 100%;
-	box-sizing: border-box;
+	flex-grow: 1;
+	overflow-y: auto;
 }
-@media screen and (height: 1200px) {
+
+@media screen and (min-height: 1200px) {
 	.mainContent {
-		height: 92vh;
-		padding-bottom: 20px;
+		height: calc(90vh - 8px);
 	}
 }
-@media screen and (max-height: 870px) {
+
+@media screen and (min-height: 1400px) {
 	.mainContent {
-		padding-bottom: 13px;
+		height: calc(95vh - 8px);
 	}
 }
-@media screen and (max-width: 800px) {
+
+@media screen and (max-width: 768px) {
 	.mainContent {
 		height: 100%;
-		padding-bottom: 12px;
 	}
 }
 </style>

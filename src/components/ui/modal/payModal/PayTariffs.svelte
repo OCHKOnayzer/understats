@@ -56,6 +56,7 @@ const closPayModal = () => {
 	align-items: center;
 	height: 100vh;
 	width: 100vw;
+	animation: fade-in 0.3s ease-out;
 }
 .pay_modal {
 	width: 22vw;
@@ -66,7 +67,8 @@ const closPayModal = () => {
 	align-items: center;
 	justify-content: center;
 	border-radius: 5px;
-	transform: translateY(0);
+	transform: translateY(-20px);
+	animation: slide-in 0.3s ease-out forwards;
 }
 .pay_wrapper {
 	width: 90%;
@@ -184,7 +186,23 @@ const closPayModal = () => {
 		background-color: white;
 	}
 }
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
 
+@keyframes slide-in {
+	from {
+		transform: translateY(-20px);
+	}
+	to {
+		transform: translateY(0);
+	}
+}
 @keyframes slideUp {
 	from {
 		transform: translateY(100%);

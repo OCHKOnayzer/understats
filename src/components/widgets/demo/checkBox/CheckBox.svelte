@@ -75,7 +75,7 @@ async function loadData() {
 
 <style>
 .switch-wrapper {
-	min-width: 200px;
+	min-width: 170px;
 	width: fit-content;
 	display: flex;
 	justify-content: center;

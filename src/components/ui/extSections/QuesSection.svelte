@@ -32,7 +32,7 @@ import { extItems } from './extItems';
 
 <style>
 .quess_wrapper {
-	width: 40%;
+	width: 42%;
 	background-color: #171b26;
 	border-radius: 5px 5px 0px 0px;
 	display: flex;

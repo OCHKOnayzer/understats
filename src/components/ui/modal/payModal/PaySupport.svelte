@@ -53,6 +53,7 @@ const PayFunction = () => {
 	width: 100%;
 	color: white;
 	cursor: default;
+	animation: fade-in 0.3s ease-out;
 }
 .pay_support_modal {
 	background-color: #20242f;
@@ -60,6 +61,8 @@ const PayFunction = () => {
 	min-height: 342px;
 	border-radius: 36px;
 	cursor: default;
+	transform: translateY(-20px);
+	animation: slide-in 0.3s ease-out forwards;
 }
 .title {
 	margin-top: 32px;
@@ -113,6 +116,23 @@ const PayFunction = () => {
 		height: fit-content;
 		transform: translateY(100%);
 		animation: slideUp 0.3s ease-out forwards;
+	}
+}
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slide-in {
+	from {
+		transform: translateY(-20px);
+	}
+	to {
+		transform: translateY(0);
 	}
 }
 @keyframes slideUp {

@@ -13,18 +13,21 @@ let filteredElements = ActiveElemnts.filter((item) => item.index === FAQIndex);
 let activeIndex: number | null = null;
 
 const dispatch = createEventDispatcher();
-
-const getUrlParameter = (param: string): string | null => {
+const getFirstUrlParameter = (): [string, string] | null => {
 	const urlParams = new URLSearchParams(window.location.search);
-	return urlParams.get(param);
-};
 
+	for (const [key, value] of urlParams.entries()) {
+		return [key, value];
+	}
+
+	return null;
+};
 const setActiveFromUrl = () => {
-	const browserParam = getUrlParameter('browser');
-	if (browserParam) {
-		const matchingElement = ActiveElemnts.find((item) => item.article === browserParam);
+	const param = getFirstUrlParameter();
+	if (param) {
+		const [paramName, paramValue] = param;
+		const matchingElement = ActiveElemnts.find((item) => item.article === paramValue);
 		if (matchingElement) {
-			// FAQIndex = matchingElement.index;
 			filteredElements = ActiveElemnts.filter((item) => item.index === FAQIndex);
 			activeIndex = ActiveElemnts.indexOf(matchingElement);
 			closeState.set(true);
@@ -32,7 +35,6 @@ const setActiveFromUrl = () => {
 		}
 	}
 };
-
 const setActiveIndex = (index: number, name: string, articleId: string) => {
 	if (activeIndex !== index) {
 		activeIndex = index;
@@ -41,7 +43,6 @@ const setActiveIndex = (index: number, name: string, articleId: string) => {
 		closeFaqMenu();
 	}
 };
-
 onMount(() => {
 	setActiveFromUrl();
 });

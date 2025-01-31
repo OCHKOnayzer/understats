@@ -7,23 +7,25 @@ import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
 import { closeState, headerTitle } from '$src/stores/HeaderStores';
 import { openMenu } from '$src/stores/menu';
 import { closeModal, currentUser, modalComponent, openModal } from '$src/stores/modalStore';
+import { openFaqMenu } from '$src/stores/faq';
+import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
 
 import LangButton from '../button/langButton/LangButton.svelte';
 
 import { goto } from '$app/navigation';
 import { page } from '$app/stores';
-import { openFaqMenu } from '$src/stores/faq';
-import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
 
 type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal' | 'SocialModal';
 
 onMount(() => {
+	initializeScreenWidthListener();
+});
+$: {
 	if (!isHelp.includes($page.url.pathname)) {
 		closeState.set(false);
 	}
-	initializeScreenWidthListener();
-});
-
+	console.log($closeState);
+}
 const openCurrentModal = (modal: ModalType) => {
 	if ($modalComponent !== null && $modalComponent !== modal) {
 		return;
@@ -73,7 +75,9 @@ function closeStateFunction() {
 			<div class="flex items-center">
 				<div class="title">
 					{#if $isMobile && $closeState && isHelp.includes($page.url.pathname)}
-						<button on:click="{() => closeStateFunction()}"
+						<button
+							class="help"
+							on:click="{() => closeStateFunction()}"
 							><img
 								src="/icons/back_arrow.svg"
 								alt="" /></button>
@@ -212,6 +216,9 @@ function closeStateFunction() {
 	border: 1px solid var(--accent-color);
 	background-color: #6660ff40;
 }
+.help {
+	padding-right: 12px;
+}
 @media screen and (max-height: 800px) {
 	.title p {
 		font-size: 20px;
@@ -219,7 +226,7 @@ function closeStateFunction() {
 }
 @media screen and (max-width: 800px) {
 	.header {
-		margin-bottom: 60px;
+		margin-bottom: 5vh;
 	}
 	.flexConteiner {
 		display: flex;

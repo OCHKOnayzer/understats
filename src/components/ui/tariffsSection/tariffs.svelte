@@ -1,6 +1,7 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 
+import { tariffsPeriod } from '$src/stores/tariffsStore';
 import { openModal, setCurrentTariffs, setCurrentLimits, type currentTariffsType } from '$src/stores/modalStore';
 let { name, desc, limitations, accounts, price, price_year } = $$props;
 const openPay = (tarrifs: currentTariffsType, limits: any) => {
@@ -20,6 +21,7 @@ const month = 'tariffs.year_proccents';
 
 function changePeriod(period: string) {
 	activePeriod = period;
+	tariffsPeriod.set(activePeriod);
 }
 console.log(limitations);
 console.log(accounts);
@@ -42,7 +44,7 @@ console.log(accounts);
 		<div class="choose-period container">
 			<div
 				class="choose-button"
-				style="left: {activePeriod === 'month' ? '5px' : 'calc(50% + 5px)'}"></div>
+				style="left: {$tariffsPeriod === 'month' ? '5px' : 'calc(50% + 5px)'}"></div>
 			<button on:click="{() => changePeriod('month')}">
 				{$t('tariffs.month')}
 			</button>
@@ -52,9 +54,9 @@ console.log(accounts);
 		</div>
 		<button
 			on:click="{() => openPay(name, limitations)}"
-			class="buy">{$t('tariffs.buy_in')} {activePeriod === 'month' ? price : price_year}$</button>
+			class="buy">{$t('tariffs.buy_in')} {$tariffsPeriod === 'month' ? price : price_year}$</button>
 		<span class="porccents">
-			{activePeriod === 'month' ? $t(month) : $t(year)}
+			{$tariffsPeriod === 'month' ? $t(month) : $t(year)}
 		</span>
 	</div>
 </div>

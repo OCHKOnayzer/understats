@@ -4,28 +4,20 @@ import { t } from 'svelte-i18n';
 
 <div class="leave_content">
 	<div class="title">
-		{$t('leave_modal.leave_acc')}
-	</div>
-	<div class="desc">
 		{$t('leave_modal.leave_mail')}
 	</div>
 </div>
 
 <style>
 .leave_content {
-	height: 45%;
 	display: flex;
-	flex-direction: column;
-	margin-top: 10px;
+	justify-content: center;
 }
 .title {
 	color: white;
-	font-size: 20px;
+	font-size: 18px;
 	padding-bottom: 10px;
-}
-.desc {
-	color: #718096;
-	font-size: 16px;
+	text-align: center;
 }
 @media screen and (max-width: 800px) {
 	.leave_content {

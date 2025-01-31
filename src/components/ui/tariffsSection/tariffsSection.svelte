@@ -8,14 +8,14 @@ import Tariffs from './tariffs.svelte';
 	<Tariffs
 		name="{'Lite'}"
 		desc="{'tariffs.lite'}"
-		limitations="{'1 000'}"
+		limitations="{'1.000'}"
 		accounts="{'5'}"
 		price="{'10'}"
 		price_year="{'100'}" />
 	<Tariffs
 		name="{'Standart'}"
 		desc="{'tariffs.standart'}"
-		limitations="{'20 000'}"
+		limitations="{'20.000'}"
 		accounts="{'100'}"
 		price="{'30'}"
 		price_year="{'300'}" />
