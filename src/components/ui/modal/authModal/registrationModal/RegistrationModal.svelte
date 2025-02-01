@@ -14,6 +14,7 @@ import { confirmPassword, switchLogin } from '$src/stores/modalStore';
 import FormTitle from '../FormTitle.svelte';
 import InputWrapper from '../Input/InputWrapper.svelte';
 import SocialContainer from '../social/SocialContainer.svelte';
+import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 
 const { form, mutation } = useAuth(true);
 
@@ -56,7 +57,7 @@ const registerUser = () => {
 			<button
 				class="demo-btn"
 				class:demo-active="{$isDemoEnabled}"
-				on:click="{toggleDemoMode}">
+				on:click="{handleDemoToggle}">
 				{$t('other.demo')}
 			</button>
 			<SwitchButton

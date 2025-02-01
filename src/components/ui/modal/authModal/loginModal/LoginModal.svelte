@@ -6,10 +6,11 @@ import SwitchButton from '$src/components/ui/button/switchButton/SwitchButton.sv
 import CancelButton from '$src/components/ui/button/userAprove/CancelButton.svelte';
 import UserAprove from '$src/components/ui/button/userAprove/UserAprove.svelte';
 import { useAuth } from '$src/services/auth/useAuth';
-import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
+import { isDemoEnabled } from '$src/stores/demo';
 import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
 import { switchReg } from '$src/stores/modalStore';
 
+import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 import FormTitle from '../FormTitle.svelte';
 import InputWrapper from '../Input/InputWrapper.svelte';
 
@@ -52,7 +53,7 @@ const loginUser = () => {
 			<button
 				class="demo-btn"
 				class:demo-active="{$isDemoEnabled}"
-				on:click="{toggleDemoMode}">
+				on:click="{handleDemoToggle}">
 				{$t('other.demo')}
 			</button>
 			<SwitchButton
