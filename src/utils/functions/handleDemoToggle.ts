@@ -19,9 +19,7 @@ export async function handleDemoToggle() {
 			if (get(isDemoEnabled)) {
 				loginResponse = await authService.demoAuth();
 				currentUser.set(loginResponse?.data);
-				console.log('demo auth applied for new visitor:', get(currentUser));
 			} else {
-				console.log('Demo mode is turned off and no main account present. Skipping request.');
 				currentUser.set(null);
 				return;
 			}
@@ -29,22 +27,20 @@ export async function handleDemoToggle() {
 			if (get(isDemoEnabled)) {
 				loginResponse = await authService.demoAuth();
 				currentUser.set(loginResponse?.data);
-				console.log('demo auth applied:', get(currentUser));
 			} else {
 				loginResponse = await authService.profile();
 				currentUser.set(loginResponse?.data);
-				console.log('Re-auth via profile applied:', get(currentUser));
 			}
 		}
 
 		console.log('Login response:', loginResponse?.data);
 		if (!loginResponse?.data) {
-			console.warn('Auth login response is undefined. Проверьте данные авторизации или соединение.');
 			return;
 		}
 
 		queryClient.invalidateQueries({ queryKey: ['accounts'] });
 		queryClient.invalidateQueries({ queryKey: ['bets count'] });
+		queryClient.invalidateQueries();
 
 		await loadData();
 	} catch (error) {

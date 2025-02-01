@@ -1,14 +1,13 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
+import { t } from 'svelte-i18n';
 
-import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 import { afterUrl } from '$src/stores/HeaderStores';
 import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
+import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
 import { currentModal, openModal } from '$src/stores/modalStore';
 
 import { goto } from '$app/navigation';
-import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 onMount(() => {
 	initializeScreenWidthListener();
 });
@@ -51,7 +50,7 @@ const authUser = (auth: string) => {
 		<button
 			class="button-demo"
 			class:demo-active="{$isDemoEnabled}"
-			on:click="{() => handleDemoToggle()}">
+			on:click="{() => toggleDemoMode()}">
 			{$t('other.demo')}
 		</button>
 	</div>
