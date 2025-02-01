@@ -1,6 +1,6 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
+import { t } from 'svelte-i18n';
 
 import { afterNavigate } from '$app/navigation';
 
@@ -50,7 +50,7 @@ afterNavigate(() => {
 	width: 100%;
 }
 .userAwardsConteiner {
-	background-color: #0d111d;
+	@apply bg-blackPrimary;
 	height: 40px;
 	border-radius: 5px;
 	display: flex;

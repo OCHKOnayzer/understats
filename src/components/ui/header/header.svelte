@@ -4,11 +4,11 @@ import { t } from 'svelte-i18n';
 
 import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';
 import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
+import { openFaqMenu } from '$src/stores/faq';
 import { closeState, headerTitle } from '$src/stores/HeaderStores';
+import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
 import { openMenu } from '$src/stores/menu';
 import { closeModal, currentUser, modalComponent, openModal } from '$src/stores/modalStore';
-import { openFaqMenu } from '$src/stores/faq';
-import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
 
 import LangButton from '../button/langButton/LangButton.svelte';
 
@@ -183,7 +183,7 @@ function closeStateFunction() {
 }
 .lang {
 	border: 1px solid #9e9e9e;
-	background-color: #0d111d;
+	@apply bg-blackPrimary;
 	margin-right: 10px;
 	margin-left: 10px;
 }
@@ -214,7 +214,7 @@ function closeStateFunction() {
 }
 .active {
 	border: 1px solid var(--accent-color);
-	background-color: #6660ff40;
+	@apply bg-violet;
 }
 .help {
 	padding-right: 12px;

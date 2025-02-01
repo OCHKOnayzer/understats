@@ -8,10 +8,24 @@ export interface Bet {
 	rate: number;
 	outcome: string;
 	status: string;
-	amounts: number;
-	event: string;
-	date: string;
-	meta: string;
+	amounts: {
+		stake: string;
+		win: string;
+	};
+	event: {
+		id: string;
+		competitionName: string;
+		name1: string;
+		name2: string;
+		sport: string;
+		startTime: string;
+	};
+	dates: {
+		places: Date | string;
+	};
+	meta: {
+		ordinal: number;
+	};
 	betId: string;
 	sport: string;
 	amount: number;

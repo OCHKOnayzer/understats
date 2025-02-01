@@ -1,12 +1,12 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 
-import { selectedLang } from '$src/stores/languageStore';
 import { setLanguage } from '$src/lib/i18n';
+import { selectedLang } from '$src/stores/languageStore';
 import { closeModal } from '$src/stores/modalStore';
 
-import LangTitle from './title/langTitle.svelte';
 import { LangArr } from './lang';
+import LangTitle from './title/langTitle.svelte';
 
 const setLang = (lang: string) => {
 	setLanguage(lang);
@@ -22,7 +22,7 @@ const setLang = (lang: string) => {
 	on:keydown="{(e) => e.key === 'Escape' && closeModal()}">
 	<!-- Добавлен класс 'slide-in' для анимации -->
 	<div
-		class="slide-in relative right-4 top-[10vh] flex h-fit max-w-[454px] cursor-default items-center justify-center rounded-md border border-[#363a45] bg-[#0d111d] p-4"
+		class="slide-in relative right-4 top-[10vh] flex h-fit max-w-[454px] cursor-default items-center justify-center rounded-md border border-[#363a45] bg-blackPrimary p-4"
 		on:click|stopPropagation
 		role="button"
 		tabindex="0"
@@ -33,7 +33,7 @@ const setLang = (lang: string) => {
 				{#each LangArr as item}
 					<button
 						class="{`box-border flex min-w-[204px] items-center rounded border bg-[#171b26] p-2 text-sm ${
-							item.lang === $selectedLang ? 'border-[#6660ff] bg-[#6660ff40]' : 'border-[#171b26]'
+							item.lang === $selectedLang ? 'border-violet bg-[#6660ff40]' : 'border-[#171b26]'
 						}`}"
 						on:click="{() => setLang(item.lang)}">
 						<div class="mr-2.5">

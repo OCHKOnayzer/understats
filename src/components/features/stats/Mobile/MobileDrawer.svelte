@@ -21,12 +21,12 @@ console.log(data);
 			class="h-[56px] w-full text-[16px]"
 			variant="card">{$t('not.more')}</Button>
 	</Drawer.Trigger>
-	<Drawer.Content class="rounded-[16px] border-none bg-[#20242F] p-4 text-white focus:outline-none focus:ring-0">
+	<Drawer.Content class="rounded-[16px] border-none bg-input p-4 text-white focus:outline-none focus:ring-0">
 		<Drawer.Header>
 			<Drawer.Title class="text-left text-[30px]">{$t('not.more')}</Drawer.Title>
 		</Drawer.Header>
 
-		<div class="mb-[30px] rounded-[20px] bg-[#0D111D] p-4">
+		<div class="mb-[30px] rounded-[20px] bg-blackPrimary p-4">
 			<div class="mb-4 flex items-center justify-between text-[20px]">
 				<!-- <div class="w-full rounded-[8px] bg-[#171B26]">
 					<h2 class="p-2 text-[12px]">22222</h2>
@@ -50,17 +50,17 @@ console.log(data);
 
 		<div class="rounded-[28px] bg-[#171B26] p-4">
 			<div class="flex items-center justify-between">
-				<h2>{data.event.competitionName.default}</h2>
+				<h2>{data.event.competitionName}</h2>
 			</div>
 
 			<div class="mt-[12px]">
 				<h2>{data.siteName}</h2>
 			</div>
 
-			<div class="flex justify-between border-b-2 border-dashed border-[#20242F]">
+			<div class="flex justify-between border-b-2 border-dashed border-input">
 				<div class="w-full pb-4">
-					<h2 class="mb-2 text-[20px] font-bold">{data.event.name1.default} - {data.event.name2.default}</h2>
-					<h3 class="text-[14px] font-medium">{data.outcome.default}</h3>
+					<h2 class="mb-2 text-[20px] font-bold">{data.event.name1} - {data.event.name2}</h2>
+					<h3 class="text-[14px] font-medium">{data.outcome}</h3>
 				</div>
 
 				<div>

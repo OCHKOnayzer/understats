@@ -1,6 +1,4 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
-
 import { closeModal } from '$src/stores/modalStore';
 
 import ModalTitle from '../ModalTitle.svelte';
@@ -40,7 +38,7 @@ import ModalTitle from '../ModalTitle.svelte';
 .chat-modal {
 	width: 26vw;
 	height: fit-content;
-	background-color: #0d111d;
+	@apply bg-blackPrimary;
 	display: flex;
 	align-items: center;
 	justify-content: center;

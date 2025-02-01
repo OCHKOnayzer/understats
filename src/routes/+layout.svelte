@@ -10,16 +10,16 @@ export type LayoutData = {
 import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 import { onDestroy, onMount } from 'svelte';
 import { Toaster } from 'svelte-french-toast';
-import { init, locale, waitLocale, t } from 'svelte-i18n';
+import { init, locale, t, waitLocale } from 'svelte-i18n';
 
-import { ifWindow } from '$src/utils/functions/chat';
 import Menu from '$components/ui/menu/Menu.svelte';
 import Header from '$src/components/ui/header/header.svelte';
 import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
 import Test from '$src/components/ui/test.svelte';
 import { selectedLang, setAppLanguage } from '$src/stores/languageStore';
-import { isModalOpen } from '$src/stores/modalStore';
+import { isModalOpen, openModal } from '$src/stores/modalStore';
 import '$src/styles/fonts.css';
+import { ifWindow } from '$src/utils/functions/chat';
 import { langSel } from '$stores/HeaderStores';
 
 import { browser } from '$app/environment';
@@ -61,6 +61,11 @@ onMount(() => {
 	unsubscribe = langSel.subscribe((currentLocale) => {
 		document.documentElement.lang = currentLocale;
 	});
+
+	if (!localStorage.getItem('demoModalShown')) {
+		openModal('DemoModal');
+		localStorage.setItem('demoModalShown', 'true');
+	}
 });
 
 onDestroy(() => {
@@ -101,10 +106,14 @@ const isProduction = import.meta.env.PROD;
 	<!-- End of LiveChat code -->
 	<!-- End of LiveChat code -->
 	<!-- End of LiveChat code -->
+	<!-- End of LiveChat code -->
+	<!-- End of LiveChat code -->
 	<script
 		src="//code.jivosite.com/widget/fNvHA3AiqP"
 		async></script>
 
+	<!-- Google tag (gtag.js) -->
+	<!-- Google tag (gtag.js) -->
 	<!-- Google tag (gtag.js) -->
 	<!-- Google tag (gtag.js) -->
 	<!-- Google tag (gtag.js) -->
@@ -145,7 +154,7 @@ const isProduction = import.meta.env.PROD;
 {/if}
 
 <QueryClientProvider client="{queryClient}">
-	<div class="max-w-full bg-[#0d111d]">
+	<div class="max-w-full bg-blackPrimary">
 		<main>
 			{#if isLocaleReady}
 				{#if !routesWithoutMenu.includes($page.url.pathname)}

@@ -19,7 +19,6 @@ import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 
 import { columns, type Bet } from './columns';
-import { get } from 'svelte/store';
 
 let innerWidth = $state(0);
 let isMobile = $derived(innerWidth < 400);
@@ -64,7 +63,7 @@ async function loadData() {
 		betsTableStore.setData(response);
 	} catch (err) {
 		console.error('Error loading data:', err);
-		betsTableStore.setError('Ошибка при загрузке данных');
+		betsTableStore.setError($t('other.data_error'));
 	}
 }
 
@@ -189,18 +188,20 @@ $effect(() => {
 }
 
 .table-wrapper::-webkit-scrollbar-track {
-	@apply rounded-lg bg-[#20242f];
+	@apply rounded-lg bg-input;
 }
 
 .table-wrapper::-webkit-scrollbar-thumb {
-	@apply rounded-lg bg-[#6660ff] hover:bg-[#5550ee];
+	@apply rounded-lg bg-violet hover:bg-[#5550ee];
 }
 
 .loading-spinner {
 	display: inline-block;
 	width: 2rem;
 	height: 2rem;
-	border: 3px solid #6660ff;
+	border: 3px solid;
+	@apply border-violet;
+
 	border-top: 3px solid transparent;
 	border-radius: 50%;
 	animation: spin 1s linear infinite;

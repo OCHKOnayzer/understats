@@ -60,7 +60,7 @@ $effect(() => {
 	padding: 5px;
 	width: 100%;
 	margin-top: 10px;
-	background-color: #0d111d;
+	@apply bg-blackPrimary;
 	border-radius: 5px;
 }
 .user_flex {

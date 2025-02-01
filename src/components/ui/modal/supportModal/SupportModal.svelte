@@ -3,7 +3,6 @@ import { t } from 'svelte-i18n';
 
 import { closeModal } from '$src/stores/modalStore';
 
-import { SupportItem } from './support';
 import SupportTitle from './title/supportTitle.svelte';
 </script>
 
@@ -14,7 +13,7 @@ import SupportTitle from './title/supportTitle.svelte';
 	on:click="{() => closeModal()}"
 	on:keydown="{(e) => e.key === 'Enter'}">
 	<div
-		class="relative right-4 top-[10vh] flex h-fit min-w-[450px] cursor-default items-center justify-center rounded-md border border-[#363a45] bg-[#0d111d] p-4"
+		class="relative right-4 top-[10vh] flex h-fit min-w-[450px] cursor-default items-center justify-center rounded-md border border-[#363a45] bg-blackPrimary p-4"
 		on:click|stopPropagation
 		role="button"
 		tabindex="0"

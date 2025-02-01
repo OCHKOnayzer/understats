@@ -38,10 +38,7 @@ class AuthService {
 
 			if (response.data.accessToken) {
 				setDemoToken(response.data.accessToken);
-				closeModal();
-				// Убрано автоматическое перенаправление,
-				// чтобы после получения демо токена не происходил редирект и данные могли загрузиться
-				// goto('/');
+				// closeModal(); // закомментировано, чтобы DemoModal оставался открытым
 			}
 			return response;
 		} catch (error: any) {

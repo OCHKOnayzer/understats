@@ -80,7 +80,7 @@
 		}
 
 		.time-range-button {
-			@apply rounded-lg bg-[#20242f] px-3 py-2 text-sm
+			@apply rounded-lg bg-input px-3 py-2 text-sm
 								 text-white transition-colors
 								 duration-200 hover:bg-[#2f3241];
 		}
@@ -99,7 +99,7 @@
 
 		.nav-button {
 			@apply flex h-8 w-8
-								 items-center justify-center rounded-lg bg-[#20242f]
+								 items-center justify-center rounded-lg bg-input
 								 text-white transition-colors
 								 hover:bg-[#2f3241] disabled:opacity-40;
 		}
@@ -110,7 +110,7 @@
 
 		.page-number {
 			@apply flex h-8 w-8 items-center justify-center
-								 rounded-lg bg-[#20242f] text-sm text-white
+								 rounded-lg bg-input text-sm text-white
 								 hover:bg-[#2f3241];
 		}
 

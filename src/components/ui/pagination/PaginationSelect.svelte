@@ -13,10 +13,10 @@
   value={String($filterStore.pagination.itemsPerPage)}
   onValueChange={handleValueChange}
 >
-  <Select.Trigger class="w-20 bg-[#20242f] text-white text-sm rounded-lg px-2 py-2">
+  <Select.Trigger class="w-20 bg-input text-white text-sm rounded-lg px-2 py-2">
     {$filterStore.pagination.itemsPerPage}
   </Select.Trigger>
-  <Select.Content class="bg-[#20242f] text-white">
+  <Select.Content class="bg-input text-white">
     {#each ITEMS_PER_PAGE_OPTIONS as option}
       <Select.Item value={String(option)} class="cursor-pointer hover:bg-[#2f3241] px-2 py-1">
         {option}

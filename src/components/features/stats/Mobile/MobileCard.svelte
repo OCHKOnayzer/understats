@@ -25,13 +25,13 @@ $effect(() => {
 				{processedData.siteName || ''}
 			</h2>
 
-			<div class="flex justify-between border-b-2 border-dashed border-[#20242F]">
+			<div class="flex justify-between border-b-2 border-dashed border-input">
 				<div class="w-full pb-4">
 					<h2 class="mb-2 text-[20px] font-bold">
-						{processedData.event?.name1?.default || ''} - {processedData.event?.name2?.default || ''}
+						{processedData.event?.name1 || ''}
 					</h2>
 					<h3 class="text-[14px] font-medium">
-						{processedData.outcome?.default || ''}
+						{processedData.outcome || ''}
 					</h3>
 				</div>
 

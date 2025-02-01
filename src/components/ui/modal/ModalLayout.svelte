@@ -15,6 +15,7 @@ import PayTariffs from './payModal/PayTariffs.svelte';
 import SocialModal from './supportModal/SocialModal.svelte';
 import PaySupport from './payModal/PaySupport.svelte';
 import PlanExpiredModal from './payModal/PlanExpiredModal.svelte';
+import DemoModal from './demoModal/DemoModal.svelte';
 
 onDestroy(() => {
 	document.body.style.overflow = '';
@@ -32,7 +33,8 @@ const components = {
 	PayTariffs,
 	SocialModal,
 	PaySupport,
-	PlanExpiredModal
+	PlanExpiredModal,
+	DemoModal
 };
 </script>
 
@@ -45,7 +47,8 @@ const components = {
 <style>
 .modal_window {
 	position: fixed;
-	z-index: 9997;
+	/* увеличен z-index чтобы модалка всегда была поверх других элементов */
+	z-index: 20000;
 	width: 100%;
 	height: 100vh;
 	background-color: var(--modal-background);
@@ -54,6 +57,7 @@ const components = {
 	backdrop-filter: blur(3px);
 }
 .auth-modal {
-	z-index: 9999;
+	/* можно увеличить, если потребуется дополнительная глубина */
+	z-index: 21000;
 }
 </style>

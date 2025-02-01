@@ -48,7 +48,7 @@ async function applyFilters() {
 		$isOpen = false;
 	} catch (error) {
 		console.error('Failed to apply filters:', error);
-		betsTableStore.setError('Ошибка при загрузке данных');
+		betsTableStore.setError($t('other.data_error'));
 	} finally {
 		betsTableStore.setLoading(false);
 		toggleSidebar();
@@ -77,7 +77,7 @@ async function applyFilters() {
 				type="button"
 				on:click="{toggleSidebar}"
 				aria-label="Close sidebar"
-				class="cursor-pointer transition-colors hover:text-[#0D111D]">
+				class="cursor-pointer transition-colors hover:text-blackPrimary">
 				<Icon
 					font-size="24"
 					icon="radix-icons:cross-1" />
@@ -175,12 +175,13 @@ async function applyFilters() {
 }
 
 .sidebar {
+	@apply bg-input;
+
 	position: fixed;
 	top: 0;
 	right: -650px;
 	width: 650px;
 	height: 100vh;
-	background-color: #20242f;
 	transition: right 0.3s ease-in-out;
 	z-index: 1000;
 	color: white;
@@ -196,7 +197,7 @@ async function applyFilters() {
 .sidebar-header {
 	position: sticky;
 	top: 0;
-	background-color: #20242f;
+	@apply bg-input;
 	padding: 24px 24px 0;
 	z-index: 2;
 	border-radius: 36px 0 0 0;
@@ -217,7 +218,8 @@ async function applyFilters() {
 .action-buttons {
 	position: sticky;
 	bottom: 0;
-	background: #20242f;
+	@apply bg-input;
+
 	padding: 16px 24px;
 	border-top: 1px solid rgba(113, 128, 150, 0.2);
 }
