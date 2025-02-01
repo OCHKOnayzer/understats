@@ -1,7 +1,8 @@
 import { axiosClassic, axiosWithAuth } from '$src/api/api.interceptors';
+import { demo } from '$src/constants/constants';
 import { closeModal, currentUser } from '$src/stores/modalStore';
 
-import { removeAccessToken, setAccessToken } from './auth-token.service';
+import { removeAccessToken, setAccessToken, setDemoToken } from './auth-token.service';
 
 import type { IAuthForm, IAuthResponse } from '$src/types/types';
 
@@ -27,24 +28,26 @@ class AuthService {
 		}
 	}
 
-	// async demoAuth() {
-	// 	try {
-	// 		const response = await axiosClassic<IAuthResponse>({
-	// 			url: `${process.env.SERVER_URL}/auth/login`,
-	// 			method: 'POST',
-	// 			data: { login: demo.login, password: demo.password }
-	// 		});
+	async demoAuth() {
+		try {
+			const response = await axiosClassic<IAuthResponse>({
+				url: `${process.env.SERVER_URL}/auth/login`,
+				method: 'POST',
+				data: { login: demo.login, password: demo.password }
+			});
 
-	// 		if (response.data.accessToken) {
-	// 			setDemoToken(response.data.accessToken);
-	// 			closeModal();
-	// 			goto('/');
-	// 		}
-	// 		return response;
-	// 	} catch (error: any) {
-	// 		throw new Error(error);
-	// 	}
-	// }
+			if (response.data.accessToken) {
+				setDemoToken(response.data.accessToken);
+				closeModal();
+				// Убрано автоматическое перенаправление,
+				// чтобы после получения демо токена не происходил редирект и данные могли загрузиться
+				// goto('/');
+			}
+			return response;
+		} catch (error: any) {
+			throw new Error(error);
+		}
+	}
 
 	async logout() {
 		try {

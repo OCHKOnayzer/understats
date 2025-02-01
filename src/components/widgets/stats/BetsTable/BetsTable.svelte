@@ -10,13 +10,16 @@ import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte'
 import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
 import { useUserProfile } from '$src/services/auth/useProfile';
 import { betsTableStore } from '$src/stores/betsTableStore';
+import { isDemoEnabled } from '$src/stores/demo';
 import { filterStore } from '$src/stores/filterStore';
 import { currentUser } from '$src/stores/modalStore';
 import { generateBetKey } from '$src/utils/functions/generateBetKey';
+import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 
 import { columns, type Bet } from './columns';
+import { get } from 'svelte/store';
 
 let innerWidth = $state(0);
 let isMobile = $derived(innerWidth < 400);
@@ -65,7 +68,10 @@ async function loadData() {
 	}
 }
 
-onMount(() => {
+onMount(async () => {
+	if (!$currentUser && $isDemoEnabled) {
+		await handleDemoToggle();
+	}
 	loadData();
 });
 
@@ -91,7 +97,7 @@ $effect(() => {
 <svelte:window bind:innerWidth="{innerWidth}" />
 
 <div class="relative w-full">
-	{#if !isAuthenticated}
+	{#if !$currentUser}
 		<AuthDemoButton />
 	{:else if $betsTableStore.error}
 		<div class="p-4 text-red-500">{$betsTableStore.error}</div>
@@ -100,7 +106,7 @@ $effect(() => {
 			<span class="loading-spinner mb-3"></span>
 			<h2>{$t('stats.loading_data')}</h2>
 		</div>
-	{:else if !$betsTableStore.data?.length}
+	{:else if $currentUser && !$betsTableStore.data?.length}
 		<div class="message-container">
 			<TableNoData
 				title="{$t('stats.no_bets')}"

@@ -1,29 +1,18 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
-import { get } from 'svelte/store';
 
-import { fetchFilteredData } from '$src/components/entities/stats/api/api';
-import { demo } from '$src/constants/constants';
-import { removeDemoToken } from '$src/services/auth/auth-token.service';
-import { authService } from '$src/services/auth/auth.service';
-import { accountStore } from '$src/stores/accountStore';
-import { betsTableStore } from '$src/stores/betsTableStore';
-import { isDemoEnabled } from '$src/stores/demo';
-import { filterStore } from '$src/stores/filterStore';
-import { currentUser } from '$src/stores/modalStore';
-import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
-
+import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
 </script>
 
 <div
 	class="switch-wrapper"
 	style="background-color: {$isDemoEnabled ? '#100e47' : '#363A45'}"
-	on:click="{handleDemoToggle}">
+	on:click="{toggleDemoMode}">
 	<label class="switch">
 		<input
 			type="checkbox"
 			checked="{$isDemoEnabled}"
-			on:change="{handleDemoToggle}" />
+			on:change="{toggleDemoMode}" />
 		<span class="slider"></span>
 	</label>
 	<div class="demo-title">

@@ -1,7 +1,9 @@
 import axios, { type CreateAxiosDefaults } from 'axios';
+import { get } from 'svelte/store';
 
-import { getAccessToken, removeAccessToken } from '$src/services/auth/auth-token.service';
+import { getAccessToken, getDemoToken, removeAccessToken } from '$src/services/auth/auth-token.service';
 import { betsTableStore } from '$src/stores/betsTableStore';
+import { isDemoEnabled } from '$src/stores/demo';
 
 import { ApiError, handleAxiosError } from './api.error';
 import { getContentType } from './api.helper';
@@ -18,10 +20,14 @@ const axiosWithAuth = axios.create(options);
 axiosWithAuth.interceptors.request.use(
 	(config) => {
 		const accessToken = getAccessToken();
-		if (config?.headers && accessToken) {
-			config.headers.Authorization = `Bearer ${accessToken}`;
+		const demoToken = getDemoToken();
+		if (config?.headers) {
+			if (get(isDemoEnabled)) {
+				config.headers.Authorization = `Bearer ${demoToken}`;
+			} else if (accessToken) {
+				config.headers.Authorization = `Bearer ${accessToken}`;
+			}
 		}
-
 		setLoading(true);
 		return config;
 	},

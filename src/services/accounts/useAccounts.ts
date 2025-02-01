@@ -2,7 +2,9 @@ import { createQuery } from '@tanstack/svelte-query';
 import { t } from 'svelte-i18n';
 import { get } from 'svelte/store';
 
-import { getAccessToken } from '../auth/auth-token.service';
+import { isDemoEnabled } from '$src/stores/demo';
+
+import { getAccessToken, getDemoToken } from '../auth/auth-token.service';
 
 import { accountService } from './account.service';
 
@@ -10,7 +12,8 @@ export function useAccounts() {
 	const query = createQuery({
 		queryKey: ['accounts'],
 		queryFn: async () => {
-			const token = getAccessToken();
+			// Используем demoToken, если demo режим включён
+			const token = getAccessToken() || getDemoToken();
 			if (!token) {
 				return null;
 			}
@@ -20,11 +23,11 @@ export function useAccounts() {
 			}
 			return response;
 		},
-		enabled: !!getAccessToken(),
+		// Изменено: флаг enabled с учётом demo режима
+		enabled: !!(getAccessToken() || getDemoToken() || get(isDemoEnabled)),
 		refetchOnWindowFocus: true,
 		staleTime: 30000,
 		retry: 1
 	});
-
 	return { query };
 }

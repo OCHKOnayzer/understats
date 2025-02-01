@@ -1,7 +1,7 @@
 import { get } from 'svelte/store';
 
 import { fetchFilteredData } from '$src/components/entities/stats/api/api';
-import { demo } from '$src/constants/constants';
+import { queryClient } from '$src/lib/queryClient';
 import { authService } from '$src/services/auth/auth.service';
 import { accountStore } from '$src/stores/accountStore';
 import { betsTableStore } from '$src/stores/betsTableStore';
@@ -9,28 +9,44 @@ import { isDemoEnabled } from '$src/stores/demo';
 import { filterStore } from '$src/stores/filterStore';
 import { currentUser } from '$src/stores/modalStore';
 
-const { login, password } = get(accountStore);
-
 export async function handleDemoToggle() {
 	try {
-		const newDemoState = !get(isDemoEnabled);
-
 		betsTableStore.reset();
 		currentUser.set(null);
 
-		const loginResponse = await authService.main('login', newDemoState ? { login: demo.login, password: demo.password } : { login, password });
+		let loginResponse;
+		if (!get(accountStore).login) {
+			if (get(isDemoEnabled)) {
+				loginResponse = await authService.demoAuth();
+				currentUser.set(loginResponse?.data);
+				console.log('demo auth applied for new visitor:', get(currentUser));
+			} else {
+				console.log('Demo mode is turned off and no main account present. Skipping request.');
+				currentUser.set(null);
+				return;
+			}
+		} else {
+			if (get(isDemoEnabled)) {
+				loginResponse = await authService.demoAuth();
+				currentUser.set(loginResponse?.data);
+				console.log('demo auth applied:', get(currentUser));
+			} else {
+				loginResponse = await authService.profile();
+				currentUser.set(loginResponse?.data);
+				console.log('Re-auth via profile applied:', get(currentUser));
+			}
+		}
 
+		console.log('Login response:', loginResponse?.data);
 		if (!loginResponse?.data) {
-			throw new Error('Ошибка авторизации');
+			console.warn('Auth login response is undefined. Проверьте данные авторизации или соединение.');
+			return;
 		}
 
-		const profile = await authService.profile();
-		if (profile?.data) {
-			currentUser.set(profile.data);
+		queryClient.invalidateQueries({ queryKey: ['accounts'] });
+		queryClient.invalidateQueries({ queryKey: ['bets count'] });
 
-			isDemoEnabled.set(newDemoState);
-			await loadData();
-		}
+		await loadData();
 	} catch (error) {
 		console.error('Error during demo toggle:', error);
 		betsTableStore.setError('Ошибка при переключении режима');

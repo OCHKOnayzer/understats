@@ -8,6 +8,7 @@ import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
 import { currentModal, openModal } from '$src/stores/modalStore';
 
 import { goto } from '$app/navigation';
+import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 onMount(() => {
 	initializeScreenWidthListener();
 });
@@ -50,7 +51,7 @@ const authUser = (auth: string) => {
 		<button
 			class="button-demo"
 			class:demo-active="{$isDemoEnabled}"
-			on:click="{() => toggleDemoMode()}">
+			on:click="{() => handleDemoToggle()}">
 			{$t('other.demo')}
 		</button>
 	</div>

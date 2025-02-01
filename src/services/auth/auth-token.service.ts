@@ -24,3 +24,5 @@ export const setDemoToken = (token: string): void => {
 		expires: 1
 	});
 };
+
+export const getDemoToken = (): string | null => Cookies.get(EnumTokens.DEMO_TOKEN);

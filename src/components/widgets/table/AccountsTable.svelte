@@ -1,5 +1,8 @@
 <script lang="ts">
+import { isDemoEnabled } from '$src/stores/demo';
+import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 import { getCoreRowModel, getSortedRowModel, type CellContext, type SortingState } from '@tanstack/table-core';
+import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
 import Spinner from '$components/ui/spinner/Spinner.svelte';
@@ -40,6 +43,12 @@ $effect(() => {
 	accounts = isAuthenticated ? $query.data || [] : [];
 });
 
+onMount(async () => {
+	if (!$currentUser && $isDemoEnabled) {
+		await handleDemoToggle();
+	}
+});
+
 const table = createSvelteTable({
 	get data() {
 		return accounts;
@@ -73,7 +82,7 @@ type CellContextType = CellContext<IAccountResponse, unknown>;
 			size="{32}" />
 		<h2 class="w-[260px] text-center text-xl text-[#718096]">{$t('accounts.loading')}</h2>
 	</div>
-{:else if !isAuthenticated}
+{:else if !$currentUser}
 	<AuthDemoButton />
 {:else if isLoading}
 	<div class="message-container">

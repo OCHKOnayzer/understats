@@ -13,7 +13,7 @@ selectHeaderTitle('menu.Stats');
 const { query } = useUserProfile();
 let isAuthenticated = $derived(!!$currentUser);
 
-let shouldShowPagination = $derived($query.data && isAuthenticated && !$betsTableStore.isLoading && $betsTableStore.data.length > 0);
+let shouldShowPagination = $derived(isAuthenticated && !$betsTableStore.isLoading && $betsTableStore.data.length > 0);
 </script>
 
 <svelte:head>
