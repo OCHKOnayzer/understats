@@ -9,6 +9,8 @@ import { isDemoEnabled } from '$src/stores/demo';
 import { filterStore } from '$src/stores/filterStore';
 import { currentUser } from '$src/stores/modalStore';
 
+import { goto } from '$app/navigation';
+
 export async function handleDemoToggle() {
 	try {
 		betsTableStore.reset();
@@ -43,6 +45,7 @@ export async function handleDemoToggle() {
 		queryClient.invalidateQueries();
 
 		await loadData();
+		goto('/');
 	} catch (error) {
 		console.error('Error during demo toggle:', error);
 		betsTableStore.setError('Ошибка при переключении режима');

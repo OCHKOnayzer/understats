@@ -2,12 +2,13 @@
 import { t } from 'svelte-i18n';
 
 import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
+import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 </script>
 
 <div
 	class="switch-wrapper"
 	style="background-color: {$isDemoEnabled ? '#100e47' : '#363A45'}"
-	on:click="{toggleDemoMode}">
+	on:click="{handleDemoToggle}">
 	<label class="switch">
 		<input
 			type="checkbox"
