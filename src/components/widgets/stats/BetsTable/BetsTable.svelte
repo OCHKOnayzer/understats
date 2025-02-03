@@ -21,7 +21,7 @@ import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 import { columns, type Bet } from './columns';
 
 let innerWidth = $state(0);
-let isMobile = $derived(innerWidth < 400);
+let isMobile = $derived(innerWidth < 740);
 let { query } = useUserProfile();
 let isAuthenticated = $derived(!!$currentUser);
 let prevPage = $state($filterStore.pagination.currentPage);
@@ -141,7 +141,7 @@ $effect(() => {
 									<Table.Head>
 										{#if !header.isPlaceholder}
 											<div
-												class="flex items-center gap-2"
+												class="flex items-center gap-1 sm:text-[10px] md:text-[12px] lg:text-[12px] xl:text-[14px]"
 												style="justify-content: {header.column.columnDef.meta?.textAlign === 'right' ? 'flex-end' : 'flex-start'}">
 												<img
 													src="/icons/table-icon.svg"

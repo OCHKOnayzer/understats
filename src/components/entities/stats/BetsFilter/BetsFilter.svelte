@@ -41,9 +41,9 @@ async function applyFilters() {
 	try {
 		betsTableStore.setLoading(true);
 		await tick();
-	
+
 		const data = await fetchFilteredData($filterStore);
-	
+
 		betsTableStore.setData(data);
 		$isOpen = false;
 	} catch (error) {
@@ -139,6 +139,10 @@ async function applyFilters() {
 	padding: 8px 16px;
 	justify-content: space-between;
 	align-items: center;
+
+	@media (max-width: 740px) {
+		display: none;
+	}
 }
 
 @media (max-width: 650px) {

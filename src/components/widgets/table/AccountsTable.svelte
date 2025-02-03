@@ -26,7 +26,7 @@ const { query } = useAccounts();
 const { query: profileQuery } = useUserProfile();
 
 let innerWidth = $state(typeof window !== 'undefined' ? window.innerWidth : 1024);
-let isMobile = $derived(innerWidth < 400);
+let isMobile = $derived(innerWidth < 740);
 let accounts = $state<IAccountResponse[]>([]);
 let isAuthenticated = $derived(!!$currentUser);
 

@@ -1,6 +1,6 @@
+/* eslint-disable import/no-duplicates */
 import axios from 'axios';
 import { get, writable } from 'svelte/store';
-// eslint-disable-next-line import/no-duplicates
 import { tick } from 'svelte';
 
 import { queryClient } from '$src/lib/queryClient';

@@ -19,7 +19,7 @@ const data = createQuery({
 // });
 </script>
 
-<div class="flex w-[80%] items-center justify-between gap-4">
+<div class="item flex w-[80%] items-center justify-between gap-4">
 	<TotalBet
 		title="{$data.data ? String($data.data) : 0} {$t('tariffs.limits_bets')}"
 		sum="{$t('stats.in_summ')} $0" />
@@ -33,3 +33,11 @@ const data = createQuery({
 		title="0 {$t('stats.loses')}"
 		sum="{$t('stats.in_summ')} $0" />
 </div>
+
+<style>
+.item {
+	@media (max-width: 740px) {
+		width: 100%;
+	}
+}
+</style>
