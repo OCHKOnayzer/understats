@@ -5,7 +5,7 @@ import { t } from 'svelte-i18n';
 
 import * as Drawer from '$components/ui/drawer/index.ts';
 import MobileDrawer from '$components/ui/drawer/mobile-drawer.svelte';
-import { fetchFilteredData } from '$src/components/entities/stats/api/api';
+import { fetchFilteredData } from '$src/components/entities/stats/api/bets';
 import BetsSelectFilter from '$src/components/entities/stats/BetsSelectFilter/BetsSelectFilter.svelte';
 import BetFilterResults from '$src/components/features/stats/FilterBet/BetFilterResults.svelte';
 import Accordion from '$src/components/ui/accordion/Accordion.svelte';

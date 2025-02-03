@@ -1,7 +1,7 @@
-import { axiosWithAuth } from '$src/api/api.interceptors';
+import { axiosWithAuth } from '$src/api/api.interceptors'
 
-import type { Bet } from '$src/components/widgets/stats/BetsTable/columns';
-import type { FilterState } from '$src/stores/filterStore';
+import type { Bet } from '$src/components/widgets/stats/BetsTable/columns'
+import type { FilterState } from '$src/stores/filterStore'
 
 interface ApiResponse {
 	pagination: {
@@ -86,6 +86,8 @@ export async function fetchFilteredData(filters: FilterState) {
 			console.error('Invalid API response format');
 			return [];
 		}
+
+		console
 
 		if (!Array.isArray(data.res)) {
 			console.error('data.res is not an array:', data.res);

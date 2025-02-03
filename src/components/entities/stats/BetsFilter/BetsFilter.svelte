@@ -12,7 +12,7 @@ import { betsTableStore } from '$src/stores/betsTableStore';
 import { filterStore } from '$src/stores/filterStore';
 import { isOpen, toggleSidebar } from '$src/utils/functions/toggleSidebar';
 
-import { fetchFilteredData } from '../api/api';
+import { fetchFilteredData } from '../api/bets';
 import BetsSelectFilter from '../BetsSelectFilter/BetsSelectFilter.svelte';
 
 let isLoading = $state<boolean>(false);
@@ -41,9 +41,9 @@ async function applyFilters() {
 	try {
 		betsTableStore.setLoading(true);
 		await tick();
-		console.log('Filters before fetch:', $filterStore);
+	
 		const data = await fetchFilteredData($filterStore);
-		console.log('Filtered Data:', data);
+	
 		betsTableStore.setData(data);
 		$isOpen = false;
 	} catch (error) {

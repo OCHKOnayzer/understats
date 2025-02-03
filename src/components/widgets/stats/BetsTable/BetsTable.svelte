@@ -5,7 +5,7 @@ import { t } from 'svelte-i18n';
 
 import { createSvelteTable, FlexRender } from '$components/ui/data-table';
 import * as Table from '$components/ui/table';
-import { fetchFilteredData } from '$src/components/entities/stats/api/api';
+import { fetchFilteredData } from '$src/components/entities/stats/api/bets';
 import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
 import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
 import { useUserProfile } from '$src/services/auth/useProfile';
@@ -62,7 +62,6 @@ async function loadData() {
 
 		betsTableStore.setData(response);
 	} catch (err) {
-		console.error('Error loading data:', err);
 		betsTableStore.setError($t('other.data_error'));
 	}
 }
@@ -89,6 +88,17 @@ $effect(() => {
 $effect(() => {
 	if ($betsTableStore.data && !Array.isArray($betsTableStore.data)) {
 		betsTableStore.setData([] as Bet[]);
+	}
+});
+
+let lastUser = null;
+
+$effect(() => {
+	if ($currentUser !== lastUser) {
+		lastUser = $currentUser;
+		if ($currentUser) {
+			loadData();
+		}
 	}
 });
 </script>

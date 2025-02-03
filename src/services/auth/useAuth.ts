@@ -1,14 +1,14 @@
-import { createMutation } from '@tanstack/svelte-query';
-import toast from 'svelte-french-toast';
-import { t } from 'svelte-i18n';
-import { get, writable } from 'svelte/store';
+import { createMutation } from '@tanstack/svelte-query'
+import toast from 'svelte-french-toast'
+import { t } from 'svelte-i18n'
+import { get, writable } from 'svelte/store'
 
-import { accountStore } from '$src/stores/accountStore';
-import { confirmPassword, currentModal, currentUser, isModalOpen } from '$src/stores/modalStore';
+import { accountStore } from '$src/stores/accountStore'
+import { confirmPassword, currentModal, currentUser, isModalOpen } from '$src/stores/modalStore'
 
-import { authService } from './auth.service';
+import { authService } from './auth.service'
 
-import type { IAuthForm } from '$src/types/types';
+import type { IAuthForm } from '$src/types/types'
 
 export const useAuth = (isReg: boolean) => {
 	const form = writable<IAuthForm>({
@@ -35,7 +35,7 @@ export const useAuth = (isReg: boolean) => {
 				currentUser.set(response.data);
 				accountStore.setData(data);
 				localStorage.setItem('account', JSON.stringify(data));
-				console.log(get(accountStore));
+				
 			}
 
 			return response;

@@ -1,15 +1,16 @@
-import { get } from 'svelte/store';
+import { get } from 'svelte/store'
 
-import { fetchFilteredData } from '$src/components/entities/stats/api/api';
-import { queryClient } from '$src/lib/queryClient';
-import { authService } from '$src/services/auth/auth.service';
-import { accountStore } from '$src/stores/accountStore';
-import { betsTableStore } from '$src/stores/betsTableStore';
-import { isDemoEnabled } from '$src/stores/demo';
-import { filterStore } from '$src/stores/filterStore';
-import { currentUser } from '$src/stores/modalStore';
 
-import { goto } from '$app/navigation';
+import { queryClient } from '$src/lib/queryClient'
+import { authService } from '$src/services/auth/auth.service'
+import { accountStore } from '$src/stores/accountStore'
+import { betsTableStore } from '$src/stores/betsTableStore'
+import { isDemoEnabled } from '$src/stores/demo'
+import { filterStore } from '$src/stores/filterStore'
+import { currentUser } from '$src/stores/modalStore'
+
+import { goto } from '$app/navigation'
+import { fetchFilteredData } from '$src/components/entities/stats/api/bets'
 
 export async function handleDemoToggle() {
 	try {
@@ -47,7 +48,6 @@ export async function handleDemoToggle() {
 		await loadData();
 		goto('/');
 	} catch (error) {
-		console.error('Error during demo toggle:', error);
 		betsTableStore.setError('Ошибка при переключении режима');
 	}
 }

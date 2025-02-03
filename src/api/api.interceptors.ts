@@ -1,12 +1,12 @@
-import axios, { type CreateAxiosDefaults } from 'axios';
-import { get } from 'svelte/store';
+import axios, { type CreateAxiosDefaults } from 'axios'
+import { get } from 'svelte/store'
 
-import { getAccessToken, getDemoToken, removeAccessToken } from '$src/services/auth/auth-token.service';
-import { betsTableStore } from '$src/stores/betsTableStore';
-import { isDemoEnabled } from '$src/stores/demo';
+import { getAccessToken, getDemoToken, removeAccessToken } from '$src/services/auth/auth-token.service'
+import { betsTableStore } from '$src/stores/betsTableStore'
+import { isDemoEnabled } from '$src/stores/demo'
 
-import { ApiError, handleAxiosError } from './api.error';
-import { getContentType } from './api.helper';
+import { ApiError, handleAxiosError } from './api.error'
+import { getContentType } from './api.helper'
 
 const options: CreateAxiosDefaults = {
 	baseURL: process.env.SERVER_URL,
@@ -19,16 +19,16 @@ const axiosWithAuth = axios.create(options);
 
 axiosWithAuth.interceptors.request.use(
 	(config) => {
-		const accessToken = getAccessToken();
-		const demoToken = getDemoToken();
-		if (config?.headers) {
-			if (get(isDemoEnabled)) {
-				config.headers.Authorization = `Bearer ${demoToken}`;
-			} else if (accessToken) {
-				config.headers.Authorization = `Bearer ${accessToken}`;
-			}
-		}
 		setLoading(true);
+		const isDemo = get(isDemoEnabled);
+	
+		const token = isDemo ? getDemoToken() : getAccessToken();
+	
+
+		if (token) {
+			config.headers.Authorization = `Bearer ${token}`;
+		}
+
 		return config;
 	},
 	(error) => {
@@ -78,4 +78,5 @@ const setLoading = (isLoading: boolean) => {
 	betsTableStore.setLoading(isLoading);
 };
 
-export { axiosClassic, axiosWithAuth };
+export { axiosClassic, axiosWithAuth }
+
