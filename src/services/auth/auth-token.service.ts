@@ -1,4 +1,4 @@
-import Cookies from 'js-cookie';
+import Cookies from 'js-cookie'
 
 export enum EnumTokens {
 	'ACCESS_TOKEN' = 'access_token',
@@ -20,7 +20,6 @@ export const removeDemoToken = (): void => Cookies.remove(EnumTokens.DEMO_TOKEN,
 
 export const setDemoToken = (token: string): void => {
 	Cookies.set(EnumTokens.DEMO_TOKEN, token, {
-		domain: process.env.APP_DOMAIN,
 		sameSite: 'strict',
 		expires: 1
 	});

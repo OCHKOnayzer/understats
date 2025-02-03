@@ -8,7 +8,7 @@ import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
 import { currentModal, openModal } from '$src/stores/modalStore';
 
 import { goto } from '$app/navigation';
-import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
+import { toggleDemoMode } from '$src/stores/demo';
 
 onMount(() => {
 	initializeScreenWidthListener();
@@ -49,7 +49,7 @@ const authUser = (auth: string) => {
 			<button
 				class="button-demo"
 				class:demo-active="{$isDemoEnabled}"
-				on:click="{() => handleDemoToggle()}">
+				on:click="{() => toggleDemoMode()}">
 				{$t('other.demo')}
 			</button>
 		</div>

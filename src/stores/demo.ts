@@ -12,6 +12,7 @@ import { tick } from 'svelte'
 
 const isBrowser = typeof window !== 'undefined';
 let initialDemoState = true;
+let isTogglingDemo = false;
 
 if (isBrowser) {
 	const stored = localStorage.getItem('isDemoEnabled');
@@ -29,54 +30,59 @@ export const isDemoEnabled = writable<boolean>(initialDemoState);
 isDemoEnabled.subscribe((value) => {
 	if (isBrowser) {
 		localStorage.setItem('isDemoEnabled', String(value));
-		queryClient.invalidateQueries();
 	}
 });
 
-accountStore.subscribe((acct) => {
-	if (acct && acct.login && get(isDemoEnabled)) {
-		isDemoEnabled.set(false);
-	}
-});
+// Комментирую блок, который отключает demo режим при наличии аккаунта
+// accountStore.subscribe((acct) => {
+//	if (acct && acct.login && get(isDemoEnabled) && !getDemoToken()) {
+//		isDemoEnabled.set(false);
+//	}
+// });
 
 export const toggleDemoMode = async () => {
-	const currentMode = get(isDemoEnabled);
-	const newMode = !currentMode;
+	if (isTogglingDemo) return;
+	isTogglingDemo = true;
+	try {
+		const currentMode = get(isDemoEnabled);
+		const newMode = !currentMode;
 
-	isDemoEnabled.set(newMode);
-	await tick();
+		isDemoEnabled.set(newMode);
+		await tick();
 
-	if (newMode) {
-		const accessToken = getAccessToken();
-		if (accessToken) {
-			localStorage.setItem('previousAccessToken', accessToken);
-		}
-		await handleDemoToggle();
-	} else {
-		removeDemoToken();
-		await new Promise(resolve => setTimeout(resolve, 500));
-		axios.defaults.headers.common.Authorization = undefined;
-	
-		let accessToken = getAccessToken();
-		if (!accessToken) {
-			accessToken = localStorage.getItem('previousAccessToken');
+		if (newMode) {
+			const accessToken = getAccessToken();
 			if (accessToken) {
-				setAccessToken(accessToken);
-				localStorage.removeItem('previousAccessToken');
+				localStorage.setItem('previousAccessToken', accessToken);
 			}
-		}
-
-
-		if (accessToken) {
-			const loginResponse = await authService.profile();
-			currentUser.set(loginResponse?.data);
-
-			accountStore.setData(loginResponse?.data);
+			await handleDemoToggle();
 		} else {
-			currentUser.set(null);
-			betsTableStore.setData([]);
+			removeDemoToken();
+			await new Promise(resolve => setTimeout(resolve, 500));
+			axios.defaults.headers.common.Authorization = undefined;
+		
+			let accessToken = getAccessToken();
+			if (!accessToken) {
+				accessToken = localStorage.getItem('previousAccessToken');
+				if (accessToken) {
+					setAccessToken(accessToken);
+					localStorage.removeItem('previousAccessToken');
+				}
+			}
+
+			if (accessToken) {
+				const loginResponse = await authService.profile();
+				currentUser.set(loginResponse?.data);
+
+				accountStore.setData(loginResponse?.data);
+			} else {
+				currentUser.set(null);
+				betsTableStore.setData([]);
+			}
+			queryClient.invalidateQueries({ queryKey: ['accounts'] });
+			queryClient.invalidateQueries({ queryKey: ['bets count'] });
 		}
-		queryClient.invalidateQueries({ queryKey: ['accounts'] });
-		queryClient.invalidateQueries({ queryKey: ['bets count'] });
+	} finally {
+		isTogglingDemo = false;
 	}
 };
