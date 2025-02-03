@@ -2,11 +2,12 @@ import { axiosClassic, axiosWithAuth } from '$src/api/api.interceptors'
 import { demo } from '$src/constants/constants'
 import { closeModal, currentUser } from '$src/stores/modalStore'
 
-import { removeAccessToken, setAccessToken, setDemoToken } from './auth-token.service'
+import { removeAccessToken, removeDemoToken, setAccessToken, setDemoToken } from './auth-token.service'
 
 import type { IAuthForm, IAuthResponse } from '$src/types/types'
 
 import { goto } from '$app/navigation'
+import { isDemoEnabled } from '$src/stores/demo'
 
 let profilePromise: Promise<any> | null = null;
 
@@ -21,6 +22,8 @@ class AuthService {
 
 			if (response.data.accessToken) {
 				setAccessToken(response.data.accessToken);
+				isDemoEnabled.set(false);
+				removeDemoToken();
 				closeModal();
 				goto('/');
 			}
