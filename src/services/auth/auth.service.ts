@@ -1,13 +1,13 @@
-import { axiosClassic, axiosWithAuth } from '$src/api/api.interceptors'
-import { demo } from '$src/constants/constants'
-import { closeModal, currentUser } from '$src/stores/modalStore'
+import { axiosClassic, axiosWithAuth } from '$src/api/api.interceptors';
+import { demo } from '$src/constants/constants';
+import { isDemoEnabled } from '$src/stores/demo';
+import { closeModal, currentUser } from '$src/stores/modalStore';
 
-import { removeAccessToken, removeDemoToken, setAccessToken, setDemoToken } from './auth-token.service'
+import { removeAccessToken, removeDemoToken, setAccessToken, setDemoToken } from './auth-token.service';
 
-import type { IAuthForm, IAuthResponse } from '$src/types/types'
+import type { IAuthForm, IAuthResponse } from '$src/types/types';
 
-import { goto } from '$app/navigation'
-import { isDemoEnabled } from '$src/stores/demo'
+import { goto } from '$app/navigation';
 
 let profilePromise: Promise<any> | null = null;
 
@@ -64,14 +64,15 @@ class AuthService {
 
 	async profile() {
 		if (profilePromise) return profilePromise;
-		profilePromise = axiosWithAuth.get('/users/me')
-			.then(response => {
+		profilePromise = axiosWithAuth
+			.get('/users/me')
+			.then((response) => {
 				if (response.data) {
 					currentUser.set(response.data);
 				}
 				return response;
 			})
-			.catch(error => {
+			.catch((error) => {
 				return null;
 			})
 			.finally(() => {

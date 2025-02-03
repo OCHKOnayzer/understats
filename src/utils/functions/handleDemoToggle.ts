@@ -1,20 +1,20 @@
-import { get } from 'svelte/store'
+import { get } from 'svelte/store';
 
-import { queryClient } from '$src/lib/queryClient'
-import { authService } from '$src/services/auth/auth.service'
-import { accountStore } from '$src/stores/accountStore'
-import { betsTableStore } from '$src/stores/betsTableStore'
-import { isDemoEnabled } from '$src/stores/demo'
-import { currentUser } from '$src/stores/modalStore'
+import { queryClient } from '$src/lib/queryClient';
+import { authService } from '$src/services/auth/auth.service';
+import { accountStore } from '$src/stores/accountStore';
+import { betsTableStore } from '$src/stores/betsTableStore';
+import { isDemoEnabled } from '$src/stores/demo';
+import { currentUser } from '$src/stores/modalStore';
+import { getDemoToken, setDemoToken } from '$src/services/auth/auth-token.service';
 
-import { goto } from '$app/navigation'
-import { getDemoToken, setDemoToken } from '$src/services/auth/auth-token.service'
+import { goto } from '$app/navigation';
 
 export async function handleDemoToggle() {
 	try {
 		betsTableStore.reset();
 		currentUser.set(null);
-		
+
 		if (get(isDemoEnabled)) {
 			let demoToken = getDemoToken();
 			if (!demoToken) {

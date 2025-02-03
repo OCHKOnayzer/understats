@@ -1,14 +1,15 @@
-import { get, writable } from 'svelte/store'
+import axios from 'axios';
+import { get, writable } from 'svelte/store';
+// eslint-disable-next-line import/no-duplicates
+import { tick } from 'svelte';
 
-import { queryClient } from '$src/lib/queryClient'
-import { getAccessToken, removeDemoToken, setAccessToken } from '$src/services/auth/auth-token.service'
-import { authService } from '$src/services/auth/auth.service'
-import { accountStore } from '$src/stores/accountStore'
-import { betsTableStore } from '$src/stores/betsTableStore'
-import { currentUser } from '$src/stores/modalStore'
-import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle'
-import axios from 'axios'
-import { tick } from 'svelte'
+import { queryClient } from '$src/lib/queryClient';
+import { getAccessToken, removeDemoToken, setAccessToken } from '$src/services/auth/auth-token.service';
+import { authService } from '$src/services/auth/auth.service';
+import { accountStore } from '$src/stores/accountStore';
+import { betsTableStore } from '$src/stores/betsTableStore';
+import { currentUser } from '$src/stores/modalStore';
+import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 
 const isBrowser = typeof window !== 'undefined';
 let initialDemoState = true;
@@ -58,9 +59,9 @@ export const toggleDemoMode = async () => {
 			await handleDemoToggle();
 		} else {
 			removeDemoToken();
-			await new Promise(resolve => setTimeout(resolve, 500));
+			await new Promise((resolve) => setTimeout(resolve, 500));
 			axios.defaults.headers.common.Authorization = undefined;
-		
+
 			let accessToken = getAccessToken();
 			if (!accessToken) {
 				accessToken = localStorage.getItem('previousAccessToken');
