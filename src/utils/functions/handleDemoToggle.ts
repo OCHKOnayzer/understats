@@ -11,28 +11,29 @@ import { currentUser } from '$src/stores/modalStore'
 
 import { goto } from '$app/navigation'
 import { fetchFilteredData } from '$src/components/entities/stats/api/bets'
+import { getDemoToken } from '$src/services/auth/auth-token.service'
 
 export async function handleDemoToggle() {
 	try {
 		betsTableStore.reset();
 		currentUser.set(null);
-
+		
 		let loginResponse;
-		if (!get(accountStore).login) {
-			if (get(isDemoEnabled)) {
+		if (get(isDemoEnabled)) {
+			const demoToken = getDemoToken();
+			if (demoToken) {
+				loginResponse = await authService.profile();
+			} else {
 				loginResponse = await authService.demoAuth();
+			}
+			currentUser.set(loginResponse?.data);
+		} else {
+			if (get(accountStore).login) {
+				loginResponse = await authService.profile();
 				currentUser.set(loginResponse?.data);
 			} else {
 				currentUser.set(null);
 				return;
-			}
-		} else {
-			if (get(isDemoEnabled)) {
-				loginResponse = await authService.demoAuth();
-				currentUser.set(loginResponse?.data);
-			} else {
-				loginResponse = await authService.profile();
-				currentUser.set(loginResponse?.data);
 			}
 		}
 
