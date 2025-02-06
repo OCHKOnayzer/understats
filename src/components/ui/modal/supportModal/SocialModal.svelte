@@ -10,10 +10,6 @@ import { SocialLink } from './social';
 const closPayModal = () => {
 	closeModal();
 };
-
-onMount(() => {
-	ifWindow();
-});
 </script>
 
 <div

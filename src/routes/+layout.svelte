@@ -12,11 +12,14 @@ import { onDestroy, onMount } from 'svelte';
 import { Toaster } from 'svelte-french-toast';
 import { init, locale, waitLocale, t } from 'svelte-i18n';
 
+import { subscriptionService } from '$src/services/tariffs/subscription.service';
 import { ifWindow } from '$src/utils/functions/chat';
 import Menu from '$components/ui/menu/Menu.svelte';
 import Header from '$src/components/ui/header/header.svelte';
 import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
 import Test from '$src/components/ui/test.svelte';
+
+import { currentUserActiveTariff } from '$src/stores/tariffsStore';
 import { selectedLang, setAppLanguage } from '$src/stores/languageStore';
 import { isModalOpen } from '$src/stores/modalStore';
 import '$src/styles/fonts.css';
@@ -48,7 +51,6 @@ onMount(async () => {
 	} catch (error) {
 		console.error($t('error.locale_error_in_client'), error);
 	}
-	ifWindow();
 });
 
 let unsubscribe;
@@ -61,6 +63,9 @@ onMount(() => {
 	unsubscribe = langSel.subscribe((currentLocale) => {
 		document.documentElement.lang = currentLocale;
 	});
+	ifWindow();
+	const currentTariffs = subscriptionService.subscriptionMy()
+	console.log(currentTariffs)
 });
 
 onDestroy(() => {

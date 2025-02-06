@@ -1,6 +1,7 @@
 <script>
 import { t } from 'svelte-i18n';
 
+import TariffNotSelected from '$src/components/widgets/tariffs/alerts/TariffNotSelected.svelte';
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
 import TariffsSection from '$src/components/ui/tariffsSection/tariffsSection.svelte';
 import DemoButtons from '$src/components/widgets/demo/demoButtons/DemoButtons.svelte';
@@ -8,6 +9,7 @@ import { useUserProfile } from '$src/services/auth/useProfile';
 let isAuthenticated = useUserProfile();
 
 selectHeaderTitle('tariffs.tariffs');
+export let data;
 </script>
 
 <svelte:head>
@@ -18,6 +20,7 @@ selectHeaderTitle('tariffs.tariffs');
 </svelte:head>
 
 <div class="pageContent">
+	<TariffNotSelected />
 	{#if !isAuthenticated}
 		<DemoButtons />
 	{/if}
@@ -25,7 +28,7 @@ selectHeaderTitle('tariffs.tariffs');
 		<div>{$t('tariffs.choose')}</div>
 		<div>{$t('tariffs.accountLimits')}</div>
 	</div> -->
-	<TariffsSection />
+	<TariffsSection tariffs="{data}" />
 </div>
 
 <style>

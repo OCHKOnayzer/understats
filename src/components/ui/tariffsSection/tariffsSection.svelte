@@ -2,29 +2,34 @@
 import { t } from 'svelte-i18n';
 
 import Tariffs from './tariffs.svelte';
+export let tariffs;
+
+const liteTariffs = tariffs.tariffs[1];
+const standartTariffs = tariffs.tariffs[2];
+const proTariffs = tariffs.tariffs[3];
 </script>
 
 <div class="tariffs-wrapper">
 	<Tariffs
-		name="{'Lite'}"
+		name="{liteTariffs.name}"
 		desc="{'tariffs.lite'}"
-		limitations="{'1.000'}"
-		accounts="{'5'}"
-		price="{'10'}"
-		price_year="{'100'}" />
+		limitations="{liteTariffs.betsPerMonth}"
+		accounts="{liteTariffs.accounts}"
+		price="{liteTariffs.pricePerMonth}"
+		price_year="{liteTariffs.pricePerYear}" />
 	<Tariffs
-		name="{'Standart'}"
+		name="{standartTariffs.name}"
 		desc="{'tariffs.standart'}"
-		limitations="{'20.000'}"
-		accounts="{'100'}"
-		price="{'30'}"
-		price_year="{'300'}" />
+		limitations="{standartTariffs.betsPerMonth}"
+		accounts="{standartTariffs.accounts}"
+		price="{standartTariffs.pricePerMonth}"
+		price_year="{standartTariffs.pricePerYear}" />
 	<Tariffs
-		name="{'Pro'}"
+		name="{proTariffs.name}"
 		desc="{'tariffs.pro'}"
 		limitations="{'tariffs.no_limits'}"
-		price="{'100'}"
-		price_year="{'1000'}" />
+		price="{proTariffs.pricePerMonth}"
+		price_year="{proTariffs.pricePerYear}" />
 </div>
 
 <style>

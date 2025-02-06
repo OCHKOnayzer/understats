@@ -116,7 +116,7 @@ const handleLogout = () => {
 	background-color: #191a1b;
 }
 .logout_btn:hover {
-	background: #ff5252;
+	background: #151847;
 }
 
 @keyframes fade-in {

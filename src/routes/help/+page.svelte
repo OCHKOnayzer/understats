@@ -36,13 +36,13 @@ selectHeaderTitle('faq.faq');
 
 @media screen and (min-height: 1200px) {
 	.mainContent {
-		height: calc(90vh - 8px);
+		height: 89vh;
 	}
 }
 
 @media screen and (min-height: 1400px) {
 	.mainContent {
-		height: calc(95vh - 8px);
+		height: 95vh;
 	}
 }
 
