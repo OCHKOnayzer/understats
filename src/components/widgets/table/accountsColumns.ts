@@ -64,7 +64,8 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 				title: 'accounts.balance',
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
-			})
+			}),
+		cell: ({ row }) => `${row.original.balance} ${row.original.currency}`
 	},
 	{
 		accessorKey: 'lastBet',

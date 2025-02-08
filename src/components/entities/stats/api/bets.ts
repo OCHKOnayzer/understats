@@ -1,7 +1,7 @@
-import { axiosWithAuth } from '$src/api/api.interceptors'
+import { axiosWithAuth } from '$src/api/api.interceptors';
 
-import type { Bet } from '$src/components/widgets/stats/BetsTable/columns'
-import type { FilterState } from '$src/stores/filterStore'
+import type { Bet } from '$src/components/widgets/stats/BetsTable/columns';
+import type { FilterState } from '$src/stores/filterStore';
 
 interface ApiResponse {
 	pagination: {
@@ -70,12 +70,12 @@ export async function fetchFilteredData(filters: FilterState) {
 		if (filters?.coefficient?.to) {
 			params.append('rateMax', String(filters.coefficient.to));
 		}
-		if (filters?.express !== undefined) {
-			params.append('express', String(filters.express));
-		}
-		if (filters?.ordinar !== undefined) {
-			params.append('ordinar', String(filters.ordinar));
-		}
+
+		// Изменяем установку express и ordinar:
+		const expressValue = !filters.betType.length ? true : filters.betType.includes('express');
+		const ordinarValue = !filters.betType.length ? true : filters.betType.includes('ordinary');
+		params.append('express', String(expressValue));
+		params.append('ordinar', String(ordinarValue));
 
 		if (typeof filters?.year === 'number') params.append('year', String(filters.year));
 		if (typeof filters?.month === 'number') params.append('month', String(filters.month));
@@ -86,8 +86,6 @@ export async function fetchFilteredData(filters: FilterState) {
 			console.error('Invalid API response format');
 			return [];
 		}
-
-		console
 
 		if (!Array.isArray(data.res)) {
 			console.error('data.res is not an array:', data.res);
