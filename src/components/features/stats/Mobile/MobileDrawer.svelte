@@ -5,14 +5,11 @@ import * as Drawer from '$components/ui/drawer/index.ts';
 import Button from '$src/components/ui/button/button.svelte';
 import type { Bet } from '$src/types/bet';
 
-
-
 interface Props {
 	data: Bet;
 }
 
 let { data }: Props = $props();
-
 </script>
 
 <Drawer.Root>
@@ -35,12 +32,8 @@ let { data }: Props = $props();
 						class="mb-3 w-[73px]"
 						src="/icons/bk/winline-big.svg"
 						alt="" />
-					<!-- <h2>Алексей Иванов</h2> -->
+					<h2>{data.siteName}</h2>
 				</div>
-
-				<!-- <div>
-					<h3>ID 123413</h3>
-				</div> -->
 			</div>
 		</div>
 

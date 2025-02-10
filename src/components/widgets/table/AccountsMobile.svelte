@@ -38,7 +38,7 @@ const card = [
 ];
 </script>
 
-<section class="rounded-[28px] bg-[#363A45] p-4 text-white">
+<section class="rounded-[28px] bg-[#363A45] p-4 text-white last:mb-[14px]">
 	<div class="flex flex-col">
 		<div class="flex gap-2 text-[12px]">
 			<h2>ID: {account.clientSeq}</h2>

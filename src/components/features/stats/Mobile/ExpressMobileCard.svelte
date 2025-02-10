@@ -73,17 +73,6 @@ function getLegsCount(bet: Bet): number {
 					<Drawer.Title class="text-left text-[30px]">{$t('not.more')}</Drawer.Title>
 				</Drawer.Header>
 
-				<div class="mb-[30px] rounded-[20px] bg-blackPrimary p-4">
-					<div class="flex items-center justify-between text-[20px]">
-						<div class="">
-							<img
-								class="mb-3 w-[73px]"
-								src="/icons/bk/{processedData.siteName.toLowerCase()}-big.svg"
-								alt="" />
-						</div>
-					</div>
-				</div>
-
 				{#if processedData.legs}
 					{#each processedData.legs as leg}
 						<div class="mb-4 rounded-[28px] bg-[#171B26] p-4">
