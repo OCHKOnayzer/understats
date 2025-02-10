@@ -71,14 +71,14 @@ async function loadData() {
 		});
 
 		if (!response) {
-			throw new Error($t('other.no_data'));
+			throw new Error(('other.no_data'));
 		}
 
 		betsTableStore.setTotalItems(response.pagination.total);
 		betsTableStore.setData(response.res);
 		betsTableStore.setHasMore(response.res.length >= response.pagination.perPage);
 	} catch (err) {
-		betsTableStore.setError($t('other.data_error'));
+		betsTableStore.setError(('other.data_error'));
 	} finally {
 		betsTableStore.setLoading(false);
 	}
@@ -107,7 +107,7 @@ async function loadMoreData() {
 		betsTableStore.appendData(response.res);
 		betsTableStore.setHasMore(response.res.length >= response.pagination.perPage);
 	} catch (err) {
-		betsTableStore.setError($t('other.data_error'));
+		betsTableStore.setError(('other.data_error'));
 	} finally {
 		isLoadingMore = false;
 	}
