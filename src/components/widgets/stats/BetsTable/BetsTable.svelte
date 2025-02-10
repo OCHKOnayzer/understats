@@ -15,13 +15,14 @@ import { filterStore } from '$src/stores/filterStore';
 import { currentUser, openModal } from '$src/stores/modalStore';
 import { generateBetKey } from '$src/utils/functions/generateBetKey';
 import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
-
 import TableError from '$components/ui/tableError/TableError.svelte';
+
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 
-import type { Bet } from '$src/types/bet';
 import { getColumns } from './columns';
 import TableRow from './TableRow.svelte';
+
+import type { Bet } from '$src/types/bet';
 
 let innerWidth = $state(0);
 let isMobile = $derived(innerWidth < 740);

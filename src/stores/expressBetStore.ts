@@ -1,4 +1,5 @@
-import type { BetLeg } from '$src/types/bet'
-import { writable } from 'svelte/store'
+import { writable } from 'svelte/store';
+
+import type { BetLeg } from '$src/types/bet';
 
 export const expressBetLegs = writable<BetLeg[]>([]);

@@ -1,7 +1,8 @@
 <script lang="ts">
+import { t } from 'svelte-i18n';
+
 import { isDemoEnabled } from '$src/stores/demo';
 import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
-import { t } from 'svelte-i18n';
 </script>
 
 <button
@@ -26,7 +27,7 @@ import { t } from 'svelte-i18n';
 	border-radius: 12px;
 	background-color: #363a45;
 	cursor: pointer;
-	
+
 	transition: background-color 0.3s ease;
 	min-width: 170px;
 }

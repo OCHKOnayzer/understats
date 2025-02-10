@@ -1,19 +1,14 @@
 <script lang="ts">
-import { getCoreRowModel } from '@tanstack/table-core';
+import { getCoreRowModel, type ColumnDef } from '@tanstack/table-core';
 import { t } from 'svelte-i18n';
 
 import { createSvelteTable, FlexRender } from '$components/ui/data-table';
 import * as Table from '$components/ui/table';
 import { closeModal } from '$src/stores/modalStore';
 
-import type { ColumnDef } from '@tanstack/table-core';
 import type { BetLeg } from '$src/types/bet';
 
-
 const { legs = [] } = $props<{ legs: BetLeg[] }>();
-
-let totalCoefficient = $derived(legs.reduce((acc, leg) => acc * leg.rate, 1).toFixed(2));
-let allLegsWon = $derived(legs.every((leg) => leg.status === 'Win'));
 
 function formatDate(dateString: string): string {
 	try {

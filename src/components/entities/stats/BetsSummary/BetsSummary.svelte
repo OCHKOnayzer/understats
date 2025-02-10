@@ -3,8 +3,8 @@ import { createQuery } from '@tanstack/svelte-query';
 import { t } from 'svelte-i18n';
 
 import { betService } from '$src/services/bet.service';
-
 import { betsTableStore } from '$src/stores/betsTableStore';
+
 import TotalBet from '../TotalBet/TotalBet.svelte';
 const params = { express: 'true', ordinar: 'true' };
 

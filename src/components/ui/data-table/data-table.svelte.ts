@@ -32,7 +32,7 @@ import {
  * </table>
  * ```
  */
-export function createSvelteTable<TData extends RowData>(options: TableOptions<TData>) {
+export function createSvelteTable<TData extends RowData>(tableOptions: TableOptions<TData>) {
 	const resolvedOptions: TableOptionsResolved<TData> = mergeObjects(
 		{
 			state: {},
@@ -45,7 +45,7 @@ export function createSvelteTable<TData extends RowData>(options: TableOptions<T
 				return mergeObjects(defaultOptions, options);
 			},
 		},
-		options
+		tableOptions
 	);
 
 	const table = createTable(resolvedOptions);
@@ -53,15 +53,15 @@ export function createSvelteTable<TData extends RowData>(options: TableOptions<T
 
 	function updateOptions() {
 		table.setOptions((prev) => {
-			return mergeObjects(prev, options, {
-				state: mergeObjects(state, options.state || {}),
+			return mergeObjects(prev, tableOptions, {
+				state: mergeObjects(state, tableOptions.state || {}),
 
 				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				onStateChange: (updater: any) => {
 					if (updater instanceof Function) state = updater(state);
 					else state = mergeObjects(state, updater);
 
-					options.onStateChange?.(updater);
+					tableOptions.onStateChange?.(updater);
 				},
 			});
 		});
@@ -87,8 +87,8 @@ function mergeObjects<T, U, V, W>(source: T, source1: U, source2: V, source3: W)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mergeObjects(...sources: any): any {
 	const target = {};
-	for (let i = 0; i < sources.length; i++) {
-		let source = sources[i];
+	for (let sourceIndex = 0; sourceIndex < sources.length; sourceIndex++) {
+		let source = sources[sourceIndex];
 		if (typeof source === 'function') source = source();
 		if (source) {
 			const descriptors = Object.getOwnPropertyDescriptors(source);
@@ -97,8 +97,8 @@ function mergeObjects(...sources: any): any {
 				Object.defineProperty(target, key, {
 					enumerable: true,
 					get() {
-						for (let i = sources.length - 1; i >= 0; i--) {
-							let s = sources[i];
+						for (let j = sources.length - 1; j >= 0; j--) {
+							let s = sources[j];
 							if (typeof s === 'function') s = s();
 							const v = (s || {})[key];
 							if (v !== undefined) return v;
