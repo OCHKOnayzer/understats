@@ -2,6 +2,7 @@
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
+import { currentUserActiveTariff } from '$src/stores/tariffsStore';
 import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';
 import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
 import { closeState, headerTitle } from '$src/stores/HeaderStores';
@@ -38,6 +39,7 @@ const openCurrentModal = (modal: ModalType) => {
 };
 
 const isTumbler = ['/', '/accounts', '/help', '/extensions'];
+const isTariffLimits = ['/accounts', '/'];
 const isSettings = ['/settings'];
 const isHelp = ['/help'];
 
@@ -82,7 +84,33 @@ function closeStateFunction() {
 								src="/icons/back_arrow.svg"
 								alt="" /></button>
 					{/if}
+
 					<p>{$t($headerTitle)}</p>
+					{#if !$isMobile && $currentUser && isTariffLimits.includes($page.url.pathname)}
+						<div class="tariff_info">
+							<div class="item_wrapper">
+								{$t('accounts.available')}:
+								<div class="tariff_item">
+									{#if $currentUserActiveTariff}
+										&nbsp;&nbsp;{$currentUserActiveTariff.accountsLeft}
+									{:else}
+										0
+									{/if}
+								</div>
+							</div>
+							/
+							<div class="item_wrapper">
+								{$t('accounts.used')}:
+								<div class="tariff_item">
+									{#if $currentUserActiveTariff}
+										&nbsp;&nbsp;{$currentUserActiveTariff.accountsCount}
+									{:else}
+										0
+									{/if}
+								</div>
+							</div>
+						</div>
+					{/if}
 				</div>
 				{#if $headerTitle == 'menu.Stats'}
 					<MobileFilterButton />
@@ -160,7 +188,22 @@ function closeStateFunction() {
 	align-items: center;
 	padding-left: 16px;
 }
-
+.tariff_info {
+	padding-left: var(--elements-padding);
+	padding-top: 5px;
+	display: flex;
+	gap: var(--elements-padding);
+	font-size: 14px;
+	align-items: center;
+	color: #718097;
+	width: fit-content;
+}
+.item_wrapper {
+	display: flex;
+}
+.tariff_item {
+	color: white;
+}
 .buttonConteiner {
 	display: flex;
 	align-items: center;

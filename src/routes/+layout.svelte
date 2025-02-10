@@ -18,10 +18,9 @@ import Menu from '$components/ui/menu/Menu.svelte';
 import Header from '$src/components/ui/header/header.svelte';
 import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
 import Test from '$src/components/ui/test.svelte';
-
 import { currentUserActiveTariff } from '$src/stores/tariffsStore';
 import { selectedLang, setAppLanguage } from '$src/stores/languageStore';
-import { isModalOpen } from '$src/stores/modalStore';
+import { currentTariffs, isModalOpen, currentUser } from '$src/stores/modalStore';
 import '$src/styles/fonts.css';
 import { langSel } from '$stores/HeaderStores';
 
@@ -36,6 +35,8 @@ init({
 	fallbackLocale: 'en',
 	initialLocale: data.locale
 });
+
+let wasAuthenticated = false;
 
 let isLocaleReady = false;
 
@@ -64,9 +65,17 @@ onMount(() => {
 		document.documentElement.lang = currentLocale;
 	});
 	ifWindow();
-	const currentTariffs = subscriptionService.subscriptionMy()
-	console.log(currentTariffs)
+	subscriptionService.getAllTariffs();
 });
+
+$: if ($currentUser) {
+	if (!wasAuthenticated) {
+		wasAuthenticated = true;
+		subscriptionService.subscriptionMy();
+	}
+} else {
+	wasAuthenticated = false;
+}
 
 onDestroy(() => {
 	if (unsubscribe) {

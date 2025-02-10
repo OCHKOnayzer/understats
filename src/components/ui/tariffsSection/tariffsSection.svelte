@@ -2,6 +2,7 @@
 import { t } from 'svelte-i18n';
 
 import Tariffs from './tariffs.svelte';
+
 export let tariffs;
 
 const liteTariffs = tariffs.tariffs[1];
