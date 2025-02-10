@@ -96,7 +96,8 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 		cell: ({ row }) => {
 			const bet = row.original;
 			if (bet.type === 'Express') {
-				return t('stats.event', { values: { count: bet.legs?.length || 0 } });
+				const count = bet.legs?.length || 0;
+				return `${count} ${t('stats.event')}`;
 			}
 			const event = bet.event;
 			return event.name1 && event.name2 ? `${event.name1} - ${event.name2}` : t('other.no_data');

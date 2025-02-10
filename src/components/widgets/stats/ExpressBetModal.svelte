@@ -121,16 +121,18 @@ $effect(() => {
 
 <style lang="postcss">
 .modal-content {
-	background: #20242f;
+	background: #363a45;
 	padding: 2rem;
 	border-radius: 8px;
 	max-width: 90%;
 	max-height: 90vh;
 	overflow: hidden;
-	position: relative;
+	position: fixed;
 	color: white;
 	min-width: 800px;
-	margin: 2rem auto;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .modal-title {
