@@ -22,6 +22,7 @@ import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 import { getColumns } from './columns';
 import TableRow from './TableRow.svelte';
 
+import BetsLoader from '$src/components/ui/loader/BetsLoader.svelte';
 import type { Bet } from '$src/types/bet';
 
 let innerWidth = $state(0);
@@ -71,14 +72,14 @@ async function loadData() {
 		});
 
 		if (!response) {
-			throw new Error(('other.no_data'));
+			throw new Error('other.no_data');
 		}
 
 		betsTableStore.setTotalItems(response.pagination.total);
 		betsTableStore.setData(response.res);
 		betsTableStore.setHasMore(response.res.length >= response.pagination.perPage);
 	} catch (err) {
-		betsTableStore.setError(('other.data_error'));
+		betsTableStore.setError('other.data_error');
 	} finally {
 		betsTableStore.setLoading(false);
 	}
@@ -107,7 +108,7 @@ async function loadMoreData() {
 		betsTableStore.appendData(response.res);
 		betsTableStore.setHasMore(response.res.length >= response.pagination.perPage);
 	} catch (err) {
-		betsTableStore.setError(('other.data_error'));
+		betsTableStore.setError('other.data_error');
 	} finally {
 		isLoadingMore = false;
 	}
@@ -173,10 +174,7 @@ $effect(() => {
 			<TableError error="{$betsTableStore.error}" />
 		</div>
 	{:else if $betsTableStore.isLoading && !isLoadingMore}
-		<div class="flex h-[calc(100vh-280px)] flex-col items-center justify-center p-4 text-white">
-			<span class="loading-spinner mb-3"></span>
-			<h2>{$t('stats.loading_data')}</h2>
-		</div>
+		<BetsLoader />
 	{:else if $currentUser && !$betsTableStore.data?.length}
 		<div class="message-container">
 			<TableNoData
