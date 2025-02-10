@@ -8,8 +8,13 @@ type RowProps = Record<string, any>;
 type TableRowType = new (...args: any) => SvelteComponentTyped<RowProps>;
 const TableRowComponent = Table.Row as unknown as TableRowType;
 
-export let row: any;
-export let onExpressClick: (bet: Bet) => void;
+let { row, onExpressClick } = $props<{
+	row: {
+		original: Bet;
+		getIsSelected: () => boolean;
+	};
+	onExpressClick: (bet: Bet) => void;
+}>();
 
 function handleClick() {
 	if (row.original.type === 'Express') {

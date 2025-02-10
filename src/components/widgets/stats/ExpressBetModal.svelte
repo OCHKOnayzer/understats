@@ -117,18 +117,6 @@ $effect(() => {
 			</Table.Body>
 		</Table.Root>
 	</div>
-	<div class="summary">
-		<div class="summary-item">
-			<span class="label">{$t('express_bet_modal.total_coefficient')}:</span>
-			<span class="value">{totalCoefficient}</span>
-		</div>
-		<div class="summary-item">
-			<span class="label">{$t('express_bet_modal.status_label')}:</span>
-			<span
-				class="value"
-				class:won="{allLegsWon}">{allLegsWon ? $t('express_bet_modal.status_won') : $t('express_bet_modal.status_lost')}</span>
-		</div>
-	</div>
 </div>
 
 <style lang="postcss">

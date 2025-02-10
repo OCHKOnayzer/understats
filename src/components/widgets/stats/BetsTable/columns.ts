@@ -1,4 +1,4 @@
-import type { ColumnDef } from '@tanstack/table-core';
+import type { ColumnDef } from '@tanstack/table-core'
 
 interface LocalizedString {
 	default: string;
@@ -66,10 +66,10 @@ type BetColumnDef = ColumnDef<Bet, unknown> & {
 	meta?: BetColumnMeta;
 };
 
-export const columns: ColumnDef<Bet>[] = [
+export const getColumns = (t: (key: string, params?: Record<string, any>) => string): ColumnDef<Bet>[] => [
 	{
 		accessorKey: 'dates.placed',
-		header: 'columns.bet.time',
+		header: t('columns.bet.time'),
 		meta: { textAlign: 'left' } as BetColumnMeta,
 		cell: ({ row }) => {
 			try {
@@ -77,49 +77,49 @@ export const columns: ColumnDef<Bet>[] = [
 				return date.toLocaleString('ru-RU');
 			} catch (e) {
 				console.error('Error formatting date:', e);
-				return 'Invalid date';
+				return t('other.invalid_date');
 			}
 		}
 	},
 	{
 		accessorKey: 'siteName',
-		header: 'columns.bet.bookmaker',
+		header: t('columns.bet.bookmaker'),
 		meta: { textAlign: 'left' } as BetColumnMeta
 	},
 	{
 		accessorKey: 'event.sport',
-		header: 'columns.bet.sport'
+		header: t('columns.bet.sport')
 	},
 	{
 		accessorKey: 'event',
-		header: 'columns.bet.event',
+		header: t('columns.bet.event'),
 		cell: ({ row }) => {
 			const bet = row.original;
 			if (bet.type === 'Express') {
-				return `${bet.legs?.length || 0} событий`;
+				return t('stats.event', { values: { count: bet.legs?.length || 0 } });
 			}
 			const event = bet.event;
-			return event.name1 && event.name2 ? `${event.name1} - ${event.name2}` : 'Нет данных';
+			return event.name1 && event.name2 ? `${event.name1} - ${event.name2}` : t('other.no_data');
 		}
 	},
 	{
 		accessorKey: 'amounts.stake',
-		header: 'columns.bet.ammount',
+		header: t('columns.bet.ammount'),
 		meta: { textAlign: 'right' } as BetColumnMeta
 	},
 	{
 		accessorKey: 'rate',
-		header: 'columns.bet.ratio',
+		header: t('columns.bet.ratio'),
 		meta: { textAlign: 'right' } as BetColumnMeta
 	},
 	{
 		accessorKey: 'amounts.win',
-		header: 'columns.bet.win',
+		header: t('columns.bet.win'),
 		meta: { textAlign: 'right' } as BetColumnMeta
 	},
 	{
 		accessorKey: 'status',
-		header: 'columns.bet.status'
+		header: t('columns.bet.status')
 	}
 ];
 

@@ -8,7 +8,6 @@ import * as Table from '$components/ui/table';
 import { fetchFilteredData } from '$src/components/entities/stats/api/bets';
 import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
 import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
-import { useUserProfile } from '$src/services/auth/useProfile';
 import { betsTableStore } from '$src/stores/betsTableStore';
 import { isDemoEnabled } from '$src/stores/demo';
 import { expressBetLegs } from '$src/stores/expressBetStore';
@@ -17,21 +16,17 @@ import { currentUser, openModal } from '$src/stores/modalStore';
 import { generateBetKey } from '$src/utils/functions/generateBetKey';
 import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 
+import TableError from '$components/ui/tableError/TableError.svelte';
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 
-import { columns, type Bet } from './columns';
+import { getColumns, type Bet } from './columns';
 import TableRow from './TableRow.svelte';
 
 let innerWidth = $state(0);
 let isMobile = $derived(innerWidth < 740);
-let { query } = useUserProfile();
-let isAuthenticated = $derived(!!$currentUser);
 let prevPage = $state($filterStore.pagination.currentPage);
 let prevItemsPerPage = $state($filterStore.pagination.itemsPerPage);
 let isLoadingMore = $state(false);
-
-// Переменные для экспресс ставок
-let currentExpressLegs: any[] = [];
 
 function handleExpressClick(bet: Bet) {
 	if (bet.type === 'Express' && bet.legs) {
@@ -52,13 +47,11 @@ const table = createSvelteTable({
 	get data() {
 		return $betsTableStore.data;
 	},
-	columns,
+	columns: getColumns($t),
 	getCoreRowModel: getCoreRowModel()
 });
 
 type CellContextType = CellContext<Bet, unknown>;
-
-let isLoading = $derived($betsTableStore.isLoading);
 
 async function loadData() {
 	if ($betsTableStore.isLoading) return;
@@ -174,7 +167,9 @@ $effect(() => {
 	{#if !$currentUser}
 		<AuthDemoButton />
 	{:else if $betsTableStore.error}
-		<div class="p-4 text-red-500">{$betsTableStore.error}</div>
+		<div class="table-error-container">
+			<TableError error="{$betsTableStore.error}" />
+		</div>
 	{:else if $betsTableStore.isLoading && !isLoadingMore}
 		<div class="flex h-[calc(100vh-280px)] flex-col items-center justify-center p-4 text-white">
 			<span class="loading-spinner mb-3"></span>

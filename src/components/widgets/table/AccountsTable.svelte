@@ -3,16 +3,16 @@ import { getCoreRowModel, getSortedRowModel, type CellContext, type SortingState
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
-import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
-import { isDemoEnabled } from '$src/stores/demo';
 import Spinner from '$components/ui/spinner/Spinner.svelte';
 import * as Table from '$components/ui/table';
 import { createSvelteTable, FlexRender } from '$src/components/ui/data-table';
 import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
 import { useAccounts } from '$src/services/accounts/useAccounts';
 import { useUserProfile } from '$src/services/auth/useProfile';
+import { isDemoEnabled } from '$src/stores/demo';
 import { currentUser } from '$src/stores/modalStore';
 import { generateAccountKey } from '$src/utils/functions/generateAccountKey';
+import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 import { cn } from '$src/utils/utils';
 
 import AuthDemoButton from '../demo/demoButtons/AuthDemoButton.svelte';
@@ -152,6 +152,34 @@ type CellContextType = CellContext<IAccountResponse, unknown>;
 }
 
 .message-container {
-	@apply z-[5000] bg-[#171b26] font-[Manrope] font-light;
+	@apply z-[5000] bg-[#171b26] font-[Inter] font-light;
+}
+
+.table-wrapper {
+	@apply relative w-full overflow-hidden;
+}
+
+.table-container {
+	@apply w-full overflow-auto;
+}
+
+:global(.cell-content) {
+	@apply flex items-center;
+}
+
+:global(th) {
+	@apply whitespace-nowrap px-2 font-medium;
+}
+
+:global(td) {
+	@apply align-middle;
+}
+
+:global(thead) {
+	@apply sticky top-0;
+}
+
+:global(table) {
+	@apply w-full border-collapse;
 }
 </style>
