@@ -54,8 +54,8 @@ async function applyFilters() {
 	try {
 		isLoading = true;
 		betsTableStore.setLoading(true);
-		const data = await fetchFilteredData($filterStore);
-		betsTableStore.setData(data);
+		const response = await fetchFilteredData($filterStore);
+		betsTableStore.setData(response.res);
 		open = false;
 	} catch (error) {
 		console.error('Failed to apply filters:', error);

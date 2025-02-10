@@ -3,8 +3,9 @@ import { t } from 'svelte-i18n';
 
 import ExpressMobileCard from './ExpressMobileCard.svelte';
 import MobileDrawer from './MobileDrawer.svelte';
+import type { Bet } from '$src/types/bet';
 
-import type { Bet } from '$src/components/widgets/stats/BetsTable/columns';
+
 
 const { data = {} as Bet } = $props<{ data: Bet }>();
 

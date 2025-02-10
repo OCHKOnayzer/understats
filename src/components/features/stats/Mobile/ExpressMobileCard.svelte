@@ -5,7 +5,6 @@ import * as Drawer from '$components/ui/drawer/index.ts';
 import Button from '$src/components/ui/button/button.svelte';
 import type { Bet } from '$src/types/bet';
 
-
 const { data = {} as Bet } = $props<{ data: Bet }>();
 
 let processedData = $state<Bet | null>(null);
@@ -68,90 +67,87 @@ function getLegsCount(bet: Bet): number {
 					{$t('not.more')}
 				</Button>
 			</Drawer.Trigger>
-			<Drawer.Content class="rounded-[16px] border-none bg-input p-4 text-white focus:outline-none focus:ring-0">
-				<Drawer.Header>
-					<Drawer.Title class="text-left text-[30px]">{$t('not.more')}</Drawer.Title>
-				</Drawer.Header>
+			<Drawer.Content class="rounded-[16px] border-none bg-input text-white focus:outline-none focus:ring-0">
+				<div class="drawer-scroll-container">
+					<Drawer.Header>
+						<Drawer.Title class="text-left text-[30px]">{$t('not.more')}</Drawer.Title>
+					</Drawer.Header>
 
-				{#if processedData.legs}
-					{#each processedData.legs as leg}
-						<div class="mb-4 rounded-[28px] bg-[#171B26] p-4">
-							<div class="flex items-center justify-between">
-								<h2>{leg.event.competitionName?.ru || leg.event.competitionName?.default}</h2>
+					{#if processedData.legs}
+						{#each processedData.legs as leg}
+							<div class="mb-4 rounded-[28px] bg-[#171B26] p-4">
+								<div class="flex items-center justify-between">
+									<h2>{leg.event.competitionName?.ru || leg.event.competitionName?.default}</h2>
+								</div>
+
+								<div class="flex justify-between border-b-2 border-dashed border-input">
+									<div class="w-full pb-4">
+										<h2 class="mb-2 text-[20px] font-bold">
+											{leg.event.name1?.ru || leg.event.name1?.default} - {leg.event.name2?.ru || leg.event.name2?.default}
+										</h2>
+										<h3 class="text-[14px] font-medium">
+											{leg.outcome?.ru || leg.outcome?.default}
+										</h3>
+									</div>
+
+									<div>
+										<h2 class="text-[24px] font-medium text-[#5EC654]">
+											{leg.rate?.toFixed(2)}
+										</h2>
+									</div>
+								</div>
+
+								<div class="mt-4 flex items-center justify-between">
+									<div>
+										<h2 class="text-[12px] font-normal">{$t('express_bet_modal.status')}</h2>
+										<h3 class="text-[16px] font-bold {leg.status === 'Win' ? 'text-[#5EC654]' : 'text-[#be4040]'}">
+											{leg.status === 'Win' ? $t('express_bet_modal.status_won') : $t('express_bet_modal.status_lost')}
+										</h3>
+									</div>
+									<div>
+										<h2 class="text-[12px] font-normal">{$t('express_bet_modal.date')}</h2>
+										<h3 class="text-[16px] font-bold">
+											{new Date(leg.dates.placed).toLocaleString('ru-RU')}
+										</h3>
+									</div>
+								</div>
 							</div>
-
-							<div class="flex justify-between border-b-2 border-dashed border-input">
-								<div class="w-full pb-4">
-									<h2 class="mb-2 text-[20px] font-bold">
-										{leg.event.name1?.ru || leg.event.name1?.default} - {leg.event.name2?.ru || leg.event.name2?.default}
-									</h2>
-									<h3 class="text-[14px] font-medium">
-										{leg.outcome?.ru || leg.outcome?.default}
-									</h3>
-								</div>
-
-								<div>
-									<h2 class="text-[24px] font-medium text-[#5EC654]">
-										{leg.rate?.toFixed(2)}
-									</h2>
-								</div>
-							</div>
-
-							<div class="mt-4 flex items-center justify-between">
-								<div>
-									<h2 class="text-[12px] font-normal">{$t('express_bet_modal.status')}</h2>
-									<h3 class="text-[16px] font-bold {leg.status === 'Win' ? 'text-[#5EC654]' : 'text-[#be4040]'}">
-										{leg.status === 'Win' ? $t('express_bet_modal.status_won') : $t('express_bet_modal.status_lost')}
-									</h3>
-								</div>
-								<div>
-									<h2 class="text-[12px] font-normal">{$t('express_bet_modal.date')}</h2>
-									<h3 class="text-[16px] font-bold">
-										{new Date(leg.dates.placed).toLocaleString('ru-RU')}
-									</h3>
-								</div>
-							</div>
-						</div>
-					{/each}
-				{/if}
+						{/each}
+					{/if}
+				</div>
 			</Drawer.Content>
 		</Drawer.Root>
 	</div>
 {/if}
 
 <style lang="postcss">
-:global(.drawer-content) {
+:global(.drawer-scroll-container) {
 	max-height: 80vh;
 	overflow-y: auto;
-	padding-bottom: 100px !important;
+	padding: 1rem;
 }
 
-:global(.drawer-content > div) {
-	max-height: calc(100vh - 200px);
-	overflow-y: auto;
-	padding-bottom: 20px;
-}
-
-:global(.drawer-content::-webkit-scrollbar),
-:global(.drawer-content > div::-webkit-scrollbar) {
+:global(.drawer-scroll-container::-webkit-scrollbar) {
 	width: 8px;
 }
 
-:global(.drawer-content::-webkit-scrollbar-track),
-:global(.drawer-content > div::-webkit-scrollbar-track) {
+:global(.drawer-scroll-container::-webkit-scrollbar-track) {
 	background: #2a2e39;
 	border-radius: 4px;
 }
 
-:global(.drawer-content::-webkit-scrollbar-thumb),
-:global(.drawer-content > div::-webkit-scrollbar-thumb) {
+:global(.drawer-scroll-container::-webkit-scrollbar-thumb) {
 	background: #6660ff;
 	border-radius: 4px;
 }
 
-:global(.drawer-content::-webkit-scrollbar-thumb:hover),
-:global(.drawer-content > div::-webkit-scrollbar-thumb:hover) {
+:global(.drawer-scroll-container::-webkit-scrollbar-thumb:hover) {
 	background: #5550ee;
+}
+
+:global(.drawer-content) {
+	max-height: 90vh;
+	padding: 0 !important;
 }
 
 :global(.drawer-overlay) {
