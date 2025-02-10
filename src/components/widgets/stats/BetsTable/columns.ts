@@ -1,4 +1,4 @@
-import type { ColumnDef } from '@tanstack/table-core';
+import type { ColumnDef } from '@tanstack/table-core'
 
 export interface Bet {
 	siteName: string;
@@ -66,8 +66,12 @@ export const columns: ColumnDef<Bet>[] = [
 		header: 'columns.bet.sport'
 	},
 	{
-		accessorKey: 'event.competitionName.default',
-		header: 'columns.bet.event'
+		accessorKey: 'event',
+		header: 'columns.bet.event',
+		cell: ({ row }) => {
+			const event = row.original.event;
+			return `${event.name1} - ${event.name2}`;
+		}
 	},
 	{
 		accessorKey: 'amounts.stake',

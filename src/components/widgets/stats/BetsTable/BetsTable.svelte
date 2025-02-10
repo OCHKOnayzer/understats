@@ -26,6 +26,7 @@ let { query } = useUserProfile();
 let isAuthenticated = $derived(!!$currentUser);
 let prevPage = $state($filterStore.pagination.currentPage);
 let prevItemsPerPage = $state($filterStore.pagination.itemsPerPage);
+let isLoadingMore = $state(false);
 
 type BetColumnMeta = {
 	textAlign?: 'left' | 'right';
@@ -48,14 +49,21 @@ type CellContextType = CellContext<Bet, unknown>;
 let isLoading = $derived($betsTableStore.isLoading);
 
 async function loadData() {
-	if ($betsTableStore.isLoading) {
-		return;
-	}
+	if ($betsTableStore.isLoading) return;
 
 	try {
 		betsTableStore.setLoading(true);
+		betsTableStore.reset();
 
-		const response = await fetchFilteredData($filterStore);
+		const response = await fetchFilteredData({
+			...$filterStore,
+			pagination: {
+				...$filterStore.pagination,
+				currentPage: 1,
+				itemsPerPage: isMobile ? 10 : $filterStore.pagination.itemsPerPage
+			}
+		});
+
 		if (!response) {
 			throw new Error('Нет данных');
 		}
@@ -63,6 +71,48 @@ async function loadData() {
 		betsTableStore.setData(response);
 	} catch (err) {
 		betsTableStore.setError($t('other.data_error'));
+	} finally {
+		betsTableStore.setLoading(false);
+	}
+}
+
+async function loadMoreData() {
+	if (isLoadingMore || !$betsTableStore.hasMore) return;
+
+	try {
+		isLoadingMore = true;
+		const mobileFilter = {
+			...$filterStore,
+			pagination: {
+				...$filterStore.pagination,
+				currentPage: $betsTableStore.currentPage + 1,
+				itemsPerPage: 10
+			}
+		};
+
+		const response = await fetchFilteredData(mobileFilter);
+		if (!response || response.length === 0) {
+			betsTableStore.setData([...$betsTableStore.data]);
+			return;
+		}
+
+		betsTableStore.appendData(response);
+	} catch (err) {
+		betsTableStore.setError($t('other.data_error'));
+	} finally {
+		isLoadingMore = false;
+	}
+}
+
+function handleScroll(event: Event) {
+	if (!isMobile) return;
+
+	const target = event.target as HTMLElement;
+	const { scrollTop, scrollHeight, clientHeight } = target;
+	const threshold = 100;
+
+	if (scrollHeight - scrollTop - clientHeight < threshold && !isLoadingMore && $betsTableStore.hasMore) {
+		loadMoreData();
 	}
 }
 
@@ -76,12 +126,13 @@ onMount(async () => {
 onDestroy(() => {});
 
 $effect(() => {
-	const { currentPage, itemsPerPage } = $filterStore.pagination;
-
-	if (currentPage !== prevPage || itemsPerPage !== prevItemsPerPage) {
-		prevPage = currentPage;
-		prevItemsPerPage = itemsPerPage;
-		loadData();
+	if (!isMobile) {
+		const { currentPage, itemsPerPage } = $filterStore.pagination;
+		if (currentPage !== prevPage || itemsPerPage !== prevItemsPerPage) {
+			prevPage = currentPage;
+			prevItemsPerPage = itemsPerPage;
+			loadData();
+		}
 	}
 });
 
@@ -110,7 +161,7 @@ $effect(() => {
 		<AuthDemoButton />
 	{:else if $betsTableStore.error}
 		<div class="p-4 text-red-500">{$betsTableStore.error}</div>
-	{:else if $betsTableStore.isLoading}
+	{:else if $betsTableStore.isLoading && !isLoadingMore}
 		<div class="flex h-[calc(100vh-280px)] flex-col items-center justify-center p-4 text-white">
 			<span class="loading-spinner mb-3"></span>
 			<h2>{$t('stats.loading_data')}</h2>
@@ -123,12 +174,24 @@ $effect(() => {
 				variant="{'stats'}" />
 		</div>
 	{:else if isMobile}
-		<div class="mt-4 grid grid-cols-1 gap-2">
+		<div
+			class="mobile-container mt-4 grid grid-cols-1 gap-2"
+			on:scroll="{handleScroll}">
 			{#each $betsTableStore.data || [] as bet, index (generateBetKey(bet, index))}
 				{#if bet}
 					<MobileCard data="{bet satisfies Bet}" />
 				{/if}
 			{/each}
+			{#if isLoadingMore}
+				<div class="flex justify-center p-4">
+					<span class="loading-spinner"></span>
+				</div>
+			{/if}
+			{#if !$betsTableStore.hasMore && $betsTableStore.data.length > 0}
+				<div class="flex justify-center p-4 text-gray-400">
+					{$t('stats.no_more_data')}
+				</div>
+			{/if}
 		</div>
 	{:else}
 		<div class="table-container">
@@ -188,20 +251,23 @@ $effect(() => {
 	@apply absolute inset-0 mt-4 overflow-auto;
 }
 
-.table-wrapper {
+.mobile-container {
+	height: calc(100vh - 280px);
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
 	scrollbar-width: thin;
 	scrollbar-color: #6660ff #20242f;
 }
 
-.table-wrapper::-webkit-scrollbar {
+.mobile-container::-webkit-scrollbar {
 	@apply w-2;
 }
 
-.table-wrapper::-webkit-scrollbar-track {
+.mobile-container::-webkit-scrollbar-track {
 	@apply rounded-lg bg-input;
 }
 
-.table-wrapper::-webkit-scrollbar-thumb {
+.mobile-container::-webkit-scrollbar-thumb {
 	@apply rounded-lg bg-violet hover:bg-[#5550ee];
 }
 
@@ -211,7 +277,6 @@ $effect(() => {
 	height: 2rem;
 	border: 3px solid;
 	@apply border-violet;
-
 	border-top: 3px solid transparent;
 	border-radius: 50%;
 	animation: spin 1s linear infinite;

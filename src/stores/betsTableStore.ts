@@ -1,32 +1,65 @@
-import { writable } from 'svelte/store';
+import { writable } from 'svelte/store'
 
-import type { Bet } from '$src/components/widgets/stats/BetsTable/columns';
+import type { Bet } from '$src/components/widgets/stats/BetsTable/columns'
 
 interface BetsTableState {
 	data: Bet[];
 	isLoading: boolean;
 	error: string | null;
+	hasMore: boolean;
+	currentPage: number;
 }
 
 function createBetsTableStore() {
 	const { subscribe, set, update } = writable<BetsTableState>({
 		data: [],
 		isLoading: false,
-		error: null
+		error: null,
+		hasMore: true,
+		currentPage: 1
 	});
 
 	return {
 		subscribe,
 		setData: (rawData: Bet[]) => {
 			if (!Array.isArray(rawData)) {
-				update((state) => ({ ...state, data: [], isLoading: false }));
+				update((state) => ({
+					...state,
+					data: [],
+					isLoading: false,
+					hasMore: false,
+					currentPage: 1
+				}));
 				return;
 			}
-			update((state) => ({ ...state, data: rawData, isLoading: false }));
+			update((state) => ({
+				...state,
+				data: rawData,
+				isLoading: false,
+				hasMore: rawData.length >= 10,
+				currentPage: 1
+			}));
+		},
+		appendData: (rawData: Bet[]) => {
+			if (!Array.isArray(rawData)) return;
+
+			update((state) => ({
+				...state,
+				data: [...state.data, ...rawData],
+				hasMore: rawData.length >= 10,
+				currentPage: state.currentPage + 1
+			}));
 		},
 		setLoading: (isLoading: boolean) => update((state) => ({ ...state, isLoading })),
 		setError: (error: string | null) => update((state) => ({ ...state, error, isLoading: false })),
-		reset: () => set({ data: [], isLoading: false, error: null })
+		reset: () =>
+			set({
+				data: [],
+				isLoading: false,
+				error: null,
+				hasMore: true,
+				currentPage: 1
+			})
 	};
 }
 
