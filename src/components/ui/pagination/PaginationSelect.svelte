@@ -4,13 +4,16 @@
   import { ITEMS_PER_PAGE_OPTIONS } from '$src/utils/constants/constants';
 
   function handleValueChange(value: string) {
-  	filterStore.setItemsPerPage(parseInt(value));
+    filterStore.setItemsPerPage(parseInt(value));
+    filterStore.setPage(1);
   }
+
+  let currentValue = $state(String($filterStore.pagination.itemsPerPage));
 </script>
 
 <Select.Root
   type="single"
-  value={String($filterStore.pagination.itemsPerPage)}
+  value={currentValue}
   onValueChange={handleValueChange}
 >
   <Select.Trigger class="w-20 bg-input text-white text-sm rounded-lg px-2 py-2">

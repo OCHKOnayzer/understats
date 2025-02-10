@@ -68,7 +68,9 @@ async function loadData() {
 			throw new Error('Нет данных');
 		}
 
-		betsTableStore.setData(response);
+		betsTableStore.setTotalItems(response.pagination.total);
+		betsTableStore.setData(response.res);
+		betsTableStore.setHasMore(response.res.length >= response.pagination.perPage);
 	} catch (err) {
 		betsTableStore.setError($t('other.data_error'));
 	} finally {
@@ -91,12 +93,13 @@ async function loadMoreData() {
 		};
 
 		const response = await fetchFilteredData(mobileFilter);
-		if (!response || response.length === 0) {
-			betsTableStore.setData([...$betsTableStore.data]);
+		if (!response || response.res.length === 0) {
+			betsTableStore.setHasMore(false);
 			return;
 		}
 
-		betsTableStore.appendData(response);
+		betsTableStore.appendData(response.res);
+		betsTableStore.setHasMore(response.res.length >= response.pagination.perPage);
 	} catch (err) {
 		betsTableStore.setError($t('other.data_error'));
 	} finally {

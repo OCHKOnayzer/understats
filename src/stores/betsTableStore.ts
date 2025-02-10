@@ -8,6 +8,7 @@ interface BetsTableState {
 	error: string | null;
 	hasMore: boolean;
 	currentPage: number;
+	totalItems: number;
 }
 
 function createBetsTableStore() {
@@ -16,7 +17,8 @@ function createBetsTableStore() {
 		isLoading: false,
 		error: null,
 		hasMore: true,
-		currentPage: 1
+		currentPage: 1,
+		totalItems: 0
 	});
 
 	return {
@@ -30,6 +32,7 @@ function createBetsTableStore() {
 					hasMore: false,
 					currentPage: 1
 				}));
+				console.log('rawData', rawData);
 				return;
 			}
 			update((state) => ({
@@ -52,13 +55,16 @@ function createBetsTableStore() {
 		},
 		setLoading: (isLoading: boolean) => update((state) => ({ ...state, isLoading })),
 		setError: (error: string | null) => update((state) => ({ ...state, error, isLoading: false })),
+		setTotalItems: (total: number) => update((state) => ({ ...state, totalItems: total })),
+		setHasMore: (hasMore: boolean) => update((state) => ({ ...state, hasMore })),
 		reset: () =>
 			set({
 				data: [],
 				isLoading: false,
 				error: null,
 				hasMore: true,
-				currentPage: 1
+				currentPage: 1,
+				totalItems: 0
 			})
 	};
 }

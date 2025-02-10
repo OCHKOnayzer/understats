@@ -1,6 +1,7 @@
 import type { ColumnDef } from '@tanstack/table-core'
 
 export interface Bet {
+	
 	siteName: string;
 	userId: string;
 	accountId: string;

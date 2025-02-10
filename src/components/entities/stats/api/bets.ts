@@ -1,7 +1,7 @@
-import { axiosWithAuth } from '$src/api/api.interceptors';
+import { axiosWithAuth } from '$src/api/api.interceptors'
 
-import type { Bet } from '$src/components/widgets/stats/BetsTable/columns';
-import type { FilterState } from '$src/stores/filterStore';
+import type { Bet } from '$src/components/widgets/stats/BetsTable/columns'
+import type { FilterState } from '$src/stores/filterStore'
 
 interface ApiResponse {
 	pagination: {
@@ -71,7 +71,6 @@ export async function fetchFilteredData(filters: FilterState) {
 			params.append('rateMax', String(filters.coefficient.to));
 		}
 
-		// Изменяем установку express и ordinar:
 		const expressValue = !filters.betType.length ? true : filters.betType.includes('express');
 		const ordinarValue = !filters.betType.length ? true : filters.betType.includes('ordinary');
 		params.append('express', String(expressValue));
@@ -84,15 +83,15 @@ export async function fetchFilteredData(filters: FilterState) {
 		const { data } = await axiosWithAuth.get<ApiResponse>('/bets/my', { params });
 		if (!data || typeof data !== 'object') {
 			console.error('Invalid API response format');
-			return [];
+			return { pagination: { page: 1, perPage: 10, pageCount: 0, total: 0 }, res: [] };
 		}
 
 		if (!Array.isArray(data.res)) {
 			console.error('data.res is not an array:', data.res);
-			return [];
+			return { pagination: { page: 1, perPage: 10, pageCount: 0, total: 0 }, res: [] };
 		}
 
-		return data.res;
+		return data;
 	} catch (error) {
 		console.error('Error fetching filtered data:', error);
 		throw error;
