@@ -1,4 +1,6 @@
 <script lang="ts">
+import { t } from 'svelte-i18n';
+
 interface TableErrorProps {
 	error: string;
 }
@@ -12,13 +14,13 @@ let { error }: TableErrorProps = $props();
 		alt="Error"
 		class="h-16 w-16" />
 	<div class="text-center">
-		<h2 class="mb-2 text-[28px] leading-[32px]">Произошла ошибка</h2>
+		<h2 class="mb-2 text-[28px] leading-[32px]">{$t('other.error_title')}</h2>
 		<p class="text-[15px] leading-[22px] text-gray-400">{error}</p>
 	</div>
 	<button
 		class="rounded-full bg-violet px-6 py-3 text-white transition-colors hover:bg-[#5550ee]"
 		on:click="{() => window.location.reload()}">
-		Обновить страницу
+		{$t('other.update_page')}
 	</button>
 </div>
 
