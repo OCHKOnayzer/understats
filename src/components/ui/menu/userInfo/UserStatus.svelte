@@ -5,7 +5,7 @@
 
 <style>
 .plan_container {
-	background-color: #0d111d;
+	@apply bg-blackPrimary;
 	height: 100px;
 	width: 100%;
 	border-radius: 5px;

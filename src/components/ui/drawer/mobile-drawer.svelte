@@ -8,7 +8,8 @@ let { shouldScaleBackground = false, open = $bindable(false), activeSnapPoint = 
   shouldScaleBackground="{shouldScaleBackground}"
   bind:open="{open}"
   bind:activeSnapPoint="{activeSnapPoint}"
-  style="--snap-point-height: unset; --snap-point: 95vh;"
+  --snap-point-height="unset"
+  --snap-point="95vh"
   {...restProps}>
   <slot />
 </DrawerPrimitive.Root>

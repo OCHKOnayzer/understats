@@ -1,8 +1,8 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
+import { t } from 'svelte-i18n';
 
-import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
+import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
 import { currentUser } from '$src/stores/modalStore';
 import { formatDate } from '$src/utils/functions/formatDate';
 
@@ -83,7 +83,7 @@ $: date = $currentUser?.dateReg ? formatDate($currentUser.dateReg) : '';
 	margin-right: 0;
 }
 .selected_element {
-	background-color: #20242f;
+	@apply bg-input;
 	color: #707f96;
 	width: 100%;
 	border-radius: 10px;

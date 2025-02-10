@@ -56,7 +56,7 @@ let totalFilters = $derived(
 	transform: translate(50%, -50%);
 }
 
-@media (min-width: 651px) {
+@media (min-width: 740px) {
 	.filter-button {
 		display: none;
 	}

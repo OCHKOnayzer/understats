@@ -1,9 +1,9 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
+import { t } from 'svelte-i18n';
 
-import { user, fetchUser, updateUser } from '$stores/menu';
 import { changeService } from '$src/services/auth/changePass.service';
+import { fetchUser } from '$stores/menu';
 
 import SettingsSections from '../settingsSections/SettingsSections.svelte';
 import SettingsTitle from '../settingsSections/SettingsTitle.svelte';
@@ -133,7 +133,7 @@ const showField = (field: string) => {
 	background-color: #1c202b;
 } */
 .selected_element {
-	background-color: #20242f;
+	@apply bg-input;
 	color: #707f96;
 	width: 100%;
 	border-radius: 10px;

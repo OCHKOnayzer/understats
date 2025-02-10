@@ -32,7 +32,7 @@ import PayTitle from './payTitle/PayTitle.svelte';
 .leave_modal {
 	width: 22vw;
 	height: 27vh;
-	background-color: #0d111d;
+	@apply bg-blackPrimary;
 	display: flex;
 	align-items: center;
 	justify-content: center;

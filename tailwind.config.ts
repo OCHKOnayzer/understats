@@ -18,7 +18,9 @@ const config: Config = {
 		extend: {
 			colors: {
 				border: 'hsl(var(--border) / <alpha-value>)',
-				input: 'hsl(var(--input) / <alpha-value>)',
+				input: 'hsla(224, 19%, 15%, 1)',
+				violet: 'hsla(242, 100%, 69%, 1)',
+				blackPrimary: 'hsla(225, 38%, 8%, 1)',
 				ring: 'hsl(var(--ring) / <alpha-value>)',
 				background: 'hsl(var(--background) / <alpha-value>)',
 				foreground: 'hsl(var(--foreground) / <alpha-value>)',

@@ -75,9 +75,9 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 		transition:fade="{{ duration: 200 }}"
 		onclick="{(e) => e.target === e.currentTarget && (showModal = false)}">
 		<div
-			class="max-h-[90vh] w-[90%] max-w-[600px] overflow-auto rounded-xl bg-[#20242F]"
+			class="max-h-[90vh] w-[90%] max-w-[600px] overflow-auto rounded-xl bg-input"
 			transition:fly="{{ y: 20, duration: 300, easing: backOut }}">
-			<div class="sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-[#20242F] p-4">
+			<div class="sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-input p-4">
 				<h3 class="text-xl font-semibold text-white">{$t('stats.types_sports')}</h3>
 				<button
 					class="p-2 text-white/70 transition-colors hover:text-white"
@@ -107,7 +107,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 								class="hidden" />
 							<div
 								class="relative h-5 w-5 rounded border-2 transition-colors duration-200
-								{selectedList.includes(sport) ? 'border-[#6660FF] bg-[#6660FF]' : 'border-white/30 group-hover:border-white/50'}">
+								{selectedList.includes(sport) ? 'border-violet bg-violet' : 'border-white/30 group-hover:border-white/50'}">
 								{#if selectedList.includes(sport)}
 									<Icon
 										icon="solar:check-bold"
@@ -154,7 +154,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 }
 .sport-button {
 	padding: 12px;
-	background: #0d111d;
+	@apply bg-blackPrimary;
 	border: none;
 	border-radius: 12px;
 	color: white;
@@ -169,7 +169,7 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 	background: #6366f1;
 }
 .show-all {
-	background: #0d111d;
+	@apply bg-blackPrimary;
 }
 .show-all:hover {
 	background: rgba(255, 255, 255, 0.05);
@@ -188,7 +188,8 @@ let filteredSports = $derived(searchQuery ? $allItemsStore.filter((sport) => spo
 }
 
 .modal {
-	background: #20242f;
+	@apply bg-input;
+
 	border-radius: 16px;
 	width: 90%;
 	max-width: 500px;

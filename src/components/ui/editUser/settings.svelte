@@ -119,7 +119,8 @@ import { t } from 'svelte-i18n';
 	margin-right: 0;
 }
 .selected_element {
-	background-color: #20242f;
+	@apply bg-input;
+
 	width: 100%;
 	border-radius: 10px;
 	height: 60%;
@@ -142,7 +143,7 @@ import { t } from 'svelte-i18n';
 }
 .clear_curr {
 	font-size: 13px;
-	color: #6660ff;
+	@apply text-violet;
 }
 .min--w {
 	display: none;

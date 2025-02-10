@@ -37,7 +37,7 @@ import ModalCurrent from './modalCurrent/ModalCurrent.svelte';
 }
 .login_wrapper {
 	width: 20vw;
-	background-color: #0d111d;
+	@apply bg-blackPrimary;
 	border-radius: 0px 5px 5px 0px;
 }
 

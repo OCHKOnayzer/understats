@@ -1,6 +1,6 @@
 <script>
-import UserAprove from '../../button/userAprove/UserAprove.svelte';
 import CancelButton from '../../button/userAprove/CancelButton.svelte';
+import UserAprove from '../../button/userAprove/UserAprove.svelte';
 import ModalTitle from '../ModalTitle.svelte';
 
 import PayTitle from './payTitle/PayTitle.svelte';
@@ -39,7 +39,7 @@ const RetryPay = () => {
 .leave_modal {
 	width: 22vw;
 	height: 27vh;
-	background-color: #0d111d;
+	@apply bg-blackPrimary;
 	display: flex;
 	align-items: center;
 	justify-content: center;

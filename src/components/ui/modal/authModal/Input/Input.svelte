@@ -1,6 +1,5 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
-import { onMount } from 'svelte';
 
 import { useBreakpoint } from '$src/hooks/useBreakpoint';
 export let input_type: string;
@@ -56,7 +55,8 @@ const { isMobile } = useBreakpoint(768);
 	position: relative;
 }
 input {
-	background-color: #20242f;
+	@apply bg-input;
+
 	border-radius: 5px;
 	color: white;
 	border: unset;
@@ -84,7 +84,8 @@ input {
 }
 .placeholderContainer .int:focus {
 	outline: none;
-	border: 2px solid #6660ff;
+	border: 2px solid;
+	@apply border-violet;
 }
 
 .placeholderContainer label {

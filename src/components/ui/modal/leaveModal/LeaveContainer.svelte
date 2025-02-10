@@ -2,8 +2,8 @@
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
-import { modalComponent, currentModal, logout, currentUser, closeModal } from '$src/stores/modalStore';
-import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
+import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
+import { closeModal, currentModal, currentUser, logout, modalComponent } from '$src/stores/modalStore';
 
 import LeaveModalContent from './leaveContent/LeaveModalContent.svelte';
 
@@ -67,7 +67,7 @@ const handleLogout = () => {
 .leave_modal {
 	width: 420px;
 	min-height: 250px;
-	background: #0d111d;
+	@apply bg-blackPrimary;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -110,7 +110,7 @@ const handleLogout = () => {
 	margin-bottom: var(--elements-padding);
 }
 .cancel_btn {
-	background-color: #20242f;
+	@apply bg-input;
 }
 .cancel_btn:hover {
 	background-color: #191a1b;

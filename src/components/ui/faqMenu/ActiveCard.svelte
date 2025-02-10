@@ -1,6 +1,6 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
 import { createEventDispatcher, onMount } from 'svelte';
+import { t } from 'svelte-i18n';
 
 import { closeState } from '$src/stores/HeaderStores';
 import { closeFaqMenu } from '$src/stores/faq';
@@ -80,7 +80,7 @@ onMount(() => {
 }
 .active {
 	background-color: #6660ff40;
-	border-color: #6660ff;
+	@apply border-violet;
 }
 @keyframes fadeInUp {
 	0% {

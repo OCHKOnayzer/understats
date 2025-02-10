@@ -30,9 +30,11 @@
 				apply: 'p-[16px] transition-all w-[50%] bg-[#2f3241] text-white rounded-[12px] hover:bg-[#4a4f5c]',
 				clear: 'py-[16px] px-[16px] transition-all w-[50%] bg-transparent text-white rounded-[12px] hover:bg-[#4a4f5c] border border-[#4a4f5c]',
 				interactive: 'bg-[#363A45] hover:bg-[#2e2f31] p-0 h-[48px] w-[48px] rounded-[12px] transition-colors',
-				card: 'bg-[#20242F] rounded-[16px] p-[16px] hover:shadow-lg transition-all',
+				card: 'bg-input rounded-[16px] p-[16px] hover:shadow-lg transition-all',
 				not: 'bg-[#31384A] text-white text-[16px] border-none rounded-[16px] py-[16px] flex items-center transition-all',
-				transparent: 'bg-transparent text-white text-[16px] border-none rounded-[16px] py-[16px] flex items-center hover:bg-[#20242F] transition-all',
+				transparent: 'bg-transparent text-white text-[16px] border-none rounded-[16px] py-[16px] flex items-center hover:bg-input transition-all',
+				demoButton: 'bg-violet text-base border-none rounded-[12px] hover:bg-input',
+				blackButton: 'bg-blackPrimary text-base border-none rounded-[12px] hover:bg-input'
 			},
 			size: {
 				default: 'h-10 px-4 py-2',
@@ -41,6 +43,7 @@
 				icon: 'h-10 w-10',
 				cyber: 'px-10 py-[4px]',
 				primary: 'py-[12px] w-full',
+				medium: 'w-full py-[15px]'
 			}
 		},
 		defaultVariants: {

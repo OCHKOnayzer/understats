@@ -11,7 +11,8 @@ import { t } from 'svelte-i18n';
 <style>
 .accounts_btn {
 	color: white;
-	border: 1px solid #6660ff;
+	border: 1px solid;
+	@apply border-violet;
 	padding: 10px;
 	border-radius: 100px;
 	/* width: 40%; */

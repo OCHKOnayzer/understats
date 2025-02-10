@@ -12,7 +12,7 @@ import { betsTableStore } from '$src/stores/betsTableStore';
 import { filterStore } from '$src/stores/filterStore';
 import { isOpen, toggleSidebar } from '$src/utils/functions/toggleSidebar';
 
-import { fetchFilteredData } from '../api/api';
+import { fetchFilteredData } from '../api/bets';
 import BetsSelectFilter from '../BetsSelectFilter/BetsSelectFilter.svelte';
 
 let isLoading = $state<boolean>(false);
@@ -41,14 +41,16 @@ async function applyFilters() {
 	try {
 		betsTableStore.setLoading(true);
 		await tick();
-		console.log('Filters before fetch:', $filterStore);
-		const data = await fetchFilteredData($filterStore);
-		console.log('Filtered Data:', data);
-		betsTableStore.setData(data);
+
+		const response = await fetchFilteredData($filterStore);
+
+		betsTableStore.setTotalItems(response.pagination.total);
+		betsTableStore.setData(response.res);
+		betsTableStore.setHasMore(response.res.length >= response.pagination.perPage);
 		$isOpen = false;
 	} catch (error) {
 		console.error('Failed to apply filters:', error);
-		betsTableStore.setError('Ошибка при загрузке данных');
+		betsTableStore.setError($t('other.data_error'));
 	} finally {
 		betsTableStore.setLoading(false);
 		toggleSidebar();
@@ -77,7 +79,7 @@ async function applyFilters() {
 				type="button"
 				on:click="{toggleSidebar}"
 				aria-label="Close sidebar"
-				class="cursor-pointer transition-colors hover:text-[#0D111D]">
+				class="cursor-pointer transition-colors hover:text-blackPrimary">
 				<Icon
 					font-size="24"
 					icon="radix-icons:cross-1" />
@@ -139,6 +141,10 @@ async function applyFilters() {
 	padding: 8px 16px;
 	justify-content: space-between;
 	align-items: center;
+
+	@media (max-width: 740px) {
+		display: none;
+	}
 }
 
 @media (max-width: 650px) {
@@ -175,12 +181,13 @@ async function applyFilters() {
 }
 
 .sidebar {
+	@apply bg-input;
+
 	position: fixed;
 	top: 0;
 	right: -650px;
 	width: 650px;
 	height: 100vh;
-	background-color: #20242f;
 	transition: right 0.3s ease-in-out;
 	z-index: 1000;
 	color: white;
@@ -196,7 +203,7 @@ async function applyFilters() {
 .sidebar-header {
 	position: sticky;
 	top: 0;
-	background-color: #20242f;
+	@apply bg-input;
 	padding: 24px 24px 0;
 	z-index: 2;
 	border-radius: 36px 0 0 0;
@@ -217,7 +224,8 @@ async function applyFilters() {
 .action-buttons {
 	position: sticky;
 	bottom: 0;
-	background: #20242f;
+	@apply bg-input;
+
 	padding: 16px 24px;
 	border-top: 1px solid rgba(113, 128, 150, 0.2);
 }

@@ -1,8 +1,8 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
+import { t } from 'svelte-i18n';
 
-import { user, fetchUser, updateUser } from '$stores/menu';
+import { fetchUser, updateUser, user } from '$stores/menu';
 
 import { AllAvatar } from './image.ts';
 
@@ -212,7 +212,8 @@ onMount(() => {
 
 .btn_avatar:nth-child(1) {
 	margin-right: 10px;
-	border-color: #6660ff;
+	@apply border-violet;
+
 	color: white;
 }
 
@@ -225,7 +226,7 @@ onMount(() => {
 	background: rgba(255, 255, 255, 0.1);
 }
 .changedColor {
-	background: #6660ff;
+	@apply bg-violet;
 }
 .select_avatar {
 	width: 20vw;
@@ -261,7 +262,7 @@ onMount(() => {
 	border-color: gray;
 }
 .usingAvatar {
-	border-color: #6660ff;
+	@apply border-violet;
 }
 .image img {
 	height: 100%;
