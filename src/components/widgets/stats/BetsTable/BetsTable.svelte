@@ -59,7 +59,6 @@ async function loadData() {
 			...$filterStore,
 			pagination: {
 				...$filterStore.pagination,
-				currentPage: 1,
 				itemsPerPage: isMobile ? 10 : $filterStore.pagination.itemsPerPage
 			}
 		});
