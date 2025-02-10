@@ -1,16 +1,19 @@
 export interface IAccountResponse {
-	balance: string;
-	betsCount: number;
-	clientSeq: number;
-	currency: string;
-	email: string;
-	extendedId: string;
-	fullName: string;
-	login: string;
-	phone: string;
-	registrationDate: string;
 	siteName: string;
-	lastBet?: string;
+	clientSeq: number;
+	betsCount: number;
+	betAddedLastDate: string;
+	extendedId: string;
+	phone: string;
+	login: string;
+	email: string;
+	fullName: string;
+	registrationDate: string;
+	balance: number;
+	currency: string;
+	betsTodayCount: string;
+	betsYesterdayCount: string;
+	betsMonthCount: string;
 }
 
 export interface IAccountRequest {

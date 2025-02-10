@@ -7,7 +7,8 @@ import * as Table from '$components/ui/table';
 import { closeModal } from '$src/stores/modalStore';
 
 import type { ColumnDef } from '@tanstack/table-core';
-import type { BetLeg } from './BetsTable/columns';
+import type { BetLeg } from '$src/types/bet';
+
 
 const { legs = [] } = $props<{ legs: BetLeg[] }>();
 

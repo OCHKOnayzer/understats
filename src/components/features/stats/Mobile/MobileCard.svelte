@@ -1,6 +1,7 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 
+import ExpressMobileCard from './ExpressMobileCard.svelte';
 import MobileDrawer from './MobileDrawer.svelte';
 
 import type { Bet } from '$src/components/widgets/stats/BetsTable/columns';
@@ -15,46 +16,44 @@ $effect(() => {
 </script>
 
 {#if processedData}
-	<div class="rounded-[20px] bg-[#363A45] p-4 text-white">
-		<div class="mb-4 flex items-center justify-between text-[20px]">
-			<!-- ...existing code... -->
-		</div>
+	{#if processedData.type === 'Express'}
+		<ExpressMobileCard data="{processedData}" />
+	{:else}
+		<div class="rounded-[20px] bg-[#363A45] p-4 text-white">
+			<div class="mb-4 flex flex-col">
+				<h2 class="text-[18px] font-bold text-[#be4040]">
+					{processedData.siteName || ''}
+				</h2>
 
-		<div class="mb-4 flex flex-col">
-			<h2 class="text-[18px] font-bold text-[#be4040]">
-				{processedData.siteName || ''}
-			</h2>
+				<div class="flex justify-between border-b-2 border-dashed border-input">
+					<div class="w-full pb-4">
+						<h2 class="mb-2 text-[20px] font-bold">
+							{processedData.event?.name1?.ru || processedData.event?.name1?.default || ''} -
+							{processedData.event?.name2?.ru || processedData.event?.name2?.default || ''}
+						</h2>
+					</div>
 
-			<div class="flex justify-between border-b-2 border-dashed border-input">
-				<div class="w-full pb-4">
-					<h2 class="mb-2 text-[20px] font-bold">
-						{processedData.event?.name1 || ''}
-					</h2>
-					<h3 class="text-[14px] font-medium">
-						{processedData.outcome || ''}
-					</h3>
+					<div>
+						<h2 class="text-[24px] font-medium text-[#5EC654]">
+							{processedData.rate || ''}
+						</h2>
+					</div>
 				</div>
 
-				<div>
-					<h2 class="text-[24px] font-medium text-[#5EC654]">
-						{processedData.rate || ''}
-					</h2>
-				</div>
-			</div>
-
-			<div class="flex items-center justify-between pt-4">
-				<div>
-					<h2 class="text-[12px] font-normal">{$t('columns.bet.ammount')}</h2>
-					<h3 class="text-[16px] font-bold">{Number(processedData.amounts?.stake) || 0}</h3>
-				</div>
-				<div>
-					<h2 class="text-[12px] font-normal">{$t('columns.bet.result')}</h2>
-					<h3 class="text-[16px] font-bold text-[#5EC654]">{processedData.amounts?.win || 0}</h3>
+				<div class="flex items-center justify-between pt-4">
+					<div>
+						<h2 class="text-[12px] font-normal">{$t('columns.bet.ammount')}</h2>
+						<h3 class="text-[16px] font-bold">{Number(processedData.amounts?.stake) || 0}</h3>
+					</div>
+					<div>
+						<h2 class="text-[12px] font-normal">{$t('columns.bet.result')}</h2>
+						<h3 class="text-[16px] font-bold text-[#5EC654]">{processedData.amounts?.win || 0}</h3>
+					</div>
 				</div>
 			</div>
+			<MobileDrawer data="{processedData}" />
 		</div>
-		<MobileDrawer data="{processedData}" />
-	</div>
+	{/if}
 {/if}
 
 <!-- Не удалять, для агрегации по аккаунтам -->

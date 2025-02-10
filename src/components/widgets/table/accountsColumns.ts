@@ -1,12 +1,12 @@
-import { renderComponent } from '$src/components/ui/data-table';
-import { formatDate } from '$src/utils/functions/formatDate';
+import { renderComponent } from '$src/components/ui/data-table'
+import { formatDate } from '$src/utils/functions/formatDate'
 
-import SortableHeader from './SortableHeader.svelte';
+import SortableHeader from './SortableHeader.svelte'
 
-import type { IAccountResponse } from '$src/types/accounts';
-import type { ColumnDef } from '@tanstack/table-core';
+import type { IAccountResponse } from '$src/types/accounts'
+import type { ColumnDef } from '@tanstack/table-core'
 
-export type { IAccountResponse };
+export type { IAccountResponse }
 
 export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 	{
@@ -68,13 +68,14 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 		cell: ({ row }) => `${row.original.balance} ${row.original.currency}`
 	},
 	{
-		accessorKey: 'lastBet',
+		accessorKey: 'betAddedLastDate',
 		header: ({ column }) =>
 			renderComponent(SortableHeader, {
 				title: 'accounts.lastBet',
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
-			})
+			}),
+		cell: ({ row }) => formatDate(row.original.betAddedLastDate)
 	},
 	{
 		accessorKey: 'betsCount',

@@ -19,7 +19,8 @@ import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 import TableError from '$components/ui/tableError/TableError.svelte';
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 
-import { getColumns, type Bet } from './columns';
+import type { Bet } from '$src/types/bet';
+import { getColumns } from './columns';
 import TableRow from './TableRow.svelte';
 
 let innerWidth = $state(0);

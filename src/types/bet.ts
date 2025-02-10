@@ -112,3 +112,71 @@ export interface IBetResponse {
 	};
 	rule_id: string;
 }
+
+export interface LocalizedString {
+	default: string;
+	ru: string;
+	en: string;
+	es: string;
+	pt: string;
+	de: string;
+	fr: string;
+	it: string;
+}
+
+export interface BetEvent {
+	id: string;
+	sport: string;
+	competitionName: LocalizedString;
+	name1: LocalizedString;
+	name2: LocalizedString;
+	startTime: string;
+}
+
+export interface BetLeg {
+	rate: number;
+	outcome: LocalizedString;
+	status: string;
+	type: string;
+	event: BetEvent;
+	dates: {
+		placed: string;
+		settled: string;
+	};
+	meta: {
+		ordinal: number;
+	};
+	isLive: boolean;
+}
+
+export interface Bet {
+	siteName: string;
+	accountClientSeq?: number;
+	clientSeq: string;
+	rate: number;
+	status: string;
+	type?: 'Express' | string;
+	amounts: {
+		stake: number | string;
+		win: number | string;
+	};
+	event: Partial<BetEvent>;
+	dates: {
+		placed: string;
+		settled?: string;
+	};
+	meta: {
+		ordinal: number;
+	};
+	outcome: {
+		default: string;
+		ru: string;
+		en: string;
+		es: string;
+		pt: string;
+		de: string;
+		fr: string;
+		it: string;
+	};
+	legs?: BetLeg[];
+}

@@ -1,8 +1,9 @@
 <script lang="ts">
 import * as Table from '$components/ui/table';
+import type { Bet } from '$src/types/bet';
 
 import type { SvelteComponentTyped } from 'svelte';
-import type { Bet } from './columns';
+
 
 type RowProps = Record<string, any>;
 type TableRowType = new (...args: any) => SvelteComponentTyped<RowProps>;
