@@ -1,4 +1,4 @@
-import { derived, writable } from 'svelte/store';
+import { derived, writable } from 'svelte/store'
 
 export const isModalOpen = writable(false);
 
@@ -18,6 +18,7 @@ export const modalComponent = writable<
 	| 'PaySupport'
 	| 'PlanExpiredModal'
 	| 'DemoModal'
+	| 'ExpressBetModal'
 	| null
 >(null);
 export type currentTariffsType = 'Lite' | 'Standart' | 'Pro' | '';
@@ -25,9 +26,9 @@ export const currentTariffs = writable<currentTariffsType>('');
 export const currentLimits = writable('');
 export const currentAccounst = writable('');
 
-import { removeAccessToken } from '$src/services/auth/auth-token.service';
+import { removeAccessToken } from '$src/services/auth/auth-token.service'
 
-import type { IAuthResponse } from '$src/types/types';
+import type { IAuthResponse } from '$src/types/types'
 
 // export const isModalOpen = writable(getAccessToken() ? false : true);
 
@@ -67,6 +68,7 @@ export const openModal = (
 		| 'PlanExpiredModal'
 		| 'PaySupport'
 		| 'DemoModal'
+		| 'ExpressBetModal'
 ) => {
 	isModalOpen.set(true);
 	modalComponent.set(component);

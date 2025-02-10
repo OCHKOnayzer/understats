@@ -11,14 +11,15 @@ import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
 import { useUserProfile } from '$src/services/auth/useProfile';
 import { betsTableStore } from '$src/stores/betsTableStore';
 import { isDemoEnabled } from '$src/stores/demo';
+import { expressBetLegs } from '$src/stores/expressBetStore';
 import { filterStore } from '$src/stores/filterStore';
-import { currentUser } from '$src/stores/modalStore';
+import { currentUser, openModal } from '$src/stores/modalStore';
 import { generateBetKey } from '$src/utils/functions/generateBetKey';
 import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
-
 import { columns, type Bet } from './columns';
+import TableRow from './TableRow.svelte';
 
 let innerWidth = $state(0);
 let isMobile = $derived(innerWidth < 740);
@@ -27,6 +28,16 @@ let isAuthenticated = $derived(!!$currentUser);
 let prevPage = $state($filterStore.pagination.currentPage);
 let prevItemsPerPage = $state($filterStore.pagination.itemsPerPage);
 let isLoadingMore = $state(false);
+
+// Переменные для экспресс ставок
+let currentExpressLegs: any[] = [];
+
+function handleExpressClick(bet: Bet) {
+	if (bet.type === 'Express' && bet.legs) {
+		expressBetLegs.set(bet.legs);
+		openModal('ExpressBetModal');
+	}
+}
 
 type BetColumnMeta = {
 	textAlign?: 'left' | 'right';
@@ -223,7 +234,9 @@ $effect(() => {
 					</Table.Header>
 					<Table.Body>
 						{#each table.getRowModel().rows as row, index (generateBetKey(row.original, index))}
-							<Table.Row data-state="{row.getIsSelected() && 'selected'}">
+							<TableRow
+								row="{row}"
+								onExpressClick="{handleExpressClick}">
 								{#each row.getVisibleCells() as cell (cell.id)}
 									<Table.Cell style="text-align: {cell.column.columnDef.meta?.textAlign || 'left'}">
 										<FlexRender
@@ -231,7 +244,7 @@ $effect(() => {
 											context="{cell.getContext() as CellContextType}" />
 									</Table.Cell>
 								{/each}
-							</Table.Row>
+							</TableRow>
 						{/each}
 					</Table.Body>
 				</Table.Root>

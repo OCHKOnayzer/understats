@@ -1,37 +1,61 @@
 import type { ColumnDef } from '@tanstack/table-core'
 
-export interface Bet {
-	
-	siteName: string;
-	userId: string;
-	accountId: string;
-	clientSeq: string;
+interface LocalizedString {
+	default: string;
+	ru: string;
+	en: string;
+	es: string;
+	pt: string;
+	de: string;
+	fr: string;
+	it: string;
+}
+
+interface BetEvent {
+	id: string;
+	sport: string;
+	competitionName: LocalizedString;
+	name1: LocalizedString;
+	name2: LocalizedString;
+	startTime: string;
+}
+
+export interface BetLeg {
 	rate: number;
-	outcome: string;
+	outcome: LocalizedString;
 	status: string;
-	amounts: {
-		stake: string;
-		win: string;
-	};
-	event: {
-		id: string;
-		competitionName: string;
-		name1: string;
-		name2: string;
-		sport: string;
-		startTime: string;
-	};
+	type: string;
+	event: BetEvent;
 	dates: {
-		places: Date | string;
+		placed: string;
+		settled: string;
 	};
 	meta: {
 		ordinal: number;
 	};
-	betId: string;
-	sport: string;
-	amount: number;
-	coefficient: number;
-	result: string;
+	isLive: boolean;
+}
+
+export interface Bet {
+	siteName: string;
+	accountClientSeq?: number;
+	clientSeq: string;
+	rate: number;
+	status: string;
+	type?: 'Express' | string;
+	amounts: {
+		stake: number | string;
+		win: number | string;
+	};
+	event: Partial<BetEvent>;
+	dates: {
+		placed: string;
+		settled?: string;
+	};
+	meta: {
+		ordinal: number;
+	};
+	legs?: BetLeg[];
 }
 
 type BetColumnMeta = {
@@ -49,7 +73,7 @@ export const columns: ColumnDef<Bet>[] = [
 		meta: { textAlign: 'left' } as BetColumnMeta,
 		cell: ({ row }) => {
 			try {
-				const date = new Date();
+				const date = new Date(row.original.dates.placed);
 				return date.toLocaleString('ru-RU');
 			} catch (e) {
 				console.error('Error formatting date:', e);
@@ -70,8 +94,12 @@ export const columns: ColumnDef<Bet>[] = [
 		accessorKey: 'event',
 		header: 'columns.bet.event',
 		cell: ({ row }) => {
-			const event = row.original.event;
-			return `${event.name1} - ${event.name2}`;
+			const bet = row.original;
+			if (bet.type === 'Express') {
+				return `${bet.legs?.length || 0} событий`;
+			}
+			const event = bet.event;
+			return event.name1 && event.name2 ? `${event.name1} - ${event.name2}` : 'Нет данных';
 		}
 	},
 	{
