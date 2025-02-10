@@ -5,6 +5,7 @@ import { t } from 'svelte-i18n';
 
 import { createSvelteTable, FlexRender } from '$components/ui/data-table';
 import * as Table from '$components/ui/table';
+import TableError from '$components/ui/tableError/TableError.svelte';
 import { fetchFilteredData } from '$src/components/entities/stats/api/bets';
 import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
 import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
@@ -15,7 +16,6 @@ import { filterStore } from '$src/stores/filterStore';
 import { currentUser, openModal } from '$src/stores/modalStore';
 import { generateBetKey } from '$src/utils/functions/generateBetKey';
 import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
-import TableError from '$components/ui/tableError/TableError.svelte';
 
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 
@@ -71,7 +71,7 @@ async function loadData() {
 		});
 
 		if (!response) {
-			throw new Error('Нет данных');
+			throw new Error($t('other.no_data'));
 		}
 
 		betsTableStore.setTotalItems(response.pagination.total);
