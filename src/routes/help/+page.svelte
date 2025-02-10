@@ -4,7 +4,6 @@ import { t } from 'svelte-i18n';
 import FaqConteiner from '$src/components/ui/faqMenu/faqConteiner.svelte';
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
 
-// Установка заголовка страницы
 selectHeaderTitle('faq.faq');
 </script>
 
@@ -25,7 +24,7 @@ selectHeaderTitle('faq.faq');
 .mainContent {
 	display: flex;
 	flex-direction: column;
-	height: 89vh;
+	height: calc(89vh - 6px);
 	overflow: hidden;
 }
 
@@ -36,19 +35,23 @@ selectHeaderTitle('faq.faq');
 
 @media screen and (min-height: 1200px) {
 	.mainContent {
-		height: 89vh;
+		height: calc(89vh - 12px);
 	}
 }
-
+@media screen and (min-height: 1300px) {
+	.mainContent {
+		height: calc(92vh - 10px);
+	}
+}
 @media screen and (min-height: 1400px) {
 	.mainContent {
-		height: 95vh;
+		height: calc(92vh - 8px);
 	}
 }
 
 @media screen and (max-width: 768px) {
 	.mainContent {
-		height: 100%;
+		height: calc(100% - 12px);
 	}
 }
 </style>

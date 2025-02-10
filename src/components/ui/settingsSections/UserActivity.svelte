@@ -36,7 +36,7 @@ onMount(() => {
 							<span>{$t('tariffs.limits_bets')}</span>
 						</div>
 					{/if}
-					<div class="{$isMobile ? 'ellipsis' : 'mobile_desc'}">
+					<div class="ellipsis">
 						{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}
 					</div>
 					{#if $isMobile}
