@@ -5,15 +5,17 @@
 	import { t } from 'svelte-i18n';
 	import PaginationSelect from './PaginationSelect.svelte';
 
-	// Вычисляем totalPages на основе totalItems из store
-	$: totalPages = Math.ceil($betsTableStore.totalItems / $filterStore.pagination.itemsPerPage) || 1;
-	
-	// Вычисляем номера страниц
-	$: pageNumbers = generatePageNumbers($filterStore.pagination.currentPage, totalPages);
-	
-	// Проверяем возможность навигации
-	$: canGoNext = $filterStore.pagination.currentPage < totalPages;
-	$: canGoPrev = $filterStore.pagination.currentPage > 1;
+	let totalPages = $state(1);
+	let pageNumbers = $state([]);
+	let canGoNext = $state(false);
+	let canGoPrev = $state(false);
+
+	$effect(() => {
+		totalPages = Math.ceil($betsTableStore.totalItems / $filterStore.pagination.itemsPerPage) || 1;
+		pageNumbers = generatePageNumbers($filterStore.pagination.currentPage, totalPages);
+		canGoNext = $filterStore.pagination.currentPage < totalPages;
+		canGoPrev = $filterStore.pagination.currentPage > 1;
+	});
 
 	function handlePageChange(page: number) {
 		filterStore.setPage(page);
