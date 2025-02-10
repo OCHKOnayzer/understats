@@ -3,14 +3,14 @@ import { t } from 'svelte-i18n';
 import { onMount } from 'svelte';
 
 import { currentUserActiveTariff } from '$src/stores/tariffsStore';
-import { isMobile,initializeScreenWidthListener } from '$src/stores/isMobile';
+import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 
 import Test from '../test.svelte';
 import Spinner from '../spinner/Spinner.svelte';
 
-onMount(()=>{ 
-	initializeScreenWidthListener()
-})
+onMount(() => {
+	initializeScreenWidthListener();
+});
 </script>
 
 {#if $currentUserActiveTariff}
@@ -18,48 +18,45 @@ onMount(()=>{
 		<div class="tariff">
 			<div class="tariff_info_container">
 				<div class="info_wrapper">
-					
 					{#if $isMobile}
-					<div class="tariff_title_mobile">
-						{$currentUserActiveTariff.tariffName}
-					</div>
+						<div class="tariff_title_mobile">
+							{$currentUserActiveTariff.tariffName}
+						</div>
 					{:else}
-					<span class="ellipsis">
-						{$currentUserActiveTariff.tariffName}&nbsp;{$t('other.tariff')}
-						({$currentUserActiveTariff?.pricePerMonth}&nbsp;/&nbsp;{$t('other.in_month')})
-					</span>
+						<span class="ellipsis">
+							{$currentUserActiveTariff.tariffName}&nbsp;{$t('other.tariff')}
+							({$currentUserActiveTariff?.pricePerMonth}&nbsp;/&nbsp;{$t('other.in_month')})
+						</span>
 					{/if}
 					{#if !$isMobile}
-					<div class="limits">
-						{$currentUserActiveTariff.accounts}&nbsp;
-						<span>{$t('other.acc')}</span>&nbsp;/&nbsp;
-						{$currentUserActiveTariff.betsPerMonth}&nbsp;
-						<span>{$t('tariffs.limits_bets')}</span>
-					</div>
+						<div class="limits">
+							{$currentUserActiveTariff.accounts}&nbsp;
+							<span>{$t('other.acc')}</span>&nbsp;/&nbsp;
+							{$currentUserActiveTariff.betsPerMonth}&nbsp;
+							<span>{$t('tariffs.limits_bets')}</span>
+						</div>
 					{/if}
-					<div class={$isMobile? 'ellipsis' : 'mobile_desc'}>
+					<div class="{$isMobile ? 'ellipsis' : 'mobile_desc'}">
 						{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}
 					</div>
 					{#if $isMobile}
-					<span class="tariff_end">
-						10.10.2025
-					</span>
+						<span class="tariff_end"> 10.10.2025 </span>
 					{/if}
 					{#if $isMobile}
-					<div class="mobile_tariff_item">
-						{$currentUserActiveTariff.accounts}&nbsp;
-						<span>{$t('tariffs.limits_acc')}</span>
-						{$currentUserActiveTariff.betsPerMonth}
-						<span>{$t('tariffs.limits_bets')}</span>
-					</div>
+						<div class="mobile_tariff_item">
+							{$currentUserActiveTariff.accounts}&nbsp;
+							<span>{$t('tariffs.limits_acc')}</span>
+							{$currentUserActiveTariff.betsPerMonth}
+							<span>{$t('tariffs.limits_bets')}</span>
+						</div>
 					{/if}
 				</div>
 				{#if !$isMobile}
-				<div>
-					<img
-						src="assets/tariffs/sub.svg"
-						alt="" />
-				</div>
+					<div>
+						<img
+							src="assets/tariffs/sub.svg"
+							alt="" />
+					</div>
 				{/if}
 			</div>
 		</div>
@@ -173,14 +170,14 @@ onMount(()=>{
 	border-radius: 50%;
 	animation: spin 1s linear infinite;
 }
-.tariff_title_mobile{ 
+.tariff_title_mobile {
 	width: 100%;
 	text-align: center;
 	font-size: 24px;
 	font-weight: 600;
 }
-.mobile_tariff_item{ 
-	background-color: #363A45;
+.mobile_tariff_item {
+	background-color: #363a45;
 	border-radius: 8px;
 	text-align: center;
 	width: 100%;
@@ -188,8 +185,8 @@ onMount(()=>{
 	padding-bottom: 8px;
 	margin-top: 8px;
 }
-.tariff_end{ 
-	color: #01D2F9;
+.tariff_end {
+	color: #01d2f9;
 }
 @keyframes spin {
 	0% {
@@ -201,20 +198,20 @@ onMount(()=>{
 }
 
 @media screen and (max-width: 800px) {
-	.layout{ 
+	.layout {
 		flex-direction: column;
 	}
-	.tariff{
+	.tariff {
 		width: 100%;
 		border-radius: 24px;
 	}
-	.tariff_info_container{ 
+	.tariff_info_container {
 		justify-content: center;
 	}
-	.mobile_desc{ 
+	.mobile_desc {
 		font-size: 14px;
 	}
-	.info_wrapper{ 
+	.info_wrapper {
 		flex-direction: column;
 		align-items: center;
 	}
@@ -223,7 +220,7 @@ onMount(()=>{
 		display: flex;
 		gap: var(--elements-padding);
 		overflow-x: auto;
-		white-space: nowrap; 
+		white-space: nowrap;
 		scroll-snap-type: x mandatory;
 		-webkit-overflow-scrolling: touch;
 		padding-bottom: 10px;
@@ -237,7 +234,8 @@ onMount(()=>{
 		height: 80px;
 		border-radius: 16px;
 	}
-	.title_item,.item_desc{
+	.title_item,
+	.item_desc {
 		font-size: 14px;
 	}
 }
