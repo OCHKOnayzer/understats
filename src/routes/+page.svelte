@@ -15,7 +15,7 @@ let isAuthenticated = $derived(!!$currentUser);
 
 let shouldShowPagination = $derived(isAuthenticated && !$betsTableStore.isLoading && $betsTableStore.data.length > 0);
 let innerWidth = $state(0);
-let isMobile = $derived(() => innerWidth < 740);
+let isMobile = $derived(innerWidth < 740);
 </script>
 
 <svelte:head>
@@ -32,7 +32,7 @@ let isMobile = $derived(() => innerWidth < 740);
 		<StatsMenu />
 		<BetsTable />
 	</div>
-	{#if shouldShowPagination || !isMobile}
+	{#if shouldShowPagination && !isMobile}
 		<Pagination />
 	{/if}
 </div>
