@@ -1,96 +1,79 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
-
-import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
+import { isDemoEnabled } from '$src/stores/demo';
 import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
+import { t } from 'svelte-i18n';
 </script>
 
-<div
-	class="switch-wrapper"
-	style="background-color: {$isDemoEnabled ? '#100e47' : '#363A45'}"
-	on:click="{handleDemoToggle}">
-	<label class="switch">
-		<input
-			type="checkbox"
-			checked="{$isDemoEnabled}"
-			on:change="{toggleDemoMode}" />
-		<span class="slider"></span>
-	</label>
-	<div class="demo-title">
-		{$t('other.demo')}
+<button
+	class="demo-switch"
+	class:active="{$isDemoEnabled}"
+	on:click="{handleDemoToggle}"
+	type="button"
+	aria-pressed="{$isDemoEnabled}">
+	<div class="switch">
+		<div class="thumb"></div>
 	</div>
-</div>
+	<span class="label">{$t('other.demo')}</span>
+</button>
 
 <style>
-.switch-wrapper {
-	min-width: 170px;
-	width: fit-content;
+.demo-switch {
+	all: unset;
 	display: flex;
-	justify-content: center;
 	align-items: center;
-	transition: background-color 0.4s ease;
-	height: 100%;
-	border-radius: inherit;
+	gap: 10px;
+	padding: 14px 16px;
+	border-radius: 12px;
+	background-color: #363a45;
 	cursor: pointer;
+	
+	transition: background-color 0.3s ease;
+	min-width: 170px;
+}
+
+.demo-switch.active {
+	background-color: #100e47;
 }
 
 .switch {
 	position: relative;
-	display: inline-block;
 	width: 32px;
 	height: 20px;
-}
-
-.switch input {
-	opacity: 0;
-	width: 0;
-	height: 0;
-}
-
-.slider {
-	position: absolute;
-	cursor: pointer;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
 	background-color: #ccc;
-	transition: all 0.4s ease;
 	border-radius: 34px;
-	z-index: 3;
+	transition: background-color 0.3s ease;
 }
 
-.slider:before {
-	position: absolute;
-	content: '';
-	height: 12px;
-	width: 12px;
-	left: 2px;
-	bottom: 4px;
-	background-color: white;
-	transition: all 0.4s ease;
-	border-radius: 50%;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-input:checked + .slider {
+.active .switch {
 	background-color: var(--accent-color);
 }
 
-input:checked + .slider:before {
+.thumb {
+	position: absolute;
+	left: 2px;
+	top: 4px;
+	width: 12px;
+	height: 12px;
+	background-color: white;
+	border-radius: 50%;
+	transition: transform 0.3s ease;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.active .thumb {
 	transform: translateX(16px);
 }
 
-.demo-title {
+.label {
 	color: white;
-	margin-left: 10px;
+	font-size: 14px;
 }
 
 @media screen and (max-width: 800px) {
-	.switch-wrapper {
+	.demo-switch {
 		width: 100%;
 		height: 48px;
-		border-radius: 12px;
+		justify-content: center;
 	}
 }
 </style>

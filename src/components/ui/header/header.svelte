@@ -91,9 +91,7 @@ function closeStateFunction() {
 
 			<div class="buttonConteiner">
 				{#if isTumbler.includes($page.url.pathname)}
-					<div class="btnWrapper check">
-						<CheckBox />
-					</div>
+					<CheckBox />
 				{/if}
 				<div class="btnWrapper lang {$modalComponent === 'LangModal' ? 'active' : ''}">
 					<LangButton openCurrentModal="{openCurrentModal}" />
