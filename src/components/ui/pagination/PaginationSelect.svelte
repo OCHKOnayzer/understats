@@ -4,8 +4,8 @@
   import { ITEMS_PER_PAGE_OPTIONS } from '$src/utils/constants/constants';
 
   function handleValueChange(value: string) {
-    filterStore.setItemsPerPage(parseInt(value));
-    filterStore.setPage(1);
+  	filterStore.setItemsPerPage(parseInt(value));
+  	filterStore.setPage(1);
   }
 
   let currentValue = $state(String($filterStore.pagination.itemsPerPage));

@@ -1,10 +1,12 @@
 <script lang="ts">
+import { getCoreRowModel } from '@tanstack/table-core';
+import { t } from 'svelte-i18n';
+
 import { createSvelteTable, FlexRender } from '$components/ui/data-table';
 import * as Table from '$components/ui/table';
 import { closeModal } from '$src/stores/modalStore';
+
 import type { ColumnDef } from '@tanstack/table-core';
-import { getCoreRowModel } from '@tanstack/table-core';
-import { t } from 'svelte-i18n';
 import type { BetLeg } from './BetsTable/columns';
 
 const { legs = [] } = $props<{ legs: BetLeg[] }>();

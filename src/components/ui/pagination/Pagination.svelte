@@ -1,8 +1,10 @@
 <script lang="ts">
+	import { t } from 'svelte-i18n';
+
 	import { betsTableStore } from '$src/stores/betsTableStore';
 	import { filterStore } from '$src/stores/filterStore';
 	import { generatePageNumbers } from '$src/utils/functions/generatePageNumbers';
-	import { t } from 'svelte-i18n';
+
 	import PaginationSelect from './PaginationSelect.svelte';
 
 	let totalPages = $state(1);

@@ -1,5 +1,6 @@
 <script lang="ts">
 import * as Table from '$components/ui/table';
+
 import type { SvelteComponentTyped } from 'svelte';
 import type { Bet } from './columns';
 

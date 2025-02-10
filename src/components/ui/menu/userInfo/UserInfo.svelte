@@ -1,7 +1,6 @@
 <script lang="ts">
-import { onMount } from 'svelte';
+import { onMount, derived } from 'svelte';
 import { t } from 'svelte-i18n';
-import { derived } from 'svelte/store';
 
 import { useUserProfile } from '$src/services/auth/useProfile';
 import { accountStore } from '$src/stores/accountStore';

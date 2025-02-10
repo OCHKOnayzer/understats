@@ -1,10 +1,10 @@
 <script lang="ts">
-import { isDemoEnabled } from '$src/stores/demo';
-import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 import { getCoreRowModel, getSortedRowModel, type CellContext, type SortingState } from '@tanstack/table-core';
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
+import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
+import { isDemoEnabled } from '$src/stores/demo';
 import Spinner from '$components/ui/spinner/Spinner.svelte';
 import * as Table from '$components/ui/table';
 import { createSvelteTable, FlexRender } from '$src/components/ui/data-table';

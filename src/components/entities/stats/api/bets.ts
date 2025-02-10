@@ -1,7 +1,7 @@
-import { axiosWithAuth } from '$src/api/api.interceptors'
+import { axiosWithAuth } from '$src/api/api.interceptors';
 
-import type { Bet } from '$src/components/widgets/stats/BetsTable/columns'
-import type { FilterState } from '$src/stores/filterStore'
+import type { Bet } from '$src/components/widgets/stats/BetsTable/columns';
+import type { FilterState } from '$src/stores/filterStore';
 
 interface ApiResponse {
 	pagination: {

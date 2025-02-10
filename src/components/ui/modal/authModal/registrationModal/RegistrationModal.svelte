@@ -10,11 +10,11 @@ import CancelButton from '$src/components/ui/button/userAprove/CancelButton.svel
 import UserAprove from '$src/components/ui/button/userAprove/UserAprove.svelte';
 import { useAuth } from '$src/services/auth/useAuth';
 import { confirmPassword, switchLogin } from '$src/stores/modalStore';
+import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 
 import FormTitle from '../FormTitle.svelte';
 import InputWrapper from '../Input/InputWrapper.svelte';
 import SocialContainer from '../social/SocialContainer.svelte';
-import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 
 const { form, mutation } = useAuth(true);
 

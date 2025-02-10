@@ -3,12 +3,11 @@ import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
 import { afterUrl } from '$src/stores/HeaderStores';
-import { isDemoEnabled } from '$src/stores/demo';
+import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
 import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
 import { currentModal, openModal } from '$src/stores/modalStore';
 
 import { goto } from '$app/navigation';
-import { toggleDemoMode } from '$src/stores/demo';
 
 onMount(() => {
 	initializeScreenWidthListener();

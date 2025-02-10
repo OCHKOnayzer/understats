@@ -1,6 +1,8 @@
 <script lang="ts">
-import { closeModal, openModal } from '$src/stores/modalStore';
 import { t } from 'svelte-i18n';
+
+import { closeModal, openModal } from '$src/stores/modalStore';
+
 import Button from '../../button/button.svelte';
 
 const handleAuth = () => {
@@ -10,7 +12,7 @@ const handleAuth = () => {
 </script>
 
 <div class="flex h-screen items-center justify-center text-white">
-	<div class="w-[100vw] sm:w-[75vw] lg:w-[45vw] rounded-[36px] bg-input p-[32px]">
+	<div class="w-[100vw] rounded-[36px] bg-input p-[32px] sm:w-[75vw] lg:w-[45vw]">
 		<div class="text-center">
 			<div class="mb-[24px]">
 				<h2 class="mb-[4px] text-2xl font-bold">{$t('demo_modal.title')}</h2>

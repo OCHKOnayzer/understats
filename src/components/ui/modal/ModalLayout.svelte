@@ -1,9 +1,11 @@
 <script lang="ts">
-import { expressBetLegs } from '$src/stores/expressBetStore';
-import { isModalOpen, modalComponent } from '$src/stores/modalStore';
 import { onDestroy } from 'svelte';
 
+import { expressBetLegs } from '$src/stores/expressBetStore';
+import { isModalOpen, modalComponent } from '$src/stores/modalStore';
+
 import ExpressBetModal from '../../widgets/stats/ExpressBetModal.svelte';
+
 import authModal from './authModal/authModal.svelte';
 import ChatModal from './chatModal/ChatModal.svelte';
 import DemoModal from './demoModal/DemoModal.svelte';

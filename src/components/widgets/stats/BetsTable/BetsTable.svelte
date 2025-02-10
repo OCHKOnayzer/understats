@@ -18,6 +18,7 @@ import { generateBetKey } from '$src/utils/functions/generateBetKey';
 import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
+
 import { columns, type Bet } from './columns';
 import TableRow from './TableRow.svelte';
 

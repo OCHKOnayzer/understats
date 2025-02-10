@@ -1,4 +1,4 @@
-import type { ColumnDef } from '@tanstack/table-core'
+import type { ColumnDef } from '@tanstack/table-core';
 
 interface LocalizedString {
 	default: string;
