@@ -17,7 +17,7 @@ onMount(() => {
 const { query } = useUserProfile();
 const isAuthenticated = derived([currentUser, isDemoEnabled], ([$currentUser, $isDemoEnabled]) => !!$currentUser || $isDemoEnabled);
 const displayName = derived([accountStore, isDemoEnabled], ([$accountStore, $isDemoEnabled]) =>
-	$accountStore?.login ? $accountStore.login : $isDemoEnabled ? 'Демо аккаунт' : ''
+	$accountStore?.login ? $accountStore.login : $isDemoEnabled ? $t('other.demo_account') : ''
 );
 
 const leave = () => {
