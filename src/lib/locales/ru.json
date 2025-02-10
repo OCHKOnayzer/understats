@@ -476,5 +476,19 @@
 		"bet.win": "Выигрыш",
 		"bet.status": "Статус",
 		"bet.result": "Итого"
+	},
+	"express_bet_modal": {
+		"title": "Экспресс ставка",
+		"date": "Дата",
+		"event": "Событие",
+		"tournament": "Турнир",
+		"coefficient": "Коэффициент",
+		"outcome": "Исход",
+		"status": "Статус",
+		"total_coefficient": "Итоговый коэффициент",
+		"status_label": "Статус",
+		"status_won": "Выиграла",
+		"status_lost": "Проиграла",
+		"no_data": "Нет данных"
 	}
 }

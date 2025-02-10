@@ -4,12 +4,11 @@ import * as Table from '$components/ui/table';
 import { closeModal } from '$src/stores/modalStore';
 import type { ColumnDef } from '@tanstack/table-core';
 import { getCoreRowModel } from '@tanstack/table-core';
+import { t } from 'svelte-i18n';
 import type { BetLeg } from './BetsTable/columns';
 
-// Определяем props с использованием $props
 const { legs = [] } = $props<{ legs: BetLeg[] }>();
 
-// Вычисляемые значения
 let totalCoefficient = $derived(legs.reduce((acc, leg) => acc * leg.rate, 1).toFixed(2));
 let allLegsWon = $derived(legs.every((leg) => leg.status === 'Win'));
 
@@ -18,51 +17,50 @@ function formatDate(dateString: string): string {
 		return new Date(dateString).toLocaleString('ru-RU');
 	} catch (e) {
 		console.error('Error formatting date:', e);
-		return 'Invalid date';
+		return $t('express_bet_modal.no_data');
 	}
 }
 
 function getLocalizedValue(value: { ru?: string; default: string }): string {
-	return value?.ru || value?.default || 'Нет данных';
+	return value?.ru || value?.default || $t('express_bet_modal.no_data');
 }
 
-// Определение колонок
 const columns: ColumnDef<BetLeg>[] = [
 	{
 		accessorKey: 'dates.placed',
-		header: 'Дата',
+		header: $t('express_bet_modal.date'),
 		cell: ({ row }) => formatDate(row.original.dates.placed)
 	},
 	{
 		accessorKey: 'event',
-		header: 'Событие',
+		header: $t('express_bet_modal.event'),
 		cell: ({ row }) => {
 			const event = row.original.event;
-			if (!event) return 'Нет данных';
+			if (!event) return $t('express_bet_modal.no_data');
 			return `${getLocalizedValue(event.name1)} - ${getLocalizedValue(event.name2)}`;
 		}
 	},
 	{
 		accessorKey: 'event.competitionName',
-		header: 'Турнир',
+		header: $t('express_bet_modal.tournament'),
 		cell: ({ row }) => getLocalizedValue(row.original.event?.competitionName)
 	},
 	{
 		accessorKey: 'rate',
-		header: 'Коэффициент',
+		header: $t('express_bet_modal.coefficient'),
 		cell: ({ row }) => row.original.rate.toFixed(2)
 	},
 	{
 		accessorKey: 'outcome',
-		header: 'Исход',
+		header: $t('express_bet_modal.outcome'),
 		cell: ({ row }) => getLocalizedValue(row.original.outcome)
 	},
 	{
 		accessorKey: 'status',
-		header: 'Статус',
+		header: $t('express_bet_modal.status'),
 		cell: ({ row }) => {
 			const status = row.original.status;
-			return status === 'Win' ? 'Выиграла' : status === 'Lost' ? 'Проиграла' : status;
+			return status === 'Win' ? $t('express_bet_modal.status_won') : status === 'Lost' ? $t('express_bet_modal.status_lost') : status;
 		}
 	}
 ];
@@ -84,7 +82,7 @@ $effect(() => {
 	<button
 		class="close-button"
 		on:click="{closeModal}">×</button>
-	<h2 class="modal-title">Экспресс ставка</h2>
+	<h2 class="modal-title">{$t('express_bet_modal.title')}</h2>
 	<div class="table-container">
 		<Table.Root>
 			<Table.Header>
@@ -119,14 +117,14 @@ $effect(() => {
 	</div>
 	<div class="summary">
 		<div class="summary-item">
-			<span class="label">Итоговый коэффициент:</span>
+			<span class="label">{$t('express_bet_modal.total_coefficient')}:</span>
 			<span class="value">{totalCoefficient}</span>
 		</div>
 		<div class="summary-item">
-			<span class="label">Статус:</span>
+			<span class="label">{$t('express_bet_modal.status_label')}:</span>
 			<span
 				class="value"
-				class:won="{allLegsWon}">{allLegsWon ? 'Выиграла' : 'Проиграла'}</span>
+				class:won="{allLegsWon}">{allLegsWon ? $t('express_bet_modal.status_won') : $t('express_bet_modal.status_lost')}</span>
 		</div>
 	</div>
 </div>
@@ -178,7 +176,6 @@ $effect(() => {
 	background: #31384a;
 	padding: 0.75rem;
 	text-align: left;
-	font-weight: 500;
 	white-space: nowrap;
 }
 
