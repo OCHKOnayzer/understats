@@ -42,9 +42,11 @@ async function applyFilters() {
 		betsTableStore.setLoading(true);
 		await tick();
 
-		const data = await fetchFilteredData($filterStore);
+		const response = await fetchFilteredData($filterStore);
 
-		betsTableStore.setData(data);
+		betsTableStore.setTotalItems(response.pagination.total);
+		betsTableStore.setData(response.res);
+		betsTableStore.setHasMore(response.res.length >= response.pagination.perPage);
 		$isOpen = false;
 	} catch (error) {
 		console.error('Failed to apply filters:', error);
