@@ -76,46 +76,91 @@ $effect(() => {
 });
 </script>
 
-<div class="modal-content">
-	<button
-		class="close-button"
-		on:click="{closeModal}">×</button>
-	<h2 class="modal-title">{$t('express_bet_modal.title')}</h2>
-	<div class="table-container">
-		<Table.Root>
-			<Table.Header>
-				{#each table.getHeaderGroups() as headerGroup}
-					<Table.Row>
-						{#each headerGroup.headers as header}
-							<Table.Head>
-								{#if !header.isPlaceholder}
+<div
+	class="modal-overlay"
+	on:click="{closeModal}"
+	on:keydown="{(e) => e.key === 'Escape' && closeModal()}"
+	role="button"
+	tabindex="0">
+	<div
+		class="modal-content"
+		on:click|stopPropagation
+		role="presentation">
+		<button
+			class="close-button"
+			on:click="{closeModal}">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round">
+				<line
+					x1="18"
+					y1="6"
+					x2="6"
+					y2="18"></line>
+				<line
+					x1="6"
+					y1="6"
+					x2="18"
+					y2="18"></line>
+			</svg>
+		</button>
+		<h2 class="modal-title">{$t('express_bet_modal.title')}</h2>
+		<div class="table-container">
+			<Table.Root>
+				<Table.Header>
+					{#each table.getHeaderGroups() as headerGroup}
+						<Table.Row>
+							{#each headerGroup.headers as header}
+								<Table.Head>
+									{#if !header.isPlaceholder}
+										<FlexRender
+											content="{header.column.columnDef.header}"
+											context="{header.getContext()}" />
+									{/if}
+								</Table.Head>
+							{/each}
+						</Table.Row>
+					{/each}
+				</Table.Header>
+				<Table.Body>
+					{#each table.getRowModel().rows as row}
+						<Table.Row>
+							{#each row.getVisibleCells() as cell}
+								<Table.Cell>
 									<FlexRender
-										content="{header.column.columnDef.header}"
-										context="{header.getContext()}" />
-								{/if}
-							</Table.Head>
-						{/each}
-					</Table.Row>
-				{/each}
-			</Table.Header>
-			<Table.Body>
-				{#each table.getRowModel().rows as row}
-					<Table.Row>
-						{#each row.getVisibleCells() as cell}
-							<Table.Cell>
-								<FlexRender
-									content="{cell.column.columnDef.cell}"
-									context="{cell.getContext()}" />
-							</Table.Cell>
-						{/each}
-					</Table.Row>
-				{/each}
-			</Table.Body>
-		</Table.Root>
+										content="{cell.column.columnDef.cell}"
+										context="{cell.getContext()}" />
+								</Table.Cell>
+							{/each}
+						</Table.Row>
+					{/each}
+				</Table.Body>
+			</Table.Root>
+		</div>
 	</div>
 </div>
 
 <style lang="postcss">
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 50;
+}
+
 .modal-content {
 	background: #363a45;
 	padding: 2rem;
@@ -123,12 +168,9 @@ $effect(() => {
 	max-width: 90%;
 	max-height: 90vh;
 	overflow: hidden;
-	position: fixed;
+	position: relative;
 	color: white;
 	min-width: 800px;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 }
 
 .modal-title {
@@ -144,15 +186,22 @@ $effect(() => {
 
 .close-button {
 	position: absolute;
-	top: 1rem;
-	right: 1rem;
-	font-size: 1.5rem;
+	top: 1.5rem;
+	right: 1.5rem;
 	background: transparent;
 	border: none;
-	color: white;
+	color: #9ca3af;
 	cursor: pointer;
 	padding: 0.5rem;
 	line-height: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: color 0.2s;
+}
+
+.close-button:hover {
+	color: white;
 }
 
 :global(.table-container table) {
