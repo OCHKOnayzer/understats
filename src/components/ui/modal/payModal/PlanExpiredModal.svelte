@@ -1,15 +1,14 @@
 <script>
 import { t } from 'svelte-i18n';
 
-import { goto } from '$app/navigation';
-
 import { closeModal } from '$src/stores/modalStore';
 
-function goTariff() { 
-	goto('/tariffs')
-	closeModal()
-}
+import { goto } from '$app/navigation';
 
+function goTariff() {
+	goto('/tariffs');
+	closeModal();
+}
 </script>
 
 <div
@@ -38,8 +37,8 @@ function goTariff() {
 			</div>
 		</div>
 		<div class="button_container">
-			<button on:click={()=>goTariff()}>{$t('other.choose_plan')}</button>
-			<button on:click={()=>closeModal()}>{$t('other.close')}</button>
+			<button on:click="{() => goTariff()}">{$t('other.choose_plan')}</button>
+			<button on:click="{() => closeModal()}">{$t('other.close')}</button>
 		</div>
 	</div>
 </div>
@@ -83,7 +82,7 @@ function goTariff() {
 	font-weight: 700;
 	font-size: 24px;
 }
-.button_container{ 
+.button_container {
 	display: flex;
 	align-items: center;
 	width: 100%;
@@ -91,22 +90,22 @@ function goTariff() {
 	flex-direction: column;
 	gap: var(--elements-padding);
 }
-.button_container button{ 
+.button_container button {
 	height: 56px;
 	width: 90%;
 	border-radius: 12px;
 }
-.button_container button:nth-child(1){ 
+.button_container button:nth-child(1) {
 	background-color: var(--accent-color);
 }
-.button_container button:nth-child(2){
-	background-color: #0D111D;
+.button_container button:nth-child(2) {
+	background-color: #0d111d;
 }
-@media screen and (max-width: 800px){ 
-	.expired_container{ 
+@media screen and (max-width: 800px) {
+	.expired_container {
 		align-items: flex-end;
 	}
-	.expired_modal{ 
+	.expired_modal {
 		width: 100vw;
 		border-radius: 20px 20px 0 0;
 		transform: translateY(100%);
