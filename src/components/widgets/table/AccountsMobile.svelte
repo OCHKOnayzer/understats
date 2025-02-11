@@ -13,7 +13,7 @@ const card = [
 	},
 	{
 		title: $t('accounts.lastBet'),
-		value: account.lastBet
+		value: formatDate(account.betAddedLastDate)
 	},
 	{
 		title: $t('accounts.betCount'),
@@ -21,24 +21,24 @@ const card = [
 	},
 	{
 		title: $t('accounts.betSum'),
-		value: account.betSum
+		value: account.balance
 	},
 	{
 		title: $t('accounts.today'),
-		value: account.todayBet
+		value: account.betsTodayCount
 	},
 	{
 		title: $t('accounts.yesterday'),
-		value: account.yesterdayBet
+		value: account.betsYesterdayCount
 	},
 	{
 		title: $t('accounts.week'),
-		value: account.weekBet
+		value: account.betsMonthCount
 	}
 ];
 </script>
 
-<section class="rounded-[28px] bg-[#363A45] p-4 text-white">
+<section class="rounded-[28px] bg-[#363A45] p-4 text-white last:mb-[14px]">
 	<div class="flex flex-col">
 		<div class="flex gap-2 text-[12px]">
 			<h2>ID: {account.clientSeq}</h2>
@@ -69,7 +69,7 @@ const card = [
 
 <style lang="postcss">
 .card-wrapper {
-	@apply mt-[20px] grid gap-2;
+	@apply mt-[20px] grid gap-1;
 }
 
 .card {

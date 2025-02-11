@@ -1,5 +1,6 @@
 import { axiosClassic, axiosWithAuth } from '$src/api/api.interceptors';
 import { demo } from '$src/constants/constants';
+import { isDemoEnabled } from '$src/stores/demo';
 import { closeModal, currentUser } from '$src/stores/modalStore';
 
 import { removeAccessToken, removeDemoToken, setAccessToken, setDemoToken } from './auth-token.service';
@@ -7,6 +8,8 @@ import { removeAccessToken, removeDemoToken, setAccessToken, setDemoToken } from
 import type { IAuthForm, IAuthResponse } from '$src/types/types';
 
 import { goto } from '$app/navigation';
+
+let profilePromise: Promise<any> | null = null;
 
 class AuthService {
 	async main(type: 'login' | 'register', data: IAuthForm) {
@@ -19,6 +22,8 @@ class AuthService {
 
 			if (response.data.accessToken) {
 				setAccessToken(response.data.accessToken);
+				isDemoEnabled.set(false);
+				removeDemoToken();
 				closeModal();
 				goto('/');
 			}
@@ -28,30 +33,21 @@ class AuthService {
 		}
 	}
 
-	// async demoAuth() {
-	// 	try {
-	// 		const response = await axiosClassic<IAuthResponse>({
-	// 			url: `${process.env.SERVER_URL}/auth/login`,
-	// 			method: 'POST',
-	// 			data: { login: demo.login, password: demo.password }
-	// 		});
-
-	// 		if (response.data.accessToken) {
-	// 			setDemoToken(response.data.accessToken);
-	// 			closeModal();
-	// 			goto('/');
-	// 		}
-	// 		return response;
-	// 	} catch (error: any) {
-	// 		throw new Error(error);
-	// 	}
-	// }
-
-	async removeDemoToken() {
+	async demoAuth() {
 		try {
-			removeDemoToken();
-		} catch (error) {
-			removeDemoToken();
+			const response = await axiosClassic<IAuthResponse>({
+				url: `${process.env.SERVER_URL}/auth/login`,
+				method: 'POST',
+				data: { login: demo.login, password: demo.password }
+			});
+
+			if (response.data.accessToken) {
+				setDemoToken(response.data.accessToken);
+				// closeModal(); // закомментировано, чтобы DemoModal оставался открытым
+			}
+			return response;
+		} catch (error: any) {
+			throw new Error(error);
 		}
 	}
 
@@ -67,16 +63,22 @@ class AuthService {
 	}
 
 	async profile() {
-		try {
-			const response = await axiosWithAuth.get('/users/me');
-
-			if (response.data) {
-				currentUser.set(response.data);
-			}
-			return response;
-		} catch (error) {
-			return null;
-		}
+		if (profilePromise) return profilePromise;
+		profilePromise = axiosWithAuth
+			.get('/users/me')
+			.then((response) => {
+				if (response.data) {
+					currentUser.set(response.data);
+				}
+				return response;
+			})
+			.catch((error) => {
+				return null;
+			})
+			.finally(() => {
+				profilePromise = null;
+			});
+		return profilePromise;
 	}
 }
 

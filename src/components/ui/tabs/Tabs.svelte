@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 import { createEventDispatcher } from 'svelte';
 
 interface Props {
@@ -37,4 +37,4 @@ function handleTabClick(tabId: string) {
 			{/each}
 		</nav>
 	</div>
-</div>
+</div> -->

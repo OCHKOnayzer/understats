@@ -50,7 +50,7 @@ function handleKeyDown(event: KeyboardEvent) {
 
 <style>
 .accordion {
-	background-color: #20242f;
+	@apply bg-input;
 	color: white;
 	overflow: hidden;
 	margin-top: 28px;

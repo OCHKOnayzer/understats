@@ -5,25 +5,37 @@ import { t } from 'svelte-i18n';
 
 import { createSvelteTable, FlexRender } from '$components/ui/data-table';
 import * as Table from '$components/ui/table';
-import { fetchFilteredData } from '$src/components/entities/stats/api/api';
+import { fetchFilteredData } from '$src/components/entities/stats/api/bets';
 import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
 import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
-import { useUserProfile } from '$src/services/auth/useProfile';
 import { betsTableStore } from '$src/stores/betsTableStore';
+import { isDemoEnabled } from '$src/stores/demo';
+import { expressBetLegs } from '$src/stores/expressBetStore';
 import { filterStore } from '$src/stores/filterStore';
-import { currentUser } from '$src/stores/modalStore';
+import { currentUser, openModal } from '$src/stores/modalStore';
 import { generateBetKey } from '$src/utils/functions/generateBetKey';
+import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
+import TableError from '$components/ui/tableError/TableError.svelte';
 
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 
-import { columns, type Bet } from './columns';
+import { getColumns } from './columns';
+import TableRow from './TableRow.svelte';
+
+import type { Bet } from '$src/types/bet';
 
 let innerWidth = $state(0);
-let isMobile = $derived(innerWidth < 400);
-let { query } = useUserProfile();
-let isAuthenticated = $derived(!!$currentUser);
+let isMobile = $derived(innerWidth < 740);
 let prevPage = $state($filterStore.pagination.currentPage);
 let prevItemsPerPage = $state($filterStore.pagination.itemsPerPage);
+let isLoadingMore = $state(false);
+
+function handleExpressClick(bet: Bet) {
+	if (bet.type === 'Express' && bet.legs) {
+		expressBetLegs.set(bet.legs);
+		openModal('ExpressBetModal');
+	}
+}
 
 type BetColumnMeta = {
 	textAlign?: 'left' | 'right';
@@ -37,47 +49,99 @@ const table = createSvelteTable({
 	get data() {
 		return $betsTableStore.data;
 	},
-	columns,
+	columns: getColumns($t),
 	getCoreRowModel: getCoreRowModel()
 });
 
 type CellContextType = CellContext<Bet, unknown>;
 
-let isLoading = $derived($betsTableStore.isLoading);
-
 async function loadData() {
-	if ($betsTableStore.isLoading) {
-		return;
-	}
+	if ($betsTableStore.isLoading) return;
 
 	try {
 		betsTableStore.setLoading(true);
+		betsTableStore.reset();
 
-		const response = await fetchFilteredData($filterStore);
+		const response = await fetchFilteredData({
+			...$filterStore,
+			pagination: {
+				...$filterStore.pagination,
+				itemsPerPage: isMobile ? 10 : $filterStore.pagination.itemsPerPage
+			}
+		});
+
 		if (!response) {
 			throw new Error('Нет данных');
 		}
 
-		betsTableStore.setData(response);
+		betsTableStore.setTotalItems(response.pagination.total);
+		betsTableStore.setData(response.res);
+		betsTableStore.setHasMore(response.res.length >= response.pagination.perPage);
 	} catch (err) {
-		console.error('Error loading data:', err);
-		betsTableStore.setError('Ошибка при загрузке данных');
+		betsTableStore.setError($t('other.data_error'));
+	} finally {
+		betsTableStore.setLoading(false);
 	}
 }
 
-onMount(() => {
+async function loadMoreData() {
+	if (isLoadingMore || !$betsTableStore.hasMore) return;
+
+	try {
+		isLoadingMore = true;
+		const mobileFilter = {
+			...$filterStore,
+			pagination: {
+				...$filterStore.pagination,
+				currentPage: $betsTableStore.currentPage + 1,
+				itemsPerPage: 10
+			}
+		};
+
+		const response = await fetchFilteredData(mobileFilter);
+		if (!response || response.res.length === 0) {
+			betsTableStore.setHasMore(false);
+			return;
+		}
+
+		betsTableStore.appendData(response.res);
+		betsTableStore.setHasMore(response.res.length >= response.pagination.perPage);
+	} catch (err) {
+		betsTableStore.setError($t('other.data_error'));
+	} finally {
+		isLoadingMore = false;
+	}
+}
+
+function handleScroll(event: Event) {
+	if (!isMobile) return;
+
+	const target = event.target as HTMLElement;
+	const { scrollTop, scrollHeight, clientHeight } = target;
+	const threshold = 100;
+
+	if (scrollHeight - scrollTop - clientHeight < threshold && !isLoadingMore && $betsTableStore.hasMore) {
+		loadMoreData();
+	}
+}
+
+onMount(async () => {
+	if (!$currentUser && $isDemoEnabled) {
+		await handleDemoToggle();
+	}
 	loadData();
 });
 
 onDestroy(() => {});
 
 $effect(() => {
-	const { currentPage, itemsPerPage } = $filterStore.pagination;
-
-	if (currentPage !== prevPage || itemsPerPage !== prevItemsPerPage) {
-		prevPage = currentPage;
-		prevItemsPerPage = itemsPerPage;
-		loadData();
+	if (!isMobile) {
+		const { currentPage, itemsPerPage } = $filterStore.pagination;
+		if (currentPage !== prevPage || itemsPerPage !== prevItemsPerPage) {
+			prevPage = currentPage;
+			prevItemsPerPage = itemsPerPage;
+			loadData();
+		}
 	}
 });
 
@@ -86,21 +150,34 @@ $effect(() => {
 		betsTableStore.setData([] as Bet[]);
 	}
 });
+
+let lastUser = null;
+
+$effect(() => {
+	if ($currentUser !== lastUser) {
+		lastUser = $currentUser;
+		if ($currentUser) {
+			loadData();
+		}
+	}
+});
 </script>
 
 <svelte:window bind:innerWidth="{innerWidth}" />
 
 <div class="relative w-full">
-	{#if !isAuthenticated}
+	{#if !$currentUser}
 		<AuthDemoButton />
 	{:else if $betsTableStore.error}
-		<div class="p-4 text-red-500">{$betsTableStore.error}</div>
-	{:else if $betsTableStore.isLoading}
+		<div class="table-error-container">
+			<TableError error="{$betsTableStore.error}" />
+		</div>
+	{:else if $betsTableStore.isLoading && !isLoadingMore}
 		<div class="flex h-[calc(100vh-280px)] flex-col items-center justify-center p-4 text-white">
 			<span class="loading-spinner mb-3"></span>
 			<h2>{$t('stats.loading_data')}</h2>
 		</div>
-	{:else if !$betsTableStore.data?.length}
+	{:else if $currentUser && !$betsTableStore.data?.length}
 		<div class="message-container">
 			<TableNoData
 				title="{$t('stats.no_bets')}"
@@ -108,12 +185,24 @@ $effect(() => {
 				variant="{'stats'}" />
 		</div>
 	{:else if isMobile}
-		<div class="mt-4 grid grid-cols-1 gap-2">
+		<div
+			class="mobile-container mt-4 grid grid-cols-1 gap-2"
+			on:scroll="{handleScroll}">
 			{#each $betsTableStore.data || [] as bet, index (generateBetKey(bet, index))}
 				{#if bet}
 					<MobileCard data="{bet satisfies Bet}" />
 				{/if}
 			{/each}
+			{#if isLoadingMore}
+				<div class="flex justify-center p-4">
+					<span class="loading-spinner"></span>
+				</div>
+			{/if}
+			{#if !$betsTableStore.hasMore && $betsTableStore.data.length > 0}
+				<div class="flex justify-center p-4 text-gray-400">
+					{$t('stats.no_more_data')}
+				</div>
+			{/if}
 		</div>
 	{:else}
 		<div class="table-container">
@@ -126,7 +215,7 @@ $effect(() => {
 									<Table.Head>
 										{#if !header.isPlaceholder}
 											<div
-												class="flex items-center gap-2"
+												class="flex items-center gap-1 sm:text-[10px] md:text-[12px] lg:text-[12px] xl:text-[14px]"
 												style="justify-content: {header.column.columnDef.meta?.textAlign === 'right' ? 'flex-end' : 'flex-start'}">
 												<img
 													src="/icons/table-icon.svg"
@@ -143,7 +232,9 @@ $effect(() => {
 					</Table.Header>
 					<Table.Body>
 						{#each table.getRowModel().rows as row, index (generateBetKey(row.original, index))}
-							<Table.Row data-state="{row.getIsSelected() && 'selected'}">
+							<TableRow
+								row="{row}"
+								onExpressClick="{handleExpressClick}">
 								{#each row.getVisibleCells() as cell (cell.id)}
 									<Table.Cell style="text-align: {cell.column.columnDef.meta?.textAlign || 'left'}">
 										<FlexRender
@@ -151,7 +242,7 @@ $effect(() => {
 											context="{cell.getContext() as CellContextType}" />
 									</Table.Cell>
 								{/each}
-							</Table.Row>
+							</TableRow>
 						{/each}
 					</Table.Body>
 				</Table.Root>
@@ -173,28 +264,32 @@ $effect(() => {
 	@apply absolute inset-0 mt-4 overflow-auto;
 }
 
-.table-wrapper {
+.mobile-container {
+	height: calc(100vh - 280px);
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
 	scrollbar-width: thin;
 	scrollbar-color: #6660ff #20242f;
 }
 
-.table-wrapper::-webkit-scrollbar {
+.mobile-container::-webkit-scrollbar {
 	@apply w-2;
 }
 
-.table-wrapper::-webkit-scrollbar-track {
-	@apply rounded-lg bg-[#20242f];
+.mobile-container::-webkit-scrollbar-track {
+	@apply rounded-lg bg-input;
 }
 
-.table-wrapper::-webkit-scrollbar-thumb {
-	@apply rounded-lg bg-[#6660ff] hover:bg-[#5550ee];
+.mobile-container::-webkit-scrollbar-thumb {
+	@apply rounded-lg bg-violet hover:bg-[#5550ee];
 }
 
 .loading-spinner {
 	display: inline-block;
 	width: 2rem;
 	height: 2rem;
-	border: 3px solid #6660ff;
+	border: 3px solid;
+	@apply border-violet;
 	border-top: 3px solid transparent;
 	border-radius: 50%;
 	animation: spin 1s linear infinite;

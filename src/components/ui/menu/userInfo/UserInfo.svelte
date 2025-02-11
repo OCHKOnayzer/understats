@@ -3,16 +3,22 @@ import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
 import { useUserProfile } from '$src/services/auth/useProfile';
+import { accountStore } from '$src/stores/accountStore';
+import { isDemoEnabled } from '$src/stores/demo';
 import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
 import { isMenuOpen } from '$src/stores/menu';
 import { currentUser, openModal } from '$src/stores/modalStore';
+import { derived } from 'svelte/store';
 
 onMount(() => {
 	initializeScreenWidthListener();
 });
 
 const { query } = useUserProfile();
-let isAuthenticated = $derived(!!$currentUser && !!$query.data);
+const isAuthenticated = derived([currentUser, isDemoEnabled], ([$currentUser, $isDemoEnabled]) => !!$currentUser || $isDemoEnabled);
+const displayName = derived([accountStore, isDemoEnabled], ([$accountStore, $isDemoEnabled]) =>
+	$accountStore?.login ? $accountStore.login : $isDemoEnabled ? $t('other.demo_account') : ''
+);
 
 const leave = () => {
 	if ($isMobile) {
@@ -28,16 +34,16 @@ $effect(() => {
 });
 </script>
 
-{#if isAuthenticated}
+{#if $isAuthenticated}
 	<div class="userContainer">
 		<div class="user_flex">
 			<div class="user_info">
 				<span>{$t('menu.your_profile')}</span>
-				<div class="userName">{$currentUser?.login || 'Email'}</div>
+				<div class="userName">{$displayName}</div>
 			</div>
 			<div class="quitBtn">
 				<button
-					on:click="{leave}"
+					onclick="{leave}"
 					class="quit_button">
 					<img
 						src="assets/menu/leave.png"
@@ -54,7 +60,7 @@ $effect(() => {
 	padding: 5px;
 	width: 100%;
 	margin-top: 10px;
-	background-color: #0d111d;
+	@apply bg-blackPrimary;
 	border-radius: 5px;
 }
 .user_flex {

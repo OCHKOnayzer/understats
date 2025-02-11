@@ -47,7 +47,8 @@ const setActiveIndex = (index: number) => {
 	margin-left: 0px;
 }
 .active {
-	background-color: #6660ff;
+	@apply bg-violet;
+
 	color: white;
 }
 </style>

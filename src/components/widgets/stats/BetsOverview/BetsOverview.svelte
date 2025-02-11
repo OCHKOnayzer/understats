@@ -52,7 +52,7 @@ function getAggregatedData() {
 			data: $mockData[activeTab]?.data || mockData['no-aggregation'].data
 		};
 	} catch (e) {
-		error = 'Ошибка при загрузке данных';
+		error = $t('other.data_error');
 		console.error(e);
 	} finally {
 		isLoading = false;

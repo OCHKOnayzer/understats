@@ -9,7 +9,7 @@
 .container {
 	max-width: 100%;
 	padding: 0 2rem;
-	background-color: #0d111d;
+	@apply bg-blackPrimary;
 }
 /* @media (max-width: 678px) {
 	.container {

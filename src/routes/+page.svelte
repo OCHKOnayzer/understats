@@ -13,7 +13,9 @@ selectHeaderTitle('menu.Stats');
 const { query } = useUserProfile();
 let isAuthenticated = $derived(!!$currentUser);
 
-let shouldShowPagination = $derived($query.data && isAuthenticated && !$betsTableStore.isLoading && $betsTableStore.data.length > 0);
+let shouldShowPagination = $derived(isAuthenticated && !$betsTableStore.isLoading && $betsTableStore.data.length > 0);
+let innerWidth = $state(0);
+let isMobile = $derived(innerWidth < 740);
 </script>
 
 <svelte:head>
@@ -23,12 +25,14 @@ let shouldShowPagination = $derived($query.data && isAuthenticated && !$betsTabl
 		content="About this app" />
 </svelte:head>
 
+<svelte:window bind:innerWidth="{innerWidth}" />
+
 <div class="flex h-full flex-col justify-between">
 	<div>
 		<StatsMenu />
 		<BetsTable />
 	</div>
-	{#if shouldShowPagination}
+	{#if shouldShowPagination && !isMobile}
 		<Pagination />
 	{/if}
 </div>

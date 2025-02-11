@@ -1,9 +1,9 @@
 <script lang="ts">
-import { t } from 'svelte-i18n';
 import { createEventDispatcher, onMount } from 'svelte';
+import { t } from 'svelte-i18n';
 
-import { MenuElement } from './menuElments';
 import ActiveCard from './ActiveCard.svelte';
+import { MenuElement } from './menuElments';
 
 let activeIndex: number | null = null;
 let selectedItemName: string | null = null;
@@ -125,7 +125,7 @@ onMount(() => {
 }
 .active {
 	background-color: #6660ff40;
-	border-color: #6660ff;
+	@apply border-violet;
 }
 .menuWrapper::-webkit-scrollbar {
 	border-radius: 30px;

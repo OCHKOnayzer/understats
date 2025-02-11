@@ -1,9 +1,9 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 
-import { modalComponent } from '$src/stores/modalStore';
-import { selectedLang } from '$src/stores/languageStore';
 import { setLanguage } from '$src/lib/i18n';
+import { selectedLang } from '$src/stores/languageStore';
+import { modalComponent } from '$src/stores/modalStore';
 
 import { LangArr } from '../modal/langModal/lang';
 let changeLang = false;
@@ -85,7 +85,8 @@ document.addEventListener('focusin', (event) => {
 	outline: none;
 }
 .selected_element {
-	background-color: #20242f;
+	@apply bg-input;
+
 	color: #707f96;
 	width: 100%;
 	border-radius: 10px;
@@ -119,7 +120,8 @@ document.addEventListener('focusin', (event) => {
 }
 .all-lang {
 	position: absolute;
-	background-color: #20242f;
+	@apply bg-input;
+
 	width: 100%;
 	border-radius: 5px;
 	margin-top: 5px;
@@ -146,7 +148,7 @@ document.addEventListener('focusin', (event) => {
 	margin: 10px;
 }
 .modal-lang:hover {
-	background-color: #6660ff;
+	@apply bg-violet;
 }
 .lang {
 	position: relative;

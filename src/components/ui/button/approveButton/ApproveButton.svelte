@@ -64,7 +64,8 @@ function toggleCheck() {
 }
 
 .approve {
-	border: 2px solid #6660ff;
+	border: 2px solid;
+	@apply border-violet;
 	background-color: #6660ff80;
 	height: 24px;
 	width: 24px;
@@ -90,6 +91,6 @@ function toggleCheck() {
 	opacity: 1;
 }
 .socail_href {
-	color: #6660ff;
+	@apply text-violet;
 }
 </style>

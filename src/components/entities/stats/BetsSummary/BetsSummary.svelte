@@ -3,33 +3,61 @@ import { createQuery } from '@tanstack/svelte-query';
 import { t } from 'svelte-i18n';
 
 import { betService } from '$src/services/bet.service';
+import { betsTableStore } from '$src/stores/betsTableStore';
 
 import TotalBet from '../TotalBet/TotalBet.svelte';
 const params = { express: 'true', ordinar: 'true' };
-// const params2 = { express: 'false', ordinar: 'false', page: 1, perPage: 10 };
 
 const data = createQuery({
 	queryKey: ['bets count', params],
 	queryFn: () => betService.getMyBetsCount(params)
 });
 
-// const data2 = createQuery({
-// 	queryKey: ['bets count', params],
-// 	queryFn: () => betService.getMyBets(params2)
-// });
+let wins = $state([]);
+let winsSum = $state(0);
+let loses = $state([]);
+let losesSum = $state(0);
+let totalStakes = $state(0);
+let roi = $state('0');
+
+$effect(() => {
+	if (!Array.isArray($betsTableStore?.data)) return;
+
+	const winningBets = $betsTableStore.data.filter((bet) => bet.status.toLowerCase().includes('win'));
+	const losingBets = $betsTableStore.data.filter((bet) => bet.status.toLowerCase().includes('lose'));
+
+	const winningsTotal = winningBets.reduce((acc, bet) => acc + Number(bet.amounts?.win ?? 0), 0);
+	const losingsTotal = losingBets.reduce((acc, bet) => acc + Number(bet.amounts?.stake ?? 0), 0);
+	const stakesTotal = $betsTableStore.data.reduce((acc, bet) => acc + Number(bet.amounts?.stake ?? 0), 0);
+
+	wins = winningBets;
+	winsSum = winningsTotal;
+	loses = losingBets;
+	losesSum = losingsTotal;
+	totalStakes = stakesTotal;
+	roi = stakesTotal > 0 ? (((winningsTotal - stakesTotal) / stakesTotal) * 100).toFixed(2) : '0';
+});
 </script>
 
-<div class="flex w-[80%] items-center justify-between gap-4">
+<div class="item flex w-[80%] items-center justify-between gap-4">
 	<TotalBet
 		title="{$data.data ? String($data.data) : 0} {$t('tariffs.limits_bets')}"
-		sum="{$t('stats.in_summ')} $0" />
+		sum="{$t('stats.in_summ')} ${totalStakes.toFixed(2)}" />
 	<TotalBet
-		title="0 {$t('stats.wins')}"
-		sum="{$t('stats.in_summ')} $0" />
+		title="{wins ? String(wins.length) : 0} {$t('stats.wins')}"
+		sum="{$t('stats.in_summ') + ' $' + winsSum.toFixed(2)}" />
 	<TotalBet
-		title="0 {$t('stats.loses')}"
-		sum="{$t('stats.in_summ')} $0" />
+		title="{loses ? String(loses.length) : 0} {$t('stats.loses')}"
+		sum="{$t('stats.in_summ') + ' $' + losesSum.toFixed(2)}" />
 	<TotalBet
-		title="0 {$t('stats.loses')}"
-		sum="{$t('stats.in_summ')} $0" />
+		title="ROI"
+		sum="{roi}%" />
 </div>
+
+<style>
+.item {
+	@media (max-width: 740px) {
+		width: 100%;
+	}
+}
+</style>

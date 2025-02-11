@@ -5,13 +5,13 @@ import { t } from 'svelte-i18n';
 
 import * as Drawer from '$components/ui/drawer/index.ts';
 import MobileDrawer from '$components/ui/drawer/mobile-drawer.svelte';
+import { fetchFilteredData } from '$src/components/entities/stats/api/bets';
+import BetsSelectFilter from '$src/components/entities/stats/BetsSelectFilter/BetsSelectFilter.svelte';
 import BetFilterResults from '$src/components/features/stats/FilterBet/BetFilterResults.svelte';
 import Accordion from '$src/components/ui/accordion/Accordion.svelte';
 import BetFilters from '$src/components/ui/betFilters/BetFilters.svelte';
 import Calendar from '$src/components/ui/calendar/DateRangePicker.svelte';
 import FilterTabs from '$src/components/ui/filterTabs/filterTabs.svelte';
-import { fetchFilteredData } from '$src/components/entities/stats/api/api';
-import BetsSelectFilter from '$src/components/entities/stats/BetsSelectFilter/BetsSelectFilter.svelte';
 import { betsTableStore } from '$src/stores/betsTableStore';
 import { filterStore } from '$src/stores/filterStore';
 
@@ -54,12 +54,12 @@ async function applyFilters() {
 	try {
 		isLoading = true;
 		betsTableStore.setLoading(true);
-		const data = await fetchFilteredData($filterStore);
-		betsTableStore.setData(data);
+		const response = await fetchFilteredData($filterStore);
+		betsTableStore.setData(response.res);
 		open = false;
 	} catch (error) {
 		console.error('Failed to apply filters:', error);
-		betsTableStore.setError('Ошибка при загрузке данных');
+		betsTableStore.setError($t('other.data_error'));
 	} finally {
 		isLoading = false;
 		betsTableStore.setLoading(false);
@@ -88,8 +88,8 @@ let totalFilters = $derived(
 <MobileDrawer bind:open="{open}">
 	<Drawer.Overlay class="fixed inset-0 z-[9998] border-none bg-black/40" />
 	<Drawer.Content class="fixed inset-x-0 bottom-0 z-[9999]">
-		<div class="flex h-[100vh] max-h-[90vh] flex-col rounded-t-2xl bg-[#20242f] shadow-none">
-			<div class="sticky top-0 z-20 rounded-t-2xl bg-[#20242f]">
+		<div class="flex h-[100vh] max-h-[90vh] flex-col rounded-t-2xl bg-input shadow-none">
+			<div class="sticky top-0 z-20 rounded-t-2xl bg-input">
 				<div class="flex justify-center p-3">
 					<div class="h-1 w-8 rounded-full bg-[#2f3241]"></div>
 				</div>
@@ -135,7 +135,7 @@ let totalFilters = $derived(
 				</div>
 			</div>
 
-			<div class="flex-shrink-0 border-t border-[#718096]/10 bg-[#20242f]">
+			<div class="flex-shrink-0 border-t border-[#718096]/10 bg-input">
 				<div class="flex gap-2 p-4">
 					<button
 						class="h-12 flex-1 cursor-pointer rounded-xl border-none bg-[#171b26] text-sm font-medium text-[#718096] hover:opacity-90 active:opacity-80"

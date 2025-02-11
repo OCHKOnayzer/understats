@@ -58,7 +58,9 @@ import { SocialItem } from './social';
 }
 .social_item:hover {
 	background-color: #6660ff40;
-	border: 1px solid #6660ff;
+	border: 1px solid;
+	@apply border-violet;
+
 	box-sizing: border-box;
 }
 .more_ques {
@@ -66,7 +68,7 @@ import { SocialItem } from './social';
 }
 .min_social {
 	display: none;
-	color: #6660ff;
+	@apply text-violet;
 }
 @media screen and (max-width: 1200px) {
 	.min_social {

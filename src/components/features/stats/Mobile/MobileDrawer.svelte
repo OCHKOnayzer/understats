@@ -4,15 +4,13 @@ import { t } from 'svelte-i18n';
 import * as Drawer from '$components/ui/drawer/index.ts';
 import Button from '$src/components/ui/button/button.svelte';
 
-import type { Bet } from '$src/components/widgets/stats/BetsTable/columns';
+import type { Bet } from '$src/types/bet';
 
 interface Props {
 	data: Bet;
 }
 
 let { data }: Props = $props();
-
-console.log(data);
 </script>
 
 <Drawer.Root>
@@ -21,12 +19,8 @@ console.log(data);
 			class="h-[56px] w-full text-[16px]"
 			variant="card">{$t('not.more')}</Button>
 	</Drawer.Trigger>
-	<Drawer.Content class="rounded-[16px] border-none bg-[#20242F] p-4 text-white focus:outline-none focus:ring-0">
-		<Drawer.Header>
-			<Drawer.Title class="text-left text-[30px]">{$t('not.more')}</Drawer.Title>
-		</Drawer.Header>
-
-		<div class="mb-[30px] rounded-[20px] bg-[#0D111D] p-4">
+	<Drawer.Content class="rounded-[16px] border-none bg-input p-4 text-white focus:outline-none focus:ring-0">
+		<div class="mb-[30px] rounded-[20px] bg-blackPrimary p-4">
 			<div class="mb-4 flex items-center justify-between text-[20px]">
 				<!-- <div class="w-full rounded-[8px] bg-[#171B26]">
 					<h2 class="p-2 text-[12px]">22222</h2>
@@ -39,12 +33,8 @@ console.log(data);
 						class="mb-3 w-[73px]"
 						src="/icons/bk/winline-big.svg"
 						alt="" />
-					<!-- <h2>Алексей Иванов</h2> -->
+					<h2>{data.siteName}</h2>
 				</div>
-
-				<!-- <div>
-					<h3>ID 123413</h3>
-				</div> -->
 			</div>
 		</div>
 
@@ -57,7 +47,7 @@ console.log(data);
 				<h2>{data.siteName}</h2>
 			</div>
 
-			<div class="flex justify-between border-b-2 border-dashed border-[#20242F]">
+			<div class="flex justify-between border-b-2 border-dashed border-input">
 				<div class="w-full pb-4">
 					<h2 class="mb-2 text-[20px] font-bold">{data.event.name1.default} - {data.event.name2.default}</h2>
 					<h3 class="text-[14px] font-medium">{data.outcome.default}</h3>

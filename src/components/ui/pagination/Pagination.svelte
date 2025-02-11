@@ -1,19 +1,23 @@
 <script lang="ts">
 	import { t } from 'svelte-i18n';
-	import { derived } from 'svelte/store';
 
+	import { betsTableStore } from '$src/stores/betsTableStore';
 	import { filterStore } from '$src/stores/filterStore';
 	import { generatePageNumbers } from '$src/utils/functions/generatePageNumbers';
 
 	import PaginationSelect from './PaginationSelect.svelte';
 
-	const { totalPages = 6 } = $props();
+	let totalPages = $state(1);
+	let pageNumbers = $state([]);
+	let canGoNext = $state(false);
+	let canGoPrev = $state(false);
 
-	const pageNumbers = derived([filterStore], ([$filterStore]) => generatePageNumbers($filterStore.pagination.currentPage, totalPages));
-
-	const canGoNext = derived([filterStore], ([$filterStore]) => $filterStore.pagination.currentPage < totalPages);
-
-	const canGoPrev = derived([filterStore], ([$filterStore]) => $filterStore.pagination.currentPage > 1);
+	$effect(() => {
+		totalPages = Math.ceil($betsTableStore.totalItems / $filterStore.pagination.itemsPerPage) || 1;
+		pageNumbers = generatePageNumbers($filterStore.pagination.currentPage, totalPages);
+		canGoNext = $filterStore.pagination.currentPage < totalPages;
+		canGoPrev = $filterStore.pagination.currentPage > 1;
+	});
 
 	function handlePageChange(page: number) {
 		filterStore.setPage(page);
@@ -32,7 +36,7 @@
 						class="nav-button prev-button"
 						onclick={() => handlePageChange($filterStore.pagination.currentPage - 1)}
 						aria-label={$t('filter.pagination.prevPage')}
-						disabled="{!$canGoPrev}">
+						disabled={!canGoPrev}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24">
@@ -41,7 +45,7 @@
 					</button>
 
 					<div class="page-numbers">
-						{#each $pageNumbers as page}
+						{#each pageNumbers as page}
 							{#if page === '...'}
 								<span class="page-ellipsis">...</span>
 							{:else}
@@ -59,7 +63,7 @@
 						class="nav-button next-button"
 						onclick={() => handlePageChange($filterStore.pagination.currentPage + 1)}
 						aria-label={$t('filter.pagination.nextPage')}
-						disabled="{!$canGoNext}">
+						disabled={!canGoNext}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24">
@@ -80,7 +84,7 @@
 		}
 
 		.time-range-button {
-			@apply rounded-lg bg-[#20242f] px-3 py-2 text-sm
+			@apply rounded-lg bg-input px-3 py-2 text-sm
 								 text-white transition-colors
 								 duration-200 hover:bg-[#2f3241];
 		}
@@ -99,7 +103,7 @@
 
 		.nav-button {
 			@apply flex h-8 w-8
-								 items-center justify-center rounded-lg bg-[#20242f]
+								 items-center justify-center rounded-lg bg-input
 								 text-white transition-colors
 								 hover:bg-[#2f3241] disabled:opacity-40;
 		}
@@ -110,7 +114,7 @@
 
 		.page-number {
 			@apply flex h-8 w-8 items-center justify-center
-								 rounded-lg bg-[#20242f] text-sm text-white
+								 rounded-lg bg-input text-sm text-white
 								 hover:bg-[#2f3241];
 		}
 

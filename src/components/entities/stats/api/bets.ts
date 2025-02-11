@@ -70,12 +70,11 @@ export async function fetchFilteredData(filters: FilterState) {
 		if (filters?.coefficient?.to) {
 			params.append('rateMax', String(filters.coefficient.to));
 		}
-		if (filters?.express !== undefined) {
-			params.append('express', String(filters.express));
-		}
-		if (filters?.ordinar !== undefined) {
-			params.append('ordinar', String(filters.ordinar));
-		}
+
+		const expressValue = !filters.betType.length ? true : filters.betType.includes('express');
+		const ordinarValue = !filters.betType.length ? true : filters.betType.includes('ordinary');
+		params.append('express', String(expressValue));
+		params.append('ordinar', String(ordinarValue));
 
 		if (typeof filters?.year === 'number') params.append('year', String(filters.year));
 		if (typeof filters?.month === 'number') params.append('month', String(filters.month));
@@ -84,15 +83,15 @@ export async function fetchFilteredData(filters: FilterState) {
 		const { data } = await axiosWithAuth.get<ApiResponse>('/bets/my', { params });
 		if (!data || typeof data !== 'object') {
 			console.error('Invalid API response format');
-			return [];
+			return { pagination: { page: 1, perPage: 10, pageCount: 0, total: 0 }, res: [] };
 		}
 
 		if (!Array.isArray(data.res)) {
 			console.error('data.res is not an array:', data.res);
-			return [];
+			return { pagination: { page: 1, perPage: 10, pageCount: 0, total: 0 }, res: [] };
 		}
 
-		return data.res;
+		return data;
 	} catch (error) {
 		console.error('Error fetching filtered data:', error);
 		throw error;

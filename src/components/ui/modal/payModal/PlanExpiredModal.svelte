@@ -56,7 +56,8 @@ function goTariff() {
 	color: white;
 }
 .expired_modal {
-	background-color: #20242f;
+	@apply bg-input;
+
 	width: 525px;
 	min-height: 491px;
 	border-radius: 36px;

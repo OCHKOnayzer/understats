@@ -2,8 +2,8 @@
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
-import { toggleChat, ifWindow } from '$src/utils/functions/chat';
 import { closeModal } from '$src/stores/modalStore';
+import { ifWindow, toggleChat } from '$src/utils/functions/chat';
 
 import { SocialLink } from './social';
 
@@ -86,7 +86,8 @@ const closPayModal = () => {
 
 .social_modal {
 	width: 525px;
-	background-color: #20242f;
+	@apply bg-input;
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -173,7 +174,8 @@ const closPayModal = () => {
 }
 
 .color_link {
-	color: #6660ff;
+	@apply text-violet;
+
 	cursor: pointer;
 	position: relative;
 }
@@ -184,7 +186,7 @@ const closPayModal = () => {
 	top: 100%;
 	left: 0;
 	margin-top: 5px;
-	background: #0d111d;
+	@apply bg-blackPrimary;
 	color: white;
 	font-size: 12px;
 	padding: 5px 10px;

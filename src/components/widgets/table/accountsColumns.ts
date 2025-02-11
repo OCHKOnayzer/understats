@@ -16,8 +16,7 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 				title: 'ID',
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
-			}),
-		meta: { width: '120px' }
+			})
 	},
 	{
 		accessorKey: 'siteName',
@@ -26,33 +25,27 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 				title: 'accounts.bookmaker',
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
-			}),
-		meta: { width: '80px' }
+			})
 	},
 	{
 		accessorKey: 'login',
-		header: 'accounts.login',
-		meta: { width: '100px' }
+		header: 'accounts.login'
 	},
 	{
 		accessorKey: 'email',
-		header: 'accounts.mail',
-		meta: { width: '100px' }
+		header: 'accounts.mail'
 	},
 	{
-		accessorKey: 'bkId',
-		header: 'accounts.bkId',
-		meta: { width: '150px' }
+		accessorKey: 'extendedId',
+		header: 'accounts.bkId'
 	},
 	{
 		accessorKey: 'fullName',
-		header: 'accounts.fullName',
-		meta: { width: '180px' }
+		header: 'accounts.fullName'
 	},
 	{
 		accessorKey: 'phone',
-		header: 'accounts.phone',
-		meta: { width: '120px' }
+		header: 'accounts.phone'
 	},
 	{
 		accessorKey: 'registrationDate',
@@ -62,8 +55,7 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
 			}),
-		cell: ({ row }) => formatDate(row.original.registrationDate),
-		meta: { width: '130px' }
+		cell: ({ row }) => formatDate(row.original.registrationDate)
 	},
 	{
 		accessorKey: 'balance',
@@ -73,16 +65,17 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
 			}),
-		meta: { width: '130px' }
+		cell: ({ row }) => `${row.original.balance} ${row.original.currency}`
 	},
 	{
-		accessorKey: 'lastBet',
+		accessorKey: 'betAddedLastDate',
 		header: ({ column }) =>
 			renderComponent(SortableHeader, {
 				title: 'accounts.lastBet',
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
-			})
+			}),
+		cell: ({ row }) => formatDate(row.original.betAddedLastDate)
 	},
 	{
 		accessorKey: 'betsCount',

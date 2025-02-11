@@ -17,6 +17,8 @@ export const modalComponent = writable<
 	| 'SocialModal'
 	| 'PaySupport'
 	| 'PlanExpiredModal'
+	| 'DemoModal'
+	| 'ExpressBetModal'
 	| null
 >(null);
 export type currentTariffsType = 'Lite' | 'Standart' | 'Pro' | '';
@@ -65,6 +67,8 @@ export const openModal = (
 		| 'SocialModal'
 		| 'PlanExpiredModal'
 		| 'PaySupport'
+		| 'DemoModal'
+		| 'ExpressBetModal'
 ) => {
 	isModalOpen.set(true);
 	modalComponent.set(component);

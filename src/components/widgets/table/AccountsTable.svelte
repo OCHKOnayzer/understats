@@ -1,5 +1,6 @@
 <script lang="ts">
 import { getCoreRowModel, getSortedRowModel, type CellContext, type SortingState } from '@tanstack/table-core';
+import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
 import Spinner from '$components/ui/spinner/Spinner.svelte';
@@ -8,8 +9,10 @@ import { createSvelteTable, FlexRender } from '$src/components/ui/data-table';
 import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
 import { useAccounts } from '$src/services/accounts/useAccounts';
 import { useUserProfile } from '$src/services/auth/useProfile';
+import { isDemoEnabled } from '$src/stores/demo';
 import { currentUser } from '$src/stores/modalStore';
 import { generateAccountKey } from '$src/utils/functions/generateAccountKey';
+import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 import { cn } from '$src/utils/utils';
 
 import AuthDemoButton from '../demo/demoButtons/AuthDemoButton.svelte';
@@ -23,7 +26,7 @@ const { query } = useAccounts();
 const { query: profileQuery } = useUserProfile();
 
 let innerWidth = $state(typeof window !== 'undefined' ? window.innerWidth : 1024);
-let isMobile = $derived(innerWidth < 400);
+let isMobile = $derived(innerWidth < 740);
 let accounts = $state<IAccountResponse[]>([]);
 let isAuthenticated = $derived(!!$currentUser);
 
@@ -38,6 +41,12 @@ $effect(() => {
 
 $effect(() => {
 	accounts = isAuthenticated ? $query.data || [] : [];
+});
+
+onMount(async () => {
+	if (!$currentUser && $isDemoEnabled) {
+		await handleDemoToggle();
+	}
 });
 
 const table = createSvelteTable({
@@ -73,7 +82,7 @@ type CellContextType = CellContext<IAccountResponse, unknown>;
 			size="{32}" />
 		<h2 class="w-[260px] text-center text-xl text-[#718096]">{$t('accounts.loading')}</h2>
 	</div>
-{:else if !isAuthenticated}
+{:else if !$currentUser}
 	<AuthDemoButton />
 {:else if isLoading}
 	<div class="message-container">
@@ -143,6 +152,34 @@ type CellContextType = CellContext<IAccountResponse, unknown>;
 }
 
 .message-container {
-	@apply z-[5000] bg-[#171b26] font-[Manrope] font-light;
+	@apply z-[5000] bg-[#171b26] font-[Inter] font-light;
+}
+
+.table-wrapper {
+	@apply relative w-full overflow-hidden;
+}
+
+.table-container {
+	@apply w-full overflow-auto;
+}
+
+:global(.cell-content) {
+	@apply flex items-center;
+}
+
+:global(th) {
+	@apply whitespace-nowrap px-2 font-medium;
+}
+
+:global(td) {
+	@apply align-middle;
+}
+
+:global(thead) {
+	@apply sticky top-0;
+}
+
+:global(table) {
+	@apply w-full border-collapse;
 }
 </style>

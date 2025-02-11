@@ -35,7 +35,6 @@ export const useAuth = (isReg: boolean) => {
 				currentUser.set(response.data);
 				accountStore.setData(data);
 				localStorage.setItem('account', JSON.stringify(data));
-				console.log(get(accountStore));
 			}
 
 			return response;

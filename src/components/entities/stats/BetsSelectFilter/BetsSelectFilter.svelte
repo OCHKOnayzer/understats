@@ -1,7 +1,7 @@
 <script lang="ts">
+import { createQuery } from '@tanstack/svelte-query';
 import { t } from 'svelte-i18n';
 import { writable } from 'svelte/store';
-import { createQuery } from '@tanstack/svelte-query';
 
 import Accordion from '$src/components/ui/accordion/Accordion.svelte';
 import SportsList from '$src/components/ui/sportsList/SportsList.svelte';

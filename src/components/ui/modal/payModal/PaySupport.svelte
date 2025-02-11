@@ -2,8 +2,8 @@
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
-import { toggleChat, ifWindow } from '$src/utils/functions/chat';
 import { closeModal } from '$src/stores/modalStore';
+import { ifWindow, toggleChat } from '$src/utils/functions/chat';
 
 onMount(() => {
 	ifWindow();
@@ -56,7 +56,8 @@ const PayFunction = () => {
 	animation: fade-in 0.3s ease-out;
 }
 .pay_support_modal {
-	background-color: #20242f;
+	@apply bg-input;
+
 	width: 525px;
 	min-height: 342px;
 	border-radius: 36px;
@@ -83,7 +84,7 @@ const PayFunction = () => {
 }
 .button_wrapper button {
 	width: 100%;
-	background-color: #0d111d;
+	@apply bg-blackPrimary;
 	height: 56px;
 	border-radius: 12px;
 }
@@ -97,7 +98,7 @@ const PayFunction = () => {
 	background-color: hsl(242, 76%, 67%);
 }
 .button_wrapper button:nth-child(2) {
-	background-color: #0d111d;
+	@apply bg-blackPrimary;
 	margin-bottom: 32px;
 	transition: 300ms;
 }
