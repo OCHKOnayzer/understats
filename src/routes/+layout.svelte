@@ -88,7 +88,7 @@ onDestroy(() => {
 });
 
 $: if ($currentUserActiveTariff?.tariffName === 'Free' &&
-    
+    $currentUserActiveTariff.betsLeft === 0 &&
        $currentUserActiveTariff.accountsLeft === 0) {
     openModal("PlanExpiredModal");
 }
