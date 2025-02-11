@@ -1,5 +1,5 @@
-import type { Bet } from '$src/types/bet';
-import type { ColumnDef } from '@tanstack/table-core';
+import type { Bet } from '$src/types/bet'
+import type { ColumnDef } from '@tanstack/table-core'
 
 type BetColumnMeta = {
 	textAlign?: 'left' | 'right';
