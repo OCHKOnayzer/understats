@@ -20,7 +20,7 @@ import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
 import Test from '$src/components/ui/test.svelte';
 import { currentUserActiveTariff } from '$src/stores/tariffsStore';
 import { selectedLang, setAppLanguage } from '$src/stores/languageStore';
-import { currentTariffs, isModalOpen, currentUser,openModal } from '$src/stores/modalStore';
+import { currentTariffs, isModalOpen, currentUser, openModal } from '$src/stores/modalStore';
 import '$src/styles/fonts.css';
 import { langSel } from '$stores/HeaderStores';
 
@@ -87,10 +87,8 @@ onDestroy(() => {
 	}
 });
 
-$: if ($currentUserActiveTariff?.tariffName === 'Free' &&
-    $currentUserActiveTariff.betsLeft === 0 &&
-       $currentUserActiveTariff.accountsLeft === 0) {
-    openModal("PlanExpiredModal");
+$: if ($currentUserActiveTariff?.tariffName === 'Free' && $currentUserActiveTariff.betsLeft === 0 && $currentUserActiveTariff.accountsLeft === 0) {
+	openModal('PlanExpiredModal');
 }
 
 const routesWithoutMenu = ['/registrations', '/authorization'];
