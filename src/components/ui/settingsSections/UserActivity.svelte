@@ -23,7 +23,7 @@ onMount(() => {
 							{$currentUserActiveTariff.tariffName}
 						</div>
 					{:else}
-						<span class="ellipsis">
+						<span class="ellipsis" title={$currentUserActiveTariff.tariffName}>
 							{$currentUserActiveTariff.tariffName}&nbsp;{$t('other.tariff')}
 							({$currentUserActiveTariff?.pricePerMonth}&nbsp;/&nbsp;{$t('other.in_month')})
 						</span>
@@ -36,7 +36,7 @@ onMount(() => {
 							<span>{$t('tariffs.limits_bets')}</span>
 						</div>
 					{/if}
-					<div class="ellipsis">
+					<div class="ellipsis" title={$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}>
 						{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}
 					</div>
 					{#if $isMobile}
@@ -62,15 +62,15 @@ onMount(() => {
 		</div>
 		<div class="tariff_info">
 			<div class="info_item">
-				<div class="title_item ellipsis">{$currentUserActiveTariff.datePurchased}</div>
-				<div class="item_desc ellipsis">{$t('other.last_pay')}</div>
+				<div class="title_item ellipsis" title={$currentUserActiveTariff.datePurchased}>{$currentUserActiveTariff.datePurchased}</div>
+				<div class="item_desc ellipsis" title={$t('other.last_pay')}>{$t('other.last_pay')}</div>
 			</div>
 			<div class="info_item">
-				<div class="title_item ellipsis">{$currentUserActiveTariff.betsCount}</div>
+				<div class="title_item ellipsis" title={String($currentUserActiveTariff.betsCount)}>{$currentUserActiveTariff.betsCount}</div>
 				<div class="item_desc ellipsis">{$t('other.all_pays')}</div>
 			</div>
 			<div class="info_item">
-				<div class="title_item ellipsis">{$currentUserActiveTariff.accountsCount}</div>
+				<div class="title_item ellipsis" title={String($currentUserActiveTariff.accountsCount)}>{$currentUserActiveTariff.accountsCount}</div>
 				<div class="item_desc ellipsis">{$t('other.all_acc')}</div>
 			</div>
 		</div>

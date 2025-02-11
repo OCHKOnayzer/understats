@@ -94,6 +94,7 @@ console.log(accounts);
 	width: 65%;
 	text-align: center;
 	font-size: 14px;
+	height: 40px;
 }
 
 .container {
