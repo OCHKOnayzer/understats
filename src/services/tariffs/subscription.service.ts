@@ -45,14 +45,14 @@ class SubscriptionService {
 			const purchasedDate = data.purchasedDate;
 			const formatDatePurchased = formatDate(purchasedDate);
 			const filteredData: ActiveTariff = {
-				tariffName: data.tariff?.name || 'Unknown',
+				tariffName: data.tariff?.name || '0',
 				accounts: data.tariff?.accounts || 0,
 				betsPerMonth: data.tariff?.betsPerMonth || 0,
 				accountsLeft: data.accountsLeft || 0,
 				accountsCount: data.accountsCount || 0,
 				betsCount: data.betsCount || 0,
 				betsLeft: data.betsLeft || 0,
-				datePurchased: formatDatePurchased || 'Unknown',
+				datePurchased: formatDatePurchased || '0',
 				pricePerMonth: data.tariff?.pricePerMonth || 0
 			};
 
