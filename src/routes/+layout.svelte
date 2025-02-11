@@ -12,14 +12,16 @@ import { onDestroy, onMount } from 'svelte';
 import { Toaster } from 'svelte-french-toast';
 import { init, locale, t, waitLocale } from 'svelte-i18n';
 
+import { subscriptionService } from '$src/services/tariffs/subscription.service';
+import { ifWindow } from '$src/utils/functions/chat';
 import Menu from '$components/ui/menu/Menu.svelte';
 import Header from '$src/components/ui/header/header.svelte';
 import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
 import Test from '$src/components/ui/test.svelte';
+import { currentUserActiveTariff } from '$src/stores/tariffsStore';
 import { selectedLang, setAppLanguage } from '$src/stores/languageStore';
-import { isModalOpen, openModal } from '$src/stores/modalStore';
+import { currentTariffs, isModalOpen, currentUser, openModal } from '$src/stores/modalStore';
 import '$src/styles/fonts.css';
-import { ifWindow } from '$src/utils/functions/chat';
 import { langSel } from '$stores/HeaderStores';
 
 import { browser } from '$app/environment';
@@ -33,6 +35,8 @@ init({
 	fallbackLocale: 'en',
 	initialLocale: data.locale
 });
+
+let wasAuthenticated = false;
 
 let isLocaleReady = false;
 
@@ -48,7 +52,6 @@ onMount(async () => {
 	} catch (error) {
 		console.error($t('error.locale_error_in_client'), error);
 	}
-	ifWindow();
 });
 
 let unsubscribe;
@@ -61,18 +64,32 @@ onMount(() => {
 	unsubscribe = langSel.subscribe((currentLocale) => {
 		document.documentElement.lang = currentLocale;
 	});
-
+	ifWindow();
+	subscriptionService.getAllTariffs();
 	if (!localStorage.getItem('demoModalShown')) {
 		openModal('DemoModal');
 		localStorage.setItem('demoModalShown', 'true');
 	}
 });
 
+$: if ($currentUser) {
+	if (!wasAuthenticated) {
+		wasAuthenticated = true;
+		subscriptionService.subscriptionMy();
+	}
+} else {
+	wasAuthenticated = false;
+}
+
 onDestroy(() => {
 	if (unsubscribe) {
 		unsubscribe();
 	}
 });
+
+$: if ($currentUserActiveTariff?.tariffName === 'Free' && $currentUserActiveTariff.betsLeft === 0 && $currentUserActiveTariff.accountsLeft === 0) {
+	openModal('PlanExpiredModal');
+}
 
 const routesWithoutMenu = ['/registrations', '/authorization'];
 

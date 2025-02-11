@@ -95,11 +95,11 @@ import { openModal } from '$src/stores/modalStore';
 	height: 60%;
 	width: 60%;
 }
-@media (max-height: 770px) {
+/* @media (max-height: 770px) {
 	.problems_wrapper {
 		display: none;
 	}
-}
+} */
 @media (max-width: 800px) {
 	.problems_wrapper {
 		display: none;

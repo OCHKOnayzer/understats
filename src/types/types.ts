@@ -122,3 +122,14 @@ export interface TariffsItem {
 	desc: string;
 	limitations: string;
 }
+export interface ActiveTariff {
+	tariffName: string;
+	accounts: number;
+	betsPerMonth: number;
+	accountsLeft: number;
+	accountsCount: number;
+	betsCount: number;
+	betsLeft: number;
+	datePurchased: string;
+	pricePerMonth: number;
+}
