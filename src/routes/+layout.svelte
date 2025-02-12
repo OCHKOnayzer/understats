@@ -28,6 +28,8 @@ import { browser } from '$app/environment';
 import { page } from '$app/stores';
 
 import '../app.css';
+import PlanNotSelected from '$src/components/widgets/tariffs/alerts/PlanNotSelected.svelte';
+import DateAlert from '$src/components/widgets/tariffs/alerts/DateAlert.svelte';
 
 export let data: LayoutData;
 
@@ -87,7 +89,7 @@ onDestroy(() => {
 	}
 });
 
-$: if ($currentUserActiveTariff?.tariffName === 'Free' && $currentUserActiveTariff.betsLeft === 0 && $currentUserActiveTariff.accountsLeft === 0) {
+$: if ($currentUserActiveTariff?.tariffName === 'Free' && $currentUserActiveTariff.betsLeft <= 0 && $currentUserActiveTariff.accountsLeft <= 0) {
 	openModal('PlanExpiredModal');
 }
 
@@ -184,7 +186,10 @@ const isProduction = import.meta.env.PROD;
 					{#if !routesWithoutMenu.includes($page.url.pathname)}
 						<Header />
 					{/if}
-
+					{#if !$currentUserActiveTariff && $currentUser}
+						<PlanNotSelected />
+					{/if}
+					<DateAlert />
 					<slot />
 				</div>
 			{:else}

@@ -64,14 +64,19 @@ function closeStateFunction() {
 						<a
 							class="profile-container"
 							href="/settings">
-							<!-- <img src="" alt=""> -->
+							<img
+								src="/icons/user.svg"
+								alt="" />
 						</a>
 					{/if}
 				{:else}
 					<button
 						aria-label="auth"
 						class="profile-container"
-						on:click="{() => goto('/authorization')}"></button>
+						on:click="{() => goto('/authorization')}">
+						<img
+							src="/icons/user.svg"
+							alt="" /></button>
 				{/if}
 			</div>
 			<div class="flex items-center">
@@ -179,10 +184,10 @@ function closeStateFunction() {
 	border-radius: 20px;
 	background-color: #d9d9d9;
 }
-/* .profile-container img{
-		height: 100%;
-		width: 100%;
-	} */
+.profile-container img {
+	height: 100%;
+	width: 100%;
+}
 .title {
 	display: flex;
 	align-items: center;

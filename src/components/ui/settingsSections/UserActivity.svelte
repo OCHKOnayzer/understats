@@ -38,13 +38,28 @@ onMount(() => {
 							<span>{$t('tariffs.limits_bets')}</span>
 						</div>
 					{/if}
-					<div
-						class="ellipsis"
-						title="{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}">
-						{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}
-					</div>
+					{#if !$isMobile}
+						<div
+							class="ellipsis"
+							title="{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}">
+							{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}
+						</div>
+					{:else}
+						<div
+							class="desc_mobile"
+							title="{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}">
+							{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}
+						</div>
+					{/if}
+
 					{#if $isMobile}
-						<span class="tariff_end"> 10.10.2025 </span>
+						<span class="tariff_end">
+							{#if $currentUserActiveTariff.tariffName !== 'Free'}
+								{$currentUserActiveTariff.endsDate}
+							{:else}
+								{$t('tariffs.free_end')}
+							{/if}
+						</span>
 					{/if}
 					{#if $isMobile}
 						<div class="mobile_tariff_item">
@@ -200,6 +215,9 @@ onMount(() => {
 .tariff_end {
 	color: #01d2f9;
 }
+.desc_mobile {
+	text-align: center;
+}
 @keyframes spin {
 	0% {
 		transform: rotate(0deg);
@@ -216,6 +234,7 @@ onMount(() => {
 	.tariff {
 		width: 100%;
 		border-radius: 24px;
+		height: 180px;
 	}
 	.tariff_info_container {
 		justify-content: center;

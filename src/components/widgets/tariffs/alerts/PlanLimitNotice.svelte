@@ -2,6 +2,7 @@
 import { t } from 'svelte-i18n';
 
 import AlertLayout from './AlertLayout.svelte';
+import AlertTitle from './AlertTitle.svelte';
 </script>
 
 <AlertLayout>
@@ -14,7 +15,7 @@ import AlertLayout from './AlertLayout.svelte';
 		</div>
 	</div>
 	<div class="to_tariffs">
-		<a href="/">
+		<a href="/tariffs">
 			{$t('alerts.go_tariffs')}
 		</a>
 	</div>

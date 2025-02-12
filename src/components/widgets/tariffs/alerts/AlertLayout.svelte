@@ -3,10 +3,6 @@
 
 <div class="tariffs_alert">
 	<div class="alert_container">
-		<img
-			class="alert_lamp"
-			src="icons/lamp.svg"
-			alt="" />
 		<div class="slot_container">
 			<slot />
 		</div>
@@ -20,10 +16,6 @@
 	margin-bottom: var(--elements-padding);
 	border-radius: 5px;
 }
-.alert_lamp {
-	height: 24px;
-	width: 24px;
-}
 .alert_container {
 	padding: var(--elements-padding);
 	display: flex;
@@ -34,8 +26,15 @@
 .slot_container {
 	display: flex;
 	justify-content: space-between;
-	padding-left: var(--elements-padding);
 	width: 100%;
 	align-items: center;
+}
+@media screen and (max-width: 800px) {
+	.tariffs_alert {
+		border-radius: 12px;
+	}
+	.slot_container {
+		flex-direction: column;
+	}
 }
 </style>
