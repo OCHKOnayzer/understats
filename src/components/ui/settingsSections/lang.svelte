@@ -1,5 +1,6 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
+import { slide } from 'svelte/transition';
 
 import { setLanguage } from '$src/lib/i18n';
 import { selectedLang } from '$src/stores/languageStore';
@@ -54,9 +55,10 @@ document.addEventListener('focusin', (event) => {
 				src="assets/arrowSell.svg"
 				alt="" /></span>
 	</button>
+	{#if changeLang}
 	<div
 		class="all-lang"
-		style="display: {changeLang ? 'block' : 'none'}">
+		transition:slide="{{ duration: 300}}">
 		<div class="modal-lang-wrapper">
 			{#each LangArr as item}
 				<button
@@ -72,6 +74,8 @@ document.addEventListener('focusin', (event) => {
 			{/each}
 		</div>
 	</div>
+	{/if}
+	
 </div>
 
 <style>

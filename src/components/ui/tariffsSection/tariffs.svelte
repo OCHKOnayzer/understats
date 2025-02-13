@@ -160,6 +160,9 @@ console.log(accounts);
 	font-size: 14px;
 }
 @media screen and (max-width: 1200px) {
+	.limits{ 
+		overflow: unset;
+	}
 	.choose-period {
 		height: 50px;
 	}

@@ -8,6 +8,10 @@ import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 import Test from '../test.svelte';
 import Spinner from '../spinner/Spinner.svelte';
 
+// let testCountAcc = 2
+
+let limit = ( $currentUserActiveTariff.accountsCount >= $currentUserActiveTariff.accounts);
+
 onMount(() => {
 	initializeScreenWidthListener();
 });
@@ -101,7 +105,7 @@ onMount(() => {
 			</div>
 			<div class="info_item">
 				<div
-					class="title_item ellipsis"
+					class="title_item ellipsis {limit?'warning':''}"
 					title="{String($currentUserActiveTariff.accountsCount)}">{$currentUserActiveTariff.accountsCount}&nbsp;/&nbsp;{$currentUserActiveTariff.accounts}</div>
 				<div class="item_desc ellipsis">{$t('other.all_acc')}</div>
 			</div>
@@ -193,6 +197,9 @@ onMount(() => {
 	text-overflow: ellipsis;
 	max-width: 100%;
 	display: block;
+}
+.warning{ 
+	color: #FF6347; /* Цвет томатный */
 }
 .ellipsis-multi {
 	display: -webkit-box;
