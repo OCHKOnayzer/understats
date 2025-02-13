@@ -13,6 +13,11 @@ onMount(() => {
 });
 </script>
 
+{#if $currentUserActiveTariff === null}
+	<div class="overlay">
+		<span class="loading-spinner mb-3"></span>
+	</div>
+{/if}
 {#if $currentUserActiveTariff}
 	<div class="layout">
 		<div class="tariff">
@@ -97,15 +102,10 @@ onMount(() => {
 			<div class="info_item">
 				<div
 					class="title_item ellipsis"
-					title="{String($currentUserActiveTariff.accountsCount)}">{$currentUserActiveTariff.accountsCount}</div>
+					title="{String($currentUserActiveTariff.accountsCount)}">{$currentUserActiveTariff.accountsCount}&nbsp;/&nbsp;{$currentUserActiveTariff.accounts}</div>
 				<div class="item_desc ellipsis">{$t('other.all_acc')}</div>
 			</div>
 		</div>
-	</div>
-{:else}
-	<div class="flex h-[calc(100vh-280px)] flex-col items-center justify-center p-4 text-white">
-		<span class="loading-spinner mb-3"></span>
-		<h2>{$t('stats.loading_data')}</h2>
 	</div>
 {/if}
 
@@ -118,7 +118,19 @@ onMount(() => {
 	color: white;
 	height: fit-content;
 }
-
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.096);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+	backdrop-filter: blur(3px);
+}
 .tariff {
 	background-color: #171b26;
 	border-radius: 5px;

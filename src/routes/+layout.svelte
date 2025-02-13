@@ -189,7 +189,7 @@ const isProduction = import.meta.env.PROD;
 					{#if !$currentUserActiveTariff && $currentUser}
 						<PlanNotSelected />
 					{/if}
-					<DateAlert />
+					<!-- <DateAlert /> -->
 					<slot />
 				</div>
 			{:else}
