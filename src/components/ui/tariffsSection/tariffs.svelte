@@ -110,6 +110,11 @@ console.log(accounts);
 	justify-content: center;
 	border-radius: 8px;
 	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+	display: block;
 }
 
 .choose-period {
@@ -155,6 +160,9 @@ console.log(accounts);
 	font-size: 14px;
 }
 @media screen and (max-width: 1200px) {
+	.limits {
+		overflow: unset;
+	}
 	.choose-period {
 		height: 50px;
 	}

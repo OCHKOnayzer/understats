@@ -24,10 +24,10 @@ selectHeaderTitle('faq.faq');
 .mainContent {
 	display: flex;
 	flex-direction: column;
-	height: calc(89vh - 6px);
+	height: 89vh;
 	overflow: hidden;
+	padding-bottom: 0.5rem;
 }
-
 .pageWrapper {
 	flex-grow: 1;
 	overflow-y: auto;
@@ -35,17 +35,17 @@ selectHeaderTitle('faq.faq');
 
 @media screen and (min-height: 1200px) {
 	.mainContent {
-		height: calc(89vh - 12px);
+		height: 89vh;
 	}
 }
 @media screen and (min-height: 1300px) {
 	.mainContent {
-		height: calc(92vh - 10px);
+		height: 92vh;
 	}
 }
 @media screen and (min-height: 1400px) {
 	.mainContent {
-		height: calc(92vh - 8px);
+		height: 92vh;
 	}
 }
 

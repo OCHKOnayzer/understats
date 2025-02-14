@@ -28,6 +28,8 @@ import { browser } from '$app/environment';
 import { page } from '$app/stores';
 
 import '../app.css';
+import PlanNotSelected from '$src/components/widgets/tariffs/alerts/PlanNotSelected.svelte';
+import DateAlert from '$src/components/widgets/tariffs/alerts/DateAlert.svelte';
 
 export let data: LayoutData;
 
@@ -87,7 +89,7 @@ onDestroy(() => {
 	}
 });
 
-$: if ($currentUserActiveTariff?.tariffName === 'Free' && $currentUserActiveTariff.betsLeft === 0 && $currentUserActiveTariff.accountsLeft === 0) {
+$: if ($currentUserActiveTariff?.tariffName === 'Free' && $currentUserActiveTariff.betsLeft <= 0 && $currentUserActiveTariff.accountsLeft <= 0) {
 	openModal('PlanExpiredModal');
 }
 
@@ -100,7 +102,39 @@ const queryClient = new QueryClient({
 		}
 	}
 });
+let jivoChat;
+let jivoAction;
+let observer;
 
+onMount(() => {
+	if (typeof window !== 'undefined') {
+		jivoChat = document.querySelector('#jvLabelWrap');
+		jivoAction = document.querySelector('#jivo_action');
+
+		if (jivoAction) {
+			observer = new MutationObserver(() => {
+				const jivoOpen = jivoAction.querySelector('.wrap__aZpsf.__show__oqGtX');
+				if (jivoOpen) {
+					console.log('Chat is open');
+				} else {
+					console.log('Chat closed, hiding...');
+					if (jivoChat) {
+						jivoChat.setAttribute('style', 'display: none !important;');
+					}
+				}
+			});
+
+			observer.observe(jivoAction, { attributes: true, subtree: true, attributeFilter: ['class'] });
+		}
+	}
+});
+
+onDestroy(() => {
+	if (observer) {
+		observer.disconnect();
+		observer = null;
+	}
+});
 const isProduction = import.meta.env.PROD;
 </script>
 
@@ -184,7 +218,10 @@ const isProduction = import.meta.env.PROD;
 					{#if !routesWithoutMenu.includes($page.url.pathname)}
 						<Header />
 					{/if}
-
+					{#if !$currentUserActiveTariff && $currentUser}
+						<PlanNotSelected />
+					{/if}
+					<!-- <DateAlert /> -->
 					<slot />
 				</div>
 			{:else}
@@ -205,7 +242,6 @@ main {
 	overflow-x: hidden;
 	position: relative;
 }
-
 .mainContent {
 	position: relative;
 	width: 100%;
@@ -216,7 +252,9 @@ main {
 	padding-left: var(--elements-padding);
 	padding-right: var(--elements-padding);
 }
-
+#jvLabelWrap {
+	display: none !important;
+}
 @media screen and (max-width: 768px) {
 	.mainContent {
 		padding: 0 0.5rem;

@@ -22,14 +22,15 @@ import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 	all: unset;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	gap: 10px;
-	padding: 14px 16px;
+	padding: var(--elements-padding) 0;
 	border-radius: 12px;
 	background-color: #363a45;
 	cursor: pointer;
-
 	transition: background-color 0.3s ease;
 	min-width: 170px;
+	width: fit-content;
 }
 
 .demo-switch.active {
@@ -73,7 +74,6 @@ import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 @media screen and (max-width: 800px) {
 	.demo-switch {
 		width: 100%;
-		height: 48px;
 		justify-content: center;
 	}
 }

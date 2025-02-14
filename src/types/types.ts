@@ -132,4 +132,5 @@ export interface ActiveTariff {
 	betsLeft: number;
 	datePurchased: string;
 	pricePerMonth: number;
+	endsDate: string;
 }

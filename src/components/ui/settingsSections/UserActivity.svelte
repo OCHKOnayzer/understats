@@ -8,12 +8,27 @@ import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 import Test from '../test.svelte';
 import Spinner from '../spinner/Spinner.svelte';
 
+// let testCountAcc = 2
+let limit = false;
+
+function checkLimits() {
+	if ($currentUserActiveTariff) {
+		limit = $currentUserActiveTariff.accountsCount >= $currentUserActiveTariff.accounts;
+	}
+}
+$: if ($currentUserActiveTariff) {
+	checkLimits();
+}
 onMount(() => {
 	initializeScreenWidthListener();
 });
 </script>
 
-{#if $currentUserActiveTariff}
+{#if !$currentUserActiveTariff}
+	<div class="overlay">
+		<span class="loading-spinner mb-3"></span>
+	</div>
+{:else}
 	<div class="layout">
 		<div class="tariff">
 			<div class="tariff_info_container">
@@ -38,13 +53,28 @@ onMount(() => {
 							<span>{$t('tariffs.limits_bets')}</span>
 						</div>
 					{/if}
-					<div
-						class="ellipsis"
-						title="{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}">
-						{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}
-					</div>
+					{#if !$isMobile}
+						<div
+							class="ellipsis"
+							title="{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}">
+							{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}
+						</div>
+					{:else}
+						<div
+							class="desc_mobile"
+							title="{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}">
+							{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}
+						</div>
+					{/if}
+
 					{#if $isMobile}
-						<span class="tariff_end"> 10.10.2025 </span>
+						<span class="tariff_end">
+							{#if $currentUserActiveTariff.tariffName !== 'Free'}
+								{$currentUserActiveTariff.endsDate}
+							{:else}
+								{$t('tariffs.free_end')}
+							{/if}
+						</span>
 					{/if}
 					{#if $isMobile}
 						<div class="mobile_tariff_item">
@@ -81,18 +111,17 @@ onMount(() => {
 			</div>
 			<div class="info_item">
 				<div
-					class="title_item ellipsis"
-					title="{String($currentUserActiveTariff.accountsCount)}">{$currentUserActiveTariff.accountsCount}</div>
+					class="title_item ellipsis {limit ? 'warning' : ''}"
+					title="{String($currentUserActiveTariff.accountsCount)}">{$currentUserActiveTariff.accountsCount}&nbsp;/&nbsp;{$currentUserActiveTariff.accounts}</div>
 				<div class="item_desc ellipsis">{$t('other.all_acc')}</div>
 			</div>
 		</div>
 	</div>
-{:else}
-	<div class="flex h-[calc(100vh-280px)] flex-col items-center justify-center p-4 text-white">
-		<span class="loading-spinner mb-3"></span>
-		<h2>{$t('stats.loading_data')}</h2>
-	</div>
 {/if}
+
+<!-- {#if $currentUserActiveTariff}
+
+{/if} -->
 
 <style>
 .layout {
@@ -103,7 +132,19 @@ onMount(() => {
 	color: white;
 	height: fit-content;
 }
-
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.096);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+	backdrop-filter: blur(3px);
+}
 .tariff {
 	background-color: #171b26;
 	border-radius: 5px;
@@ -167,6 +208,9 @@ onMount(() => {
 	max-width: 100%;
 	display: block;
 }
+.warning {
+	color: #ff6347; /* Цвет томатный */
+}
 .ellipsis-multi {
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
@@ -200,6 +244,9 @@ onMount(() => {
 .tariff_end {
 	color: #01d2f9;
 }
+.desc_mobile {
+	text-align: center;
+}
 @keyframes spin {
 	0% {
 		transform: rotate(0deg);
@@ -216,6 +263,7 @@ onMount(() => {
 	.tariff {
 		width: 100%;
 		border-radius: 24px;
+		height: 180px;
 	}
 	.tariff_info_container {
 		justify-content: center;

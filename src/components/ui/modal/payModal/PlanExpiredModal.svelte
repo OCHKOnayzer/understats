@@ -98,6 +98,9 @@ function goTariff() {
 .button_container button:nth-child(1) {
 	background-color: var(--accent-color);
 }
+/* .button_container button:nth-child(1):hover{
+	background-color: #0d111d;
+} */
 .button_container button:nth-child(2) {
 	background-color: #0d111d;
 }

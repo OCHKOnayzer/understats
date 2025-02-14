@@ -43,7 +43,9 @@ class SubscriptionService {
 
 			const data = response.data;
 			const purchasedDate = data.purchasedDate;
+			const endsDate = data?.endsDate;
 			const formatDatePurchased = formatDate(purchasedDate);
+			const formatEndsDate = formatDate(endsDate);
 			const filteredData: ActiveTariff = {
 				tariffName: data.tariff?.name || '0',
 				accounts: data.tariff?.accounts || 0,
@@ -53,7 +55,8 @@ class SubscriptionService {
 				betsCount: data.betsCount || 0,
 				betsLeft: data.betsLeft || 0,
 				datePurchased: formatDatePurchased || '0',
-				pricePerMonth: data.tariff?.pricePerMonth || 0
+				pricePerMonth: data.tariff?.pricePerMonth || 0,
+				endsDate: formatEndsDate || '0'
 			};
 
 			currentUserActiveTariff.set(filteredData);
