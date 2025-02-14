@@ -3,7 +3,7 @@ import { t } from 'svelte-i18n';
 import Icon from '@iconify/svelte';
 import { slide } from 'svelte/transition';
 let isInitiallyOpen = false;
-let { title,content } = $$props;
+let { title,content } = $$props
 function openState() {
 	isInitiallyOpen = !isInitiallyOpen;
 }
