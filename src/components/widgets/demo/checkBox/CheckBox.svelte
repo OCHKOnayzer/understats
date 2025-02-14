@@ -73,6 +73,7 @@ import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 @media screen and (max-width: 800px) {
 	.demo-switch {
 		width: 100%;
+		padding: 0;
 		height: 48px;
 		justify-content: center;
 	}

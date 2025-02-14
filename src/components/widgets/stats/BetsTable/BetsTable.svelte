@@ -1,5 +1,5 @@
 <script lang="ts">
-import { getCoreRowModel, type CellContext, type ColumnDef } from '@tanstack/table-core';
+import { getCoreRowModel, getSortedRowModel, type CellContext, type ColumnDef, type SortingState } from '@tanstack/table-core';
 import { onDestroy, onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
@@ -29,6 +29,7 @@ let isMobile = $derived(innerWidth < 740);
 let prevPage = $state($filterStore.pagination.currentPage);
 let prevItemsPerPage = $state($filterStore.pagination.itemsPerPage);
 let isLoadingMore = $state(false);
+let sorting = $state<SortingState>([]);
 
 function handleExpressClick(bet: Bet) {
 	if (bet.type === 'Express' && bet.legs) {
@@ -50,7 +51,20 @@ const table = createSvelteTable({
 		return $betsTableStore.data;
 	},
 	columns: getColumns($t),
-	getCoreRowModel: getCoreRowModel()
+	getCoreRowModel: getCoreRowModel(),
+	getSortedRowModel: getSortedRowModel(),
+	onSortingChange: (updater) => {
+		if (typeof updater === 'function') {
+			sorting = updater(sorting);
+		} else {
+			sorting = updater;
+		}
+	},
+	state: {
+		get sorting() {
+			return sorting;
+		}
+	}
 });
 
 type CellContextType = CellContext<Bet, unknown>;
@@ -71,14 +85,14 @@ async function loadData() {
 		});
 
 		if (!response) {
-			throw new Error(('other.no_data'));
+			throw new Error('other.no_data');
 		}
 
 		betsTableStore.setTotalItems(response.pagination.total);
 		betsTableStore.setData(response.res);
 		betsTableStore.setHasMore(response.res.length >= response.pagination.perPage);
 	} catch (err) {
-		betsTableStore.setError(('other.data_error'));
+		betsTableStore.setError('other.data_error');
 	} finally {
 		betsTableStore.setLoading(false);
 	}
@@ -107,7 +121,7 @@ async function loadMoreData() {
 		betsTableStore.appendData(response.res);
 		betsTableStore.setHasMore(response.res.length >= response.pagination.perPage);
 	} catch (err) {
-		betsTableStore.setError(('other.data_error'));
+		betsTableStore.setError('other.data_error');
 	} finally {
 		isLoadingMore = false;
 	}
@@ -217,9 +231,6 @@ $effect(() => {
 											<div
 												class="flex items-center gap-1 sm:text-[10px] md:text-[12px] lg:text-[12px] xl:text-[14px]"
 												style="justify-content: {header.column.columnDef.meta?.textAlign === 'right' ? 'flex-end' : 'flex-start'}">
-												<img
-													src="/icons/table-icon.svg"
-													alt="" />
 												<FlexRender
 													content="{header.column.columnDef.header}"
 													context="{header.getContext()}" />
