@@ -164,16 +164,16 @@ const isProduction = import.meta.env.PROD;
 			console.log("JivoSite loaded, attempting to hide...");
 			if (typeof jivo_destroy === "function") {
 				jivo_destroy();
-				console.log("✅ JivoSite successfully removed.");
+				console.log("JivoSite successfully removed.");
 			} else {
-				console.warn("⚠ JivoSite API is not yet available.");
+				console.warn("JivoSite API is not yet available.");
 			}
 		};
 
 		const hideInterval = setInterval(() => {
 			if (typeof jivo_destroy === "function") {
 				jivo_destroy();
-				console.log("✅ JivoSite removed via interval check.");
+				console.log("JivoSite removed via interval check.");
 				clearInterval(hideInterval);
 			}
 		}, 3000);
