@@ -102,39 +102,7 @@ const queryClient = new QueryClient({
 		}
 	}
 });
-let jivoChat;
-let jivoAction;
-let observer;
 
-onMount(() => {
-	if (typeof window !== 'undefined') {
-		jivoChat = document.querySelector('#jvLabelWrap');
-		jivoAction = document.querySelector('#jivo_action');
-
-		if (jivoAction) {
-			observer = new MutationObserver(() => {
-				const jivoOpen = jivoAction.querySelector('.wrap__aZpsf.__show__oqGtX');
-				if (jivoOpen) {
-					console.log('Chat is open');
-				} else {
-					console.log('Chat closed, hiding...');
-					if (jivoChat) {
-						jivoChat.setAttribute('style', 'display: none !important;');
-					}
-				}
-			});
-
-			observer.observe(jivoAction, { attributes: true, subtree: true, attributeFilter: ['class'] });
-		}
-	}
-});
-
-onDestroy(() => {
-	if (observer) {
-		observer.disconnect();
-		observer = null;
-	}
-});
 const isProduction = import.meta.env.PROD;
 </script>
 
@@ -182,7 +150,47 @@ const isProduction = import.meta.env.PROD;
 
 	gtag('config', 'G-908VK3V379');
 	</script>
+	<script>
+		let jivoChat;
+		let jivoAction;
+		let observer;
 
+		onMount(() => {
+			if (typeof window !== 'undefined') {
+				window.addEventListener('DOMContentLoaded', (event) => {
+					const jdiv = document.querySelector('.jdiv');
+					if (jdiv) {
+						jdiv.style.display = 'none';
+					}
+				});
+				jivoChat = document.querySelector('#jvLabelWrap');
+				jivoAction = document.querySelector('#jivo_action');
+
+				if (jivoAction) {
+					observer = new MutationObserver(() => {
+						const jivoOpen = jivoAction.querySelector('.wrap__aZpsf.__show__oqGtX');
+						if (jivoOpen) {
+							console.log('Chat is open');
+						} else {
+							console.log('Chat closed, hiding...');
+							if (jivoChat) {
+								jivoChat.setAttribute('style', 'display: none !important;');
+							}
+						}
+					});
+
+					observer.observe(jivoAction, { attributes: true, subtree: true, attributeFilter: ['class'] });
+				}
+			}
+		});
+
+		onDestroy(() => {
+			if (observer) {
+				observer.disconnect();
+				observer = null;
+			}
+		});
+	</script>
 	<!-- Yandex.Metrika counter -->
 	<!--	<script type="text/javascript" >-->
 	<!--		(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};-->
