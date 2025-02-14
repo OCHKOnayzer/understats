@@ -1,3 +1,7 @@
+<script context="module" lang="ts">
+	declare var jivo_init: any;
+</script>
+
 <script lang="ts">
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
@@ -11,14 +15,17 @@ const closPayModal = () => {
 	closeModal();
 };
 const showChat = () => {
-	// if (window.jivo_api) {
-	// 				// Отключаем виджет, если он был ранее
-	// 				jivoDestroy();
-	// 			}
-	setTimeout(() => {
-		closeModal();
-	}, 500);
+    if (typeof jivo_init === "function") {
+        jivo_init();
+        console.log("JivoSite чат открыт.");
+    } else {
+        console.warn("JivoSite API не загружен.");
+    }
+    setTimeout(() => {
+        closeModal();
+    }, 100);
 };
+
 </script>
 
 <div

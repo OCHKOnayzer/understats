@@ -130,13 +130,6 @@ const isProduction = import.meta.env.PROD;
 	<script
 		src="//code.jivosite.com/widget/fNvHA3AiqP"
 		async></script>
-		<script>
-			onMount(() => {
-				if (window.jivo_api) {
-					jivoDestroy();
-				}
-			});
-		</script>
 
 	<!-- Google tag (gtag.js) -->
 	<!-- Google tag (gtag.js) -->
@@ -160,24 +153,52 @@ const isProduction = import.meta.env.PROD;
 	<script>
 		console.log("JivoSite hiding script initialized...");
 
-		window.jivo_onLoadCallback = function () {
-			console.log("JivoSite loaded, attempting to hide...");
+		let userOpenedChat = false; // Флаг, отслеживающий, открыл ли чат сам пользователь
+
+		// Функция закрытия JivoSite
+		function hideJivo() {
 			if (typeof jivo_destroy === "function") {
 				jivo_destroy();
-				console.log("JivoSite successfully removed.");
+				console.log("JivoSite закрыт.");
 			} else {
-				console.warn("JivoSite API is not yet available.");
+				console.warn("JivoSite API не загружен.");
+			}
+		}
+
+		// Когда JivoSite загружается, проверяем, закрывать ли его
+		window.jivo_onLoadCallback = function () {
+			console.log("JivoSite загружен.");
+			if (!userOpenedChat) {
+				hideJivo();
 			}
 		};
 
+		// Обработчик закрытия чата через крестик
+		window.jivo_onClose = function () {
+			console.log("Пользователь закрыл чат, уничтожаем JivoSite...");
+			hideJivo();
+		};
+
+		// Проверяем доступность API каждые 3 секунды и закрываем, если нужно
 		const hideInterval = setInterval(() => {
-			if (typeof jivo_destroy === "function") {
-				jivo_destroy();
-				console.log("JivoSite removed via interval check.");
+			if (typeof jivo_destroy === "function" && !userOpenedChat) {
+				hideJivo();
+				console.log("JivoSite закрыт через интервал.");
 				clearInterval(hideInterval);
 			}
 		}, 3000);
 
+		// Переопределяем jivo_init, чтобы следить за ручным открытием чата
+		const originalJivoInit = window.jivo_init;
+		window.jivo_init = function () {
+			userOpenedChat = true; // Помечаем, что юзер открыл чат сам
+			console.log("Пользователь открыл JivoSite, авто-закрытие отключено.");
+			if (typeof originalJivoInit === "function") {
+				originalJivoInit.apply(this, arguments);
+			}
+		};
+
+		// Очищаем интервал при уничтожении приложения
 		onDestroy(() => {
 			clearInterval(hideInterval);
 		});

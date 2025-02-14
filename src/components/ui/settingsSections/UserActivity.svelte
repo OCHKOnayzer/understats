@@ -21,7 +21,6 @@ $: if ($currentUserActiveTariff) {
 }
 onMount(() => {
 	initializeScreenWidthListener();
-	console.log('hello world deplo!')
 });
 </script>
 
