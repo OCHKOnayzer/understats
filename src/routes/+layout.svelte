@@ -210,7 +210,6 @@ main {
 	overflow-x: hidden;
 	position: relative;
 }
-
 .mainContent {
 	position: relative;
 	width: 100%;
@@ -221,7 +220,9 @@ main {
 	padding-left: var(--elements-padding);
 	padding-right: var(--elements-padding);
 }
-
+#jvLabelWrap{
+	display: none !important;
+}
 @media screen and (max-width: 768px) {
 	.mainContent {
 		padding: 0 0.5rem;

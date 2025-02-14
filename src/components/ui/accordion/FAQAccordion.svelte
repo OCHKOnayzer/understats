@@ -1,7 +1,6 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 import Icon from '@iconify/svelte';
-import { backOut } from 'svelte/easing';
 import { slide } from 'svelte/transition';
 let isInitiallyOpen = false
 let {title} = $$props
@@ -24,8 +23,7 @@ on:click="{()=> openState()}">
     {#if isInitiallyOpen}
     <div class="content"
     transition:slide="{{
-        duration: 400,
-        easing: backOut
+        duration: 400
     }}">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quisquam suscipit explicabo libero fuga incidunt modi eligendi soluta, ullam alias totam facilis consequuntur ut. Cupiditate aut labore laborum maiores necessitatibus.
     </div>

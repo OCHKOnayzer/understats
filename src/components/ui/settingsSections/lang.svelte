@@ -58,7 +58,7 @@ document.addEventListener('focusin', (event) => {
 	{#if changeLang}
 	<div
 		class="all-lang"
-		transition:slide="{{ duration: 300}}">
+		transition:slide="{{ duration: 400}}">
 		<div class="modal-lang-wrapper">
 			{#each LangArr as item}
 				<button
@@ -171,7 +171,7 @@ document.addEventListener('focusin', (event) => {
 }
 .select-image {
 	margin-right: 10px;
-	transition: transform 0.2s ease;
+	transition: transform 0.4s ease;
 }
 .open-lang {
 	transform: rotate(180deg);

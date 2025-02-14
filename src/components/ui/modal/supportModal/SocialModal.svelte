@@ -10,6 +10,12 @@ import { SocialLink } from './social';
 const closPayModal = () => {
 	closeModal();
 };
+const showChat = () =>{ 
+	window.jivo_api.open();
+	setTimeout(() => {
+        closeModal();
+    }, 500);
+}
 </script>
 
 <div
@@ -64,7 +70,7 @@ const closPayModal = () => {
 					</div>
 				</div>
 				<button
-					on:click="{toggleChat}"
+					on:click="{showChat}"
 					class="open-chat">
 					{$t('other.chat_open')}
 				</button>
