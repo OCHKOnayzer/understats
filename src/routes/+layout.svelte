@@ -153,9 +153,7 @@ const isProduction = import.meta.env.PROD;
 	<script>
 		console.log("JivoSite hiding script initialized...");
 
-		let userOpenedChat = false; // Флаг, отслеживающий, открыл ли чат сам пользователь
-
-		// Функция закрытия JivoSite
+		let userOpenedChat = false;
 		function hideJivo() {
 			if (typeof jivo_destroy === "function") {
 				jivo_destroy();
@@ -165,7 +163,6 @@ const isProduction = import.meta.env.PROD;
 			}
 		}
 
-		// Когда JivoSite загружается, проверяем, закрывать ли его
 		window.jivo_onLoadCallback = function () {
 			console.log("JivoSite загружен.");
 			if (!userOpenedChat) {
