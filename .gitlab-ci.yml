@@ -21,9 +21,9 @@ build_dev:
   environment:
     name: staging1
 #  when: manual
-#  rules:
+  rules:
 #    - if: '$CI_COMMIT_REF_NAME == "staging3"'
-#    - if: '$CI_COMMIT_REF_NAME == "chat-test"'
+    - if: '$CI_COMMIT_REF_NAME == "chat-test"'
   tags:
     - runner1
   stage: build
