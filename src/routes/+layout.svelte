@@ -173,13 +173,11 @@ const isProduction = import.meta.env.PROD;
 			}
 		};
 
-		// Обработчик закрытия чата через крестик
 		window.jivo_onClose = function () {
 			console.log("Пользователь закрыл чат, уничтожаем JivoSite...");
 			hideJivo();
 		};
 
-		// Проверяем доступность API каждые 3 секунды и закрываем, если нужно
 		const hideInterval = setInterval(() => {
 			if (typeof jivo_destroy === "function" && !userOpenedChat) {
 				hideJivo();
@@ -188,17 +186,15 @@ const isProduction = import.meta.env.PROD;
 			}
 		}, 3000);
 
-		// Переопределяем jivo_init, чтобы следить за ручным открытием чата
 		const originalJivoInit = window.jivo_init;
 		window.jivo_init = function () {
-			userOpenedChat = true; // Помечаем, что юзер открыл чат сам
+			userOpenedChat = true;
 			console.log("Пользователь открыл JivoSite, авто-закрытие отключено.");
 			if (typeof originalJivoInit === "function") {
 				originalJivoInit.apply(this, arguments);
 			}
 		};
 
-		// Очищаем интервал при уничтожении приложения
 		onDestroy(() => {
 			clearInterval(hideInterval);
 		});
