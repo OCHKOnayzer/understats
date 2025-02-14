@@ -11,7 +11,10 @@ const closPayModal = () => {
 	closeModal();
 };
 const showChat = () => {
-	window.jivo_api.open();
+	// if (window.jivo_api) {
+	// 				// Отключаем виджет, если он был ранее
+	// 				jivoDestroy();
+	// 			}
 	setTimeout(() => {
 		closeModal();
 	}, 500);
