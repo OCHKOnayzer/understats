@@ -20,9 +20,6 @@ cache:
 build_dev:
   environment:
     name: staging1
-#  only:
-#    - staging3
-#    - chat-test
 #  when: manual
   rules:
     - if: '$CI_COMMIT_REF_NAME == "staging3"'
@@ -68,9 +65,6 @@ deploy_dev:
   tags:
     - runner1
   stage: deploy
-  only:
-    - staging3
-    - chat-test
   dependencies:
     - build_dev
   variables:
