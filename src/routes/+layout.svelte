@@ -20,7 +20,7 @@ import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
 import Test from '$src/components/ui/test.svelte';
 import { currentUserActiveTariff } from '$src/stores/tariffsStore';
 import { selectedLang, setAppLanguage } from '$src/stores/languageStore';
-import { currentTariffs, isModalOpen, currentUser, openModal, isChatOpen } from '$src/stores/modalStore';
+import { currentTariffs, isModalOpen, currentUser, openModal } from '$src/stores/modalStore';
 import '$src/styles/fonts.css';
 import { langSel } from '$stores/HeaderStores';
 
@@ -150,9 +150,10 @@ const isProduction = import.meta.env.PROD;
 
 	gtag('config', 'G-908VK3V379');
 	</script>
-	<script>
+	<script lang="ts">
+		import { isChatOpen } from '$src/stores/modalStore';
+	
 		console.log("JivoSite hiding script initialized...");
-
 	
 		function hideJivo() {
 			if (typeof jivo_destroy === "function") {
@@ -163,21 +164,26 @@ const isProduction = import.meta.env.PROD;
 			}
 		}
 	
+		let chatOpen = false;
+		isChatOpen.subscribe(value => {
+			chatOpen = value;
+		});
+	
 		window.jivo_onLoadCallback = function () {
 			console.log("JivoSite загружен.");
-			if (!$isChatOpen) {
+			if (!chatOpen) {
 				hideJivo();
 			}
 		};
 	
 		window.jivo_onClose = function () {
 			console.log("Пользователь закрыл чат, скрываем JivoSite...");
-			isChatOpen.set(false); 
+			isChatOpen.set(false);
 			hideJivo();
 		};
 	
 		const hideInterval = setInterval(() => {
-			if (typeof jivo_destroy === "function" && !$isChatOpen) {
+			if (typeof jivo_destroy === "function" && !chatOpen) {
 				hideJivo();
 				console.log("JivoSite закрыт через интервал.");
 				clearInterval(hideInterval);
@@ -186,12 +192,13 @@ const isProduction = import.meta.env.PROD;
 	
 		const originalJivoInit = window.jivo_init;
 		window.jivo_init = function () {
-			isChatOpen.set(true); 
+			isChatOpen.set(true);
 			console.log("Пользователь открыл JivoSite, авто-закрытие отключено.");
 			if (typeof originalJivoInit === "function") {
 				originalJivoInit.apply(this, arguments);
 			}
 		};
+	
 		window.addEventListener("beforeunload", () => {
 			clearInterval(hideInterval);
 		});
