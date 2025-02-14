@@ -131,4 +131,3 @@ deploy_prod:
     - ssh $USER_PROD@$SERVER_IP_PROD "sudo mv /home/$USER_PROD/nginx.conf /etc/nginx/sites-available/1keep.bet"
     - ssh $USER_PROD@$SERVER_IP_PROD 'sudo ln -sf /etc/nginx/sites-available/1keep.bet /etc/nginx/sites-enabled/1keep.bet'
     - ssh $USER_PROD@$SERVER_IP_PROD 'sudo systemctl reload nginx'
-
