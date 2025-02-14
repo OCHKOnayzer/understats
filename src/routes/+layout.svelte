@@ -133,7 +133,6 @@ const isProduction = import.meta.env.PROD;
 		<script>
 			onMount(() => {
 				if (window.jivo_api) {
-					// Отключаем виджет, если он был ранее
 					jivoDestroy();
 				}
 			});
@@ -159,14 +158,29 @@ const isProduction = import.meta.env.PROD;
 	gtag('config', 'G-908VK3V379');
 	</script>
 	<script>
-		export function init(){ 
-			jivo_init()
-		}
-		onMount(()=>{ 
-			if (window.jivo_api) {
-			jivo_destroy()
-		}
-		})
+		console.log("JivoSite hiding script initialized...");
+
+		window.jivo_onLoadCallback = function () {
+			console.log("JivoSite loaded, attempting to hide...");
+			if (typeof jivo_destroy === "function") {
+				jivo_destroy();
+				console.log("JivoSite successfully removed.");
+			} else {
+				console.warn("JivoSite API is not yet available.");
+			}
+		};
+
+		const hideInterval = setInterval(() => {
+			if (typeof jivo_destroy === "function") {
+				jivo_destroy();
+				console.log("JivoSite removed via interval check.");
+				clearInterval(hideInterval);
+			}
+		}, 3000);
+
+		onDestroy(() => {
+			clearInterval(hideInterval);
+		});
 	</script>
 	
 	<!-- Yandex.Metrika counter -->
