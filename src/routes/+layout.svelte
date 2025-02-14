@@ -150,10 +150,10 @@ const isProduction = import.meta.env.PROD;
 
 	gtag('config', 'G-908VK3V379');
 	</script>
-	<script lang="ts">
-		import { isChatOpen } from '$src/stores/modalStore';
-	
+	<script>
 		console.log("JivoSite hiding script initialized...");
+	
+		let userOpenedChat = false;
 	
 		function hideJivo() {
 			if (typeof jivo_destroy === "function") {
@@ -164,26 +164,21 @@ const isProduction = import.meta.env.PROD;
 			}
 		}
 	
-		let chatOpen = false;
-		isChatOpen.subscribe(value => {
-			chatOpen = value;
-		});
-	
 		window.jivo_onLoadCallback = function () {
 			console.log("JivoSite загружен.");
-			if (!chatOpen) {
+			if (!userOpenedChat) {
 				hideJivo();
 			}
 		};
 	
 		window.jivo_onClose = function () {
 			console.log("Пользователь закрыл чат, скрываем JivoSite...");
-			isChatOpen.set(false);
+			userOpenedChat = false; 
 			hideJivo();
 		};
 	
 		const hideInterval = setInterval(() => {
-			if (typeof jivo_destroy === "function" && !chatOpen) {
+			if (typeof jivo_destroy === "function" && !userOpenedChat) {
 				hideJivo();
 				console.log("JivoSite закрыт через интервал.");
 				clearInterval(hideInterval);
@@ -192,13 +187,13 @@ const isProduction = import.meta.env.PROD;
 	
 		const originalJivoInit = window.jivo_init;
 		window.jivo_init = function () {
-			isChatOpen.set(true);
+			userOpenedChat = true;
 			console.log("Пользователь открыл JivoSite, авто-закрытие отключено.");
 			if (typeof originalJivoInit === "function") {
 				originalJivoInit.apply(this, arguments);
 			}
 		};
-	
+
 		window.addEventListener("beforeunload", () => {
 			clearInterval(hideInterval);
 		});
