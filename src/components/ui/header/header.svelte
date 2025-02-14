@@ -2,6 +2,7 @@
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
+import { currentUserActiveTariff } from '$src/stores/tariffsStore';
 import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';
 import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
 import { openFaqMenu } from '$src/stores/faq';
@@ -38,6 +39,7 @@ const openCurrentModal = (modal: ModalType) => {
 };
 
 const isTumbler = ['/', '/accounts', '/help', '/extensions'];
+const isTariffLimits = ['/accounts', '/'];
 const isSettings = ['/settings'];
 const isHelp = ['/help'];
 
@@ -62,14 +64,19 @@ function closeStateFunction() {
 						<a
 							class="profile-container"
 							href="/settings">
-							<!-- <img src="" alt=""> -->
+							<img
+								src="/icons/user.svg"
+								alt="" />
 						</a>
 					{/if}
 				{:else}
 					<button
 						aria-label="auth"
 						class="profile-container"
-						on:click="{() => goto('/authorization')}"></button>
+						on:click="{() => goto('/authorization')}">
+						<img
+							src="/icons/user.svg"
+							alt="" /></button>
 				{/if}
 			</div>
 			<div class="flex items-center">
@@ -82,7 +89,33 @@ function closeStateFunction() {
 								src="/icons/back_arrow.svg"
 								alt="" /></button>
 					{/if}
+
 					<p>{$t($headerTitle)}</p>
+					{#if !$isMobile && $currentUser && isTariffLimits.includes($page.url.pathname)}
+						<div class="tariff_info">
+							<div class="item_wrapper">
+								{$t('accounts.available')}:
+								<div class="tariff_item">
+									{#if $currentUserActiveTariff}
+										&nbsp;&nbsp;{$currentUserActiveTariff.accountsLeft}
+									{:else}
+										0
+									{/if}
+								</div>
+							</div>
+							/
+							<div class="item_wrapper">
+								{$t('accounts.used')}:
+								<div class="tariff_item">
+									{#if $currentUserActiveTariff}
+										&nbsp;&nbsp;{$currentUserActiveTariff.accountsCount}
+									{:else}
+										0
+									{/if}
+								</div>
+							</div>
+						</div>
+					{/if}
 				</div>
 				{#if $headerTitle == 'menu.Stats'}
 					<MobileFilterButton />
@@ -91,7 +124,9 @@ function closeStateFunction() {
 
 			<div class="buttonConteiner">
 				{#if isTumbler.includes($page.url.pathname)}
-					<CheckBox />
+					<div class="btnWrapper check">
+						<CheckBox />
+					</div>
 				{/if}
 				<div class="btnWrapper lang {$modalComponent === 'LangModal' ? 'active' : ''}">
 					<LangButton openCurrentModal="{openCurrentModal}" />
@@ -149,16 +184,31 @@ function closeStateFunction() {
 	border-radius: 20px;
 	background-color: #d9d9d9;
 }
-/* .profile-container img{
-		height: 100%;
-		width: 100%;
-	} */
+.profile-container img {
+	height: 100%;
+	width: 100%;
+}
 .title {
 	display: flex;
 	align-items: center;
 	padding-left: 16px;
 }
-
+.tariff_info {
+	padding-left: var(--elements-padding);
+	padding-top: 5px;
+	display: flex;
+	gap: var(--elements-padding);
+	font-size: 14px;
+	align-items: center;
+	color: #718097;
+	width: fit-content;
+}
+.item_wrapper {
+	display: flex;
+}
+.tariff_item {
+	color: white;
+}
 .buttonConteiner {
 	display: flex;
 	align-items: center;

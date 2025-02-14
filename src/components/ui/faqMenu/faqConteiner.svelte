@@ -149,6 +149,7 @@ async function loadArticleComponent(article2: string) {
 	}
 	.selected_state_wrapper {
 		margin: 0px;
+		padding-right: 0px;
 	}
 	.selected_title {
 		font-size: 24px;

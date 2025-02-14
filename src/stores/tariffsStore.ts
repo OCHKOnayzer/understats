@@ -1,3 +1,9 @@
 import { writable } from 'svelte/store';
 
-export const tariffsPeriod = writable<string>('month');
+import type { ActiveTariff } from '$src/types/types';
+
+export type Period = 'month' | 'year';
+
+export const tariffsPeriod = writable<Period>('month');
+
+export const currentUserActiveTariff = writable<ActiveTariff | null>(null);

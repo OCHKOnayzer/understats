@@ -12,20 +12,24 @@ import { onDestroy, onMount } from 'svelte';
 import { Toaster } from 'svelte-french-toast';
 import { init, locale, t, waitLocale } from 'svelte-i18n';
 
+import { subscriptionService } from '$src/services/tariffs/subscription.service';
+import { ifWindow } from '$src/utils/functions/chat';
 import Menu from '$components/ui/menu/Menu.svelte';
 import Header from '$src/components/ui/header/header.svelte';
 import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
 import Test from '$src/components/ui/test.svelte';
+import { currentUserActiveTariff } from '$src/stores/tariffsStore';
 import { selectedLang, setAppLanguage } from '$src/stores/languageStore';
-import { isModalOpen, openModal } from '$src/stores/modalStore';
+import { currentTariffs, isModalOpen, currentUser, openModal } from '$src/stores/modalStore';
 import '$src/styles/fonts.css';
-import { ifWindow } from '$src/utils/functions/chat';
 import { langSel } from '$stores/HeaderStores';
 
 import { browser } from '$app/environment';
 import { page } from '$app/stores';
 
 import '../app.css';
+import PlanNotSelected from '$src/components/widgets/tariffs/alerts/PlanNotSelected.svelte';
+import DateAlert from '$src/components/widgets/tariffs/alerts/DateAlert.svelte';
 
 export let data: LayoutData;
 
@@ -33,6 +37,8 @@ init({
 	fallbackLocale: 'en',
 	initialLocale: data.locale
 });
+
+let wasAuthenticated = false;
 
 let isLocaleReady = false;
 
@@ -48,7 +54,6 @@ onMount(async () => {
 	} catch (error) {
 		console.error($t('error.locale_error_in_client'), error);
 	}
-	ifWindow();
 });
 
 let unsubscribe;
@@ -61,18 +66,32 @@ onMount(() => {
 	unsubscribe = langSel.subscribe((currentLocale) => {
 		document.documentElement.lang = currentLocale;
 	});
-
+	ifWindow();
+	subscriptionService.getAllTariffs();
 	if (!localStorage.getItem('demoModalShown')) {
 		openModal('DemoModal');
 		localStorage.setItem('demoModalShown', 'true');
 	}
 });
 
+$: if ($currentUser) {
+	if (!wasAuthenticated) {
+		wasAuthenticated = true;
+		subscriptionService.subscriptionMy();
+	}
+} else {
+	wasAuthenticated = false;
+}
+
 onDestroy(() => {
 	if (unsubscribe) {
 		unsubscribe();
 	}
 });
+
+$: if ($currentUserActiveTariff?.tariffName === 'Free' && $currentUserActiveTariff.betsLeft <= 0 && $currentUserActiveTariff.accountsLeft <= 0) {
+	openModal('PlanExpiredModal');
+}
 
 const routesWithoutMenu = ['/registrations', '/authorization'];
 
@@ -83,7 +102,39 @@ const queryClient = new QueryClient({
 		}
 	}
 });
+let jivoChat;
+let jivoAction;
+let observer;
 
+onMount(() => {
+	if (typeof window !== 'undefined') {
+		jivoChat = document.querySelector('#jvLabelWrap');
+		jivoAction = document.querySelector('#jivo_action');
+
+		if (jivoAction) {
+			observer = new MutationObserver(() => {
+				const jivoOpen = jivoAction.querySelector('.wrap__aZpsf.__show__oqGtX');
+				if (jivoOpen) {
+					console.log('Chat is open');
+				} else {
+					console.log('Chat closed, hiding...');
+					if (jivoChat) {
+						jivoChat.setAttribute('style', 'display: none !important;');
+					}
+				}
+			});
+
+			observer.observe(jivoAction, { attributes: true, subtree: true, attributeFilter: ['class'] });
+		}
+	}
+});
+
+onDestroy(() => {
+	if (observer) {
+		observer.disconnect();
+		observer = null;
+	}
+});
 const isProduction = import.meta.env.PROD;
 </script>
 
@@ -167,7 +218,10 @@ const isProduction = import.meta.env.PROD;
 					{#if !routesWithoutMenu.includes($page.url.pathname)}
 						<Header />
 					{/if}
-
+					{#if !$currentUserActiveTariff && $currentUser}
+						<PlanNotSelected />
+					{/if}
+					<!-- <DateAlert /> -->
 					<slot />
 				</div>
 			{:else}
@@ -188,7 +242,6 @@ main {
 	overflow-x: hidden;
 	position: relative;
 }
-
 .mainContent {
 	position: relative;
 	width: 100%;
@@ -199,7 +252,9 @@ main {
 	padding-left: var(--elements-padding);
 	padding-right: var(--elements-padding);
 }
-
+#jvLabelWrap {
+	display: none !important;
+}
 @media screen and (max-width: 768px) {
 	.mainContent {
 		padding: 0 0.5rem;

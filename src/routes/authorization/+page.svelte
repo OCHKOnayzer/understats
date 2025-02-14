@@ -1,13 +1,20 @@
 <script>
+import { onMount } from 'svelte';
+
 import LoginModal from '$src/components/ui/modal/authModal/loginModal/LoginModal.svelte';
 import RegistrationModal from '$src/components/ui/modal/authModal/registrationModal/RegistrationModal.svelte';
 import { afterUrl } from '$src/stores/HeaderStores';
-import { currentModal } from '$src/stores/modalStore';
+import { currentModal, currentUser } from '$src/stores/modalStore';
 
 import { goto } from '$app/navigation';
 const backToApp = () => {
 	goto($afterUrl);
 };
+onMount(() => {
+	if ($currentUser) {
+		goto('/');
+	}
+});
 </script>
 
 <div class="auth">

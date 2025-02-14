@@ -12,7 +12,7 @@ let { text } = $$props as ArticalSectionProps;
 
 <style>
 .article_container {
-	color: #f3bf55;
+	color: var(--alert-color);
 	font-size: 15px;
 	margin-bottom: 10px;
 }

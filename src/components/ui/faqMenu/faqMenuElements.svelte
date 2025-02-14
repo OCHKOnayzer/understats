@@ -14,7 +14,6 @@ const dispatch = createEventDispatcher();
 const updateURL = (props: string | null, article: string | null) => {
 	const url = new URL(window.location.href);
 
-	// Удаляем старые параметры
 	url.searchParams.forEach((_, key) => url.searchParams.delete(key));
 
 	if (props) {

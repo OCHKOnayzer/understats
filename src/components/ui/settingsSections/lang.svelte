@@ -1,5 +1,6 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
+import { slide } from 'svelte/transition';
 
 import { setLanguage } from '$src/lib/i18n';
 import { selectedLang } from '$src/stores/languageStore';
@@ -54,24 +55,26 @@ document.addEventListener('focusin', (event) => {
 				src="assets/arrowSell.svg"
 				alt="" /></span>
 	</button>
-	<div
-		class="all-lang"
-		style="display: {changeLang ? 'block' : 'none'}">
-		<div class="modal-lang-wrapper">
-			{#each LangArr as item}
-				<button
-					style="background-color: {$selectedLang === item.lang ? '#6660ff40' : ''}"
-					on:click="{() => setLang(item.lang)}"
-					class="modal-lang">
-					<img
-						class="lang-image modal-lang-image"
-						src="{item.image}"
-						alt="" />
-					<span class="lang-name">{$t(item.name)}{item.flag}</span>
-				</button>
-			{/each}
+	{#if changeLang}
+		<div
+			class="all-lang"
+			transition:slide="{{ duration: 400 }}">
+			<div class="modal-lang-wrapper">
+				{#each LangArr as item}
+					<button
+						style="background-color: {$selectedLang === item.lang ? '#6660ff40' : ''}"
+						on:click="{() => setLang(item.lang)}"
+						class="modal-lang">
+						<img
+							class="lang-image modal-lang-image"
+							src="{item.image}"
+							alt="" />
+						<span class="lang-name">{$t(item.name)}{item.flag}</span>
+					</button>
+				{/each}
+			</div>
 		</div>
-	</div>
+	{/if}
 </div>
 
 <style>
@@ -167,7 +170,7 @@ document.addEventListener('focusin', (event) => {
 }
 .select-image {
 	margin-right: 10px;
-	transition: transform 0.2s ease;
+	transition: transform 0.4s ease;
 }
 .open-lang {
 	transform: rotate(180deg);

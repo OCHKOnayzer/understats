@@ -3,6 +3,8 @@ import { t } from 'svelte-i18n';
 
 import { tariffsPeriod } from '$src/stores/tariffsStore';
 import { openModal, setCurrentTariffs, setCurrentLimits, type currentTariffsType } from '$src/stores/modalStore';
+
+import type { Period } from '$src/stores/tariffsStore';
 let { name, desc, limitations, accounts, price, price_year } = $$props;
 const openPay = (tarrifs: currentTariffsType, limits: any) => {
 	openModal('PaySupport');
@@ -14,12 +16,12 @@ const openPay = (tarrifs: currentTariffsType, limits: any) => {
 	}
 };
 
-let activePeriod = 'month';
+let activePeriod: Period = 'month';
 
 const year = 'tariffs.proccents';
 const month = 'tariffs.year_proccents';
 
-function changePeriod(period: string) {
+function changePeriod(period: Period) {
 	activePeriod = period;
 	tariffsPeriod.set(activePeriod);
 }
@@ -92,6 +94,7 @@ console.log(accounts);
 	width: 65%;
 	text-align: center;
 	font-size: 14px;
+	height: 40px;
 }
 
 .container {
@@ -107,6 +110,11 @@ console.log(accounts);
 	justify-content: center;
 	border-radius: 8px;
 	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+	display: block;
 }
 
 .choose-period {
@@ -152,6 +160,9 @@ console.log(accounts);
 	font-size: 14px;
 }
 @media screen and (max-width: 1200px) {
+	.limits {
+		overflow: unset;
+	}
 	.choose-period {
 		height: 50px;
 	}

@@ -42,30 +42,30 @@ export const ActiveElemnts: ActiveInerface[] = [
 		image: '',
 		article: 'DownloadGoogle'
 	},
-	{
-		index: 1,
-		name: 'faq.ext_firefox',
-		image: '',
-		article: 'DownloadFirefox'
-	},
+	// {
+	// 	index: 1,
+	// 	name: 'faq.ext_firefox',
+	// 	image: '',
+	// 	article: 'DownloadFirefox'
+	// },
 	{
 		index: 1,
 		name: 'faq.ext_yandex',
 		image: '',
 		article: 'DownloadYandex'
 	},
-	{
-		index: 1,
-		name: 'faq.ext_opera',
-		image: '',
-		article: 'DownloadOpera'
-	},
-	{
-		index: 1,
-		name: 'faq.ext_edge',
-		image: '',
-		article: 'DownloadEdge'
-	},
+	// {
+	// 	index: 1,
+	// 	name: 'faq.ext_opera',
+	// 	image: '',
+	// 	article: 'DownloadOpera'
+	// },
+	// {
+	// 	index: 1,
+	// 	name: 'faq.ext_edge',
+	// 	image: '',
+	// 	article: 'DownloadEdge'
+	// },
 	{
 		index: 1,
 		name: 'faq.ext_safari',
