@@ -33,8 +33,8 @@
 				card: 'bg-input rounded-[16px] p-[16px] hover:shadow-lg transition-all',
 				not: 'bg-[#31384A] text-white text-[16px] border-none rounded-[16px] py-[16px] flex items-center transition-all',
 				transparent: 'bg-transparent text-white text-[16px] border-none rounded-[16px] py-[16px] flex items-center hover:bg-input transition-all',
-				demoButton: 'bg-violet text-base border-none rounded-[12px] hover:bg-input',
-				blackButton: 'bg-blackPrimary text-base border-none rounded-[12px] hover:bg-input'
+				demoButton: 'bg-violet text-base border-none rounded-[12px] hover:bg-[#5550ee]',
+				blackButton: 'bg-blackPrimary text-base border-none rounded-[12px] hover:bg-[#31384A]'
 			},
 			size: {
 				default: 'h-10 px-4 py-2',

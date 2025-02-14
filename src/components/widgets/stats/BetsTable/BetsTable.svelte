@@ -1,10 +1,11 @@
 <script lang="ts">
-import { getCoreRowModel, type CellContext, type ColumnDef } from '@tanstack/table-core';
+import { getCoreRowModel, getSortedRowModel, type CellContext, type ColumnDef, type SortingState } from '@tanstack/table-core';
 import { onDestroy, onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
 import { createSvelteTable, FlexRender } from '$components/ui/data-table';
 import * as Table from '$components/ui/table';
+import TableError from '$components/ui/tableError/TableError.svelte';
 import { fetchFilteredData } from '$src/components/entities/stats/api/bets';
 import MobileCard from '$src/components/features/stats/Mobile/MobileCard.svelte';
 import TableNoData from '$src/components/ui/tableNoData/TableNoData.svelte';
@@ -15,7 +16,6 @@ import { filterStore } from '$src/stores/filterStore';
 import { currentUser, openModal } from '$src/stores/modalStore';
 import { generateBetKey } from '$src/utils/functions/generateBetKey';
 import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
-import TableError from '$components/ui/tableError/TableError.svelte';
 
 import AuthDemoButton from '../../demo/demoButtons/AuthDemoButton.svelte';
 
@@ -29,6 +29,7 @@ let isMobile = $derived(innerWidth < 740);
 let prevPage = $state($filterStore.pagination.currentPage);
 let prevItemsPerPage = $state($filterStore.pagination.itemsPerPage);
 let isLoadingMore = $state(false);
+let sorting = $state<SortingState>([]);
 
 function handleExpressClick(bet: Bet) {
 	if (bet.type === 'Express' && bet.legs) {
@@ -50,7 +51,20 @@ const table = createSvelteTable({
 		return $betsTableStore.data;
 	},
 	columns: getColumns($t),
-	getCoreRowModel: getCoreRowModel()
+	getCoreRowModel: getCoreRowModel(),
+	getSortedRowModel: getSortedRowModel(),
+	onSortingChange: (updater) => {
+		if (typeof updater === 'function') {
+			sorting = updater(sorting);
+		} else {
+			sorting = updater;
+		}
+	},
+	state: {
+		get sorting() {
+			return sorting;
+		}
+	}
 });
 
 type CellContextType = CellContext<Bet, unknown>;
@@ -71,14 +85,14 @@ async function loadData() {
 		});
 
 		if (!response) {
-			throw new Error('Нет данных');
+			throw new Error('other.no_data');
 		}
 
 		betsTableStore.setTotalItems(response.pagination.total);
 		betsTableStore.setData(response.res);
 		betsTableStore.setHasMore(response.res.length >= response.pagination.perPage);
 	} catch (err) {
-		betsTableStore.setError($t('other.data_error'));
+		betsTableStore.setError('other.data_error');
 	} finally {
 		betsTableStore.setLoading(false);
 	}
@@ -107,7 +121,7 @@ async function loadMoreData() {
 		betsTableStore.appendData(response.res);
 		betsTableStore.setHasMore(response.res.length >= response.pagination.perPage);
 	} catch (err) {
-		betsTableStore.setError($t('other.data_error'));
+		betsTableStore.setError('other.data_error');
 	} finally {
 		isLoadingMore = false;
 	}
@@ -217,9 +231,6 @@ $effect(() => {
 											<div
 												class="flex items-center gap-1 sm:text-[10px] md:text-[12px] lg:text-[12px] xl:text-[14px]"
 												style="justify-content: {header.column.columnDef.meta?.textAlign === 'right' ? 'flex-end' : 'flex-start'}">
-												<img
-													src="/icons/table-icon.svg"
-													alt="" />
 												<FlexRender
 													content="{header.column.columnDef.header}"
 													context="{header.getContext()}" />

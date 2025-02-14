@@ -1,3 +1,7 @@
+import { renderComponent } from '$src/components/ui/data-table';
+
+import SortableHeader from '../../table/SortableHeader.svelte';
+
 import type { Bet } from '$src/types/bet';
 import type { ColumnDef } from '@tanstack/table-core';
 
@@ -12,7 +16,12 @@ type BetColumnDef = ColumnDef<Bet, unknown> & {
 export const getColumns = (t: (key: string, params?: Record<string, any>) => string): ColumnDef<Bet>[] => [
 	{
 		accessorKey: 'dates.placed',
-		header: t('columns.bet.time'),
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: t('columns.bet.time'),
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			}),
 		meta: { textAlign: 'left' } as BetColumnMeta,
 		cell: ({ row }) => {
 			try {
@@ -26,16 +35,31 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 	},
 	{
 		accessorKey: 'siteName',
-		header: t('columns.bet.bookmaker'),
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: t('columns.bet.bookmaker'),
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			}),
 		meta: { textAlign: 'left' } as BetColumnMeta
 	},
 	{
 		accessorKey: 'event.sport',
-		header: t('columns.bet.sport')
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: t('columns.bet.sport'),
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			})
 	},
 	{
 		accessorKey: 'event',
-		header: t('columns.bet.event'),
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: t('columns.bet.event'),
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			}),
 		cell: ({ row }) => {
 			const bet = row.original;
 			if (bet.type === 'Express') {
@@ -48,22 +72,42 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 	},
 	{
 		accessorKey: 'amounts.stake',
-		header: t('columns.bet.ammount'),
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: t('columns.bet.ammount'),
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			}),
 		meta: { textAlign: 'right' } as BetColumnMeta
 	},
 	{
 		accessorKey: 'rate',
-		header: t('columns.bet.ratio'),
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: t('columns.bet.ratio'),
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			}),
 		meta: { textAlign: 'right' } as BetColumnMeta
 	},
 	{
 		accessorKey: 'amounts.win',
-		header: t('columns.bet.win'),
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: t('columns.bet.win'),
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			}),
 		meta: { textAlign: 'right' } as BetColumnMeta
 	},
 	{
 		accessorKey: 'status',
-		header: t('columns.bet.status')
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: t('columns.bet.status'),
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			})
 	}
 ];
 

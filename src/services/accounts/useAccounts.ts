@@ -12,7 +12,6 @@ export function useAccounts() {
 	const query = createQuery({
 		queryKey: ['accounts'],
 		queryFn: async () => {
-			// Если demo режим включён — используем demoToken, иначе — accessToken
 			const token = get(isDemoEnabled) ? getDemoToken() : getAccessToken();
 			if (!token) {
 				return null;
@@ -23,7 +22,6 @@ export function useAccounts() {
 			}
 			return response;
 		},
-		// enabled с учётом наличия нужного токена
 		enabled: !!(get(isDemoEnabled) ? getDemoToken() : getAccessToken()),
 		refetchOnWindowFocus: true,
 		staleTime: 30000,

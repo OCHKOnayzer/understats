@@ -15,7 +15,7 @@ let { error }: TableErrorProps = $props();
 		class="h-16 w-16" />
 	<div class="text-center">
 		<h2 class="mb-2 text-[28px] leading-[32px]">{$t('other.error_title')}</h2>
-		<p class="text-[15px] leading-[22px] text-gray-400">{error}</p>
+		<p class="text-[15px] leading-[22px] text-gray-400">{$t(error)}</p>
 	</div>
 	<button
 		class="rounded-full bg-violet px-6 py-3 text-white transition-colors hover:bg-[#5550ee]"
