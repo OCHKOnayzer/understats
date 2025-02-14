@@ -2,6 +2,8 @@ import { derived, writable } from 'svelte/store';
 
 export const isModalOpen = writable(false);
 
+export const isChatOpen = writable(false)
+
 export const isLogOutModal = writable(false);
 
 export const modalComponent = writable<

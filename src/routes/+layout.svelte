@@ -20,7 +20,7 @@ import AuthModal from '$src/components/ui/modal/ModalLayout.svelte';
 import Test from '$src/components/ui/test.svelte';
 import { currentUserActiveTariff } from '$src/stores/tariffsStore';
 import { selectedLang, setAppLanguage } from '$src/stores/languageStore';
-import { currentTariffs, isModalOpen, currentUser, openModal } from '$src/stores/modalStore';
+import { currentTariffs, isModalOpen, currentUser, openModal, isChatOpen } from '$src/stores/modalStore';
 import '$src/styles/fonts.css';
 import { langSel } from '$stores/HeaderStores';
 
@@ -152,8 +152,7 @@ const isProduction = import.meta.env.PROD;
 	</script>
 	<script>
 		console.log("JivoSite hiding script initialized...");
-	
-		let userOpenedChat = false;
+
 	
 		function hideJivo() {
 			if (typeof jivo_destroy === "function") {
@@ -166,19 +165,19 @@ const isProduction = import.meta.env.PROD;
 	
 		window.jivo_onLoadCallback = function () {
 			console.log("JivoSite загружен.");
-			if (!userOpenedChat) {
+			if (!$isChatOpen) {
 				hideJivo();
 			}
 		};
 	
 		window.jivo_onClose = function () {
 			console.log("Пользователь закрыл чат, скрываем JivoSite...");
-			userOpenedChat = false; 
+			isChatOpen.set(false); 
 			hideJivo();
 		};
 	
 		const hideInterval = setInterval(() => {
-			if (typeof jivo_destroy === "function" && !userOpenedChat) {
+			if (typeof jivo_destroy === "function" && !$isChatOpen) {
 				hideJivo();
 				console.log("JivoSite закрыт через интервал.");
 				clearInterval(hideInterval);
@@ -187,7 +186,7 @@ const isProduction = import.meta.env.PROD;
 	
 		const originalJivoInit = window.jivo_init;
 		window.jivo_init = function () {
-			userOpenedChat = true;
+			isChatOpen.set(true); 
 			console.log("Пользователь открыл JivoSite, авто-закрытие отключено.");
 			if (typeof originalJivoInit === "function") {
 				originalJivoInit.apply(this, arguments);

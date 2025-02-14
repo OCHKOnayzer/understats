@@ -3,6 +3,7 @@
 </script>
 
 <script lang="ts">
+import { isChatOpen } from '$src/stores/modalStore';
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
@@ -16,6 +17,7 @@ const closPayModal = () => {
 };
 const showChat = () => {
     if (typeof jivo_init === "function") {
+		isChatOpen.set(true)
         jivo_init();
         console.log("JivoSite чат открыт.");
     } else {
