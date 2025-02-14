@@ -151,9 +151,10 @@ const isProduction = import.meta.env.PROD;
 	gtag('config', 'G-908VK3V379');
 	</script>
 	<script>
-		console.log("JivoSite hiding script initialized...");
+		onsole.log("JivoSite hiding script initialized...");
 
 		let userOpenedChat = false;
+
 		function hideJivo() {
 			if (typeof jivo_destroy === "function") {
 				jivo_destroy();
@@ -162,7 +163,6 @@ const isProduction = import.meta.env.PROD;
 				console.warn("JivoSite API не загружен.");
 			}
 		}
-
 		window.jivo_onLoadCallback = function () {
 			console.log("JivoSite загружен.");
 			if (!userOpenedChat) {
@@ -171,10 +171,10 @@ const isProduction = import.meta.env.PROD;
 		};
 
 		window.jivo_onClose = function () {
-			console.log("Пользователь закрыл чат, уничтожаем JivoSite...");
+			console.log("Пользователь закрыл чат, скрываем JivoSite...");
+			userOpenedChat = false;
 			hideJivo();
 		};
-
 		const hideInterval = setInterval(() => {
 			if (typeof jivo_destroy === "function" && !userOpenedChat) {
 				hideJivo();
@@ -192,7 +192,7 @@ const isProduction = import.meta.env.PROD;
 			}
 		};
 
-		onDestroy(() => {
+		window.addEventListener("beforeunload", () => {
 			clearInterval(hideInterval);
 		});
 	</script>
