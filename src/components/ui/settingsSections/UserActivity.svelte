@@ -9,15 +9,15 @@ import Test from '../test.svelte';
 import Spinner from '../spinner/Spinner.svelte';
 
 // let testCountAcc = 2
-let limit = false
+let limit = false;
 
-function checkLimits(){ 
-	if($currentUserActiveTariff){ 
-		limit = ( $currentUserActiveTariff.accountsCount >= $currentUserActiveTariff.accounts);
+function checkLimits() {
+	if ($currentUserActiveTariff) {
+		limit = $currentUserActiveTariff.accountsCount >= $currentUserActiveTariff.accounts;
 	}
 }
-$:if($currentUserActiveTariff){ 
-	checkLimits()
+$: if ($currentUserActiveTariff) {
+	checkLimits();
 }
 onMount(() => {
 	initializeScreenWidthListener();
@@ -29,97 +29,98 @@ onMount(() => {
 		<span class="loading-spinner mb-3"></span>
 	</div>
 {:else}
-<div class="layout">
-	<div class="tariff">
-		<div class="tariff_info_container">
-			<div class="info_wrapper">
-				{#if $isMobile}
-					<div class="tariff_title_mobile">
-						{$currentUserActiveTariff.tariffName}
-					</div>
-				{:else}
-					<span
-						class="ellipsis"
-						title="{$currentUserActiveTariff.tariffName}">
-						{$currentUserActiveTariff.tariffName}&nbsp;{$t('other.tariff')}
-						({$currentUserActiveTariff?.pricePerMonth}&nbsp;/&nbsp;{$t('other.in_month')})
-					</span>
-				{/if}
-				{#if !$isMobile}
-					<div class="limits">
-						{$currentUserActiveTariff.accounts}&nbsp;
-						<span>{$t('other.acc')}</span>&nbsp;/&nbsp;
-						{$currentUserActiveTariff.betsPerMonth}&nbsp;
-						<span>{$t('tariffs.limits_bets')}</span>
-					</div>
-				{/if}
-				{#if !$isMobile}
-					<div
-						class="ellipsis"
-						title="{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}">
-						{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}
-					</div>
-				{:else}
-					<div
-						class="desc_mobile"
-						title="{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}">
-						{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}
-					</div>
-				{/if}
+	<div class="layout">
+		<div class="tariff">
+			<div class="tariff_info_container">
+				<div class="info_wrapper">
+					{#if $isMobile}
+						<div class="tariff_title_mobile">
+							{$currentUserActiveTariff.tariffName}
+						</div>
+					{:else}
+						<span
+							class="ellipsis"
+							title="{$currentUserActiveTariff.tariffName}">
+							{$currentUserActiveTariff.tariffName}&nbsp;{$t('other.tariff')}
+							({$currentUserActiveTariff?.pricePerMonth}&nbsp;/&nbsp;{$t('other.in_month')})
+						</span>
+					{/if}
+					{#if !$isMobile}
+						<div class="limits">
+							{$currentUserActiveTariff.accounts}&nbsp;
+							<span>{$t('other.acc')}</span>&nbsp;/&nbsp;
+							{$currentUserActiveTariff.betsPerMonth}&nbsp;
+							<span>{$t('tariffs.limits_bets')}</span>
+						</div>
+					{/if}
+					{#if !$isMobile}
+						<div
+							class="ellipsis"
+							title="{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}">
+							{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}
+						</div>
+					{:else}
+						<div
+							class="desc_mobile"
+							title="{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}">
+							{$t(`tariffs.${$currentUserActiveTariff.tariffName.toLocaleLowerCase()}`)}
+						</div>
+					{/if}
 
-				{#if $isMobile}
-					<span class="tariff_end">
-						{#if $currentUserActiveTariff.tariffName !== 'Free'}
-							{$currentUserActiveTariff.endsDate}
-						{:else}
-							{$t('tariffs.free_end')}
-						{/if}
-					</span>
-				{/if}
-				{#if $isMobile}
-					<div class="mobile_tariff_item">
-						{$currentUserActiveTariff.accounts}&nbsp;
-						<span>{$t('tariffs.limits_acc')}</span>
-						{$currentUserActiveTariff.betsPerMonth}
-						<span>{$t('tariffs.limits_bets')}</span>
+					{#if $isMobile}
+						<span class="tariff_end">
+							{#if $currentUserActiveTariff.tariffName !== 'Free'}
+								{$currentUserActiveTariff.endsDate}
+							{:else}
+								{$t('tariffs.free_end')}
+							{/if}
+						</span>
+					{/if}
+					{#if $isMobile}
+						<div class="mobile_tariff_item">
+							{$currentUserActiveTariff.accounts}&nbsp;
+							<span>{$t('tariffs.limits_acc')}</span>
+							{$currentUserActiveTariff.betsPerMonth}
+							<span>{$t('tariffs.limits_bets')}</span>
+						</div>
+					{/if}
+				</div>
+				{#if !$isMobile}
+					<div>
+						<img
+							src="assets/tariffs/sub.svg"
+							alt="" />
 					</div>
 				{/if}
 			</div>
-			{#if !$isMobile}
-				<div>
-					<img
-						src="assets/tariffs/sub.svg"
-						alt="" />
-				</div>
-			{/if}
+		</div>
+		<div class="tariff_info">
+			<div class="info_item">
+				<div
+					class="title_item ellipsis"
+					title="{$currentUserActiveTariff.datePurchased}">{$currentUserActiveTariff.datePurchased}</div>
+				<div
+					class="item_desc ellipsis"
+					title="{$t('other.last_pay')}">{$t('other.last_pay')}</div>
+			</div>
+			<div class="info_item">
+				<div
+					class="title_item ellipsis"
+					title="{String($currentUserActiveTariff.betsCount)}">{$currentUserActiveTariff.betsCount}</div>
+				<div class="item_desc ellipsis">{$t('other.all_pays')}</div>
+			</div>
+			<div class="info_item">
+				<div
+					class="title_item ellipsis {limit ? 'warning' : ''}"
+					title="{String($currentUserActiveTariff.accountsCount)}">{$currentUserActiveTariff.accountsCount}&nbsp;/&nbsp;{$currentUserActiveTariff.accounts}</div>
+				<div class="item_desc ellipsis">{$t('other.all_acc')}</div>
+			</div>
 		</div>
 	</div>
-	<div class="tariff_info">
-		<div class="info_item">
-			<div
-				class="title_item ellipsis"
-				title="{$currentUserActiveTariff.datePurchased}">{$currentUserActiveTariff.datePurchased}</div>
-			<div
-				class="item_desc ellipsis"
-				title="{$t('other.last_pay')}">{$t('other.last_pay')}</div>
-		</div>
-		<div class="info_item">
-			<div
-				class="title_item ellipsis"
-				title="{String($currentUserActiveTariff.betsCount)}">{$currentUserActiveTariff.betsCount}</div>
-			<div class="item_desc ellipsis">{$t('other.all_pays')}</div>
-		</div>
-		<div class="info_item">
-			<div
-				class="title_item ellipsis {limit?'warning':''}"
-				title="{String($currentUserActiveTariff.accountsCount)}">{$currentUserActiveTariff.accountsCount}&nbsp;/&nbsp;{$currentUserActiveTariff.accounts}</div>
-			<div class="item_desc ellipsis">{$t('other.all_acc')}</div>
-		</div>
-	</div>
-</div>
 {/if}
+
 <!-- {#if $currentUserActiveTariff}
-	
+
 {/if} -->
 
 <style>
@@ -207,8 +208,8 @@ onMount(() => {
 	max-width: 100%;
 	display: block;
 }
-.warning{ 
-	color: #FF6347; /* Цвет томатный */
+.warning {
+	color: #ff6347; /* Цвет томатный */
 }
 .ellipsis-multi {
 	display: -webkit-box;

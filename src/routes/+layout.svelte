@@ -102,7 +102,39 @@ const queryClient = new QueryClient({
 		}
 	}
 });
+let jivoChat;
+let jivoAction;
+let observer;
 
+onMount(() => {
+	if (typeof window !== 'undefined') {
+		jivoChat = document.querySelector('#jvLabelWrap');
+		jivoAction = document.querySelector('#jivo_action');
+
+		if (jivoAction) {
+			observer = new MutationObserver(() => {
+				const jivoOpen = jivoAction.querySelector('.wrap__aZpsf.__show__oqGtX');
+				if (jivoOpen) {
+					console.log('Chat is open');
+				} else {
+					console.log('Chat closed, hiding...');
+					if (jivoChat) {
+						jivoChat.setAttribute('style', 'display: none !important;');
+					}
+				}
+			});
+
+			observer.observe(jivoAction, { attributes: true, subtree: true, attributeFilter: ['class'] });
+		}
+	}
+});
+
+onDestroy(() => {
+	if (observer) {
+		observer.disconnect();
+		observer = null;
+	}
+});
 const isProduction = import.meta.env.PROD;
 </script>
 
@@ -220,7 +252,7 @@ main {
 	padding-left: var(--elements-padding);
 	padding-right: var(--elements-padding);
 }
-#jvLabelWrap{
+#jvLabelWrap {
 	display: none !important;
 }
 @media screen and (max-width: 768px) {

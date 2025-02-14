@@ -56,26 +56,25 @@ document.addEventListener('focusin', (event) => {
 				alt="" /></span>
 	</button>
 	{#if changeLang}
-	<div
-		class="all-lang"
-		transition:slide="{{ duration: 400}}">
-		<div class="modal-lang-wrapper">
-			{#each LangArr as item}
-				<button
-					style="background-color: {$selectedLang === item.lang ? '#6660ff40' : ''}"
-					on:click="{() => setLang(item.lang)}"
-					class="modal-lang">
-					<img
-						class="lang-image modal-lang-image"
-						src="{item.image}"
-						alt="" />
-					<span class="lang-name">{$t(item.name)}{item.flag}</span>
-				</button>
-			{/each}
+		<div
+			class="all-lang"
+			transition:slide="{{ duration: 400 }}">
+			<div class="modal-lang-wrapper">
+				{#each LangArr as item}
+					<button
+						style="background-color: {$selectedLang === item.lang ? '#6660ff40' : ''}"
+						on:click="{() => setLang(item.lang)}"
+						class="modal-lang">
+						<img
+							class="lang-image modal-lang-image"
+							src="{item.image}"
+							alt="" />
+						<span class="lang-name">{$t(item.name)}{item.flag}</span>
+					</button>
+				{/each}
+			</div>
 		</div>
-	</div>
 	{/if}
-	
 </div>
 
 <style>

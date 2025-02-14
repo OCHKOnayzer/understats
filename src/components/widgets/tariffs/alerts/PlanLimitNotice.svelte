@@ -6,7 +6,9 @@ import AlertTitle from './AlertTitle.svelte';
 </script>
 
 <AlertLayout>
-	<AlertTitle title='alerts.tariffs_inactive' description='alerts.choose_tariff'/>
+	<AlertTitle
+		title="alerts.tariffs_inactive"
+		description="alerts.choose_tariff" />
 </AlertLayout>
 
 <style>

@@ -10,12 +10,12 @@ import { SocialLink } from './social';
 const closPayModal = () => {
 	closeModal();
 };
-const showChat = () =>{ 
+const showChat = () => {
 	window.jivo_api.open();
 	setTimeout(() => {
-        closeModal();
-    }, 500);
-}
+		closeModal();
+	}, 500);
+};
 </script>
 
 <div

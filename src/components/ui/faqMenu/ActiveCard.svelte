@@ -1,7 +1,6 @@
 <script lang="ts">
 import { createEventDispatcher, onMount } from 'svelte';
 import { t } from 'svelte-i18n';
-import { slide } from 'svelte/transition';
 
 import { closeState } from '$src/stores/HeaderStores';
 import { closeFaqMenu } from '$src/stores/faq';
