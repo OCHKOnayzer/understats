@@ -3,7 +3,7 @@ import { t } from 'svelte-i18n';
 import Icon from '@iconify/svelte';
 import { slide } from 'svelte/transition';
 let isInitiallyOpen = false;
-let { title } = $$props;
+let { title,content } = $$props;
 function openState() {
 	isInitiallyOpen = !isInitiallyOpen;
 }
@@ -28,8 +28,7 @@ function openState() {
 			transition:slide="{{
 				duration: 400
 			}}">
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quisquam suscipit explicabo libero fuga incidunt modi eligendi soluta, ullam alias totam facilis consequuntur
-			ut. Cupiditate aut labore laborum maiores necessitatibus.
+			{$t(content)}
 		</div>
 	{/if}
 </div>
