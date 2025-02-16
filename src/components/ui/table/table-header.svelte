@@ -12,6 +12,6 @@
 	}: WithElementRef<HTMLAttributes<HTMLTableSectionElement>> = $props();
 </script>
 
-<thead bind:this={ref} class={cn('bg-[#31384A] [&_tr]:border-b', className)} {...restProps}>
+<thead bind:this={ref} class={cn('bg-[#31384A] z-100 sticky top-[0px]', className)} {...restProps}>
 	{@render children?.()}
 </thead>
