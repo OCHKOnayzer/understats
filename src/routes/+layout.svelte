@@ -155,10 +155,9 @@ const isProduction = import.meta.env.PROD;
 		function hideJivo() {
 			if (typeof jivo_destroy === "function") {
 				jivo_destroy();
-				console.log("JivoSite закрыт.");
 				isUsed = true
 			} else {
-				console.warn("JivoSite API не загружен.");
+				console.warn("JivoSite API is not loaded.");
 			}
 		}
 	
@@ -175,17 +174,14 @@ const isProduction = import.meta.env.PROD;
 		const hideInterval = setInterval(() => {
 			if (typeof jivo_destroy === "function") {
 				hideJivo();
-				console.log("JivoSite закрыт через интервал.");
 				clearInterval(hideInterval);
 			}
-		}, 3000);
+		}, 1000);
 	
 		const originalJivoInit = window.jivo_init;
 		window.jivo_init = function () {
-			console.log("Пользователь открыл JivoSite, авто-закрытие отключено.");
 			if (typeof originalJivoInit === "function") {
 				originalJivoInit.apply(this, arguments);
-				console.log('hello chat open modal')
 			}
 		};
 
