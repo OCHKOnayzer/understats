@@ -1,9 +1,9 @@
-import { writable } from 'svelte/store';
+import { writable } from 'svelte/store'
 
-import type { Bet } from '$src/types/bet';
+import type { Bet } from '$src/types/bet'
 
 interface BetsTableState {
-	data: Bet[];
+	data: { bets: Bet[] };
 	isLoading: boolean;
 	error: string | null;
 	hasMore: boolean;
@@ -13,7 +13,7 @@ interface BetsTableState {
 
 function createBetsTableStore() {
 	const { subscribe, set, update } = writable<BetsTableState>({
-		data: [],
+		data: { bets: [] },
 		isLoading: false,
 		error: null,
 		hasMore: true,
@@ -23,11 +23,11 @@ function createBetsTableStore() {
 
 	return {
 		subscribe,
-		setData: (rawData: Bet[]) => {
-			if (!Array.isArray(rawData)) {
+		setData: (rawData: { bets: Bet[] }) => {
+			if (!rawData?.bets || !Array.isArray(rawData.bets)) {
 				update((state) => ({
 					...state,
-					data: [],
+					data: { bets: [] },
 					isLoading: false,
 					hasMore: false,
 					currentPage: 1
@@ -39,17 +39,17 @@ function createBetsTableStore() {
 				...state,
 				data: rawData,
 				isLoading: false,
-				hasMore: rawData.length >= 10,
+				hasMore: rawData.bets.length >= 10,
 				currentPage: 1
 			}));
 		},
-		appendData: (rawData: Bet[]) => {
-			if (!Array.isArray(rawData)) return;
+		appendData: (rawData: { bets: Bet[] }) => {
+			if (!rawData?.bets || !Array.isArray(rawData.bets)) return;
 
 			update((state) => ({
 				...state,
-				data: [...state.data, ...rawData],
-				hasMore: rawData.length >= 10,
+				data: { bets: [...state.data.bets, ...rawData.bets] },
+				hasMore: rawData.bets.length >= 10,
 				currentPage: state.currentPage + 1
 			}));
 		},
@@ -59,7 +59,7 @@ function createBetsTableStore() {
 		setHasMore: (hasMore: boolean) => update((state) => ({ ...state, hasMore })),
 		reset: () =>
 			set({
-				data: [],
+				data: { bets: [] },
 				isLoading: false,
 				error: null,
 				hasMore: true,

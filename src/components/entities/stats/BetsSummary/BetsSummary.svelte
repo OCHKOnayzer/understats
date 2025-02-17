@@ -21,14 +21,14 @@ let totalStakes = $state(0);
 let roi = $state('0');
 
 $effect(() => {
-	if (!Array.isArray($betsTableStore?.data)) return;
+	if (!Array.isArray($betsTableStore?.data?.bets)) return;
 
-	const winningBets = $betsTableStore.data.filter((bet) => bet.status.toLowerCase().includes('win'));
-	const losingBets = $betsTableStore.data.filter((bet) => bet.status.toLowerCase().includes('lose'));
+	const winningBets = $betsTableStore.data.bets.filter((bet) => bet.status.toLowerCase().includes('win'));
+	const losingBets = $betsTableStore.data.bets.filter((bet) => bet.status.toLowerCase().includes('lose'));
 
 	const winningsTotal = winningBets.reduce((acc, bet) => acc + Number(bet.amounts?.win ?? 0), 0);
 	const losingsTotal = losingBets.reduce((acc, bet) => acc + Number(bet.amounts?.stake ?? 0), 0);
-	const stakesTotal = $betsTableStore.data.reduce((acc, bet) => acc + Number(bet.amounts?.stake ?? 0), 0);
+	const stakesTotal = $betsTableStore.data.bets.reduce((acc, bet) => acc + Number(bet.amounts?.stake ?? 0), 0);
 
 	wins = winningBets;
 	winsSum = winningsTotal;

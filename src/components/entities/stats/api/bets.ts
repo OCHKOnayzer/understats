@@ -1,7 +1,7 @@
-import { axiosWithAuth } from '$src/api/api.interceptors';
+import { axiosWithAuth } from '$src/api/api.interceptors'
 
-import type { Bet } from '$src/components/widgets/stats/BetsTable/columns';
-import type { FilterState } from '$src/stores/filterStore';
+import type { FilterState } from '$src/stores/filterStore'
+import type { Bet } from '$src/types/bet'
 
 interface ApiResponse {
 	pagination: {
@@ -10,10 +10,12 @@ interface ApiResponse {
 		pageCount: number;
 		total: number;
 	};
-	res: Array<Bet>;
+	res: {
+		bets: Bet[];
+	};
 }
 
-export async function fetchFilteredData(filters: FilterState) {
+export async function fetchFilteredData(filters: FilterState): Promise<ApiResponse> {
 	try {
 		const params = new URLSearchParams();
 
@@ -71,24 +73,26 @@ export async function fetchFilteredData(filters: FilterState) {
 			params.append('rateMax', String(filters.coefficient.to));
 		}
 
-		const expressValue = !filters.betType.length ? true : filters.betType.includes('express');
-		const ordinarValue = !filters.betType.length ? true : filters.betType.includes('ordinary');
-		params.append('express', String(expressValue));
-		params.append('ordinar', String(ordinarValue));
-
 		if (typeof filters?.year === 'number') params.append('year', String(filters.year));
 		if (typeof filters?.month === 'number') params.append('month', String(filters.month));
 		if (typeof filters?.week === 'number') params.append('week', String(filters.week));
 
 		const { data } = await axiosWithAuth.get<ApiResponse>('/bets/my', { params });
+		
 		if (!data || typeof data !== 'object') {
 			console.error('Invalid API response format');
-			return { pagination: { page: 1, perPage: 10, pageCount: 0, total: 0 }, res: [] };
+			return {
+				pagination: { page: 1, perPage: 10, pageCount: 0, total: 0 },
+				res: { bets: [] }
+			};
 		}
 
-		if (!Array.isArray(data.res)) {
-			console.error('data.res is not an array:', data.res);
-			return { pagination: { page: 1, perPage: 10, pageCount: 0, total: 0 }, res: [] };
+		if (!data.res || !Array.isArray(data.res.bets)) {
+			console.error('data.res.bets is not an array:', data.res);
+			return {
+				pagination: { page: 1, perPage: 10, pageCount: 0, total: 0 },
+				res: { bets: [] }
+			};
 		}
 
 		return data;
