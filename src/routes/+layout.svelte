@@ -153,7 +153,6 @@ const isProduction = import.meta.env.PROD;
 	<script>
 		console.log("JivoSite hiding script initialized...");
 	
-		let userOpenedChat = false;
 	
 		function hideJivo() {
 			if (typeof jivo_destroy === "function") {
@@ -166,19 +165,15 @@ const isProduction = import.meta.env.PROD;
 	
 		window.jivo_onLoadCallback = function () {
 			console.log("JivoSite загружен.");
-			if (!userOpenedChat) {
-				hideJivo();
-			}
 		};
 	
 		window.jivo_onClose = function () {
 			console.log("Пользователь закрыл чат, скрываем JivoSite...");
-			userOpenedChat = false; 
 			hideJivo();
 		};
 	
 		const hideInterval = setInterval(() => {
-			if (typeof jivo_destroy === "function" && !userOpenedChat) {
+			if (typeof jivo_destroy === "function") {
 				hideJivo();
 				console.log("JivoSite закрыт через интервал.");
 				clearInterval(hideInterval);
@@ -187,7 +182,6 @@ const isProduction = import.meta.env.PROD;
 	
 		const originalJivoInit = window.jivo_init;
 		window.jivo_init = function () {
-			userOpenedChat = true;
 			console.log("Пользователь открыл JivoSite, авто-закрытие отключено.");
 			if (typeof originalJivoInit === "function") {
 				originalJivoInit.apply(this, arguments);
