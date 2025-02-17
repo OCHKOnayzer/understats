@@ -151,9 +151,6 @@ const isProduction = import.meta.env.PROD;
 	gtag('config', 'G-908VK3V379');
 	</script>
 	<script>
-		console.log("JivoSite hiding script initialized...");
-	
-	
 		function hideJivo() {
 			if (typeof jivo_destroy === "function") {
 				jivo_destroy();
@@ -185,6 +182,7 @@ const isProduction = import.meta.env.PROD;
 			console.log("Пользователь открыл JivoSite, авто-закрытие отключено.");
 			if (typeof originalJivoInit === "function") {
 				originalJivoInit.apply(this, arguments);
+				console.log('hello chat open modal')
 			}
 		};
 
