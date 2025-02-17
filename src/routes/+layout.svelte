@@ -151,23 +151,24 @@ const isProduction = import.meta.env.PROD;
 	gtag('config', 'G-908VK3V379');
 	</script>
 	<script>
+		let isUsed = false
 		function hideJivo() {
 			if (typeof jivo_destroy === "function") {
 				jivo_destroy();
 				console.log("JivoSite закрыт.");
+				isUsed = true
 			} else {
 				console.warn("JivoSite API не загружен.");
 			}
 		}
 	
 		window.jivo_onLoadCallback = function () {
-			console.log("JivoSite загружен.");
-			
-			window.jivo_api.open();
+			if(isUsed){
+				window.jivo_api.open();
+			}
 		};
 	
 		window.jivo_onClose = function () {
-			console.log("Пользователь закрыл чат, скрываем JivoSite...");
 			hideJivo();
 		};
 	
