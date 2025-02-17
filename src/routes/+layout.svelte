@@ -267,8 +267,6 @@ main {
 @media screen and (max-width: 768px) {
 	.mainContent {
 		padding: 0 0.5rem;
-		/* margin-right: var(--mobile-elements-padding);
-		margin-left: var(--mobile-elements-padding); */
 	}
 }
 </style>

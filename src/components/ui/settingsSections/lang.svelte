@@ -176,7 +176,6 @@ document.addEventListener('focusin', (event) => {
 	transform: rotate(180deg);
 }
 @media (max-width: 1100px) {
-	/* .user_email, */
 	.input_element,
 	.item_settings_info p:nth-child(1) {
 		font-size: 15px;

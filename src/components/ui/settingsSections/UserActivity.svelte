@@ -5,10 +5,6 @@ import { onMount } from 'svelte';
 import { currentUserActiveTariff } from '$src/stores/tariffsStore';
 import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
 
-import Test from '../test.svelte';
-import Spinner from '../spinner/Spinner.svelte';
-
-// let testCountAcc = 2
 let limit = false;
 
 function checkLimits() {
@@ -119,10 +115,6 @@ onMount(() => {
 	</div>
 {/if}
 
-<!-- {#if $currentUserActiveTariff}
-
-{/if} -->
-
 <style>
 .layout {
 	width: 100%;
@@ -209,7 +201,7 @@ onMount(() => {
 	display: block;
 }
 .warning {
-	color: #ff6347; /* Цвет томатный */
+	color: #ff6347;
 }
 .ellipsis-multi {
 	display: -webkit-box;
@@ -267,9 +259,6 @@ onMount(() => {
 	}
 	.tariff_info_container {
 		justify-content: center;
-	}
-	.mobile_desc {
-		font-size: 14px;
 	}
 	.info_wrapper {
 		flex-direction: column;

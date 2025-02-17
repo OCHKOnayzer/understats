@@ -1,20 +1,18 @@
 <script>
 import FaqAccordion from '$src/components/ui/accordion/FAQAccordion.svelte';
-import Accordion from '$src/components/ui/accordion/Accordion.svelte';
 </script>
 
 <div class="article_wrapper">
-	<FaqAccordion title="acardion.why_service" />
-	<FaqAccordion title="acardion.how_to_view_statistics" />
-	<FaqAccordion
-		title="acardion.accounts_and_bets_limits"
-		content="acardion.accounts_and_bets_limits_content" />
-	<FaqAccordion title="acardion.can_i_add_or_edit_bets" />
-	<FaqAccordion title="acardion.extension_installation_time_and_difficulty" />
-	<FaqAccordion
-		title="acardion.tariffs_comparison_and_choice"
-		content="acardion.tariffs_comparison_and_choice_content" />
-	<FaqAccordion title="acardion.supported_bet_types" />
+	<FaqAccordion title="acardion.question1" />
+	<FaqAccordion title="acardion.question2" content="acardion.question2_content"/>
+	<FaqAccordion title="acardion.question3" content="acardion.question3_content"/>
+	<FaqAccordion title="acardion.question4" content="acardion.question4_content"/>
+	<FaqAccordion title="acardion.question5" />
+	<FaqAccordion title="acardion.question6" content="acardion.question6_content"/>
+	<FaqAccordion title="acardion.question7" content="acardion.question7_content"/>
+	<FaqAccordion title="acardion.question8" content="acardion.question8_content"/>
+	<FaqAccordion title="acardion.question9" content="acardion.question9_content"/>
+	<FaqAccordion title="acardion.question10" content="acardion.question10_content"/>
 </div>
 
 <style>
