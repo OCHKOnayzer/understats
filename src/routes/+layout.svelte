@@ -162,6 +162,8 @@ const isProduction = import.meta.env.PROD;
 	
 		window.jivo_onLoadCallback = function () {
 			console.log("JivoSite загружен.");
+			
+			window.jivo_api.open();
 		};
 	
 		window.jivo_onClose = function () {

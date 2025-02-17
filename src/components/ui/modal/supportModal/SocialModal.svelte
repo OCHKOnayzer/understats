@@ -18,7 +18,6 @@ const closPayModal = () => {
 const showChat = () => {
     if (typeof jivo_init === "function") {
         jivo_init();
-		window.jivo_api.open();
         console.log("JivoSite чат открыт.");
     } else {
         console.warn("JivoSite API не загруже");
