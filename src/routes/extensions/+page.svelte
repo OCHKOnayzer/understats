@@ -25,9 +25,6 @@ extensionInfo.set(data.extensionInfo);
 </svelte:head>
 
 <div class="pageContent">
-	<!-- {#if !$currentUser}
-		<DemoButtons />
-	{/if} -->
 	<div class="pageWrapper">
 		<div class="extensions_wallpaper">
 			<img

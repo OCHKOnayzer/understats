@@ -5,11 +5,9 @@ declare var jivo_init: any;
 </script>
 
 <script lang="ts">
-import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
-import { isChatOpen, closeModal } from '$src/stores/modalStore';
-import { ifWindow, toggleChat } from '$src/utils/functions/chat';
+import { closeModal } from '$src/stores/modalStore';
 
 import { SocialLink } from './social';
 
