@@ -13,7 +13,7 @@ selectHeaderTitle('menu.Stats');
 const { query } = useUserProfile();
 let isAuthenticated = $derived(!!$currentUser);
 
-let shouldShowPagination = $derived(isAuthenticated && !$betsTableStore.isLoading && $betsTableStore.data.length > 0);
+let shouldShowPagination = $derived(isAuthenticated && !$betsTableStore.isLoading && $betsTableStore.data.bets.length > 0);
 let innerWidth = $state(0);
 let isMobile = $derived(innerWidth < 740);
 </script>

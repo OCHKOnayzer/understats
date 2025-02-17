@@ -6,7 +6,7 @@ import { betService } from '$src/services/bet.service';
 import { betsTableStore } from '$src/stores/betsTableStore';
 
 import TotalBet from '../TotalBet/TotalBet.svelte';
-const params = { express: 'true', ordinar: 'true' };
+const params = {};
 
 const data = createQuery({
 	queryKey: ['bets count', params],
