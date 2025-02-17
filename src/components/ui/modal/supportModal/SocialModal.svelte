@@ -19,7 +19,7 @@ const showChat = () => {
     if (typeof jivo_init === "function") {
         jivo_init();
     } else {
-        console.warn("JivoSite API is not loaded.");\
+        console.warn("JivoSite API is not loaded.");
     }
     setTimeout(() => {
         closeModal();
