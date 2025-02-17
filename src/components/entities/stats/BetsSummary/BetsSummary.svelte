@@ -10,7 +10,9 @@ const params = { express: 'true', ordinar: 'true' };
 
 const data = createQuery({
 	queryKey: ['bets count', params],
-	queryFn: () => betService.getMyBetsCount(params)
+	queryFn: () => betService.getMyBetsCount(params),
+	refetchOnWindowFocus: false,
+	staleTime: 300000
 });
 
 let wins = $state([]);
