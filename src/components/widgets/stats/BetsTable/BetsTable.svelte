@@ -48,7 +48,7 @@ type BetColumnDef = ColumnDef<Bet, unknown> & {
 
 const table = createSvelteTable({
 	get data() {
-		return $betsTableStore.data;
+		return $betsTableStore.data.bets;
 	},
 	columns: getColumns($t),
 	getCoreRowModel: getCoreRowModel(),
@@ -90,7 +90,7 @@ async function loadData() {
 
 		betsTableStore.setTotalItems(response.pagination.total);
 		betsTableStore.setData(response.res);
-		betsTableStore.setHasMore(response.res.length >= response.pagination.perPage);
+		betsTableStore.setHasMore(response.res.bets.length >= response.pagination.perPage);
 	} catch (err) {
 		betsTableStore.setError('other.data_error');
 	} finally {
@@ -113,13 +113,13 @@ async function loadMoreData() {
 		};
 
 		const response = await fetchFilteredData(mobileFilter);
-		if (!response || response.res.length === 0) {
+		if (!response || response.res.bets.length === 0) {
 			betsTableStore.setHasMore(false);
 			return;
 		}
 
 		betsTableStore.appendData(response.res);
-		betsTableStore.setHasMore(response.res.length >= response.pagination.perPage);
+		betsTableStore.setHasMore(response.res.bets.length >= response.pagination.perPage);
 	} catch (err) {
 		betsTableStore.setError('other.data_error');
 	} finally {
@@ -160,8 +160,8 @@ $effect(() => {
 });
 
 $effect(() => {
-	if ($betsTableStore.data && !Array.isArray($betsTableStore.data)) {
-		betsTableStore.setData([] as Bet[]);
+	if ($betsTableStore.data && !Array.isArray($betsTableStore.data.bets)) {
+		betsTableStore.setData({ bets: [] });
 	}
 });
 
@@ -191,20 +191,20 @@ $effect(() => {
 			<span class="loading-spinner mb-3"></span>
 			<h2>{$t('stats.loading_data')}</h2>
 		</div>
-	{:else if $currentUser && !$betsTableStore.data?.length}
+	{:else if $currentUser && !$betsTableStore.data?.bets?.length}
 		<div class="message-container">
 			<TableNoData
 				title="{$t('stats.no_bets')}"
 				description="{$t('stats.no_bets_description')}"
-				variant="{'stats'}" />
+				variant="stats" />
 		</div>
 	{:else if isMobile}
 		<div
 			class="mobile-container mt-4 grid grid-cols-1 gap-2"
-			on:scroll="{handleScroll}">
-			{#each $betsTableStore.data || [] as bet, index (generateBetKey(bet, index))}
+			onscroll="{handleScroll}">
+			{#each $betsTableStore.data.bets as bet, index (generateBetKey(bet, index))}
 				{#if bet}
-					<MobileCard data="{bet satisfies Bet}" />
+					<MobileCard data="{bet}" />
 				{/if}
 			{/each}
 			{#if isLoadingMore}
@@ -212,7 +212,7 @@ $effect(() => {
 					<span class="loading-spinner"></span>
 				</div>
 			{/if}
-			{#if !$betsTableStore.hasMore && $betsTableStore.data.length > 0}
+			{#if !$betsTableStore.hasMore && $betsTableStore.data.bets.length > 0}
 				<div class="flex justify-center p-4 text-gray-400">
 					{$t('stats.no_more_data')}
 				</div>
