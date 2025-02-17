@@ -154,7 +154,7 @@ const isProduction = import.meta.env.PROD;
 		let isUsed = false
 		let attempts = 0;
 		const MAX_ATTEMPTS = 10;
-		
+
 		function hideJivo() {
 			if (typeof jivo_destroy === "function") {
 				jivo_destroy();
@@ -179,7 +179,6 @@ const isProduction = import.meta.env.PROD;
             hideJivo();
             clearInterval(hideInterval);
         } else if (++attempts >= MAX_ATTEMPTS) {
-            console.warn("Stopping JivoSite hide attempts due to timeout.");
             clearInterval(hideInterval);
         }
     }, 1000);
