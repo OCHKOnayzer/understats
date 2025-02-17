@@ -260,9 +260,6 @@ onMount(() => {
 	.tariff_info_container {
 		justify-content: center;
 	}
-	.mobile_desc {
-		font-size: 14px;
-	}
 	.info_wrapper {
 		flex-direction: column;
 		align-items: center;
