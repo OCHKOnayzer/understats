@@ -10,7 +10,13 @@ import { bookmakersList, bookmakersListMain, filterStore } from '$src/stores/fil
 
 const sports = createQuery({
 	queryKey: ['sports'],
-	queryFn: () => sportsService.getSports()
+	queryFn: () => sportsService.getSports(),
+	staleTime: Infinity,
+	refetchOnWindowFocus: false,
+	refetchOnMount: false,
+	refetchOnReconnect: false,
+	refetchInterval: false,
+	gcTime: Infinity
 });
 
 const allSportsStore = writable([]);
