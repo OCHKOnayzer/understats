@@ -1,13 +1,14 @@
-<script context="module" lang="ts">
-	declare var jivo_init: any;
+<script
+	context="module"
+	lang="ts">
+declare var jivo_init: any;
 </script>
 
 <script lang="ts">
-import { isChatOpen } from '$src/stores/modalStore';
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
-import { closeModal } from '$src/stores/modalStore';
+import { isChatOpen, closeModal } from '$src/stores/modalStore';
 import { ifWindow, toggleChat } from '$src/utils/functions/chat';
 
 import { SocialLink } from './social';
@@ -16,16 +17,15 @@ const closPayModal = () => {
 	closeModal();
 };
 const showChat = () => {
-    if (typeof jivo_init === "function") {
-        jivo_init();
-    } else {
-        console.warn("JivoSite API is not loaded.");
-    }
-    setTimeout(() => {
-        closeModal();
-    }, 100);
+	if (typeof jivo_init === 'function') {
+		jivo_init();
+	} else {
+		console.warn('JivoSite API is not loaded.');
+	}
+	setTimeout(() => {
+		closeModal();
+	}, 100);
 };
-
 </script>
 
 <div
