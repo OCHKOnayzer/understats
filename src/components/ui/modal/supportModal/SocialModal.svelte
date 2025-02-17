@@ -20,7 +20,7 @@ const showChat = () => {
         jivo_init();
         console.log("JivoSite чат открыт.");
     } else {
-        console.warn("JivoSite API не загружен");
+        console.warn("JivoSite API не загруже");
     }
     setTimeout(() => {
         closeModal();
