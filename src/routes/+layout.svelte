@@ -102,39 +102,7 @@ const queryClient = new QueryClient({
 		}
 	}
 });
-let jivoChat;
-let jivoAction;
-let observer;
 
-onMount(() => {
-	if (typeof window !== 'undefined') {
-		jivoChat = document.querySelector('#jvLabelWrap');
-		jivoAction = document.querySelector('#jivo_action');
-
-		if (jivoAction) {
-			observer = new MutationObserver(() => {
-				const jivoOpen = jivoAction.querySelector('.wrap__aZpsf.__show__oqGtX');
-				if (jivoOpen) {
-					console.log('Chat is open');
-				} else {
-					console.log('Chat closed, hiding...');
-					if (jivoChat) {
-						jivoChat.setAttribute('style', 'display: none !important;');
-					}
-				}
-			});
-
-			observer.observe(jivoAction, { attributes: true, subtree: true, attributeFilter: ['class'] });
-		}
-	}
-});
-
-onDestroy(() => {
-	if (observer) {
-		observer.disconnect();
-		observer = null;
-	}
-});
 const isProduction = import.meta.env.PROD;
 </script>
 
@@ -182,7 +150,51 @@ const isProduction = import.meta.env.PROD;
 
 	gtag('config', 'G-908VK3V379');
 	</script>
+	<script>
+		let isUsed = false
+		let attempts = 0;
+		const MAX_ATTEMPTS = 10;
 
+		function hideJivo() {
+			if (typeof jivo_destroy === "function") {
+				jivo_destroy();
+				isUsed = true
+			} else {
+				console.warn("JivoSite API is not loaded.");
+			}
+		}
+	
+		window.jivo_onLoadCallback = function () {
+			if(isUsed){
+				window.jivo_api.open();
+			}
+		};
+	
+		window.jivo_onClose = function () {
+			hideJivo();
+		};
+	
+		const hideInterval = setInterval(() => {
+        if (typeof jivo_destroy === "function") {
+            hideJivo();
+            clearInterval(hideInterval);
+        } else if (++attempts >= MAX_ATTEMPTS) {
+            clearInterval(hideInterval);
+        }
+    }, 1000);
+	
+		const originalJivoInit = window.jivo_init;
+		window.jivo_init = function () {
+			if (typeof originalJivoInit === "function") {
+				originalJivoInit.apply(this, arguments);
+			}
+		};
+
+		window.addEventListener("beforeunload", () => {
+			clearInterval(hideInterval);
+		});
+	</script>
+	
 	<!-- Yandex.Metrika counter -->
 	<!--	<script type="text/javascript" >-->
 	<!--		(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};-->
@@ -251,9 +263,6 @@ main {
 	box-sizing: border-box;
 	padding-left: var(--elements-padding);
 	padding-right: var(--elements-padding);
-}
-#jvLabelWrap {
-	display: none !important;
 }
 @media screen and (max-width: 768px) {
 	.mainContent {
