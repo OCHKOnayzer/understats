@@ -47,6 +47,6 @@ export async function handleDemoToggle() {
 
 		goto('/');
 	} catch (error) {
-		betsTableStore.setError('Ошибка при переключении режима');
+		betsTableStore.setError('other.error_demo');
 	}
 }

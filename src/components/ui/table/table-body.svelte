@@ -12,6 +12,6 @@
 	}: WithElementRef<HTMLAttributes<HTMLTableSectionElement>> = $props();
 </script>
 
-<tbody bind:this={ref} class={cn('[&_tr:last-child]:border-0', className)} {...restProps}>
+<tbody bind:this={ref} class={cn('[&_tr:last-child]:border-0 mt-[10px]', className)} {...restProps}>
 	{@render children?.()}
 </tbody>
