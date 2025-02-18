@@ -16,6 +16,8 @@ onMount(() => {
 	openFaqMenu();
 	checkScreenWidth();
 	window.addEventListener('resize', checkScreenWidth);
+	setActiveFromUrl(); // Устанавливаем статью на основе нового URL
+
 	return () => window.removeEventListener('resize', checkScreenWidth);
 });
 
@@ -40,6 +42,16 @@ async function loadArticleComponent(article2: string) {
 		ArticleComponent = null;
 	}
 }
+
+// Функция для установки статьи из URL
+const setActiveFromUrl = async () => {
+	const pathSegments = window.location.pathname.split('/').filter(Boolean);
+	if (pathSegments.length >= 3 && pathSegments[0] === 'help') {
+		const articleId = pathSegments[2]; // Получаем 'CreateAccount'
+		article = articleId;
+		await loadArticleComponent(articleId);
+	}
+};
 </script>
 
 <div class="faqSection">

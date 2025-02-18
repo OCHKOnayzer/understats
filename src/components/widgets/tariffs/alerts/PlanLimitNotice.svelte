@@ -7,8 +7,8 @@ import AlertTitle from './AlertTitle.svelte';
 
 <AlertLayout>
 	<AlertTitle
-		title="alerts.tariffs_inactive"
-		description="alerts.choose_tariff" />
+		title="alerts.limit_notice"
+		description="alerts.limit_notice_desc" />
 </AlertLayout>
 
 <style>

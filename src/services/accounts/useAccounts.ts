@@ -1,12 +1,12 @@
-import { createQuery } from '@tanstack/svelte-query'
-import { t } from 'svelte-i18n'
-import { get } from 'svelte/store'
+import { createQuery } from '@tanstack/svelte-query';
+import { t } from 'svelte-i18n';
+import { get } from 'svelte/store';
 
-import { isDemoEnabled } from '$src/stores/demo'
+import { isDemoEnabled } from '$src/stores/demo';
 
-import { getAccessToken, getDemoToken } from '../auth/auth-token.service'
+import { getAccessToken, getDemoToken } from '../auth/auth-token.service';
 
-import { accountService } from './account.service'
+import { accountService } from './account.service';
 
 export function useAccounts() {
 	const query = createQuery({
