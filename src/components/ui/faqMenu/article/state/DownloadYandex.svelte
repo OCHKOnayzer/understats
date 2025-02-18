@@ -9,7 +9,7 @@ import ImageArtical from '../articleComponents/imageArtical.svelte';
 <div class="article_wrapper">
 	<ArticalTitle title="faq.ext_yandex_title" />
 	<ArticleSection text="faq.create_acc_section_1" />
-	
+
 	{#if $selectedLang === 'ru'}
 		<ImageArtical
 			image="{'assets/faq/ya.png'}"

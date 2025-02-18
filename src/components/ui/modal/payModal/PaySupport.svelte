@@ -3,6 +3,7 @@
 	lang="ts">
 declare var jivo_init: any;
 </script>
+
 <script>
 import { t } from 'svelte-i18n';
 

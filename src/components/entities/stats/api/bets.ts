@@ -1,7 +1,7 @@
-import { axiosWithAuth } from '$src/api/api.interceptors'
+import { axiosWithAuth } from '$src/api/api.interceptors';
 
-import type { FilterState } from '$src/stores/filterStore'
-import type { Bet } from '$src/types/bet'
+import type { FilterState } from '$src/stores/filterStore';
+import type { Bet } from '$src/types/bet';
 
 interface ApiResponse {
 	pagination: {
@@ -78,7 +78,7 @@ export async function fetchFilteredData(filters: FilterState): Promise<ApiRespon
 		if (typeof filters?.week === 'number') params.append('week', String(filters.week));
 
 		const { data } = await axiosWithAuth.get<ApiResponse>('/bets/my', { params });
-		
+
 		if (!data || typeof data !== 'object') {
 			console.error('Invalid API response format');
 			return {

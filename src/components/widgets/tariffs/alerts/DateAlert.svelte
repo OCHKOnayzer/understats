@@ -2,7 +2,6 @@
 import AlertLayout from './AlertLayout.svelte';
 import AlertTitle from './AlertTitle.svelte';
 import AlertGoto from './AlertGoto.svelte';
-
 </script>
 
 <AlertLayout>

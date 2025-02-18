@@ -69,8 +69,8 @@ let { image, name, description } = $$props as ImageProps;
 	padding: 5px;
 	color: #a3a4ab;
 }
-@media screen and (max-width:800px){ 
-	.image-wrapper img{ 
+@media screen and (max-width: 800px) {
+	.image-wrapper img {
 		max-width: unset;
 		width: 80%;
 	}

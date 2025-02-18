@@ -9,16 +9,16 @@ import FaqMenu from './FaqMenu.svelte';
 let isMobile = false;
 
 function checkScreenWidth() {
-    isMobile = window.innerWidth <= 800;
+	isMobile = window.innerWidth <= 800;
 }
 
 onMount(() => {
-    openFaqMenu();
-    checkScreenWidth();
-    window.addEventListener('resize', checkScreenWidth);
-    setActiveFromUrl(); // Устанавливаем статью на основе нового URL
+	openFaqMenu();
+	checkScreenWidth();
+	window.addEventListener('resize', checkScreenWidth);
+	setActiveFromUrl(); // Устанавливаем статью на основе нового URL
 
-    return () => window.removeEventListener('resize', checkScreenWidth);
+	return () => window.removeEventListener('resize', checkScreenWidth);
 });
 
 let selectedItemName = '';
@@ -26,31 +26,31 @@ let article: string | null = null;
 let ArticleComponent: typeof import('svelte').SvelteComponent | null = null;
 
 const handleSelectItemFromFaqMenu = async (event: any) => {
-    selectedItemName = event.detail.name;
-    article = event.detail.articleId;
+	selectedItemName = event.detail.name;
+	article = event.detail.articleId;
 
-    if (article !== null) {
-        await loadArticleComponent(article);
-    }
+	if (article !== null) {
+		await loadArticleComponent(article);
+	}
 };
 
 async function loadArticleComponent(article2: string) {
-    try {
-        const module = await import(`./article/state/${article2}.svelte`);
-        ArticleComponent = module.default;
-    } catch (error) {
-        ArticleComponent = null;
-    }
+	try {
+		const module = await import(`./article/state/${article2}.svelte`);
+		ArticleComponent = module.default;
+	} catch (error) {
+		ArticleComponent = null;
+	}
 }
 
 // Функция для установки статьи из URL
 const setActiveFromUrl = async () => {
-    const pathSegments = window.location.pathname.split('/').filter(Boolean);
-    if (pathSegments.length >= 3 && pathSegments[0] === 'help') {
-        const articleId = pathSegments[2]; // Получаем 'CreateAccount'
-        article = articleId;
-        await loadArticleComponent(articleId);
-    }
+	const pathSegments = window.location.pathname.split('/').filter(Boolean);
+	if (pathSegments.length >= 3 && pathSegments[0] === 'help') {
+		const articleId = pathSegments[2]; // Получаем 'CreateAccount'
+		article = articleId;
+		await loadArticleComponent(articleId);
+	}
 };
 </script>
 
