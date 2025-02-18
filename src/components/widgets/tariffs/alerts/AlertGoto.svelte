@@ -1,14 +1,20 @@
 <script>
 import { t } from 'svelte-i18n';
-
+import { page } from '$app/stores';
 let { href, content } = $$props;
+
+let isTariffsPage = [`/${href}`]
 </script>
 
+
+{#if !isTariffsPage.includes($page.url.pathname)}
 <div class="to_tariffs">
 	<a href="{`/${href}`}">
 		{$t(content)}
 	</a>
 </div>
+		
+{/if}
 
 <style>
 .to_tariffs {

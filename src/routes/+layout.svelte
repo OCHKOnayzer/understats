@@ -30,6 +30,7 @@ import { page } from '$app/stores';
 import '../app.css';
 import PlanNotSelected from '$src/components/widgets/tariffs/alerts/PlanNotSelected.svelte';
 import DateAlert from '$src/components/widgets/tariffs/alerts/DateAlert.svelte';
+import PlanLimitNotice from '$src/components/widgets/tariffs/alerts/PlanLimitNotice.svelte';
 
 export let data: LayoutData;
 

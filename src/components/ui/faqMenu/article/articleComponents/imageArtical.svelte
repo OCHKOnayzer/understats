@@ -54,7 +54,6 @@ let { image, name, description } = $$props as ImageProps;
 	filter: blur(20px);
 	z-index: 0;
 }
-
 .image-wrapper img {
 	height: auto;
 	max-height: 550px;
@@ -69,5 +68,11 @@ let { image, name, description } = $$props as ImageProps;
 	font-size: 13px;
 	padding: 5px;
 	color: #a3a4ab;
+}
+@media screen and (max-width:800px){ 
+	.image-wrapper img{ 
+		max-width: unset;
+		width: 80%;
+	}
 }
 </style>
