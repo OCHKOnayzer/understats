@@ -25,7 +25,6 @@ import ImageArtical from '../articleComponents/imageArtical.svelte';
 	<ArticleSection
 		text="artical_faq.artical_faq_yandex_2"
 		mark="{false}" />
-
 	{#if $selectedLang === 'ru'}
 		<ImageArtical
 			image="{'assets/faq/ya2.png'}"
