@@ -30,6 +30,7 @@ import { page } from '$app/stores';
 import '../app.css';
 import PlanNotSelected from '$src/components/widgets/tariffs/alerts/PlanNotSelected.svelte';
 import DateAlert from '$src/components/widgets/tariffs/alerts/DateAlert.svelte';
+import { isDemoEnabled } from '$src/stores/demo';
 
 export let data: LayoutData;
 
@@ -230,7 +231,7 @@ const isProduction = import.meta.env.PROD;
 					{#if !routesWithoutMenu.includes($page.url.pathname)}
 						<Header />
 					{/if}
-					{#if !$currentUserActiveTariff && $currentUser}
+					{#if !$currentUserActiveTariff && $currentUser && !$isDemoEnabled}
 						<PlanNotSelected />
 					{/if}
 					<!-- <DateAlert /> -->
