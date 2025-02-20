@@ -2,8 +2,10 @@
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
-import { isFaqMenuOpen, openFaqMenu } from '$src/stores/faq';
+import { isFaqMenuOpen } from '$src/stores/faq';
+import { closeState } from '$src/stores/HeaderStores';
 
+import { ActiveElemnts } from './activeElements';
 import FaqMenu from './FaqMenu.svelte';
 
 let isMobile = false;
@@ -13,10 +15,9 @@ function checkScreenWidth() {
 }
 
 onMount(() => {
-	openFaqMenu();
 	checkScreenWidth();
 	window.addEventListener('resize', checkScreenWidth);
-	setActiveFromUrl(); // Устанавливаем статью на основе нового URL
+	setActiveFromUrl();
 
 	return () => window.removeEventListener('resize', checkScreenWidth);
 });
@@ -34,22 +35,32 @@ const handleSelectItemFromFaqMenu = async (event: any) => {
 	}
 };
 
-async function loadArticleComponent(article2: string) {
+async function loadArticleComponent(articleId: string) {
 	try {
-		const module = await import(`./article/state/${article2}.svelte`);
+		const module = await import(`./article/state/${articleId}.svelte`);
 		ArticleComponent = module.default;
 	} catch (error) {
 		ArticleComponent = null;
 	}
 }
 
-// Функция для установки статьи из URL
 const setActiveFromUrl = async () => {
-	const pathSegments = window.location.pathname.split('/').filter(Boolean);
-	if (pathSegments.length >= 3 && pathSegments[0] === 'help') {
-		const articleId = pathSegments[2]; // Получаем 'CreateAccount'
-		article = articleId;
-		await loadArticleComponent(articleId);
+	const urlParams = new URLSearchParams(window.location.search);
+	for (const [key, value] of urlParams.entries()) {
+		if (value && value.trim().length > 0) {
+			const activeItem = ActiveElemnts.find((item) => item.article === value);
+			if (activeItem) {
+				closeState.set(true);
+				selectedItemName = activeItem.name;
+				isFaqMenuOpen.set(false);
+				await loadArticleComponent(value);
+			} else {
+				console.warn(`${$t('error.state_not_found')}`);
+			}
+			return;
+		}else{ 
+			isFaqMenuOpen.set(true)
+		}
 	}
 };
 </script>
@@ -71,10 +82,7 @@ const setActiveFromUrl = async () => {
 							title="{selectedItemName}" />
 					</div>
 				{:else}
-					<div class="faq_null">
-						<span>{$t('faq.select_state')}</span>
-						<span>{$t('faq.select_razdel')}...</span>
-					</div>
+					<FaqMenu on:selectItemFromFaqMenu="{handleSelectItemFromFaqMenu}" />
 				{/if}
 			</div>
 		{/if}
@@ -118,6 +126,7 @@ const setActiveFromUrl = async () => {
 	padding: 20px;
 	color: white;
 }
+
 .faq_null {
 	width: 100%;
 	height: 100%;
@@ -128,9 +137,11 @@ const setActiveFromUrl = async () => {
 	font-size: 18px;
 	flex-direction: column;
 }
+
 .selected_title {
 	font-size: 36px;
 }
+
 .selected_state_wrapper {
 	position: relative;
 	height: 100%;
@@ -138,31 +149,38 @@ const setActiveFromUrl = async () => {
 	overflow-y: auto;
 	padding-right: 20px;
 }
+
 .state_header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
+
 .selected_state_wrapper::-webkit-scrollbar {
 	border-radius: 30px;
 	width: 3px;
 }
+
 .selected_state_wrapper::-webkit-scrollbar-track {
 	background: rgba(45, 48, 68, 0.692);
 }
+
 .selected_state_wrapper::-webkit-scrollbar-thumb {
 	background: rgba(135, 138, 160, 0.507);
 }
+
 @media (max-width: 800px) {
 	.faqChapter {
 		width: 100%;
 		background-color: transparent;
 		padding: 0;
 	}
+
 	.selected_state_wrapper {
 		margin: 0px;
 		padding-right: 0px;
 	}
+
 	.selected_title {
 		font-size: 24px;
 	}

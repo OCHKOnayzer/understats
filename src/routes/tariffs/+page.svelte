@@ -1,13 +1,10 @@
 <script>
 import { t } from 'svelte-i18n';
 
-import { currentUserActiveTariff } from '$src/stores/tariffsStore';
-import PlanNotSelected from '$src/components/widgets/tariffs/alerts/PlanNotSelected.svelte';
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
 import TariffsSection from '$src/components/ui/tariffsSection/tariffsSection.svelte';
 import DemoButtons from '$src/components/widgets/demo/demoButtons/DemoButtons.svelte';
 import { useUserProfile } from '$src/services/auth/useProfile';
-import { currentUser } from '$src/stores/modalStore';
 let isAuthenticated = useUserProfile();
 
 selectHeaderTitle('tariffs.tariffs');

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
-
+import { fade } from 'svelte/transition';
 import { currentUserActiveTariff } from '$src/stores/tariffsStore';
 import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';
 import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';
@@ -45,7 +45,11 @@ const isHelp = ['/help'];
 
 function closeStateFunction() {
 	closeState.set(false);
-	openFaqMenu();
+	if (!$closeState) {
+		openFaqMenu();
+	} else {
+		closeState.set(false);
+	}
 }
 </script>
 
@@ -85,9 +89,12 @@ function closeStateFunction() {
 						<button
 							class="help"
 							on:click="{() => closeStateFunction()}"
-							><img
+							in:fade="{{ duration: 300 }}"
+							out:fade="{{ duration: 300 }}">
+							<img
 								src="/icons/back_arrow.svg"
-								alt="" /></button>
+								alt="" />
+						</button>
 					{/if}
 
 					<p>{$t($headerTitle)}</p>

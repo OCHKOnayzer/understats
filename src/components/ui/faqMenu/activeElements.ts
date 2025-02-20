@@ -12,18 +12,18 @@ export const ActiveElemnts: ActiveInerface[] = [
 		image: '',
 		article: 'CreateAccount'
 	},
-	{
-		index: 0,
-		name: 'faq.enter',
-		image: '',
-		article: 'login'
-	},
-	{
-		index: 0,
-		name: 'faq.open',
-		image: '',
-		article: 'bet'
-	},
+	// {
+	// 	index: 0,
+	// 	name: 'faq.enter',
+	// 	image: '',
+	// 	article: 'login'
+	// },
+	// {
+	// 	index: 0,
+	// 	name: 'faq.open',
+	// 	image: '',
+	// 	article: 'bet'
+	// },
 	{
 		index: 0,
 		name: 'faq.asked_questions',
