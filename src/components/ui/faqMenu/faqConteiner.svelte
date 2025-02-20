@@ -58,6 +58,8 @@ const setActiveFromUrl = async () => {
 				console.warn(`${$t('error.state_not_found')}`);
 			}
 			return;
+		}else{ 
+			isFaqMenuOpen.set(true)
 		}
 	}
 };
@@ -80,10 +82,7 @@ const setActiveFromUrl = async () => {
 							title="{selectedItemName}" />
 					</div>
 				{:else}
-					<div class="faq_null">
-						<span>{$t('faq.select_state')}</span>
-						<span>{$t('faq.select_razdel')}...</span>
-					</div>
+					<FaqMenu on:selectItemFromFaqMenu="{handleSelectItemFromFaqMenu}" />
 				{/if}
 			</div>
 		{/if}
