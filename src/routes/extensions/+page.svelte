@@ -1,9 +1,7 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 
-import DemoButtons from '$src/components/widgets/demo/demoButtons/DemoButtons.svelte';
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
-import { currentUser } from '$src/stores/modalStore';
 import DownloadSection from '$src/components/ui/extSections/DownloadSection.svelte';
 import QuesSection from '$src/components/ui/extSections/QuesSection.svelte';
 import { extensionInfo } from '$src/stores/extensionStore';

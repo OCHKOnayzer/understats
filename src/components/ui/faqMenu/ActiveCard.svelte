@@ -4,7 +4,7 @@ import { t } from 'svelte-i18n';
 
 import { closeState } from '$src/stores/HeaderStores';
 import { closeFaqMenu } from '$src/stores/faq';
-
+import { isMobile,initializeScreenWidthListener } from '$src/stores/isMobile';
 import { ActiveElemnts } from './activeElements';
 
 export let FAQIndex: number;
@@ -30,13 +30,12 @@ const setActiveFromUrl = () => {
 		if (matchingElement) {
 			filteredElements = ActiveElemnts.filter((item) => item.index === FAQIndex);
 			activeIndex = ActiveElemnts.indexOf(matchingElement);
-			closeState.set(true);
 			dispatch('selectItem', { name: matchingElement.name, articleId: matchingElement.article });
 		}
 	}
 };
 const setActiveIndex = (index: number, name: string, articleId: string) => {
-	if (activeIndex !== index) {
+	if (activeIndex !== index || ($isMobile && activeIndex === index)) {
 		activeIndex = index;
 		dispatch('selectItem', { name, articleId });
 		closeState.set(true);
@@ -45,19 +44,19 @@ const setActiveIndex = (index: number, name: string, articleId: string) => {
 };
 onMount(() => {
 	setActiveFromUrl();
+	initializeScreenWidthListener();
 });
 </script>
 
 <div class="faqItemsWrapper">
 	{#each filteredElements as item}
 		<button
-			class="faqItem {activeIndex === ActiveElemnts.indexOf(item) ? 'active' : ''}"
+			class="faqItem {($closeState && activeIndex === ActiveElemnts.indexOf(item)) ? 'active' : ''}"
 			on:click="{() => setActiveIndex(ActiveElemnts.indexOf(item), item.name, item.article)}">
 			{$t(item.name)}
 		</button>
 	{/each}
 </div>
-
 <style>
 .faqItemsWrapper {
 	display: flex;
