@@ -128,8 +128,7 @@ const authUser = (auth: string) => {
 		flex-direction: column;
 	}
 	.buttons-desc {
-		width: 100%;
-		justify-content: center;
+		width: 90%;
 	}
 	.buttons {
 		width: 100%;
@@ -144,6 +143,9 @@ const authUser = (auth: string) => {
 	}
 }
 @media screen and (max-width: 800px) {
+	.buttons-desc {
+		width: 100%;
+	}
 	.buttons-desc img {
 		display: none;
 	}

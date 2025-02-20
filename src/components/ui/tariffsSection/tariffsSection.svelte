@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import { t } from 'svelte-i18n';
 
 import Tariffs from './tariffs.svelte';
@@ -8,20 +8,24 @@ export let tariffs;
 const liteTariffs = tariffs.tariffs[1];
 const standartTariffs = tariffs.tariffs[2];
 const proTariffs = tariffs.tariffs[3];
+
+function formatNumber(value:number) {
+    return Number(value).toLocaleString('de-DE');
+}
 </script>
 
 <div class="tariffs-wrapper">
 	<Tariffs
 		name="{liteTariffs.name}"
 		desc="{'tariffs.lite'}"
-		limitations="{liteTariffs.betsPerMonth}"
+		limitations="{formatNumber(liteTariffs.betsPerMonth)}"
 		accounts="{liteTariffs.accounts}"
 		price="{liteTariffs.pricePerMonth}"
 		price_year="{liteTariffs.pricePerYear}" />
 	<Tariffs
 		name="{standartTariffs.name}"
 		desc="{'tariffs.standart'}"
-		limitations="{standartTariffs.betsPerMonth}"
+		limitations="{formatNumber(standartTariffs.betsPerMonth)}"
 		accounts="{standartTariffs.accounts}"
 		price="{standartTariffs.pricePerMonth}"
 		price_year="{standartTariffs.pricePerYear}" />
