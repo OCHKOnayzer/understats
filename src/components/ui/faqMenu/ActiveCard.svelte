@@ -51,12 +51,14 @@ onMount(() => {
 <div class="faqItemsWrapper">
 	{#each filteredElements as item}
 		<button
-			class="faqItem {($closeState && activeIndex === ActiveElemnts.indexOf(item)) ? 'active' : ''}"
+			class="faqItem {($isMobile ? ($closeState && activeIndex === ActiveElemnts.indexOf(item)) : (activeIndex === ActiveElemnts.indexOf(item))) ? 'active' : ''}"
 			on:click="{() => setActiveIndex(ActiveElemnts.indexOf(item), item.name, item.article)}">
 			{$t(item.name)}
 		</button>
 	{/each}
 </div>
+
+
 <style>
 .faqItemsWrapper {
 	display: flex;
