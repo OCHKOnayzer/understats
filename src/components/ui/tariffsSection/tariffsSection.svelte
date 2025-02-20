@@ -9,8 +9,8 @@ const liteTariffs = tariffs.tariffs[1];
 const standartTariffs = tariffs.tariffs[2];
 const proTariffs = tariffs.tariffs[3];
 
-function formatNumber(value:number) {
-    return Number(value).toLocaleString('de-DE');
+function formatNumber(value: number) {
+	return Number(value).toLocaleString('de-DE');
 }
 </script>
 

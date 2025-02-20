@@ -4,7 +4,8 @@ import { t } from 'svelte-i18n';
 
 import { closeState } from '$src/stores/HeaderStores';
 import { closeFaqMenu } from '$src/stores/faq';
-import { isMobile,initializeScreenWidthListener } from '$src/stores/isMobile';
+import { isMobile, initializeScreenWidthListener } from '$src/stores/isMobile';
+
 import { ActiveElemnts } from './activeElements';
 
 export let FAQIndex: number;
@@ -51,13 +52,12 @@ onMount(() => {
 <div class="faqItemsWrapper">
 	{#each filteredElements as item}
 		<button
-			class="faqItem {($isMobile ? ($closeState && activeIndex === ActiveElemnts.indexOf(item)) : (activeIndex === ActiveElemnts.indexOf(item))) ? 'active' : ''}"
+			class="faqItem {($isMobile ? $closeState && activeIndex === ActiveElemnts.indexOf(item) : activeIndex === ActiveElemnts.indexOf(item)) ? 'active' : ''}"
 			on:click="{() => setActiveIndex(ActiveElemnts.indexOf(item), item.name, item.article)}">
 			{$t(item.name)}
 		</button>
 	{/each}
 </div>
-
 
 <style>
 .faqItemsWrapper {

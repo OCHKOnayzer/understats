@@ -3,8 +3,8 @@ import FaqAccordion from '$src/components/ui/accordion/FAQAccordion.svelte';
 </script>
 
 <div class="article_wrapper">
-	<FaqAccordion 
-		title="acardion.question1" 
+	<FaqAccordion
+		title="acardion.question1"
 		content="acardion.question1_content" />
 	<FaqAccordion
 		title="acardion.question2"
