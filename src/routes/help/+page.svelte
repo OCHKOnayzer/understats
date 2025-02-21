@@ -1,4 +1,5 @@
 <script>
+import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
 import FaqConteiner from '$src/components/ui/faqMenu/faqConteiner.svelte';

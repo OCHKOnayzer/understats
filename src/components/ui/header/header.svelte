@@ -2,6 +2,7 @@
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 import { fade } from 'svelte/transition';
+
 import { currentUserActiveTariff } from '$src/stores/tariffsStore';
 import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';
 import CheckBox from '$src/components/widgets/demo/checkBox/CheckBox.svelte';

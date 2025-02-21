@@ -6,25 +6,58 @@ import ActiveCard from './ActiveCard.svelte';
 import { MenuElement } from './menuElments';
 
 let activeIndex: number | null = null;
-let selectedItemName: string | null = null;
 let selectedArticleId: string | null = null;
+let lockedCategory: string | null = null;
+let lockedArticle: string | null = null;
 
 const dispatch = createEventDispatcher();
 
-const updateURL = (props: string | null, article: string | null) => {
+const updateURL = (category: string | null, article: string | null) => {
 	const url = new URL(window.location.href);
 
-	url.searchParams.forEach((_, key) => url.searchParams.delete(key));
+	if (lockedCategory === category && lockedArticle === article) {
+		return;
+	}
 
-	if (props) {
-		url.searchParams.set(props, article || props);
+	if (lockedArticle && category !== lockedCategory) {
+		url.searchParams.set(category, lockedArticle);
+		lockedCategory = category;
+		return;
+	}
+
+	url.search = '';
+	if (lockedCategory && lockedArticle) {
+		url.searchParams.set(lockedCategory, lockedArticle);
+	}
+
+	if (category && !article) {
+		url.searchParams.set(category, category);
+		lockedCategory = category;
+		lockedArticle = null;
+	}
+
+	if (category && article) {
+		url.searchParams.set(category, article);
+		lockedCategory = category;
+		lockedArticle = article;
+	}
+
+	if (!category) {
+		lockedCategory = null;
+		lockedArticle = null;
 	}
 
 	window.history.replaceState({}, '', url.toString());
 };
 
 const setActiveIndex = (index: number) => {
-	const newProps = MenuElement[index].props;
+	const newCategory = MenuElement[index].props;
+
+	if (lockedCategory && lockedArticle) {
+		activeIndex = index;
+		updateURL(newCategory, lockedArticle);
+		return;
+	}
 
 	if (activeIndex === index) {
 		activeIndex = null;
@@ -32,27 +65,31 @@ const setActiveIndex = (index: number) => {
 		updateURL(null, null);
 	} else {
 		activeIndex = index;
-		updateURL(newProps, selectedArticleId);
+		updateURL(newCategory, null);
 	}
 };
 
 const handleSelectItem = (event: any) => {
-	selectedItemName = event.detail.name;
 	selectedArticleId = event.detail.articleId;
+	dispatch('selectItemFromMenu', { name: event.detail.name, articleId: selectedArticleId });
 
-	dispatch('selectItemFromMenu', { name: selectedItemName, articleId: selectedArticleId });
+	const currentCategory = MenuElement[activeIndex]?.props || null;
 
-	const currentProps = MenuElement[activeIndex]?.props || null;
-	updateURL(currentProps, selectedArticleId);
+	if (currentCategory) {
+		updateURL(currentCategory, selectedArticleId);
+	}
 };
 
 const loadFromURL = () => {
 	const urlParams = new URLSearchParams(window.location.search);
 
 	for (let i = 0; i < MenuElement.length; i++) {
-		if (urlParams.has(MenuElement[i].props)) {
+		const category = MenuElement[i].props;
+		if (urlParams.has(category)) {
 			activeIndex = i;
-			selectedArticleId = urlParams.get(MenuElement[i].props);
+			selectedArticleId = urlParams.get(category);
+			lockedCategory = category;
+			lockedArticle = selectedArticleId || null;
 			break;
 		}
 	}

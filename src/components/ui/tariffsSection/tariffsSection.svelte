@@ -34,7 +34,7 @@ function formatNumber(value: number) {
 		desc="{'tariffs.pro'}"
 		limitations="{'tariffs.no_limits'}"
 		price="{proTariffs.pricePerMonth}"
-		price_year="{proTariffs.pricePerYear}" />
+		price_year="{formatNumber(proTariffs.pricePerYear)}" />
 </div>
 
 <style>
