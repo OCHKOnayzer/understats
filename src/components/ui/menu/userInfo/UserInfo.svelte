@@ -9,6 +9,7 @@ import { isDemoEnabled } from '$src/stores/demo';
 import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
 import { isMenuOpen } from '$src/stores/menu';
 import { currentUser, openModal } from '$src/stores/modalStore';
+import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
 import { derived } from 'svelte/store';
 
 onMount(() => {
