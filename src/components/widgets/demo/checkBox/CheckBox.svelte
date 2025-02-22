@@ -77,5 +77,4 @@ import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
 		height: 48px;
 		justify-content: center;
 	}
-}
-</style>
+} </style>
