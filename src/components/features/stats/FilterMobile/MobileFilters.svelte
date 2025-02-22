@@ -140,7 +140,7 @@ let totalFilters = $derived(
 					<button
 						class="h-12 flex-1 cursor-pointer rounded-xl border-none bg-[#171b26] text-sm font-medium text-[#718096] hover:opacity-90 active:opacity-80"
 						on:click="{() => filterStore.reset()}">
-						{$t('s.clear_filters')}
+						{$t('stats.clean_filters')}
 					</button>
 					<button
 						class="h-12 flex-1 cursor-pointer rounded-xl border-none bg-[#2f3241] text-sm font-medium text-white hover:opacity-90 active:opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
