@@ -1,7 +1,7 @@
 /* eslint-disable import/no-duplicates */
 import axios from 'axios';
-import { get, writable } from 'svelte/store';
 import { tick } from 'svelte';
+import { get, writable } from 'svelte/store';
 
 import { queryClient } from '$src/lib/queryClient';
 import { getAccessToken, removeDemoToken, setAccessToken } from '$src/services/auth/auth-token.service';
@@ -16,10 +16,23 @@ let initialDemoState = true;
 let isTogglingDemo = false;
 
 if (isBrowser) {
+	const hasVisitedBefore = localStorage.getItem('hasVisitedBefore');
 	const stored = localStorage.getItem('isDemoEnabled');
-	if (stored !== null) {
+	
+	if (!hasVisitedBefore) {
+		// Первый вход - включаем демо-режим
+		localStorage.setItem('hasVisitedBefore', 'true');
+		initialDemoState = true;
+		localStorage.setItem('isDemoEnabled', 'true');
+		// Активируем демо-режим при первом входе
+		setTimeout(() => {
+			handleDemoToggle(true);
+		}, 0);
+	} else if (stored !== null) {
+		// Не первый вход - используем сохраненное состояние
 		initialDemoState = stored === 'true';
 	}
+
 	const account = get(accountStore);
 	if (account && account.login) {
 		initialDemoState = false;

@@ -1,22 +1,23 @@
-import { get } from 'svelte/store';
+import { get } from 'svelte/store'
 
-import { queryClient } from '$src/lib/queryClient';
-import { getDemoToken, setDemoToken } from '$src/services/auth/auth-token.service';
-import { authService } from '$src/services/auth/auth.service';
-import { accountStore } from '$src/stores/accountStore';
-import { betsTableStore } from '$src/stores/betsTableStore';
-import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
-import { currentUser } from '$src/stores/modalStore';
+import { queryClient } from '$src/lib/queryClient'
+import { getDemoToken, setDemoToken } from '$src/services/auth/auth-token.service'
+import { authService } from '$src/services/auth/auth.service'
+import { accountStore } from '$src/stores/accountStore'
+import { betsTableStore } from '$src/stores/betsTableStore'
+import { isDemoEnabled } from '$src/stores/demo'
+import { currentUser } from '$src/stores/modalStore'
 
-import { goto } from '$app/navigation';
+import { goto } from '$app/navigation'
 
-export async function handleDemoToggle() {
+export async function handleDemoToggle(isFirstVisit: boolean = false) {
 	try {
-		toggleDemoMode();
 		betsTableStore.reset();
 		currentUser.set(null);
 
-		if (get(isDemoEnabled)) {
+		const isDemo = isFirstVisit ? true : get(isDemoEnabled);
+		
+		if (isDemo) {
 			let demoToken = getDemoToken();
 			if (!demoToken) {
 				const storedDemo = localStorage.getItem('demoToken');
@@ -45,7 +46,9 @@ export async function handleDemoToggle() {
 		queryClient.invalidateQueries({ queryKey: ['accounts'] });
 		queryClient.invalidateQueries({ queryKey: ['bets count'] });
 
-		goto('/');
+		if (!isFirstVisit) {
+			goto('/');
+		}
 	} catch (error) {
 		betsTableStore.setError('other.error_demo');
 	}
