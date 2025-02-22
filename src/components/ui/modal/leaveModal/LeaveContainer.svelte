@@ -8,6 +8,8 @@ import { closeModal, currentModal, currentUser, logout, modalComponent } from '$
 import LeaveModalContent from './leaveContent/LeaveModalContent.svelte';
 
 import { goto } from '$app/navigation';
+import { accountStore } from '$src/stores/accountStore';
+import { isDemoEnabled } from '$src/stores/demo';
 
 onMount(() => {
 	initializeScreenWidthListener();
@@ -15,6 +17,8 @@ onMount(() => {
 
 const handleLogout = () => {
 	currentUser.set(null);
+	isDemoEnabled.set(false);
+	accountStore.reset();
 	if ($isMobile) {
 		currentModal.set('login');
 		goto('/authorization');

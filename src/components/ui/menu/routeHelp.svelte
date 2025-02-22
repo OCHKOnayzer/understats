@@ -13,7 +13,7 @@ let { query } = useUserProfile();
 
 <div class="w-full">
 	<ChatMenu />
-	{#if $query.data}
+	{#if $query.data || currentUser}
 		<UserInfo />
 	{/if}
 	<!-- <div class="relative mt-4 flex h-full w-full items-center justify-between">
