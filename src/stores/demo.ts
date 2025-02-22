@@ -1,7 +1,7 @@
 /* eslint-disable import/no-duplicates */
 import axios from 'axios';
-import { get, writable } from 'svelte/store';
 import { tick } from 'svelte';
+import { get, writable } from 'svelte/store';
 
 import { queryClient } from '$src/lib/queryClient';
 import { getAccessToken, removeDemoToken, setAccessToken } from '$src/services/auth/auth-token.service';
@@ -16,10 +16,20 @@ let initialDemoState = true;
 let isTogglingDemo = false;
 
 if (isBrowser) {
+	const hasVisitedBefore = localStorage.getItem('hasVisitedBefore');
 	const stored = localStorage.getItem('isDemoEnabled');
-	if (stored !== null) {
+
+	if (!hasVisitedBefore) {
+		localStorage.setItem('hasVisitedBefore', 'true');
+		initialDemoState = true;
+		localStorage.setItem('isDemoEnabled', 'true');
+		setTimeout(() => {
+			handleDemoToggle(true);
+		}, 0);
+	} else if (stored !== null) {
 		initialDemoState = stored === 'true';
 	}
+
 	const account = get(accountStore);
 	if (account && account.login) {
 		initialDemoState = false;
@@ -34,7 +44,7 @@ isDemoEnabled.subscribe((value) => {
 	}
 });
 
-// Комментирую блок, который отключает demo режим при наличии аккаунта
+// Блок, который отключает demo режим при наличии аккаунта.НЕ УДАЛЯТЬ
 // accountStore.subscribe((acct) => {
 //	if (acct && acct.login && get(isDemoEnabled) && !getDemoToken()) {
 //		isDemoEnabled.set(false);
@@ -78,7 +88,7 @@ export const toggleDemoMode = async () => {
 				accountStore.setData(loginResponse?.data);
 			} else {
 				currentUser.set(null);
-				betsTableStore.setData([]);
+				betsTableStore.setData({ bets: [] });
 			}
 			queryClient.invalidateQueries({ queryKey: ['accounts'] });
 			queryClient.invalidateQueries({ queryKey: ['bets count'] });
