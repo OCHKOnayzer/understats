@@ -1,8 +1,7 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 
-import { isDemoEnabled } from '$src/stores/demo';
-import { toggleDemoMode } from '$src/stores/demo';
+import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
 </script>
 
 <button

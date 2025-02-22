@@ -58,8 +58,8 @@ const setActiveFromUrl = async () => {
 				console.warn(`${$t('error.state_not_found')}`);
 			}
 			return;
-		}else{ 
-			isFaqMenuOpen.set(true)
+		} else {
+			isFaqMenuOpen.set(true);
 		}
 	}
 };

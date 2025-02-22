@@ -18,18 +18,15 @@ let isTogglingDemo = false;
 if (isBrowser) {
 	const hasVisitedBefore = localStorage.getItem('hasVisitedBefore');
 	const stored = localStorage.getItem('isDemoEnabled');
-	
+
 	if (!hasVisitedBefore) {
-		// Первый вход - включаем демо-режим
 		localStorage.setItem('hasVisitedBefore', 'true');
 		initialDemoState = true;
 		localStorage.setItem('isDemoEnabled', 'true');
-		// Активируем демо-режим при первом входе
 		setTimeout(() => {
 			handleDemoToggle(true);
 		}, 0);
 	} else if (stored !== null) {
-		// Не первый вход - используем сохраненное состояние
 		initialDemoState = stored === 'true';
 	}
 
@@ -47,7 +44,7 @@ isDemoEnabled.subscribe((value) => {
 	}
 });
 
-// Комментирую блок, который отключает demo режим при наличии аккаунта
+// Блок, который отключает demo режим при наличии аккаунта.НЕ УДАЛЯТЬ
 // accountStore.subscribe((acct) => {
 //	if (acct && acct.login && get(isDemoEnabled) && !getDemoToken()) {
 //		isDemoEnabled.set(false);
@@ -91,7 +88,7 @@ export const toggleDemoMode = async () => {
 				accountStore.setData(loginResponse?.data);
 			} else {
 				currentUser.set(null);
-				betsTableStore.setData([]);
+				betsTableStore.setData({ bets: [] });
 			}
 			queryClient.invalidateQueries({ queryKey: ['accounts'] });
 			queryClient.invalidateQueries({ queryKey: ['bets count'] });
