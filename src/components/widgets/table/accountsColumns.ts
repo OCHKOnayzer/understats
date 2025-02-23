@@ -1,5 +1,6 @@
 import { renderComponent } from '$src/components/ui/data-table';
 import { formatDate } from '$src/utils/functions/formatDate';
+import { formatNumber } from '$src/utils/functions/formatNumber';
 
 import SortableHeader from './SortableHeader.svelte';
 
@@ -7,14 +8,6 @@ import type { IAccountResponse } from '$src/types/accounts';
 import type { ColumnDef } from '@tanstack/table-core';
 
 export type { IAccountResponse };
-
-type AccountsColumnMeta = {
-	textAlign?: 'left' | 'right';
-};
-
-type AccountsColumnDef = ColumnDef<IAccountResponse, unknown> & {
-	meta?: AccountsColumnMeta;
-};
 
 export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 	{
@@ -73,8 +66,7 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
 			}),
-		meta: { textAlign: 'right' } as AccountsColumnMeta,
-		cell: ({ row }) => `${row.original.balance} ${row.original.currency}`
+		cell: ({ row }) => `${formatNumber(row.original.balance)} ${row.original.currency}`
 	},
 	{
 		accessorKey: 'betAddedLastDate',
