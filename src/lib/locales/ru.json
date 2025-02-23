@@ -514,14 +514,20 @@
 	},
 	"columns": {
 		"bet.time": "Время ставки",
+		"bet.id": "ID",
+		"bet.bkId": "ID букмекера",
 		"bet.bookmaker": "Букмекер",
 		"bet.sport": "Спорт",
+		"bet.startTime": "Начало события",
+		"bet.type": "Тип",
+		"bet.tournament": "Турнир",
 		"bet.event": "Событие",
-		"bet.ammount": "Сумма",
 		"bet.ratio": "Коэффициент",
+		"bet.status": "Результат",
+		"bet.amount": "Сумма",
 		"bet.win": "Выигрыш",
-		"bet.status": "Статус",
-		"bet.result": "Итого"
+		"bet.profit": "Доход",
+		"bet.score": "Счет"
 	},
 	"express_bet_modal": {
 		"title": "Экспресс ставка",
