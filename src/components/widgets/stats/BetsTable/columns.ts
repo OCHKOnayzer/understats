@@ -128,6 +128,16 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 		}
 	},
 	{
+		accessorKey: 'outcome.default',
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: t('stats.outcome'),
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			}),
+		cell: ({ row }) => row.original.outcome?.default || ''
+	},
+	{
 		accessorKey: 'rate',
 		header: ({ column }) =>
 			renderComponent(SortableHeader, {
