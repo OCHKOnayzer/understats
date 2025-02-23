@@ -1,8 +1,9 @@
 import { renderComponent } from '$src/components/ui/data-table'
-import { formatDate, formatDateWithRecent } from '$src/utils/functions/formatDate'
+import { formatDateWithRecent } from '$src/utils/functions/formatDate'
 import { formatNumber } from '$src/utils/functions/formatNumber'
 
 import SortableHeader from '../../table/SortableHeader.svelte'
+import InfoIcon from './InfoIcon.svelte'
 
 import type { Bet } from '$src/types/bet'
 import type { ColumnDef } from '@tanstack/table-core'
@@ -11,13 +12,10 @@ type BetColumnMeta = {
 	textAlign?: 'left' | 'right';
 };
 
-type BetColumnDef = ColumnDef<Bet, unknown> & {
-	meta?: BetColumnMeta;
-};
-
 export const getColumns = (t: (key: string, params?: Record<string, any>) => string): ColumnDef<Bet>[] => [
 	{
-		accessorKey: 'dates.placed',
+		id: 'placedDate',
+		accessorFn: (row) => row.dates.placed,
 		header: ({ column }) =>
 			renderComponent(SortableHeader, {
 				title: t('columns.bet.time'),
@@ -25,12 +23,19 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 				isSorted: column.getIsSorted()
 			}),
 		cell: ({ row }) => {
-			try {
-				return formatDateWithRecent(row.original.dates.placed);
-			} catch (e) {
-				console.error('Error formatting date:', e);
-				return t('other.invalid_date');
-			}
+			const date = new Date(row.original.dates.placed);
+			return renderComponent(InfoIcon, {
+				formattedValue: formatDateWithRecent(date),
+				fullValue: date.toLocaleString('ru-RU', {
+					year: 'numeric',
+					month: 'long',
+					day: 'numeric',
+					hour: '2-digit',
+					minute: '2-digit',
+					second: '2-digit'
+				}),
+				align: 'left'
+			});
 		}
 	},
 	{
@@ -39,21 +44,8 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 			renderComponent(SortableHeader, {
 				title: 'ID',
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
-				isSorted: column.getIsSorted(),
-				textAlign: 'right'
-			}),
-		meta: { textAlign: 'right' } as BetColumnMeta
-	},
-	{
-		accessorKey: 'extendedId',
-		header: ({ column }) =>
-			renderComponent(SortableHeader, {
-				title: t('columns.bet.bkId'),
-				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
-				isSorted: column.getIsSorted(),
-				textAlign: 'right'
-			}),
-		meta: { textAlign: 'right' } as BetColumnMeta
+				isSorted: column.getIsSorted()
+			})
 	},
 	{
 		accessorKey: 'siteName',
@@ -65,29 +57,14 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 			})
 	},
 	{
-		accessorKey: 'event.sport',
+		id: 'sport',
+		accessorFn: (row) => row.event.sport,
 		header: ({ column }) =>
 			renderComponent(SortableHeader, {
 				title: t('columns.bet.sport'),
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
 			})
-	},
-	{
-		accessorKey: 'event.startTime',
-		header: ({ column }) =>
-			renderComponent(SortableHeader, {
-				title: t('columns.bet.startTime'),
-				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
-				isSorted: column.getIsSorted()
-			}),
-		cell: ({ row }) => {
-			try {
-				return row.original.event.startTime ? formatDate(row.original.event.startTime) : '';
-			} catch (e) {
-				return '';
-			}
-		}
 	},
 	{
 		accessorKey: 'isLive',
@@ -100,7 +77,8 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 		cell: ({ row }) => (row.original.isLive ? 'Live' : 'Prematch')
 	},
 	{
-		accessorKey: 'event.competitionName',
+		id: 'competition',
+		accessorFn: (row) => row.event.competitionName?.default,
 		header: ({ column }) =>
 			renderComponent(SortableHeader, {
 				title: t('columns.bet.tournament'),
@@ -110,32 +88,20 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 		cell: ({ row }) => row.original.event.competitionName?.default || ''
 	},
 	{
-		accessorKey: 'event',
-		header: ({ column }) =>
-			renderComponent(SortableHeader, {
-				title: t('columns.bet.event'),
-				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
-				isSorted: column.getIsSorted()
-			}),
-		cell: ({ row }) => {
-			const bet = row.original;
-			if (bet.type === 'Express') {
-				const count = bet.legs?.length || 0;
-				return `${count} ${t('stats.event')}`;
-			}
-			const event = bet.event;
-			return event.name1 && event.name2 ? `${event.name1.default} - ${event.name2.default}` : t('other.no_data');
-		}
-	},
-	{
-		accessorKey: 'outcome.default',
+		id: 'outcome',
+		accessorFn: (row) => row.outcome?.default,
 		header: ({ column }) =>
 			renderComponent(SortableHeader, {
 				title: t('stats.outcome'),
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
 			}),
-		cell: ({ row }) => row.original.outcome?.default || ''
+		cell: ({ row }) => {
+			if (row.original.type === 'Express') {
+				return t('stats.express');
+			}
+			return row.original.outcome?.default || '';
+		}
 	},
 	{
 		accessorKey: 'rate',
@@ -159,7 +125,8 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 			})
 	},
 	{
-		accessorKey: 'amounts.stake',
+		id: 'stake',
+		accessorFn: (row) => row.amounts.stake,
 		header: ({ column }) =>
 			renderComponent(SortableHeader, {
 				title: t('columns.bet.amount'),
@@ -171,7 +138,8 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 		meta: { textAlign: 'right' } as BetColumnMeta
 	},
 	{
-		accessorKey: 'amounts.win',
+		id: 'win',
+		accessorFn: (row) => row.amounts.win,
 		header: ({ column }) =>
 			renderComponent(SortableHeader, {
 				title: t('columns.bet.win'),
@@ -183,7 +151,12 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 		meta: { textAlign: 'right' } as BetColumnMeta
 	},
 	{
-		accessorKey: 'profit',
+		id: 'profit',
+		accessorFn: (row) => {
+			const win = Number(row.amounts.win);
+			const stake = Number(row.amounts.stake);
+			return win - stake;
+		},
 		header: ({ column }) =>
 			renderComponent(SortableHeader, {
 				title: t('columns.bet.profit'),
@@ -198,14 +171,30 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 		},
 		meta: { textAlign: 'right' } as BetColumnMeta
 	},
-	// {
-	// 	accessorKey: 'score',
-	// 	header: ({ column }) =>
-	// 		renderComponent(SortableHeader, {
-	// 			title: t('columns.bet.score'),
-	// 			onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
-	// 			isSorted: column.getIsSorted()
-	// 		}),
-	// 	cell: ({ row }) => row.original.score || ''
-	// }
+	{
+		id: 'startTime',
+		accessorFn: (row) => row.event.startTime,
+		header: ({ column }) =>
+			renderComponent(SortableHeader, {
+				title: t('columns.bet.startTime'),
+				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+				isSorted: column.getIsSorted()
+			}),
+		cell: ({ row }) => {
+			if (!row.original.event.startTime) return '';
+			const date = new Date(row.original.event.startTime);
+			return renderComponent(InfoIcon, {
+				formattedValue: formatDateWithRecent(date),
+				fullValue: date.toLocaleString('ru-RU', {
+					year: 'numeric',
+					month: 'long',
+					day: 'numeric',
+					hour: '2-digit',
+					minute: '2-digit',
+					second: '2-digit'
+				}),
+				align: 'left'
+			});
+		}
+	}
 ];
