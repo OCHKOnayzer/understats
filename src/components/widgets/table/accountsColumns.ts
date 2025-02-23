@@ -1,21 +1,14 @@
 import { renderComponent } from '$src/components/ui/data-table'
-import { formatDate, formatDateWithRecent } from '$src/utils/functions/formatDate'
+import { formatDate } from '$src/utils/functions/formatDate'
 import { formatNumber } from '$src/utils/functions/formatNumber'
 
+import InfoIcon from '../stats/BetsTable/InfoIcon.svelte'
 import SortableHeader from './SortableHeader.svelte'
 
 import type { IAccountResponse } from '$src/types/accounts'
 import type { ColumnDef } from '@tanstack/table-core'
 
 export type { IAccountResponse }
-
-type AccountColumnMeta = {
-	textAlign?: 'left' | 'right';
-};
-
-type AccountColumnDef = ColumnDef<IAccountResponse, unknown> & {
-	meta?: AccountColumnMeta;
-};
 
 export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 	{
@@ -64,7 +57,21 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
 			}),
-		cell: ({ row }) => formatDate(row.original.registrationDate)
+		cell: ({ row }) => {
+			const date = new Date(row.original.registrationDate);
+			return renderComponent(InfoIcon, {
+				formattedValue: formatDate(date),
+				fullValue: date.toLocaleString('ru-RU', {
+					year: 'numeric',
+					month: 'long',
+					day: 'numeric',
+					hour: '2-digit',
+					minute: '2-digit',
+					second: '2-digit'
+				}),
+				align: 'left'
+			});
+		}
 	},
 	{
 		accessorKey: 'balance',
@@ -72,11 +79,9 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 			renderComponent(SortableHeader, {
 				title: 'accounts.balance',
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
-				isSorted: column.getIsSorted(),
-				textAlign: 'right'
+				isSorted: column.getIsSorted()
 			}),
-		cell: ({ row }) => `${formatNumber(row.original.balance)} ${row.original.currency}`,
-		meta: { textAlign: 'right' } as AccountColumnMeta
+		cell: ({ row }) => `${formatNumber(row.original.balance)} ${row.original.currency}`
 	},
 	{
 		accessorKey: 'betAddedLastDate',
@@ -86,7 +91,22 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
 			}),
-		cell: ({ row }) => (row.original.betAddedLastDate ? formatDateWithRecent(row.original.betAddedLastDate, true) : '')
+		cell: ({ row }) => {
+			if (!row.original.betAddedLastDate) return '';
+			const date = new Date(row.original.betAddedLastDate);
+			return renderComponent(InfoIcon, {
+				formattedValue: formatDate(date),
+				fullValue: date.toLocaleString('ru-RU', {
+					year: 'numeric',
+					month: 'long',
+					day: 'numeric',
+					hour: '2-digit',
+					minute: '2-digit',
+					second: '2-digit'
+				}),
+				align: 'left'
+			});
+		}
 	},
 	{
 		accessorKey: 'betsCount',
@@ -95,7 +115,6 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 				title: 'accounts.betCount',
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
-			}),
-		meta: { textAlign: 'right' } as AccountColumnMeta
+			})
 	}
 ];
