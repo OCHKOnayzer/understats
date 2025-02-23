@@ -7,7 +7,6 @@ import { betsTableStore } from '$src/stores/betsTableStore';
 
 import TotalBet from '../TotalBet/TotalBet.svelte';
 
-
 const data = createQuery({
 	queryKey: ['bets count'],
 	queryFn: () => betService.getMyBetsCount(),

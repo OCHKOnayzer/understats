@@ -2,6 +2,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
+import { fade } from 'svelte/transition';
 
 import { currentUserActiveTariff } from '$src/stores/tariffsStore';
 import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';
@@ -16,7 +17,6 @@ import LangButton from '../button/langButton/LangButton.svelte';
 
 import { goto } from '$app/navigation';
 import { page } from '$app/stores';
-import { fade } from 'svelte/transition';
 
 type ModalType = 'authModal' | 'LeaveContainer' | 'FailedModal' | 'SuccessfulModal' | 'SorryModal' | 'LangModal' | 'SupportModal' | 'SocialModal';
 

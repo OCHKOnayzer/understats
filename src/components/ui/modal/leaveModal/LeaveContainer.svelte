@@ -4,12 +4,12 @@ import { t } from 'svelte-i18n';
 
 import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
 import { closeModal, currentModal, currentUser, logout, modalComponent } from '$src/stores/modalStore';
+import { accountStore } from '$src/stores/accountStore';
+import { isDemoEnabled } from '$src/stores/demo';
 
 import LeaveModalContent from './leaveContent/LeaveModalContent.svelte';
 
 import { goto } from '$app/navigation';
-import { accountStore } from '$src/stores/accountStore';
-import { isDemoEnabled } from '$src/stores/demo';
 
 onMount(() => {
 	initializeScreenWidthListener();
