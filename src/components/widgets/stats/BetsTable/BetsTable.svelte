@@ -29,7 +29,12 @@ let isMobile = $derived(innerWidth < 740);
 let prevPage = $state($filterStore.pagination.currentPage);
 let prevItemsPerPage = $state($filterStore.pagination.itemsPerPage);
 let isLoadingMore = $state(false);
-let sorting = $state<SortingState>([]);
+let sorting = $state<SortingState>([
+	{
+		id: 'dates.placed',
+		desc: true
+	}
+]);
 
 function handleExpressClick(bet: Bet) {
 	if (bet.type === 'Express' && bet.legs) {
@@ -245,7 +250,8 @@ $effect(() => {
 						{#each table.getRowModel().rows as row, index (generateBetKey(row.original, index))}
 							<TableRow
 								row="{row}"
-								onExpressClick="{handleExpressClick}">
+								onExpressClick="{handleExpressClick}"
+								index="{index}">
 								{#each row.getVisibleCells() as cell (cell.id)}
 									<Table.Cell style="text-align: {cell.column.columnDef.meta?.textAlign || 'left'}">
 										<FlexRender
