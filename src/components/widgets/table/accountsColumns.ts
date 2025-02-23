@@ -1,13 +1,21 @@
-import { renderComponent } from '$src/components/ui/data-table';
-import { formatDate } from '$src/utils/functions/formatDate';
-import { formatNumber } from '$src/utils/functions/formatNumber';
+import { renderComponent } from '$src/components/ui/data-table'
+import { formatDate } from '$src/utils/functions/formatDate'
+import { formatNumber } from '$src/utils/functions/formatNumber'
 
-import SortableHeader from './SortableHeader.svelte';
+import SortableHeader from './SortableHeader.svelte'
 
-import type { IAccountResponse } from '$src/types/accounts';
-import type { ColumnDef } from '@tanstack/table-core';
+import type { IAccountResponse } from '$src/types/accounts'
+import type { ColumnDef } from '@tanstack/table-core'
 
-export type { IAccountResponse };
+export type { IAccountResponse }
+
+type AccountColumnMeta = {
+	textAlign?: 'left' | 'right';
+};
+
+type AccountColumnDef = ColumnDef<IAccountResponse, unknown> & {
+	meta?: AccountColumnMeta;
+};
 
 export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 	{
@@ -64,9 +72,11 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 			renderComponent(SortableHeader, {
 				title: 'accounts.balance',
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
-				isSorted: column.getIsSorted()
+				isSorted: column.getIsSorted(),
+				textAlign: 'right'
 			}),
-		cell: ({ row }) => `${formatNumber(row.original.balance)} ${row.original.currency}`
+		cell: ({ row }) => `${formatNumber(row.original.balance)} ${row.original.currency}`,
+		meta: { textAlign: 'right' } as AccountColumnMeta
 	},
 	{
 		accessorKey: 'betAddedLastDate',

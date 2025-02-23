@@ -76,7 +76,8 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 			renderComponent(SortableHeader, {
 				title: t('columns.bet.ammount'),
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
-				isSorted: column.getIsSorted()
+				isSorted: column.getIsSorted(),
+				textAlign: 'right'
 			}),
 		meta: { textAlign: 'right' } as BetColumnMeta
 	},
@@ -86,7 +87,8 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 			renderComponent(SortableHeader, {
 				title: t('columns.bet.ratio'),
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
-				isSorted: column.getIsSorted()
+				isSorted: column.getIsSorted(),
+				textAlign: 'right'
 			}),
 		meta: { textAlign: 'right' } as BetColumnMeta
 	},
@@ -96,7 +98,8 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 			renderComponent(SortableHeader, {
 				title: t('columns.bet.win'),
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
-				isSorted: column.getIsSorted()
+				isSorted: column.getIsSorted(),
+				textAlign: 'right'
 			}),
 		meta: { textAlign: 'right' } as BetColumnMeta
 	},

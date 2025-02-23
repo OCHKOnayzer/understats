@@ -226,11 +226,11 @@ $effect(() => {
 						{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
 							<Table.Row>
 								{#each headerGroup.headers as header (header.id)}
-									<Table.Head>
+									<Table.Head class="px-2">
 										{#if !header.isPlaceholder}
 											<div
-												class="flex items-center gap-1 sm:text-[10px] md:text-[12px] lg:text-[12px] xl:text-[14px]"
-												style="justify-content: {header.column.columnDef.meta?.textAlign === 'right' ? 'flex-end' : 'flex-start'}">
+												class="w-full"
+												style="display: flex; justify-content: {header.column.columnDef.meta?.textAlign === 'right' ? 'flex-end' : 'flex-start'}">
 												<FlexRender
 													content="{header.column.columnDef.header}"
 													context="{header.getContext()}" />
