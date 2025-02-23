@@ -4,9 +4,16 @@ import { get } from 'svelte/store'
 export function formatDate(date: string | Date): string {
 	const now = new Date();
 	const targetDate = new Date(date);
+	
+	// Проверяем корректность даты
+	if (isNaN(targetDate.getTime())) {
+		return '';
+	}
+
 	const isToday = targetDate.getDate() === now.getDate() && 
 		targetDate.getMonth() === now.getMonth() && 
 		targetDate.getFullYear() === now.getFullYear();
+	
 	const isYesterday = targetDate.getDate() === now.getDate() - 1 && 
 		targetDate.getMonth() === now.getMonth() && 
 		targetDate.getFullYear() === now.getFullYear();
@@ -20,12 +27,25 @@ export function formatDate(date: string | Date): string {
 		return get(t)('time.yesterday_at', { values: { time: timeStr } });
 	}
 
-	return targetDate.toLocaleString('ru-RU');
+	// Проверяем, прошел ли год
+	const yearDiff = now.getFullYear() - targetDate.getFullYear();
+	if (yearDiff > 0) {
+		return get(t)('time.year_ago', { values: { count: yearDiff } });
+	}
+
+	// Для остальных дат показываем дату в формате "21 февраля"
+	return targetDate.toLocaleString('ru-RU', { day: 'numeric', month: 'long' });
 }
 
 export function formatDateWithRecent(date: string | Date, isAccount = false): string {
 	const now = new Date();
 	const targetDate = new Date(date);
+
+	// Проверяем корректность даты
+	if (isNaN(targetDate.getTime())) {
+		return '';
+	}
+
 	const diffInMinutes = Math.floor((now.getTime() - targetDate.getTime()) / (1000 * 60));
 	const isToday = targetDate.getDate() === now.getDate() && 
 		targetDate.getMonth() === now.getMonth() && 
@@ -69,7 +89,14 @@ export function formatDateWithRecent(date: string | Date, isAccount = false): st
 		return get(t)('time.yesterday_at', { values: { time: timeStr } });
 	}
 
-	return targetDate.toLocaleString('ru-RU');
+	// Проверяем, прошел ли год
+	const yearDiff = now.getFullYear() - targetDate.getFullYear();
+	if (yearDiff > 0) {
+		return get(t)('time.year_ago', { values: { count: yearDiff } });
+	}
+
+	// Для остальных дат показываем дату в формате "21 февраля"
+	return targetDate.toLocaleString('ru-RU', { day: 'numeric', month: 'long' });
 }
 
 function getMinutesForm(minutes: number): 'one' | 'few' | 'many' {
