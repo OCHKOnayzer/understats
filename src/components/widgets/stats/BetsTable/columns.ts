@@ -1,5 +1,5 @@
 import { renderComponent } from '$src/components/ui/data-table'
-import { formatDate } from '$src/utils/functions/formatDate'
+import { formatDate, formatDateWithRecent } from '$src/utils/functions/formatDate'
 import { formatNumber } from '$src/utils/functions/formatNumber'
 
 import SortableHeader from '../../table/SortableHeader.svelte'
@@ -26,8 +26,7 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 			}),
 		cell: ({ row }) => {
 			try {
-				const date = new Date(row.original.dates.placed);
-				return date.toLocaleString('ru-RU');
+				return formatDateWithRecent(row.original.dates.placed);
 			} catch (e) {
 				console.error('Error formatting date:', e);
 				return t('other.invalid_date');

@@ -542,5 +542,17 @@
 		"status_won": "Выиграла",
 		"status_lost": "Проиграла",
 		"no_data": "Нет данных"
+	},
+	"time": {
+		"just_now": "Только что",
+		"minute_ago": "Минуту назад",
+		"minutes_ago": "{count} {minutes} назад",
+		"today_at": "Сегодня в {time}",
+		"yesterday_at": "Вчера в {time}",
+		"minute": {
+			"one": "минуту",
+			"few": "минуты",
+			"many": "минут"
+		}
 	}
 }
