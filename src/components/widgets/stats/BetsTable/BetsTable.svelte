@@ -264,15 +264,23 @@ $effect(() => {
 
 <style lang="postcss">
 .table-container {
-	@apply relative h-[calc(100vh-280px)] w-full;
+	@apply relative h-[calc(100vh-280px)] w-full font-[Inter];
 }
 
 .message-container {
-	@apply flex h-[calc(100vh-190px)] flex-col items-center justify-center p-4 text-white;
+	@apply flex h-[calc(100vh-190px)] flex-col items-center justify-center p-4 font-[Inter] text-white;
 }
 
 .table-wrapper {
 	@apply absolute inset-0 mt-4 overflow-auto;
+}
+
+:global(th) {
+	@apply whitespace-nowrap px-2 font-[Inter] font-medium;
+}
+
+:global(td) {
+	@apply align-middle font-[Inter];
 }
 
 .mobile-container {
@@ -281,6 +289,7 @@ $effect(() => {
 	-webkit-overflow-scrolling: touch;
 	scrollbar-width: thin;
 	scrollbar-color: #6660ff #20242f;
+	@apply font-[Inter];
 }
 
 .mobile-container::-webkit-scrollbar {

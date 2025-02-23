@@ -158,7 +158,7 @@ type CellContextType = CellContext<IAccountResponse, unknown>;
 }
 
 .table-wrapper {
-	@apply relative w-full overflow-hidden;
+	@apply relative w-full overflow-hidden font-[Inter];
 }
 
 .table-container {
@@ -166,15 +166,15 @@ type CellContextType = CellContext<IAccountResponse, unknown>;
 }
 
 :global(.cell-content) {
-	@apply flex items-center;
+	@apply flex items-center font-[Inter];
 }
 
 :global(th) {
-	@apply whitespace-nowrap px-2 font-medium;
+	@apply whitespace-nowrap px-2 font-[Inter] font-medium;
 }
 
 :global(td) {
-	@apply align-middle;
+	@apply align-middle font-[Inter];
 }
 
 :global(thead) {

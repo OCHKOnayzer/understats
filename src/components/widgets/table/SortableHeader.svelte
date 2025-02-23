@@ -7,7 +7,7 @@ export let textAlign: 'left' | 'right' = 'left';
 </script>
 
 <div
-	class="flex w-full items-center text-[14px]"
+	class="flex w-full items-center font-[Inter] text-[14px]"
 	style="justify-content: {textAlign === 'right' ? 'flex-end' : 'flex-start'}">
 	<button
 		class="group relative flex items-center font-medium text-gray-200 hover:text-white"

@@ -88,9 +88,9 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 				title: t('stats.outcome'),
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted(),
-				textAlign: 'right'
+				textAlign: 'left'
 			}),
-		meta: { textAlign: 'right' } as BetColumnMeta
+		meta: { textAlign: 'left' } as BetColumnMeta
 	},
 	{
 		accessorKey: 'rate',
