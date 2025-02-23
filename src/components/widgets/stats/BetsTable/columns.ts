@@ -1,9 +1,10 @@
-import { renderComponent } from '$src/components/ui/data-table';
+import { renderComponent } from '$src/components/ui/data-table'
+import { formatNumber } from '$src/utils/functions/formatNumber'
 
-import SortableHeader from '../../table/SortableHeader.svelte';
+import SortableHeader from '../../table/SortableHeader.svelte'
 
-import type { Bet } from '$src/types/bet';
-import type { ColumnDef } from '@tanstack/table-core';
+import type { Bet } from '$src/types/bet'
+import type { ColumnDef } from '@tanstack/table-core'
 
 type BetColumnMeta = {
 	textAlign?: 'left' | 'right';
@@ -79,6 +80,7 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 				isSorted: column.getIsSorted(),
 				textAlign: 'right'
 			}),
+		cell: ({ row }) => formatNumber(Number(row.original.amounts.stake)),
 		meta: { textAlign: 'right' } as BetColumnMeta
 	},
 	{
@@ -101,6 +103,7 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 				isSorted: column.getIsSorted(),
 				textAlign: 'right'
 			}),
+		cell: ({ row }) => formatNumber(Number(row.original.rate)),
 		meta: { textAlign: 'right' } as BetColumnMeta
 	},
 	{
@@ -112,6 +115,7 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 				isSorted: column.getIsSorted(),
 				textAlign: 'right'
 			}),
+		cell: ({ row }) => formatNumber(Number(row.original.amounts.win)),
 		meta: { textAlign: 'right' } as BetColumnMeta
 	},
 	{
