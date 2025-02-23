@@ -106,7 +106,7 @@ type CellContextType = CellContext<IAccountResponse, unknown>;
 						<Table.Row class="border-none">
 							{#each headerGroup.headers as header (header.id)}
 								<Table.Head class="">
-									<div class="flex gap-2 pl-2 pr-7">
+									<div class="flex gap-2  pr-7">
 										<div class="text-[14px]">
 											<FlexRender
 												content="{header.column.columnDef.header}"

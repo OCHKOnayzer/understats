@@ -20,24 +20,6 @@ let { data }: Props = $props();
 			variant="card">{$t('not.more')}</Button>
 	</Drawer.Trigger>
 	<Drawer.Content class="rounded-[16px] border-none bg-input p-4 text-white focus:outline-none focus:ring-0">
-		<div class="mb-[30px] rounded-[20px] bg-blackPrimary p-4">
-			<div class="mb-4 flex items-center justify-between text-[20px]">
-				<!-- <div class="w-full rounded-[8px] bg-[#171B26]">
-					<h2 class="p-2 text-[12px]">22222</h2>
-				</div> -->
-			</div>
-
-			<div class="flex items-center justify-between text-[20px]">
-				<div class="">
-					<img
-						class="mb-3 w-[73px]"
-						src="/icons/bk/winline-big.svg"
-						alt="" />
-					<h2>{data.siteName}</h2>
-				</div>
-			</div>
-		</div>
-
 		<div class="rounded-[28px] bg-[#171B26] p-4">
 			<div class="flex items-center justify-between">
 				<h2>{data.event.competitionName.default}</h2>

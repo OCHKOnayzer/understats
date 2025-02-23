@@ -8,6 +8,14 @@ import type { ColumnDef } from '@tanstack/table-core';
 
 export type { IAccountResponse };
 
+type AccountsColumnMeta = {
+	textAlign?: 'left' | 'right';
+};
+
+type AccountsColumnDef = ColumnDef<IAccountResponse, unknown> & {
+	meta?: AccountsColumnMeta;
+};
+
 export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 	{
 		accessorKey: 'clientSeq',
@@ -65,6 +73,7 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
 			}),
+		meta: { textAlign: 'right' } as AccountsColumnMeta,
 		cell: ({ row }) => `${row.original.balance} ${row.original.currency}`
 	},
 	{
