@@ -86,7 +86,7 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
 			}),
-		cell: ({ row }) => (row.original.betAddedLastDate ? formatDate(row.original.betAddedLastDate) : '')
+		cell: ({ row }) => (row.original.betAddedLastDate ? formatDate(row.original.betAddedLastDate) : ''),
 	},
 	{
 		accessorKey: 'betsCount',
@@ -95,6 +95,8 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 				title: 'accounts.betCount',
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
-			})
+			}),
+		meta: { textAlign: 'right' } as AccountColumnMeta
+
 	}
 ];

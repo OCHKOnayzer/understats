@@ -107,7 +107,7 @@ type CellContextType = CellContext<IAccountResponse, unknown>;
 							{#each headerGroup.headers as header (header.id)}
 								<Table.Head class="text-[14px]">
 									<div
-										class="w-full"
+										class="w-full pr-[7px]"
 										style="display: flex; justify-content: {header.column.columnDef.meta?.textAlign === 'right' ? 'flex-end' : 'flex-start'}">
 										<FlexRender
 											content="{header.column.columnDef.header}"
