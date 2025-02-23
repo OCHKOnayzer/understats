@@ -247,7 +247,7 @@ $effect(() => {
 								row="{row}"
 								onExpressClick="{handleExpressClick}">
 								{#each row.getVisibleCells() as cell (cell.id)}
-									<Table.Cell style="text-align: {cell.column.columnDef.meta?.textAlign || 'left'}">
+									<Table.Cell style="cursor: pointer; text-align: {cell.column.columnDef.meta?.textAlign || 'left'}">
 										<FlexRender
 											content="{cell.column.columnDef.cell}"
 											context="{cell.getContext() as CellContextType}" />
