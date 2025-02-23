@@ -96,7 +96,12 @@ export const getColumns = (t: (key: string, params?: Record<string, any>) => str
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
 			}),
-		cell: ({ row }) => row.original.outcome?.default || ''
+		cell: ({ row }) => {
+			if (row.original.type === 'Express') {
+				return t('stats.express');
+			}
+			return row.original.outcome?.default || '';
+		}
 	},
 	{
 		accessorKey: 'rate',
