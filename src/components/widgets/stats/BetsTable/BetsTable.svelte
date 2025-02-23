@@ -29,7 +29,12 @@ let isMobile = $derived(innerWidth < 740);
 let prevPage = $state($filterStore.pagination.currentPage);
 let prevItemsPerPage = $state($filterStore.pagination.itemsPerPage);
 let isLoadingMore = $state(false);
-let sorting = $state<SortingState>([]);
+let sorting = $state<SortingState>([
+	{
+		id: 'dates.placed',
+		desc: true
+	}
+]);
 
 function handleExpressClick(bet: Bet) {
 	if (bet.type === 'Express' && bet.legs) {
