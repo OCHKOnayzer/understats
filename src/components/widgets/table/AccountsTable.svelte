@@ -105,13 +105,13 @@ type CellContextType = CellContext<IAccountResponse, unknown>;
 					{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
 						<Table.Row class="border-none">
 							{#each headerGroup.headers as header (header.id)}
-								<Table.Head class="">
-									<div class="flex gap-2 pl-2 pr-7">
-										<div class="text-[14px]">
-											<FlexRender
-												content="{header.column.columnDef.header}"
-												context="{header.getContext()}" />
-										</div>
+								<Table.Head class="text-[14px]">
+									<div
+										class="w-full pr-[7px]"
+										style="display: flex; justify-content: {header.column.columnDef.meta?.textAlign === 'right' ? 'flex-end' : 'flex-start'}">
+										<FlexRender
+											content="{header.column.columnDef.header}"
+											context="{header.getContext()}" />
 									</div>
 								</Table.Head>
 							{/each}
@@ -123,7 +123,9 @@ type CellContextType = CellContext<IAccountResponse, unknown>;
 						<Table.Row class="{cn(`${index % 2 === 1 ? 'bg-[#252935]' : 'bg-[#171B26]'} cursor-pointer text-[14px] transition-all duration-300 ease-in-out hover:bg-[#3D3A8540]`)}">
 							{#each row.getVisibleCells() as cell (cell.id)}
 								<Table.Cell>
-									<div class="cell-content">
+									<div
+										class="cell-content"
+										style="justify-content: {cell.column.columnDef.meta?.textAlign === 'right' ? 'flex-end' : 'flex-start'}; width: 100%;">
 										<FlexRender
 											content="{cell.column.columnDef.cell}"
 											context="{cell.getContext() as CellContextType}" />
@@ -156,7 +158,7 @@ type CellContextType = CellContext<IAccountResponse, unknown>;
 }
 
 .table-wrapper {
-	@apply relative w-full overflow-hidden;
+	@apply relative w-full overflow-hidden font-[Inter];
 }
 
 .table-container {
@@ -164,15 +166,15 @@ type CellContextType = CellContext<IAccountResponse, unknown>;
 }
 
 :global(.cell-content) {
-	@apply flex items-center;
+	@apply flex items-center font-[Inter];
 }
 
 :global(th) {
-	@apply whitespace-nowrap px-2 font-medium;
+	@apply whitespace-nowrap px-2 font-[Inter] font-medium;
 }
 
 :global(td) {
-	@apply align-middle;
+	@apply align-middle font-[Inter];
 }
 
 :global(thead) {

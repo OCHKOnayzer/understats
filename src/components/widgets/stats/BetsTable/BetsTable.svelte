@@ -226,11 +226,11 @@ $effect(() => {
 						{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
 							<Table.Row>
 								{#each headerGroup.headers as header (header.id)}
-									<Table.Head>
+									<Table.Head class="px-2">
 										{#if !header.isPlaceholder}
 											<div
-												class="flex items-center gap-1 sm:text-[10px] md:text-[12px] lg:text-[12px] xl:text-[14px]"
-												style="justify-content: {header.column.columnDef.meta?.textAlign === 'right' ? 'flex-end' : 'flex-start'}">
+												class="w-full"
+												style="display: flex; justify-content: {header.column.columnDef.meta?.textAlign === 'right' ? 'flex-end' : 'flex-start'}">
 												<FlexRender
 													content="{header.column.columnDef.header}"
 													context="{header.getContext()}" />
@@ -264,15 +264,23 @@ $effect(() => {
 
 <style lang="postcss">
 .table-container {
-	@apply relative h-[calc(100vh-280px)] w-full;
+	@apply relative h-[calc(100vh-280px)] w-full font-[Inter];
 }
 
 .message-container {
-	@apply flex h-[calc(100vh-190px)] flex-col items-center justify-center p-4 text-white;
+	@apply flex h-[calc(100vh-190px)] flex-col items-center justify-center p-4 font-[Inter] text-white;
 }
 
 .table-wrapper {
 	@apply absolute inset-0 mt-4 overflow-auto;
+}
+
+:global(th) {
+	@apply whitespace-nowrap px-2 font-[Inter] font-medium;
+}
+
+:global(td) {
+	@apply align-middle font-[Inter];
 }
 
 .mobile-container {
@@ -281,6 +289,7 @@ $effect(() => {
 	-webkit-overflow-scrolling: touch;
 	scrollbar-width: thin;
 	scrollbar-color: #6660ff #20242f;
+	@apply font-[Inter];
 }
 
 .mobile-container::-webkit-scrollbar {

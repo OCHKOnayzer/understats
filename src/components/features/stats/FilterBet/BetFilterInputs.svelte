@@ -60,6 +60,7 @@ function handleCoefficientChange() {
 				<input
 					type="text"
 					class="amount-input"
+					autocapitalize="off"
 					bind:value="{amountFrom}"
 					on:input="{handleAmountChange}"
 					id="coefficientFrom" />
@@ -74,6 +75,7 @@ function handleCoefficientChange() {
 				<input
 					type="text"
 					class="amount-input"
+					autocapitalize="off"
 					bind:value="{amountTo}"
 					on:input="{handleAmountChange}"
 					id="coefficientTo" />
