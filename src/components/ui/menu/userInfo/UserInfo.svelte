@@ -79,9 +79,14 @@ $effect(() => {
 	flex-direction: column;
 }
 .userName {
-	font-size: 13px;
-	color: #718096;
+    font-size: 13px;
+    color: #718096;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
+
 /* .user_info span {
 		color: rgba(128, 128, 128, 0.383);
 	} */
