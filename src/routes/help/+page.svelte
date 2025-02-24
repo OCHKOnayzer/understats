@@ -1,11 +1,11 @@
 <script>
-import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 
 import FaqConteiner from '$src/components/ui/faqMenu/faqConteiner.svelte';
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
 
 selectHeaderTitle('faq.faq');
+
 </script>
 
 <svelte:head>
