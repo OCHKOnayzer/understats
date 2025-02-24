@@ -79,12 +79,12 @@ $effect(() => {
 	flex-direction: column;
 }
 .userName {
-    font-size: 13px;
-    color: #718096;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
+	font-size: 13px;
+	color: #718096;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
 }
 .quitBtn {
 	display: flex;
