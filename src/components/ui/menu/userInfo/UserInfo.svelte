@@ -86,10 +86,6 @@ $effect(() => {
     text-overflow: ellipsis;
     max-width: 100%;
 }
-
-/* .user_info span {
-		color: rgba(128, 128, 128, 0.383);
-	} */
 .quitBtn {
 	display: flex;
 	justify-content: center;
