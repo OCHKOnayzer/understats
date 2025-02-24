@@ -59,20 +59,18 @@ const authUser = (auth: string) => {
 .buttons-wrapper {
 	margin-bottom: var(--elements-padding);
 	width: 100%;
-	min-height: 120px;
-	height: 120px;
 	background-color: #171b26;
 	border-radius: 8px;
 	color: white;
 }
 .buttons-container {
-	width: 98%;
+	width: 100%;
 	height: 100%;
-	margin: 0 auto;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	flex-wrap: nowrap;
+	padding: var(--elements-padding);
 }
 .buttons-desc {
 	display: flex;
