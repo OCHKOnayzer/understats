@@ -1,4 +1,5 @@
 <script lang="ts">
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { onMount } from 'svelte';
 import { fade } from 'svelte/transition';
 import { t } from 'svelte-i18n';

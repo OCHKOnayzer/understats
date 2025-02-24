@@ -1,12 +1,14 @@
-import { renderComponent } from '$src/components/ui/data-table';
-import { formatDate } from '$src/utils/functions/formatDate';
+import { renderComponent } from '$src/components/ui/data-table'
+import { formatDate } from '$src/utils/functions/formatDate'
+import { formatNumber } from '$src/utils/functions/formatNumber'
 
-import SortableHeader from './SortableHeader.svelte';
+import InfoIcon from '../stats/BetsTable/InfoIcon.svelte'
+import SortableHeader from './SortableHeader.svelte'
 
-import type { IAccountResponse } from '$src/types/accounts';
-import type { ColumnDef } from '@tanstack/table-core';
+import type { IAccountResponse } from '$src/types/accounts'
+import type { ColumnDef } from '@tanstack/table-core'
 
-export type { IAccountResponse };
+export type { IAccountResponse }
 
 export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 	{
@@ -55,7 +57,21 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
 			}),
-		cell: ({ row }) => formatDate(row.original.registrationDate)
+		cell: ({ row }) => {
+			const date = new Date(row.original.registrationDate);
+			return renderComponent(InfoIcon, {
+				formattedValue: formatDate(date),
+				fullValue: date.toLocaleString('ru-RU', {
+					year: 'numeric',
+					month: 'long',
+					day: 'numeric',
+					hour: '2-digit',
+					minute: '2-digit',
+					second: '2-digit'
+				}),
+				align: 'left'
+			});
+		}
 	},
 	{
 		accessorKey: 'balance',
@@ -65,7 +81,7 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
 			}),
-		cell: ({ row }) => `${row.original.balance} ${row.original.currency}`
+		cell: ({ row }) => `${formatNumber(row.original.balance)} ${row.original.currency}`
 	},
 	{
 		accessorKey: 'betAddedLastDate',
@@ -75,7 +91,22 @@ export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 				onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
 				isSorted: column.getIsSorted()
 			}),
-		cell: ({ row }) => (row.original.betAddedLastDate ? formatDate(row.original.betAddedLastDate) : '')
+		cell: ({ row }) => {
+			if (!row.original.betAddedLastDate) return '';
+			const date = new Date(row.original.betAddedLastDate);
+			return renderComponent(InfoIcon, {
+				formattedValue: formatDate(date),
+				fullValue: date.toLocaleString('ru-RU', {
+					year: 'numeric',
+					month: 'long',
+					day: 'numeric',
+					hour: '2-digit',
+					minute: '2-digit',
+					second: '2-digit'
+				}),
+				align: 'left'
+			});
+		}
 	},
 	{
 		accessorKey: 'betsCount',

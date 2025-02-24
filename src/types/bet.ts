@@ -153,6 +153,7 @@ export interface Bet {
 	siteName: string;
 	accountClientSeq?: number;
 	clientSeq: string;
+	extendedId?: string;
 	rate: number;
 	status: string;
 	type?: 'Express' | string;
@@ -179,4 +180,6 @@ export interface Bet {
 		it: string;
 	};
 	legs?: BetLeg[];
+	isLive?: boolean;
+	score?: string;
 }

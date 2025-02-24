@@ -1,6 +1,8 @@
 <script lang="ts">
-import { onMount} from 'svelte';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
+import { derived } from 'svelte/store';
 
 import { useUserProfile } from '$src/services/auth/useProfile';
 import { accountStore } from '$src/stores/accountStore';
@@ -8,7 +10,8 @@ import { isDemoEnabled } from '$src/stores/demo';
 import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
 import { isMenuOpen } from '$src/stores/menu';
 import { currentUser, openModal } from '$src/stores/modalStore';
-import { derived } from 'svelte/store';
+import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
+
 onMount(() => {
 	initializeScreenWidthListener();
 });

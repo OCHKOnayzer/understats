@@ -1,14 +1,13 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
 
-import { isDemoEnabled } from '$src/stores/demo';
-import { handleDemoToggle } from '$src/utils/functions/handleDemoToggle';
+import { isDemoEnabled, toggleDemoMode } from '$src/stores/demo';
 </script>
 
 <button
 	class="demo-switch"
 	class:active="{$isDemoEnabled}"
-	on:click="{handleDemoToggle}"
+	on:click="{toggleDemoMode}"
 	type="button"
 	aria-pressed="{$isDemoEnabled}">
 	<div class="switch">
