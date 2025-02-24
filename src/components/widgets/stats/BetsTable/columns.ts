@@ -1,12 +1,13 @@
-import { renderComponent } from '$src/components/ui/data-table'
-import { formatDateWithRecent } from '$src/utils/functions/formatDate'
-import { formatNumber } from '$src/utils/functions/formatNumber'
+import { renderComponent } from '$src/components/ui/data-table';
+import { formatDateWithRecent } from '$src/utils/functions/formatDate';
+import { formatNumber } from '$src/utils/functions/formatNumber';
 
-import SortableHeader from '../../table/SortableHeader.svelte'
-import InfoIcon from './InfoIcon.svelte'
+import SortableHeader from '../../table/SortableHeader.svelte';
 
-import type { Bet } from '$src/types/bet'
-import type { ColumnDef } from '@tanstack/table-core'
+import InfoIcon from './InfoIcon.svelte';
+
+import type { Bet } from '$src/types/bet';
+import type { ColumnDef } from '@tanstack/table-core';
 
 type BetColumnMeta = {
 	textAlign?: 'left' | 'right';

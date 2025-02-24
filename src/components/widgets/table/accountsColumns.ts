@@ -1,14 +1,15 @@
-import { renderComponent } from '$src/components/ui/data-table'
-import { formatDate } from '$src/utils/functions/formatDate'
-import { formatNumber } from '$src/utils/functions/formatNumber'
+import { renderComponent } from '$src/components/ui/data-table';
+import { formatDate } from '$src/utils/functions/formatDate';
+import { formatNumber } from '$src/utils/functions/formatNumber';
 
-import InfoIcon from '../stats/BetsTable/InfoIcon.svelte'
-import SortableHeader from './SortableHeader.svelte'
+import InfoIcon from '../stats/BetsTable/InfoIcon.svelte';
 
-import type { IAccountResponse } from '$src/types/accounts'
-import type { ColumnDef } from '@tanstack/table-core'
+import SortableHeader from './SortableHeader.svelte';
 
-export type { IAccountResponse }
+import type { IAccountResponse } from '$src/types/accounts';
+import type { ColumnDef } from '@tanstack/table-core';
+
+export type { IAccountResponse };
 
 export const accountsColumns: ColumnDef<IAccountResponse>[] = [
 	{

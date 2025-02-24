@@ -44,12 +44,12 @@ onDestroy(() => {
 							OneKeepBet
 						</div>
 						<!-- <button
-							on:click="{() => closeMenu()}"
-							class="closeMenu">
-							<img
-								src="assets/menu/close.svg"
-								alt="" />
-						</button> -->
+								on:click="{() => closeMenu()}"
+								class="closeMenu">
+								<img
+									src="assets/menu/close.svg"
+									alt="" />
+							</button> -->
 					</div>
 					<!-- <UserContainer /> -->
 					<RouteMenu />

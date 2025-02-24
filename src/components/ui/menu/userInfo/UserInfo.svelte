@@ -83,8 +83,8 @@ $effect(() => {
 	color: #718096;
 }
 /* .user_info span {
-	color: rgba(128, 128, 128, 0.383);
-} */
+		color: rgba(128, 128, 128, 0.383);
+	} */
 .quitBtn {
 	display: flex;
 	justify-content: center;
