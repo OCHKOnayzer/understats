@@ -5,7 +5,6 @@ import FaqConteiner from '$src/components/ui/faqMenu/faqConteiner.svelte';
 import { selectHeaderTitle } from '$src/stores/HeaderStores';
 
 selectHeaderTitle('faq.faq');
-
 </script>
 
 <svelte:head>

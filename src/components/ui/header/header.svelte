@@ -1,7 +1,7 @@
 <script lang="ts">
 import { onMount } from 'svelte';
-import { t } from 'svelte-i18n';
 import { fade } from 'svelte/transition';
+import { t } from 'svelte-i18n';
 
 import { currentUserActiveTariff } from '$src/stores/tariffsStore';
 import MobileFilterButton from '$src/components/features/stats/FilterMobile/MobileFilterButton.svelte';

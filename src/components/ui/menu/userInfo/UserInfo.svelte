@@ -1,5 +1,5 @@
 <script lang="ts">
-import { onMount } from 'svelte';
+import { onMount} from 'svelte';
 import { t } from 'svelte-i18n';
 
 import { useUserProfile } from '$src/services/auth/useProfile';
@@ -9,7 +9,6 @@ import { initializeScreenWidthListener, isMobile } from '$src/stores/isMobile';
 import { isMenuOpen } from '$src/stores/menu';
 import { currentUser, openModal } from '$src/stores/modalStore';
 import { derived } from 'svelte/store';
-
 onMount(() => {
 	initializeScreenWidthListener();
 });

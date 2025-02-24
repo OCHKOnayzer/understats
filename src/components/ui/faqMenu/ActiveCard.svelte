@@ -44,22 +44,20 @@ const setActiveIndex = (index: number, name: string, articleId: string) => {
 	}
 };
 onMount(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    
-    const hasOtherParams = [...urlParams.entries()].some(([key, value]) => !(key === 'main' && value === 'main'));
+	const urlParams = new URLSearchParams(window.location.search);
 
-    setActiveFromUrl();
-    initializeScreenWidthListener();
+	const hasOtherParams = [...urlParams.entries()].some(([key, value]) => !(key === 'main' && value === 'main'));
 
-    if (!hasOtherParams && urlParams.get('main') === 'main') {
-        const newUrl = `${window.location.origin}${window.location.pathname}?main=FrequentlyAskedQuestions`;
-        window.history.replaceState(null, "", newUrl);
+	setActiveFromUrl();
+	initializeScreenWidthListener();
 
-        setActiveIndex(1, 'faq.asked_questions', 'FrequentlyAskedQuestions');
-    }
+	if (!hasOtherParams && urlParams.get('main') === 'main') {
+		const newUrl = `${window.location.origin}${window.location.pathname}?main=FrequentlyAskedQuestions`;
+		window.history.replaceState(null, '', newUrl);
+
+		setActiveIndex(1, 'faq.asked_questions', 'FrequentlyAskedQuestions');
+	}
 });
-
-
 </script>
 
 <div class="faqItemsWrapper">

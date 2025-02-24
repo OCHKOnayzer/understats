@@ -97,8 +97,8 @@ const loadFromURL = () => {
 
 onMount(() => {
 	const urlParams = new URLSearchParams(window.location.search);
-	if (!urlParams.toString()){
-		setActiveIndex(0)
+	if (!urlParams.toString()) {
+		setActiveIndex(0);
 	}
 	loadFromURL();
 });

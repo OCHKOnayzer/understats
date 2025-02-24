@@ -17,7 +17,7 @@ function checkScreenWidth() {
 onMount(() => {
 	checkScreenWidth();
 	window.addEventListener('resize', checkScreenWidth);
-	
+
 	setActiveFromUrl();
 
 	return () => window.removeEventListener('resize', checkScreenWidth);
@@ -26,7 +26,6 @@ onMount(() => {
 let selectedItemName = '';
 let article: string | null = null;
 let ArticleComponent: typeof import('svelte').SvelteComponent | null = null;
-
 
 const handleSelectItemFromFaqMenu = async (event: any) => {
 	selectedItemName = event.detail.name;
@@ -65,7 +64,6 @@ const setActiveFromUrl = async () => {
 		}
 	}
 };
-
 </script>
 
 <div class="faqSection">
