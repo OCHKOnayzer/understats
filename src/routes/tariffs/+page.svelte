@@ -22,10 +22,10 @@ export let data;
 	{#if !isAuthenticated}
 		<DemoButtons />
 	{/if}
-	<!-- <div class="tariff-title">
+	<div class="tariff-title">
 			<div>{$t('tariffs.choose')}</div>
 			<div>{$t('tariffs.accountLimits')}</div>
-		</div> -->
+		</div>
 	<TariffsSection tariffs="{data}" />
 </div>
 

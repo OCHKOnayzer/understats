@@ -1,5 +1,6 @@
 <script lang="ts">
-import { onDestroy } from 'svelte';
+import { isMobile,initializeScreenWidthListener } from '$src/stores/isMobile';
+import { onDestroy,onMount } from 'svelte';
 
 import { expressBetLegs } from '$src/stores/expressBetStore';
 import { isModalOpen, modalComponent } from '$src/stores/modalStore';
@@ -19,6 +20,19 @@ import SuccessfulModal from './payModal/SuccessfulModal.svelte';
 import SorryModal from './sorryModal/SorryModal.svelte';
 import SocialModal from './supportModal/SocialModal.svelte';
 import SupportModal from './supportModal/SupportModal.svelte';
+import { CloseBack } from '$src/utils/functions/modalMobileClose';
+
+window.onpopstate = function(event: any) {
+    console.log('onpopstate triggered:', event.state);
+    if (event.state && event.state.modalOpen) {
+        console.log('Закрываем модалку через CloseBack');
+        CloseBack();
+    }
+};
+
+onMount(()=>{ 
+	initializeScreenWidthListener()
+})
 
 onDestroy(() => {
 	document.body.style.overflow = '';

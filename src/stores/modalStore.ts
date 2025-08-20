@@ -1,5 +1,7 @@
 import { derived, writable } from 'svelte/store';
 
+import { pushState, replaceState } from '$app/navigation';
+
 export const isModalOpen = writable(false);
 
 export const isChatOpen = writable(false);
@@ -75,6 +77,8 @@ export const openModal = (
 	isModalOpen.set(true);
 	modalComponent.set(component);
 	document.body.style.overflow = 'hidden';
+	
+    console.log('История после открытия модалки:', history.state);
 };
 
 export const closeModal = () => {
